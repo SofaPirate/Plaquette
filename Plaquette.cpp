@@ -25,7 +25,7 @@
 #include "Plaquette.h"
 
 PqComponent::PqComponent() {
-  Pq.register(this);
+  Pq.add(this);
 }
 
 Plaquette::Plaquette() : _nComponents(0) { }
@@ -42,7 +42,7 @@ void Plaquette::update() {
     _components[i]->update();
 }
   
-void Plaquette::register(PqComponent* component) {
+void Plaquette::add(PqComponent* component) {
   if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
     _components[_nComponents++] = component;
   }
@@ -53,4 +53,53 @@ void Plaquette::setup() {
     _components[i]->setup();
 }
 
+Plaquette Pq;
+
+
+LED::LED(uint8_t pin) {
+	
+	 LED(pin, SOURCE);
+	 
+}
+
+LED::LED(uint8_t pin, outputMode mode){
+	 this->pin = pin;
+	 this->mode = mode;
+	 pinMode(pin,OUTPUT);
+}
+
+
+void LED::on(){
+	if ( mode == SOURCE) digitalWrite(pin,HIGH);
+	else digitalWrite(pin,LOW);
+}
+void LED::off(){
+	if ( mode == SOURCE) digitalWrite(pin,LOW);
+	else digitalWrite(pin,HIGH);
+}
+	
+	
+	
+
+Switch::Switch(uint8_t pin) {
+	Switch(pin,INTERNAL_PULL_UP);
+}
+Switch::Switch(uint8_t pin, inputMode mode){
+	 this->pin = pin;
+	this->mode = mode;
+	pinMode(pin,INPUT);
+	// INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN 
+	if ( mode == INTERNAL_PULL_UP) {
+		digitalWrite(pin,OUTPUT);
+	}
+}
+
+uint8_t Switch::isPressed() {
+	if ( mode == INTERNAL_PULL_UP || mode == EXTERNAL_PULL_UP) {
+		return !digitalRead(pin);
+	} else {
+		return digitalRead(pin);
+	}
+}
+		
 

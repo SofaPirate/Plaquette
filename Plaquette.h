@@ -21,9 +21,19 @@
 #ifndef PLAQUETTE_H_
 #define PLAQUETTE_H_
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #define PLAQUETTE_MAX_COMPONENTS 32
 
-/// Main class for components (sensors, actuators) to be added to Plaquette.
+enum inputMode { INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN };
+enum outputMode { SOURCE , SINK  };
+
+/// Main class for components to be added to Plaquette.
+// Components can be transducers (sensors,actuators) or special integrated circuits
 class PqComponent {
 protected:
   PqComponent();
@@ -47,7 +57,7 @@ public:
   void update();
   
   /// Adds a component to Plaquette.
-  void register(PqComponent* component);
+  void add(PqComponent * component);
 
   /// Returns the current number of components.
   uint8_t nComponents() const { return _nComponents; }
@@ -57,5 +67,33 @@ private:
 };
 
 extern Plaquette Pq;
+
+
+class LED : public PqComponent {
+	
+	public :
+	    LED(uint8_t pin);
+		LED(uint8_t pin, outputMode mode);
+		void on();
+		void off();
+	private :
+		uint8_t pin;
+		outputMode mode;
+		
+	
+};
+
+class Switch : public PqComponent {
+	
+	public :
+	    Switch(uint8_t pin);
+		Switch(uint8_t pin, inputMode mode);
+		uint8_t isPressed();
+	private :
+		uint8_t pin;
+		inputMode mode;
+		
+		
+};
 
 #endif
