@@ -32,8 +32,6 @@
 #define PLAQUETTE_MAX_COMPONENTS 32
 #endif
 
-enum inputMode { INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN };
-
 class Plaquette;
 
 /**
@@ -83,18 +81,5 @@ private:
 /// The singleton.
 extern Plaquette Pq;
 
-
-class Switch : public PqComponent {
-	
-	public :
-	    Switch(uint8_t pin);
-		Switch(uint8_t pin, inputMode mode);
-		uint8_t isPressed();
-	private :
-		uint8_t pin;
-		inputMode mode;
-		
-		
-};
 
 #endif

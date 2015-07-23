@@ -56,25 +56,4 @@ void Plaquette::setup() {
 
 Plaquette Pq;
 
-Switch::Switch(uint8_t pin) {
-	Switch(pin,INTERNAL_PULL_UP);
-}
-Switch::Switch(uint8_t pin, inputMode mode){
-	 this->pin = pin;
-	this->mode = mode;
-	pinMode(pin,INPUT);
-	// INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN 
-	if ( mode == INTERNAL_PULL_UP) {
-		digitalWrite(pin,OUTPUT);
-	}
-}
-
-uint8_t Switch::isPressed() {
-	if ( mode == INTERNAL_PULL_UP || mode == EXTERNAL_PULL_UP) {
-		return !digitalRead(pin);
-	} else {
-		return digitalRead(pin);
-	}
-}
-		
 
