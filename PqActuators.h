@@ -43,11 +43,17 @@ public:
   /// Returns true iff the current is inverted (ie. if the mode is SINK).
   bool isInverted() const { return (_mode == SINK); }
 
+  /// Returns true iff this sensor supports only digital output.
+  bool isDigital() const;
+
+  /// Return true iff this sensor supports analog output.
+  bool isAnalog() const { return !isDigital(); }
+
   /// Switches the actuator to "ON".
-  virtual void on();
+  virtual void on() { set(1); }
 
   /// Switches the actuator to "OFF".
-  virtual void off();
+  virtual void off() { set(0); }
 
   /// Sets the value between 0 and 1.
   virtual void set(float value);
@@ -70,6 +76,5 @@ class LED : public PqSingleActuator {
 public:
   LED(uint8_t pin=13, uint8_t mode=SOURCE);
 };
-
 
 #endif

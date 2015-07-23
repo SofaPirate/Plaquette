@@ -26,21 +26,25 @@ void PqSingleActuator::setup() {
   pinMode(_pin, OUTPUT);
 }
 
-void PqSingleActuator::on() {
-  digitalWrite( _pin, isInverted() ? LOW : HIGH );
-}
-
-void PqSingleActuator::off() {
-  digitalWrite( _pin, isInverted() ? HIGH : LOW );
+bool PqSingleActuator::isDigital() const
+{
+  return (digitalPinToTimer(_pin) == NOT_ON_TIMER);
 }
 
 void PqSingleActuator::set(float value) {
-  setRaw(round(value * 255));
+  setRaw( round( isDigital() ? value : value * 255 ) );
 }
 
 void PqSingleActuator::setRaw(int value) {
-  value = constrain(value, 0, 255);
-  analogWrite( _pin, isInverted() ? 255-value : value );
+  if (isDigital()) {
+    value = constrain(value, 0, 1);
+    value = isInverted() ? 1-value : value;
+    digitalWrite( _pin, value ? HIGH : LOW );
+  }
+  else {
+    value = constrain(value, 0, 255);
+    analogWrite( _pin, isInverted() ? 255-value : value );
+  }
 }
 
 LED::LED(uint8_t pin, uint8_t mode) : PqSingleActuator(pin, mode) {}
