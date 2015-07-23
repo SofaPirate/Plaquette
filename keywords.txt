@@ -1,0 +1,33 @@
+#######################################
+# Syntax Coloring Map For Plaquette
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Pq	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setup KEYWORD2
+update	KEYWORD2
+on	KEYWORD2
+off	KEYWORD2
+set	KEYWORD2
+pin	KEYWORD2
+mode	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+SOURCE	LITERAL1
+SINK 	LITERAL1
+
