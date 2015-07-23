@@ -1,5 +1,5 @@
 /*
- * Plaquette.cpp
+ * PqCore.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info

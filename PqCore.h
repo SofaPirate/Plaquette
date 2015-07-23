@@ -1,5 +1,5 @@
 /*
- * Plaquette.h
+ * PqCore.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -80,6 +80,5 @@ private:
 
 /// The singleton.
 extern Plaquette Pq;
-
 
 #endif
