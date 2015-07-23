@@ -24,8 +24,8 @@
 #include "PqCore.h"
 
 // Output constants.
-#define SOURCE 0
-#define SINK   1
+#define SOURCE 0x0
+#define SINK   0x1
 
 /// A generic class representing a simple digital/analog output.
 class PqSingleActuator : public PqComponent {
