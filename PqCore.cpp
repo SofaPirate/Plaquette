@@ -42,16 +42,16 @@ void Plaquette::update() {
   for (uint8_t i=0; i<_nComponents; i++)
     _components[i]->update();
 }
-  
-void Plaquette::add(PqComponent* component) {
-  if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
-    _components[_nComponents++] = component;
-  }
-}
 
 void Plaquette::setup() {
   for (uint8_t i=0; i<_nComponents; i++)
     _components[i]->setup();
+}
+
+  void Plaquette::add(PqComponent* component) {
+  if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
+    _components[_nComponents++] = component;
+  }
 }
 
 Plaquette Pq;

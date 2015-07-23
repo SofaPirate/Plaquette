@@ -31,22 +31,28 @@
 
 enum inputMode { INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN };
 
+class Plaquette;
+
 /**
  * Main class for components to be added to Plaquette.
  * Components can be transducers (sensors,actuators) or special integrated circuits.
  */
 class PqComponent {
+  friend class Plaquette;
+
 protected:
   PqComponent();
   virtual ~PqComponent() {}
 
-public:
+protected:
   virtual void setup() {}
   virtual void update() {}
 };
 
 /// The main Plaquette singleton class containing all the components.
 class Plaquette {
+  friend class PqComponent;
+
 private:
   PqComponent* _components[PLAQUETTE_MAX_COMPONENTS];
   uint8_t _nComponents;
@@ -57,9 +63,6 @@ public:
   /// Needs to be called regularly.
   void update();
   
-  /// Adds a component to Plaquette.
-  void add(PqComponent * component);
-
   /// Returns the current number of components.
   uint8_t nComponents() const { return _nComponents; }
 
@@ -69,6 +72,9 @@ private:
    * and will call all of the components' setup() method.
    */
   void setup();
+
+  /// Adds a component to Plaquette.
+  void add(PqComponent * component);
 };
 
 /// The singleton.
