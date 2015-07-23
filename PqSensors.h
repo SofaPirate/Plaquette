@@ -43,15 +43,15 @@ public:
   /// Returns the mode of the sensor (either SOURCE or SINK).
   uint8_t mode() const { return _mode; }
 
-
+  // Set of accessor functions providing information about the sensor based on its mode.
   bool isAnalog() const { return (_mode & (ANALOG_DEFAULT | ANALOG_INVERTED)); }
   bool isDigital() const { return !isAnalog(); }
 
   bool isInverted() const { return (_mode & (INTERNAL_PULLUP | EXTERNAL_PULLUP | ANALOG_INVERTED)); }
-
-  bool isPullUp() const { return (_mode != EXTERNAL_PULLDOWN); }
-
-  bool isExternal() const { return (_mode != INTERNAL_PULLUP); }
+  bool isPullDown() const { return (_mode == EXTERNAL_PULLDOWN); }
+  bool isPullUp() const   { return !isPullDown(); }
+  bool isInternal() const { return (_mode == INTERNAL_PULLUP);
+  bool isExternal() const { return !isInternal(); }
 
   /// Returns true iff the sensor is "ON".
   virtual bool isOn() const;
