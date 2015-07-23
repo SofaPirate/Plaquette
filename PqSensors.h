@@ -50,7 +50,7 @@ public:
   bool isInverted() const { return (_mode & (INTERNAL_PULLUP | EXTERNAL_PULLUP | ANALOG_INVERTED)); }
   bool isPullDown() const { return (_mode == EXTERNAL_PULLDOWN); }
   bool isPullUp() const   { return !isPullDown(); }
-  bool isInternal() const { return (_mode == INTERNAL_PULLUP);
+  bool isInternal() const { return (_mode == INTERNAL_PULLUP); }
   bool isExternal() const { return !isInternal(); }
 
   /// Returns true iff the sensor is "ON".
