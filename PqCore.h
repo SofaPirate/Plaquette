@@ -27,7 +27,10 @@
 #include "WProgram.h"
 #endif
 
+#ifndef PLAQUETTE_MAX_COMPONENTS
+/// Max. components that can be added. Can be pre-defined.
 #define PLAQUETTE_MAX_COMPONENTS 32
+#endif
 
 enum inputMode { INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN };
 
