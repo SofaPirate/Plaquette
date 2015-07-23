@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
+#ifndef PQ_CORE_H_
+#define PQ_CORE_H_
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -30,7 +30,6 @@
 #define PLAQUETTE_MAX_COMPONENTS 32
 
 enum inputMode { INTERNAL_PULL_UP, EXTERNAL_PULL_UP, EXTERNAL_PULL_DOWN };
-enum outputMode { SOURCE , SINK  };
 
 /**
  * Main class for components to be added to Plaquette.
@@ -75,19 +74,6 @@ private:
 /// The singleton.
 extern Plaquette Pq;
 
-
-class LED : public PqComponent {
-	
-	public :
-	  LED(uint8_t pin=13, outputMode mode=SOURCE);
-    virtual void setup();
-		void on();
-		void off();
-
-	protected :
-		uint8_t _pin;
-		outputMode _mode;
-};
 
 class Switch : public PqComponent {
 	

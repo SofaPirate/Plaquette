@@ -22,7 +22,8 @@
 #else
 #include "WProgram.h"
 #endif
-#include "Plaquette.h"
+
+#include "PqCore.h"
 
 PqComponent::PqComponent() {
   Pq.add(this);
@@ -54,22 +55,6 @@ void Plaquette::setup() {
 }
 
 Plaquette Pq;
-
-LED::LED(uint8_t pin, outputMode mode) : _pin(pin), _mode(mode) {}
-
-void LED::on() {
-  digitalWrite( _pin, _mode == SOURCE ? HIGH : LOW);
-}
-
-void LED::off() {
-  digitalWrite( _pin, _mode == SOURCE ? LOW : HIGH);
-}
-	
-void LED::setup() {
-  pinMode(_pin, OUTPUT);
-}
-	
-	
 
 Switch::Switch(uint8_t pin) {
 	Switch(pin,INTERNAL_PULL_UP);
