@@ -1,6 +1,6 @@
 #include <Plaquette.h>
 
-LED debugLed(13);
+LED debugLed;
 Switch button(3);
 
 void setup() {
@@ -13,7 +13,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   Pq.update();
   
-  if ( button.isPressed() ) debugLed.on();
+  if ( button.isOn() ) debugLed.on();
   else debugLed.off();
   
 }

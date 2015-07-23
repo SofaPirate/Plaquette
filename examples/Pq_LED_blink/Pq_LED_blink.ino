@@ -1,6 +1,6 @@
 #include <Plaquette.h>
 
-LED debugLed(13);
+LED debugLed;
 
 void setup() {
   // put your setup code here, to run once:
