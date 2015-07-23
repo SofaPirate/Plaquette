@@ -72,15 +72,14 @@ extern Plaquette Pq;
 class LED : public PqComponent {
 	
 	public :
-	    LED(uint8_t pin);
-		LED(uint8_t pin, outputMode mode);
+	  LED(uint8_t pin=13, outputMode mode=SOURCE);
+    virtual void setup();
 		void on();
 		void off();
-	private :
-		uint8_t pin;
-		outputMode mode;
-		
-	
+
+	protected :
+		uint8_t _pin;
+		outputMode _mode;
 };
 
 class Switch : public PqComponent {

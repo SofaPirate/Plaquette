@@ -55,29 +55,19 @@ void Plaquette::setup() {
 
 Plaquette Pq;
 
+LED::LED(uint8_t pin, outputMode mode) : _pin(pin), _mode(mode) {}
 
-LED::LED(uint8_t pin) {
-	
-	 LED(pin, SOURCE);
-	 
+void LED::on() {
+  digitalWrite( _pin, _mode == SOURCE ? HIGH : LOW);
 }
 
-LED::LED(uint8_t pin, outputMode mode){
-	 this->pin = pin;
-	 this->mode = mode;
-	 pinMode(pin,OUTPUT);
-}
-
-
-void LED::on(){
-	if ( mode == SOURCE) digitalWrite(pin,HIGH);
-	else digitalWrite(pin,LOW);
-}
-void LED::off(){
-	if ( mode == SOURCE) digitalWrite(pin,LOW);
-	else digitalWrite(pin,HIGH);
+void LED::off() {
+  digitalWrite( _pin, _mode == SOURCE ? LOW : HIGH);
 }
 	
+void LED::setup() {
+  pinMode(_pin, OUTPUT);
+}
 	
 	
 
