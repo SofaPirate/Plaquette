@@ -79,12 +79,12 @@ protected:
 
 class DigitalSensor : public PqSingleSensor {
 public:
-  DigitalSensor(uint8_t pin, uint8_t mode=INTERNAL_PULLUP) : PqSingleSensor(pin, mode) {}
+  DigitalSensor(uint8_t pin=0, uint8_t mode=INTERNAL_PULLUP) : PqSingleSensor(pin, mode) {}
 };
 
 class AnalogSensor : public PqSingleSensor {
 public:
-  AnalogSensor(uint8_t pin, uint8_t mode=ANALOG_DEFAULT) : PqSingleSensor(pin, mode) {}
+  AnalogSensor(uint8_t pin=0, uint8_t mode=ANALOG_DEFAULT) : PqSingleSensor(pin, mode) {}
 };
 
 typedef DigitalSensor Switch;
