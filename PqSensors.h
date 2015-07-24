@@ -58,13 +58,13 @@ public:
   virtual bool isOff() const { return !isOn(); }
 
   /// Returns sensor reading as a value between 0 and 1.
-  virtual float get() const;
+  virtual float read() const;
 
   /**
    * Returns the raw sensor reading. If this is a digital input the value will either be 0 or 1, whereas
    * for analog sensors it will be between 0 and 1023.
    */
-  virtual int getRaw() const;
+  virtual int readRaw() const;
 
 protected:
   /// Implementation of the PqComponent::setup() method.

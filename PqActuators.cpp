@@ -31,11 +31,11 @@ bool PqSingleActuator::isDigital() const
   return (digitalPinToTimer(_pin) == NOT_ON_TIMER);
 }
 
-void PqSingleActuator::set(float value) {
-  setRaw( round( isDigital() ? value : value * 255 ) );
+void PqSingleActuator::write(float value) {
+  writeRaw( round( isDigital() ? value : value * 255 ) );
 }
 
-void PqSingleActuator::setRaw(int value) {
+void PqSingleActuator::writeRaw(int value) {
   if (isDigital()) {
     value = constrain(value, 0, 1);
     value = isInverted() ? 1-value : value;

@@ -24,16 +24,16 @@ PqSingleSensor::PqSingleSensor(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mod
 
 bool PqSingleSensor::isOn() const
 {
-  return (get() > 0.5f);
+  return (read() > 0.5f);
 }
 
-float PqSingleSensor::get() const
+float PqSingleSensor::read() const
 {
-  int rawValue = getRaw();
+  int rawValue = readRaw();
   return (isDigital() ? rawValue : rawValue / 1023.0f);
 }
 
-int PqSingleSensor::getRaw() const
+int PqSingleSensor::readRaw() const
 {
   if (isDigital())
   {

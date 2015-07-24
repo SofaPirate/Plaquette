@@ -50,16 +50,16 @@ public:
   bool isAnalog() const { return !isDigital(); }
 
   /// Switches the actuator to "ON".
-  virtual void on() { set(1); }
+  virtual void on() { write(1); }
 
   /// Switches the actuator to "OFF".
-  virtual void off() { set(0); }
+  virtual void off() { write(0); }
 
   /// Sets the value between 0 and 1.
-  virtual void set(float value);
+  virtual void write(float value);
 
   /// Raw sets the value between 0 and 255.
-  virtual void setRaw(int value);
+  virtual void writeRaw(int value);
 
 protected:
   /// Implementation of the PqComponent::setup() method.
