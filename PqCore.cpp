@@ -48,7 +48,7 @@ void Plaquette::setup() {
     _components[i]->setup();
 }
 
-  void Plaquette::add(PqComponent* component) {
+void Plaquette::add(PqComponent* component) {
   if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
     _components[_nComponents++] = component;
   }
