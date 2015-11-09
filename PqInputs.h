@@ -39,6 +39,18 @@ public:
 
   /// Returns reading in [0, 1].
   virtual float get();
+
+  virtual void smooth(float factor=0.1f);
+  virtual void noSmooth() { smooth(0); }
+
+  // Current value.
+  float _value;
+
+  // Smooth factor
+  float _alpha;
+
+protected:
+  virtual float read();
 };
 
 /// A generic class representing a simple digital input.
