@@ -142,16 +142,19 @@ public:
   PqDigitalPutter() {}
   virtual ~PqDigitalPutter() {}
 
+  virtual void setIsOn(bool isOn) {
+    put (isOn ? 1 : 0);
+  }
+
   /// Sets output to "on".
-  virtual void on() { put(1); }
+  virtual void on() { setIsOn(true); }
 
   /// Sets output to "off".
-  virtual void off() { put(0); }
+  virtual void off() { setIsOn(false); }
 
   /// Switches between on and off.
   virtual void toggle() {
-    if (isOn()) off();
-    else        on();
+    setIsOn(!isOn());
   }
 
   /// Returns reading (either 0 or 1).
