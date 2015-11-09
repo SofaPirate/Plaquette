@@ -41,7 +41,7 @@ public:
   virtual float get();
 
   virtual void smooth(float factor=0.1f);
-  virtual void noSmooth() { smooth(0); }
+  virtual void noSmooth() { smooth(1); }
 
   // Current value.
   float _value;

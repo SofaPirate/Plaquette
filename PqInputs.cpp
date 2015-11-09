@@ -21,7 +21,7 @@
 #include "PqInputs.h"
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqGetter(), _value(-1), _alpha(0)
+  : PqPinComponent(pin, mode), PqGetter(), _value(-1), _alpha(1)
 {}
 
 void AnalogIn::smooth(float factor) {
