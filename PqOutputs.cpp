@@ -49,10 +49,10 @@ float DigitalOut::put(float value) {
   // Make sure value is in [0, 1].
   value = constrain(value, 0, 1);
   // Remap as integer : either 0 or 1.
-  int value01 = (value > 0.5 ? 1 : 0);
-  int rawValue = (_mode == SOURCE ? value01 : 1-value01);
+  int value01 = (value > 0.5f ? 1 : 0);
+  _isOn = (_mode == SOURCE ? value01 : 1-value01);
   // Write to PWM (inverting if needed).
-  digitalWrite(_pin, rawValue ? HIGH : LOW);
+  digitalWrite(_pin, _isOn ? HIGH : LOW);
   // Return original value.
   return value01;
 }
