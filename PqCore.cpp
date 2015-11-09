@@ -38,6 +38,8 @@ void Plaquette::update() {
 }
 
 void Plaquette::setup() {
+  // Initialize serial.
+  Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
   // Initialize all components.
   for (uint8_t i=0; i<_nComponents; i++)
     _components[i]->setup();

@@ -32,6 +32,10 @@
 #define PLAQUETTE_MAX_COMPONENTS 32
 #endif
 
+#ifndef PLAQUETTE_SERIAL_BAUD_RATE
+#define PLAQUETTE_SERIAL_BAUD_RATE 115200
+#endif
+
 class Plaquette;
 
 /**
