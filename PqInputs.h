@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_INPUTS_H
-#define PQ_INPUTS_H
+#ifndef PQ_INPUTS_H_
+#define PQ_INPUTS_H_
 
 #include "PqCore.h"
 
