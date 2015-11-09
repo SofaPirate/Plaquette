@@ -11,7 +11,7 @@ void begin() {}
 
 void run() {
   // If button is pressed and input signal is big enough then use first oscillator
-  if (button || in < 0.2f)
+  if (button || in < 0.2)
     0 >> led; // another way to write "led.off()"
   // else combine both oscillators
   else
