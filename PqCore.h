@@ -61,19 +61,16 @@ private:
 public:
   Plaquette();
 
-  /// Needs to be called regularly.
+  /// Initializes all components (calls setup() on all of them).
+  void setup();
+
+  /// Updates all components (calls update() on all of them).
   void update();
   
   /// Returns the current number of components.
   uint8_t nComponents() const { return _nComponents; }
 
 private:
-  /*
-   * This method will be automatically called on the first call to Plaquette.update()
-   * and will call all of the components' setup() method.
-   */
-  void setup();
-
   /// Adds a component to Plaquette.
   void add(PqComponent * component);
 };

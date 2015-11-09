@@ -21,3 +21,16 @@
 #include "PqCore.h"
 #include "PqInputs.h"
 #include "PqOutputs.h"
+
+void begin();
+void run();
+
+void setup() {
+  Pq.setup();
+  begin();
+}
+
+void loop() {
+  Pq.update();
+  run();
+}

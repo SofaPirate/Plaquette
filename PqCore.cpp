@@ -32,18 +32,13 @@ PqComponent::PqComponent() {
 Plaquette::Plaquette() : _nComponents(0) { }
 
 void Plaquette::update() {
-  static bool isSettedUp = false;
-  // Setup on first call.
-  if (!isSettedUp) {
-    setup();
-    isSettedUp = true;
-  }
   // Update every component.
   for (uint8_t i=0; i<_nComponents; i++)
     _components[i]->update();
 }
 
 void Plaquette::setup() {
+  // Initialize all components.
   for (uint8_t i=0; i<_nComponents; i++)
     _components[i]->setup();
 }
@@ -55,5 +50,3 @@ void Plaquette::add(PqComponent* component) {
 }
 
 Plaquette Pq;
-
-
