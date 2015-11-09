@@ -93,12 +93,12 @@ public:
   virtual float get() = 0;
 
   // Logical operators.
-  bool operator==(float& value) { return get() == value; }
-  bool operator!=(float& value) { return get() != value; }
-  bool operator>(float& value)  { return get() >  value; }
-  bool operator>=(float& value) { return get() >= value; }
-  bool operator<(float& value)  { return get() <  value; }
-  bool operator<=(float& value) { return get() <= value; }
+  bool operator==(float value) { return get() == value; }
+  bool operator!=(float value) { return get() != value; }
+  bool operator>(float value)  { return get() >  value; }
+  bool operator>=(float value) { return get() >= value; }
+  bool operator<(float value)  { return get() <  value; }
+  bool operator<=(float value) { return get() <= value; }
 
   // Math operators.
   float operator+(PqGetter& getter) { return get() + getter.get(); }
@@ -134,10 +134,10 @@ public:
   operator bool() { return isOn(); }
 
   // More operators.
-  bool operator==(int& value) { return getInt() == value; }
-  bool operator!=(int& value) { return getInt() != value; }
-  bool operator==(bool& value) { return (isOn() == value); }
-  bool operator!=(bool& value) { return (isOn() != value); }
+  bool operator==(int value) { return getInt() == value; }
+  bool operator!=(int value) { return getInt() != value; }
+  bool operator==(bool value) { return (isOn() == value); }
+  bool operator!=(bool value) { return (isOn() != value); }
 };
 
 /// A generic class representing a simple sink.
