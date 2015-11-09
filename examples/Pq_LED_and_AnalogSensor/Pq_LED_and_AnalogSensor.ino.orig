@@ -1,0 +1,22 @@
+#include <Plaquette.h>
+
+<<<<<<< HEAD
+LED debugLed(11);
+=======
+LED debugLed;
+>>>>>>> 4483355ea9e0d58fa33fd717abc5649e1507be65
+AnalogSensor sensor;
+
+void setup() {
+  // put your setup code here, to run once:
+ 
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Pq.update();
+  
+  // Set LED intensity to sensor reading.
+  debugLed.set( sensor.get() ); 
+}

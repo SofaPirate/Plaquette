@@ -1,19 +1,10 @@
 #include <Plaquette.h>
 
-LED debugLed;
-Switch button(3);
+DigitalOut led; // defaults on pin 13
+DigitalIn button(2);
 
-void setup() {
-  // put your setup code here, to run once:
- 
-  
-}
+void begin() {}
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  Pq.update();
-  
-  if ( button.isOn() ) debugLed.on();
-  else debugLed.off();
-  
+void run() {
+  button >> led;
 }

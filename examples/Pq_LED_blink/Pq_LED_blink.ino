@@ -1,19 +1,10 @@
 #include <Plaquette.h>
 
-LED debugLed;
+DigitalOut led; // defaults on pin 13
+SquareOsc osc(2, 0.75); // square oscillator with period of 2 sec and 75% duty-cycle
 
-void setup() {
-  // put your setup code here, to run once:
+void begin() {}
 
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  Pq.update();
-  
-  debugLed.on();
-  delay(500); // DO NOT DO THIS, THIS IS FOR DEBUGGING
-  debugLed.off();
-  delay(500);
-  
+void run() {
+  osc >> led;
 }

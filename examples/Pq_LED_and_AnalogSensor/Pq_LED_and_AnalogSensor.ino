@@ -1,18 +1,13 @@
 #include <Plaquette.h>
 
-LED debugLed(11);
-AnalogSensor sensor;
+PwmOut led;  // defaults on pin 3
+AnalogIn in; // defaults on pin A0
 
-void setup() {
-  // put your setup code here, to run once:
- 
-  
+void begin() {
+  in.smooth(); // add some smoothing
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  Pq.update();
-  
-  // Set LED intensity to sensor reading.
-  debugLed.set( sensor.get() ); 
+void run() {
+  // Sends input signal to LED intensity.
+  in >> led;
 }
