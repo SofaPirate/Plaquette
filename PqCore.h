@@ -103,12 +103,16 @@ public:
   // Math operators.
   float operator+(PqGetter& getter) { return get() + getter.get(); }
   float operator+(float value)      { return get() + value; }
+  float operator+(double value)     { return get() + value; }
   float operator-(PqGetter& getter) { return get() - getter.get(); }
   float operator-(float value)      { return get() - value; }
+  float operator-(double value)     { return get() - value; }
   float operator*(PqGetter& getter) { return get() * getter.get(); }
   float operator*(float value)      { return get() * value; }
+  float operator*(double value)     { return get() * value; }
   float operator/(PqGetter& getter) { return get() / getter.get(); }
   float operator/(float value)      { return get() / value; }
+  float operator/(double value)     { return get() / value; }
 };
 
 /// A generic class representing a simple source.
@@ -203,7 +207,15 @@ inline PqPutter& operator>>(float value, PqPutter& putter) {
   return putter;
 }
 
+inline PqPutter& operator>>(double value, PqPutter& putter) {
+  return ::operator>>((float)value, putter);
+}
+
 inline float& operator>>(PqGetter& getter, float& value) {
+  return (value = getter.get());
+}
+
+inline double& operator>>(PqGetter& getter, double& value) {
   return (value = getter.get());
 }
 
