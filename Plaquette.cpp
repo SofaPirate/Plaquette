@@ -1,5 +1,5 @@
 /*
- * Plaquette.h
+ * Plaquette.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,24 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
+#include "Plaquette.h"
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
+void setup() {
+  Pq.setup();
+  begin();
+}
 
-// Plaquette builtin print functions.
-#include "pq_print.h"
-
-#include "PqCore.h"
-#include "PqInputs.h"
-#include "PqOutputs.h"
-
-// Plaquette builtin runtime functions.
-void begin();
-void run();
-
-#endif
+void loop() {
+  Pq.update();
+  run();
+}
