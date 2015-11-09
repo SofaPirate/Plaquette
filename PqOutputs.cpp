@@ -27,15 +27,18 @@ PwmOut::PwmOut(uint8_t pin, uint8_t mode)
 {}
 
 float PwmOut::put(float value) {
+  return (_value = write(value));
+}
+
+float PwmOut::write(float value) {
   // Make sure value is in [0, 1].
-  _value = constrain(value, 0, 1);
+  value = constrain(value, 0, 1);
   // Remap as integer in [0, 255].
-  float remappedValue = _value * 255;
+  float remappedValue = value * 255;
   int rawValue = round(remappedValue);
   // Write to PWM (inverting if needed).
   analogWrite(_pin, (_mode == SOURCE ? rawValue : 255 - rawValue));
-  // Return original value.
-  return _value;
+  return value;
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)

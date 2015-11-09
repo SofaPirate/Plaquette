@@ -41,6 +41,9 @@ public:
 
   // Current value.
   float _value;
+
+protected:
+  virtual float write(float value);
 };
 
 /// A generic class representing a simple digital input.
