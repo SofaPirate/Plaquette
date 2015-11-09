@@ -91,6 +91,24 @@ public:
 
   /// Returns reading (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
+
+  // Logical operators.
+  bool operator==(float& value) { return get() == value; }
+  bool operator!=(float& value) { return get() != value; }
+  bool operator>(float& value)  { return get() >  value; }
+  bool operator>=(float& value) { return get() >= value; }
+  bool operator<(float& value)  { return get() <  value; }
+  bool operator<=(float& value) { return get() <= value; }
+
+  // Math operators.
+  float operator+(PqGetter& getter) { return get() + getter.get(); }
+  float operator+(float value)      { return get() + value; }
+  float operator-(PqGetter& getter) { return get() - getter.get(); }
+  float operator-(float value)      { return get() - value; }
+  float operator*(PqGetter& getter) { return get() * getter.get(); }
+  float operator*(float value)      { return get() * value; }
+  float operator/(PqGetter& getter) { return get() / getter.get(); }
+  float operator/(float value)      { return get() / value; }
 };
 
 /// A generic class representing a simple source.
@@ -106,8 +124,20 @@ public:
   /// Returns true iff the input is "off".
   virtual bool isOff() { return !isOn(); }
 
+  /// Returns value as integer (0 or 1).
+  virtual int getInt() { return isOn() ? 1 : 0; }
+
   /// Returns reading (either 0 or 1).
-  virtual float get() { return isOn() ? 1 : 0; }
+  virtual float get() { return getInt(); }
+
+  /// Operator that allows to use direction in conditional expressions.
+  operator bool() { return isOn(); }
+
+  // More operators.
+  bool operator==(int& value) { return getInt() == value; }
+  bool operator!=(int& value) { return getInt() != value; }
+  bool operator==(bool& value) { return (isOn() == value); }
+  bool operator!=(bool& value) { return (isOn() != value); }
 };
 
 /// A generic class representing a simple sink.
@@ -119,21 +149,21 @@ public:
 
   /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value) = 0;
+
+  // Math operators.
+  PqPutter& operator+=(PqGetter& getter) { put(get()+getter.get()); return *this; }
+  PqPutter& operator+=(float value)      { put(get()+value); return *this; }
+  PqPutter& operator-=(PqGetter& getter) { put(get()-getter.get()); return *this; }
+  PqPutter& operator-=(float value)      { put(get()-value); return *this; }
+  PqPutter& operator*=(PqGetter& getter) { put(get()*getter.get()); return *this; }
+  PqPutter& operator*=(float value)      { put(get()*value); return *this; }
+  PqPutter& operator/=(PqGetter& getter) { put(get()/getter.get()); return *this; }
+  PqPutter& operator/=(float value)      { put(get()/value); return *this; }
+
+  // Assignation operators (disabled, replaced for now by the >> operators).
+  //PqPutter& operator=(const PqGetter& x) { put(const_cast<PqGetter*>(&x)->get()); return *this; }
+  //PqPutter& operator=(float value)  { put(value); return *this; }
 };
-
-inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
-  putter.put( getter.get() );
-  return putter;
-}
-
-inline PqGetter& operator>>(float value, PqPutter& putter) {
-  putter.put( value );
-  return putter;
-}
-
-inline float& operator>>(PqGetter& putter, float& value) {
-  return (value = putter.get());
-}
 
 /// A generic class representing a simple source.
 class PqDigitalPutter : public PqPutter, public PqDigitalGetter {
@@ -160,6 +190,67 @@ public:
   /// Returns reading (either 0 or 1).
   virtual float get() { return PqDigitalGetter::get(); }
 };
+
+// Operators /////////////////////////////////////////////////////
+
+inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
+  putter.put( getter.get() );
+  return putter;
+}
+
+inline PqPutter& operator>>(float value, PqPutter& putter) {
+  putter.put( value );
+  return putter;
+}
+
+inline float& operator>>(PqGetter& getter, float& value) {
+  return (value = getter.get());
+}
+
+inline PqPutter& operator>>(int value, PqPutter& putter) {
+  putter.put( value );
+  return putter;
+}
+
+inline int& operator>>(PqGetter& getter, int& value) {
+  return (value = round(getter.get()));
+}
+
+inline PqPutter& operator>>(bool value, PqPutter& putter) {
+  putter.put( value ? 1 : 0 );
+  return putter;
+}
+
+inline bool& operator>>(PqGetter& getter, bool& value) {
+  return (value = getter.get() > 0.5f );
+}
+
+// HACK: These operator overrides are there just to avoid making a bitshift
+// by error due to a combination of PqGetter operator float() and
+// PqDigitalGetter int() and bool() which allow bitshift operations.
+inline PqGetter& operator>>(float value, PqGetter& getter) {
+  return getter;
+}
+inline PqGetter& operator>>(int value, PqGetter& getter) {
+  return getter;
+}
+inline PqGetter& operator>>(bool value, PqGetter& getter) {
+  return getter;
+}
+
+//inline PqDigitalPutter& operator>>(bool value, PqDigitalPutter& putter) {
+//  putter.setIsOn(value);
+//  return putter;
+//}
+//
+//inline bool& operator>>(PqDigitalGetter& getter, bool& value) {
+//  return (value = getter.isOn());
+//}
+
+//inline float& operator>>(float& valueOut, float& valueIn) {
+//  return (valueIn = valueOut);
+//}
+
 
 class PqPinComponent : public PqComponent {
 public:
