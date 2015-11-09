@@ -33,6 +33,7 @@
 #include "PqCore.h"
 #include "PqInputs.h"
 #include "PqOutputs.h"
+#include "PqExtra.h"
 
 // Plaquette builtin runtime functions.
 void begin();
