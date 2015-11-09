@@ -94,7 +94,7 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalGetter : public PqGetter {
+class PqDigitalGetter : virtual public PqGetter {
 public:
   /// Constructor.
   PqDigitalGetter() {}
@@ -111,7 +111,7 @@ public:
 };
 
 /// A generic class representing a simple sink.
-class PqPutter : public PqGetter {
+class PqPutter : virtual public PqGetter {
 public:
   /// Constructor.
   PqPutter() {}
@@ -120,6 +120,20 @@ public:
   /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value) = 0;
 };
+
+inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
+  putter.put( getter.get() );
+  return putter;
+}
+
+inline PqGetter& operator>>(float value, PqPutter& putter) {
+  putter.put( value );
+  return putter;
+}
+
+inline float& operator>>(PqGetter& putter, float& value) {
+  return (value = putter.get());
+}
 
 /// A generic class representing a simple source.
 class PqDigitalPutter : public PqPutter, public PqDigitalGetter {
