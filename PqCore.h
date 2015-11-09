@@ -122,7 +122,7 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalPutter : public PqPutter, PqDigitalGetter {
+class PqDigitalPutter : public PqPutter, public PqDigitalGetter {
 public:
   /// Constructor.
   PqDigitalPutter() {}

@@ -21,14 +21,14 @@
 #ifndef PQ_OUTPUTS_H_
 #define PQ_OUTPUTS_H_
 
-#include "PqCore.h"
+#include "Plaquette.h"
 
 // Output constants.
 #define SOURCE 0x0
 #define SINK   0x1
 
 /// A generic class representing a simple PWM output.
-class PwmOut : public PqPinComponent, PqPutter {
+class PwmOut : public PqPinComponent, public PqPutter {
 public:
   /// Constructor.
   PwmOut(uint8_t pin=3, uint8_t mode=SOURCE);
@@ -42,12 +42,11 @@ public:
   // Current value.
   float _value;
 
-protected:
   virtual float write(float value);
 };
 
 /// A generic class representing a simple digital input.
-class DigitalOut : public PqPinComponent, PqDigitalPutter {
+class DigitalOut : public PqPinComponent, public PqDigitalPutter {
 public:
   /// Constructor.
   DigitalOut(uint8_t pin=13, uint8_t mode=SOURCE);

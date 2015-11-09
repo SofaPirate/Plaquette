@@ -21,7 +21,7 @@
 #ifndef PQ_INPUTS_H_
 #define PQ_INPUTS_H_
 
-#include "PqCore.h"
+#include "Plaquette.h"
 
 // Output constants.
 #define INTERNAL_PULLUP   0x0
@@ -31,7 +31,7 @@
 #define ANALOG_INVERTED   0x8
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinComponent, PqGetter {
+class AnalogIn : public PqPinComponent, public PqGetter {
 public:
   /// Constructor.
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
@@ -49,12 +49,11 @@ public:
   // Smooth factor
   float _alpha;
 
-protected:
   virtual float read();
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinComponent, PqDigitalGetter {
+class DigitalIn : public PqPinComponent, public PqDigitalGetter {
 public:
   /// Constructor.
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
