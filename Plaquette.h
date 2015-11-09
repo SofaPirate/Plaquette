@@ -19,5 +19,5 @@
  */
 
 #include "PqCore.h"
-#include "PqActuators.h"
-#include "PqSensors.h"
+#include "PqInputs.h"
+#include "PqOutputs.h"

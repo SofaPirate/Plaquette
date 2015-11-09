@@ -81,4 +81,84 @@ private:
 /// The singleton.
 extern Plaquette Pq;
 
+/// A generic class representing a simple source.
+class PqGetter : public PqComponent {
+public:
+  /// Constructor.
+  PqGetter() {}
+  virtual ~PqGetter() {}
+
+  /// Returns reading (typically between 0 and 1, may vary depending on class).
+  virtual float get() = 0;
+};
+
+/// A generic class representing a simple source.
+class PqDigitalGetter : public PqGetter {
+public:
+  /// Constructor.
+  PqDigitalGetter() {}
+  virtual ~PqDigitalGetter() {}
+
+  /// Returns true iff the input is "on".
+  virtual bool isOn() = 0;
+
+  /// Returns true iff the input is "off".
+  virtual bool isOff() { return !isOn(); }
+
+  /// Returns reading (either 0 or 1).
+  virtual float get() { return isOn() ? 1 : 0; }
+};
+
+/// A generic class representing a simple sink.
+class PqPutter : public PqGetter {
+public:
+  /// Constructor.
+  PqPutter() {}
+  virtual ~PqPutter() {}
+
+  /// Pushes value into the component and returns its (possibly filtered) value.
+  virtual float put(float value) = 0;
+};
+
+/// A generic class representing a simple source.
+class PqDigitalPutter : public PqPutter, PqDigitalGetter {
+public:
+  /// Constructor.
+  PqDigitalPutter() {}
+  virtual ~PqDigitalPutter() {}
+
+  /// Sets output to "on".
+  virtual void on() { put(1); }
+
+  /// Sets output to "off".
+  virtual void off() { put(0); }
+
+  /// Switches between on and off.
+  virtual void toggle() {
+    if (isOn()) off();
+    else        on();
+  }
+
+  /// Returns reading (either 0 or 1).
+  virtual float get() { return PqDigitalGetter::get(); }
+};
+
+class PqPinComponent : public PqComponent {
+public:
+  PqPinComponent(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
+  virtual ~PqPinComponent() {}
+
+  /// Returns the pin this component is attached to.
+  uint8_t pin() const { return _pin; }
+
+  /// Returns the mode of the component.
+  uint8_t mode() const { return _mode; }
+
+  // The attached pin.
+  uint8_t _pin;
+
+  // The mode (varies according to context).
+  uint8_t _mode;
+};
+
 #endif

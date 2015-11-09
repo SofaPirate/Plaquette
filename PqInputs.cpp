@@ -1,5 +1,5 @@
 /*
- * PqActuators.cpp
+ * PqInputs.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,34 +18,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PqActuators.h"
+#include "PqInputs.h"
 
-PqSingleActuator::PqSingleActuator(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
-  
-void PqSingleActuator::setup() {
-  pinMode(_pin, OUTPUT);
+AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
+  : PqPinComponent(pin, mode), PqGetter()
+{}
+
+float AnalogIn::get() {
+  int rawValue = analogRead(_pin);
+  if (_mode == ANALOG_INVERTED)
+    rawValue = 1023 - rawValue;
+  return rawValue / 1023.0f;
 }
 
-bool PqSingleActuator::isDigital() const
-{
-  return (digitalPinToTimer(_pin) == NOT_ON_TIMER);
+DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
+  : PqPinComponent(pin, mode), PqDigitalGetter()
+{}
+
+bool DigitalIn::isOn() {
+  bool isHigh = digitalRead(_pin) == HIGH;
+  if (_mode == EXTERNAL_PULLDOWN) // inverted
+    isHigh = !isHigh;
+  return isHigh;
 }
 
-void PqSingleActuator::write(float value) {
-  writeRaw( round( isDigital() ? value : value * 255 ) );
+void DigitalIn::setup() {
+  pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
 }
-
-void PqSingleActuator::writeRaw(int value) {
-  if (isDigital()) {
-    value = constrain(value, 0, 1);
-    value = isInverted() ? 1-value : value;
-    digitalWrite( _pin, value ? HIGH : LOW );
-  }
-  else {
-    value = constrain(value, 0, 255);
-    analogWrite( _pin, isInverted() ? 255-value : value );
-  }
-}
-
-LED::LED(uint8_t pin, uint8_t mode) : PqSingleActuator(pin, mode) {}
-
