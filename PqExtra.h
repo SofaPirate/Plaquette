@@ -78,20 +78,10 @@ public:
   float _alpha;
 };
 
-class SquareOsc : public PqDigitalGetter {
 public:
-  SquareOsc(float period=1.0f, float dutyCycle=0.5f);
-  virtual ~SquareOsc() {}
 
-  virtual bool isOn() { return _isOn; }
 
-  virtual void setup();
-  virtual void update();
 
-  bool _isOn;
-  unsigned long _period;
-  unsigned long _dutyCyclePeriod;
-  unsigned long _startTime;
 };
 
 #endif
