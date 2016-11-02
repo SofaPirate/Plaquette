@@ -21,6 +21,7 @@
 #ifndef PQ_EXTRA_H_
 #define PQ_EXTRA_H_
 
+#include "pq_print.h"
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
@@ -60,6 +61,25 @@ public:
   uint8_t _digits;
 };
 
+#include "pq_map_real.h"
+
+class OscilloscopeOut : public PqPutter {
+public:
+  OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
+  virtual ~OscilloscopeOut() {}
+
+  virtual float put(float value);
+
+  virtual float get() { return _value; }
+
+  // Current value.
+  float _value;
+
+  float _minValue;
+  float _maxValue;
+  // Number of spaces of precision.
+  uint8_t _precision;
+};
 
 /// Simple moving average transform filter.
 class Smoother : public PqPutter, public MovingAverage {

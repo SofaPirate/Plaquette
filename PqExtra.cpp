@@ -55,6 +55,31 @@ float SerialOut::put(float value) {
 }
 
 
+OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
+  : _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
+
+float OscilloscopeOut::put(float value) {
+  // Copy value.
+  _value = value;
+
+  // Convert to bin.
+  float mapped = map(_value, _minValue, _maxValue, 0.0f, 1.0f);
+  int bin = round( mapped * _precision );
+  bin = constrain(bin, 0, _precision-1);
+
+  // Print.
+  print(_minValue, 2);
+  print(" |");
+  for (int i=0; i<_precision; i++)
+    print(i == bin ? '*' : ' ');
+  print("| ");
+  print(_maxValue, 2);
+  println();
+
+  // Return it.
+  return _value;
+}
+
 Smoother::Smoother(float factor)
   : PqPutter(),
     MovingAverage(factor) {
