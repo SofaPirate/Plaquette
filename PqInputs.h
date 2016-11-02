@@ -21,7 +21,7 @@
 #ifndef PQ_INPUTS_H_
 #define PQ_INPUTS_H_
 
-#include "Plaquette.h"
+#include "PqCore.h"
 
 // Output constants.
 #define INTERNAL_PULLUP   0x0

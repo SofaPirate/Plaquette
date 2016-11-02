@@ -21,7 +21,7 @@
 #ifndef PQ_OUTPUTS_H_
 #define PQ_OUTPUTS_H_
 
-#include "Plaquette.h"
+#include "PqCore.h"
 
 // Output constants.
 #define SOURCE 0x0
