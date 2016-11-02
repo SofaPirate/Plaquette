@@ -23,7 +23,11 @@
 #ifndef PQ_PRINT_H_
 #define PQ_PRINT_H_
 
-#include "Plaquette.h"
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
 size_t print(const __FlashStringHelper *);
 size_t print(const String &);

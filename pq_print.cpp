@@ -25,115 +25,115 @@
 
 size_t print(const __FlashStringHelper *ifsh)
 {
-  Serial.print(ifsh);
+  return Serial.print(ifsh);
 }
 
 size_t print(const String &s)
 {
-  Serial.print(s);
+  return Serial.print(s);
 }
 
 size_t print(const char str[])
 {
-  Serial.print(str);
+  return Serial.print(str);
 }
 
 size_t print(char c)
 {
-  Serial.print(c);
+  return Serial.print(c);
 }
 
 size_t print(unsigned char b, int base)
 {
-  Serial.print(b, base);
+  return Serial.print(b, base);
 }
 
 size_t print(int n, int base)
 {
-  Serial.print(n, base);
+  return Serial.print(n, base);
 }
 
 size_t print(unsigned int n, int base)
 {
-  Serial.print(n, base);
+  return Serial.print(n, base);
 }
 
 size_t print(long n, int base)
 {
-  Serial.print(n, base);
+  return Serial.print(n, base);
 }
 
 size_t print(unsigned long n, int base)
 {
-  Serial.print(n, base);
+  return Serial.print(n, base);
 }
 
 size_t print(double n, int digits)
 {
-  Serial.print(n, digits);
+  return Serial.print(n, digits);
 }
 
 size_t println(const __FlashStringHelper *ifsh)
 {
-  Serial.println(ifsh);
+  return Serial.println(ifsh);
 }
 
 size_t print(const Printable& x)
 {
-  Serial.println(x);
+  return Serial.println(x);
 }
 
 size_t println(void)
 {
-  Serial.println();
+  return Serial.println();
 }
 
 size_t println(const String &s)
 {
-  Serial.println(s);
+  return Serial.println(s);
 }
 
 size_t println(const char c[])
 {
-  Serial.println(c);
+  return Serial.println(c);
 }
 
 size_t println(char c)
 {
-  Serial.println(c);
+  return Serial.println(c);
 }
 
 size_t println(unsigned char b, int base)
 {
-  Serial.println(b, base);
+  return Serial.println(b, base);
 }
 
 size_t println(int num, int base)
 {
-  Serial.println(num, base);
+  return Serial.println(num, base);
 }
 
 size_t println(unsigned int num, int base)
 {
-  Serial.println(num, base);
+  return Serial.println(num, base);
 }
 
 size_t println(long num, int base)
 {
-  Serial.println(num, base);
+  return Serial.println(num, base);
 }
 
 size_t println(unsigned long num, int base)
 {
-  Serial.println(num, base);
+  return Serial.println(num, base);
 }
 
 size_t println(double num, int digits)
 {
-  Serial.println(num, digits);
+  return Serial.println(num, digits);
 }
 
 size_t println(const Printable& x)
 {
-  Serial.println(x);
+  return Serial.println(x);
 }
