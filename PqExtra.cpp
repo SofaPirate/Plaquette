@@ -54,22 +54,15 @@ float SerialOut::put(float value) {
   return _value;
 }
 
+
 Smoother::Smoother(float factor)
   : PqPutter(),
-    _value(-1) {
-  // TODO: repetitive code here (see AnalogIn).
-  factor = max(factor, 0); // make sure factor >= 0
-  _alpha = (factor > 1 ?
-      2 / (factor + 1) :
-      factor);
+    MovingAverage(factor) {
 }
 
 float Smoother::put(float value) {
-  // Update value.
-  if (_value < 0) // value never initialized
-    return (_value = value);
-  else // moving average
-    return (_value -= _alpha * (_value - value));
+  return MovingAverage::update(value);
+}
 }
 
 }

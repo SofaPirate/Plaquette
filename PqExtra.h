@@ -22,6 +22,7 @@
 #define PQ_EXTRA_H_
 
 #include "PqCore.h"
+#include "MovingAverage.h"
 
 /// Square oscillator.
 class SquareOsc : public PqDigitalGetter {
@@ -58,14 +59,17 @@ public:
   uint8_t _digits;
 };
 
+
 /// Simple moving average transform filter.
-class Smoother : public PqPutter {
+class Smoother : public PqPutter, public MovingAverage {
 public:
   Smoother(float factor=0.1f);
   virtual ~Smoother() {}
 
   virtual float put(float value);
 
+  virtual float get() { return MovingAverage::get(); }
+};
   virtual float get() { return _value; }
 
   // Current value.
