@@ -78,10 +78,22 @@ public:
   float _alpha;
 };
 
+#define THRESHOLD_LOW (-1)
+#define THRESHOLD_HIGH 1
+#define THRESHOLD_BOTH 0
+
+class Thresholder : public PqPutter {
 public:
+  Thresholder(float threshold, int8_t dir=THRESHOLD_HIGH);
+  virtual ~Thresholder() {}
 
+  virtual float put(float value);
 
+  virtual float get() { return (float)_value; }
 
+  float _threshold;
+  int8_t  _dir;
+  uint8_t _value;
 };
 
 #endif

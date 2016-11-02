@@ -67,6 +67,18 @@ float Smoother::put(float value) {
 
 }
 
+Thresholder::Thresholder(float threshold, int8_t dir)
+  : PqPutter(),
+    _threshold(threshold),
+    _dir(dir),
+    _value(0) {
 }
 
+float Thresholder::put(float value) {
+  if (_dir != THRESHOLD_BOTH &&
+      ( (_dir == THRESHOLD_HIGH) ^ (value > 0) ))
+    _value = 0;
+  else
+    _value = (abs(value) > _threshold ? 1 : 0);
+  return (float)_value;
 }
