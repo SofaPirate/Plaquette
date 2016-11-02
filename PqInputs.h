@@ -22,6 +22,7 @@
 #define PQ_INPUTS_H_
 
 #include "PqCore.h"
+#include "MovingAverage.h"
 
 // Output constants.
 #define INTERNAL_PULLUP   0x0
@@ -43,13 +44,9 @@ public:
   virtual void smooth(float factor=0.1f);
   virtual void noSmooth() { smooth(1); }
 
-  // Current value.
-  float _value;
-
-  // Smooth factor
-  float _alpha;
-
   virtual float read();
+
+  MovingAverage avg;
 };
 
 /// A generic class representing a simple digital input.

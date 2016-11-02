@@ -21,23 +21,15 @@
 #include "PqInputs.h"
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqGetter(), _value(-1), _alpha(1)
+  : PqPinComponent(pin, mode), PqGetter(), avg(1, 0)
 {}
 
 void AnalogIn::smooth(float factor) {
-  factor = max(factor, 0); // make sure factor >= 0
-  _alpha = (factor > 1 ?
-      2 / (factor + 1) :
-      factor);
+  avg.setAlphaOrN(factor);
 }
 
 float AnalogIn::get() {
-  float v = read();
-  // Update value.
-  if (_value < 0) // value never initialized
-    return (_value = v);
-  else // moving average
-    return (_value -= _alpha * (_value - v));
+  return avg.update( read() );
 }
 
 float AnalogIn::read() {
