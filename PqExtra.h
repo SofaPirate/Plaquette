@@ -21,7 +21,25 @@
 #ifndef PQ_EXTRA_H_
 #define PQ_EXTRA_H_
 
-#include "Plaquette.h"
+#include "PqCore.h"
+
+/// Square oscillator.
+class SquareOsc : public PqDigitalGetter {
+public:
+  SquareOsc(float period=1.0f, float dutyCycle=0.5f);
+  virtual ~SquareOsc() {}
+
+  virtual bool isOn() { return _isOn; }
+
+  virtual void setup();
+  virtual void update();
+
+  bool _isOn;
+  unsigned long _period;
+  unsigned long _dutyCyclePeriod;
+  unsigned long _startTime;
+};
+
 
 /// Simple output that prints value to the serial.
 class SerialOut : public PqPutter {

@@ -20,6 +20,27 @@
 
 #include "PqExtra.h"
 
+
+SquareOsc::SquareOsc(float period, float dutyCycle) {
+  // Convert period in ms.
+  period *= 1000;
+  _period = round(period);
+  _period = max(_period, 1.0f); // at least 1ms
+  // Convert duty cycle in ms.
+  dutyCycle = constrain(dutyCycle, 0, 1);
+  dutyCycle *= _period;
+  _dutyCyclePeriod = round(dutyCycle);
+}
+
+void SquareOsc::setup() {
+  _startTime = millis();
+}
+
+void SquareOsc::update() {
+  // Check where we are.
+  _isOn = ((millis() - _startTime) % _period < _dutyCyclePeriod);
+}
+
 SerialOut::SerialOut(uint8_t digits) : _digits(digits) {}
 
 float SerialOut::put(float value) {
@@ -51,22 +72,8 @@ float Smoother::put(float value) {
     return (_value -= _alpha * (_value - value));
 }
 
-SquareOsc::SquareOsc(float period, float dutyCycle) {
-  // Convert period in ms.
-  period *= 1000;
-  _period = round(period);
-  _period = max(_period, 1); // at least 1ms
-  // Convert duty cycle in ms.
-  dutyCycle = constrain(dutyCycle, 0, 1);
-  dutyCycle *= _period;
-  _dutyCyclePeriod = round(dutyCycle);
 }
 
-void SquareOsc::setup() {
-  _startTime = millis();
 }
 
-void SquareOsc::update() {
-  // Check where we are.
-  _isOn = ((millis() - _startTime) % _period < _dutyCyclePeriod);
 }
