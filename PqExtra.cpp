@@ -63,8 +63,16 @@ Smoother::Smoother(float factor)
 float Smoother::put(float value) {
   return MovingAverage::update(value);
 }
+
+
+Normalizer::Normalizer(float factor)
+  : PqPutter(),
+    MovingStats(factor),
+    _value(0) {
 }
 
+float Normalizer::put(float value) {
+  return (_value = MovingStats::update(value));
 }
 
 Thresholder::Thresholder(float threshold, int8_t dir)
