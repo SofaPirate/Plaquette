@@ -30,9 +30,12 @@
 // Plaquette builtin print functions.
 #include "pq_print.h"
 
+// Core files.
 #include "PqCore.h"
 #include "PqInputs.h"
 #include "PqOutputs.h"
+
+// Basic set of extra components.
 #include "PqExtra.h"
 
 // Plaquette builtin runtime functions.
