@@ -50,7 +50,7 @@ DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
 
 float DigitalIn::_read() {
   bool isHigh = digitalRead(_pin) == HIGH;
-  if (_mode == EXTERNAL_PULLDOWN) // inverted
+  if (_mode == INTERNAL_PULLUP || _mode == EXTERNAL_PULLUP) // inverted
     isHigh = !isHigh;
   return isHigh ? 1 : 0;
 }
