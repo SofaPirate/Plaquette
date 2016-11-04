@@ -127,18 +127,27 @@ float MinMaxScaler::put(float value)
   _value = map(value, _min, _max, 0.0f, 1.0f);
 }
 
-Thresholder::Thresholder(float threshold, int8_t dir)
+Thresholder::Thresholder(float threshold, uint8_t mode)
   : PqPutter(),
     _threshold(threshold),
-    _dir(dir),
+    _mode(mode),
+    _prev(0),
     _value(0) {
 }
 
 float Thresholder::put(float value) {
-  if (_dir != THRESHOLD_BOTH &&
-      ( (_dir == THRESHOLD_HIGH) ^ (value > 0) ))
-    _value = 0;
-  else
-    _value = (abs(value) > _threshold ? 1 : 0);
-  return (float)_value;
+  bool high = (value > _threshold);
+  bool low  = (value < _threshold);
+  bool raising = (high && _prev != (+1));
+  bool falling = (low  && _prev != (-1));
+  switch (_mode) {
+    case THRESHOLD_HIGH:    _value = high;    break;
+    case THRESHOLD_LOW:     _value = low;     break;
+    case THRESHOLD_RISING:  _value = raising; break;
+    case THRESHOLD_FALLING: _value = falling; break;
+    case THRESHOLD_CHANGE:
+    default:                _value = raising || falling;
+  }
+  _prev = (value < _threshold ? (-1) : (value > _threshold ? (+1) : (0)));
+  return (float)(_value ? 1 : 0);
 }

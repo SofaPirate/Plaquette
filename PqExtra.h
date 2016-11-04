@@ -141,13 +141,15 @@ public:
   float _max;
 };
 
-#define THRESHOLD_LOW (-1)
-#define THRESHOLD_HIGH 1
-#define THRESHOLD_BOTH 0
+#define THRESHOLD_LOW     0
+#define THRESHOLD_HIGH    1
+#define THRESHOLD_FALLING 2
+#define THRESHOLD_RISING  3
+#define THRESHOLD_CHANGE  4
 
 class Thresholder : public PqPutter {
 public:
-  Thresholder(float threshold, int8_t dir=THRESHOLD_HIGH);
+  Thresholder(float threshold, uint8_t mode=HIGH);
   virtual ~Thresholder() {}
 
   virtual float put(float value);
@@ -155,8 +157,9 @@ public:
   virtual float get() { return (float)_value; }
 
   float _threshold;
-  int8_t  _dir;
-  uint8_t _value;
+  int8_t _prev; // was previous variable equal (0), lower (-1), or higher (1) than threshold
+  bool _value;
+  uint8_t  _mode;
 };
 
 #endif
