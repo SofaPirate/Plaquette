@@ -43,6 +43,8 @@ float MovingStats::update(float value)
     avg.update(value);
   }
   else {
+    float diff = value - avg.get();
+   _var   -= avg.alpha() * (_var - sq(diff));
     avg.update(value);
    _var   -= avg.alpha() * (_var  - sq(value-avg.get()));
   }
