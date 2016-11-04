@@ -1,5 +1,5 @@
 /**
- * Pq_LED_blink
+ * PqBlink
  *
  * Turns on and off a light emitting diode (LED) connected to a digital
  * pin, without using the delay() function.  This means that other code
@@ -10,18 +10,11 @@
  * Note: on most Arduinos, there is already an LED on the board
  * that's attached to pin 13, so no hardware is needed for this example.
  *
- * created 2005
- * by David A. Mellis
- * modified 8 Feb 2010
- * by Paul Stoffregen
- * modified 11 Nov 2013
- * by Scott Fitzgerald
- * modified 3 Nov 2016
- * by Sofian Audry
+ * Created in 2016 by Sofian Audry
  *
  * This example code is in the public domain.
  *
- * Based on the following code:
+ * Inspired from the following code:
  * http://www.arduino.cc/en/Tutorial/BlinkWithoutDelay
  */
 #include <Plaquette.h>
