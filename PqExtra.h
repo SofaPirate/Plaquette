@@ -25,6 +25,7 @@
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
+#include "SimpleStats.h"
 
 /// Square oscillator.
 class SquareOsc : public PqDigitalGetter {
@@ -92,16 +93,52 @@ public:
   virtual float get() { return MovingAverage::get(); }
 };
 
-class Normalizer : public PqPutter, public MovingStats {
+class AdaptiveNormalizer : public PqPutter, public MovingStats {
 public:
-  Normalizer(float factor=0.1f);
-  virtual ~Normalizer() {}
+  AdaptiveNormalizer(float smoothFactor=0.001f);
+  virtual ~AdaptiveNormalizer() {}
+
+  void setMean(float mean) { _mean = mean; }
+  void setStddev(float stddev) { _stddev = stddev; };
 
   virtual float put(float value);
 
   virtual float get() { return _value; }
 
   float _value;
+  float _mean;
+  float _stddev;
+};
+
+class Normalizer : public PqPutter, public SimpleStats {
+public:
+  Normalizer();
+  virtual ~Normalizer() {}
+
+  void setMean(float mean) { _mean = mean; }
+  void setStddev(float stddev) { _stddev = stddev; };
+
+  virtual float put(float value);
+
+  virtual float get() { return _value; }
+
+  float _value;
+  float _mean;
+  float _stddev;
+};
+
+class MinMaxScaler : public PqPutter {
+public:
+  MinMaxScaler();
+  virtual ~MinMaxScaler() {}
+
+  virtual float put(float value);
+
+  virtual float get() { return _value; }
+
+  float _value;
+  float _min;
+  float _max;
 };
 
 #define THRESHOLD_LOW (-1)

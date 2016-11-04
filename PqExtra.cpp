@@ -89,15 +89,42 @@ float Smoother::put(float value) {
   return MovingAverage::update(value);
 }
 
-
-Normalizer::Normalizer(float factor)
+AdaptiveNormalizer::AdaptiveNormalizer(float smoothFactor)
   : PqPutter(),
-    MovingStats(factor),
-    _value(0) {
+    MovingStats(smoothFactor),
+    _value(0.5f),
+    _mean(0.5f),
+    _stddev(0.25f)
+{}
+
+float AdaptiveNormalizer::put(float value) {
+  return (_value = MovingStats::update(value) * _stddev + _mean);
 }
 
+Normalizer::Normalizer()
+  : PqPutter(),
+    SimpleStats(),
+    _value(0.5f),
+    _mean(0.5f),
+    _stddev(0.25f)
+{}
+
 float Normalizer::put(float value) {
-  return (_value = MovingStats::update(value));
+  return (_value = SimpleStats::update(value) * _stddev + _mean);
+}
+
+MinMaxScaler::MinMaxScaler()
+ : PqPutter(),
+   _value(0.5f),
+   _min(FLT_MAX),
+   _max(FLT_MIN)
+{}
+
+float MinMaxScaler::put(float value)
+{
+  _min = min(value, _min);
+  _max = max(value, _max);
+  _value = map(value, _min, _max, 0.0f, 1.0f);
 }
 
 Thresholder::Thresholder(float threshold, int8_t dir)
