@@ -31,8 +31,20 @@
 #define ANALOG_DEFAULT    0x4
 #define ANALOG_INVERTED   0x8
 
+class PqSmoothable {
+public:
+  virtual void smooth(float factor=0.1f);
+  virtual void noSmooth() { smooth(1); }
+
+  // Raw read function.
+  virtual float _read() = 0;
+
+  virtual float _smoothed();
+  MovingAverage _avg;
+};
+
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinComponent, public PqGetter {
+class AnalogIn : public PqPinComponent, public PqSmoothable, public PqGetter {
 public:
   /// Constructor.
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
@@ -41,16 +53,11 @@ public:
   /// Returns reading in [0, 1].
   virtual float get();
 
-  virtual void smooth(float factor=0.1f);
-  virtual void noSmooth() { smooth(1); }
-
-  virtual float read();
-
-  MovingAverage avg;
+  virtual float _read();
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinComponent, public PqDigitalGetter {
+class DigitalIn : public PqPinComponent, public PqSmoothable, public PqDigitalGetter {
 public:
   /// Constructor.
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
@@ -58,6 +65,8 @@ public:
 
   /// Returns true iff the input is "on".
   virtual bool isOn();
+
+  virtual float _read();
 
 protected:
   virtual void setup();

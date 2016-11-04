@@ -20,19 +20,23 @@
 
 #include "PqInputs.h"
 
+void PqSmoothable::smooth(float factor) {
+  _avg.setAlphaOrN(factor);
+}
+
+float PqSmoothable::_smoothed() {
+  return _avg.update( _read() );
+}
+
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqGetter(), avg(1, 0)
+  : PqPinComponent(pin, mode), PqGetter()
 {}
 
-void AnalogIn::smooth(float factor) {
-  avg.setAlphaOrN(factor);
-}
-
 float AnalogIn::get() {
-  return avg.update( read() );
+  return _smoothed();
 }
 
-float AnalogIn::read() {
+float AnalogIn::_read() {
   // Convert
   int rawValue = analogRead(_pin);
   if (_mode == ANALOG_INVERTED)
@@ -44,11 +48,15 @@ DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
   : PqPinComponent(pin, mode), PqDigitalGetter()
 {}
 
-bool DigitalIn::isOn() {
+float DigitalIn::_read() {
   bool isHigh = digitalRead(_pin) == HIGH;
   if (_mode == EXTERNAL_PULLDOWN) // inverted
     isHigh = !isHigh;
-  return isHigh;
+  return isHigh ? 1 : 0;
+}
+
+bool DigitalIn::isOn() {
+  return (bool) (_smoothed() > 0.5);
 }
 
 void DigitalIn::setup() {
