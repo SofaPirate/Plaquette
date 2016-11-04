@@ -30,23 +30,19 @@ void MovingStats::reset() {
   _var = 0;
 }
 
-void MovingStats::reset(float startMean, float startVar)
-{
+void MovingStats::reset(float startMean, float startVar) {
   avg.reset(startMean);
   _var = startVar;
 }
 
 float MovingStats::update(float value)
  {
-  if (!isStarted()) {
+  avg.update(value);
+  if (!isStarted())
     _var = 0;
-    avg.update(value);
-  }
   else {
     float diff = value - avg.get();
    _var   -= avg.alpha() * (_var - sq(diff));
-    avg.update(value);
-   _var   -= avg.alpha() * (_var  - sq(value-avg.get()));
   }
 
   return normalize(value);
