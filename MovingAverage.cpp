@@ -43,22 +43,18 @@ void MovingAverage::setAlphaOrN(float alphaOrN)
 }
 
 void MovingAverage::reset() {
-  // Note: the sign of alpha is preserved as an indication of whether the MA has actually
-  // started or not.
-  if (_alpha >= 0)
-    _alpha = -_alpha;
+  _setStarted(false);
 }
 
 void MovingAverage::reset(float startValue) {
   _value = startValue;
-  if (_alpha < 0)
-    _alpha = -_alpha;
+  _setStarted(true);
 }
 
 float MovingAverage::update(float v) {
   if (!isStarted()) {
     _value = v;
-    _alpha = -_alpha;
+    _setStarted(true); // start
     return _value;
   }
   else
@@ -67,4 +63,8 @@ float MovingAverage::update(float v) {
 
 bool MovingAverage::isStarted() const {
   return _alpha >= 0;
+}
+
+void MovingAverage::_setStarted(bool start) {
+  _alpha = (start ? +1 : -1) * abs(_alpha);
 }

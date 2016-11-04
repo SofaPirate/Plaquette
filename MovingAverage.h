@@ -67,6 +67,9 @@ public:
 
   /// Returns the alpha value.
   float alpha() const { return _alpha; }
+
+protected:
+  void _setStarted(bool start);
 };
 
 #endif /* MOVINGAVERAGE_H_ */
