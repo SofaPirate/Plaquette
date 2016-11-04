@@ -35,6 +35,9 @@ public:
 
   virtual bool isOn() { return _isOn; }
 
+  virtual void setPeriod(float period);
+  virtual void setDutyCycle(float dutyCycle);
+
   virtual void setup();
   virtual void update();
 

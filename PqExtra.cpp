@@ -22,14 +22,8 @@
 
 
 SquareOsc::SquareOsc(float period, float dutyCycle) {
-  // Convert period in ms.
-  period *= 1000;
-  _period = round(period);
-  _period = max(_period, 1.0f); // at least 1ms
-  // Convert duty cycle in ms.
-  dutyCycle = constrain(dutyCycle, 0, 1);
-  dutyCycle *= _period;
-  _dutyCyclePeriod = round(dutyCycle);
+  setPeriod(period);
+  setDutyCycle(dutyCycle);
 }
 
 void SquareOsc::setup() {
@@ -39,6 +33,20 @@ void SquareOsc::setup() {
 void SquareOsc::update() {
   // Check where we are.
   _isOn = ((millis() - _startTime) % _period < _dutyCyclePeriod);
+}
+
+void SquareOsc::setPeriod(float period) {
+  // Convert period in ms.
+  period *= 1000;
+  _period = round(period);
+  _period = max(_period, 1.0f); // at least 1ms
+}
+
+void SquareOsc::setDutyCycle(float dutyCycle) {
+  // Convert duty cycle in ms.
+  dutyCycle = constrain(dutyCycle, 0, 1);
+  dutyCycle *= _period;
+  _dutyCyclePeriod = round(dutyCycle);
 }
 
 SerialOut::SerialOut(uint8_t digits) : _digits(digits) {}
