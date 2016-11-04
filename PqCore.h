@@ -70,7 +70,7 @@ public:
 
   /// Updates all components (calls update() on all of them).
   void update();
-  
+
   /// Returns the current number of components.
   uint8_t nComponents() const { return _nComponents; }
 
@@ -92,27 +92,30 @@ public:
   /// Returns reading (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
 
-  // Logical operators.
-  bool operator==(float value) { return get() == value; }
-  bool operator!=(float value) { return get() != value; }
-  bool operator>(float value)  { return get() >  value; }
-  bool operator>=(float value) { return get() >= value; }
-  bool operator<(float value)  { return get() <  value; }
-  bool operator<=(float value) { return get() <= value; }
+  /// Object can be used director to access its value.
+  operator float() const { return get(); }
 
-  // Math operators.
-  float operator+(PqGetter& getter) { return get() + getter.get(); }
-  float operator+(float value)      { return get() + value; }
-  float operator+(double value)     { return get() + value; }
-  float operator-(PqGetter& getter) { return get() - getter.get(); }
-  float operator-(float value)      { return get() - value; }
-  float operator-(double value)     { return get() - value; }
-  float operator*(PqGetter& getter) { return get() * getter.get(); }
-  float operator*(float value)      { return get() * value; }
-  float operator*(double value)     { return get() * value; }
-  float operator/(PqGetter& getter) { return get() / getter.get(); }
-  float operator/(float value)      { return get() / value; }
-  float operator/(double value)     { return get() / value; }
+  // // Logical operators.
+  // bool operator==(float value) { return get() == value; }
+  // bool operator!=(float value) { return get() != value; }
+  // bool operator>(float value)  { return get() >  value; }
+  // bool operator>=(float value) { return get() >= value; }
+  // bool operator<(float value)  { return get() <  value; }
+  // bool operator<=(float value) { return get() <= value; }
+  //
+  // // Math operators.
+  // float operator+(PqGetter& getter) { return get() + getter.get(); }
+  // float operator+(float value)      { return get() + value; }
+  // float operator+(double value)     { return get() + value; }
+  // float operator-(PqGetter& getter) { return get() - getter.get(); }
+  // float operator-(float value)      { return get() - value; }
+  // float operator-(double value)     { return get() - value; }
+  // float operator*(PqGetter& getter) { return get() * getter.get(); }
+  // float operator*(float value)      { return get() * value; }
+  // float operator*(double value)     { return get() * value; }
+  // float operator/(PqGetter& getter) { return get() / getter.get(); }
+  // float operator/(float value)      { return get() / value; }
+  // float operator/(double value)     { return get() / value; }
 };
 
 /// A generic class representing a simple source.
@@ -137,11 +140,8 @@ public:
   /// Operator that allows to use direction in conditional expressions.
   operator bool() { return isOn(); }
 
-  // More operators.
-  bool operator==(int value) { return getInt() == value; }
-  bool operator!=(int value) { return getInt() != value; }
-  bool operator==(bool value) { return (isOn() == value); }
-  bool operator!=(bool value) { return (isOn() != value); }
+  /// Operator that return 0 or 1 depending on value.
+  operator int() { return getInt(); }
 };
 
 /// A generic class representing a simple sink.
@@ -154,15 +154,15 @@ public:
   /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value) = 0;
 
-  // Math operators.
-  PqPutter& operator+=(PqGetter& getter) { put(get()+getter.get()); return *this; }
-  PqPutter& operator+=(float value)      { put(get()+value); return *this; }
-  PqPutter& operator-=(PqGetter& getter) { put(get()-getter.get()); return *this; }
-  PqPutter& operator-=(float value)      { put(get()-value); return *this; }
-  PqPutter& operator*=(PqGetter& getter) { put(get()*getter.get()); return *this; }
-  PqPutter& operator*=(float value)      { put(get()*value); return *this; }
-  PqPutter& operator/=(PqGetter& getter) { put(get()/getter.get()); return *this; }
-  PqPutter& operator/=(float value)      { put(get()/value); return *this; }
+  // // Math operators.
+  // PqPutter& operator+=(PqGetter& getter) { put(get()+getter.get()); return *this; }
+  // PqPutter& operator+=(float value)      { put(get()+value); return *this; }
+  // PqPutter& operator-=(PqGetter& getter) { put(get()-getter.get()); return *this; }
+  // PqPutter& operator-=(float value)      { put(get()-value); return *this; }
+  // PqPutter& operator*=(PqGetter& getter) { put(get()*getter.get()); return *this; }
+  // PqPutter& operator*=(float value)      { put(get()*value); return *this; }
+  // PqPutter& operator/=(PqGetter& getter) { put(get()/getter.get()); return *this; }
+  // PqPutter& operator/=(float value)      { put(get()/value); return *this; }
 
   // Assignation operators (disabled, replaced for now by the >> operators).
   //PqPutter& operator=(const PqGetter& x) { put(const_cast<PqGetter*>(&x)->get()); return *this; }
