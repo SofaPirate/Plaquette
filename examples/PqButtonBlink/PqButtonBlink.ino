@@ -15,9 +15,14 @@
  */
 #include <Plaquette.h>
 
+// The LED.
 DigitalOut led; // defaults on pin 13
+
+// The button.
 DigitalIn button(2); // defaults to INTERNAL_PULLUP
-SquareOsc oscillator(0.1); // 100 ms interval, 50% duty cycle (default)
+
+// A square-wave (on/off) oscillator.
+SquareOsc oscillator(0.1); // 100 ms period, 50% duty cycle (default)
 
 void begin() {}
 

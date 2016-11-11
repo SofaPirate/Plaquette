@@ -15,8 +15,11 @@
  */
 #include <Plaquette.h>
 
+// The LED.
 DigitalOut led; // defaults on pin 13
-SquareOsc oscillator(2, 0.75); // 2 seconds interval, 75% duty cycle
+
+// A square-wave (on/off) oscillator.
+SquareOsc oscillator(2, 0.75); // 2 seconds period, 75% duty cycle
 
 void begin() {}
 

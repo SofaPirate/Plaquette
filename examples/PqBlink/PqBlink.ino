@@ -19,6 +19,7 @@
  */
 #include <Plaquette.h>
 
+// The LED.
 DigitalOut led; // defaults on pin 13
 
 // Stores last time LED was updated.
