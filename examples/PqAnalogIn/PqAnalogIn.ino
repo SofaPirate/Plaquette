@@ -19,12 +19,16 @@
  */
 #include <Plaquette.h>
 
-AnalogIn in; // default on pin A0
+// The LED.
 DigitalOut led; // defaults on pin 13
-SquareOsc oscillator; // default to 1 second interval
 
-void begin() {
-}
+// The analog input.
+AnalogIn in; // default on pin A0
+
+// A square-wave (on/off) oscillator.
+SquareOsc oscillator; // default to 1 second period and 50% duty-cycle
+
+void begin() {}
 
 void run() {
 	// Set duty cycle of oscillator to value of analog input.
