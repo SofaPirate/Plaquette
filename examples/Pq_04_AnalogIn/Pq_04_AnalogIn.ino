@@ -1,13 +1,13 @@
 /**
  * PqAnalogIn
  * Demonstrates analog input by reading an analog sensor on analog pin 0 and
- * controlling the intensity of a light emitting diode (LED) connected to digital pin 13.
- * The amount of time the LED will be on and off depends on the value of the analog input.
+ * controlling the intensity of a light emitting diode (LED) connected to digital
+ * pin 13.
  *
  * The circuit:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
 *    to the analog pin one side pin (either one) to ground the other side pin to +5V
- * - LED anode (long leg) attached to digital output 9
+ * - LED anode (long leg) attached to digital output 13
  * - LED cathode (short leg) attached to ground
  *
  * Created in 2016 by Sofian Audry
