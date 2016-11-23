@@ -22,21 +22,21 @@
 // The LED.
 DigitalOut led; // defaults on pin 13
 
-// Stores last time LED was updated.
-unsigned long previousMillis = 0;        // will store last time LED was updated
+// Interval at which to blink (seconds).
+const float INTERVAL = 1.0;
 
-// Interval at which to blink (milliseconds).
-const long interval = 1000;
+// Stores last time LED was updated.
+float previousTime = 0;
 
 void begin() {}
 
 void run() {
   // Check to see if it's time to blink the LED.
-  unsigned long currentMillis = millis();
+  float currentTime = seconds();
 
-  if (currentMillis - previousMillis >= interval) {
+  if (currentTime - previousTime >= INTERVAL) {
     // Save the last time you blinked the LED.
-    previousMillis = currentMillis;
+    previousTime = currentTime;
 
     // Change LED state.
     led.toggle();
