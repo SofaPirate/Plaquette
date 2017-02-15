@@ -99,6 +99,7 @@ public:
 class AdaptiveNormalizer : public PqPutter, public MovingStats {
 public:
   AdaptiveNormalizer(float smoothFactor=0.001f);
+  AdaptiveNormalizer(float mean, float stddev, float smoothFactor=0.001f);
   virtual ~AdaptiveNormalizer() {}
 
   void setMean(float mean) { _mean = mean; }
@@ -116,6 +117,7 @@ public:
 class Normalizer : public PqPutter, public SimpleStats {
 public:
   Normalizer();
+  Normalizer(float mean, float stddev);
   virtual ~Normalizer() {}
 
   void setMean(float mean) { _mean = mean; }
