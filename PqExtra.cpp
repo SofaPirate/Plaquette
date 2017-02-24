@@ -76,7 +76,7 @@ void SineOsc::setPhase(float phase) {
   _phase = constrain(phase, 0, 1);
 }
 
-SerialOut::SerialOut(uint8_t digits) : _digits(digits) {}
+SerialOut::SerialOut(uint8_t digits) : _value(0), _digits(digits) {}
 
 float SerialOut::put(float value) {
   // Copy value.
@@ -91,7 +91,7 @@ float SerialOut::put(float value) {
 
 
 OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
-  : _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
+  : _value(0), _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
 
 float OscilloscopeOut::put(float value) {
   // Copy value.
@@ -176,15 +176,15 @@ float MinMaxScaler::put(float value)
   _min = min(value, _min);
   _max = max(value, _max);
   _value = map(value, _min, _max, 0.0f, 1.0f);
+	return _value;
 }
 
 Thresholder::Thresholder(float threshold, uint8_t mode)
   : PqPutter(),
     _threshold(threshold),
-    _mode(mode),
     _prev(0),
-    _value(0) {
-}
+    _value(false),
+    _mode(mode) {}
 
 float Thresholder::put(float value) {
   bool high = (value > _threshold);
