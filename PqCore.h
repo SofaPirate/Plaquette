@@ -93,7 +93,7 @@ public:
   virtual float get() = 0;
 
   /// Object can be used director to access its value.
-  operator float() const { return get(); }
+  operator float() { return get(); }
 
   // // Logical operators.
   // bool operator==(float value) { return get() == value; }
