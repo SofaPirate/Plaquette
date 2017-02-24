@@ -1,8 +1,13 @@
 /*
- * Plaquette.h
+ * pq_random.h
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
- * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * Provides methods for generating uniform random numbers.
+ *
+ * (c) 2008 Sofian Audry -- info(@)sofianaudry(.)com
+ *
+ * This class was adapted from the files Random.{h,cc} in the Torch
+ * library (http://torch.ch)
+ * Copyright (C) 2003--2004 Ronan Collobert (collober@idiap.ch)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,32 +22,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef RANDOM_H_
+#define RANDOM_H_
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
+#include <limits.h>
+#include <stdlib.h>
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
+// Floating point random numbers.
 
-// Plaquette builtin functions.
-#include "pq_print.h"
-#include "pq_map_real.h"
-#include "pq_time.h"
-#include "pq_random.h"
+/// Generates a uniform random number on [0,1[.
+float randomUniform();
 
-// Core files.
-#include "PqCore.h"
-#include "PqInputs.h"
-#include "PqOutputs.h"
+/// Generates a uniform random number on [0,h[.
+float randomUniform(float h);
 
-// Basic set of extra components.
-#include "PqExtra.h"
-
-// Plaquette builtin runtime functions.
-void begin();
-void run();
+/// Generates a uniform random number on [a,b[ (b>a).
+float randomUniform(float a, float b);
 
 #endif

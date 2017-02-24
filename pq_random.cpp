@@ -1,8 +1,7 @@
 /*
- * Plaquette.h
+ * pq_random.cpp
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
- * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * (c) 2008 Sofian Audry -- info(@)sofianaudry(.)com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,31 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
-
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
-// Plaquette builtin functions.
-#include "pq_print.h"
-#include "pq_map_real.h"
-#include "pq_time.h"
 #include "pq_random.h"
 
-// Core files.
-#include "PqCore.h"
-#include "PqInputs.h"
-#include "PqOutputs.h"
+float randomUniform() {
+  return (float)rand() / (float) RAND_MAX;
+}
 
-// Basic set of extra components.
-#include "PqExtra.h"
+float randomUniform(float h) {
+  return (randomUniform() * h);
+}
 
-// Plaquette builtin runtime functions.
-void begin();
-void run();
-
-#endif
+float randomUniform(float a, float b) {
+  return (randomUniform() * (b - a) + a);
+}
