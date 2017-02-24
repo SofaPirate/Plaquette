@@ -27,7 +27,7 @@
 #define SERVO_DEFAULT  0x0
 #define SERVO_CENTERED 0x1
 
-/// Servo-motor object.
+/// Servo-motor absract object.
 class AbstractServoOut : public PqPutter, public Servo {
 protected:
   AbstractServoOut(uint8_t pin=9);
@@ -50,16 +50,18 @@ public:
   uint8_t _pin;
 };
 
+/// Standard servo-motor object (angular).
 class ServoOut : public AbstractServoOut {
 public:
   ServoOut(uint8_t pin=9);
 
 	virtual float putAngle(float angle);
 	virtual float getAngle();
-	
+
 	virtual void center() { put(0.5); }
 };
 
+/// Continuous servo-motor object.
 class ContinuousServoOut : public AbstractServoOut {
 public:
 	ContinuousServoOut(uint8_t pin=9);
