@@ -47,6 +47,27 @@ public:
   unsigned long _startTime;
 };
 
+/// Sine oscillator. Phase is in % of period.
+class SineOsc : public PqGetter {
+public:
+  SineOsc(float period=1.0f, float phase=0.0f);
+  virtual ~SineOsc() {}
+
+  virtual float get() { return _value; }
+
+  virtual void setPeriod(float period);
+  virtual void setPhase(float phase);
+
+  virtual void setup();
+  virtual void update();
+
+  void _update(float t);
+
+  float _period;
+  float _phase;
+  unsigned long _startTime;
+  float _value;
+};
 
 /// Simple output that prints value to the serial.
 class SerialOut : public PqPutter {

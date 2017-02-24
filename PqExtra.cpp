@@ -49,6 +49,33 @@ void SquareOsc::setDutyCycle(float dutyCycle) {
   _dutyCyclePeriod = round(dutyCycle);
 }
 
+SineOsc::SineOsc(float period, float phase) : _value(0.5f) {
+  setPeriod(period);
+  setPhase(phase);
+}
+
+void SineOsc::setup() {
+  _startTime = millis();
+  _update(0);
+}
+
+void SineOsc::update() {
+  // Check where we are.
+  _update( (millis() - _startTime) / 1000.0f );
+}
+
+void SineOsc::_update(float t) {
+  _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
+}
+
+void SineOsc::setPeriod(float period) {
+  _period = max(period, 0); // period should not be negative
+}
+
+void SineOsc::setPhase(float phase) {
+  _phase = constrain(phase, 0, 1);
+}
+
 SerialOut::SerialOut(uint8_t digits) : _digits(digits) {}
 
 float SerialOut::put(float value) {
