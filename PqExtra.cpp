@@ -20,6 +20,12 @@
 
 #include "PqExtra.h"
 
+StreamIn::StreamIn(Stream* stream) : _value(0), _stream(stream) {}
+
+void StreamIn::update() {
+	if (_stream->available())
+		_value = _stream->parseFloat();
+}
 
 SquareOsc::SquareOsc(float period, float dutyCycle) {
   setPeriod(period);

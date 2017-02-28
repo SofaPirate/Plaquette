@@ -28,6 +28,23 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
+/// Serial input.
+class StreamIn : public PqGetter {
+public:
+  StreamIn(Stream* stream=&Serial);
+  virtual ~StreamIn() {}
+
+  virtual float get() { return _value; }
+
+  virtual void update();
+
+  // Current value.
+  float _value;
+
+	// The stream.
+	Stream* _stream;
+};
+
 /// Square oscillator.
 class SquareOsc : public PqDigitalGetter {
 public:
@@ -87,6 +104,9 @@ public:
   // Number of digits of precision.
   uint8_t _digits;
 
+	// The stream.
+	Stream* _stream;
+};
 
 class OscilloscopeOut : public PqPutter {
 public:
