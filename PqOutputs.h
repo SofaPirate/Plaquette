@@ -28,16 +28,19 @@
 #define SINK   0x1
 
 /// A generic class representing a simple PWM output.
-class PwmOut : public PqPinComponent, public PqPutter {
+class AnalogOut : public PqPinComponent, public PqPutter {
 public:
   /// Constructor.
-  PwmOut(uint8_t pin=3, uint8_t mode=SOURCE);
-  virtual ~PwmOut() {}
+  AnalogOut(uint8_t pin=3, uint8_t mode=SOURCE);
+  virtual ~AnalogOut() {}
 
   /// Returns reading in [0, 1].
   virtual float put(float value);
 
   virtual float get() { return _value; }
+
+	/// Invers value by setting it to (1-get()).
+	virtual void invert() { put(1-get()); }
 
   // Current value.
   float _value;
@@ -49,7 +52,7 @@ public:
 class DigitalOut : public PqPinComponent, public PqDigitalPutter {
 public:
   /// Constructor.
-  DigitalOut(uint8_t pin=13, uint8_t mode=SOURCE);
+  DigitalOut(uint8_t pin=LED_BUILTIN, uint8_t mode=SOURCE);
   virtual ~DigitalOut() {}
 
   /// Returns reading in [0, 1].

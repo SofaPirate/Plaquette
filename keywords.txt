@@ -8,7 +8,7 @@
 
 AnalogIn	KEYWORD1
 DigitalIn	KEYWORD1
-PwmOut	KEYWORD1
+AnalogOut	KEYWORD1
 DigitalOut	KEYWORD1
 
 #######################################

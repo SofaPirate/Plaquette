@@ -20,17 +20,16 @@
 
 #include "PqOutputs.h"
 
-
-PwmOut::PwmOut(uint8_t pin, uint8_t mode)
+AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
   : PqPinComponent(pin, mode), PqPutter(),
     _value(0)
 {}
 
-float PwmOut::put(float value) {
+float AnalogOut::put(float value) {
   return (_value = write(value));
 }
 
-float PwmOut::write(float value) {
+float AnalogOut::write(float value) {
   // Make sure value is in [0, 1].
   value = constrain(value, 0, 1);
   // Remap as integer in [0, 255].
