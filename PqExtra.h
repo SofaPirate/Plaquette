@@ -22,6 +22,7 @@
 #define PQ_EXTRA_H_
 
 #include "pq_print.h"
+#include "pq_map_real.h"
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
@@ -86,7 +87,6 @@ public:
   uint8_t _digits;
 };
 
-#include "pq_map_real.h"
 
 class OscilloscopeOut : public PqPutter {
 public:
