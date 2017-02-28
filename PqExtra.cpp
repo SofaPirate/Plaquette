@@ -76,14 +76,15 @@ void SineOsc::setPhase(float phase) {
   _phase = constrain(phase, 0, 1);
 }
 
-SerialOut::SerialOut(uint8_t digits) : _value(0), _digits(digits) {}
+StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
+StreamOut::StreamOut(Stream* stream, uint8_t digits) : _value(0), _digits(digits), _stream(stream) {}
 
-float SerialOut::put(float value) {
+float StreamOut::put(float value) {
   // Copy value.
   _value = value;
 
   // Print it.
-  println(_value, _digits);
+  _stream->println(_value, _digits);
 
   // Return it.
   return _value;

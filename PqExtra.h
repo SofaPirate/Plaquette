@@ -70,11 +70,12 @@ public:
   float _value;
 };
 
-/// Simple output that prints value to the serial.
-class SerialOut : public PqPutter {
+/// Simple output that prints value to a stream.
+class StreamOut : public PqPutter {
 public:
-  SerialOut(uint8_t digits=4);
-  virtual ~SerialOut() {}
+  StreamOut(uint8_t digits=4);
+  StreamOut(Stream* stream, uint8_t digits=4);
+  virtual ~StreamOut() {}
 
   virtual float put(float value);
 
@@ -85,7 +86,6 @@ public:
 
   // Number of digits of precision.
   uint8_t _digits;
-};
 
 
 class OscilloscopeOut : public PqPutter {
