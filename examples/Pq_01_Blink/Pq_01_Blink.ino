@@ -1,5 +1,5 @@
 /**
- * PqBlink
+ * Pq_Blink
  *
  * Turns on and off a light emitting diode (LED) connected to a digital
  * pin, without using the delay() function.  This means that other code

@@ -1,5 +1,5 @@
 /**
- * PqPwmOut
+ * Pq_AnalogOut
  * Demonstrates analog (PWM) output by sending a ramping value into a LED output
  * connected to PWM pin 9.
  *

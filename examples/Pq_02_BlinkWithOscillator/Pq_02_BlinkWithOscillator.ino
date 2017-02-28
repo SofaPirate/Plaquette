@@ -1,5 +1,5 @@
 /**
- * PqBlinkWithOscillator
+ * Pq_BlinkWithOscillator
  *
  * Turns on and off a light emitting diode (LED) connected to a digital
  * pin using a SquareOsc.

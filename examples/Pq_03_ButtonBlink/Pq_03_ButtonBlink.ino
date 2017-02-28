@@ -1,5 +1,5 @@
 /**
- * PqButtonBlink
+ * Pq_ButtonBlink
  *
  * A button triggers the fast blinking of an LED.
  *

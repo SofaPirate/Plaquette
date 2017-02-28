@@ -1,5 +1,5 @@
 /**
- * PqAnalogIn
+ * Pq_AnalogIn
  * Demonstrates analog input by reading an analog sensor on analog pin 0 and
  * controlling the intensity of a light emitting diode (LED) connected to digital
  * pin 13.
