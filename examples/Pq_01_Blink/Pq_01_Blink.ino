@@ -28,9 +28,9 @@ const float INTERVAL = 1.0;
 // Stores last time LED was updated.
 float previousTime = 0;
 
-void begin() {}
+void init() {}
 
-void run() {
+void step() {
   // Check to see if it's time to blink the LED.
   float currentTime = seconds();
 

@@ -42,7 +42,7 @@
 #include "PqExtra.h"
 
 // Plaquette builtin runtime functions.
-void begin();
-void run();
+void init();
+void step();
 
 #endif

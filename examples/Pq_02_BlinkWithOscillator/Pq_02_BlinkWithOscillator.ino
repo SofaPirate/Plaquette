@@ -21,9 +21,9 @@ DigitalOut led; // defaults on pin 13
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator(2, 0.75); // 2 seconds period, 75% duty cycle
 
-void begin() {}
+void init() {}
 
-void run() {
+void step() {
   // Send oscillator value to LED.
   oscillator >> led;
 }

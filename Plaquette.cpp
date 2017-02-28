@@ -22,10 +22,10 @@
 
 void setup() {
   Pq.setup();
-  begin();
+  init();
 }
 
 void loop() {
   Pq.update();
-  run();
+  step();
 }

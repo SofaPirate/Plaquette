@@ -6,11 +6,11 @@ AnalogIn in;         // defaults on pin A0
 SerialOut serial;
 
 // Notice that baudrate is automatically set at 115200.
-void begin() {
+void init() {
   in.smooth(); // add some smoothing
 }
 
-void run() {
+void step() {
   // Sends input signal to LED intensity, then to serial.
   in >> led >> serial;
 }

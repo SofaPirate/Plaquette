@@ -3,11 +3,11 @@
 PwmOut led;  // defaults on pin 3
 AnalogIn in; // defaults on pin A0
 
-void begin() {
+void init() {
   in.smooth(); // add some smoothing
 }
 
-void run() {
+void step() {
   // Sends input signal to LED intensity.
   in >> led;
 }

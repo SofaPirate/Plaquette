@@ -7,12 +7,12 @@ const float RATE = 0.01;
 // The servo-motor output.
 ServoOut out;
 
-void begin() {
+void init() {
   // Centers the servo.
   out.center();
 }
 
-void run() {
+void step() {
   // Updates the value and send it back as output.
   (out + randomUniform(-RATE, RATE)) >> out;
 }

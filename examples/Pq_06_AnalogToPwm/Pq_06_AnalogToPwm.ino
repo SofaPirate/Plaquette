@@ -20,13 +20,13 @@ AnalogIn in; // default on pin A0
 // The LED.
 PwmOut led(9);
 
-void begin() {
+void init() {
   // Smooth input value by a factor of 0.01.
   // HINT: try different smoothing values to gauge the difference.
   in.smooth(0.01);
 }
 
-void run() {
+void step() {
   // Just send input to output.
   in >> led;
 }

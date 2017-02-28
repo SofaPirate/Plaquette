@@ -24,9 +24,9 @@ DigitalIn button(2); // defaults to INTERNAL_PULLUP
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator(0.1); // 100 ms period, 50% duty cycle (default)
 
-void begin() {}
+void init() {}
 
-void run() {
+void step() {
   // If button is pushed, send oscillator value to LED.
   if (button)
 		oscillator >> led;

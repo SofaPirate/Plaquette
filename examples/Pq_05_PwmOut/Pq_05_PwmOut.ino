@@ -14,7 +14,7 @@
 #include <Plaquette.h>
 
 // The LED.
-PwmOut led(9);
+AnalogOut led(9);
 
 // Period during which to ramp up (seconds).
 const float PERIOD = 5.0;
@@ -22,9 +22,9 @@ const float PERIOD = 5.0;
 // Stores last time LED was updated.
 float startTime = 0;
 
-void begin() {}
+void init() {}
 
-void run() {
+void step() {
   // Check to see if it's time to blink the LED.
   float currentTime = seconds();
 

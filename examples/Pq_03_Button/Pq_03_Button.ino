@@ -25,11 +25,11 @@ DigitalOut led; // defaults on pin 13
 // The button.
 DigitalIn button(2); // defaults to INTERNAL_PULLUP
 
-void begin() {
+void init() {
   button.smooth(); // debounce button
 }
 
-void run() {
+void step() {
   // Send button value to LED.
   button >> led;
 }
