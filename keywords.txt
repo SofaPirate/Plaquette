@@ -11,9 +11,24 @@ DigitalIn	KEYWORD1
 AnalogOut	KEYWORD1
 DigitalOut	KEYWORD1
 
+StreamIn	KEYWORD1
+SquareOsc	KEYWORD1
+SineOsc	KEYWORD1
+
+Normalizer	KEYWORD1
+AdaptiveNormalizer	KEYWORD1
+MinMaxScaler	KEYWORD1
+Smoother	KEYWORD1
+
+StreamOut	KEYWORD1
+ServoOut	KEYWORD1
+
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
+
+init KEYWORD2
+step	KEYWORD2
 
 setup KEYWORD2
 update	KEYWORD2
@@ -30,6 +45,8 @@ isOff	KEYWORD2
 get	KEYWORD2
 getInt KEYWORD2
 
+randomUniform	KEYWORD2
+
 #######################################
 # Instances (KEYWORD2)
 #######################################
@@ -45,3 +62,9 @@ EXTERNAL_PULLUP	LITERAL1
 EXTERNAL_PULLDOWN	LITERAL1
 ANALOG_DEFAULT	LITERAL1
 ANALOG_INVERTED	LITERAL1
+
+THRESHOLD_LOW	LITERAL1
+THRESHOLD_HIGH	LITERAL1
+THRESHOLD_FALLING	LITERAL1
+THRESHOLD_RISING	LITERAL1
+THRESHOLD_CHANGE	LITERAL1
