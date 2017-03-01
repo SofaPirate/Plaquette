@@ -45,6 +45,13 @@ class Plaquette;
 class PqComponent {
   friend class Plaquette;
 
+public:
+	/// Converts analog (float) value to digital (bool) value.
+	static bool  analogToDigital(float f);
+
+	/// Converts digital (bool) value to analog (float) value.
+	static float digitalToAnalog(bool b);
+
 protected:
   PqComponent();
   virtual ~PqComponent() {}

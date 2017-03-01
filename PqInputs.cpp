@@ -52,11 +52,11 @@ float DigitalIn::_read() {
   bool isHigh = digitalRead(_pin) == HIGH;
   if (_mode == INTERNAL_PULLUP || _mode == EXTERNAL_PULLUP) // inverted
     isHigh = !isHigh;
-  return isHigh ? 1 : 0;
+  return digitalToAnalog(isHigh);
 }
 
 bool DigitalIn::isOn() {
-  return (bool) (_smoothed() > 0.5);
+  return analogToDigital(_smoothed());
 }
 
 void DigitalIn::setup() {
