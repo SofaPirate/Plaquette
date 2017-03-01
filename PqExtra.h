@@ -193,9 +193,21 @@ public:
 #define THRESHOLD_RISING  3
 #define THRESHOLD_CHANGE  4
 
+/**
+ * Emits a signals that tells if a certain threshold has been crossed.
+ * Possible modes are:
+ * - THRESHOLD_LOW  : true iff value < threshold
+ * - THRESHOLD_HIGH : true iff value > threshold
+ * - THRESHOLD_FALLING : true when value becomes < threshold, then waits until it becomes > resetThreshold (*)
+ * - THRESHOLD_RISING  : true when value becomes > threshold, then waits until it becomes < resetThreshold (*)
+ * - THRESHOLD_CHANGE  : true when value crosses threshold
+ * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only
+ * used in the FALLING and RISING modes, otherwise it is ignored.
+ */
 class Thresholder : public PqPutter, public PqDigitalGetter {
 public:
   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
+  Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
 
   virtual float put(float value);
@@ -203,9 +215,15 @@ public:
   virtual bool isOn() { return _value; }
 
   float _threshold;
-  int8_t _prev; // was previous variable equal (0), lower (-1), or higher (1) than threshold
-  bool _value;
-  uint8_t  _mode;
+	float _resetThreshold;
+
+  uint8_t  _mode  : 3;
+  bool _value     : 1;
+	bool _wasLow    : 1;
+	bool _wasHigh   : 1;
+
+private:
+	void _init(float threshold, uint8_t mode, float resetThreshold);
 };
 
 #endif
