@@ -19,6 +19,7 @@ Normalizer	KEYWORD1
 AdaptiveNormalizer	KEYWORD1
 MinMaxScaler	KEYWORD1
 Smoother	KEYWORD1
+Thresholder	KEYWORD1
 
 StreamOut	KEYWORD1
 ServoOut	KEYWORD1
@@ -45,7 +46,11 @@ isOff	KEYWORD2
 get	KEYWORD2
 getInt KEYWORD2
 
+smooth KEYWORD2
+noSmooth KEYWORD2
+
 randomUniform	KEYWORD2
+seconds	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
