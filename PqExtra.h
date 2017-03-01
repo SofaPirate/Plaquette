@@ -193,14 +193,14 @@ public:
 #define THRESHOLD_RISING  3
 #define THRESHOLD_CHANGE  4
 
-class Thresholder : public PqPutter {
+class Thresholder : public PqPutter, public PqDigitalGetter {
 public:
   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
   virtual ~Thresholder() {}
 
   virtual float put(float value);
 
-  virtual float get() { return (float)_value; }
+  virtual bool isOn() { return _value; }
 
   float _threshold;
   int8_t _prev; // was previous variable equal (0), lower (-1), or higher (1) than threshold
