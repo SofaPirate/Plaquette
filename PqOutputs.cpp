@@ -46,14 +46,13 @@ DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
 
 float DigitalOut::put(float value) {
   // Make sure value is in [0, 1].
-  value = constrain(value, 0, 1);
-  // Remap as integer : either 0 or 1.
-  int value01 = (value > 0.5f ? 1 : 0);
-  _isOn = (_mode == SOURCE ? value01 : 1-value01);
-  // Write to PWM (inverting if needed).
+	value = constrain(value, 0, 1);
+  // Set ON status depending on value: invert if mode is SINK.
+  _isOn = (_mode == SOURCE) ^ analogToDigital(value);
+  // Write to output.
   digitalWrite(_pin, _isOn ? HIGH : LOW);
-  // Return original value.
-  return value01;
+  // Return value.
+  return value;
 }
 
 void DigitalOut::setup() {
