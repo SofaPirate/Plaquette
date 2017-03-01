@@ -195,7 +195,7 @@ public:
 
 class Thresholder : public PqPutter {
 public:
-  Thresholder(float threshold, uint8_t mode=HIGH);
+  Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
   virtual ~Thresholder() {}
 
   virtual float put(float value);
