@@ -28,7 +28,7 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Serial input.
+/// Stream/serial input. Reads float values using Arduino built-in parseFloat().
 class StreamIn : public PqGetter {
 public:
   StreamIn(Stream* stream=&Serial);
@@ -45,7 +45,7 @@ public:
 	Stream* _stream;
 };
 
-/// Square oscillator.
+/// Square oscillator. DutyCycle is in % of period.
 class SquareOsc : public PqDigitalGetter {
 public:
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
@@ -87,7 +87,7 @@ public:
   float _value;
 };
 
-/// Simple output that prints value to a stream.
+/// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
 public:
   StreamOut(uint8_t digits=4);
@@ -108,6 +108,8 @@ public:
 	Stream* _stream;
 };
 
+/// Generates a simple ASCII-based representation of a signal.
+/// Precision represents the number of columns used to represent the signal.
 class OscilloscopeOut : public PqPutter {
 public:
   OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
@@ -122,6 +124,7 @@ public:
 
   float _minValue;
   float _maxValue;
+
   // Number of spaces of precision.
   uint8_t _precision;
 };
@@ -137,6 +140,8 @@ public:
   virtual float get() { return MovingAverage::get(); }
 };
 
+/// Adaptive normalizer: normalizes values on-the-run using exponential moving
+/// averages over mean and stddev.
 class AdaptiveNormalizer : public PqPutter, public MovingStats {
 public:
   AdaptiveNormalizer(float smoothFactor=0.001f);
@@ -155,6 +160,7 @@ public:
   float _stddev;
 };
 
+/// Standard normalizer: normalizes values on-the-run using real mean and stddev.
 class Normalizer : public PqPutter, public SimpleStats {
 public:
   Normalizer();
@@ -173,6 +179,7 @@ public:
   float _stddev;
 };
 
+/// Regularizes signal into [0,1] by rescaling it using the min and max values.
 class MinMaxScaler : public PqPutter {
 public:
   MinMaxScaler();
@@ -214,10 +221,14 @@ public:
 
   virtual bool isOn() { return _value; }
 
+	// Threshold values.
   float _threshold;
 	float _resetThreshold;
 
+	// Thresholding mode.
   uint8_t  _mode  : 3;
+
+	// Booleans used to keep track of signal value.
   bool _value     : 1;
 	bool _wasLow    : 1;
 	bool _wasHigh   : 1;

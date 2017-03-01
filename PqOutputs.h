@@ -39,7 +39,7 @@ public:
 
   virtual float get() { return _value; }
 
-	/// Invers value by setting it to (1-get()).
+	/// Inverts value by setting it to (1-get()).
 	virtual void invert() { put(1-get()); }
 
   // Current value.

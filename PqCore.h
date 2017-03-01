@@ -392,7 +392,7 @@ inline PqGetter& operator>>(uint64_t value, PqGetter& getter) { return getter; }
 //  return (valueIn = valueOut);
 //}
 
-
+/// Superclass for pin-based components.
 class PqPinComponent : public PqComponent {
 public:
   PqPinComponent(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}

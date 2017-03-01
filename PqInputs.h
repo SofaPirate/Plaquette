@@ -31,14 +31,17 @@
 #define ANALOG_DEFAULT    0x4
 #define ANALOG_INVERTED   0x8
 
+/// Superclass for components that can be smoothed.
 class PqSmoothable {
 public:
   virtual void smooth(float factor=0.1f);
   virtual void noSmooth() { smooth(1); }
 
+protected:
   // Raw read function.
   virtual float _read() = 0;
 
+	// Returns smoothed value.
   virtual float _smoothed();
   MovingAverage _avg;
 };
@@ -53,6 +56,7 @@ public:
   /// Returns reading in [0, 1].
   virtual float get();
 
+protected:
   virtual float _read();
 };
 
@@ -66,9 +70,9 @@ public:
   /// Returns true iff the input is "on".
   virtual bool isOn();
 
+protected:
   virtual float _read();
 
-protected:
   virtual void setup();
 };
 

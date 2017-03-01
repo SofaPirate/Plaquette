@@ -23,10 +23,6 @@
 #include "PqCore.h"
 #include <Servo.h>
 
-// Output constants.
-#define SERVO_DEFAULT  0x0
-#define SERVO_CENTERED 0x1
-
 /// Servo-motor absract object.
 class AbstractServoOut : public PqPutter, public Servo {
 protected:
