@@ -3,7 +3,7 @@
 PwmOut led;  // defaults on pin 3
 AnalogIn in; // defaults on pin A0
 
-void init() {
+void begin() {
   in.smooth(); // add some smoothing
 }
 

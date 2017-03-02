@@ -7,7 +7,7 @@ DigitalOut led; // defaults on pin 13
 SquareOsc osc1; // square oscillator (default 1 sec period with 50% duty-cycle)
 SquareOsc osc2(2, 0.75); // square oscillator with period of 2 sec and 75% duty-cycle
 
-void init() {}
+void begin() {}
 
 void step() {
   // If button is pressed and input signal is big enough then use first oscillator

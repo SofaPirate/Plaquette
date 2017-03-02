@@ -28,7 +28,7 @@ AnalogIn in; // default on pin A0
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator; // default to 1 second period and 50% duty-cycle
 
-void init() {}
+void begin() {}
 
 void step() {
 	// Set duty cycle of oscillator to value of analog input.

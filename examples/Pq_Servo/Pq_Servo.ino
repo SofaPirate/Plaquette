@@ -7,7 +7,7 @@ const float RATE = 0.01;
 // The servo-motor output.
 ServoOut out;
 
-void init() {
+void begin() {
   // Centers the servo.
   out.center();
 }

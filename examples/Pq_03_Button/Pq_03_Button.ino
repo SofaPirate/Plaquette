@@ -25,7 +25,7 @@ DigitalOut led; // defaults on pin 13
 // The button.
 DigitalIn button(2); // defaults to INTERNAL_PULLUP
 
-void init() {
+void begin() {
   button.smooth(); // debounce button
 }
 

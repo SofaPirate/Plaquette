@@ -22,7 +22,7 @@
 
 void setup() {
   Pq.setup();
-  init();
+  begin();
 }
 
 void loop() {

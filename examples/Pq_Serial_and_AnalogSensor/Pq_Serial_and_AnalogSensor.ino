@@ -6,7 +6,7 @@ AnalogIn in;         // defaults on pin A0
 SerialOut serial;
 
 // Notice that baudrate is automatically set at 115200.
-void init() {
+void begin() {
   in.smooth(); // add some smoothing
 }
 
