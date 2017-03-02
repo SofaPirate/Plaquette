@@ -77,12 +77,12 @@ void SineOsc::_update(float t) {
 }
 
 SineOsc& SineOsc::period(float period) {
-  _period = max(period, 0); // period should not be negative
+  _period = period;
 	return *this;
 }
 
 SineOsc& SineOsc::phase(float phase) {
-  _phase = constrain(phase, 0, 1);
+  _phase = phase;
 	return *this;
 }
 
