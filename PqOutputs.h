@@ -31,7 +31,7 @@
 class AnalogOut : public PqPinComponent, public PqPutter {
 public:
   /// Constructor.
-  AnalogOut(uint8_t pin=3, uint8_t mode=SOURCE);
+  AnalogOut(uint8_t pin=9, uint8_t mode=SOURCE);
   virtual ~AnalogOut() {}
 
   /// Returns reading in [0, 1].
