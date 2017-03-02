@@ -27,9 +27,9 @@ void StreamIn::update() {
 		_value = _stream->parseFloat();
 }
 
-SquareOsc::SquareOsc(float period, float dutyCycle) {
-  setPeriod(period);
-  setDutyCycle(dutyCycle);
+SquareOsc::SquareOsc(float period_, float dutyCycle_) {
+  period(period_);
+  dutyCycle(dutyCycle_);
 }
 
 void SquareOsc::setup() {
@@ -41,23 +41,25 @@ void SquareOsc::update() {
   _isOn = ((millis() - _startTime) % _period < _dutyCyclePeriod);
 }
 
-void SquareOsc::setPeriod(float period) {
+SquareOsc& SquareOsc::period(float period) {
   // Convert period in ms.
   period *= 1000;
   _period = round(period);
   _period = max(_period, 1.0f); // at least 1ms
+	return *this;
 }
 
-void SquareOsc::setDutyCycle(float dutyCycle) {
+SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
   // Convert duty cycle in ms.
   dutyCycle = constrain(dutyCycle, 0, 1);
   dutyCycle *= _period;
   _dutyCyclePeriod = round(dutyCycle);
+	return *this;
 }
 
-SineOsc::SineOsc(float period, float phase) : _value(0.5f) {
-  setPeriod(period);
-  setPhase(phase);
+SineOsc::SineOsc(float period_, float phase_) : _value(0.5f) {
+  period(period_);
+  phase(phase_);
 }
 
 void SineOsc::setup() {
@@ -74,12 +76,14 @@ void SineOsc::_update(float t) {
   _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
 }
 
-void SineOsc::setPeriod(float period) {
+SineOsc& SineOsc::period(float period) {
   _period = max(period, 0); // period should not be negative
+	return *this;
 }
 
-void SineOsc::setPhase(float phase) {
+SineOsc& SineOsc::phase(float phase) {
   _phase = constrain(phase, 0, 1);
+	return *this;
 }
 
 StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
