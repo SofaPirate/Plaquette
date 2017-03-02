@@ -48,9 +48,9 @@ float DigitalOut::put(float value) {
   // Make sure value is in [0, 1].
 	value = constrain(value, 0, 1);
   // Set ON status depending on value: invert if mode is SINK.
-  _isOn = (_mode == SOURCE) ^ analogToDigital(value);
+  _isOn = analogToDigital(value);
   // Write to output.
-  digitalWrite(_pin, _isOn ? HIGH : LOW);
+  digitalWrite(_pin, _isOn ^ (_mode == SOURCE) ? LOW : HIGH);
   // Return value.
   return value;
 }
