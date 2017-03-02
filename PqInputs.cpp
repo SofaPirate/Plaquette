@@ -36,12 +36,17 @@ float AnalogIn::get() {
   return _smoothed();
 }
 
+#ifdef ESP8266
+#define ANALOG_READ_MAX_VALUE 1024
+#else
+#define ANALOG_READ_MAX_VALUE 1023
+#endif
 float AnalogIn::_read() {
   // Convert
   int rawValue = analogRead(_pin);
   if (_mode == ANALOG_INVERTED)
-    rawValue = 1023 - rawValue;
-  return rawValue / 1023.0f;
+    rawValue = ANALOG_READ_MAX_VALUE - rawValue;
+  return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
