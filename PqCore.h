@@ -257,9 +257,12 @@ inline PqPutter& operator>>(bool value, PqPutter& putter) {
 	return ::operator>>(value ? 1.0f : 0.0f, putter);
 }
 
+// This code is needed on the Curie-based AVRs.
+#if defined(__arc__)
 inline PqPutter& operator>>(int value, PqPutter& putter) {
 	return ::operator>>((float)value, putter);
 }
+#endif
 
 inline PqPutter& operator>>(int8_t value, PqPutter& putter) {
 	return ::operator>>((float)value, putter);
@@ -297,9 +300,12 @@ inline bool& operator>>(PqDigitalGetter& getter, bool& value) {
   return (value = getter.isOn());
 }
 
+// This code is needed on the Curie-based AVRs.
+#if defined(__arc__)
 inline int& operator>>(PqDigitalGetter& getter, int& value) {
   return (value = getter.getInt());
 }
+#endif
 
 inline int8_t& operator>>(PqDigitalGetter& getter, int8_t& value) {
   return (value = getter.getInt());
@@ -346,7 +352,10 @@ inline double& operator>>(PqGetter& getter, double& value) {
 // PqDigitalGetter int() and bool() which allow bitshift operations.
 inline PqGetter& operator>>(float value,    PqGetter& getter) { return getter; }
 inline PqGetter& operator>>(double value,   PqGetter& getter) { return getter; }
+// This code is needed on the Curie-based AVRs.
+#if defined(__arc__)
 inline PqGetter& operator>>(int value,      PqGetter& getter) { return getter; }
+#endif
 inline PqGetter& operator>>(bool value,     PqGetter& getter) { return getter; }
 inline PqGetter& operator>>(int8_t value,   PqGetter& getter) { return getter; }
 inline PqGetter& operator>>(uint8_t value,  PqGetter& getter) { return getter; }
