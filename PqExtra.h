@@ -192,8 +192,8 @@ public:
   virtual float get() { return _value; }
 
   float _value;
-  float _min;
-  float _max;
+  float _minValue;
+  float _maxValue;
 };
 
 #define THRESHOLD_LOW     0

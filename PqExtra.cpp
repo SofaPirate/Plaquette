@@ -178,15 +178,15 @@ float Normalizer::put(float value) {
 MinMaxScaler::MinMaxScaler()
  : PqPutter(),
    _value(0.5f),
-   _min(FLT_MAX),
-   _max(FLT_MIN)
+   _minValue(FLT_MAX),
+   _maxValue(FLT_MIN)
 {}
 
 float MinMaxScaler::put(float value)
 {
-  _min = min(value, _min);
-  _max = max(value, _max);
-  _value = map(value, _min, _max, 0.0f, 1.0f);
+  _minValue = min(value, _minValue);
+  _maxValue = max(value, _maxValue);
+  _value = (_minValue == _maxValue ? 0.5f : map(value, _minValue, _maxValue, 0.0f, 1.0f));
 	return _value;
 }
 
