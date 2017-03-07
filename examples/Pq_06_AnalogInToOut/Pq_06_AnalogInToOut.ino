@@ -18,7 +18,7 @@
 AnalogIn in; // default on pin A0
 
 // The LED.
-PwmOut led(9);
+AnalogOut led(9);
 
 void begin() {
   // Smooth input value by a factor of 0.01.
