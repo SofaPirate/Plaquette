@@ -2,11 +2,11 @@
  * Pq_Button
  *
  * Turns on and off a light emitting diode(LED) connected to digital
- * pin 13, when pressing a pushbutton attached to pin 2.
+ * pin 13, when pressing a pushbutton attached to digital pin 2.
  *
  * The circuit:
- * - LED attached from pin 13 to ground
- * - pushbutton attached to pin 2 from ground
+ * - LED attached from digital pin 13 to ground (*)
+ * - pushbutton attached to digital pin 2 from ground
  * Note: on most Arduinos there is already an LED on the board
  * attached to pin 13.
  *

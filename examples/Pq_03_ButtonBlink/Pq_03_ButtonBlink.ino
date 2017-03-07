@@ -4,8 +4,8 @@
  * A button triggers the fast blinking of an LED.
  *
  * The circuit:
- * - LED attached from pin 13 to ground
- * - pushbutton attached to pin 2 from ground
+ * - LED attached from digital pin 13 to ground (*)
+ * - pushbutton attached to digital pin 2 from ground
  * Note: on most Arduinos there is already an LED on the board
  * attached to pin 13.
  *
