@@ -62,7 +62,7 @@ public:
 
   bool _isOn;
   unsigned long _period;
-  unsigned long _dutyCyclePeriod;
+	float _dutyCycle;
   unsigned long _startTime;
 };
 

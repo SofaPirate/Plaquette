@@ -38,7 +38,7 @@ void SquareOsc::setup() {
 
 void SquareOsc::update() {
   // Check where we are.
-  _isOn = ((millis() - _startTime) % _period < _dutyCyclePeriod);
+  _isOn = ((millis() - _startTime) % _period < (_dutyCycle*_period));
 }
 
 SquareOsc& SquareOsc::period(float period) {
@@ -51,9 +51,7 @@ SquareOsc& SquareOsc::period(float period) {
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
   // Convert duty cycle in ms.
-  dutyCycle = constrain(dutyCycle, 0, 1);
-  dutyCycle *= _period;
-  _dutyCyclePeriod = round(dutyCycle);
+  _dutyCycle = constrain(dutyCycle, 0, 1);
 	return *this;
 }
 
