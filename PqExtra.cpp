@@ -231,21 +231,21 @@ Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
 float Thresholder::put(float value) {
   bool high = (value > _threshold);
   bool low  = (value < _threshold);
-  bool raising = (high && _wasLow);
+  bool rising = (high && _wasLow);
   bool falling = (low  && _wasHigh);
 
 	// Reset.
-	if (raising) _wasLow  = false;
+	if (rising) _wasLow  = false;
 	if (falling) _wasHigh = false;
   // bool raising = (high && _prev != (+1));
   // bool falling = (low  && _prev != (-1));
   switch (_mode) {
     case THRESHOLD_HIGH:    _value = high;    break;
     case THRESHOLD_LOW:     _value = low;     break;
-    case THRESHOLD_RISING:  _value = raising; break;
+    case THRESHOLD_RISING:  _value = rising; break;
     case THRESHOLD_FALLING: _value = falling; break;
     case THRESHOLD_CHANGE:
-    default:                _value = raising || falling;
+    default:                _value = rising || falling;
   }
 
 	if (value < _resetThreshold)      _wasLow = true;
