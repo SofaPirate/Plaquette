@@ -89,6 +89,32 @@ public:
   float _value;
 };
 
+/**
+ * Triangle/sawtooth oscillator. Parameter width between 0 and 1 determines the point
+ * at which the wave reaches maximum.
+ */
+class TriOsc : public PqGetter {
+public:
+  TriOsc(float period=1.0f, float width=0.5f);
+  virtual ~TriOsc() {}
+
+  virtual float get() { return _value; }
+
+  virtual TriOsc& period(float period);
+  virtual TriOsc& freq(float freq) { period(1/freq); }
+  virtual TriOsc& width(float width);
+
+  virtual void setup();
+  virtual void update();
+
+  void _update(float t);
+
+  unsigned long _period;
+  unsigned long _width;
+  unsigned long _startTime;
+  float _value;
+};
+
 /// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
 public:

@@ -86,6 +86,36 @@ SineOsc& SineOsc::phase(float phase) {
 	return *this;
 }
 
+TriOsc::TriOsc(float period_, float width_) {
+  period(period_);
+  width(width_);
+}
+
+void TriOsc::setup() {
+  _startTime = millis();
+}
+
+void TriOsc::update() {
+  // Check where we are.
+	float t = ((millis() - _startTime) % _period) / (float)_period;
+	if (t < _width) _value = map(t, 0,      _width,  0.f, 1.f);
+	else            _value = map(t, _width,      1, 1.f, 0.f);
+}
+
+TriOsc& TriOsc::period(float period) {
+  // Convert period in ms.
+  period *= 1000;
+  _period = round(period);
+  _period = max(_period, 1.0f); // at least 1ms
+	return *this;
+}
+
+TriOsc& TriOsc::width(float width) {
+  // Convert duty cycle in ms.
+  _width = constrain(width, 0, 1);
+	return *this;
+}
+
 StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
 StreamOut::StreamOut(Stream* stream, uint8_t digits) : _value(0), _digits(digits), _stream(stream) {}
 
