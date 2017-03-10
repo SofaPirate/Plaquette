@@ -54,10 +54,15 @@ public:
   virtual ~AnalogIn() {}
 
   /// Returns reading in [0, 1].
-  virtual float get();
+  virtual float get() { return _value; }
 
 protected:
   virtual float _read();
+
+  virtual void setup();
+  virtual void update();
+
+	float _value;
 };
 
 /// A generic class representing a simple digital input.
@@ -68,12 +73,15 @@ public:
   virtual ~DigitalIn() {}
 
   /// Returns true iff the input is "on".
-  virtual bool isOn();
+  virtual bool isOn() { return _isOn; }
 
 protected:
   virtual float _read();
 
   virtual void setup();
+  virtual void update();
+
+	bool _isOn;
 };
 
 #endif
