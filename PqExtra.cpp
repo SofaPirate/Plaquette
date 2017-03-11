@@ -23,8 +23,17 @@
 StreamIn::StreamIn(Stream* stream) : _value(0), _stream(stream) {}
 
 void StreamIn::update() {
-	if (_stream->available())
-		_value = _stream->parseFloat();
+	while (_stream->available()) {
+		switch (_stream->peek()) {
+			case ' ':
+			case '\n':
+			case '\r':
+				_stream->read();
+				break;
+			default:
+			_value = _stream->parseFloat();
+		}
+	}
 }
 
 SquareOsc::SquareOsc(float period_, float dutyCycle_) {
