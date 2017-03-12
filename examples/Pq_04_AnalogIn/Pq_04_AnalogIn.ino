@@ -31,8 +31,6 @@ SquareOsc oscillator; // default to 1 second period and 50% duty-cycle
 void begin() {}
 
 void step() {
-	// Set duty cycle of oscillator to value of analog input.
-	oscillator.setDutyCycle(in);
-  // Send value to LED.
-  oscillator >> led;
+  // Set duty cycle of oscillator to value of analog input and send value to LED.
+  oscillator.dutyCycle(in) >> led;
 }
