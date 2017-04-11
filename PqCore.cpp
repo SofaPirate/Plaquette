@@ -29,7 +29,7 @@ PqComponent::PqComponent() {
   Pq.add(this);
 }
 
-bool  PqComponent::analogToDigital(float f) { return (f > 0.5); }
+bool  PqComponent::analogToDigital(float f) { return (f >= 0.5); }
 float PqComponent::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
 
 Plaquette::Plaquette() : _nComponents(0) { }
