@@ -99,8 +99,10 @@ public:
   /// Returns reading (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
 
-  // /// Operator that allows to use in conditional expressions.
-  // explicit operator bool() { return get() > 0.5f; } //////////////////////// TODO float to bool
+  /// Operator that allows usage in conditional expressions.
+	// NOTE: This operator is defined as explicit so that boolean expression like
+	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
+  virtual explicit operator bool() { return analogToDigital(get()); }
 
   /// Object can be used director to access its value.
   operator float() { return get(); }
@@ -180,8 +182,8 @@ public:
   /// Returns reading (either 0 or 1).
   virtual float get() { return getInt(); }
 
-  /// Operator that allows to use in conditional expressions.
-  operator bool() { return isOn(); }
+  /// Operator that allows usage in conditional expressions.
+  virtual explicit operator bool() { return isOn(); }
 
   /// Operator that return 0 or 1 depending on value.
   explicit operator int() { return getInt(); }
