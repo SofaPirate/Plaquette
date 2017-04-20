@@ -1,5 +1,5 @@
 /**
- * PqAnalogToPwm
+ * PqAnalogInToOut
  * Directly sends smoothed analog input signal to pwm output.
  *
  * The circuit:
