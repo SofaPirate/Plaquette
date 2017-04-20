@@ -18,6 +18,8 @@
 AnalogIn in; // default on pin A0
 
 // The serial input.
+// TIP: try replacing the line by:
+//     OscilloscopeOut serialOut;
 StreamOut serialOut;
 
 void begin() {}
