@@ -6,7 +6,7 @@
  *
  * The circuit:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
-*    to the analog pin one side pin (either one) to ground the other side pin to +5V
+ *   to the analog pin: one side pin (either one) to ground the other side pin to +5V
  * - LED anode (long leg) attached to digital output 13
  * - LED cathode (short leg) attached to ground
  *
