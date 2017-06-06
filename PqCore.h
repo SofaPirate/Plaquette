@@ -36,7 +36,30 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 115200
 #endif
 
-class Plaquette;
+class PqComponent;
+
+/// The main Plaquette static class containing all the components.
+class Plaquette {
+  friend class PqComponent;
+
+private:
+  static PqComponent* _components[PLAQUETTE_MAX_COMPONENTS];
+  static uint8_t _nComponents;
+
+public:
+  /// Initializes all components (calls setup() on all of them).
+  static void setup();
+
+  /// Updates all components (calls update() on all of them).
+  static void update();
+
+  /// Returns the current number of components.
+  static uint8_t nComponents() { return _nComponents; }
+
+private:
+  /// Adds a component to Plaquette.
+  static void add(PqComponent * component);
+};
 
 /**
  * Main class for components to be added to Plaquette.
@@ -60,34 +83,6 @@ protected:
   virtual void setup() {}
   virtual void update() {}
 };
-
-/// The main Plaquette singleton class containing all the components.
-class Plaquette {
-  friend class PqComponent;
-
-private:
-  PqComponent* _components[PLAQUETTE_MAX_COMPONENTS];
-  uint8_t _nComponents;
-
-public:
-  Plaquette();
-
-  /// Initializes all components (calls setup() on all of them).
-  void setup();
-
-  /// Updates all components (calls update() on all of them).
-  void update();
-
-  /// Returns the current number of components.
-  uint8_t nComponents() const { return _nComponents; }
-
-private:
-  /// Adds a component to Plaquette.
-  void add(PqComponent * component);
-};
-
-/// The singleton.
-extern Plaquette Pq;
 
 /// A generic class representing a simple source.
 class PqGetter : public PqComponent {

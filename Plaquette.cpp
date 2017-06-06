@@ -21,11 +21,11 @@
 #include "Plaquette.h"
 
 void setup() {
-  Pq.setup();
+  Plaquette::setup();
   begin();
 }
 
 void loop() {
-  Pq.update();
+  Plaquette::update();
   step();
 }

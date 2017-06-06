@@ -25,14 +25,8 @@
 
 #include "PqCore.h"
 
-PqComponent::PqComponent() {
-  Pq.add(this);
-}
-
-bool  PqComponent::analogToDigital(float f) { return (f >= 0.5); }
-float PqComponent::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
-
-Plaquette::Plaquette() : _nComponents(0) { }
+uint8_t Plaquette::_nComponents = 0;
+PqComponent* Plaquette::_components[PLAQUETTE_MAX_COMPONENTS];
 
 void Plaquette::update() {
   // Update every component.
@@ -44,14 +38,24 @@ void Plaquette::setup() {
   // Initialize serial.
   Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
   // Initialize all components.
-  for (uint8_t i=0; i<_nComponents; i++)
+  for (uint8_t i=0; i<_nComponents; i++) {
     _components[i]->setup();
+	}
 }
 
 void Plaquette::add(PqComponent* component) {
+  for (uint8_t i=0; i<_nComponents; i++) {
+		if (_components[i] == component)
+			return; // do not add existing component
+	}
   if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
     _components[_nComponents++] = component;
   }
 }
 
-Plaquette Pq;
+PqComponent::PqComponent() {
+  Plaquette::add(this);
+}
+
+bool  PqComponent::analogToDigital(float f) { return (f >= 0.5); }
+float PqComponent::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
