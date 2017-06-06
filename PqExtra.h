@@ -54,7 +54,7 @@ public:
   virtual bool isOn() { return _isOn; }
 
   virtual SquareOsc& period(float period);
-  virtual SquareOsc& freq(float freq) { period(1/freq); }
+  virtual SquareOsc& freq(float freq) { return period(1/freq); }
   virtual SquareOsc& dutyCycle(float dutyCycle);
 
   virtual void setup();
@@ -75,7 +75,7 @@ public:
   virtual float get() { return _value; }
 
   virtual SineOsc& period(float period);
-  virtual SineOsc& freq(float freq) { period(1/freq); }
+  virtual SineOsc& freq(float freq) { return period(1/freq); }
   virtual SineOsc& phase(float phase);
 
   virtual void setup();
@@ -101,7 +101,7 @@ public:
   virtual float get() { return _value; }
 
   virtual TriOsc& period(float period);
-  virtual TriOsc& freq(float freq) { period(1/freq); }
+  virtual TriOsc& freq(float freq) { return period(1/freq); }
   virtual TriOsc& width(float width);
 
   virtual void setup();
