@@ -20,6 +20,8 @@
 #ifndef PQ_SERVO_H_
 #define PQ_SERVO_H_
 
+#if defined(ARDUINO_ARCH_AVR) or defined(ARDUINO_ARCH_SAM) or defined(ARDUINO_ARCH_SAMD) or defined(ARDUINO_ARCH_STM32F4) or defined(ARDUINO_ARCH_NRF52)
+
 #include "PqCore.h"
 #include <Servo.h>
 
@@ -65,5 +67,7 @@ public:
 	virtual void stop();
 	virtual void reverse();
 };
+
+#endif
 
 #endif
