@@ -35,8 +35,13 @@ float AnalogOut::write(float value) {
   // Remap as integer in [0, 255].
   float remappedValue = value * 255;
   int rawValue = round(remappedValue);
-  // Write to PWM (inverting if needed).
-  analogWrite(_pin, (_mode == SOURCE ? rawValue : 255 - rawValue));
+  // Write to analog output (inverting if needed).
+#if defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
+  dacWrite
+#else
+  analogWrite
+#endif
+    (_pin, (_mode == SOURCE ? rawValue : 255 - rawValue));
   return value;
 }
 
