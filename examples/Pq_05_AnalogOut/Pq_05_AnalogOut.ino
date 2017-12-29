@@ -4,7 +4,7 @@
  * connected to PWM pin 9.
  *
  * The circuit:
- * - LED anode (long leg) attached to digital output 13
+ * - LED anode (long leg) attached to analog (PWM) output 9
  * - LED cathode (short leg) attached to ground
  *
  * Created in 2016 by Sofian Audry
