@@ -110,7 +110,7 @@ public:
   void _update(float t);
 
   unsigned long _period;
-  unsigned long _width;
+  float _width;
   unsigned long _startTime;
   float _value;
 };
