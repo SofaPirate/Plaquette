@@ -33,7 +33,7 @@
 #endif
 
 #ifndef PLAQUETTE_SERIAL_BAUD_RATE
-#define PLAQUETTE_SERIAL_BAUD_RATE 115200
+#define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
 class PqComponent;
