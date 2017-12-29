@@ -30,11 +30,9 @@ float AnalogOut::put(float value) {
 }
 
 float AnalogOut::write(float value) {
-  // Make sure value is in [0, 1].
-  value = constrain(value, 0, 1);
-  // Remap as integer in [0, 255].
-  float remappedValue = value * 255;
-  int rawValue = round(remappedValue);
+  // Make sure value is in [0, 1] and remap to [0, 255].
+  value = constrain(value, 0, 1) * 255;
+  int rawValue = round(value);
   // Write to analog output (inverting if needed).
 #if defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
   dacWrite
