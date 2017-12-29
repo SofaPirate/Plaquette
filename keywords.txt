@@ -31,7 +31,7 @@ ServoOut	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-init KEYWORD2
+begin KEYWORD2
 step	KEYWORD2
 
 setup KEYWORD2
