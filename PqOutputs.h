@@ -34,9 +34,10 @@ public:
   AnalogOut(uint8_t pin=9, uint8_t mode=SOURCE);
   virtual ~AnalogOut() {}
 
-  /// Returns reading in [0, 1].
+  /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value);
 
+  /// Returns reading in [0, 1].
   virtual float get() { return _value; }
 
 	/// Inverts value by setting it to (1-get()).
@@ -45,6 +46,7 @@ public:
   // Current value.
   float _value;
 
+  // Writes value to output and returns it.
   virtual float write(float value);
 };
 
@@ -55,9 +57,10 @@ public:
   DigitalOut(uint8_t pin=LED_BUILTIN, uint8_t mode=SOURCE);
   virtual ~DigitalOut() {}
 
-  /// Returns reading in [0, 1].
+  /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value);
 
+  /// Returns true iff the input is "on".
   virtual bool isOn() { return _isOn; }
 
   // Current value.
