@@ -87,3 +87,19 @@ Try to change the *period* and/or *duty-cycle* parameters in the square wave uni
 ```c++
 SquareOsc myWave(<period>, <duty cycle>);
 ```
+
+## Credits
+
+Lead developers:
+* Sofian Audry [GitHub](https://github.com/sofian) [Website](http://sofianaudry.com)
+* Thomas Ouellet Fredericks [GitHub](https://github.com/thomasfredericks) [Website](http://www.t-o-f.info)
+
+Partners:
+* [Chris Salter](http://chrissalter.com)
+* [labXmodal](http://xmodal.hexagram.ca)
+
+## License
+
+Plaquette is distributed under the [Gnu General Public License v 3.0)[https://www.gnu.org/licenses/gpl-3.0.en.html].
+
+The text of the Plaquette guide is licensed under a [Creative Commons Attribution-ShareAlike 3.0 License](https://creativecommons.org/licenses/by-sa/3.0/). Code samples in the guide are released into the public domain.
