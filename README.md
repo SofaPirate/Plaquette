@@ -124,7 +124,7 @@ Try adding their values instead: what do you see?
 
 #### Use a conditional
 
-Add a third oscillator that will "switch" between the two oscillators every 5 seconds using an (if...else)[https://www.arduino.cc/reference/en/language/structure/control-structure/if/) statement.
+Add a third oscillator that will "switch" between the two oscillators every 5 seconds using an [if...else](https://www.arduino.cc/reference/en/language/structure/control-structure/if/) statement.
 
 ```c++
 // NOTE: omitting the duty-cycle parameter results in default value (0.5)
@@ -138,8 +138,8 @@ void step() {
 }
 ```
 
-NOTE: You can rewrite this expression in a more compact way using the (? : conditional operator)[https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm]:
-...
+NOTE: You can rewrite this expression in a more compact way using the [? : conditional operator](https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm):
+```c++
 void step() {
   (mySwitcher ? myOsc : myOsc2) >> myLed;
 }
