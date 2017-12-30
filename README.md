@@ -1,5 +1,3 @@
-# Plaquette
-
 Plaquette is a user-friendly, modular, signal-centric programming framework for creative physical computing compatible with Arduino.
 
 * **User-friendly**: Allows users to quickly design interactive systems using an expressive language that abstracts away low-level functions.
