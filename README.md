@@ -78,7 +78,9 @@ In plain English, the statement ```myOsc >> myLed``` reads as: "Take the value g
 
 ### Upload sketch
 
-Upload your sketch to the Arduino board: the LED on the board should start blinking once every two seconds. Hurray!!!
+Upload your sketch to the Arduino board. You should see the LED on the board blinking once every two seconds at a regular pace.
+
+Hurray!!!
 
 ### Full code
 
@@ -96,12 +98,44 @@ void step() {
 }
 ```
 
-### Experiment
+### Experiments
 
-Try to change the *period* and/or *duty-cycle* parameters in the square wave unit construction. What happens?
+#### Period and duty
+
+Try changing the *period* and/or *duty-cycle* parameters in the square wave unit construction. What happens?
 
 ```c++
-SquareOsc myWave(<period>, <duty cycle>);
+SquareOsc myOsc(<period>, <duty cycle>);
+```
+
+#### Adding and multiplying
+
+Add another oscillator with a different period and duty cycle: multiply their values and send the result to the LED.
+
+```c++
+SquareOsc myOsc2(<period>, <duty cycle>);
+...
+void step() {
+  (myOsc * myOsc2) >> myLed;
+}
+```
+
+Try adding their values instead: what do you see?
+
+#### Use a conditional
+
+Add a third oscillator that will "switch" between the two oscillators every 5 seconds using an (if...else)[https://www.arduino.cc/reference/en/language/structure/control-structure/if/) statement.
+
+```c++
+// NOTE: omitting the duty-cycle parameter results in default value (0.5)
+SquareOsc mySwitcher(5.0); 
+...
+void step() {
+  if (mySwitcher)
+    myOsc >> myLed;
+  else
+    myOsc2 >> myLed;
+}
 ```
 
 ## Credits
