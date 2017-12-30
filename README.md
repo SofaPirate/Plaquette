@@ -112,7 +112,7 @@ Add another oscillator with a different period and duty cycle: multiply their va
 
 ```c++
 SquareOsc myOsc2(<period>, <duty cycle>);
-...
+// ...
 void step() {
   (myOsc * myOsc2) >> myLed;
 }
@@ -127,7 +127,7 @@ Add a third oscillator that will "switch" between the two oscillators every 5 se
 ```c++
 // NOTE: omitting the duty-cycle parameter results in default value (0.5)
 SquareOsc mySwitcher(5.0); 
-...
+// ...
 void step() {
   if (mySwitcher)
     myOsc >> myLed;
