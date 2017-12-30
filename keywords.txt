@@ -31,10 +31,10 @@ ServoOut	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin KEYWORD2
+begin	KEYWORD2
 step	KEYWORD2
 
-setup KEYWORD2
+setup	KEYWORD2
 update	KEYWORD2
 
 pin	KEYWORD2
@@ -47,10 +47,10 @@ put	KEYWORD2
 isOn	KEYWORD2
 isOff	KEYWORD2
 get	KEYWORD2
-getInt KEYWORD2
+getInt	KEYWORD2
 
-smooth KEYWORD2
-noSmooth KEYWORD2
+smooth	KEYWORD2
+noSmooth	KEYWORD2
 
 randomUniform	KEYWORD2
 seconds	KEYWORD2
