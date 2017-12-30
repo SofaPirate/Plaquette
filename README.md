@@ -138,6 +138,13 @@ void step() {
 }
 ```
 
+NOTE: You can rewrite this expression in a more compact way using the (? : conditional operator)[https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm]:
+...
+void step() {
+  (mySwitcher ? myOsc : myOsc2) >> myLed;
+}
+```
+
 ## Credits
 
 Developers:
