@@ -2,7 +2,7 @@ Plaquette is a user-friendly, modular, signal-centric programming framework for 
 
 * **User-friendly**: Allows users to quickly design interactive systems using an expressive language that abstracts away low-level functions.
 * **Modular**: Designed using input, output, and filtering units that can be easily interchanged in a plug-and-play fashion.
-* **Signal-centric**: Focused on real-time signal processing from inputs to outputs by providing simple data filtering tools for smoothing and normalization.
+* **Signal-centric**: Focused on real-time signal processing from inputs to outputs by providing simple data filtering tools for smoothing and normalization, as well as a new "piping" operator (```>>```) for sending data from one unit to another.
 * **Arduino compatible**: Installed as an Arduino library and provides a replacement for the core Arduino functionalities while remaining fully compatible with Arduino code.
 
 ## Getting started
@@ -155,6 +155,8 @@ Developers:
 * Thomas Ouellet Fredericks • [Website](http://www.t-o-f.info) • [GitHub](https://github.com/thomasfredericks)
 
 Plaquette's base source code was produced as part of a research project at [labXmodal](http://xmodal.hexagram.ca). A special thanks to [Chris Salter](http://chrissalter.com) for his support.
+
+Plaquette borrows ideas from (Arduino)[https://arduino.cc], [ChucK](http://chuck.cs.princeton.edu/), [mbed)](https://www.mbed.com/), and [Processing](https://processing.org/).
 
 ## License
 
