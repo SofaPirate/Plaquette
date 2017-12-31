@@ -1,7 +1,7 @@
-Plaquette is a user-friendly, modular, signal-centric programming framework for creative physical computing compatible with Arduino.
+Plaquette is an object-oriented, user-friendly, signal-centric programming framework for creative physical computing compatible with Arduino.
 
-* **User-friendly**: Allows users to quickly design interactive systems using an expressive language that abstracts away low-level functions.
-* **Modular**: Designed using input, output, and filtering units that can be easily interchanged in a plug-and-play fashion.
+* **Object-oriented**: Designed using input, output, and filtering units that can be easily interchanged in a plug-and-play fashion. Units are created using simple code such as ```DigitalOut led```.
+* **User-friendly**: Allows users to quickly design interactive systems using an expressive language that abstracts away low-level functions. Example: ```led.on()```.
 * **Signal-centric**: Focused on real-time signal processing from inputs to outputs by providing simple data filtering tools for smoothing and normalization, as well as a new "piping" operator (```>>```) for sending data from one unit to another.
 * **Arduino compatible**: Installed as an Arduino library and provides a replacement for the core Arduino functionalities while remaining fully compatible with Arduino code.
 
@@ -17,9 +17,13 @@ Once Arduino is installed, please install Plaquette as an Arduino library follow
 
 We will begin by creating a simple program that will make the built-in LED blink.
 
-#### Initialize sketch
+#### Create a new sketch
 
-Create a new empty sketch.
+Create a new empty sketch by selecting **File > New**.
+
+**IMPORTANT:** New Arduino sketches are initialized with some "slug" starting code. Make sure to erase the content of the sketch before beginning. You can use **Edit > Select All** and then click **Del** or **Backspace**.
+
+#### Include library
 
 Include the Plaquette library by typing:
 ```c++
@@ -106,7 +110,7 @@ Try changing the *period* and/or *duty-cycle* parameters in the square wave unit
 SquareOsc myOsc(<period>, <duty-cycle>);
 ```
 
-* ```<period>``` can be any positive number representing the period of oscillation (in seconds).
+* ```<period>``` can be any positive number representing the period of oscillation (in seconds)
 * ```<duty-cycle>``` can be any number between 0.0 (0%) and 1.0 (100%) and represents the proportion of the period during which the signal is "high" (ie. "on duty")
 
 What happens?
@@ -141,7 +145,7 @@ void step() {
 }
 ```
 
-TIP: You can rewrite this expression in a more compact way using the [? : conditional operator](https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm):
+**ADVANCED**: You can rewrite this expression in a more compact way using the [? : conditional operator](https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm):
 ```c++
 void step() {
   (mySwitcher ? myOsc : myOsc2) >> myLed;
@@ -156,7 +160,7 @@ Developers:
 
 Plaquette's base source code was produced as part of a research project at [labXmodal](http://xmodal.hexagram.ca). A special thanks to [Chris Salter](http://chrissalter.com) for his support.
 
-Plaquette borrows ideas from (Arduino)[https://arduino.cc], [ChucK](http://chuck.cs.princeton.edu/), [mbed)](https://www.mbed.com/), and [Processing](https://processing.org/).
+Plaquette borrows ideas from the [Arduino](https://arduino.cc), [ChucK](http://chuck.cs.princeton.edu/), [mbed](https://www.mbed.com/), [Processing](https://processing.org/), and [Pure Data](https://puredata.info/).
 
 ## License
 
