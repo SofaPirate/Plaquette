@@ -100,18 +100,23 @@ void step() {
 
 #### Period and duty
 
-Try changing the *period* and/or *duty-cycle* parameters in the square wave unit construction. What happens?
+Try changing the *period* and/or *duty-cycle* parameters in the square wave unit construction:
 
 ```c++
-SquareOsc myOsc(<period>, <duty cycle>);
+SquareOsc myOsc(<period>, <duty-cycle>);
 ```
+
+* ```<period>``` can be any positive number representing the period of oscillation (in seconds).
+* ```<duty-cycle>``` can be any number between 0.0 (0%) and 1.0 (100%) and represents the proportion of the period during which the signal is "high" (ie. "on duty")
+
+What happens?
 
 #### Adding and multiplying
 
 Add another oscillator with a different period and duty cycle: multiply their values and send the result to the LED.
 
 ```c++
-SquareOsc myOsc2(<period>, <duty cycle>);
+SquareOsc myOsc2(<period>, <duty-cycle>);
 // ...
 void step() {
   (myOsc * myOsc2) >> myLed;
