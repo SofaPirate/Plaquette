@@ -152,6 +152,15 @@ void step() {
 }
 ```
 
+#### More examples
+
+You will find more examples in **File > Examples > Plaquette** including:
+* Using a button
+* Using an analog input such as a photocell or potentiometer
+* Using an analog output
+* Basic filtering (smoothing, re-scaling)
+* Serial input and output
+
 ## Credits
 
 Developers:
