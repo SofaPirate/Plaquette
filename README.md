@@ -1,8 +1,8 @@
 Plaquette is an object-oriented, user-friendly, signal-centric programming framework for creative physical computing compatible with Arduino.
 
-* **Object-oriented**: Designed using input, output, and filtering units that can be easily interchanged in a plug-and-play fashion. Units are created using simple code such as ```DigitalOut led```.
+* **Object-oriented**: Designed using input, output, and filtering units that can be easily interchanged in a plug-and-play fashion. Units are created using expressive code such as: ```DigitalOut led```.
 * **User-friendly**: Allows users to quickly design interactive systems using an expressive language that abstracts away low-level functions. Example: ```led.on()```.
-* **Signal-centric**: Focused on real-time signal processing from inputs to outputs by providing simple data filtering tools for smoothing and normalization, as well as a new "piping" operator (```>>```) for sending data from one unit to another.
+* **Signal-centric**: Focused on real-time signal processing from inputs to outputs by providing simple data filtering tools for smoothing and normalization, as well as a new "pipe" operator (```>>```) for sending data from one unit to another.
 * **Arduino compatible**: Installed as an Arduino library and provides a replacement for the core Arduino functionalities while remaining fully compatible with Arduino code.
 
 ## Getting started
