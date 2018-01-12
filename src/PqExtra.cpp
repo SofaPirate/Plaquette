@@ -276,3 +276,11 @@ void Thresholder::_init(float threshold, uint8_t mode, float resetThreshold) {
 		_resetThreshold = threshold;
 	_value = _wasLow = _wasHigh = false;
 }
+
+SerialInOut::SerialInOut(HardwareSerial& serial, unsigned long baudRate, uint8_t config)
+	: StreamIn(&serial), StreamOut(&serial), _baudRate(baudRate), _config(config) {
+}
+
+void SerialInOut::setup() {
+	((HardwareSerial*)_stream)->begin(_baudRate, _config);
+}

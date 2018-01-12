@@ -12,6 +12,7 @@ AnalogOut	KEYWORD1
 DigitalOut	KEYWORD1
 
 StreamIn	KEYWORD1
+SerialIn	KEYWORD1
 
 SquareOsc	KEYWORD1
 TriOsc	KEYWORD1
@@ -24,6 +25,7 @@ Smoother	KEYWORD1
 Thresholder	KEYWORD1
 
 StreamOut	KEYWORD1
+SerialOut	KEYWORD1
 
 ServoOut	KEYWORD1
 

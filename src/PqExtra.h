@@ -265,4 +265,22 @@ private:
 	void _init(float threshold, uint8_t mode, float resetThreshold);
 };
 
+/// Serial input/output.
+class SerialInOut : public StreamIn, public StreamOut {
+public:
+  SerialInOut(HardwareSerial& serial, unsigned long baudRate=PLAQUETTE_SERIAL_BAUD_RATE, uint8_t config=SERIAL_8N1);
+  virtual ~SerialInOut() {}
+
+  virtual void setup();
+
+  virtual float put(float value) { return StreamOut::put(value); }
+  virtual float get() { return StreamIn::get(); }
+
+  // Baud rate.
+  unsigned long _baudRate;
+
+  // Config flag.
+  uint8_t _config;
+};
+
 #endif
