@@ -5,7 +5,7 @@
  * The circuit:
  * - A photoresistor connected to analog pin and to +5V
  * - A resistor (around 10k is a good value, higher values gives higher readings) from pin 0 to GND
- * - LED anode (long leg) attached to digital output 13
+ * - LED anode (long leg) attached to analog (PWM) output 9
  * - LED cathode (short leg) attached to ground
  *
  * Created in 2016 by Sofian Audry

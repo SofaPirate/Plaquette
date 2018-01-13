@@ -1,5 +1,5 @@
 /**
- * Pq_SerialOut
+ * Pq_Operations
  * Demonstrates the different kinds of mathematical and logical operations available with
  * Plaquette objects.
  *
@@ -18,8 +18,11 @@ DigitalIn button(2);
 // Analog output.
 AnalogOut led(9);
 
-SineOsc oscillator;      // main sine oscillator
-SineOsc modulator(10.0); // sine oscillator with period of 10 sec used to modulate oscillator
+// Main sine oscillator (period of 1 sec).
+SineOsc oscillator(1.0);
+
+// Sine oscillator with period of 10 sec used to modulate oscillator.
+SineOsc modulator(10.0);
 
 void begin() {}
 
