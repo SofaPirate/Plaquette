@@ -15,7 +15,7 @@
 #include <Plaquette.h>
 
 // The analog input.
-AnalogIn in; // default on pin A0
+AnalogIn in(A0);
 
 // The LED.
 AnalogOut led(9);

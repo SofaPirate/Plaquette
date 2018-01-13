@@ -21,7 +21,7 @@
 AnalogOut led(9); // PWM pin 9
 
 // The analog input.
-AnalogIn in; // default on pin A0
+AnalogIn in(A0);
 
 // This object will rescale according to min and max values.
 MinMaxScaler scaler;

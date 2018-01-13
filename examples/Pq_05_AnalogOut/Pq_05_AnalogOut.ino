@@ -22,7 +22,7 @@ AnalogOut led(9);
    - try replacing the line with the following:
        SineOsc oscillator(5.0);
 */
-TriOsc oscillator(5.0, 0.5); // period of 5 seconds, width of 50% (triangle)
+TriOsc oscillator(5.0); // period of 5 seconds, width of 50% (default)
 
 void begin() {}
 

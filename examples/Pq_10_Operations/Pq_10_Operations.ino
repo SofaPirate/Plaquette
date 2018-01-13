@@ -10,7 +10,7 @@
  #include <Plaquette.h>
 
 // Analog input.
-AnalogIn in; // defaults on pin A0
+AnalogIn in(A0);
 
 // Digital input.
 DigitalIn button(2);
