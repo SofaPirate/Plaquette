@@ -20,7 +20,7 @@
 
 #include "PqExtra.h"
 
-StreamIn::StreamIn(Stream* stream) : _value(0), _stream(stream) {}
+StreamIn::StreamIn(Stream& stream) : _value(0), _stream(&stream) {}
 
 void StreamIn::update() {
 	while (_stream->available()) {
@@ -124,7 +124,7 @@ TriOsc& TriOsc::width(float width) {
 }
 
 StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
-StreamOut::StreamOut(Stream* stream, uint8_t digits) : _value(0), _digits(digits), _stream(stream) {}
+StreamOut::StreamOut(Stream& stream, uint8_t digits) : _value(0), _digits(digits), _stream(&stream) {}
 
 float StreamOut::put(float value) {
   // Copy value.

@@ -31,7 +31,7 @@
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
 class StreamIn : public PqGetter {
 public:
-  StreamIn(Stream* stream=&Serial);
+  StreamIn(Stream& stream=Serial);
   virtual ~StreamIn() {}
 
   virtual float get() { return _value; }
@@ -119,7 +119,7 @@ public:
 class StreamOut : public PqPutter {
 public:
   StreamOut(uint8_t digits=4);
-  StreamOut(Stream* stream, uint8_t digits=4);
+  StreamOut(Stream& stream, uint8_t digits=4);
   virtual ~StreamOut() {}
 
   virtual float put(float value);
