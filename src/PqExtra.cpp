@@ -133,11 +133,6 @@ TriOsc& TriOsc::width(float width) {
   _width = constrain(width, 0, 1);
 	return *this;
 }
-	return *this;
-}
-
-	return *this;
-}
 
 StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
 StreamOut::StreamOut(Stream& stream, uint8_t digits) : _value(0), _digits(digits), _stream(&stream) {}
