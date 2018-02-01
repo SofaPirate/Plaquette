@@ -42,24 +42,25 @@ SquareOsc::SquareOsc(float period_, float dutyCycle_) {
 }
 
 void SquareOsc::setup() {
-  _startTime = millis();
+	_startTime = seconds();
 }
 
 void SquareOsc::update() {
-  // Check where we are.
-  _isOn = ((millis() - _startTime) % _period < (_dutyCycle*_period));
+	// Notice: this computation is not exact but manages naturally changes in the period without
+	// inducing dephasings on Arduino boards.
+	float totalTime = seconds();
+	float relativeTime = totalTime - _startTime;
+	_isOn = (relativeTime / _period < _dutyCycle);
+	if (relativeTime > _period)
+  	_startTime = totalTime;
 }
 
 SquareOsc& SquareOsc::period(float period) {
-  // Convert period in ms.
-  period *= 1000;
-  _period = round(period);
-  _period = max(_period, 1.0f); // at least 1ms
+	_period = constrain(period, 1e-6, 1);
 	return *this;
 }
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
-  // Convert duty cycle in ms.
   _dutyCycle = constrain(dutyCycle, 0, 1);
 	return *this;
 }
@@ -70,13 +71,18 @@ SineOsc::SineOsc(float period_, float phase_) : _value(0.5f) {
 }
 
 void SineOsc::setup() {
-  _startTime = millis();
+  _startTime = seconds();
   _update(0);
 }
 
 void SineOsc::update() {
-  // Check where we are.
-  _update( (millis() - _startTime) / 1000.0f );
+	// Notice: this computation is not exact but manages naturally changes in the period without
+	// inducing dephasings on Arduino boards.
+	float totalTime = seconds();
+	float relativeTime = totalTime - _startTime;
+	_update(relativeTime);
+	if (relativeTime > _period)
+  	_startTime = totalTime;
 }
 
 void SineOsc::_update(float t) {
@@ -99,17 +105,34 @@ TriOsc::TriOsc(float period_, float width_) {
 }
 
 void TriOsc::setup() {
-  _startTime = millis();
+  _startTime = seconds();
 }
 
 void TriOsc::update() {
+	// Notice: this computation is not exact but manages naturally changes in the period without
+	// inducing dephasings on Arduino boards.
+	float totalTime = seconds();
+	float relativeTime = totalTime - _startTime;
+
   // Check where we are.
-	float t = ((millis() - _startTime) % _period) / (float)_period;
-	if (t < _width) _value = map(t, 0,      _width,  0.f, 1.f);
+	float t = relativeTime / _period;
+	if (t < _width) _value = map(t, 0,      _width, 0.f, 1.f);
 	else            _value = map(t, _width,      1, 1.f, 0.f);
+
+	// Reset.
+	if (relativeTime > _period)
+		_startTime = totalTime;
 }
 
 TriOsc& TriOsc::period(float period) {
+	_period = constrain(period, 1e-6, 1);
+	return *this;
+}
+
+TriOsc& TriOsc::width(float width) {
+  _width = constrain(width, 0, 1);
+	return *this;
+}
   // Convert period in ms.
   period *= 1000;
   _period = round(period);
@@ -117,9 +140,6 @@ TriOsc& TriOsc::period(float period) {
 	return *this;
 }
 
-TriOsc& TriOsc::width(float width) {
-  // Convert duty cycle in ms.
-  _width = constrain(width, 0, 1);
 	return *this;
 }
 

@@ -23,6 +23,7 @@
 
 #include "pq_print.h"
 #include "pq_map_real.h"
+#include "pq_time.h"
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
@@ -61,9 +62,9 @@ public:
   virtual void update();
 
   bool _isOn;
-  unsigned long _period;
-	float _dutyCycle;
-  unsigned long _startTime;
+  float _period; // period (seconds)
+	float _dutyCycle; // duty-cycle (in % of period)
+  float _startTime; // start time of each period (in seconds)
 };
 
 /// Sine oscillator. Phase is in % of period.
@@ -83,10 +84,10 @@ public:
 
   void _update(float t);
 
+  float _value;
   float _period;
   float _phase;
-  unsigned long _startTime;
-  float _value;
+  float _startTime;
 };
 
 /**
@@ -109,10 +110,12 @@ public:
 
   void _update(float t);
 
-  unsigned long _period;
-  float _width;
-  unsigned long _startTime;
   float _value;
+  float _period;
+  float _width;
+  float _startTime;
+};
+  unsigned long _startTime;
 };
 
 /// Stream/serial output. Number of digits of precision is configurable.
