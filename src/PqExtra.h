@@ -113,8 +113,6 @@ public:
   float _width;
   float _startTime;
 };
-  unsigned long _startTime;
-};
 
 /// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
