@@ -108,8 +108,6 @@ public:
   virtual void setup();
   virtual void update();
 
-  void _update(float t);
-
   float _value;
   float _period;
   float _width;
