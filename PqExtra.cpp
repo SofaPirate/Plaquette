@@ -123,6 +123,50 @@ TriOsc& TriOsc::width(float width) {
 	return *this;
 }
 
+Metro::Metro(float period_, int nRepeat_) : _isOn(false) {
+  period(period_);
+	repeat(nRepeat_);
+}
+
+void Metro::setup() {
+	reset();
+}
+
+void Metro::update() {
+	// Check if repetitions have reached an end.
+	if (_nRepeat > 0 && _nSteps >= _nRepeat)
+		_isOn = false;
+
+	else {
+		float t = seconds();
+	  // Check where we are.
+		_isOn = (t - _startTime > _period);
+		if (_isOn) {
+			_startTime = t; // reset
+			_nSteps++;
+		}
+	}
+}
+
+Metro& Metro::period(float period) {
+	_period = constrain(period, 1e-6, 1);
+	return *this;
+}
+
+Metro& Metro::repeat(int nRepeat, bool forceReset) {
+	_nRepeat = nRepeat;
+	if (forceReset)
+		reset();
+	return *this;
+}
+
+Metro& Metro::reset() {
+	_nSteps = 0;
+	_isOn = false;
+	_startTime = seconds();
+	return *this;
+}
+
 StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
 StreamOut::StreamOut(Stream* stream, uint8_t digits) : _value(0), _digits(digits), _stream(stream) {}
 

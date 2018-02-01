@@ -115,6 +115,32 @@ public:
   float _value;
 };
 
+/** Metronome class which emits a "1" at a regular pace. Allows limited number
+ * of repetitions.
+ */
+class Metro : public PqDigitalGetter {
+public:
+  Metro(float period=1.0f, int nRepeat=0);
+  virtual ~Metro() {}
+
+  virtual bool isOn() { return _isOn; }
+
+  virtual Metro& period(float period);
+  virtual Metro& frequency(float freq) { return period(1/freq); }
+  virtual Metro& repeat(int nRepeat=0, bool forceReset=true);
+
+  virtual Metro& reset();
+
+  virtual void setup();
+  virtual void update();
+
+  bool _isOn;
+  int _nRepeat;
+  int _nSteps;
+  float _period;
+  float _startTime;
+};
+
 /// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
 public:
