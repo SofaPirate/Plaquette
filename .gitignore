@@ -216,3 +216,16 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+#############
+## Custom
+#############
+
+# Jekyll
+_site
+_data
+Gemfile.lock
+
+# Other
+TODO
