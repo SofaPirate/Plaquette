@@ -133,10 +133,6 @@ TriOsc& TriOsc::width(float width) {
   _width = constrain(width, 0, 1);
 	return *this;
 }
-  // Convert period in ms.
-  period *= 1000;
-  _period = round(period);
-  _period = max(_period, 1.0f); // at least 1ms
 	return *this;
 }
 
