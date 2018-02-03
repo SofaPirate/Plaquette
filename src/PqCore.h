@@ -242,6 +242,10 @@ public:
 
 // Operators /////////////////////////////////////////////////////
 
+inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
+	return ::operator>>(getter.get(), putter);
+}
+
 inline PqPutter& operator>>(float value, PqPutter& putter) {
   putter.put( value );
   return putter;
@@ -249,10 +253,6 @@ inline PqPutter& operator>>(float value, PqPutter& putter) {
 
 inline PqPutter& operator>>(double value, PqPutter& putter) {
   return ::operator>>((float)value, putter);
-}
-
-inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
-	return ::operator>>(getter.get(), putter);
 }
 
 inline PqPutter& operator>>(bool value, PqPutter& putter) {
