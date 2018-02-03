@@ -98,7 +98,11 @@ public:
 /// Sine oscillator. Phase is in % of period.
 class SineOsc : public PqGetter {
 public:
-  SineOsc(float period=1.0f, float phase=0.0f);
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   */
+  SineOsc(float period=1.0f);
   virtual ~SineOsc() {}
 
   /// Returns value in [0, 1].

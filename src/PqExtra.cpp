@@ -65,9 +65,8 @@ SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
 	return *this;
 }
 
-SineOsc::SineOsc(float period_, float phase_) : _value(0.5f) {
+SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
-  phase(phase_);
 }
 
 void SineOsc::setup() {
