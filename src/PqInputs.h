@@ -34,7 +34,9 @@
 /// Superclass for components that can be smoothed.
 class PqSmoothable {
 public:
+  /// Apply smoothing to object.
   virtual void smooth(float factor=0.1f);
+  /// Remove smoothing.
   virtual void noSmooth() { smooth(1); }
 
 protected:
@@ -49,7 +51,11 @@ protected:
 /// A generic class representing a simple analog input.
 class AnalogIn : public PqPinComponent, public PqSmoothable, public PqGetter {
 public:
-  /// Constructor.
+  /**
+   * Constructor.
+   * @param pin the pin number
+   * @param mode the mode (ANALOG_DEFAULT or ANALOG_INVERTED)
+   */
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
 
@@ -68,7 +74,11 @@ protected:
 /// A generic class representing a simple digital input.
 class DigitalIn : public PqPinComponent, public PqSmoothable, public PqDigitalGetter {
 public:
-  /// Constructor.
+  /**
+   * Constructor.
+   * @param pin the pin number
+   * @param mode the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN)
+   */
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 

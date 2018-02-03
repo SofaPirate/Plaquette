@@ -32,9 +32,14 @@
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
 class StreamIn : public PqGetter {
 public:
+  /**
+   * Constructor.
+   * @param stream a reference to a Stream object
+   */
   StreamIn(Stream& stream=Serial);
   virtual ~StreamIn() {}
 
+  /// Returns value read from the stream.
   virtual float get() { return _value; }
 
   virtual void update();
@@ -49,13 +54,29 @@ public:
 /// Square oscillator. DutyCycle is in % of period.
 class SquareOsc : public PqDigitalGetter {
 public:
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param dutyCycle the duty-cycle as a value in [0, 1]
+   */
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
   virtual ~SquareOsc() {}
 
+  /// Returns true iff the input is "on".
   virtual bool isOn() { return _isOn; }
 
+  /**
+   * Sets the period (in seconds).
+   * @param period the period of oscillation (in seconds)
+   * @return the unit itself
+   */
   virtual SquareOsc& period(float period);
   virtual SquareOsc& frequency(float freq) { return period(1/freq); }
+  /**
+   * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
+   * @param dutyCycle the duty-cycle as a value in [0, 1]
+   * @return the unit itself
+   */
   virtual SquareOsc& dutyCycle(float dutyCycle);
 
   virtual void setup();
@@ -73,10 +94,21 @@ public:
   SineOsc(float period=1.0f, float phase=0.0f);
   virtual ~SineOsc() {}
 
+  /// Returns value in [0, 1].
   virtual float get() { return _value; }
 
+  /**
+   * Sets the period (in seconds).
+   * @param period the period of oscillation (in seconds)
+   * @return the unit itself
+   */
   virtual SineOsc& period(float period);
   virtual SineOsc& frequency(float freq) { return period(1/freq); }
+  /**
+   * Sets the phase (ie. the offset, in seconds).
+   * @param phrase the phase (in seconds)
+   * @return the unit itself
+   */
   virtual SineOsc& phase(float phase);
 
   virtual void setup();
@@ -91,18 +123,40 @@ public:
 };
 
 /**
- * Triangle/sawtooth oscillator. Parameter width between 0 and 1 determines the point
- * at which the wave reaches maximum.
+ * Triangle/sawtooth oscillator.
  */
 class TriOsc : public PqGetter {
 public:
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
+   */
   TriOsc(float period=1.0f, float width=0.5f);
   virtual ~TriOsc() {}
 
+  /// Returns value in [0, 1].
   virtual float get() { return _value; }
 
+  /**
+   * Sets the period (in seconds).
+   * @param period the period of oscillation (in seconds)
+   * @return the unit itself
+   */
   virtual TriOsc& period(float period);
+
+  /**
+   * Sets the frequency (in Hz).
+   * @param frequency the frequency of oscillation (in Hz)
+   * @return the unit itself
+   */
   virtual TriOsc& frequency(float freq) { return period(1/freq); }
+
+  /**
+   * Sets the width of the wave.
+   * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
+   * @return the unit itself
+   */
   virtual TriOsc& width(float width);
 
   virtual void setup();
@@ -117,12 +171,28 @@ public:
 /// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
 public:
+  /**
+   * Constructor.
+   * @param digits the number of digits of precision to be printed out
+   */
   StreamOut(uint8_t digits=4);
+
+  /**
+   * Constructor.
+   * @param stream a reference to a Stream object
+   * @param digits the number of digits of precision to be printed out
+   */
   StreamOut(Stream& stream, uint8_t digits=4);
   virtual ~StreamOut() {}
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns value.
   virtual float get() { return _value; }
 
   // Current value.

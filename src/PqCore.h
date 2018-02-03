@@ -91,7 +91,7 @@ public:
   PqGetter() {}
   virtual ~PqGetter() {}
 
-  /// Returns reading (typically between 0 and 1, may vary depending on class).
+  /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
 
   /// Operator that allows usage in conditional expressions.
@@ -99,7 +99,7 @@ public:
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
   virtual explicit operator bool() { return analogToDigital(get()); }
 
-  /// Object can be used director to access its value.
+  /// Object can be used directly to access its value.
   operator float() { return get(); }
 
   // // Logical operators.
@@ -174,7 +174,7 @@ public:
   /// Returns value as integer (0 or 1).
   virtual int getInt() { return isOn() ? 1 : 0; }
 
-  /// Returns reading (either 0 or 1).
+  /// Returns value as float (either 0.0 or 1.0).
   virtual float get() { return getInt(); }
 
   /// Operator that allows usage in conditional expressions.
@@ -191,7 +191,11 @@ public:
   PqPutter() {}
   virtual ~PqPutter() {}
 
-  /// Pushes value into the component and returns its (possibly filtered) value.
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value) = 0;
 
   // // Math operators.

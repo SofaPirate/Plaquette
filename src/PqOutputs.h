@@ -30,7 +30,11 @@
 /// A generic class representing a simple PWM output.
 class AnalogOut : public PqPinComponent, public PqPutter {
 public:
-  /// Constructor.
+  /**
+   * Constructor.
+   * @param pin the pin number
+   * @param mode the mode (SOURCE or SINK)
+   */
   AnalogOut(uint8_t pin=9, uint8_t mode=SOURCE);
   virtual ~AnalogOut() {}
 
@@ -40,8 +44,8 @@ public:
   /// Returns reading in [0, 1].
   virtual float get() { return _value; }
 
-	/// Inverts value by setting it to (1-get()).
-	virtual void invert() { put(1-get()); }
+  /// Inverts value by calling ``put(1-get())`` (eg. 0.2 becomes 0.8).
+  virtual void invert() { put(1-get()); }
 
   // Current value.
   float _value;
@@ -50,10 +54,14 @@ public:
   virtual float write(float value);
 };
 
-/// A generic class representing a simple digital input.
+/// A generic class representing a simple digital output.
 class DigitalOut : public PqPinComponent, public PqDigitalPutter {
 public:
-  /// Constructor.
+  /**
+   * Constructor.
+   * @param pin the pin number
+   * @param mode the mode (SOURCE or SINK)
+   */
   DigitalOut(uint8_t pin=LED_BUILTIN, uint8_t mode=SOURCE);
   virtual ~DigitalOut() {}
 
