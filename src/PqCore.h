@@ -220,23 +220,24 @@ public:
   PqDigitalPutter() {}
   virtual ~PqDigitalPutter() {}
 
-  virtual void setIsOn(bool isOn) {
+  void _setIsOn(bool isOn) {
     put (isOn ? 1 : 0);
   }
 
   /// Sets output to "on".
-  virtual void on() { setIsOn(true); }
+  virtual void on() { _setIsOn(true); }
 
   /// Sets output to "off".
-  virtual void off() { setIsOn(false); }
+  virtual void off() { _setIsOn(false); }
 
   /// Switches between on and off.
   virtual void toggle() {
-    setIsOn(!isOn());
+    _setIsOn(!isOn());
   }
 
   /// Returns reading (either 0 or 1).
   virtual float get() { return PqDigitalGetter::get(); }
+
 };
 
 // Operators /////////////////////////////////////////////////////
