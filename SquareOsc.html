@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SquareOsc &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TriOsc" href="TriOsc.html" />
+    <link rel="prev" title="StreamOut" href="StreamOut.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="squareosc">
+<h1>SquareOsc<a class="headerlink" href="#squareosc" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv29SquareOsc">
+<span id="SquareOsc"></span><span class="target" id="class_square_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SquareOsc</code><a class="headerlink" href="#_CPPv29SquareOsc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Square oscillator. DutyCycle is in % of period. </p>
+<p>Inherits from PqDigitalGetter</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N9SquareOsc9SquareOscEff">
+<span id="SquareOsc::SquareOsc__float.float"></span><span class="target" id="class_square_osc_1a468c70884454cb5ddd7eabd90cef834d"></span><code class="descname">SquareOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f, float <em>dutyCycle</em> = 0.5f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SquareOsc9SquareOscEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+<li><code class="docutils literal"><span class="pre">dutyCycle</span></code>: the duty-cycle as a value in [0, 1] </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9SquareOsc4isOnEv">
+<span id="SquareOsc::isOn"></span><span class="target" id="class_square_osc_1a344a490f7f60d9ef213ea299536ef9dc"></span><em class="property">virtual</em> bool <code class="descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SquareOsc4isOnEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9SquareOsc6periodEf">
+<span id="SquareOsc::period__float"></span><span class="target" id="class_square_osc_1a68d349cd0b9447f1845cf75b4e58e675"></span><a class="reference internal" href="#_CPPv29SquareOsc" title="SquareOsc">SquareOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SquareOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the period (in seconds). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9SquareOsc9frequencyEf">
+<span id="SquareOsc::frequency__float"></span><span class="target" id="class_square_osc_1a1042b542be1b5b2d45827e4d663fd5c2"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv29SquareOsc" title="SquareOsc">SquareOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SquareOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the frequency (in Hz). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N9SquareOsc9dutyCycleEf">
+<span id="SquareOsc::dutyCycle__float"></span><span class="target" id="class_square_osc_1ad92871caa3684a8b95ac8d32cf936f64"></span><a class="reference internal" href="#_CPPv29SquareOsc" title="SquareOsc">SquareOsc</a> &amp;<code class="descname">dutyCycle</code><span class="sig-paren">(</span>float <em>dutyCycle</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9SquareOsc9dutyCycleEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the duty-cycle (ie. </p>
+<p>the proportion of time during which the signal is on). <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dutyCycle</span></code>: the duty-cycle as a value in [0, 1] </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalGetter5isOffEv">
+<span id="PqDigitalGetter::isOff"></span><span class="target" id="class_pq_digital_getter_1a1ab24918b47cda2408cbdd0d6a1a22f8"></span><em class="property">virtual</em> bool <code class="descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter5isOffEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalGetter6getIntEv">
+<span id="PqDigitalGetter::getInt"></span><span class="target" id="class_pq_digital_getter_1afaf63fc22be566ba0f585ca5388f207c"></span><em class="property">virtual</em> int <code class="descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter6getIntEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value as integer (0 or 1). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalGetter3getEv">
+<span id="PqDigitalGetter::get"></span><span class="target" id="class_pq_digital_getter_1a864cc2538e67a18a062a57a05699019c"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value as float (either 0.0 or 1.0). </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="StreamOut.html" title="previous chapter">StreamOut</a></li>
+      <li>Next: <a href="TriOsc.html" title="next chapter">TriOsc</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/SquareOsc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,15 @@
+Generators
+==========
+
+.. doxygenclass:: SquareOsc
+   :project: Plaquette
+   :members: SquareOsc, isOn, isOff, period, frequency, dutyCycle, getInt, get
+
+.. doxygenclass:: TriOsc
+   :project: Plaquette
+   :members: TriOsc, period, frequency, width, get
+
+.. doxygenclass:: SineOsc
+   :project: Plaquette
+   :members: SineOsc, period, frequency, phase, get
+

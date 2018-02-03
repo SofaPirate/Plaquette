@@ -1,0 +1,155 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AnalogIn &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AnalogOut" href="AnalogOut.html" />
+    <link rel="prev" title="DigitalOut" href="DigitalOut.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="analogin">
+<h1>AnalogIn<a class="headerlink" href="#analogin" title="Permalink to this headline">¶</a></h1>
+<p>Value is between 0 and 1 (0% to 100%).</p>
+<dl class="class">
+<dt id="_CPPv28AnalogIn">
+<span id="AnalogIn"></span><span class="target" id="class_analog_in"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AnalogIn</code><a class="headerlink" href="#_CPPv28AnalogIn" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A generic class representing a simple analog input. </p>
+<p>Inherits from PqPinComponent, PqSmoothable, PqGetter</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N8AnalogIn8AnalogInE7uint8_t7uint8_t">
+<span id="AnalogIn::AnalogIn__uint8_t.uint8_t"></span><span class="target" id="class_analog_in_1a263543e18284c1c4233266c30011e5ed"></span><code class="descname">AnalogIn</code><span class="sig-paren">(</span>uint8_t <em>pin</em> = A0, uint8_t <em>mode</em> = ANALOG_DEFAULT<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8AnalogIn8AnalogInE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N8AnalogIn3getEv">
+<span id="AnalogIn::get"></span><span class="target" id="class_analog_in_1a2f068b184d5be5688dfe920c9bc5e437"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8AnalogIn3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns reading in [0, 1]. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK14PqPinComponent3pinEv">
+<span id="PqPinComponent::pinC"></span><span class="target" id="class_pq_pin_component_1a6a5caf7c6619e6d8a9a7e82c3b8c785c"></span>uint8_t <code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent3pinEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the pin this component is attached to. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK14PqPinComponent4modeEv">
+<span id="PqPinComponent::modeC"></span><span class="target" id="class_pq_pin_component_1ae8ea724dad57da049edb808a1edf16d8"></span>uint8_t <code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent4modeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the mode of the component. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12PqSmoothable6smoothEf">
+<span id="PqSmoothable::smooth__float"></span><span class="target" id="class_pq_smoothable_1a87556506feb740c0c0c5597b50e544bb"></span>void <code class="descname">smooth</code><span class="sig-paren">(</span>float <em>factor</em> = 0.1f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12PqSmoothable6smoothEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Apply smoothing to object. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N12PqSmoothable8noSmoothEv">
+<span id="PqSmoothable::noSmooth"></span><span class="target" id="class_pq_smoothable_1a3bf5d53eb3d84fae3b88f5319c10662c"></span><em class="property">virtual</em> void <code class="descname">noSmooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12PqSmoothable8noSmoothEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remove smoothing. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="DigitalOut.html" title="previous chapter">DigitalOut</a></li>
+      <li>Next: <a href="AnalogOut.html" title="next chapter">AnalogOut</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/AnalogIn.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

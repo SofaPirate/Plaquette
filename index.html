@@ -1,0 +1,355 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Plaquette &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DigitalIn" href="DigitalIn.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="plaquette">
+<h1>Plaquette<a class="headerlink" href="#plaquette" title="Permalink to this headline">¶</a></h1>
+<p>Plaquette is an object-oriented, user-friendly, signal-centric
+programming framework for creative physical computing compatible with
+Arduino.</p>
+<ul class="simple">
+<li><strong>Object-oriented</strong>: Designed using input, output, and filtering
+units that can be easily interchanged in a plug-and-play fashion.
+Units are created using expressive code such as: <code class="docutils literal"><span class="pre">DigitalOut</span> <span class="pre">led</span></code>.</li>
+<li><strong>User-friendly</strong>: Allows users to quickly design interactive systems
+using an expressive language that abstracts away low-level functions.
+Example: <code class="docutils literal"><span class="pre">led.on()</span></code>.</li>
+<li><strong>Signal-centric</strong>: Focused on real-time signal processing from
+inputs to outputs by providing simple data filtering tools for
+smoothing and normalization, as well as a new “pipe” operator
+(<code class="docutils literal"><span class="pre">&gt;&gt;</span></code>) for sending data from one unit to another.</li>
+<li><strong>Arduino compatible</strong>: Installed as an Arduino library and provides
+a replacement for the core Arduino functionalities while remaining
+fully compatible with Arduino code.</li>
+</ul>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-install-plaquette">
+<h3>Step 1: Install Plaquette<a class="headerlink" href="#step-1-install-plaquette" title="Permalink to this headline">¶</a></h3>
+<p>If you do not have Arduino installed on your machine you need to
+<a class="reference external" href="https://www.arduino.cc/en/Main/Software">download and install the Arduino
+IDE</a> for your platform.</p>
+<p>Once Arduino is installed, please install Plaquette as an Arduino
+library following <a class="reference external" href="https://www.arduino.cc/en/Guide/Libraries">these
+instructions</a>.</p>
+</div>
+<div class="section" id="step-2-your-first-plaquette-program">
+<h3>Step 2: Your first Plaquette program<a class="headerlink" href="#step-2-your-first-plaquette-program" title="Permalink to this headline">¶</a></h3>
+<p>We will begin by creating a simple program that will make the built-in
+LED blink.</p>
+<div class="section" id="create-a-new-sketch">
+<h4>Create a new sketch<a class="headerlink" href="#create-a-new-sketch" title="Permalink to this headline">¶</a></h4>
+<p>Create a new empty sketch by selecting <strong>File &gt; New</strong>.</p>
+<p><strong>IMPORTANT:</strong> New Arduino sketches are initialized with some “slug”
+starting code. Make sure to erase the content of the sketch before
+beginning. You can use <strong>Edit &gt; Select All</strong> and then click <strong>Del</strong> or
+<strong>Backspace</strong>.</p>
+</div>
+<div class="section" id="include-library">
+<h4>Include library<a class="headerlink" href="#include-library" title="Permalink to this headline">¶</a></h4>
+<p>Include the Plaquette library by typing:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &lt;Plaquette.h&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-an-output-unit">
+<h4>Create an output unit<a class="headerlink" href="#create-an-output-unit" title="Permalink to this headline">¶</a></h4>
+<p>Now, we will create a new unit that will allow us to control the
+built-in LED:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="n">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this statement, <code class="docutils literal"><span class="pre">DigitalOut</span></code> is the <strong>type</strong> of unit that we are
+creating. There exist other types of units as we will soon see.
+<code class="docutils literal"><span class="pre">DigitalOut</span></code> is a type of unit that is attached to one of the many
+digital outputs on the Arduino board which can be set to one of two
+states (“on/off”, “high/low”, “1/0”).</p>
+<p>The word <code class="docutils literal"><span class="pre">myLed</span></code> is a <strong>name</strong> for the object we are creating.</p>
+<p>Finally, <code class="docutils literal"><span class="pre">13</span></code> is a <strong>parameter</strong> of the object <code class="docutils literal"><span class="pre">myLed</span></code> that
+specifies the <em>pin</em> it corresponds to on the board.</p>
+<p>In English, the statement would thus read as: “Create a unit named
+<code class="docutils literal"><span class="pre">myLed</span></code> of type <code class="docutils literal"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal"><span class="pre">13</span></code>.”</p>
+</div>
+<div class="section" id="create-an-input-unit">
+<h4>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Permalink to this headline">¶</a></h4>
+<p>We will now create another unit that will generate a signal which will
+be sent to the LED to make it blink. To this effect, we will use the
+<code class="docutils literal"><span class="pre">SquareOsc</span></code> unit type which generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
+wave</a> oscillating between
+“on/high/one” and “off/low/zero” at a regular period of 2.0 seconds and
+a <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">duty-cycle</a> of 50%:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-the-begin-function">
+<h4>Create the begin() function<a class="headerlink" href="#create-the-begin-function" title="Permalink to this headline">¶</a></h4>
+<p>Each Plaquette sketch necessitates the declaration of two functions:
+<code class="docutils literal"><span class="pre">begin()</span></code> and <code class="docutils literal"><span class="pre">step()</span></code>.</p>
+<p>Function <code class="docutils literal"><span class="pre">begin()</span></code> is called only once at the beginning of the sketch
+(just like the
+<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/setup/">setup()</a>
+function in Arduino). In our case, we do not to perform any special
+configuration at startup so we will leave the <code class="docutils literal"><span class="pre">begin()</span></code> function
+empty:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">begin</span><span class="p">()</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-the-step-function">
+<h4>Create the step() function<a class="headerlink" href="#create-the-step-function" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal"><span class="pre">step()</span></code> function is called repetitively and indefinitely during
+the course of the program (like the
+<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/loop/">loop()</a>
+function in Arduino).</p>
+<p>Here, we need to send the signal generated by the <code class="docutils literal"><span class="pre">myOsc</span></code> input unit
+to the <code class="docutils literal"><span class="pre">myLed</span></code> output unit. We will do this using Plaquette’s special
+<code class="docutils literal"><span class="pre">&gt;&gt;</span></code> operator:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In plain English, the statement <code class="docutils literal"><span class="pre">myOsc</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: “Take the
+value generated by <code class="docutils literal"><span class="pre">myOsc</span></code> and put it in <code class="docutils literal"><span class="pre">myLed</span></code>.”</p>
+</div>
+<div class="section" id="upload-sketch">
+<h4>Upload sketch<a class="headerlink" href="#upload-sketch" title="Permalink to this headline">¶</a></h4>
+<p>Upload your sketch to the Arduino board. You should see the LED on the
+board blinking once every two seconds at a regular pace.</p>
+<p>Et voilà!</p>
+</div>
+<div class="section" id="full-code">
+<h4>Full code<a class="headerlink" href="#full-code" title="Permalink to this headline">¶</a></h4>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span> <span class="n">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="n">SquareOsc</span> <span class="n">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+
+<span class="n">void</span> <span class="n">begin</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="n">void</span> <span class="n">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="step-3-experiment">
+<h3>Step 3 : Experiment!<a class="headerlink" href="#step-3-experiment" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="period-and-duty">
+<h4>Period and duty<a class="headerlink" href="#period-and-duty" title="Permalink to this headline">¶</a></h4>
+<p>Try changing the <em>period</em> and/or <em>duty-cycle</em> parameters in the square
+wave unit construction:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">myOsc</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&lt;period&gt;</span></code> can be any positive number representing the period of
+oscillation (in seconds)</li>
+<li><code class="docutils literal"><span class="pre">&lt;duty-cycle&gt;</span></code> can be any number between 0.0 (0%) and 1.0 (100%)
+and represents the proportion of the period during which the signal
+is “high” (ie. “on duty”)</li>
+</ul>
+<p>What happens?</p>
+</div>
+<div class="section" id="adding-and-multiplying">
+<h4>Adding and multiplying<a class="headerlink" href="#adding-and-multiplying" title="Permalink to this headline">¶</a></h4>
+<p>Add another oscillator with a different period and duty cycle: multiply
+their values and send the result to the LED.</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">myOsc2</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">...</span>
+<span class="n">void</span> <span class="n">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">(</span><span class="n">myOsc</span> <span class="o">*</span> <span class="n">myOsc2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Try adding their values instead: what do you see?</p>
+</div>
+<div class="section" id="use-a-conditional">
+<h4>Use a conditional<a class="headerlink" href="#use-a-conditional" title="Permalink to this headline">¶</a></h4>
+<p>Add a third oscillator that will “switch” between the two oscillators
+every 5 seconds using an
+<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/control-structure/if/">if…else</a>
+statement.</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">TIP</span><span class="p">:</span> <span class="n">omitting</span> <span class="n">the</span> <span class="n">duty</span><span class="o">-</span><span class="n">cycle</span> <span class="n">parameter</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">default</span> <span class="n">value</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">SquareOsc</span> <span class="n">mySwitcher</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">...</span>
+<span class="n">void</span> <span class="n">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mySwitcher</span><span class="p">)</span>
+    <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">myOsc2</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>ADVANCED</strong>: You can rewrite this expression in a more compact way
+using the <a class="reference external" href="https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm">? : conditional
+operator</a>:</p>
+<div class="code cpp highlight-default"><div class="highlight"><pre><span></span>void step() {
+  (mySwitcher ? myOsc : myOsc2) &gt;&gt; myLed;
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-examples">
+<h4>More examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h4>
+<p>You will find more examples in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
+<ul class="simple">
+<li>Using a button</li>
+<li>Using an analog input such as a photocell or potentiometer</li>
+<li>Using an analog output</li>
+<li>Basic filtering (smoothing, re-scaling)</li>
+<li>Serial input and output</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<p>Developers:</p>
+<ul class="simple">
+<li>Sofian Audry • <a class="reference external" href="http://sofianaudry.com">Website</a> • <a class="reference external" href="https://github.com/sofian">GitHub</a></li>
+<li>Thomas Ouellet Fredericks • <a class="reference external" href="http://www.t-o-f.info">Website</a> • <a class="reference external" href="https://github.com/thomasfredericks">GitHub</a></li>
+</ul>
+<p>Plaquette’s base source code was produced as part of a research project
+at <a class="reference external" href="http://xmodal.hexagram.ca">labXmodal</a>. A special thanks to <a class="reference external" href="http://chrissalter.com">Chris
+Salter</a> for his support.</p>
+<p>Plaquette borrows ideas from the <a class="reference external" href="https://arduino.cc">Arduino</a>,
+<a class="reference external" href="http://chuck.cs.princeton.edu/">ChucK</a>,
+<a class="reference external" href="https://www.mbed.com/">mbed</a>,
+<a class="reference external" href="https://processing.org/">Processing</a>, and <a class="reference external" href="https://puredata.info/">Pure
+Data</a>.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Plaquette is distributed under the <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.en.html">Gnu General Public License v
+3.0</a>.</p>
+<p>The text of the Plaquette guide is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0
+License</a>. Code
+samples in the guide are released into the public domain.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="DigitalIn.html" title="next chapter">DigitalIn</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

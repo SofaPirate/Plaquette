@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DigitalOut &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AnalogIn" href="AnalogIn.html" />
+    <link rel="prev" title="DigitalIn" href="DigitalIn.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="digitalout">
+<h1>DigitalOut<a class="headerlink" href="#digitalout" title="Permalink to this headline">¶</a></h1>
+<p>Represents a digital (ie. binary) output pin that can be either “on” or “off”.</p>
+<p>The unit is assigned to a specific <code class="docutils literal"><span class="pre">pin</span></code> on the board.</p>
+<p>The <code class="docutils literal"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
+<ul class="simple">
+<li>in <code class="docutils literal"><span class="pre">SOURCE</span></code> mode the pin acts as the source of current and the component is “on” when the pin is “high” (ie. 3.3V or 5V)</li>
+<li>in <code class="docutils literal"><span class="pre">SINK</span></code> mode the component is “on” when the pin is “low” (ie. 0V / ground)</li>
+</ul>
+<div class="section" id="example-code">
+<h2>Example code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Switch the LED off after 5 seconds.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">seconds</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv210DigitalOut">
+<span id="DigitalOut"></span><span class="target" id="class_digital_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DigitalOut</code><a class="headerlink" href="#_CPPv210DigitalOut" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A generic class representing a simple digital output. </p>
+<p>Inherits from PqPinComponent, PqDigitalPutter</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N10DigitalOut10DigitalOutE7uint8_t7uint8_t">
+<span id="DigitalOut::DigitalOut__uint8_t.uint8_t"></span><span class="target" id="class_digital_out_1a9d5bb6f65285d745535662daa2a39364"></span><code class="descname">DigitalOut</code><span class="sig-paren">(</span>uint8_t <em>pin</em> = LED_BUILTIN, uint8_t <em>mode</em> = SOURCE<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10DigitalOut10DigitalOutE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10DigitalOut3putEf">
+<span id="DigitalOut::put__float"></span><span class="target" id="class_digital_out_1a5124439a3e8d4368d7c2ab399f9b2d6a"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10DigitalOut3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pushes value into the component and returns its (possibly filtered) value. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N10DigitalOut4isOnEv">
+<span id="DigitalOut::isOn"></span><span class="target" id="class_digital_out_1abc3bddd7004f68d8cac2c86d89eeb27a"></span><em class="property">virtual</em> bool <code class="descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10DigitalOut4isOnEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK14PqPinComponent3pinEv">
+<span id="PqPinComponent::pinC"></span><span class="target" id="class_pq_pin_component_1a6a5caf7c6619e6d8a9a7e82c3b8c785c"></span>uint8_t <code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent3pinEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the pin this component is attached to. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2NK14PqPinComponent4modeEv">
+<span id="PqPinComponent::modeC"></span><span class="target" id="class_pq_pin_component_1ae8ea724dad57da049edb808a1edf16d8"></span>uint8_t <code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent4modeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the mode of the component. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalPutter2onEv">
+<span id="PqDigitalPutter::on"></span><span class="target" id="class_pq_digital_putter_1ac75ae6887ef2d7f72054d17d1093dd84"></span><em class="property">virtual</em> void <code class="descname">on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalPutter2onEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets output to “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalPutter3offEv">
+<span id="PqDigitalPutter::off"></span><span class="target" id="class_pq_digital_putter_1aff3dbe056c291a9138d11fd27c1e5869"></span><em class="property">virtual</em> void <code class="descname">off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalPutter3offEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets output to “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalPutter6toggleEv">
+<span id="PqDigitalPutter::toggle"></span><span class="target" id="class_pq_digital_putter_1ad3e4fd5f77bdfbafa1bcfe833d36ba5b"></span><em class="property">virtual</em> void <code class="descname">toggle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalPutter6toggleEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Switches between on and off. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalPutter3getEv">
+<span id="PqDigitalPutter::get"></span><span class="target" id="class_pq_digital_putter_1aec6829a6a7f29b3799037db1d7a20545"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalPutter3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns reading (either 0 or 1). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalGetter5isOffEv">
+<span id="PqDigitalGetter::isOff"></span><span class="target" id="class_pq_digital_getter_1a1ab24918b47cda2408cbdd0d6a1a22f8"></span><em class="property">virtual</em> bool <code class="descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter5isOffEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N15PqDigitalGetter6getIntEv">
+<span id="PqDigitalGetter::getInt"></span><span class="target" id="class_pq_digital_getter_1afaf63fc22be566ba0f585ca5388f207c"></span><em class="property">virtual</em> int <code class="descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter6getIntEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value as integer (0 or 1). </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="related-classes">
+<h2>Related classes<a class="headerlink" href="#related-classes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></li>
+<li><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="DigitalIn.html" title="previous chapter">DigitalIn</a></li>
+      <li>Next: <a href="AnalogIn.html" title="next chapter">AnalogIn</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/DigitalOut.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SineOsc &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TriOsc" href="TriOsc.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sineosc">
+<h1>SineOsc<a class="headerlink" href="#sineosc" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv27SineOsc">
+<span id="SineOsc"></span><span class="target" id="class_sine_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SineOsc</code><a class="headerlink" href="#_CPPv27SineOsc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sine oscillator. Phase is in % of period. </p>
+<p>Inherits from PqGetter</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N7SineOsc7SineOscEf">
+<span id="SineOsc::SineOsc__float"></span><span class="target" id="class_sine_osc_1a25c696e347c37aac0b9b37363e3de282"></span><code class="descname">SineOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc7SineOscEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N7SineOsc3getEv">
+<span id="SineOsc::get"></span><span class="target" id="class_sine_osc_1a3ea95a9c10d6e8697bff067b34f33bb0"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value in [0, 1]. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N7SineOsc6periodEf">
+<span id="SineOsc::period__float"></span><span class="target" id="class_sine_osc_1a0daaec05489f84363ca0f8528dac157c"></span><a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the period (in seconds). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N7SineOsc9frequencyEf">
+<span id="SineOsc::frequency__float"></span><span class="target" id="class_sine_osc_1a2ea05caf2074dba739866ac9bfa31d1e"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the frequency (in Hz). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N7SineOsc5phaseEf">
+<span id="SineOsc::phase__float"></span><span class="target" id="class_sine_osc_1ad79ef8aa4c1589cf4274897fd6e074ba"></span><a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">phase</code><span class="sig-paren">(</span>float <em>phase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc5phaseEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the phase (ie. </p>
+<p>the offset, in seconds). <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">phrase</span></code>: the phase (in seconds) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="TriOsc.html" title="previous chapter">TriOsc</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/SineOsc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TriOsc &#8212; Plaquette 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SineOsc" href="SineOsc.html" />
+    <link rel="prev" title="SquareOsc" href="SquareOsc.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="triosc">
+<h1>TriOsc<a class="headerlink" href="#triosc" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv26TriOsc">
+<span id="TriOsc"></span><span class="target" id="class_tri_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">TriOsc</code><a class="headerlink" href="#_CPPv26TriOsc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Triangle/sawtooth oscillator. </p>
+<p>Inherits from PqGetter</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N6TriOsc6TriOscEff">
+<span id="TriOsc::TriOsc__float.float"></span><span class="target" id="class_tri_osc_1a8126b6d38dcfb06573dc11dc25757f96"></span><code class="descname">TriOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f, float <em>width</em> = 0.5f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6TriOscEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6TriOsc3getEv">
+<span id="TriOsc::get"></span><span class="target" id="class_tri_osc_1a8cba0f2200f73d63f68fe28135b4fab7"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value in [0, 1]. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6TriOsc6periodEf">
+<span id="TriOsc::period__float"></span><span class="target" id="class_tri_osc_1ab8129bfddc426ac48ccb2471b14187fe"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the period (in seconds). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6TriOsc9frequencyEf">
+<span id="TriOsc::frequency__float"></span><span class="target" id="class_tri_osc_1a6d00dfbe8a639d5792fdfefa5db856e3"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the frequency (in Hz). </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N6TriOsc5widthEf">
+<span id="TriOsc::width__float"></span><span class="target" id="class_tri_osc_1a2af438c36d1788f4360261cef96ddf59"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">width</code><span class="sig-paren">(</span>float <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc5widthEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the width of the wave. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the unit itself </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Base classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="SquareOsc.html" title="previous chapter">SquareOsc</a></li>
+      <li>Next: <a href="SineOsc.html" title="next chapter">SineOsc</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Plaquette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/TriOsc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
