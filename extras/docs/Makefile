@@ -4,6 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
+DOXYGENBUILD  = doxygen
 PAPER         =
 BUILDDIR      = ../../../Plaquette-docs
 PDFBUILDDIR   = /tmp
@@ -15,6 +16,9 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+
+.PHONY: all
+all: doxygen html latexpdf
 
 .PHONY: help
 help:
@@ -49,6 +53,10 @@ help:
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/*
+
+.PHONY: doxygen
+doxygen:
+	$(DOXYGENBUILD)
 
 .PHONY: html
 html:
