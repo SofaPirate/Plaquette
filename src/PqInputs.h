@@ -85,13 +85,20 @@ public:
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _isOn; }
 
+  /// Returns true iff the input has raised from off to on.
+  virtual bool rose() { return (_isOn && !_prevIsOn); }
+
+  /// Returns true iff the input has fallen from on to off.
+  virtual bool fell() { return (!_isOn && _prevIsOn); }
+
 protected:
   virtual float _read();
 
   virtual void setup();
   virtual void update();
 
-	bool _isOn;
+	bool _isOn : 1;
+  bool _prevIsOn : 1;
 };
 
 #endif

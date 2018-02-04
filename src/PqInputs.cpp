@@ -49,7 +49,7 @@ void AnalogIn::setup() { update(); }
 void AnalogIn::update() { _value = _smoothed(); }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqDigitalGetter(), _isOn(false)
+  : PqPinComponent(pin, mode), PqDigitalGetter(), _isOn(false), _prevIsOn(false)
 {}
 
 float DigitalIn::_read() {
@@ -62,8 +62,10 @@ float DigitalIn::_read() {
 void DigitalIn::setup() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
 	update();
+  _prevIsOn = _isOn; // this is to cancel out the possible change in on/off status
 }
 
 void DigitalIn::update() {
+  _prevIsOn = _isOn;
 	_isOn = analogToDigital(_smoothed());
 }
