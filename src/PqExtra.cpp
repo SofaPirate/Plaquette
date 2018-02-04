@@ -133,8 +133,7 @@ TriOsc& TriOsc::width(float width) {
 	return *this;
 }
 
-StreamOut::StreamOut(uint8_t digits) : _value(0), _digits(digits), _stream(&Serial) {}
-StreamOut::StreamOut(Stream& stream, uint8_t digits) : _value(0), _digits(digits), _stream(&stream) {}
+StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
 
 float StreamOut::put(float value) {
   // Copy value.
@@ -145,6 +144,10 @@ float StreamOut::put(float value) {
 
   // Return it.
   return _value;
+}
+
+void StreamOut::precision(uint8_t digits) {
+	_digits = digits;
 }
 
 

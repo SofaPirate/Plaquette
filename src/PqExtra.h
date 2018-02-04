@@ -191,16 +191,9 @@ class StreamOut : public PqPutter {
 public:
   /**
    * Constructor.
-   * @param digits the number of digits of precision to be printed out
-   */
-  StreamOut(uint8_t digits=4);
-
-  /**
-   * Constructor.
    * @param stream a reference to a Stream object
-   * @param digits the number of digits of precision to be printed out
    */
-  StreamOut(Stream& stream, uint8_t digits=4);
+  StreamOut(Stream& stream=Serial);
   virtual ~StreamOut() {}
 
   /**
@@ -212,6 +205,12 @@ public:
 
   /// Returns value.
   virtual float get() { return _value; }
+
+  /**
+   * Sets precision of the output.
+   * @param digits the number of digits to show after decimal point
+   */
+  virtual void precision(uint8_t digits);
 
   // Current value.
   float _value;
