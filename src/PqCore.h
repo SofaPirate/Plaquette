@@ -242,13 +242,14 @@ public:
 
 // Operators /////////////////////////////////////////////////////
 
-inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
-	return ::operator>>(getter.get(), putter);
-}
-
 inline PqPutter& operator>>(float value, PqPutter& putter) {
   putter.put( value );
   return putter;
+}
+
+// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqPutter&)).
+inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
+	return ::operator>>(getter.get(), putter);
 }
 
 inline PqPutter& operator>>(double value, PqPutter& putter) {
