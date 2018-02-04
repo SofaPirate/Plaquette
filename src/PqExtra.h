@@ -42,10 +42,19 @@ public:
   /// Returns value read from the stream.
   virtual float get() { return _value; }
 
+protected:
+  virtual void setup();
   virtual void update();
 
   // Current value.
   float _value;
+
+  // Internal use: keep track of next incoming value.
+  float _nextValue;
+  float _nextFraction;
+  bool _nextIsValid : 1;
+  bool _nextIsNegative : 1;
+  bool _nextIsFraction : 1;
 
 	// The stream.
 	Stream* _stream;

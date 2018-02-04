@@ -20,18 +20,51 @@
 
 #include "PqExtra.h"
 
-StreamIn::StreamIn(Stream& stream) : _value(0), _stream(&stream) {}
+StreamIn::StreamIn(Stream& stream) : _value(0), _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
+
+void StreamIn::setup() {
+	_nextValue = 0;
+	_nextIsValid = false;
+	_nextIsNegative = false;
+	_nextIsFraction = false;
+	_nextFraction = 1;
+}
 
 void StreamIn::update() {
 	while (_stream->available()) {
-		switch (_stream->peek()) {
-			case ' ':
-			case '\n':
-			case '\r':
-				_stream->read();
-				break;
-			default:
-			_value = _stream->parseFloat();
+
+		int c = _stream->read();
+		if (c == '-') {
+			_nextIsNegative = true;
+		}
+		else if (c == '.') {
+			_nextIsFraction = true;
+		}
+		else if (c >= '0' && c <= '9') {
+			_nextIsValid = true;
+			_nextValue = _nextValue * 10 + (c - '0');
+			if (_nextIsFraction)
+				_nextFraction *= 0.1;
+		}
+		else {
+			// Newline or carriage return: save value.
+			if (c == '\n' || c == '\r') {
+				// Save if valid.
+				if (_nextIsValid) {
+					if (_nextIsNegative)
+						_nextValue = -_nextValue;
+				  if (_nextIsFraction)
+						_nextValue *= _nextFraction;
+					_value = _nextValue;
+				}
+			}
+
+			// Reset everything.
+			_nextValue = 0;
+			_nextIsValid = false;
+			_nextIsNegative = false;
+			_nextIsFraction = false;
+			_nextFraction = 1;
 		}
 	}
 }
