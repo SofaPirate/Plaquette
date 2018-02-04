@@ -198,6 +198,60 @@ protected:
   float _startTime;
 };
 
+class Tween : public PqGetter {
+public:
+  /**
+   * Constructor.
+   * @param duration the duration of the transition
+   */
+  Tween(float duration=1.0f);
+  virtual ~Tween() {}
+
+  /// Returns value in [0, 1].
+  virtual float get() { return _value; }
+
+  /**
+   * Sets the period (in seconds).
+   * @param period the period of oscillation (in seconds)
+   * @return the unit itself
+   */
+  virtual Tween& duration(float duration);
+  virtual Tween& fromTo(float from, float to);
+  virtual Tween& to(float to);
+
+  //  virtual Tween& easing(uint8_t easing);
+
+  virtual void start();
+//  virtual Tween& start(float duration);
+//  virtual Tween& start(float to, float duration);
+//  virtual Tween& start(float from, float to, float duration);
+
+  virtual void pause();
+
+  virtual void resume();
+
+  virtual void stop();
+
+  virtual float elapsed() const { return _elapsedTime; }
+  virtual float progress() const;
+
+  bool isRunning() const { return _isRunning; }
+  bool isFinished() const { return progress() >= 1.0; }
+
+protected:
+  virtual void setup();
+  virtual void update();
+
+  float _value;
+  float _duration;
+  float _from;
+  float _change;
+  float _startTime;
+  float _offsetTime;
+  float _elapsedTime;
+  bool _isRunning;
+};
+
 /// Stream/serial output. Number of digits of precision is configurable.
 class StreamOut : public PqPutter {
 public:

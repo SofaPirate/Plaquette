@@ -166,6 +166,80 @@ TriOsc& TriOsc::width(float width) {
 	return *this;
 }
 
+
+Tween::Tween(float duration_) :
+	_value(0), _duration(duration_),
+	_from(0), _change(1),
+	_startTime(0), _offsetTime(0),
+	_isRunning(false)
+{
+	stop();
+}
+
+Tween& Tween::duration(float duration) {
+	stop();
+	_duration = duration;
+	return *this;
+}
+
+Tween& Tween::fromTo(float from, float to) {
+	stop();
+	_from = from;
+	_change = to - from;
+	return *this;
+}
+
+Tween& Tween::to(float to) {
+	stop();
+	_from = _value;
+	_change = to - _from;
+	return *this;
+}
+
+void Tween::start() {
+	_startTime = seconds();
+	_offsetTime = 0;
+	_isRunning = true;
+}
+
+void Tween::pause() {
+	if (_isRunning) {
+		_offsetTime = elapsed();
+		_isRunning = false;
+	}
+}
+
+void Tween::resume() {
+	if (!_isRunning) {
+		_startTime = seconds();
+		_isRunning = true;
+	}
+}
+
+void Tween::stop() {
+	_startTime = _offsetTime = 0;
+	_isRunning = false;
+}
+
+float Tween::progress() const {
+	float prog = elapsed() / _duration;
+	prog = constrain(prog, 0, 1);
+	return prog;
+}
+
+void Tween::setup() {
+	stop();
+}
+
+void Tween::update() {
+	// Compute current elapsed time.
+	_elapsedTime = _offsetTime + (_isRunning ? (seconds() - _startTime) : 0);
+
+	// Compute value if running -- otherwise leave as is.
+	if (_isRunning)
+		_value = map(progress(), 0.0f, 1.0f, _from, (_from + _change));
+}
+
 StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
 
 float StreamOut::put(float value) {
