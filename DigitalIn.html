@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DigitalIn &mdash; Plaquette 1.0 documentation</title>
+  <title>DigitalIn &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 1.0 documentation" href="index.html"/>
+    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
         <link rel="next" title="DigitalOut" href="DigitalOut.html"/>
         <link rel="prev" title="Plaquette" href="index.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.0
+                0.1.1
               </div>
             
           
@@ -90,12 +90,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base classes</span></p>
+              <p class="caption"><span class="caption-text">Base units</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DigitalIn</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example-code">Example code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#class-reference">Class Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#related-classes">Related classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
@@ -174,8 +174,16 @@
             
   <div class="section" id="digitalin">
 <h1>DigitalIn<a class="headerlink" href="#digitalin" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="example-code">
-<h2>Example code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
+<p>A digital (ie. binary) input unit that can be either “on” or “off”.</p>
+<p>The unit is assigned to a specific <code class="docutils literal"><span class="pre">pin</span></code> on the board.</p>
+<p>The <code class="docutils literal"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
+<ul class="simple">
+<li>in <code class="docutils literal"><span class="pre">INTERNAL_PULLUP</span></code> mode (default) the internal 20K pullup resistor is used</li>
+<li>in <code class="docutils literal"><span class="pre">EXTERNAL_PULLUP</span></code> mode you need to use an external pullup resistor connected to Vcc</li>
+<li>in <code class="docutils literal"><span class="pre">EXTERNAL_PULLDOWN</span></code> mode you need to use an external pulldown resistor connected to GND</li>
+</ul>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
@@ -190,8 +198,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="class-reference">
-<h2>Class Reference<a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv29DigitalIn">
 <span id="DigitalIn"></span><span class="target" id="class_digital_in"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DigitalIn</code><a class="headerlink" href="#_CPPv29DigitalIn" title="Permalink to this definition">¶</a><br /></dt>
@@ -266,8 +274,8 @@
 </dd></dl>
 
 </div>
-<div class="section" id="related-classes">
-<h2>Related classes<a class="headerlink" href="#related-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></li>
 <li><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></li>
@@ -319,7 +327,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

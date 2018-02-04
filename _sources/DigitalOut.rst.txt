@@ -1,17 +1,19 @@
+.. include:: defs.hrst
+
 DigitalOut
 ==========
 
-Represents a digital (ie. binary) output pin that can be either "on" or "off".
+A digital (ie. binary) output unit that can be switched "on" or "off".
 
 The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``SOURCE`` mode the pin acts as the source of current and the component is "on" when the pin is "high" (ie. 3.3V or 5V)
-- in ``SINK`` mode the component is "on" when the pin is "low" (ie. 0V / ground)
+- in ``SOURCE`` mode (default) the pin acts as the source of current and the component is "on" when the pin is "high" (Vcc)
+- in ``SINK`` mode the source of current is external and the component is "on" when the pin is "low" (GND)
 
-Example code
-------------
+|Example|
+-------------
 
 .. code-block:: c++
 
@@ -28,14 +30,14 @@ Example code
    }
 
 
-Class Reference
----------------
+|Reference|
+----------------
 
 .. doxygenclass:: DigitalOut
    :project: Plaquette
    :members: DigitalOut, on, off, toggle, isOn, isOff, smooth, noSmooth, get, getInt, put, pin, mode
 
-Related classes
----------------
+|SeeAlso|
+---------
 - :doc:`AnalogOut`
 - :doc:`DigitalIn`

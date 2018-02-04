@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AnalogIn &mdash; Plaquette 1.0 documentation</title>
+  <title>AnalogIn &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 1.0 documentation" href="index.html"/>
+    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
         <link rel="next" title="AnalogOut" href="AnalogOut.html"/>
         <link rel="prev" title="DigitalOut" href="DigitalOut.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.0
+                0.1.1
               </div>
             
           
@@ -90,11 +90,17 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base classes</span></p>
+              <p class="caption"><span class="caption-text">Base units</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">AnalogIn</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AnalogIn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notesandwarnings">Notes and Warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
@@ -169,7 +175,30 @@
             
   <div class="section" id="analogin">
 <h1>AnalogIn<a class="headerlink" href="#analogin" title="Permalink to this headline">¶</a></h1>
-<p>Value is between 0 and 1 (0% to 100%).</p>
+<p>An analog (ie. continuous) input unit that returns values between 0 and 1 (ie. 0% and 100%).</p>
+<p>The unit is assigned to a specific <code class="docutils literal"><span class="pre">pin</span></code> on the board.</p>
+<p>The <code class="docutils literal"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
+<ul class="simple">
+<li>in <code class="docutils literal"><span class="pre">ANALOG_DEFAULT</span></code> mode (default) the value is expressed as a percentage of the reference voltage (Vref, typically 5V)</li>
+<li>in <code class="docutils literal"><span class="pre">ANALOG_INVERTED</span></code> mode the value is inverted (ie. 0V corresponds to 100% while 2.5V corresponds to 50%).</li>
+</ul>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">potentiometer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+
+<span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// The analog input controls the intensity of the LED.</span>
+  <span class="n">potentiometer</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv28AnalogIn">
 <span id="AnalogIn"></span><span class="target" id="class_analog_in"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AnalogIn</code><a class="headerlink" href="#_CPPv28AnalogIn" title="Permalink to this definition">¶</a><br /></dt>
@@ -226,6 +255,18 @@
 </dd></dl>
 
 </div>
+<div class="section" id="notesandwarnings">
+<h2>Notes and Warnings<a class="headerlink" href="#notesandwarnings" title="Permalink to this headline">¶</a></h2>
+<p>If the analog input pin is not connected to anything, the value returned by <code class="docutils literal"><span class="pre">get()</span></code> will fluctuate based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to the board, etc.).</p>
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></li>
+<li><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></li>
+</ul>
+</div>
+</div>
 
 
            </div>
@@ -271,7 +312,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0',
+            VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
