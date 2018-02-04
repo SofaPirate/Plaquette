@@ -9,6 +9,7 @@ if read_the_docs_build:
     subprocess.call('doxygen', shell=True)
 
 html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'searchbox.html'], }
+html_theme = "sphinx_rtd_theme"
 
 extensions = ['breathe', 'sphinx.ext.intersphinx' ]
 breathe_projects = { 'Plaquette': 'xml' }
