@@ -1,9 +1,20 @@
+.. include:: defs.hrst
+
 DigitalIn
 =========
 
+A digital (ie. binary) input unit that can be either "on" or "off".
 
-Example code
-------------
+The unit is assigned to a specific ``pin`` on the board.
+
+The ``mode`` specifies the behavior of the component attached to the pin:
+
+- in ``INTERNAL_PULLUP`` mode (default) the internal 20K pullup resistor is used
+- in ``EXTERNAL_PULLUP`` mode you need to use an external pullup resistor connected to Vcc
+- in ``EXTERNAL_PULLDOWN`` mode you need to use an external pulldown resistor connected to GND
+
+|Example|
+---------
 
 .. code-block:: c++
 
@@ -20,14 +31,14 @@ Example code
    }
 
 
-Class Reference
----------------
+|Reference|
+-----------
 
 .. doxygenclass:: DigitalIn
    :project: Plaquette
    :members: DigitalIn, isOn, isOff, pin, mode, smooth, noSmooth, getInt, get
 
-Related classes
----------------
+|SeeAlso|
+---------
 - :doc:`AnalogIn`
 - :doc:`DigitalOut`
