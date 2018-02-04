@@ -51,7 +51,7 @@ public:
 	Stream* _stream;
 };
 
-/// Square oscillator. DutyCycle is in % of period.
+/// Square oscillator. Duty cycle is expressed as % of period.
 class SquareOsc : public PqDigitalGetter {
 public:
   /**
@@ -86,6 +86,7 @@ public:
    */
   virtual SquareOsc& dutyCycle(float dutyCycle);
 
+protected:
   virtual void setup();
   virtual void update();
 
@@ -95,7 +96,7 @@ public:
   float _startTime; // start time of each period (in seconds)
 };
 
-/// Sine oscillator. Phase is in % of period.
+/// Sine oscillator. Phase is expressed as % of period.
 class SineOsc : public PqGetter {
 public:
   /**
@@ -129,6 +130,7 @@ public:
    */
   virtual SineOsc& phase(float phase);
 
+protected:
   virtual void setup();
   virtual void update();
 
@@ -177,6 +179,7 @@ public:
    */
   virtual TriOsc& width(float width);
 
+protected:
   virtual void setup();
   virtual void update();
 
