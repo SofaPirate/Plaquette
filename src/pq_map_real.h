@@ -23,8 +23,7 @@
 #ifndef PQ_MAP_REAL_H_
 #define PQ_MAP_REAL_H_
 
-float map(float x, float in_min, float in_max, float out_min, float out_max);
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh);
 
-double map(double x, double in_min, double in_max, double out_min, double out_max);
 
 #endif
