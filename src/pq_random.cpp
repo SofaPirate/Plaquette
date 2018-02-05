@@ -23,10 +23,10 @@ float randomUniform() {
   return (float)rand() / (float) RAND_MAX;
 }
 
-float randomUniform(float h) {
-  return (randomUniform() * h);
+float randomUniform(float max) {
+  return (randomUniform() * max);
 }
 
-float randomUniform(float a, float b) {
-  return (randomUniform() * (b - a) + a);
+float randomUniform(float min, float max) {
+  return (randomUniform() * (max - min) + min);
 }
