@@ -285,11 +285,21 @@ protected:
 /// Simple moving average transform filter.
 class Smoother : public PqPutter, public MovingAverage {
 public:
+  /**
+   * Constructor.
+   * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   */
   Smoother(float factor=0.1f);
   virtual ~Smoother() {}
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns smoothed value.
   virtual float get() { return MovingAverage::get(); }
 };
 
@@ -302,7 +312,7 @@ public:
   /**
    * Default constructor. Will renormalize data around a mean of 0 and a standard
    * deviation of 1.
-   * @param smoothFactor the smooth factor to be used in [0, 1]
+   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
    */
    AdaptiveNormalizer(float smoothFactor=0.001f);
 
@@ -310,7 +320,7 @@ public:
    * Constructor.
    * @param mean the target mean
    * @param stddev the target standard deviation
-   * @param smoothFactor the smooth factor to be used in [0, 1]
+   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
    */
   AdaptiveNormalizer(float mean, float stddev, float smoothFactor=0.001f);
   virtual ~AdaptiveNormalizer() {}
