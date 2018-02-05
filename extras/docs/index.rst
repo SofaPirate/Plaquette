@@ -27,3 +27,13 @@
    MinMaxScaler
    Normalizer
    Smoother
+
+.. toctree::
+   :caption: Functions
+   :maxdepth: 1
+
+   mapFloat
+   mapFrom01
+   mapTo01
+   randomUniform
+   seconds
