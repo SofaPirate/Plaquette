@@ -24,12 +24,19 @@
 
 float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh)
 {
+  // Avoid divisions by zero.
+  if (fromLow == fromHigh)
+    return (toLow + toHigh) / 2.0f; // dummy value
  return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 }
 
 float mapFrom01(double value, double toLow, double toHigh) {
   return (value * (toHigh - toLow)) + toLow;
 }
+
 float mapTo01(double value, double fromLow, double fromHigh) {
+  // Avoid divisions by zero.
+  if (fromLow == fromHigh)
+    return 0.5f; // dummy value
   return (value - fromLow) / (fromHigh - fromLow);
 }
