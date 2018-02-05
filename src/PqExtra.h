@@ -319,13 +319,13 @@ public:
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  AdaptiveNormalizer& mean(float mean) { _mean = mean; return *this; }
+  AdaptiveNormalizer& targetMean(float mean) { _mean = mean; return *this; }
 
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  AdaptiveNormalizer& stddev(float stddev) { _stddev = stddev; return *this; }
+  AdaptiveNormalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
 
   /**
    * Pushes value into the unit.
@@ -367,13 +367,13 @@ public:
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  Normalizer& mean(float mean) { _mean = mean; return *this; }
+  Normalizer& targetMean(float mean) { _mean = mean; return *this; }
 
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  Normalizer& stddev(float stddev) { _stddev = stddev; return *this; }
+  Normalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
 
   /**
    * Pushes value into the unit.
