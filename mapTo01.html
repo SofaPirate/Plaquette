@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SineOsc &mdash; Plaquette 0.1 documentation</title>
+  <title>mapTo01() &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="AdaptiveNormalizer" href="AdaptiveNormalizer.html"/>
-        <link rel="prev" title="TriOsc" href="TriOsc.html"/> 
+        <link rel="next" title="randomUniform()" href="randomUniform.html"/>
+        <link rel="prev" title="mapFrom01()" href="mapFrom01.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,10 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">SineOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
 <ul>
@@ -113,10 +113,15 @@
 <li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mapFrom01.html">mapFrom01()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">mapTo01()</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="randomUniform.html">randomUniform()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
 </ul>
@@ -163,13 +168,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>SineOsc</li>
+      <li>mapTo01()</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/SineOsc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mapTo01.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -182,77 +187,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sineosc">
-<h1>SineOsc<a class="headerlink" href="#sineosc" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="_CPPv27SineOsc">
-<span id="SineOsc"></span><span class="target" id="class_sine_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SineOsc</code><a class="headerlink" href="#_CPPv27SineOsc" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sine oscillator. Phase is expressed as % of period. </p>
-<p>Inherits from PqGetter</p>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
-<dl class="function">
-<dt id="_CPPv2N7SineOsc7SineOscEf">
-<span id="SineOsc::SineOsc__float"></span><span class="target" id="class_sine_osc_1a25c696e347c37aac0b9b37363e3de282"></span><code class="descname">SineOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc7SineOscEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
+  <div class="section" id="mapto01">
+<h1>mapTo01()<a class="headerlink" href="#mapto01" title="Permalink to this headline">¶</a></h1>
+<p>Re-maps a number to range [0, 1]. That is, a value of <code class="docutils literal"><span class="pre">fromLow</span></code> would get
+mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHigh</span></code> to 1, values in-between to values in-between, etc.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is equivalent to:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> for more details.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<dl class="function">
-<dt id="_CPPv2N7SineOsc3getEv">
-<span id="SineOsc::get"></span><span class="target" id="class_sine_osc_1a3ea95a9c10d6e8697bff067b34f33bb0"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc3getEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
 
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Generate a sinusoidal values between -1 and 1.</span>
+  <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">seconds</span><span class="p">());</span>
+  <span class="c1">// Remap to [0, 1] and send to LED.</span>
+  <span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv2N7SineOsc6periodEf">
-<span id="SineOsc::period__float"></span><span class="target" id="class_sine_osc_1a0daaec05489f84363ca0f8528dac157c"></span><a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the period (in seconds). </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N7SineOsc9frequencyEf">
-<span id="SineOsc::frequency__float"></span><span class="target" id="class_sine_osc_1a2ea05caf2074dba739866ac9bfa31d1e"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the frequency (in Hz). </p>
+<dt id="_CPPv27mapTo01ddd">
+<span id="mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8h_1acee0d3dee9cb366dffef63a348091308"></span>float <code class="descclassname"></code><code class="descname">mapTo01</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27mapTo01ddd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Re-maps a number to the [0, 1] range. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
+<dd>the mapped value in [0, 1] </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N7SineOsc5phaseEf">
-<span id="SineOsc::phase__float"></span><span class="target" id="class_sine_osc_1ad79ef8aa4c1589cf4274897fd6e074ba"></span><a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">phase</code><span class="sig-paren">(</span>float <em>phase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc5phaseEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the phase (ie. </p>
-<p>the offset, in seconds). <dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">phrase</span></code>: the phase (in seconds) </li>
+<li><code class="docutils literal"><span class="pre">value</span></code>: the number to map </li>
+<li><code class="docutils literal"><span class="pre">fromLow</span></code>: the lower bound of the value’s current range </li>
+<li><code class="docutils literal"><span class="pre">fromHigh</span></code>: the upper bound of the value’s current range </li>
 </ul>
 </dd>
 </dl>
@@ -260,8 +236,13 @@
 </dd></dl>
 
 </div>
-</dd></dl>
-
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a></li>
+<li><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a></li>
+</ul>
+</div>
 </div>
 
 
@@ -274,10 +255,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AdaptiveNormalizer.html" class="btn btn-neutral float-right" title="AdaptiveNormalizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="randomUniform.html" class="btn btn-neutral float-right" title="randomUniform()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="TriOsc.html" class="btn btn-neutral" title="TriOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mapFrom01.html" class="btn btn-neutral" title="mapFrom01()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

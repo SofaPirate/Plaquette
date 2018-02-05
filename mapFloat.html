@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>StreamIn &mdash; Plaquette 0.1 documentation</title>
+  <title>mapFloat() &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="StreamOut" href="StreamOut.html"/>
-        <link rel="prev" title="AnalogOut" href="AnalogOut.html"/> 
+        <link rel="next" title="mapFrom01()" href="mapFrom01.html"/>
+        <link rel="prev" title="Smoother" href="Smoother.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,17 +91,12 @@
             
             
               <p class="caption"><span class="caption-text">Base units</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">StreamIn</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
@@ -118,8 +113,13 @@
 <li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">mapFloat()</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="mapFrom01.html">mapFrom01()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="randomUniform.html">randomUniform()</a></li>
@@ -168,13 +168,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>StreamIn</li>
+      <li>mapFloat()</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/StreamIn.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mapFloat.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -187,73 +187,75 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="streamin">
-<h1>StreamIn<a class="headerlink" href="#streamin" title="Permalink to this headline">¶</a></h1>
-<p>An input unit that can receive values transmitted through a stream – for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
+  <div class="section" id="mapfloat">
+<h1>mapFloat()<a class="headerlink" href="#mapfloat" title="Permalink to this headline">¶</a></h1>
+<p>Re-maps a number from one range to another. That is, a value of <code class="docutils literal"><span class="pre">fromLow</span></code> would get
+mapped to <code class="docutils literal"><span class="pre">toLow</span></code>, a value of <code class="docutils literal"><span class="pre">fromHigh</span></code> to <code class="docutils literal"><span class="pre">toHigh</span></code>, values in-between to values
+in-between, etc.</p>
+<p>Does not constrain values to within the range, because out-of-range values are sometimes
+intended and useful. The <code class="docutils literal"><span class="pre">constrain()</span></code> function may be used either before or after this
+function, if limits to the ranges are desired.</p>
+<p>Note that the “lower bounds” of either range may be larger or smaller than the “upper bounds”
+so the <code class="docutils literal"><span class="pre">mapFloat()</span></code> function may be used to reverse a range of numbers, for example</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The function also handles negative numbers well, so that this example</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>is also valid and works well.</p>
+<p>Unlike the Arduino <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/math/map/">map()</a> function,
+<code class="docutils literal"><span class="pre">mapReal()</span></code> uses floating-point math and <em>will</em> generate fractions.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">StreamIn</span> <span class="nf">serialIn</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">SineOsc</span> <span class="nf">modulator</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
 
-<span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">SquareOsc</span> <span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">serialIn</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="c1">// Change frequency of oscillator between 2Hz and 15Hz.</span>
+  <span class="kt">float</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">modulator</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">);</span>
+  <span class="n">oscillator</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">freq</span><span class="p">);</span>
+  <span class="c1">// Send to LED.</span>
+  <span class="n">oscillator</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To run this example:</p>
-<ol class="arabic simple">
-<li>Upload the code.</li>
-<li>In the Arduino software open the serial monitor: <strong>Tools &gt; Serial Monitor</strong>.</li>
-<li>Make sure the default baudrate of <strong>9600</strong> bps is selected.</li>
-<li>Make sure one of the options “Newline”, “Carriage return”, or “Both NL + CR” is selected.</li>
-<li>Write a number between 0.0 and 1.0 and press “Enter”. This should allow you to set the LED intensity.</li>
-<li>Try different values.</li>
-</ol>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="_CPPv28StreamIn">
-<span id="StreamIn"></span><span class="target" id="class_stream_in"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">StreamIn</code><a class="headerlink" href="#_CPPv28StreamIn" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Stream/serial input. Reads float values using Arduino built-in parseFloat(). </p>
-<p>Inherits from PqGetter</p>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N8StreamIn8StreamInER6Stream">
-<span id="StreamIn::StreamIn__StreamR"></span><span class="target" id="class_stream_in_1a9f6a6d210bc88f78362f0cd33b929fde"></span><code class="descname">StreamIn</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8StreamIn8StreamInER6Stream" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Constructor. </p>
+<dt id="_CPPv28mapFloatddddd">
+<span id="mapFloat__double.double.double.double.double"></span><span class="target" id="pq__map__real_8h_1adcfde23e7b380f136d84afac4d04a90b"></span>float <code class="descclassname"></code><code class="descname">mapFloat</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em>, double <em>toLow</em>, double <em>toHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv28mapFloatddddd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Re-maps a number from one range to another. </p>
 <p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the mapped value </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">stream</span></code>: a reference to a Stream object </li>
+<li><code class="docutils literal"><span class="pre">value</span></code>: the number to map </li>
+<li><code class="docutils literal"><span class="pre">fromLow</span></code>: the lower bound of the value’s current range </li>
+<li><code class="docutils literal"><span class="pre">fromHigh</span></code>: the upper bound of the value’s current range </li>
+<li><code class="docutils literal"><span class="pre">toLow</span></code>: the lower bound of the value’s target range </li>
+<li><code class="docutils literal"><span class="pre">toHigh</span></code>: the upper bound of the value’s target range </li>
 </ul>
 </dd>
 </dl>
 </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv2N8StreamIn3getEv">
-<span id="StreamIn::get"></span><span class="target" id="class_stream_in_1a5fb56c7991b07942eb3a92c57930b004"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8StreamIn3getEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Returns value read from the stream. </p>
-</dd></dl>
-
-</div>
-</dd></dl>
-
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></li>
-<li><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></li>
-<li><a class="reference internal" href="StreamOut.html"><span class="doc">StreamOut</span></a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial</a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/stream/">Arduino streams</a></li>
+<li><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a></li>
+<li><a class="reference internal" href="mapTo01.html"><span class="doc">mapTo01()</span></a></li>
 </ul>
 </div>
 </div>
@@ -268,10 +270,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="StreamOut.html" class="btn btn-neutral float-right" title="StreamOut" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mapFrom01.html" class="btn btn-neutral float-right" title="mapFrom01()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AnalogOut.html" class="btn btn-neutral" title="AnalogOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Smoother.html" class="btn btn-neutral" title="Smoother" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
