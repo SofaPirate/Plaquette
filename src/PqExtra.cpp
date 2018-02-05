@@ -83,7 +83,7 @@ void SquareOsc::update() {
 	// inducing dephasings on Arduino boards.
 	float totalTime = seconds();
 	float relativeTime = totalTime - _startTime;
-	_isOn = (relativeTime / _period < _dutyCycle);
+	_isOn = ((relativeTime / _period) < _dutyCycle);
 	if (relativeTime > _period)
   	_startTime = totalTime;
 }
