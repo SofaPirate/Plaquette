@@ -148,8 +148,8 @@ void TriOsc::update() {
 
   // Check where we are.
 	float t = relativeTime / _period;
-	if (t < _width) _value = map(t, 0,      _width, 0.f, 1.f);
-	else            _value = map(t, _width,      1, 1.f, 0.f);
+	if (t < _width) _value = mapFloat(t, 0,      _width, 0.f, 1.f);
+	else            _value = mapFloat(t, _width,      1, 1.f, 0.f);
 
 	// Reset.
 	if (relativeTime > _period)
@@ -192,7 +192,7 @@ float OscilloscopeOut::put(float value) {
   _value = value;
 
   // Convert to bin.
-  float mapped = map(_value, _minValue, _maxValue, 0.0f, 1.0f);
+  float mapped = mapTo01(_value, _minValue, _maxValue);
   int bin = round( mapped * _precision );
   bin = constrain(bin, 0, _precision-1);
 
@@ -269,7 +269,7 @@ float MinMaxScaler::put(float value)
 {
   _minValue = min(value, _minValue);
   _maxValue = max(value, _maxValue);
-  _value = (_minValue == _maxValue ? 0.5f : map(value, _minValue, _maxValue, 0.0f, 1.0f));
+  _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
 	return _value;
 }
 
