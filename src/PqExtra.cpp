@@ -82,9 +82,9 @@ void SquareOsc::update() {
 	// Notice: this computation is not exact but manages naturally changes in the period without
 	// inducing dephasings on Arduino boards.
 	float totalTime = seconds();
-	float relativeTime = totalTime - _startTime;
-	_isOn = ((relativeTime / _period) < _dutyCycle);
-	if (relativeTime > _period)
+	float progress = (totalTime - _startTime) / _period;
+	_isOn = (progress < _dutyCycle);
+	if (progress >= 1) // reset
   	_startTime = totalTime;
 }
 
@@ -113,7 +113,7 @@ void SineOsc::update() {
 	float totalTime = seconds();
 	float relativeTime = totalTime - _startTime;
 	_update(relativeTime);
-	if (relativeTime > _period)
+	if (relativeTime >= _period)
   	_startTime = totalTime;
 }
 
@@ -147,13 +147,13 @@ void TriOsc::update() {
 	float relativeTime = totalTime - _startTime;
 
   // Check where we are.
-	float t = relativeTime / _period;
-	if (t < _width) _value = mapFloat(t, 0,      _width, 0.f, 1.f);
-	else            _value = mapFloat(t, _width,      1, 1.f, 0.f);
-
-	// Reset.
-	if (relativeTime > _period)
+	float progress = relativeTime / _period;
+	if (progress >= 1) {
+		_value = 0;
 		_startTime = totalTime;
+	}
+	else if (progress >= _width) _value = (1 - progress) / (1 - _width);
+	else                         _value = progress / _width;
 }
 
 TriOsc& TriOsc::period(float period) {
