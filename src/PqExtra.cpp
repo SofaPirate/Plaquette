@@ -89,7 +89,7 @@ void SquareOsc::update() {
 }
 
 SquareOsc& SquareOsc::period(float period) {
-	_period = constrain(period, 1e-6, 1);
+	_period = max(period, 1e-6);
 	return *this;
 }
 
@@ -122,7 +122,7 @@ void SineOsc::_update(float t) {
 }
 
 SineOsc& SineOsc::period(float period) {
-  _period = period;
+	_period = max(period, 1e-6);
 	return *this;
 }
 
@@ -157,7 +157,7 @@ void TriOsc::update() {
 }
 
 TriOsc& TriOsc::period(float period) {
-	_period = constrain(period, 1e-6, 1);
+	_period = max(period, 1e-6);
 	return *this;
 }
 
