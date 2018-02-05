@@ -25,5 +25,7 @@
 
 float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh);
 
+float mapFrom01(double value, double toLow, double toHigh);
 
+float mapTo01(double value, double fromLow, double fromHigh);
 #endif

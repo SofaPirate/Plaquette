@@ -27,4 +27,9 @@ float mapFloat(double value, double fromLow, double fromHigh, double toLow, doub
  return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 }
 
+float mapFrom01(double value, double toLow, double toHigh) {
+  return (value * (toHigh - toLow)) + toLow;
+}
+float mapTo01(double value, double fromLow, double fromHigh) {
+  return (value - fromLow) / (fromHigh - fromLow);
 }
