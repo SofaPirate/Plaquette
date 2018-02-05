@@ -22,8 +22,9 @@ Arduino.
    fully compatible with Arduino code.
 
 .. note::
-  This documentation is still a work in progress. If you have any issues or
-  questions, please contact the developers or file a bug in our `issue tracker`_.
+  Plaquette is still at an experimental stage of development. If you
+  have any issues or questions, please contact the developers or file
+  a bug in our `issue tracker`_.
 .. _issue tracker: https://github.com/SofaPirate/Plaquette/issues
 
 Getting started
