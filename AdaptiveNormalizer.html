@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AdaptiveNormalizer &mdash; Plaquette 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Normalizer" href="Normalizer.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Plaquette
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Base units</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Generators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Filters</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AdaptiveNormalizer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>AdaptiveNormalizer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/AdaptiveNormalizer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adaptivenormalizer">
+<h1>AdaptiveNormalizer<a class="headerlink" href="#adaptivenormalizer" title="Permalink to this headline">¶</a></h1>
+<p>This filtering unit regularizes incoming signals by normalizing them around a target mean and
+standard deviation. It works by computing the normal distribution of the incoming data (mean and
+standard variation) and uses this information to re-normalize the data according to a different
+normal distribution (target mean and variance).</p>
+<p>This particular normalizer computes the mean and variance using an <a class="reference external" href="https://www.investopedia.com/terms/e/ema.asp">exponential moving average</a>.
+Therefore, it adapts over time by giving more importance to the most recently seen data points.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+
+<span class="n">AdaptiveNormalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Normalize value.</span>
+  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">normalizer</span><span class="p">;</span>
+
+  <span class="c1">// Light led if value differs from mean by more</span>
+  <span class="c1">// than twice the standard deviation.</span>
+  <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">normalizer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv218AdaptiveNormalizer">
+<span id="AdaptiveNormalizer"></span><span class="target" id="class_adaptive_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AdaptiveNormalizer</code><a class="headerlink" href="#_CPPv218AdaptiveNormalizer" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adaptive normalizer: normalizes values on-the-run using exponential moving averages over mean and standard deviation. </p>
+<p>Inherits from PqPutter, MovingStats</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEf">
+<span id="AdaptiveNormalizer::AdaptiveNormalizer__float"></span><span class="target" id="class_adaptive_normalizer_1a688dedf73081df2bed56f50c68f4801e"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. </p>
+<p>Will renormalize data around a mean of 0 and a standard deviation of 1. <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">smoothFactor</span></code>: a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means <em>more</em> smoothing) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEfff">
+<span id="AdaptiveNormalizer::AdaptiveNormalizer__float.float.float"></span><span class="target" id="class_adaptive_normalizer_1a08f1ffd194f29827980840d966c52890"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em>, float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEfff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">mean</span></code>: the target mean </li>
+<li><code class="docutils literal"><span class="pre">stddev</span></code>: the target standard deviation </li>
+<li><code class="docutils literal"><span class="pre">smoothFactor</span></code>: a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means <em>more</em> smoothing) </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer10targetMeanEf">
+<span id="AdaptiveNormalizer::targetMean__float"></span><span class="target" id="class_adaptive_normalizer_1a844d0bafa8a6d0d3195fb804a59dfa6b"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer10targetMeanEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets target mean of normalized values. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">mean</span></code>: the target mean </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer12targetStdDevEf">
+<span id="AdaptiveNormalizer::targetStdDev__float"></span><span class="target" id="class_adaptive_normalizer_1a573d737a4f3e95689215129093fbe18a"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer12targetStdDevEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets target standard deviation of normalized values. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">stddev</span></code>: the target standard deviation </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer3putEf">
+<span id="AdaptiveNormalizer::put__float"></span><span class="target" id="class_adaptive_normalizer_1a291af6f81d12caf0e1d686bd788366a0"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>the new value of the unit </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">value</span></code>: the value sent to the unit </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N18AdaptiveNormalizer3getEv">
+<span id="AdaptiveNormalizer::get"></span><span class="target" id="class_adaptive_normalizer_1ad7fc27364969f7e681e2dd71bde1cf97"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns normalized value. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11MovingStats5resetEv">
+<span id="MovingStats::reset"></span><span class="target" id="class_moving_stats_1abc614c3e459cff2d67a0034bf27e500f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the statistics. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv2N11MovingStats5resetEff">
+<span id="MovingStats::reset__float.float"></span><span class="target" id="class_moving_stats_1af8f05ef1abb8ec6ba86c48fb9275507f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span>float <em>startMean</em>, float <em>startVar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the statistics. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></li>
+<li><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></li>
+<li><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="Normalizer.html" class="btn btn-neutral" title="Normalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Plaquette.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

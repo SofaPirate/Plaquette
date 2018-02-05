@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TriOsc &mdash; Plaquette 0.1 documentation</title>
+  <title>Smoother &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="SineOsc" href="SineOsc.html"/>
-        <link rel="prev" title="SquareOsc" href="SquareOsc.html"/> 
+        <link rel="next" title="Normalizer" href="Normalizer.html"/>
+        <link rel="prev" title="MinMaxScaler" href="MinMaxScaler.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,15 +100,20 @@
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TriOsc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Smoother</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
 </ul>
@@ -155,13 +160,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>TriOsc</li>
+      <li>Smoother</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/TriOsc.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Smoother.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,24 +179,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="triosc">
-<h1>TriOsc<a class="headerlink" href="#triosc" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="smoother">
+<h1>Smoother<a class="headerlink" href="#smoother" title="Permalink to this headline">¶</a></h1>
+<p>Smooths the incoming signal.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+
+<span class="n">Smoother</span> <span class="nf">smoother</span><span class="p">(</span><span class="mf">0.01</span><span class="p">);</span>
+
+<span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Smooth value and send it to serial output.</span>
+  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">smoother</span> <span class="o">&gt;&gt;</span> <span class="n">serialOut</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv26TriOsc">
-<span id="TriOsc"></span><span class="target" id="class_tri_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">TriOsc</code><a class="headerlink" href="#_CPPv26TriOsc" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Triangle/sawtooth oscillator. </p>
-<p>Inherits from PqGetter</p>
+<dt id="_CPPv28Smoother">
+<span id="Smoother"></span><span class="target" id="class_smoother"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Smoother</code><a class="headerlink" href="#_CPPv28Smoother" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Simple moving average transform filter. </p>
+<p>Inherits from PqPutter, MovingAverage</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N6TriOsc6TriOscEff">
-<span id="TriOsc::TriOsc__float.float"></span><span class="target" id="class_tri_osc_1a8126b6d38dcfb06573dc11dc25757f96"></span><code class="descname">TriOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f, float <em>width</em> = 0.5f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6TriOscEff" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv2N8Smoother8SmootherEf">
+<span id="Smoother::Smoother__float"></span><span class="target" id="class_smoother_1ac1af657886ce2aede8337649712203d2"></span><code class="descname">Smoother</code><span class="sig-paren">(</span>float <em>factor</em> = 0.1f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8Smoother8SmootherEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
-<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
+<li><code class="docutils literal"><span class="pre">factor</span></code>: a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means <em>more</em> smoothing) </li>
 </ul>
 </dd>
 </dl>
@@ -199,21 +223,15 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6TriOsc3getEv">
-<span id="TriOsc::get"></span><span class="target" id="class_tri_osc_1a8cba0f2200f73d63f68fe28135b4fab7"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc3getEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N6TriOsc6periodEf">
-<span id="TriOsc::period__float"></span><span class="target" id="class_tri_osc_1ab8129bfddc426ac48ccb2471b14187fe"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the period (in seconds). </p>
+<dt id="_CPPv2N8Smoother3putEf">
+<span id="Smoother::put__float"></span><span class="target" id="class_smoother_1a2b4b0740a9fe8206434acab35e8b6e21"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8Smoother3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
+<dd>the new value of the unit </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+<li><code class="docutils literal"><span class="pre">value</span></code>: the value sent to the unit </li>
 </ul>
 </dd>
 </dl>
@@ -221,40 +239,22 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6TriOsc9frequencyEf">
-<span id="TriOsc::frequency__float"></span><span class="target" id="class_tri_osc_1a6d00dfbe8a639d5792fdfefa5db856e3"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the frequency (in Hz). </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N6TriOsc5widthEf">
-<span id="TriOsc::width__float"></span><span class="target" id="class_tri_osc_1a2af438c36d1788f4360261cef96ddf59"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">width</code><span class="sig-paren">(</span>float <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc5widthEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the width of the wave. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
-</ul>
-</dd>
-</dl>
-</p>
+<dt id="_CPPv2N8Smoother3getEv">
+<span id="Smoother::get"></span><span class="target" id="class_smoother_1a5760d55bfd03a2059fcd7e8d3cb7cdcc"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N8Smoother3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns smoothed value. </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></li>
+<li><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></li>
+</ul>
+</div>
 </div>
 
 
@@ -267,10 +267,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SineOsc.html" class="btn btn-neutral float-right" title="SineOsc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Normalizer.html" class="btn btn-neutral float-right" title="Normalizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="SquareOsc.html" class="btn btn-neutral" title="SquareOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="MinMaxScaler.html" class="btn btn-neutral" title="MinMaxScaler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>StreamOut &mdash; Plaquette 0.1 documentation</title>
+  <title>MinMaxScaler &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="SquareOsc" href="SquareOsc.html"/>
-        <link rel="prev" title="StreamIn" href="StreamIn.html"/> 
+        <link rel="next" title="Smoother" href="Smoother.html"/>
+        <link rel="prev" title="SineOsc" href="SineOsc.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,18 +91,13 @@
             
             
               <p class="caption"><span class="caption-text">Base units</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">StreamOut</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
 <ul>
@@ -111,8 +106,14 @@
 <li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MinMaxScaler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notesandwarnings">Notes and Warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
@@ -160,13 +161,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>StreamOut</li>
+      <li>MinMaxScaler</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/StreamOut.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/MinMaxScaler.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,58 +180,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="streamout">
-<h1>StreamOut<a class="headerlink" href="#streamout" title="Permalink to this headline">¶</a></h1>
-<p>An output unit that transmits values through a stream – for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
+  <div class="section" id="minmaxscaler">
+<h1>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this headline">¶</a></h1>
+<p>This filtering unit regularizes incoming signals by remapping them into a new interval of [0, 1].
+It does so by keeping track of the minimum and the maximum values ever taken by the signal and
+rescales it such that the minimum value of the signal is mapped to 0 and the maximum value
+is mapped to 1.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+
+<span class="n">MinMaxScaler</span> <span class="n">scaler</span><span class="p">;</span>
+
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Output the number of seconds</span>
-  <span class="n">seconds</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">serialOut</span><span class="p">;</span>
+  <span class="c1">// Rescale value.</span>
+  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">scaler</span><span class="p">;</span>
+
+  <span class="c1">// Light led on threshold of 80%.</span>
+  <span class="p">(</span><span class="n">scaler</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>To run this example:</p>
-<ol class="arabic simple">
-<li>Upload the code.</li>
-<li>In the Arduino software open the serial monitor: <strong>Tools &gt; Serial Monitor</strong>.</li>
-<li>Make sure the default baudrate of <strong>9600</strong> bps is selected.</li>
-<li>You should see the seconds increase.</li>
-<li>Close the monitor and open serial plotter: <strong>Tools &gt; Serial Plotter</strong>.</li>
-<li>You should see a graphical representation of the seconds.</li>
-<li>Replace the line in <code class="docutils literal"><span class="pre">step()</span></code> by: <code class="docutils literal"><span class="pre">sin(seconds())</span> <span class="pre">&gt;&gt;</span> <span class="pre">serialOut</span></code> and upload. You should now see a sine wave signal in the serial plotter.</li>
-</ol>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv29StreamOut">
-<span id="StreamOut"></span><span class="target" id="class_stream_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">StreamOut</code><a class="headerlink" href="#_CPPv29StreamOut" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Stream/serial output. Number of digits of precision is configurable. </p>
+<dt id="_CPPv212MinMaxScaler">
+<span id="MinMaxScaler"></span><span class="target" id="class_min_max_scaler"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MinMaxScaler</code><a class="headerlink" href="#_CPPv212MinMaxScaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Regularizes signal into [0,1] by rescaling it using the min and max values. </p>
 <p>Inherits from PqPutter</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N9StreamOut9StreamOutER6Stream">
-<span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="class_stream_out_1ad59c0cf4ba569a44fe182f305c40814e"></span><code class="descname">StreamOut</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9StreamOutER6Stream" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv2N12MinMaxScaler12MinMaxScalerEv">
+<span id="MinMaxScaler::MinMaxScaler"></span><span class="target" id="class_min_max_scaler_1ab8f9afa34cf884b06959514484cc7c5f"></span><code class="descname">MinMaxScaler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler12MinMaxScalerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">stream</span></code>: a reference to a Stream object </li>
-</ul>
-</dd>
-</dl>
-</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9StreamOut3putEf">
-<span id="StreamOut::put__float"></span><span class="target" id="class_stream_out_1ac95ef84851f702608cdf77d0d8150f5d"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv2N12MinMaxScaler3putEf">
+<span id="MinMaxScaler::put__float"></span><span class="target" id="class_min_max_scaler_1a80a5a7a6dad6afaa557b6caa78df98fc"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler3putEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -245,37 +238,28 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9StreamOut3getEv">
-<span id="StreamOut::get"></span><span class="target" id="class_stream_out_1acab60ff320140343d690ecc0affae6ae"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3getEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Returns value. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N9StreamOut9precisionE7uint8_t">
-<span id="StreamOut::precision__uint8_t"></span><span class="target" id="class_stream_out_1a9981f5140a22ac76704abdf2a6ca174c"></span>void <code class="descname">precision</code><span class="sig-paren">(</span>uint8_t <em>digits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9precisionE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets precision of the output. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">digits</span></code>: the number of digits to show after decimal point </li>
-</ul>
-</dd>
-</dl>
-</p>
+<dt id="_CPPv2N12MinMaxScaler3getEv">
+<span id="MinMaxScaler::get"></span><span class="target" id="class_min_max_scaler_1a518e73aaf18fbb84b38137d91423196a"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns rescaled value. </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
+</div>
+<div class="section" id="notesandwarnings">
+<h2>Notes and Warnings<a class="headerlink" href="#notesandwarnings" title="Permalink to this headline">¶</a></h2>
+<p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
+that appear in rare conditions. One way to prevent this is to smooth incoming values using the <code class="docutils literal"><span class="pre">smooth()</span></code>
+method or a <code class="docutils literal"><span class="pre">Smoother</span></code> unit before sending to the <code class="docutils literal"><span class="pre">MinMaxScaler</span></code>. Another approach is to use a
+regularization unit that is less prone to outliers such as the <code class="docutils literal"><span class="pre">Normalizer</span></code> or the <code class="docutils literal"><span class="pre">AdaptiveNormalizer</span></code>.</p>
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></li>
-<li><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></li>
-<li><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial</a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/stream/">Arduino streams</a></li>
+<li><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></li>
+<li><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></li>
+<li><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></li>
 </ul>
 </div>
 </div>
@@ -290,10 +274,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SquareOsc.html" class="btn btn-neutral float-right" title="SquareOsc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Smoother.html" class="btn btn-neutral float-right" title="Smoother" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="StreamIn.html" class="btn btn-neutral" title="StreamIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="SineOsc.html" class="btn btn-neutral" title="SineOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
