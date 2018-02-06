@@ -43,21 +43,22 @@ public:
   virtual float get() { return _value; }
 
 protected:
+  // Core Plaquette methods.
   virtual void setup();
   virtual void update();
 
   // Current value.
   float _value;
 
-  // Internal use: keep track of next incoming value.
+  // Internal use: keep track of next incoming value in a non-blocking way.
   float _nextValue;
   float _nextFraction;
   bool _nextIsValid : 1;
   bool _nextIsNegative : 1;
   bool _nextIsFraction : 1;
 
-	// The stream.
-	Stream* _stream;
+  // The stream.
+  Stream* _stream;
 };
 
 /// Square oscillator. Duty cycle is expressed as % of period.
@@ -96,13 +97,21 @@ public:
   virtual SquareOsc& dutyCycle(float dutyCycle);
 
 protected:
+  // Core Plaquette methods.
   virtual void setup();
   virtual void update();
 
+  // Is the signal currently on (high) or off (low).
   bool _isOn;
-  float _period; // period (seconds)
-	float _dutyCycle; // duty-cycle (in % of period)
-  float _startTime; // start time of each period (in seconds)
+
+  // Period (seconds).
+  float _period;
+
+  // Duty-cycle (in % of period).
+  float _dutyCycle;
+
+  // Start time of each period (in seconds).
+  float _startTime;
 };
 
 /// Sine oscillator. Phase is expressed as % of period.
@@ -140,14 +149,22 @@ public:
   virtual SineOsc& phase(float phase);
 
 protected:
+  // Core Plaquette methods.
   virtual void setup();
   virtual void update();
 
   void _update(float t);
 
+  // Current value of the signal.
   float _value;
+
+  // Period (seconds).
   float _period;
+
+  // Phase (seconds).
   float _phase;
+
+  // Start time of each period (in seconds).
   float _startTime;
 };
 
@@ -189,12 +206,20 @@ public:
   virtual TriOsc& width(float width);
 
 protected:
+  // Core Plaquette methods.
   virtual void setup();
   virtual void update();
 
+  // Current value of the signal.
   float _value;
+
+  // Period (seconds).
   float _period;
+
+  // Tipping-point (in % of period).
   float _width;
+
+  // Start time of each period (in seconds).
   float _startTime;
 };
 
@@ -278,14 +303,15 @@ public:
    */
   virtual void precision(uint8_t digits);
 
+protected:
   // Current value.
   float _value;
 
   // Number of digits of precision.
   uint8_t _digits;
 
-	// The stream.
-	Stream* _stream;
+  // The stream.
+  Stream* _stream;
 };
 
 /// Generates a simple ASCII-based representation of a signal.
@@ -299,6 +325,7 @@ public:
 
   virtual float get() { return _value; }
 
+protected:
   // Current value.
   float _value;
 
@@ -312,49 +339,121 @@ public:
 /// Simple moving average transform filter.
 class Smoother : public PqPutter, public MovingAverage {
 public:
+  /**
+   * Constructor.
+   * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   */
   Smoother(float factor=0.1f);
   virtual ~Smoother() {}
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns smoothed value.
   virtual float get() { return MovingAverage::get(); }
 };
 
-/// Adaptive normalizer: normalizes values on-the-run using exponential moving
-/// averages over mean and stddev.
+/**
+ * Adaptive normalizer: normalizes values on-the-run using exponential moving
+ * averages over mean and standard deviation.
+ */
 class AdaptiveNormalizer : public PqPutter, public MovingStats {
 public:
-  AdaptiveNormalizer(float smoothFactor=0.001f);
+  /**
+   * Default constructor. Will renormalize data around a mean of 0 and a standard
+   * deviation of 1.
+   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   */
+   AdaptiveNormalizer(float smoothFactor=0.001f);
+
+  /**
+   * Constructor.
+   * @param mean the target mean
+   * @param stddev the target standard deviation
+   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   */
   AdaptiveNormalizer(float mean, float stddev, float smoothFactor=0.001f);
   virtual ~AdaptiveNormalizer() {}
 
-  void setMean(float mean) { _mean = mean; }
-  void setStddev(float stddev) { _stddev = stddev; };
+  /**
+   * Sets target mean of normalized values.
+   * @param mean the target mean
+   */
+  AdaptiveNormalizer& targetMean(float mean) { _mean = mean; return *this; }
 
+  /**
+   * Sets target standard deviation of normalized values.
+   * @param stddev the target standard deviation
+   */
+  AdaptiveNormalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns normalized value.
   virtual float get() { return _value; }
 
+protected:
+  // Current value (normalized).
   float _value;
+
+  // Target normalization parameters.
   float _mean;
   float _stddev;
 };
 
-/// Standard normalizer: normalizes values on-the-run using real mean and stddev.
+/// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
 class Normalizer : public PqPutter, public SimpleStats {
 public:
+  /**
+   * Default constructor. Will renormalize data around a mean of 0 and a standard
+   * deviation of 1.
+   */
   Normalizer();
+
+  /**
+   * Constructor.
+   * @param mean the target mean
+   * @param stddev the target standard deviation
+   */
   Normalizer(float mean, float stddev);
   virtual ~Normalizer() {}
 
-  void setMean(float mean) { _mean = mean; }
-  void setStddev(float stddev) { _stddev = stddev; };
+  /**
+   * Sets target mean of normalized values.
+   * @param mean the target mean
+   */
+  Normalizer& targetMean(float mean) { _mean = mean; return *this; }
 
+  /**
+   * Sets target standard deviation of normalized values.
+   * @param stddev the target standard deviation
+   */
+  Normalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns normalized value.
   virtual float get() { return _value; }
 
+protected:
+  // Current value (normalized).
   float _value;
+
+  // Target normalization parameters.
   float _mean;
   float _stddev;
 };
@@ -362,15 +461,28 @@ public:
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
 class MinMaxScaler : public PqPutter {
 public:
+  /// Constructor.
   MinMaxScaler();
   virtual ~MinMaxScaler() {}
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns rescaled value.
   virtual float get() { return _value; }
 
+protected:
+  // Current value (rescaled).
   float _value;
+
+  // Minmum value ever put.
   float _minValue;
+
+  // Maximum value ever put.
   float _maxValue;
 };
 
@@ -397,10 +509,17 @@ public:
   Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns true iff the threshold is crossed.
   virtual bool isOn() { return _value; }
 
+protected:
 	// Threshold values.
   float _threshold;
 	float _resetThreshold;

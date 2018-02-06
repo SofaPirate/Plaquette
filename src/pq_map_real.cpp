@@ -1,5 +1,5 @@
 /*
- * pq_map_float.cpp
+ * pq_map_real.cpp
  *
  * Equivalent of Arduino map() method but for floats and doubles.
  *
@@ -22,12 +22,21 @@
 
 #include "pq_map_real.h"
 
-float map(float x, float in_min, float in_max, float out_min, float out_max)
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh)
 {
- return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  // Avoid divisions by zero.
+  if (fromLow == fromHigh)
+    return (toLow + toHigh) / 2.0f; // dummy value
+ return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 }
 
-double map(double x, double in_min, double in_max, double out_min, double out_max)
-{
- return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+float mapFrom01(double value, double toLow, double toHigh) {
+  return (value * (toHigh - toLow)) + toLow;
+}
+
+float mapTo01(double value, double fromLow, double fromHigh) {
+  // Avoid divisions by zero.
+  if (fromLow == fromHigh)
+    return 0.5f; // dummy value
+  return (value - fromLow) / (fromHigh - fromLow);
 }

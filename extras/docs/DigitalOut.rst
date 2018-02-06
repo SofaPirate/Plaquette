@@ -31,7 +31,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 
 |Reference|
-----------------
+-----------
 
 .. doxygenclass:: DigitalOut
    :project: Plaquette

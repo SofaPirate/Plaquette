@@ -12,6 +12,7 @@ AnalogOut	KEYWORD1
 DigitalOut	KEYWORD1
 
 StreamIn	KEYWORD1
+StreamOut	KEYWORD1
 
 SquareOsc	KEYWORD1
 TriOsc	KEYWORD1
@@ -23,8 +24,6 @@ MinMaxScaler	KEYWORD1
 Smoother	KEYWORD1
 Thresholder	KEYWORD1
 
-StreamOut	KEYWORD1
-
 ServoOut	KEYWORD1
 
 #######################################
@@ -33,9 +32,6 @@ ServoOut	KEYWORD1
 
 begin	KEYWORD2
 step	KEYWORD2
-
-setup	KEYWORD2
-update	KEYWORD2
 
 pin	KEYWORD2
 mode	KEYWORD2
@@ -52,6 +48,17 @@ getInt	KEYWORD2
 smooth	KEYWORD2
 noSmooth	KEYWORD2
 
+period	KEYWORD2
+dutyCycle	KEYWORD2
+width	KEYWORD2
+phase	KEYWORD2
+precision	KEYWORD2
+targetMean	KEYWORD2
+targetStdDev	KEYWORD2
+
+mapFloat	KEYWORD2
+mapFrom01	KEYWORD2
+mapTo01	KEYWORD2
 randomUniform	KEYWORD2
 seconds	KEYWORD2
 

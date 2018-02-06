@@ -12,9 +12,26 @@
    StreamOut
 
 .. toctree::
-  :caption: Generators
-  :maxdepth: 1
+   :caption: Generators
+   :maxdepth: 1
 
-  SquareOsc
-  TriOsc
-  SineOsc
+   SquareOsc
+   TriOsc
+   SineOsc
+
+.. toctree::
+   :caption: Filters
+   :maxdepth: 1
+
+   AdaptiveNormalizer
+   MinMaxScaler
+   Normalizer
+   Smoother
+
+.. toctree::
+   :caption: Functions
+   :maxdepth: 1
+
+   mapFloat
+   randomFloat
+   seconds

@@ -60,7 +60,7 @@ public:
   float update(float v);
 
   /// Returns the value of the moving average. This is undefined if isValid() == false.
-  float get() const { return _value; }
+  float get() { return _value; }
 
   /// Returns true iff the moving average has already been started.
   bool isStarted() const;
