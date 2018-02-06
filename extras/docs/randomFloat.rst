@@ -1,7 +1,7 @@
 .. include:: defs.hrst
 
-randomUniform()
-===============
+randomFloat()
+=============
 
 This function returns a random real-valued number.
 
@@ -17,7 +17,7 @@ This function returns a random real-valued number.
 
    void step() {
      // 2% probability to toggle the LED
-     if (randomUniform() < 0.02)
+     if (randomFloat() < 0.02)
        led.toggle();
    }
 
@@ -25,13 +25,13 @@ This function returns a random real-valued number.
 |Reference|
 ----------------
 
-.. doxygenfunction:: randomUniform()
+.. doxygenfunction:: randomFloat()
    :project: Plaquette
 
-.. doxygenfunction:: randomUniform(float)
+.. doxygenfunction:: randomFloat(float)
    :project: Plaquette
 
-.. doxygenfunction:: randomUniform(float, float)
+.. doxygenfunction:: randomFloat(float, float)
    :project: Plaquette
 
 |SeeAlso|

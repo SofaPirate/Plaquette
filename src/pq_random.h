@@ -31,12 +31,12 @@
 // Floating point random numbers.
 
 /// Generates a uniform random number in the interval [0,1).
-float randomUniform();
+float randomFloat();
 
 /// Generates a uniform random number in the interval [0,max).
-float randomUniform(float max);
+float randomFloat(float max);
 
 /// Generates a uniform random number in the interval [min,max) (b>a).
-float randomUniform(float min, float max);
+float randomFloat(float min, float max);
 
 #endif

@@ -19,14 +19,14 @@
 
 #include "pq_random.h"
 
-float randomUniform() {
+float randomFloat() {
   return (float)rand() / (float) RAND_MAX;
 }
 
-float randomUniform(float max) {
-  return (randomUniform() * max);
+float randomFloat(float max) {
+  return (randomFloat() * max);
 }
 
-float randomUniform(float min, float max) {
-  return (randomUniform() * (max - min) + min);
+float randomFloat(float min, float max) {
+  return (randomFloat() * (max - min) + min);
 }
