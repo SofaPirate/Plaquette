@@ -33,7 +33,5 @@
    :maxdepth: 1
 
    mapFloat
-   mapFrom01
-   mapTo01
-   randomUniform
+   randomFloat
    seconds
