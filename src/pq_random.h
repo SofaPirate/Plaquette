@@ -33,10 +33,19 @@
 /// Generates a uniform random number in the interval [0,1).
 float randomFloat();
 
+// Deprecated. Left for backwards compatibility.
+float randomUniform();
+
 /// Generates a uniform random number in the interval [0,max).
 float randomFloat(float max);
 
+// Deprecated. Left for backwards compatibility.
+float randomUniform(float max);
+
 /// Generates a uniform random number in the interval [min,max) (b>a).
 float randomFloat(float min, float max);
+
+// Deprecated. Left for backwards compatibility.
+float randomUniform(float min, float max);
 
 #endif
