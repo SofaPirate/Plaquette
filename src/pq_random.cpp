@@ -23,16 +23,14 @@ float randomFloat() {
   return (float)rand() / (float) RAND_MAX;
 }
 
-float randomUniform() { return randomFloat(); }
-
 float randomFloat(float max) {
   return (randomFloat() * max);
 }
-
-float randomUniform(float max) { return randomFloat(max); }
 
 float randomFloat(float min, float max) {
   return (randomFloat() * (max - min) + min);
 }
 
+float randomUniform() { return randomFloat(); }
+float randomUniform(float max) { return randomFloat(max); }
 float randomUniform(float min, float max) { return randomFloat(min, max); }
