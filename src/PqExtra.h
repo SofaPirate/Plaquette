@@ -223,57 +223,83 @@ protected:
   float _startTime;
 };
 
-class Tween : public PqGetter {
+// TODO: implement a floating-point version of Chrono in Plaquette and make
+// ramp a subclass of that class.
+/**
+ * Provides a ramping / tweening mechanism that allows smooth transitions between
+ * two values.
+ */
+class Ramp : public PqGetter {
 public:
   /**
    * Constructor.
-   * @param duration the duration of the transition
+   * @param initialValue the value the ramp starts with
    */
-  Tween(float duration=1.0f);
-  virtual ~Tween() {}
+  Ramp(float initialValue=0.0f);
+  virtual ~Ramp() {}
 
   /// Returns value in [0, 1].
   virtual float get() { return _value; }
 
   /**
-   * Sets the period (in seconds).
-   * @param period the period of oscillation (in seconds)
-   * @return the unit itself
+   * Starts a new ramp (starting from current value).
+   * @param to the final value
+   * @param duration the duration of the ramp (in seconds)
    */
-  virtual Tween& duration(float duration);
-  virtual Tween& fromTo(float from, float to);
-  virtual Tween& to(float to);
+  virtual void start(float to, float duration);
 
-  //  virtual Tween& easing(uint8_t easing);
+  /**
+   * Starts a new ramp.
+   * @param from the initial value
+   * @param to the final value
+   * @param duration the duration of the ramp (in seconds)
+   */
+  virtual void start(float from, float to, float duration);
 
-  virtual void start();
-//  virtual Tween& start(float duration);
-//  virtual Tween& start(float to, float duration);
-//  virtual Tween& start(float from, float to, float duration);
-
-  virtual void pause();
-
-  virtual void resume();
-
+  /// Interrupts the ramp.
   virtual void stop();
 
+  /// Resumes process.
+  virtual void resume();
+
+  /// The time currently elapsed by the ramp (in seconds).
   virtual float elapsed() const { return _elapsedTime; }
+
+  /// The progress of the ramping process (in %).
   virtual float progress() const;
 
+  /// Returns true iff the ramp is currently running.
   bool isRunning() const { return _isRunning; }
+
+  /// Returns true iff the ramp has completed its process.
   bool isFinished() const { return progress() >= 1.0; }
 
 protected:
   virtual void setup();
   virtual void update();
 
+  // The current value of the ramp.
   float _value;
+
+  // The duration.
   float _duration;
+
+  // The starting point.
   float _from;
+
+  // The variation from starting point targetted.
   float _change;
+
+  // The starting time (in seconds).
   float _startTime;
+
+  // The offset time
   float _offsetTime;
+
+  // The current elapsed time.
   float _elapsedTime;
+
+  // Is th ramp running or not?
   bool _isRunning;
 };
 

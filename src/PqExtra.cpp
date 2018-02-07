@@ -167,77 +167,69 @@ TriOsc& TriOsc::width(float width) {
 }
 
 
-Tween::Tween(float duration_) :
-	_value(0), _duration(duration_),
-	_from(0), _change(1),
+Ramp::Ramp(float initialValue_) :
+	_value(initialValue_), _duration(),
+	_from(initialValue_), _change(0),
 	_startTime(0), _offsetTime(0),
 	_isRunning(false)
 {
-	stop();
 }
 
-Tween& Tween::duration(float duration) {
-	stop();
+void Ramp::start(float to, float duration) {
+	start(_value, to, duration);
+}
+
+void Ramp::start(float from, float to, float duration) {
+	// Set parameters.
 	_duration = duration;
-	return *this;
-}
-
-Tween& Tween::fromTo(float from, float to) {
-	stop();
 	_from = from;
-	_change = to - from;
-	return *this;
-}
+	_change = (to - from);
 
-Tween& Tween::to(float to) {
-	stop();
-	_from = _value;
-	_change = to - _from;
-	return *this;
-}
-
-void Tween::start() {
+	// Start.
 	_startTime = seconds();
 	_offsetTime = 0;
 	_isRunning = true;
 }
 
-void Tween::pause() {
+void Ramp::stop() {
 	if (_isRunning) {
 		_offsetTime = elapsed();
 		_isRunning = false;
 	}
 }
 
-void Tween::resume() {
+void Ramp::resume() {
 	if (!_isRunning) {
 		_startTime = seconds();
 		_isRunning = true;
 	}
 }
 
-void Tween::stop() {
-	_startTime = _offsetTime = 0;
-	_isRunning = false;
-}
-
-float Tween::progress() const {
+float Ramp::progress() const {
+	// Compute progress as % of duration.
 	float prog = elapsed() / _duration;
 	prog = constrain(prog, 0, 1);
 	return prog;
 }
 
-void Tween::setup() {
-	stop();
+void Ramp::setup() {
+	// Basic reset.
+	_startTime = _offsetTime = 0;
+	_isRunning = false;
 }
 
-void Tween::update() {
-	// Compute current elapsed time.
-	_elapsedTime = _offsetTime + (_isRunning ? (seconds() - _startTime) : 0);
+void Ramp::update() {
+	// Offset elapsed time.
+	_elapsedTime = _offsetTime;
 
-	// Compute value if running -- otherwise leave as is.
-	if (_isRunning)
-		_value = map(progress(), 0.0f, 1.0f, _from, (_from + _change));
+	if (_isRunning) {
+		// Add difference to elapsed time.
+	 	_elapsedTime += (seconds() - _startTime);
+
+		// Compute value if running -- otherwise leave as is.
+		// TODO: implement easing functions
+	  _value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
+	}
 }
 
 StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
