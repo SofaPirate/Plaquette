@@ -49,6 +49,7 @@ smooth	KEYWORD2
 noSmooth	KEYWORD2
 
 period	KEYWORD2
+frequency	KEYWORD2
 dutyCycle	KEYWORD2
 width	KEYWORD2
 phase	KEYWORD2
@@ -57,9 +58,7 @@ targetMean	KEYWORD2
 targetStdDev	KEYWORD2
 
 mapFloat	KEYWORD2
-mapFrom01	KEYWORD2
-mapTo01	KEYWORD2
-randomUniform	KEYWORD2
+randomFloat	KEYWORD2
 seconds	KEYWORD2
 
 #######################################
