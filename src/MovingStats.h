@@ -52,7 +52,7 @@ public:
   virtual float update(float value);
 
   /// The statistics.
-  virtual float mean() const { return avg.get(); }
+  virtual float mean() const { return avg.constGet(); }
   virtual float var() const { return _var; }
 
   virtual bool isStarted() const;

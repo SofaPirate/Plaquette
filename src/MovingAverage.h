@@ -61,6 +61,7 @@ public:
 
   /// Returns the value of the moving average. This is undefined if isValid() == false.
   float get() { return _value; }
+  float constGet() const { return _value; }
 
   /// Returns true iff the moving average has already been started.
   bool isStarted() const;
