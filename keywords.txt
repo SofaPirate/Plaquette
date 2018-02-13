@@ -18,9 +18,10 @@ SquareOsc	KEYWORD1
 TriOsc	KEYWORD1
 SineOsc	KEYWORD1
 
-Normalizer	KEYWORD1
 AdaptiveNormalizer	KEYWORD1
 MinMaxScaler	KEYWORD1
+Normalizer	KEYWORD1
+Ramp	KEYWORD1
 Smoother	KEYWORD1
 Thresholder	KEYWORD1
 
@@ -56,6 +57,12 @@ phase	KEYWORD2
 precision	KEYWORD2
 targetMean	KEYWORD2
 targetStdDev	KEYWORD2
+
+start	KEYWORD2
+elapsed	KEYWORD2
+progress	KEYWORD2
+isStarted	KEYWORD2
+isComplete	KEYWORD2
 
 mapFloat	KEYWORD2
 randomFloat	KEYWORD2
