@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.1.4
+                0.1.5
               </div>
             
           
@@ -98,7 +98,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">AnalogOut</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notesandwarnings">Notes and Warnings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -107,9 +106,10 @@
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
 <ul>
@@ -267,12 +267,23 @@
 </div>
 </dd></dl>
 
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On most Arduino boards analog outputs rely on <a class="reference external" href="https://www.arduino.cc/en/Tutorial/PWM">Pulse Width Modulation (PWM)</a>.
+After a call to <code class="docutils literal"><span class="pre">put(value)</span></code>, the pin will generate a steady square wave of the
+specified duty cycle until the next call to <code class="docutils literal"><span class="pre">put()</span></code> on the same pin. The frequency
+of the PWM signal on most pins is approximately 490 Hz. On the Uno and similar boards,
+pins 5 and 6 have a frequency of approximately 980 Hz.</p>
 </div>
-<div class="section" id="notesandwarnings">
-<h2>Notes and Warnings<a class="headerlink" href="#notesandwarnings" title="Permalink to this headline">¶</a></h2>
-<p>On most Arduino boards analog outputs rely on <a class="reference external" href="https://www.arduino.cc/en/Tutorial/PWM">Pulse Width Modulation (PWM)</a>. After a call to <code class="docutils literal"><span class="pre">put(value)</span></code>, the pin will generate a steady square wave of the specified duty cycle until the next call to <code class="docutils literal"><span class="pre">put()</span></code> on the same pin. The frequency of the PWM signal on most pins is approximately 490 Hz. On the Uno and similar boards, pins 5 and 6 have a frequency of approximately 980 Hz.</p>
-<p>On most Arduino boards (those with the ATmega168 or ATmega328P), this functionality works on pins 3, 5, 6, 9, 10, and 11. On the Arduino Mega, it works on pins 2 - 13 and 44 - 46. Older Arduino boards with an ATmega8 only support analogWrite() on pins 9, 10, and 11.
-The Arduino DUE supports analog output on pins 2 through 13, plus pins DAC0 and DAC1. Unlike the PWM pins, DAC0 and DAC1 are Digital to Analog converters, and act as true analog outputs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On most Arduino boards (those with the ATmega168 or ATmega328P), this functionality
+works on pins 3, 5, 6, 9, 10, and 11. On the Arduino Mega, it works on pins
+2 - 13 and 44 - 46. Older Arduino boards with an ATmega8 only support <code class="docutils literal"><span class="pre">AnalogOut</span></code>
+on pins 9, 10, and 11. The Arduino DUE supports analog output on pins 2 through 13,
+plus pins DAC0 and DAC1. Unlike the PWM pins, DAC0 and DAC1 are Digital to Analog
+converters, and act as true analog outputs.</p>
+</div>
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>

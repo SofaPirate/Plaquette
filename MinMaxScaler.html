@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.1.4
+                0.1.5
               </div>
             
           
@@ -101,9 +101,10 @@
 </ul>
 <p class="caption"><span class="caption-text">Generators</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
 <ul class="current">
@@ -111,7 +112,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MinMaxScaler</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notesandwarnings">Notes and Warnings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -252,13 +252,13 @@ is mapped to 1.</p>
 </div>
 </dd></dl>
 
-</div>
-<div class="section" id="notesandwarnings">
-<h2>Notes and Warnings<a class="headerlink" href="#notesandwarnings" title="Permalink to this headline">¶</a></h2>
-<p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
 that appear in rare conditions. One way to prevent this is to smooth incoming values using the <code class="docutils literal"><span class="pre">smooth()</span></code>
 method or a <code class="docutils literal"><span class="pre">Smoother</span></code> unit before sending to the <code class="docutils literal"><span class="pre">MinMaxScaler</span></code>. Another approach is to use a
 regularization unit that is less prone to outliers such as the <code class="docutils literal"><span class="pre">Normalizer</span></code> or the <code class="docutils literal"><span class="pre">AdaptiveNormalizer</span></code>.</p>
+</div>
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>

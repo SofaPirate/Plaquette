@@ -15,9 +15,10 @@
    :caption: Generators
    :maxdepth: 1
 
+   Ramp
+   SineOsc
    SquareOsc
    TriOsc
-   SineOsc
 
 .. toctree::
    :caption: Filters

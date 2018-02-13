@@ -36,10 +36,9 @@ The ``mode`` specifies the behavior of the component attached to the pin:
    :project: Plaquette
    :members: AnalogIn, get, smooth, noSmooth, pin, mode
 
-|NotesAndWarnings|
-------------------
+.. warning::
 
-If the analog input pin is not connected to anything, the value returned by ``get()`` will fluctuate based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to the board, etc.).
+   If the analog input pin is not connected to anything, the value returned by ``get()`` will fluctuate based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to the board, etc.).
 
 |SeeAlso|
 ---------
