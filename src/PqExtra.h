@@ -272,7 +272,7 @@ public:
   bool isRunning() const { return _isRunning; }
 
   /// Returns true iff the ramp has completed its process.
-  bool isFinished() const { return progress() >= 1.0; }
+  bool isComplete() const { return progress() >= 1.0; }
 
 protected:
   virtual void setup();
