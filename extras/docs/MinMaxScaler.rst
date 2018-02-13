@@ -36,13 +36,12 @@ is mapped to 1.
    :project: Plaquette
    :members: MinMaxScaler, get, put
 
-|NotesAndWarnings|
-------------------
+.. note::
 
-This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
-that appear in rare conditions. One way to prevent this is to smooth incoming values using the ``smooth()``
-method or a ``Smoother`` unit before sending to the ``MinMaxScaler``. Another approach is to use a
-regularization unit that is less prone to outliers such as the ``Normalizer`` or the ``AdaptiveNormalizer``.
+   This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
+   that appear in rare conditions. One way to prevent this is to smooth incoming values using the ``smooth()``
+   method or a ``Smoother`` unit before sending to the ``MinMaxScaler``. Another approach is to use a
+   regularization unit that is less prone to outliers such as the ``Normalizer`` or the ``AdaptiveNormalizer``.
 
 |SeeAlso|
 ---------
