@@ -102,7 +102,11 @@
 <p class="caption"><span class="caption-text">Generators</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">SineOsc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SineOsc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
 </ul>
@@ -183,6 +187,24 @@
             
   <div class="section" id="sineosc">
 <h1>SineOsc<a class="headerlink" href="#sineosc" title="Permalink to this headline">¶</a></h1>
+<p>A source unit that can generate a sinusoid or <a class="reference external" href="https://en.wikipedia.org/wiki/Sine_wave">sine wave</a>.
+The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as
+the traditional sine wave).</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="n">SineOsc</span> <span class="n">osc</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">osc</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span> <span class="c1">// frequency of 5 Hz</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">osc</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <dl class="class">
 <dt id="_CPPv27SineOsc">
 <span id="SineOsc"></span><span class="target" id="class_sine_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SineOsc</code><a class="headerlink" href="#_CPPv27SineOsc" title="Permalink to this definition">¶</a><br /></dt>
@@ -242,25 +264,17 @@
 </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv2N7SineOsc5phaseEf">
-<span id="SineOsc::phase__float"></span><span class="target" id="class_sine_osc_1ad79ef8aa4c1589cf4274897fd6e074ba"></span><a class="reference internal" href="#_CPPv27SineOsc" title="SineOsc">SineOsc</a> &amp;<code class="descname">phase</code><span class="sig-paren">(</span>float <em>phase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N7SineOsc5phaseEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the phase (ie. </p>
-<p>the offset, in seconds). <dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">phrase</span></code>: the phase (in seconds) </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
 </div>
 </dd></dl>
 
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="SquareOsc.html"><span class="doc">SquareOsc</span></a></li>
+<li><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></li>
+</ul>
+</div>
 </div>
 
 

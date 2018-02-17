@@ -103,7 +103,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">SquareOsc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SquareOsc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Filters</span></p>
@@ -183,6 +187,26 @@
             
   <div class="section" id="squareosc">
 <h1>SquareOsc<a class="headerlink" href="#squareosc" title="Permalink to this headline">¶</a></h1>
+<p>A source unit that generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square wave</a>
+signal. The signal can be tuned by changing the <code class="docutils literal"><span class="pre">period</span></code> and/or <code class="docutils literal"><span class="pre">frequency</span></code>
+of the oscillation, as well as the <code class="docutils literal"><span class="pre">duty</span> <span class="pre">cycle</span></code> – which represents the percentage
+of time during which the wave is “on” or “high”.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>This code will make the built-in LED blink with a period of 2 seconds.</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="n">SquareOsc</span> <span class="nf">blinkOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">blinkOsc</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span> <span class="c1">// Sets the duty cycle to 25%</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">blinkOsc</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <dl class="class">
 <dt id="_CPPv29SquareOsc">
 <span id="SquareOsc"></span><span class="target" id="class_square_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">SquareOsc</code><a class="headerlink" href="#_CPPv29SquareOsc" title="Permalink to this definition">¶</a><br /></dt>
@@ -280,6 +304,14 @@
 </div>
 </dd></dl>
 
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a></li>
+<li><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></li>
+</ul>
+</div>
 </div>
 
 
