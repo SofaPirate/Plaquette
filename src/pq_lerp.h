@@ -1,8 +1,10 @@
 /*
- * Plaquette.h
+ * pq_lerp.h
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
- * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * Equivalent of Processing lerp() method.
+ *
+ * (c) 2017 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2017 Thomas O Fredericks :: tof(@)t-o-f(.)info
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,32 +20,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
+#ifndef PQ_LERP_H_
+#define PQ_LERP_H_
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
-// Plaquette builtin functions.
-#include "pq_lerp.h"
-#include "pq_map_real.h"
-#include "pq_print.h"
-#include "pq_random.h"
-#include "pq_time.h"
-
-// Core files.
-#include "PqCore.h"
-#include "PqInputs.h"
-#include "PqOutputs.h"
-
-// Basic set of extra components.
-#include "PqExtra.h"
-
-// Plaquette builtin runtime functions.
-void begin();
-void step();
+/**
+ * Calculates a number between two numbers at a specific increment.
+ * @param from the starting value
+ * @param to the end value
+ * @param amount the amount to interpolate between the two values in [0, 1]
+ * @return the linear interpolation of the two numbers
+ */
+float lerp(float from, float to, float amount);
 
 #endif
