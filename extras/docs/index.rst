@@ -4,10 +4,10 @@
    :caption: Base units
    :maxdepth: 1
 
-   DigitalIn
-   DigitalOut
    AnalogIn
    AnalogOut
+   DigitalIn
+   DigitalOut
    StreamIn
    StreamOut
 
