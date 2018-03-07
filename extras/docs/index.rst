@@ -36,3 +36,10 @@
    mapFloat
    randomFloat
    seconds
+
+.. toctree::
+   :caption: Structure
+   :maxdepth: 1
+
+   dot
+   pipe
