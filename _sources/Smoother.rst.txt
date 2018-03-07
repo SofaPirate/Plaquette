@@ -3,7 +3,9 @@
 Smoother
 ========
 
-Smooths the incoming signal.
+Smooths the incoming signal by removing fast variations and noise (high frequencies).
+
+.. image:: images/Plaquette-Smooth.png
 
 |Example|
 ---------
@@ -22,6 +24,10 @@ Smooths the incoming signal.
      // Smooth value and send it to serial output.
      sensor >> smoother >> serialOut;
    }
+
+.. note::
+   The filter uses an `exponential moving average <https://en.wikipedia.org/wiki/Exponential_smoothing>`_
+   which corresponds to a form of `low-pass filter <https://en.wikipedia.org/wiki/Low-pass_filter>_`.
 
 |Reference|
 -----------

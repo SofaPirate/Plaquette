@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.1.5
+                0.1.6
               </div>
             
           
@@ -92,10 +94,10 @@
             
               <p class="caption"><span class="caption-text">Base units</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structure</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
 </ul>
 
             
@@ -191,12 +198,14 @@
 <a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_wave">triangle wave</a> and the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Sawtooth_wave">sawtooth wave</a>. The signal can be
 adjusted by changing the <code class="docutils literal"><span class="pre">period</span></code> and/or <code class="docutils literal"><span class="pre">frequency</span></code> of the oscillation.</p>
+<img alt="_images/Plaquette-TriOsc.png" src="_images/Plaquette-TriOsc.png" />
 <p>The <code class="docutils literal"><span class="pre">width</span></code> parameter represents the “turning point” during the period at which
 the signals reaches its maximum and starts going down again. Changing the width
 allows to generate different kinds of triangular-shaped waves. For example, by
 setting width to 1.0 (100%) one obtains a <em>sawtooth</em> wave; by setting it to 0.0 (0%)
 an <em>inverted sawtooth</em> is created; anything in between generates different flavors
 of <em>triangle</em> waves.</p>
+<img alt="_images/Plaquette-TriOsc-Width.png" src="_images/Plaquette-TriOsc-Width.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>This code controls a set of traffic lights that go: red, yellow, green, red, yellow,

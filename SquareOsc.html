@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.1.5
+                0.1.6
               </div>
             
           
@@ -92,10 +94,10 @@
             
               <p class="caption"><span class="caption-text">Base units</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structure</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
 </ul>
 
             
@@ -189,14 +196,18 @@
 <h1>SquareOsc<a class="headerlink" href="#squareosc" title="Permalink to this headline">¶</a></h1>
 <p>A source unit that generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square wave</a>
 signal. The signal can be tuned by changing the <code class="docutils literal"><span class="pre">period</span></code> and/or <code class="docutils literal"><span class="pre">frequency</span></code>
-of the oscillation, as well as the <code class="docutils literal"><span class="pre">duty</span> <span class="pre">cycle</span></code> – which represents the percentage
-of time during which the wave is “on” or “high”.</p>
+of the oscillation, as well as the <code class="docutils literal"><span class="pre">duty</span> <span class="pre">cycle</span></code>.</p>
+<img alt="_images/Plaquette-SquareOsc.png" src="_images/Plaquette-SquareOsc.png" />
+<p>The duty cycle represents the proportion of time (expressed as a percentage) in each
+cycle (period) during which the wave is “on”.</p>
+<img alt="_images/Plaquette-SquareOsc-DutyCycle.png" src="_images/Plaquette-SquareOsc-DutyCycle.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>This code will make the built-in LED blink with a period of 2 seconds.</p>
+<p>This code will make the built-in LED blink with a period of 4 seconds. Because the
+duty cycle is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="n">SquareOsc</span> <span class="nf">blinkOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="n">SquareOsc</span> <span class="nf">blinkOsc</span><span class="p">(</span><span class="mf">4.0</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">blinkOsc</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span> <span class="c1">// Sets the duty cycle to 25%</span>

@@ -30,6 +30,8 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                0.1.5
+                0.1.6
               </div>
             
           
@@ -92,10 +94,10 @@
             
               <p class="caption"><span class="caption-text">Base units</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
@@ -123,6 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
 <li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structure</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
 </ul>
 
             
@@ -188,7 +195,8 @@
             
   <div class="section" id="smoother">
 <h1>Smoother<a class="headerlink" href="#smoother" title="Permalink to this headline">¶</a></h1>
-<p>Smooths the incoming signal.</p>
+<p>Smooths the incoming signal by removing fast variations and noise (high frequencies).</p>
+<img alt="_images/Plaquette-Smooth.png" src="_images/Plaquette-Smooth.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
@@ -204,6 +212,11 @@
   <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">smoother</span> <span class="o">&gt;&gt;</span> <span class="n">serialOut</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The filter uses an <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_smoothing">exponential moving average</a>
+which corresponds to a form of <cite>low-pass filter &lt;https://en.wikipedia.org/wiki/Low-pass_filter&gt;_</cite>.</p>
 </div>
 </div>
 <div class="section" id="reference">

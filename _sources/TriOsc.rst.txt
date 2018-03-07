@@ -8,12 +8,16 @@ A source unit that can generate a range of triangle-shaped signals such as the
 `sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_. The signal can be
 adjusted by changing the ``period`` and/or ``frequency`` of the oscillation.
 
+.. image:: images/Plaquette-TriOsc.png
+
 The ``width`` parameter represents the "turning point" during the period at which
 the signals reaches its maximum and starts going down again. Changing the width
 allows to generate different kinds of triangular-shaped waves. For example, by
 setting width to 1.0 (100%) one obtains a *sawtooth* wave; by setting it to 0.0 (0%)
 an *inverted sawtooth* is created; anything in between generates different flavors
 of *triangle* waves.
+
+.. image:: images/Plaquette-TriOsc-Width.png
 
 |Example|
 ---------
