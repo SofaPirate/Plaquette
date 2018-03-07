@@ -7,6 +7,8 @@ A source unit that can generate a sinusoid or `sine wave <https://en.wikipedia.o
 The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as
 the traditional sine wave).
 
+.. image:: images/Plaquette-SineOsc.png
+
 |Example|
 ---------
 

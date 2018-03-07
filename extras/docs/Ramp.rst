@@ -14,6 +14,8 @@ value ``to`` in ``duration`` seconds.
 Alternatively, calling ``start(to, duration)`` will start a transition from the ramp's
 current value to ``to`` in ``duration`` seconds.
 
+.. image:: images/Plaquette-Ramp.png
+
 |Example|
 ---------
 

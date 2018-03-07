@@ -8,6 +8,8 @@ It does so by keeping track of the minimum and the maximum values ever taken by 
 rescales it such that the minimum value of the signal is mapped to 0 and the maximum value
 is mapped to 1.
 
+.. image:: images/Plaquette-MinMaxScaler.png
+
 |Example|
 ---------
 
