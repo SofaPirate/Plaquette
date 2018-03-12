@@ -102,6 +102,14 @@ public:
   /// Object can be used directly to access its value.
   operator float() { return get(); }
 
+private:
+  // Prevents assignation operations by making them private.
+  PqGetter& operator=(bool);
+  PqGetter& operator=(int);
+  PqGetter& operator=(float);
+  PqGetter& operator=(PqGetter&);
+  PqGetter(const PqGetter&);
+
   // // Logical operators.
   // bool operator==(float value) { return get() == value; }
   // bool operator!=(float value) { return get() != value; }
