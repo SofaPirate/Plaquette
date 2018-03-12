@@ -27,6 +27,13 @@ Arduino.
   a bug in our `issue tracker`_.
 .. _issue tracker: https://github.com/SofaPirate/Plaquette/issues
 
+.. note::
+  The Plaquette reference text is licensed under a `Creative Commons Attribution-Share
+  Alike 3.0 License <https://creativecommons.org/licenses/by-sa/3.0/>`_. Parts of
+  the documentation has been borrowed and/or adapted from the `Arduino Reference
+  <https://www.arduino.cc/reference/en/>`_ and from the `Processing Reference
+  <https://processing.org/reference/>`_ texts.
+
 Getting started
 ---------------
 
