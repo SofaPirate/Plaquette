@@ -14,6 +14,9 @@ value ``to`` in ``duration`` seconds.
 Alternatively, calling ``start(to, duration)`` will start a transition from the ramp's
 current value to ``to`` in ``duration`` seconds.
 
+This diagram shows what happens to the ramp signal if ``start(5.0, 1.0, 2.0)`` is
+called, followed later by ``start(3.0, 1.0)``:
+
 .. image:: images/Plaquette-Ramp.png
 
 |Example|
