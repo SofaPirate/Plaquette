@@ -52,7 +52,7 @@ help:
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)/html/*
 
 .PHONY: doxygen
 doxygen:
