@@ -53,5 +53,5 @@ float SimpleStats::update(float value) {
 
 float SimpleStats::var() const {
   float v = (_mean2 - sq(_mean));
-  return max(v, (float)0); // make sure the result is >= 0
+  return max(v, 0.0f); // make sure the result is >= 0
 }
