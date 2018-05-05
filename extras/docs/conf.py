@@ -8,9 +8,12 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
     subprocess.call('doxygen', shell=True)
 
-html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'searchbox.html'], }
+html_sidebars = { '**': ['fulltoc.html', 'relations.html', 'searchbox.html'], }
 
 html_theme = "sphinx_rtd_theme"
+html_style = None
+html_theme_options = { 'collapse_navigation' : True }
+using_rtd_theme = True
 
 html_context = {
     'css_files': ['_static/css/custom.css'],
@@ -25,7 +28,7 @@ master_doc = 'index'
 project = u'Plaquette'
 copyright = u'2015, Plaquette'
 author = u'Plaquette'
-version = '0.1.6'
+version = '0.1.7'
 release = '0.1'
 language = None
 exclude_patterns = ['_build']
