@@ -53,11 +53,13 @@ void MovingAverage::reset(float startValue) {
 
 float MovingAverage::update(float v) {
   if (!isStarted()) {
+    // Initialize value with first read value -- which is always an unbiased sample.
     _value = v;
     _setStarted(true); // start
     return _value;
   }
   else
+    // Exponential moving average.
     return (_value -= _alpha * (_value - v));
 }
 
