@@ -25,28 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="SineOsc" href="SineOsc.html"/>
-        <link rel="prev" title="StreamOut" href="StreamOut.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="next" title="SineOsc" href="SineOsc.html" />
+    <link rel="prev" title="Generators" href="generators.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +58,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -92,44 +82,24 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ramp</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="generators.html">Generators</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -141,7 +111,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
@@ -149,9 +119,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -174,13 +145,15 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="generators.html">Generators</a> &raquo;</li>
+        
       <li>Ramp</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/Ramp.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Ramp.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -200,8 +173,10 @@ triggered to start transitioning to a target value for a certain duration.</p>
 <p>There are two ways to start the ramp.</p>
 <p>By calling <code class="docutils literal"><span class="pre">start(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code> the ramp will transition from value <code class="docutils literal"><span class="pre">from</span></code> to
 value <code class="docutils literal"><span class="pre">to</span></code> in <code class="docutils literal"><span class="pre">duration</span></code> seconds.</p>
-<p>Alternatively, calling <code class="docutils literal"><span class="pre">start(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp’s
+<p>Alternatively, calling <code class="docutils literal"><span class="pre">start(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp&#8217;s
 current value to <code class="docutils literal"><span class="pre">to</span></code> in <code class="docutils literal"><span class="pre">duration</span></code> seconds.</p>
+<p>This diagram shows what happens to the ramp signal if <code class="docutils literal"><span class="pre">start(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
+called, followed later by <code class="docutils literal"><span class="pre">start(3.0,</span> <span class="pre">1.0)</span></code>:</p>
 <img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
@@ -228,20 +203,20 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv24Ramp">
-<span id="Ramp"></span><span class="target" id="class_ramp"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Ramp</code><a class="headerlink" href="#_CPPv24Ramp" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp"></span><span class="target" id="class_ramp"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Ramp</code><a class="headerlink" href="#_CPPv24Ramp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides a ramping / tweening mechanism that allows smooth transitions between two values. </p>
 <p>Inherits from PqGetter</p>
-<div class="breathe-sectiondef docutils container">
+<div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
 <dt id="_CPPv2N4Ramp3getEv">
-<span id="Ramp::get"></span><span class="target" id="class_ramp_1aedcf38173dbfb2c8113e87525f3ce623"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::get"></span><span class="target" id="class_ramp_1aedcf38173dbfb2c8113e87525f3ce623"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp3getEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4Ramp5startEff">
-<span id="Ramp::start__float.float"></span><span class="target" id="class_ramp_1af8db0081f9d799878ad6269a8f7583da"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::start__float.float"></span><span class="target" id="class_ramp_1af8db0081f9d799878ad6269a8f7583da"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts a new ramp (starting from current value). </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -256,7 +231,7 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
 
 <dl class="function">
 <dt id="_CPPv2N4Ramp5startEfff">
-<span id="Ramp::start__float.float.float"></span><span class="target" id="class_ramp_1ae9fc9c3a405e9361487a43c4fdc6618e"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>from</em>, float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEfff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::start__float.float.float"></span><span class="target" id="class_ramp_1ae9fc9c3a405e9361487a43c4fdc6618e"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>from</em>, float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEfff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts a new ramp. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -272,31 +247,31 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
 
 <dl class="function">
 <dt id="_CPPv2N4Ramp4stopEv">
-<span id="Ramp::stop"></span><span class="target" id="class_ramp_1a6cc30f24b0fea107274087ed3dd1bb6c"></span>void <code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp4stopEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::stop"></span><span class="target" id="class_ramp_1a6cc30f24b0fea107274087ed3dd1bb6c"></span>void <code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp4stopEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interrupts the ramp. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N4Ramp6resumeEv">
-<span id="Ramp::resume"></span><span class="target" id="class_ramp_1a270b089fd018304009be7cd7a00f4421"></span>void <code class="descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp6resumeEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::resume"></span><span class="target" id="class_ramp_1a270b089fd018304009be7cd7a00f4421"></span>void <code class="descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp6resumeEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK4Ramp7elapsedEv">
-<span id="Ramp::elapsedC"></span><span class="target" id="class_ramp_1aaf62fd14a15faac1bb5f7a933249aa95"></span><em class="property">virtual</em> float <code class="descname">elapsed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp7elapsedEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::elapsedC"></span><span class="target" id="class_ramp_1aaf62fd14a15faac1bb5f7a933249aa95"></span><em class="property">virtual</em> float <code class="descname">elapsed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp7elapsedEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The time currently elapsed by the ramp (in seconds). </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK4Ramp8progressEv">
-<span id="Ramp::progressC"></span><span class="target" id="class_ramp_1a9c71d3eadbbfac69342c269419a5a7a5"></span>float <code class="descname">progress</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp8progressEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::progressC"></span><span class="target" id="class_ramp_1a9c71d3eadbbfac69342c269419a5a7a5"></span>float <code class="descname">progress</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp8progressEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The progress of the ramping process (in %). </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2NK4Ramp10isCompleteEv">
-<span id="Ramp::isCompleteC"></span><span class="target" id="class_ramp_1af4ddc78ee01029db0ae4284df9fbef57"></span>bool <code class="descname">isComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp10isCompleteEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Ramp::isCompleteC"></span><span class="target" id="class_ramp_1af4ddc78ee01029db0ae4284df9fbef57"></span>bool <code class="descname">isComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp10isCompleteEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns true iff the ramp has completed its process. </p>
 </dd></dl>
 
@@ -314,9 +289,7 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -325,7 +298,7 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
         <a href="SineOsc.html" class="btn btn-neutral float-right" title="SineOsc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="StreamOut.html" class="btn btn-neutral" title="StreamOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="generators.html" class="btn btn-neutral" title="Generators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -338,7 +311,7 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -357,10 +330,11 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -374,14 +348,11 @@ current value to <code class="docutils literal"><span class="pre">to</span></cod
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

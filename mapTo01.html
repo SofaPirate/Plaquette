@@ -25,26 +25,16 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +56,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -90,39 +80,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -134,7 +98,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
@@ -142,9 +106,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -173,7 +138,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/mapTo01.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mapTo01.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -218,7 +183,7 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="_CPPv27mapTo01ddd">
-<span id="mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8h_1acee0d3dee9cb366dffef63a348091308"></span>float <code class="descclassname"></code><code class="descname">mapTo01</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27mapTo01ddd" title="Permalink to this definition">¶</a><br /></dt>
+<span id="mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8h_1acee0d3dee9cb366dffef63a348091308"></span>float <code class="descclassname"></code><code class="descname">mapTo01</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27mapTo01ddd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Re-maps a number to the [0, 1] range. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -246,9 +211,7 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -261,7 +224,7 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -280,10 +243,11 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -297,14 +261,11 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

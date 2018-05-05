@@ -25,28 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Ramp" href="Ramp.html"/>
-        <link rel="prev" title="StreamIn" href="StreamIn.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="next" title="Generators" href="generators.html" />
+    <link rel="prev" title="StreamIn" href="StreamIn.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +58,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -92,44 +82,26 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">StreamOut</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="base_units.html">Base Units</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">StreamOut</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -141,7 +113,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
@@ -149,9 +121,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -174,13 +147,15 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="base_units.html">Base Units</a> &raquo;</li>
+        
       <li>StreamOut</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/StreamOut.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/StreamOut.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -195,7 +170,7 @@
             
   <div class="section" id="streamout">
 <h1>StreamOut<a class="headerlink" href="#streamout" title="Permalink to this headline">¶</a></h1>
-<p>An output unit that transmits values through a stream – for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
+<p>An output unit that transmits values through a stream &#8211; for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
@@ -223,14 +198,14 @@
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv29StreamOut">
-<span id="StreamOut"></span><span class="target" id="class_stream_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">StreamOut</code><a class="headerlink" href="#_CPPv29StreamOut" title="Permalink to this definition">¶</a><br /></dt>
+<span id="StreamOut"></span><span class="target" id="class_stream_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">StreamOut</code><a class="headerlink" href="#_CPPv29StreamOut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stream/serial output. Number of digits of precision is configurable. </p>
 <p>Inherits from PqPutter</p>
-<div class="breathe-sectiondef docutils container">
+<div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
 <dt id="_CPPv2N9StreamOut9StreamOutER6Stream">
-<span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="class_stream_out_1ad59c0cf4ba569a44fe182f305c40814e"></span><code class="descname">StreamOut</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9StreamOutER6Stream" title="Permalink to this definition">¶</a><br /></dt>
+<span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="class_stream_out_1ad59c0cf4ba569a44fe182f305c40814e"></span><code class="descname">StreamOut</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9StreamOutER6Stream" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -244,7 +219,7 @@
 
 <dl class="function">
 <dt id="_CPPv2N9StreamOut3putEf">
-<span id="StreamOut::put__float"></span><span class="target" id="class_stream_out_1ac95ef84851f702608cdf77d0d8150f5d"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="StreamOut::put__float"></span><span class="target" id="class_stream_out_1ac95ef84851f702608cdf77d0d8150f5d"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3putEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pushes value into the unit. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -260,13 +235,13 @@
 
 <dl class="function">
 <dt id="_CPPv2N9StreamOut3getEv">
-<span id="StreamOut::get"></span><span class="target" id="class_stream_out_1acab60ff320140343d690ecc0affae6ae"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="StreamOut::get"></span><span class="target" id="class_stream_out_1acab60ff320140343d690ecc0affae6ae"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3getEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N9StreamOut9precisionE7uint8_t">
-<span id="StreamOut::precision__uint8_t"></span><span class="target" id="class_stream_out_1a9981f5140a22ac76704abdf2a6ca174c"></span>void <code class="descname">precision</code><span class="sig-paren">(</span>uint8_t <em>digits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9precisionE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="StreamOut::precision__uint8_t"></span><span class="target" id="class_stream_out_1a9981f5140a22ac76704abdf2a6ca174c"></span>void <code class="descname">precision</code><span class="sig-paren">(</span>uint8_t <em>digits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9precisionE7uint8_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets precision of the output. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -296,15 +271,13 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Ramp.html" class="btn btn-neutral float-right" title="Ramp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="generators.html" class="btn btn-neutral float-right" title="Generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="StreamIn.html" class="btn btn-neutral" title="StreamIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -320,7 +293,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -339,10 +312,11 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -356,14 +330,11 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

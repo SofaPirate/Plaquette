@@ -25,28 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="MinMaxScaler" href="MinMaxScaler.html"/>
-        <link rel="prev" title="TriOsc" href="TriOsc.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="next" title="MinMaxScaler" href="MinMaxScaler.html" />
+    <link rel="prev" title="Filters" href="filters.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +58,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -92,44 +82,24 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">AdaptiveNormalizer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AdaptiveNormalizer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -141,7 +111,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
@@ -149,9 +119,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -174,13 +145,15 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+        
       <li>AdaptiveNormalizer</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/AdaptiveNormalizer.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/AdaptiveNormalizer.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -226,14 +199,14 @@ Therefore, it adapts over time by giving more importance to the most recently se
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv218AdaptiveNormalizer">
-<span id="AdaptiveNormalizer"></span><span class="target" id="class_adaptive_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AdaptiveNormalizer</code><a class="headerlink" href="#_CPPv218AdaptiveNormalizer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer"></span><span class="target" id="class_adaptive_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AdaptiveNormalizer</code><a class="headerlink" href="#_CPPv218AdaptiveNormalizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adaptive normalizer: normalizes values on-the-run using exponential moving averages over mean and standard deviation. </p>
 <p>Inherits from PqPutter, MovingStats</p>
-<div class="breathe-sectiondef docutils container">
+<div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEf">
-<span id="AdaptiveNormalizer::AdaptiveNormalizer__float"></span><span class="target" id="class_adaptive_normalizer_1a688dedf73081df2bed56f50c68f4801e"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::AdaptiveNormalizer__float"></span><span class="target" id="class_adaptive_normalizer_1a688dedf73081df2bed56f50c68f4801e"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default constructor. </p>
 <p>Will renormalize data around a mean of 0 and a standard deviation of 1. <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -247,7 +220,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEfff">
-<span id="AdaptiveNormalizer::AdaptiveNormalizer__float.float.float"></span><span class="target" id="class_adaptive_normalizer_1a08f1ffd194f29827980840d966c52890"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em>, float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEfff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::AdaptiveNormalizer__float.float.float"></span><span class="target" id="class_adaptive_normalizer_1a08f1ffd194f29827980840d966c52890"></span><code class="descname">AdaptiveNormalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em>, float <em>smoothFactor</em> = 0.001f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer18AdaptiveNormalizerEfff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -263,7 +236,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer10targetMeanEf">
-<span id="AdaptiveNormalizer::targetMean__float"></span><span class="target" id="class_adaptive_normalizer_1a844d0bafa8a6d0d3195fb804a59dfa6b"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer10targetMeanEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::targetMean__float"></span><span class="target" id="class_adaptive_normalizer_1a844d0bafa8a6d0d3195fb804a59dfa6b"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer10targetMeanEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets target mean of normalized values. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -277,7 +250,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer12targetStdDevEf">
-<span id="AdaptiveNormalizer::targetStdDev__float"></span><span class="target" id="class_adaptive_normalizer_1a573d737a4f3e95689215129093fbe18a"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer12targetStdDevEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::targetStdDev__float"></span><span class="target" id="class_adaptive_normalizer_1a573d737a4f3e95689215129093fbe18a"></span><a class="reference internal" href="#_CPPv218AdaptiveNormalizer" title="AdaptiveNormalizer">AdaptiveNormalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer12targetStdDevEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets target standard deviation of normalized values. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -291,7 +264,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer3putEf">
-<span id="AdaptiveNormalizer::put__float"></span><span class="target" id="class_adaptive_normalizer_1a291af6f81d12caf0e1d686bd788366a0"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::put__float"></span><span class="target" id="class_adaptive_normalizer_1a291af6f81d12caf0e1d686bd788366a0"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3putEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pushes value into the unit. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -307,19 +280,19 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 <dl class="function">
 <dt id="_CPPv2N18AdaptiveNormalizer3getEv">
-<span id="AdaptiveNormalizer::get"></span><span class="target" id="class_adaptive_normalizer_1ad7fc27364969f7e681e2dd71bde1cf97"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="AdaptiveNormalizer::get"></span><span class="target" id="class_adaptive_normalizer_1ad7fc27364969f7e681e2dd71bde1cf97"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N18AdaptiveNormalizer3getEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns normalized value. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N11MovingStats5resetEv">
-<span id="MovingStats::reset"></span><span class="target" id="class_moving_stats_1abc614c3e459cff2d67a0034bf27e500f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="MovingStats::reset"></span><span class="target" id="class_moving_stats_1abc614c3e459cff2d67a0034bf27e500f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the statistics. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N11MovingStats5resetEff">
-<span id="MovingStats::reset__float.float"></span><span class="target" id="class_moving_stats_1af8f05ef1abb8ec6ba86c48fb9275507f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span>float <em>startMean</em>, float <em>startVar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="MovingStats::reset__float.float"></span><span class="target" id="class_moving_stats_1af8f05ef1abb8ec6ba86c48fb9275507f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span>float <em>startMean</em>, float <em>startVar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11MovingStats5resetEff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the statistics. </p>
 </dd></dl>
 
@@ -339,9 +312,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -350,7 +321,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
         <a href="MinMaxScaler.html" class="btn btn-neutral float-right" title="MinMaxScaler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="TriOsc.html" class="btn btn-neutral" title="TriOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="filters.html" class="btn btn-neutral" title="Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -363,7 +334,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -382,10 +353,11 @@ Therefore, it adapts over time by giving more importance to the most recently se
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -399,14 +371,11 @@ Therefore, it adapts over time by giving more importance to the most recently se
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

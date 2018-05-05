@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>seconds() &mdash; Plaquette 0.1 documentation</title>
+  <title>Base Units &mdash; Plaquette 0.1 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-    <link rel="next" title="Structure" href="structure.html" />
-    <link rel="prev" title="randomFloat()" href="randomFloat.html" /> 
+    <link rel="next" title="AnalogIn" href="AnalogIn.html" />
+    <link rel="prev" title="Plaquette" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,20 +84,18 @@
             
               <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Base Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">seconds()</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
@@ -144,15 +142,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="functions.html">Functions</a> &raquo;</li>
-        
-      <li>seconds()</li>
+      <li>Base Units</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/seconds.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/base_units.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -165,39 +161,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="seconds">
-<h1>seconds()<a class="headerlink" href="#seconds" title="Permalink to this headline">¶</a></h1>
-<p>This function returns the number of seconds since the program started.</p>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Switch the LED on after 10 seconds.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">seconds</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="_CPPv27secondsv">
-<span class="target" id="pq__time_8h_1ab53334924c8ee90693b8d48d8f74793d"></span>float <code class="descclassname"></code><code class="descname">seconds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27secondsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of seconds since start of program (calculated using micros()). </p>
-</dd></dl>
-
-</div>
-<div class="section" id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/micros/">micros()</a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/millis/">millis()</a></li>
+  <div class="section" id="base-units">
+<h1>Base Units<a class="headerlink" href="#base-units" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 </div>
 </div>
@@ -210,10 +183,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="structure.html" class="btn btn-neutral float-right" title="Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="AnalogIn.html" class="btn btn-neutral float-right" title="AnalogIn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="randomFloat.html" class="btn btn-neutral" title="randomFloat()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Plaquette" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

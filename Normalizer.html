@@ -25,28 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Smoother" href="Smoother.html"/>
-        <link rel="prev" title="MinMaxScaler" href="MinMaxScaler.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="next" title="Smoother" href="Smoother.html" />
+    <link rel="prev" title="MinMaxScaler" href="MinMaxScaler.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +58,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -92,44 +82,24 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Normalizer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seealso">See Also</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Normalizer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -141,7 +111,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
@@ -149,9 +119,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -174,13 +145,15 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+        
       <li>Normalizer</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/Normalizer.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Normalizer.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -225,21 +198,21 @@ normal distribution (target mean and variance).</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv210Normalizer">
-<span id="Normalizer"></span><span class="target" id="class_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Normalizer</code><a class="headerlink" href="#_CPPv210Normalizer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer"></span><span class="target" id="class_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Normalizer</code><a class="headerlink" href="#_CPPv210Normalizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard normalizer: normalizes values on-the-run using real mean and standard deviation. </p>
 <p>Inherits from PqPutter, SimpleStats</p>
-<div class="breathe-sectiondef docutils container">
+<div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
 <dt id="_CPPv2N10Normalizer10NormalizerEv">
-<span id="Normalizer::Normalizer"></span><span class="target" id="class_normalizer_1af576151323854ff0d4d7e37255c397d1"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::Normalizer"></span><span class="target" id="class_normalizer_1af576151323854ff0d4d7e37255c397d1"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default constructor. </p>
 <p>Will renormalize data around a mean of 0 and a standard deviation of 1. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N10Normalizer10NormalizerEff">
-<span id="Normalizer::Normalizer__float.float"></span><span class="target" id="class_normalizer_1a151d67e354556a68b7fb7a3ba43881a6"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::Normalizer__float.float"></span><span class="target" id="class_normalizer_1a151d67e354556a68b7fb7a3ba43881a6"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -254,7 +227,7 @@ normal distribution (target mean and variance).</p>
 
 <dl class="function">
 <dt id="_CPPv2N10Normalizer10targetMeanEf">
-<span id="Normalizer::targetMean__float"></span><span class="target" id="class_normalizer_1a79dd4da456fa47340a65cecd93ef0edb"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10targetMeanEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::targetMean__float"></span><span class="target" id="class_normalizer_1a79dd4da456fa47340a65cecd93ef0edb"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10targetMeanEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets target mean of normalized values. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -268,7 +241,7 @@ normal distribution (target mean and variance).</p>
 
 <dl class="function">
 <dt id="_CPPv2N10Normalizer12targetStdDevEf">
-<span id="Normalizer::targetStdDev__float"></span><span class="target" id="class_normalizer_1abd461f6ff402a8d4b9f898caa2e4e40b"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer12targetStdDevEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::targetStdDev__float"></span><span class="target" id="class_normalizer_1abd461f6ff402a8d4b9f898caa2e4e40b"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer12targetStdDevEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets target standard deviation of normalized values. </p>
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
@@ -282,7 +255,7 @@ normal distribution (target mean and variance).</p>
 
 <dl class="function">
 <dt id="_CPPv2N10Normalizer3putEf">
-<span id="Normalizer::put__float"></span><span class="target" id="class_normalizer_1aa2507df7459eca2ca932f127c7d154c2"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::put__float"></span><span class="target" id="class_normalizer_1aa2507df7459eca2ca932f127c7d154c2"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3putEf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pushes value into the unit. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -298,13 +271,13 @@ normal distribution (target mean and variance).</p>
 
 <dl class="function">
 <dt id="_CPPv2N10Normalizer3getEv">
-<span id="Normalizer::get"></span><span class="target" id="class_normalizer_1a737ab6d8b003cd2e1b0dae9705f23ee2"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="Normalizer::get"></span><span class="target" id="class_normalizer_1a737ab6d8b003cd2e1b0dae9705f23ee2"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3getEv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns normalized value. </p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv2N11SimpleStats5resetEff">
-<span id="SimpleStats::reset__float.float"></span><span class="target" id="class_simple_stats_1a49e74ef88652715b0832ef7eea5ef53f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span>float <em>startMean</em> = 0, float <em>startVar</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11SimpleStats5resetEff" title="Permalink to this definition">¶</a><br /></dt>
+<span id="SimpleStats::reset__float.float"></span><span class="target" id="class_simple_stats_1a49e74ef88652715b0832ef7eea5ef53f"></span>void <code class="descname">reset</code><span class="sig-paren">(</span>float <em>startMean</em> = 0, float <em>startVar</em> = 0<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11SimpleStats5resetEff" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the statistics. </p>
 </dd></dl>
 
@@ -324,9 +297,7 @@ normal distribution (target mean and variance).</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -348,7 +319,7 @@ normal distribution (target mean and variance).</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -367,10 +338,11 @@ normal distribution (target mean and variance).</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -384,14 +356,11 @@ normal distribution (target mean and variance).</p>
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

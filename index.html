@@ -25,27 +25,17 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Plaquette 0.1 documentation" href="#"/>
-        <link rel="next" title="AnalogIn" href="AnalogIn.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="next" title="Base Units" href="base_units.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +57,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -91,39 +81,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Base units</span></p>
+              <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 </ul>
 
             
@@ -135,7 +99,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">Plaquette</a>
@@ -143,9 +107,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -174,7 +139,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -201,7 +166,7 @@ using an expressive language that abstracts away low-level functions.
 Example: <code class="docutils literal"><span class="pre">led.on()</span></code>.</li>
 <li><strong>Signal-centric</strong>: Focused on real-time signal processing from
 inputs to outputs by providing simple data filtering tools for
-smoothing and normalization, as well as a new “pipe” operator
+smoothing and normalization, as well as a new &#8220;pipe&#8221; operator
 (<code class="docutils literal"><span class="pre">&gt;&gt;</span></code>) for sending data from one unit to another.</li>
 <li><strong>Arduino compatible</strong>: Installed as an Arduino library and provides
 a replacement for the core Arduino functionalities while remaining
@@ -212,6 +177,12 @@ fully compatible with Arduino code.</li>
 <p class="last">Plaquette is still at an experimental stage of development. If you
 have any issues or questions, please contact the developers or file
 a bug in our <a class="reference external" href="https://github.com/SofaPirate/Plaquette/issues">issue tracker</a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Plaquette reference text is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share
+Alike 3.0 License</a>. Parts of
+the documentation has been borrowed and/or adapted from the <a class="reference external" href="https://www.arduino.cc/reference/en/">Arduino Reference</a> and from the <a class="reference external" href="https://processing.org/reference/">Processing Reference</a> texts.</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
@@ -231,7 +202,7 @@ LED blink.</p>
 <div class="section" id="create-a-new-sketch">
 <h4>Create a new sketch<a class="headerlink" href="#create-a-new-sketch" title="Permalink to this headline">¶</a></h4>
 <p>Create a new empty sketch by selecting <strong>File &gt; New</strong>.</p>
-<p><strong>IMPORTANT:</strong> New Arduino sketches are initialized with some “slug”
+<p><strong>IMPORTANT:</strong> New Arduino sketches are initialized with some &#8220;slug&#8221;
 starting code. Make sure to erase the content of the sketch before
 beginning. You can use <strong>Edit &gt; Select All</strong> and then click <strong>Del</strong> or
 <strong>Backspace</strong>.</p>
@@ -254,12 +225,12 @@ built-in LED:</p>
 creating. There exist other types of units as we will soon see.
 <code class="docutils literal"><span class="pre">DigitalOut</span></code> is a type of unit that is attached to one of the many
 digital outputs on the Arduino board which can be set to one of two
-states (“on/off”, “high/low”, “1/0”).</p>
+states (&#8220;on/off&#8221;, &#8220;high/low&#8221;, &#8220;1/0&#8221;).</p>
 <p>The word <code class="docutils literal"><span class="pre">myLed</span></code> is a <strong>name</strong> for the object we are creating.</p>
 <p>Finally, <code class="docutils literal"><span class="pre">13</span></code> is a <strong>parameter</strong> of the object <code class="docutils literal"><span class="pre">myLed</span></code> that
 specifies the <em>pin</em> it corresponds to on the board.</p>
-<p>In English, the statement would thus read as: “Create a unit named
-<code class="docutils literal"><span class="pre">myLed</span></code> of type <code class="docutils literal"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal"><span class="pre">13</span></code>.”</p>
+<p>In English, the statement would thus read as: &#8220;Create a unit named
+<code class="docutils literal"><span class="pre">myLed</span></code> of type <code class="docutils literal"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal"><span class="pre">13</span></code>.&#8221;</p>
 </div>
 <div class="section" id="create-an-input-unit">
 <h4>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Permalink to this headline">¶</a></h4>
@@ -267,7 +238,7 @@ specifies the <em>pin</em> it corresponds to on the board.</p>
 be sent to the LED to make it blink. To this effect, we will use the
 <code class="docutils literal"><span class="pre">SquareOsc</span></code> unit type which generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
 wave</a> oscillating between
-“on/high/one” and “off/low/zero” at a regular period of 2.0 seconds and
+&#8220;on/high/one&#8221; and &#8220;off/low/zero&#8221; at a regular period of 2.0 seconds and
 a <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">duty-cycle</a> of 50%:</p>
 <div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
 </pre></div>
@@ -294,15 +265,15 @@ the course of the program (like the
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/loop/">loop()</a>
 function in Arduino).</p>
 <p>Here, we need to send the signal generated by the <code class="docutils literal"><span class="pre">myOsc</span></code> input unit
-to the <code class="docutils literal"><span class="pre">myLed</span></code> output unit. We will do this using Plaquette’s special
+to the <code class="docutils literal"><span class="pre">myLed</span></code> output unit. We will do this using Plaquette&#8217;s special
 <code class="docutils literal"><span class="pre">&gt;&gt;</span></code> operator:</p>
 <div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">step</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In plain English, the statement <code class="docutils literal"><span class="pre">myOsc</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: “Take the
-value generated by <code class="docutils literal"><span class="pre">myOsc</span></code> and put it in <code class="docutils literal"><span class="pre">myLed</span></code>.”</p>
+<p>In plain English, the statement <code class="docutils literal"><span class="pre">myOsc</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: &#8220;Take the
+value generated by <code class="docutils literal"><span class="pre">myOsc</span></code> and put it in <code class="docutils literal"><span class="pre">myLed</span></code>.&#8221;</p>
 </div>
 <div class="section" id="upload-sketch">
 <h4>Upload sketch<a class="headerlink" href="#upload-sketch" title="Permalink to this headline">¶</a></h4>
@@ -341,7 +312,7 @@ wave unit construction:</p>
 oscillation (in seconds)</li>
 <li><code class="docutils literal"><span class="pre">&lt;duty-cycle&gt;</span></code> can be any number between 0.0 (0%) and 1.0 (100%)
 and represents the proportion of the period during which the signal
-is “high” (ie. “on duty”)</li>
+is &#8220;high&#8221; (ie. &#8220;on duty&#8221;)</li>
 </ul>
 <p>What happens?</p>
 </div>
@@ -360,9 +331,9 @@ their values and send the result to the LED.</p>
 </div>
 <div class="section" id="use-a-conditional">
 <h4>Use a conditional<a class="headerlink" href="#use-a-conditional" title="Permalink to this headline">¶</a></h4>
-<p>Add a third oscillator that will “switch” between the two oscillators
+<p>Add a third oscillator that will &#8220;switch&#8221; between the two oscillators
 every 5 seconds using an
-<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/control-structure/if/">if…else</a>
+<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/control-structure/if/">if...else</a>
 statement.</p>
 <div class="code cpp highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">TIP</span><span class="p">:</span> <span class="n">omitting</span> <span class="n">the</span> <span class="n">duty</span><span class="o">-</span><span class="n">cycle</span> <span class="n">parameter</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">default</span> <span class="n">value</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">SquareOsc</span> <span class="n">mySwitcher</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
@@ -404,7 +375,7 @@ operator</a>:</p>
 <li>Sofian Audry • <a class="reference external" href="http://sofianaudry.com">Website</a> • <a class="reference external" href="https://github.com/sofian">GitHub</a></li>
 <li>Thomas Ouellet Fredericks • <a class="reference external" href="http://www.t-o-f.info">Website</a> • <a class="reference external" href="https://github.com/thomasfredericks">GitHub</a></li>
 </ul>
-<p>Plaquette’s base source code was produced as part of a research project
+<p>Plaquette&#8217;s base source code was produced as part of a research project
 at <a class="reference external" href="http://xmodal.hexagram.ca">labXmodal</a>. A special thanks to <a class="reference external" href="http://chrissalter.com">Chris
 Salter</a> for his support.</p>
 <p>Plaquette borrows ideas from the <a class="reference external" href="https://arduino.cc">Arduino</a>,
@@ -422,48 +393,45 @@ Attribution-ShareAlike 3.0
 License</a>. Parts of
 the text was copied and/or adapted from the <a class="reference external" href="https://www.arduino.cc/">Arduino documentation</a>. Code
 samples in the guide are released into the public domain.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Base units</span></p>
+<div class="toctree-wrapper compound" id="reference">
+<p class="caption"><span class="caption-text">Reference</span><a class="headerlink" href="#reference" title="Permalink to this toctree">¶</a></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Generators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Ramp.html">Ramp</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Filters</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Functions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l1"><a class="reference internal" href="seconds.html">seconds()</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Structure</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -471,15 +439,13 @@ samples in the guide are released into the public domain.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AnalogIn.html" class="btn btn-neutral float-right" title="AnalogIn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="base_units.html" class="btn btn-neutral float-right" title="Base Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -493,7 +459,7 @@ samples in the guide are released into the public domain.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -512,10 +478,11 @@ samples in the guide are released into the public domain.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'0.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -529,14 +496,11 @@ samples in the guide are released into the public domain.</p>
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
