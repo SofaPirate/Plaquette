@@ -31,7 +31,7 @@
 class MovingAverage {
 public:
   // The alpha (mixing) variable (in [0,1]).
-  float _alpha;
+  float _alpha; // to save space: the sign of alpha is used to represent "started" status
 
   // The current value of the exponential moving average.
   float _value;
