@@ -39,14 +39,10 @@ public:
    * (*) Of course this is an approximation. It actually sets the alpha value to 2 / (n - 1)
    */
   MovingStats(float alphaOrN=1);
-  MovingStats(float alphaOrN, float startMean, float startVar);
   virtual ~MovingStats() {}
 
   /// Resets the statistics.
   virtual void reset();
-
-  /// Resets the statistics.
-  virtual void reset(float startMean, float startVar);
 
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value);

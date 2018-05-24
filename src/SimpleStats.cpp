@@ -20,13 +20,12 @@
 #include "SimpleStats.h"
 #include <limits.h>
 
-SimpleStats::SimpleStats(float startMean, float startVar) {
-  reset(startMean, startVar);
+SimpleStats::SimpleStats() {
+  reset();
 }
 
-void SimpleStats::reset(float startMean, float startVar) {
-  _mean = startMean;
-  _mean2 = startVar + sq(_mean);
+void SimpleStats::reset() {
+  _mean = _mean2 = 0;
   _nSamples = 0;
 //  _min = FLT_MAX;
 //  _max = -FLT_MAX;

@@ -28,7 +28,7 @@ public:
   virtual ~Stats() {}
 
   /// Resets the statistics.
-  virtual void reset(float startMean=0, float startVar=0) = 0;
+  virtual void reset() = 0;
 
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value) = 0;

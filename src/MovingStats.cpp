@@ -19,20 +19,11 @@
 
 #include "MovingStats.h"
 
-MovingStats::MovingStats(float alphaOrN) : avg(alphaOrN) { }
-MovingStats::MovingStats(float alphaOrN, float startMean, float startVar)
-  : avg(alphaOrN, startMean), _var(startVar) {
-  reset(startMean, startVar);
-}
+MovingStats::MovingStats(float alphaOrN) : avg(alphaOrN), _var(0) { }
 
 void MovingStats::reset() {
   avg.reset();
   _var = 0;
-}
-
-void MovingStats::reset(float startMean, float startVar) {
-  avg.reset(startMean);
-  _var = startVar;
 }
 
 float MovingStats::update(float value)

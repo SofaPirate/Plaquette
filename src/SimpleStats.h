@@ -39,11 +39,11 @@ public:
   unsigned long _nSamples;
 
   /// Constructor.
-  SimpleStats(float startMean=0, float startVar=0);
+  SimpleStats();
   virtual ~SimpleStats() {}
 
   /// Resets the statistics.
-  virtual void reset(float startMean=0, float startVar=0);
+  virtual void reset();
 
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value);
