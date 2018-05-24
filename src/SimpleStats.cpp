@@ -32,16 +32,16 @@ void SimpleStats::reset() {
 }
 
 float SimpleStats::update(float value) {
+  // Simple trick that makes sure we don't overflow.
   if (_nSamples == ULONG_MAX)
-    _nSamples = (ULONG_MAX / 4) * 3; // simple trick that makes sure we don't overflow
+    _nSamples = (ULONG_MAX / 4) * 3;
 
-  // Add one to number of samples
+  // Add one to number of samples.
   _nSamples++;
 
-  // Update mean and mean2
-  float prop = (float)(_nSamples-1) / (float)_nSamples;
   _mean  = _mean  * prop + value     / _nSamples;
   _mean2 = _mean2 * prop + sq(value) / _nSamples;
+  // Update mean and mean2.
 
   // Update min and max
 //  _min = min(_min, value);
