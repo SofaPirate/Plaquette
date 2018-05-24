@@ -229,3 +229,10 @@ Gemfile.lock
 
 # Other
 TODO
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
