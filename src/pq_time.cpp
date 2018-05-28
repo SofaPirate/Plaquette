@@ -21,4 +21,6 @@
 
 #include "pq_time.h"
 
-float seconds() { return micros() / 1000000.0f; }
+float seconds(bool realTime) {
+  return Plaquette::seconds(realTime);
+}

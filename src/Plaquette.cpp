@@ -26,6 +26,7 @@ void setup() {
 }
 
 void loop() {
-  Plaquette::step();
+  Plaquette::preStep();
   step();
+  Plaquette::postStep();
 }

@@ -22,6 +22,8 @@
 #ifndef PQ_TIME_H_
 #define PQ_TIME_H_
 
+#include "PqCore.h"
+
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
 #else
@@ -29,6 +31,6 @@
 #endif
 
 /// Returns the number of seconds since start of program (calculated using micros()).
-float seconds();
+float seconds(bool realTime=false);
 
 #endif

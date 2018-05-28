@@ -36,6 +36,10 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
+#ifndef PLAQUETTE_DEFAULT_SAMPLE_RATE
+#define PLAQUETTE_DEFAULT_SAMPLE_RATE 30
+#endif
+
 class PqUnit;
 
 /// The main Plaquette static class containing all the components.
@@ -47,6 +51,15 @@ private:
   static PqUnit* _units[PLAQUETTE_MAX_UNITS];
   static uint8_t _nUnits;
 
+  /// Snapshot of time in seconds from current step.
+  static float _seconds;
+
+  /// Sampling rate (ie. how many times per seconds step() is called).
+  static float _sampleRate;
+  static float _secondsPerStep;
+
+  // Number of steps accomplished.
+  static unsigned long _nSteps;
 
 public:
   /// Initializes all components (calls begin() on all of them).
@@ -55,15 +68,30 @@ public:
   /// Updates all components (calls step() on all of them).
   static void preStep();
 
-  /// Returns the current number of components.
-  static uint8_t nComponents() { return _nComponents; }
+  /// Waits remaining time to guarantee we stay in sync with sampleRate.
+  static void postStep();
+
   /// Returns the current number of units.
   static uint8_t nUnits() { return _nUnits; }
+
+  /// Returns time in seconds.
+  static float seconds(bool realTime=false);
+
+  /// Returns number of steps.
+  static unsigned long nSteps() { return _nSteps; }
+
+  static void sampleRate(float sampleRate);
+  static float sampleRate() { return _sampleRate; }
 
 private:
   /// Adds a component to Plaquette.
   static void add(PqUnit * component);
 };
+
+//float seconds(bool realTime=false);
+unsigned long nSteps();
+void sampleRate(float sampleRate);
+float sampleRate();
 
 /**
  * Main class for components to be added to Plaquette.
