@@ -48,12 +48,17 @@ public:
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value);
 
-  /// The statistics.
+  /// Returns the mean of the samples.
   virtual float mean() const { return _mean; }
-  // The var() and stddev() are the population (ie. not the sample) variance and standard dev, so technically
-  // they should be readjusted by multiplying it by _nSamples / (_nSamples-1). But with a lot of samples the
-  // difference vanishes and we priviledged less floating points computations over precision.
+
+  /**
+   * Returns the variance of the samples.
+   * NOTE: The var() and stddev() are the population (ie. not the sample) variance and standard dev, so technically
+   * they should be readjusted by multiplying it by _nSamples / (_nSamples-1). But with a lot of samples the
+   * difference vanishes and we priviledged less floating points computations over precision.
+   */
   virtual float var() const;
+
 //  float minimum() const { return _min; }
 //  float maximum() const { return _max; }
 //  unsigned long nSamples() const { return _nSamples; }

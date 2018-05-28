@@ -47,10 +47,13 @@ public:
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value);
 
-  /// The statistics.
+  /// Returns an exponential moving average of the samples.
   virtual float mean() const { return avg.constGet(); }
+
+  /// Returns an exponential moving variance of the samples.
   virtual float var() const { return _var; }
 
+  /// Returns true iff the statistics have already been started.
   virtual bool isStarted() const;
 };
 

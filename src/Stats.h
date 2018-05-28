@@ -33,9 +33,13 @@ public:
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value) = 0;
 
-  /// The statistics.
+  /// Returns the mean of the samples.
   virtual float mean() const = 0;
+
+  /// Returns the variance of the samples.
   virtual float var() const  = 0;
+
+  /// Returns the standard deviation of the samples.
   virtual float stddev() const;
 
   /// Returns the normalized value according to the computed statistics (mean and variance).
