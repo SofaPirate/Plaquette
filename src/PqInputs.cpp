@@ -34,6 +34,8 @@ AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
 
 #ifdef ESP8266
 #define ANALOG_READ_MAX_VALUE 1024
+#elif defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
+#define ANALOG_READ_MAX_VALUE 4095 // applies only to default resolution of 12 bits
 #else
 #define ANALOG_READ_MAX_VALUE 1023
 #endif
