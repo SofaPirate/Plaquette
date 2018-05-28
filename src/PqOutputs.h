@@ -62,7 +62,11 @@ public:
    * @param pin the pin number
    * @param mode the mode (SOURCE or SINK)
    */
+#ifdef LED_BUILTIN
   DigitalOut(uint8_t pin=LED_BUILTIN, uint8_t mode=SOURCE);
+#else
+  DigitalOut(uint8_t pin=13, uint8_t mode=SOURCE);
+#endif
   virtual ~DigitalOut() {}
 
   /// Pushes value into the component and returns its (possibly filtered) value.
