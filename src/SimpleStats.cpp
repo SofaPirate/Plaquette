@@ -36,10 +36,13 @@ float SimpleStats::update(float value) {
   if (_nSamples < ULONG_MAX)
     _nSamples++;
 
-
-  _mean  = _mean  * prop + value     / _nSamples;
-  _mean2 = _mean2 * prop + sq(value) / _nSamples;
   // Update mean and mean2.
+  // float prop = (float)(_nSamples-1) / (float)_nSamples;
+  // _mean  = _mean  * prop + value     / _nSamples;
+  // _mean2 = _mean2 * prop + sq(value) / _nSamples;
+  float alpha = 1.f / _nSamples;
+  _mean  += alpha * (value     - _mean );
+  _mean2 += alpha * (sq(value) - _mean2);
 
   // Update min and max
 //  _min = min(_min, value);
