@@ -33,11 +33,9 @@ void SimpleStats::reset() {
 
 float SimpleStats::update(float value) {
   // Simple trick that makes sure we don't overflow.
-  if (_nSamples == ULONG_MAX)
-    _nSamples = (ULONG_MAX / 4) * 3;
+  if (_nSamples < ULONG_MAX)
+    _nSamples++;
 
-  // Add one to number of samples.
-  _nSamples++;
 
   _mean  = _mean  * prop + value     / _nSamples;
   _mean2 = _mean2 * prop + sq(value) / _nSamples;
