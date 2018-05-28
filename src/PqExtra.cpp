@@ -22,7 +22,7 @@
 
 StreamIn::StreamIn(Stream& stream) : _value(0), _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
 
-void StreamIn::setup() {
+void StreamIn::begin() {
 	_nextValue = 0;
 	_nextIsValid = false;
 	_nextIsNegative = false;
@@ -74,7 +74,7 @@ SquareOsc::SquareOsc(float period_, float dutyCycle_) {
   dutyCycle(dutyCycle_);
 }
 
-void SquareOsc::setup() {
+void SquareOsc::begin() {
 	_startTime = seconds();
 }
 
@@ -102,7 +102,7 @@ SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
 }
 
-void SineOsc::setup() {
+void SineOsc::begin() {
   _startTime = seconds();
   _step(0);
 }
@@ -136,7 +136,7 @@ TriOsc::TriOsc(float period_, float width_) {
   width(width_);
 }
 
-void TriOsc::setup() {
+void TriOsc::begin() {
   _startTime = seconds();
 }
 
@@ -212,7 +212,7 @@ float Ramp::progress() const {
 	return prog;
 }
 
-void Ramp::setup() {
+void Ramp::begin() {
 	// Basic reset.
 	_startTime = _offsetTime = 0;
 	_isRunning = false;

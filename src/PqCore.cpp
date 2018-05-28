@@ -25,31 +25,35 @@
 
 #include "PqCore.h"
 
-uint8_t Plaquette::_nComponents = 0;
-PqUnit* Plaquette::_components[PLAQUETTE_MAX_COMPONENTS];
+#include <float.h>
 
-void Plaquette::step() {
-  // Update every component.
-  for (uint8_t i=0; i<_nComponents; i++)
-    _components[i]->step();
-}
+uint8_t Plaquette::_nUnits = 0;
+PqUnit* Plaquette::_units[PLAQUETTE_MAX_UNITS];
 
-void Plaquette::setup() {
+
+void Plaquette::begin() {
   // Initialize serial.
   Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
   // Initialize all components.
-  for (uint8_t i=0; i<_nComponents; i++) {
-    _components[i]->setup();
+  for (uint8_t i=0; i<_nUnits; i++) {
+    _units[i]->begin();
 	}
 }
 
+void Plaquette::preStep() {
+  // Update every component.
+  for (uint8_t i=0; i<_nUnits; i++)
+    _units[i]->step();
+}
+}
+
 void Plaquette::add(PqUnit* component) {
-  for (uint8_t i=0; i<_nComponents; i++) {
-		if (_components[i] == component)
+  for (uint8_t i=0; i<_nUnits; i++) {
+		if (_units[i] == component)
 			return; // do not add existing component
 	}
-  if (_nComponents < PLAQUETTE_MAX_COMPONENTS) {
-    _components[_nComponents++] = component;
+  if (_nUnits < PLAQUETTE_MAX_UNITS) {
+    _units[_nUnits++] = component;
   }
 }
 

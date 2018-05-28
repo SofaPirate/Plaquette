@@ -47,7 +47,7 @@ float AnalogIn::_read() {
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
-void AnalogIn::setup() { step(); }
+void AnalogIn::begin() { step(); }
 void AnalogIn::step() { _value = _smoothed(); }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
@@ -61,7 +61,7 @@ float DigitalIn::_read() {
   return digitalToAnalog(isHigh);
 }
 
-void DigitalIn::setup() {
+void DigitalIn::begin() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
 	step();
 }

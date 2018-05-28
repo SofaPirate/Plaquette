@@ -79,7 +79,7 @@ public:
   bool _isOn;
 
 protected:
-  virtual void setup();
+  virtual void begin();
 };
 
 #endif

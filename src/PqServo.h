@@ -37,7 +37,7 @@ public:
 
   virtual float get() { return _value; }
 
-  virtual void setup();
+  virtual void begin();
 
 	uint8_t pin() const { return _pin; }
 

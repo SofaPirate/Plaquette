@@ -44,7 +44,7 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
   // Current value.
@@ -98,7 +98,7 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
   // Is the signal currently on (high) or off (low).
@@ -150,7 +150,7 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
   void _step(float t);
@@ -207,7 +207,7 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
   // Current value of the signal.
@@ -275,7 +275,7 @@ public:
   bool isComplete() const { return progress() >= 1.0; }
 
 protected:
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
   // The current value of the ramp.

@@ -65,7 +65,7 @@ public:
 protected:
   virtual float _read();
 
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
 	float _value;
@@ -88,7 +88,7 @@ public:
 protected:
   virtual float _read();
 
-  virtual void setup();
+  virtual void begin();
   virtual void step();
 
 	bool _isOn;

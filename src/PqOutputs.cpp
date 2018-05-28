@@ -58,6 +58,6 @@ float DigitalOut::put(float value) {
   return value;
 }
 
-void DigitalOut::setup() {
+void DigitalOut::begin() {
   pinMode(_pin, OUTPUT);
 }

@@ -34,7 +34,7 @@ float AbstractServoOut::put(float value)
   return get();
 }
 
-void AbstractServoOut::setup() {
+void AbstractServoOut::begin() {
   attach(_pin);
 }
 

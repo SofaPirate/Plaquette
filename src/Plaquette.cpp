@@ -21,7 +21,7 @@
 #include "Plaquette.h"
 
 void setup() {
-  Plaquette::setup();
+  Plaquette::begin();
   begin();
 }
 

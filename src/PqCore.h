@@ -27,9 +27,9 @@
 #include "WProgram.h"
 #endif
 
-#ifndef PLAQUETTE_MAX_COMPONENTS
+#ifndef PLAQUETTE_MAX_UNITS
 /// Max. components that can be added. Can be pre-defined.
-#define PLAQUETTE_MAX_COMPONENTS 32
+#define PLAQUETTE_MAX_UNITS 32
 #endif
 
 #ifndef PLAQUETTE_SERIAL_BAUD_RATE
@@ -43,18 +43,22 @@ class Plaquette {
   friend class PqUnit;
 
 private:
-  static PqUnit* _components[PLAQUETTE_MAX_COMPONENTS];
-  static uint8_t _nComponents;
+  // Used to keep track of components.
+  static PqUnit* _units[PLAQUETTE_MAX_UNITS];
+  static uint8_t _nUnits;
+
 
 public:
-  /// Initializes all components (calls setup() on all of them).
-  static void setup();
+  /// Initializes all components (calls begin() on all of them).
+  static void begin();
 
   /// Updates all components (calls step() on all of them).
-  static void step();
+  static void preStep();
 
   /// Returns the current number of components.
   static uint8_t nComponents() { return _nComponents; }
+  /// Returns the current number of units.
+  static uint8_t nUnits() { return _nUnits; }
 
 private:
   /// Adds a component to Plaquette.
@@ -80,7 +84,7 @@ protected:
   virtual ~PqUnit() {}
 
 protected:
-  virtual void setup() {}
+  virtual void begin() {}
   virtual void step() {}
 };
 
