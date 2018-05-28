@@ -45,7 +45,7 @@ public:
 protected:
   // Core Plaquette methods.
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
   // Current value.
   float _value;
@@ -99,7 +99,7 @@ public:
 protected:
   // Core Plaquette methods.
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
   // Is the signal currently on (high) or off (low).
   bool _isOn;
@@ -151,9 +151,9 @@ public:
 protected:
   // Core Plaquette methods.
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
-  void _update(float t);
+  void _step(float t);
 
   // Current value of the signal.
   float _value;
@@ -208,7 +208,7 @@ public:
 protected:
   // Core Plaquette methods.
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
   // Current value of the signal.
   float _value;
@@ -276,7 +276,7 @@ public:
 
 protected:
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
   // The current value of the ramp.
   float _value;

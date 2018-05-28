@@ -45,8 +45,8 @@ float AnalogIn::_read() {
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
-void AnalogIn::setup() { update(); }
-void AnalogIn::update() { _value = _smoothed(); }
+void AnalogIn::setup() { step(); }
+void AnalogIn::step() { _value = _smoothed(); }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
   : PqPinComponent(pin, mode), PqDigitalGetter(), _isOn(false)
@@ -61,9 +61,9 @@ float DigitalIn::_read() {
 
 void DigitalIn::setup() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
-	update();
+	step();
 }
 
-void DigitalIn::update() {
+void DigitalIn::step() {
 	_isOn = analogToDigital(_smoothed());
 }

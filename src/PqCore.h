@@ -50,8 +50,8 @@ public:
   /// Initializes all components (calls setup() on all of them).
   static void setup();
 
-  /// Updates all components (calls update() on all of them).
-  static void update();
+  /// Updates all components (calls step() on all of them).
+  static void step();
 
   /// Returns the current number of components.
   static uint8_t nComponents() { return _nComponents; }
@@ -81,7 +81,7 @@ protected:
 
 protected:
   virtual void setup() {}
-  virtual void update() {}
+  virtual void step() {}
 };
 
 /// A generic class representing a simple source.

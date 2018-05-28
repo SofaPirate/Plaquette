@@ -66,7 +66,7 @@ protected:
   virtual float _read();
 
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
 	float _value;
 };
@@ -89,7 +89,7 @@ protected:
   virtual float _read();
 
   virtual void setup();
-  virtual void update();
+  virtual void step();
 
 	bool _isOn;
 };

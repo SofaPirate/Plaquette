@@ -28,10 +28,10 @@
 uint8_t Plaquette::_nComponents = 0;
 PqUnit* Plaquette::_components[PLAQUETTE_MAX_COMPONENTS];
 
-void Plaquette::update() {
+void Plaquette::step() {
   // Update every component.
   for (uint8_t i=0; i<_nComponents; i++)
-    _components[i]->update();
+    _components[i]->step();
 }
 
 void Plaquette::setup() {

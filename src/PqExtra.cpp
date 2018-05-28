@@ -30,7 +30,7 @@ void StreamIn::setup() {
 	_nextFraction = 1;
 }
 
-void StreamIn::update() {
+void StreamIn::step() {
 	while (_stream->available()) {
 
 		int c = _stream->read();
@@ -78,7 +78,7 @@ void SquareOsc::setup() {
 	_startTime = seconds();
 }
 
-void SquareOsc::update() {
+void SquareOsc::step() {
 	// Notice: this computation is not exact but manages naturally changes in the period without
 	// inducing dephasings on Arduino boards.
 	float totalTime = seconds();
@@ -104,20 +104,20 @@ SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
 
 void SineOsc::setup() {
   _startTime = seconds();
-  _update(0);
+  _step(0);
 }
 
-void SineOsc::update() {
+void SineOsc::step() {
 	// Notice: this computation is not exact but manages naturally changes in the period without
 	// inducing dephasings on Arduino boards.
 	float totalTime = seconds();
 	float relativeTime = totalTime - _startTime;
-	_update(relativeTime);
+	_step(relativeTime);
 	if (relativeTime >= _period)
   	_startTime = totalTime;
 }
 
-void SineOsc::_update(float t) {
+void SineOsc::_step(float t) {
   _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
 }
 
@@ -140,7 +140,7 @@ void TriOsc::setup() {
   _startTime = seconds();
 }
 
-void TriOsc::update() {
+void TriOsc::step() {
 	// Notice: this computation is not exact but manages naturally changes in the period without
 	// inducing dephasings on Arduino boards.
 	float totalTime = seconds();
@@ -218,7 +218,7 @@ void Ramp::setup() {
 	_isRunning = false;
 }
 
-void Ramp::update() {
+void Ramp::step() {
 	// Offset elapsed time.
 	_elapsedTime = _offsetTime;
 
