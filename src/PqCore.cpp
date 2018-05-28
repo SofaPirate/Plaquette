@@ -26,7 +26,7 @@
 #include "PqCore.h"
 
 uint8_t Plaquette::_nComponents = 0;
-PqComponent* Plaquette::_components[PLAQUETTE_MAX_COMPONENTS];
+PqUnit* Plaquette::_components[PLAQUETTE_MAX_COMPONENTS];
 
 void Plaquette::update() {
   // Update every component.
@@ -43,7 +43,7 @@ void Plaquette::setup() {
 	}
 }
 
-void Plaquette::add(PqComponent* component) {
+void Plaquette::add(PqUnit* component) {
   for (uint8_t i=0; i<_nComponents; i++) {
 		if (_components[i] == component)
 			return; // do not add existing component
@@ -53,9 +53,9 @@ void Plaquette::add(PqComponent* component) {
   }
 }
 
-PqComponent::PqComponent() {
+PqUnit::PqUnit() {
   Plaquette::add(this);
 }
 
-bool  PqComponent::analogToDigital(float f) { return (f >= 0.5); }
-float PqComponent::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
+bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }
+float PqUnit::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }

@@ -36,14 +36,14 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
-class PqComponent;
+class PqUnit;
 
 /// The main Plaquette static class containing all the components.
 class Plaquette {
-  friend class PqComponent;
+  friend class PqUnit;
 
 private:
-  static PqComponent* _components[PLAQUETTE_MAX_COMPONENTS];
+  static PqUnit* _components[PLAQUETTE_MAX_COMPONENTS];
   static uint8_t _nComponents;
 
 public:
@@ -58,14 +58,14 @@ public:
 
 private:
   /// Adds a component to Plaquette.
-  static void add(PqComponent * component);
+  static void add(PqUnit * component);
 };
 
 /**
  * Main class for components to be added to Plaquette.
  * Components can be transducers (sensors,actuators) or special integrated circuits.
  */
-class PqComponent {
+class PqUnit {
   friend class Plaquette;
 
 public:
@@ -76,8 +76,8 @@ public:
 	static float digitalToAnalog(bool b);
 
 protected:
-  PqComponent();
-  virtual ~PqComponent() {}
+  PqUnit();
+  virtual ~PqUnit() {}
 
 protected:
   virtual void setup() {}
@@ -85,7 +85,7 @@ protected:
 };
 
 /// A generic class representing a simple source.
-class PqGetter : public PqComponent {
+class PqGetter : public PqUnit {
 public:
   /// Constructor.
   PqGetter() {}
@@ -413,7 +413,7 @@ inline PqGetter& operator>>(uint64_t value, PqGetter& getter) { return getter; }
 //}
 
 /// Superclass for pin-based components.
-class PqPinComponent : public PqComponent {
+class PqPinComponent : public PqUnit {
 public:
   PqPinComponent(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
   virtual ~PqPinComponent() {}
