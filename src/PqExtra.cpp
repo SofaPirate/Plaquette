@@ -97,6 +97,9 @@ SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
 	return *this;
 }
 
+// Fast trigonometric functions.
+#include "pq_trig8.h"
+
 SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
 }
@@ -116,7 +119,10 @@ void SineOsc::step() {
 }
 
 void SineOsc::_step(float t) {
-  _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
+	// Compute using fast cosine function.
+	uint16_t theta = ((uint64_t)(65535UL * (_phase + t / _period))) % 65536;
+  _value = ((cos16(theta) / -32767.0f) + 1) / 2;
+	// Original code (slow): _value = (-cos( t * TWO_PI / _period) + 1) / 2;
 }
 
 SineOsc& SineOsc::period(float period) {
