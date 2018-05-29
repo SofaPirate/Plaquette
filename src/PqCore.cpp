@@ -31,22 +31,31 @@ uint8_t Plaquette::_nUnits = 0;
 PqUnit* Plaquette::_units[PLAQUETTE_MAX_UNITS];
 
 float Plaquette::_seconds = 0;
-float Plaquette::_sampleRate = PLAQUETTE_DEFAULT_SAMPLE_RATE;
-float Plaquette::_secondsPerStep = 1.0f / PLAQUETTE_DEFAULT_SAMPLE_RATE;
+float Plaquette::_sampleRate = FLT_MAX;
+// float Plaquette::_secondsPerStep = 1.0f / PLAQUETTE_DEFAULT_SAMPLE_RATE;
+float Plaquette::_targetSampleRate = 0;
 unsigned long Plaquette::_nSteps = 0;
 
-void Plaquette::begin() {
+void Plaquette::preBegin() {
   // Initialize serial.
   Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
+
   // Initialize all components.
   for (uint8_t i=0; i<_nUnits; i++) {
     _units[i]->begin();
 	}
+
+  _sampleRate = FLT_MAX;
+}
+
+void Plaquette::postBegin() {
   // Start timer.
-  _seconds = 0;
+  _seconds = seconds(true);
 }
 
 void Plaquette::preStep() {
+
+  /// AU MOMENT D'ARRIVER ICI _seconds DOIT ETRE ALIGNE AU TEMPS REEL
   // Update every component.
   for (uint8_t i=0; i<_nUnits; i++)
     _units[i]->step();
@@ -56,12 +65,24 @@ void Plaquette::postStep() {
   // Increment step.
   _nSteps++;
 
-  // Synchronize seconds with real time.
-  float t = _seconds + _secondsPerStep;
-//  float t = _nSteps * _secondsPerStep;
-  unsigned long microT = (unsigned long)(t * 1e6);
-  while (micros() < microT); // wait
-  _seconds = t;
+  // Calculate true sample rate.
+  float newTime = seconds(true);
+  float trueSampleRate = 1.0f / (newTime - _seconds + FLT_MIN);
+  // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
+  // then we should just assign the true sample rate.
+  if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
+    _sampleRate = trueSampleRate;
+    _seconds = newTime;
+  }
+
+  // Otherwise: Wait in order to synchronize seconds with real time.
+  else {
+    float targetTime = _seconds + 1.0f/_targetSampleRate;
+    unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6);
+    while (micros() < targetTimeUs); // wait
+    _sampleRate = _targetSampleRate;
+    _seconds = targetTime; // not the exact "true" time but more accurate for computations
+  }
 }
 
 void Plaquette::add(PqUnit* component) {
@@ -78,9 +99,14 @@ float Plaquette::seconds(bool realTime) {
   return realTime ? (micros() / 1e6f) : _seconds;
 }
 
+bool Plaquette::autoSampleRate() { return (_targetSampleRate <= 0); }
+
+void Plaquette::enableAutoSampleRate() {
+  _targetSampleRate = 0;
+}
+
 void Plaquette::sampleRate(float sampleRate) {
-  _sampleRate = max(sampleRate, FLT_MIN);
-  _secondsPerStep = 1.0f / _sampleRate;
+  _targetSampleRate = max(sampleRate, FLT_MIN);
 }
 
 //float seconds(bool realTime) { return Plaquette::seconds(); }

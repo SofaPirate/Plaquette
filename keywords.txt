@@ -34,6 +34,11 @@ ServoOut	KEYWORD1
 begin	KEYWORD2
 step	KEYWORD2
 
+autoSampleRate  KEYWORD2
+enableAutoSampleRate  KEYWORD2
+sampleRate  KEYWORD2
+seconds  KEYWORD2
+
 pin	KEYWORD2
 mode	KEYWORD2
 

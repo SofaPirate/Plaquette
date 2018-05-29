@@ -36,10 +36,6 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
-#ifndef PLAQUETTE_DEFAULT_SAMPLE_RATE
-#define PLAQUETTE_DEFAULT_SAMPLE_RATE 30
-#endif
-
 class PqUnit;
 
 /// The main Plaquette static class containing all the components.
@@ -51,24 +47,32 @@ private:
   static PqUnit* _units[PLAQUETTE_MAX_UNITS];
   static uint8_t _nUnits;
 
-  /// Snapshot of time in seconds from current step.
+  // Snapshot of time in seconds from current step.
   static float _seconds;
 
-  /// Sampling rate (ie. how many times per seconds step() is called).
+  // Sampling rate (ie. how many times per seconds step() is called).
   static float _sampleRate;
-  static float _secondsPerStep;
+
+  // // Internal use.
+  // static float _secondsPerStep;
+
+  // Whether the auto sample rate mode is activated.
+  static float _targetSampleRate;
 
   // Number of steps accomplished.
   static unsigned long _nSteps;
 
 public:
   /// Initializes all components (calls begin() on all of them).
-  static void begin();
+  static void preBegin();
+
+  /// Performs additional tasks after the class to begin().
+  static void postBegin();
 
   /// Updates all components (calls step() on all of them).
   static void preStep();
 
-  /// Waits remaining time to guarantee we stay in sync with sampleRate.
+  /// Performs additional tasks after the class to step().
   static void postStep();
 
   /// Returns the current number of units.
@@ -80,7 +84,16 @@ public:
   /// Returns number of steps.
   static unsigned long nSteps() { return _nSteps; }
 
+  /// Returns true iff the auto sample rate mode is enabled (default).
+  static bool autoSampleRate();
+
+  /// Enables auto sample rate mode (default).
+  static void enableAutoSampleRate();
+
+  /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
   static void sampleRate(float sampleRate);
+
+  /// Returns sample rate.
   static float sampleRate() { return _sampleRate; }
 
 private:
@@ -90,7 +103,17 @@ private:
 
 //float seconds(bool realTime=false);
 unsigned long nSteps();
+
+/// Returns true iff the auto sample rate mode is enabled (default).
+bool autoSampleRate();
+
+/// Enables auto sample rate mode (default).
+void enableAutoSampleRate();
+
+/// Sets sample rate to a fixed value, thus disabling auto sampling rate.
 void sampleRate(float sampleRate);
+
+/// Returns sample rate.
 float sampleRate();
 
 /**

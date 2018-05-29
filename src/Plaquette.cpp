@@ -21,8 +21,9 @@
 #include "Plaquette.h"
 
 void setup() {
-  Plaquette::begin();
+  Plaquette::preBegin();
   begin();
+  Plaquette::postBegin();
 }
 
 void loop() {
