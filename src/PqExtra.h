@@ -95,11 +95,21 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& dutyCycle(float dutyCycle);
+  virtual float dutyCycle() const { return _dutyCycle; }
+
+  /**
+   * Sets the phase (ie. the offset, in % of period).
+   * @param phase the phase (in % of period)
+   * @return the unit itself
+   */
+  virtual SquareOsc& phase(float phase);
 
 protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
+
+  void _updateValue();
 
   // Is the signal currently on (high) or off (low).
   bool _isOn;
@@ -110,8 +120,11 @@ protected:
   // Duty-cycle (in % of period).
   float _dutyCycle;
 
-  // Start time of each period (in seconds).
-  float _startTime;
+  // Phase (in % of period).
+  float _phase;
+
+  // Internal use.
+  float _phaseTime;
 };
 
 /// Sine oscillator. Phase is expressed as % of period.

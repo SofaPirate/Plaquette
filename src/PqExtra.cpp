@@ -75,16 +75,25 @@ SquareOsc::SquareOsc(float period_, float dutyCycle_) {
 }
 
 void SquareOsc::begin() {
-	_startTime = seconds();
+	_phaseTime = _phase;
 }
 
 void SquareOsc::step() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float progress = (seconds() - _startTime) / _period;
-	_isOn = (progress < _dutyCycle);
-	if (progress >= 1) // reset
-  	_startTime = seconds();
+	_phaseTime += 1.0f / (_period * Plaquette::sampleRate());
+	while (_phaseTime > 1) _phaseTime--; // modulo
+	// Compute next value.
+	_updateValue();
+
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards.
+	// float progress = (seconds() - _startTime) / _period;
+	// _isOn = (progress < _dutyCycle);
+	// if (progress >= 1) // reset
+  // 	_startTime = seconds();
+}
+
+void SquareOsc::_updateValue() {
+	_isOn = (_phaseTime < _dutyCycle);
 }
 
 SquareOsc& SquareOsc::period(float period) {
@@ -94,6 +103,17 @@ SquareOsc& SquareOsc::period(float period) {
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
   _dutyCycle = constrain(dutyCycle, 0, 1);
+	return *this;
+}
+
+SquareOsc& SquareOsc::phase(float phase) {
+	if (phase != _phase) {
+		// Need to readjust _phaseTime.
+		_phaseTime += (phase - _phase);
+		while (_phaseTime > 1) _phaseTime--; // modulo
+		while (_phaseTime < 0) _phaseTime++; // modulo
+		_phase = phase;
+	}
 	return *this;
 }
 
