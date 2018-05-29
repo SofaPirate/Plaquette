@@ -135,18 +135,18 @@ SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
 	amplitude(1.0f);
 }
 
-#define _PQ_PHASE_TIME_PREMULTIPLIER (65535.5f)
-#define _PQ_PHASE_TIME_MAX           (65535)
+#define _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER (65535.5f)
+#define _PQ_SINE_OSC_PHASE_TIME_MAX           (65535)
 
 void SineOsc::begin() {
-	_phaseTime = _PQ_PHASE_TIME_PREMULTIPLIER * _phase;
+	_phaseTime = _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * _phase;
   _updateValue();
 }
 
 void SineOsc::step() {
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
-	_phaseTime += _PQ_PHASE_TIME_PREMULTIPLIER / (_period * Plaquette::sampleRate());
-	while (_phaseTime > _PQ_PHASE_TIME_MAX) _phaseTime-=_PQ_PHASE_TIME_MAX; // modulo
+	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (_period * Plaquette::sampleRate());
+	while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX) _phaseTime-=_PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
 	// Compute next value.
 	_updateValue();
 
@@ -179,9 +179,11 @@ SineOsc& SineOsc::amplitude(float amplitude)  {
 SineOsc& SineOsc::phase(float phase) {
 	if (phase != _phase) {
 		phase = constrain(phase, 0, 1);
-		_phaseTime += _PQ_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
-		while (_phaseTime > _PQ_PHASE_TIME_MAX) _phaseTime -= _PQ_PHASE_TIME_MAX; // modulo
-		while (_phaseTime < 0)                  _phaseTime += _PQ_PHASE_TIME_MAX; // modulo
+		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
+		while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX)
+			_phaseTime -= _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+		while (_phaseTime < 0)
+		 	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
 		_phase = phase;
 	}
 	return *this;
