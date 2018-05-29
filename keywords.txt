@@ -54,27 +54,27 @@ getInt	KEYWORD2
 smooth	KEYWORD2
 noSmooth	KEYWORD2
 
-period	KEYWORD2
-frequency	KEYWORD2
-dutyCycle	KEYWORD2
-width	KEYWORD2
-phase	KEYWORD2
-precision	KEYWORD2
+period  KEYWORD2
+frequency  KEYWORD2
+dutyCycle  KEYWORD2
+width  KEYWORD2
+phase  KEYWORD2
+amplitude  KEYWORD2
+precision  KEYWORD2
 targetMean	KEYWORD2
 targetStdDev	KEYWORD2
 
-start	KEYWORD2
+start  KEYWORD2
 stop	KEYWORD2
 resume	KEYWORD2
-elapsed	KEYWORD2
+elapsed KEYWORD2
 progress	KEYWORD2
-isStarted	KEYWORD2
+isStarted  KEYWORD2
 isComplete	KEYWORD2
 
 mapFloat	KEYWORD2
 randomFloat	KEYWORD2
 lerp	KEYWORD2
-seconds	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
