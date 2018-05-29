@@ -142,18 +142,24 @@ public:
   virtual SineOsc& frequency(float frequency) { return period(1/frequency); }
 
   /**
-   * Sets the phase (ie. the offset, in seconds).
-   * @param phrase the phase (in seconds)
+   * Sets the phase (ie. the offset, in % of period).
+   * @param phase the phase (in % of period)
    * @return the unit itself
    */
   virtual SineOsc& phase(float phase);
+  /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   * @return the unit itself
+   */
+   virtual SineOsc& amplitude(float amplitude);
 
 protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
 
-  void _step(float t);
+  void _updateValue();
 
   // Current value of the signal.
   float _value;
@@ -161,11 +167,14 @@ protected:
   // Period (seconds).
   float _period;
 
-  // Phase (seconds).
+  // Phase (in % of period).
   float _phase;
 
-  // Start time of each period (in seconds).
-  float _startTime;
+  // Amplitude (in %).
+  float _amplitude;
+
+  // Internal use.
+  float _phaseTime;
 };
 
 /**
@@ -204,11 +213,25 @@ public:
    * @return the unit itself
    */
   virtual TriOsc& width(float width);
+  /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   * @return the unit itself
+   */
+   virtual TriOsc& amplitude(float amplitude);
+   /**
+    * Sets the phase (ie. the offset, in % of period).
+    * @param phase the phase (in % of period)
+    * @return the unit itself
+    */
+   virtual TriOsc& phase(float phase);
 
 protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
+
+  void _updateValue();
 
   // Current value of the signal.
   float _value;
@@ -216,11 +239,17 @@ protected:
   // Period (seconds).
   float _period;
 
+  // Phase (in % of period).
+  float _phase;
+
   // Tipping-point (in % of period).
   float _width;
 
-  // Start time of each period (in seconds).
-  float _startTime;
+  // Amplitude (in %).
+  float _amplitude;
+
+  // Internal use.
+  float _phaseTime;
 };
 
 // TODO: implement a floating-point version of Chrono in Plaquette and make

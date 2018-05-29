@@ -102,73 +102,133 @@ SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
 
 SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
+	phase(0);
+	amplitude(1.0f);
 }
 
+#define _PQ_PHASE_TIME_PREMULTIPLIER (65535.5f)
+#define _PQ_PHASE_TIME_MAX           (65535)
+
 void SineOsc::begin() {
-  _startTime = seconds();
-  _step(0);
+	_phaseTime = _PQ_PHASE_TIME_PREMULTIPLIER * _phase;
+  _updateValue();
 }
 
 void SineOsc::step() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float relativeTime = seconds() - _startTime;
-	_step(relativeTime);
-	if (relativeTime >= _period)
-  	_startTime = seconds();
+	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
+	_phaseTime += _PQ_PHASE_TIME_PREMULTIPLIER / (_period * Plaquette::sampleRate());
+	while (_phaseTime > _PQ_PHASE_TIME_MAX) _phaseTime-=_PQ_PHASE_TIME_MAX; // modulo
+	// Compute next value.
+	_updateValue();
+
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards and slow processors.
+	// float relativeTime = seconds() - _startTime;
+	// uint16_t theta = ((uint64_t)(65535UL * (_phase + relativeTime / _period))) % 65536;
+	// _value = ((cos16(theta) * _amplitude) + 1) / 2;
+	// if (relativeTime >= _period)
+	// 	_startTime = seconds();
 }
 
-void SineOsc::_step(float t) {
-	// Compute using fast cosine function.
-	uint16_t theta = ((uint64_t)(65535UL * (_phase + t / _period))) % 65536;
-  _value = ((cos16(theta) / -32767.0f) + 1) / 2;
-	// Original code (slow): _value = (-cos( t * TWO_PI / _period) + 1) / 2;
+void SineOsc::_updateValue() {
+	_value = ((cos16((uint16_t)(_phaseTime)) * _amplitude) + 1) / 2;
 }
 
 SineOsc& SineOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	if (_period != period)
+		_period = max(period, 1e-6f);
+	return *this;
+}
+
+SineOsc& SineOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude)
+  	_amplitude = constrain(amplitude, 0, 1);
+	_amplitude /= -32767.0f; // hack: precompute value
 	return *this;
 }
 
 SineOsc& SineOsc::phase(float phase) {
-  _phase = phase;
+	if (phase != _phase) {
+		phase = constrain(phase, 0, 1);
+		_phaseTime += _PQ_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
+		while (_phaseTime > _PQ_PHASE_TIME_MAX) _phaseTime -= _PQ_PHASE_TIME_MAX; // modulo
+		while (_phaseTime < 0)                  _phaseTime += _PQ_PHASE_TIME_MAX; // modulo
+		_phase = phase;
+	}
 	return *this;
 }
 
 TriOsc::TriOsc(float period_, float width_) {
   period(period_);
   width(width_);
+	amplitude(1.0f);
 }
 
 void TriOsc::begin() {
-  _startTime = seconds();
+	_phaseTime = _phase;
+  _updateValue();
 }
 
 void TriOsc::step() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float relativeTime = seconds() - _startTime;
+	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
+	_phaseTime += 1.0f / (_period * Plaquette::sampleRate());
+	while (_phaseTime > 1) _phaseTime--; // modulo
+	// Compute next value.
+	_updateValue();
 
-  // Check where we are.
-	float progress = relativeTime / _period;
-	if (progress >= 1) {
-		_value = 0;
-		_startTime = seconds();
-	}
-	else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-	else                         _value = progress / _width;
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards.
+	// float relativeTime = seconds() - _startTime;
+	//
+  // // Check where we are.
+	// float progress = relativeTime / _period;
+	// if (progress >= 1) {
+	// 	_value = 0;
+	// 	_startTime = seconds();
+	// }
+	// else if (progress >= _width) _value = (1 - progress) / (1 - _width);
+	// else                         _value = progress / _width;
+	//
+	// // Amplify.
+  // _value = _amplitude * (_value - 0.5f) + 0.5f;
+}
+
+void TriOsc::_updateValue() {
+	// Compute triangle depending on raising or falling step.
+	if (_phaseTime >= _width) _value = (1 - _phaseTime) / (1 - _width);
+	else                      _value = _phaseTime / _width;
+	// Amplify.
+  _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 TriOsc& TriOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	if (period != _period)
+		_period = max(period, 1e-6f);
 	return *this;
 }
 
 TriOsc& TriOsc::width(float width) {
-  _width = constrain(width, 0, 1);
+	if (width != _width)
+  	_width = constrain(width, 0, 1);
 	return *this;
 }
 
+TriOsc& TriOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude)
+  	_amplitude = constrain(amplitude, 0, 1);
+	return *this;
+}
+
+TriOsc& TriOsc::phase(float phase) {
+	if (phase != _phase) {
+		// Need to readjust _phaseTime.
+		_phaseTime += (phase - _phase);
+		while (_phaseTime > 1) _phaseTime--; // modulo
+		while (_phaseTime < 0) _phaseTime++; // modulo
+		_phase = phase;
+	}
+	return *this;
+}
 
 Ramp::Ramp(float initialValue_) :
 	_value(initialValue_), _duration(),
