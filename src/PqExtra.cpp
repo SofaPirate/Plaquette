@@ -80,7 +80,7 @@ void SquareOsc::begin() {
 }
 
 void SquareOsc::step() {
-	_phaseTime += 1.0f / (_period * Plaquette::sampleRate());
+	_phaseTime += 1.0f / (_period * sampleRate());
 	while (_phaseTime > 1) _phaseTime--; // modulo
 	// Compute next value.
 	_updateValue();
@@ -145,7 +145,7 @@ void SineOsc::begin() {
 
 void SineOsc::step() {
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
-	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (_period * Plaquette::sampleRate());
+	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (_period * sampleRate());
 	while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX) _phaseTime-=_PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
 	// Compute next value.
 	_updateValue();
@@ -202,7 +202,7 @@ void TriOsc::begin() {
 
 void TriOsc::step() {
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
-	_phaseTime += 1.0f / (_period * Plaquette::sampleRate());
+	_phaseTime += 1.0f / (_period * sampleRate());
 	while (_phaseTime > 1) _phaseTime--; // modulo
 	// Compute next value.
 	_updateValue();
