@@ -72,6 +72,7 @@ void StreamIn::step() {
 SquareOsc::SquareOsc(float period_, float dutyCycle_) {
   period(period_);
   dutyCycle(dutyCycle_);
+	amplitude(1.0f);
 }
 
 void SquareOsc::begin() {
@@ -93,7 +94,7 @@ void SquareOsc::step() {
 }
 
 void SquareOsc::_updateValue() {
-	_isOn = (_phaseTime < _dutyCycle);
+	_value = 0.5f + (_phaseTime < _dutyCycle ? _amplitude : -_amplitude);
 }
 
 SquareOsc& SquareOsc::period(float period) {
@@ -113,6 +114,14 @@ SquareOsc& SquareOsc::phase(float phase) {
 		while (_phaseTime > 1) _phaseTime--; // modulo
 		while (_phaseTime < 0) _phaseTime++; // modulo
 		_phase = phase;
+	}
+	return *this;
+}
+
+SquareOsc& SquareOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude) {
+  	_amplitude = constrain(amplitude, 0, 1);
+		_amplitude *= 0.5f; // hack: premultiplied
 	}
 	return *this;
 }

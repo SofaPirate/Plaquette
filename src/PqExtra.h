@@ -62,7 +62,7 @@ protected:
 };
 
 /// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public PqDigitalGetter {
+class SquareOsc : public PqGetter {
 public:
   /**
    * Constructor.
@@ -72,8 +72,8 @@ public:
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
   virtual ~SquareOsc() {}
 
-  /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
+  /// Returns value in [0, 1].
+  virtual float get() { return _value; }
 
   /**
    * Sets the period (in seconds).
@@ -103,6 +103,12 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& phase(float phase);
+  /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   * @return the unit itself
+   */
+   virtual SquareOsc& amplitude(float amplitude);
 
 protected:
   // Core Plaquette methods.
@@ -112,7 +118,7 @@ protected:
   void _updateValue();
 
   // Is the signal currently on (high) or off (low).
-  bool _isOn;
+  float _value;
 
   // Period (seconds).
   float _period;
@@ -122,6 +128,9 @@ protected:
 
   // Phase (in % of period).
   float _phase;
+
+  // Amplitude (in %).
+  float _amplitude;
 
   // Internal use.
   float _phaseTime;
