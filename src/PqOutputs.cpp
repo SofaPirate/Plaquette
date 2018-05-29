@@ -21,7 +21,7 @@
 #include "PqOutputs.h"
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqPutter(),
+  : PqPinUnit(pin, mode), PqPutter(),
     _value(0)
 {}
 
@@ -44,7 +44,7 @@ float AnalogOut::write(float value) {
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqDigitalPutter()
+  : PqPinUnit(pin, mode), PqDigitalPutter()
 {}
 
 float DigitalOut::put(float value) {

@@ -28,7 +28,7 @@
 #define SINK   0x1
 
 /// A generic class representing a simple PWM output.
-class AnalogOut : public PqPinComponent, public PqPutter {
+class AnalogOut : public PqPinUnit, public PqPutter {
 public:
   /**
    * Constructor.
@@ -55,7 +55,7 @@ public:
 };
 
 /// A generic class representing a simple digital output.
-class DigitalOut : public PqPinComponent, public PqDigitalPutter {
+class DigitalOut : public PqPinUnit, public PqDigitalPutter {
 public:
   /**
    * Constructor.

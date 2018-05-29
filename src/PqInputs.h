@@ -49,7 +49,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinComponent, public PqSmoothable, public PqGetter {
+class AnalogIn : public PqPinUnit, public PqSmoothable, public PqGetter {
 public:
   /**
    * Constructor.
@@ -72,7 +72,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinComponent, public PqSmoothable, public PqDigitalGetter {
+class DigitalIn : public PqPinUnit, public PqSmoothable, public PqDigitalGetter {
 public:
   /**
    * Constructor.

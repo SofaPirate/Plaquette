@@ -29,7 +29,7 @@ float PqSmoothable::_smoothed() {
 }
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqGetter(), _value(0)
+  : PqPinUnit(pin, mode), PqGetter(), _value(0)
 {}
 
 #ifdef ESP8266
@@ -51,7 +51,7 @@ void AnalogIn::begin() { step(); }
 void AnalogIn::step() { _value = _smoothed(); }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqPinComponent(pin, mode), PqDigitalGetter(), _isOn(false)
+  : PqPinUnit(pin, mode), PqDigitalGetter(), _isOn(false)
 {}
 
 float DigitalIn::_read() {
