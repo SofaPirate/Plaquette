@@ -25,27 +25,22 @@
 
 #include "MovingAverage.h"
 
-MovingAverage::MovingAverage(float alphaOrN) : _value(0.5f) {
-  setAlphaOrN(alphaOrN);
+MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
+  window(seconds);
   reset();
 }
 
-MovingAverage::MovingAverage(float alphaOrN, float startValue) : _value(startValue) {
-  setAlphaOrN(alphaOrN);
-}
+// MovingAverage::MovingAverage(float seconds, float startValue) {
+//   window(seconds);
+//   reset(startValue);
+// }
 
-void MovingAverage::setAlphaOrN(float alphaOrN)
-{
+void MovingAverage::window(float seconds) {
   // Save start status - changing alpha will meddle with it.
   bool started = isStarted();
 
-  // Make sure factor >= 0.
-  alphaOrN =  max(alphaOrN, 0.0f);
-
-  // Set alpha.
-  _alpha = (alphaOrN > 1 ?
-      2 / (alphaOrN + 1) :
-      alphaOrN);
+  // Assign.
+  _smoothWindow = max(seconds, 0);
 
   // Reset start state.
   _setStarted(started);
@@ -55,12 +50,12 @@ void MovingAverage::reset() {
   _setStarted(false);
 }
 
-void MovingAverage::reset(float startValue) {
-  _value = startValue;
-  _setStarted(true);
-}
+// void MovingAverage::reset(float startValue) {
+//   _value = startValue;
+//   _setStarted(true);
+// }
 
-float MovingAverage::update(float v) {
+float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
   if (!isStarted()) {
     // Initialize value with first read value -- which is always an unbiased sample.
     _value = v;
@@ -69,13 +64,17 @@ float MovingAverage::update(float v) {
   }
   else
     // Exponential moving average.
-    return (_value -= _alpha * (_value - v));
+    return applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 }
 
 bool MovingAverage::isStarted() const {
-  return _alpha >= 0;
+  return _smoothWindow >= 0;
+}
+
+float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
+  return (runningValue -= alpha * (runningValue - newValue));
 }
 
 void MovingAverage::_setStarted(bool start) {
-  _alpha = (start ? +1 : -1) * abs(_alpha);
+  _smoothWindow = (start ? +1 : -1) * abs(_smoothWindow);
 }

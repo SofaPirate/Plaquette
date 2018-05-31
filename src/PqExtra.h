@@ -420,7 +420,7 @@ public:
    * Constructor.
    * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
    */
-  Smoother(float factor=0.1f);
+  Smoother(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
   virtual ~Smoother() {}
 
   /**
@@ -441,32 +441,31 @@ public:
 class AdaptiveNormalizer : public PqPutter, public MovingStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0 and a standard
-   * deviation of 1.
-   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.25.
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-   AdaptiveNormalizer(float smoothFactor=0.001f);
+   AdaptiveNormalizer(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
 
   /**
    * Constructor.
    * @param mean the target mean
    * @param stddev the target standard deviation
-   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  AdaptiveNormalizer(float mean, float stddev, float smoothFactor=0.001f);
+  AdaptiveNormalizer(float mean, float stddev, float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
   virtual ~AdaptiveNormalizer() {}
 
   /**
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  AdaptiveNormalizer& targetMean(float mean) { _mean = mean; return *this; }
+  AdaptiveNormalizer& targetMean(float mean) { _targetMean = mean; return *this; }
 
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  AdaptiveNormalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
+  AdaptiveNormalizer& targetStdDev(float stddev) { _targetStddev = stddev; return *this; }
 
   /**
    * Pushes value into the unit.
@@ -483,8 +482,8 @@ protected:
   float _value;
 
   // Target normalization parameters.
-  float _mean;
-  float _stddev;
+  float _targetMean;
+  float _targetStddev;
 };
 
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.

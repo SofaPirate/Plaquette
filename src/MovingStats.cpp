@@ -19,26 +19,31 @@
 
 #include "MovingStats.h"
 
-MovingStats::MovingStats(float alphaOrN) : avg(alphaOrN), _var(0) { }
+MovingStats::MovingStats(float smoothWindow) : _avg(smoothWindow), _var(0) { }
+
+void MovingStats::window(float seconds) {
+  _avg.window(seconds);
+}
 
 void MovingStats::reset() {
-  avg.reset();
+  _avg.reset();
   _var = 0;
 }
 
-float MovingStats::update(float value)
+float MovingStats::update(float value, float sampleRate)
  {
-  avg.update(value);
+  float alpha = _avg.alpha(sampleRate);
+  _avg.update(value, alpha, true); // force alpha
   if (!isStarted())
     _var = 0;
   else {
-    float diff = value - avg.get();
-   _var   -= avg.alpha() * (_var - sq(diff));
+    float diff = value - _avg.get();
+    MovingAverage::applyUpdate(_var, sq(diff), alpha);
   }
 
   return normalize(value);
 }
 
 bool MovingStats::isStarted() const {
-  return avg.isStarted();
+  return _avg.isStarted();
 }

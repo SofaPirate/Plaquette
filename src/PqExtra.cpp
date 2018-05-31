@@ -369,33 +369,35 @@ float OscilloscopeOut::put(float value) {
   return _value;
 }
 
-Smoother::Smoother(float factor)
+Smoother::Smoother(float smoothWindow)
   : PqPutter(),
-    MovingAverage(factor) {
+    MovingAverage(smoothWindow) {
 }
 
 float Smoother::put(float value) {
-  return MovingAverage::update(value);
+  return MovingAverage::update(value, sampleRate());
 }
 
-AdaptiveNormalizer::AdaptiveNormalizer(float smoothFactor)
+AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
   : PqPutter(),
-    MovingStats(smoothFactor),
+    MovingStats(smoothWindow),
     _value(0.5f),
-    _mean(0.5f),
-    _stddev(0.25f)
-{}
+    _targetMean(0.5f),
+    _targetStddev(0.25f)
+{
+}
 
-AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothFactor)
+AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
 	: PqPutter(),
-    MovingStats(smoothFactor),
+    MovingStats(smoothWindow),
     _value(mean),
-    _mean(mean),
-    _stddev(abs(stddev))
-{}
+    _targetMean(mean),
+    _targetStddev(abs(stddev))
+{
+}
 
 float AdaptiveNormalizer::put(float value) {
-  return (_value = MovingStats::update(value) * _stddev + _mean);
+  return (_value = MovingStats::update(value, sampleRate()) * _targetStddev + _targetMean);
 }
 
 Normalizer::Normalizer()

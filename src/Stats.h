@@ -31,7 +31,7 @@ public:
   virtual void reset() = 0;
 
   /// Adds a value to the statistics (returns the mean).
-  virtual float update(float value) = 0;
+  virtual float update(float value, float sampleRate=1) = 0;
 
   /// Returns the mean of the samples.
   virtual float mean() const = 0;

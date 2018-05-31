@@ -20,12 +20,14 @@
 
 #include "PqInputs.h"
 
-void PqSmoothable::smooth(float factor) {
-  _avg.setAlphaOrN(factor);
+PqSmoothable::PqSmoothable(float smoothWindow) : _avg(smoothWindow) {}
+
+void PqSmoothable::smooth(float smoothWindow) {
+  _avg.window(smoothWindow);
 }
 
 float PqSmoothable::_smoothed() {
-  return _avg.update( _read() );
+  return _avg.update( _read(), _avg.alpha(sampleRate()) );
 }
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)

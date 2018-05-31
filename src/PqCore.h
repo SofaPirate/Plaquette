@@ -36,6 +36,12 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
+#ifndef PLAQUETTE_DEFAULT_SMOOTH_WINDOW
+#define PLAQUETTE_DEFAULT_SMOOTH_WINDOW 0.1F
+#endif
+
+#define PLAQUETTE_NO_SMOOTH_WINDOW 0
+
 class PqUnit;
 
 /// The main Plaquette static class containing all the components.

@@ -29,35 +29,41 @@
 
 /// An exponential moving average class.
 class MovingAverage {
-public:
-  // The alpha (mixing) variable (in [0,1]).
-  float _alpha; // to save space: the sign of alpha is used to represent "started" status
+protected:
+  // The smoothing window (in seconds).
+  float _smoothWindow; // to save space: the sign of alpha is used to represent "started" status
 
   // The current value of the exponential moving average.
   float _value;
 
+public:
   /**
-   * Constructs the moving average, starting with #startValue# as its value. The #alphaOrN# argument
-   * has two options:
-   * - if <= 1 then it's used directly as the alpha value
-   * - if > 1 then it's used as the "number of items that are considered from the past" (*)
-   * (*) Of course this is an approximation. It actually sets the alpha value to 2 / (n - 1)
+   * Constructs the moving average.
    */
-  MovingAverage(float alphaOrN=1);
-  MovingAverage(float alphaOrN, float startValue);
+  MovingAverage(float smooth);
+  // MovingAverage(float seconds, float startValue);
   virtual ~MovingAverage() {}
 
-  /// Change the smoothing factor to #alphaOrN#.
-  void setAlphaOrN(float alphaOrN);
+  /// Changes the smoothing window factor (expressed in seconds).
+  void window(float seconds);
+
+  /// Returns the smoothing window factor.
+  float window() const { return _smoothWindow; }
+
+  /// Returns the alpha value computed from given sample rate.
+  float alpha(float sampleRate) const {
+    float a = 2 / (_smoothWindow*sampleRate + 1);
+    return min(a, 1); // make sure it does not get over 1
+  }
 
   /// Resets the moving average.
-  void reset();
+  virtual void reset();
 
-  /// Resets the moving average to #startValue#.
-  void reset(float startValue);
+  // /// Resets the moving average to #startValue#.
+  // virtual void reset(float startValue);
 
   /// Updates the moving average with new value #v# (also returns the current value).
-  float update(float v);
+  virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
 
   /// Returns the value of the moving average. This is undefined if isValid() == false.
   float get() { return _value; }
@@ -66,11 +72,15 @@ public:
   /// Returns true iff the moving average has already been started.
   bool isStarted() const;
 
-  /// Returns the alpha value.
-  float alpha() const { return _alpha; }
+  /**
+   * Applies a single update on #runningValue# with new sample #newValue# and mixing
+   * factor #alpha#.
+   */
+  static float applyUpdate(float& runningValue, float newValue, float alpha);
 
 protected:
   void _setStarted(bool start);
+
 };
 
 #endif /* MOVINGAVERAGE_H_ */

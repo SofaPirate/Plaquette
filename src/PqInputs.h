@@ -34,10 +34,16 @@
 /// Superclass for components that can be smoothed.
 class PqSmoothable {
 public:
+  PqSmoothable(float smoothWindow=PLAQUETTE_NO_SMOOTH_WINDOW);
+
   /// Apply smoothing to object.
-  virtual void smooth(float factor=0.1f);
+  virtual void smooth(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
+
   /// Remove smoothing.
-  virtual void noSmooth() { smooth(1); }
+  virtual void noSmooth() { smooth(PLAQUETTE_NO_SMOOTH_WINDOW); }
+
+  /// Returns current smoothing window.
+  float window() const { return _avg.window(); }
 
 protected:
   // Raw read function.
@@ -45,6 +51,7 @@ protected:
 
 	// Returns smoothed value.
   virtual float _smoothed();
+
   MovingAverage _avg;
 };
 

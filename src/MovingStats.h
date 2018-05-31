@@ -28,27 +28,32 @@
 
 class MovingStats : public Stats {
 public:
-  MovingAverage avg;
+  // Moving average over values (ie. mean).
+  MovingAverage _avg;
+
+  // Moving average of variance.
   float _var;
 
   /**
-   * Constructs the moving statistics, starting with #startMean# and #startVar# as initial mean and
-   * variance. The #alphaOrN# argument has two options:
-   * - if <= 1 then it's used directly as the alpha value
-   * - if > 1 then it's used as the "number of items that are considered from the past" (*)
-   * (*) Of course this is an approximation. It actually sets the alpha value to 2 / (n - 1)
+   * Constructs the moving statistics.
    */
-  MovingStats(float alphaOrN=1);
+  MovingStats(float smoothWindow);
   virtual ~MovingStats() {}
+
+  /// Changes the smoothing window factor (expressed in seconds).
+  void window(float seconds);
+
+  /// Returns the smoothing window factor.
+  float window() const { return _avg.window(); }
 
   /// Resets the statistics.
   virtual void reset();
 
   /// Adds a value to the statistics (returns the mean).
-  virtual float update(float value);
+  virtual float update(float value, float sampleRate=1);
 
   /// Returns an exponential moving average of the samples.
-  virtual float mean() const { return avg.constGet(); }
+  virtual float mean() const { return _avg.constGet(); }
 
   /// Returns an exponential moving variance of the samples.
   virtual float var() const { return _var; }

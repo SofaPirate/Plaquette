@@ -31,7 +31,7 @@ void SimpleStats::reset() {
 //  _max = -FLT_MAX;
 }
 
-float SimpleStats::update(float value) {
+float SimpleStats::update(float value, float sampleRate) {
   // Simple trick that makes sure we don't overflow.
   if (_nSamples < ULONG_MAX)
     _nSamples++;
