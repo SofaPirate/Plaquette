@@ -1,5 +1,5 @@
 /*
- * Plaquette.cpp
+ * PlaquetteLib.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,16 +18,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Plaquette.h"
+ #ifndef PLAQUETTE_LIB_H_
+ #define PLAQUETTE_LIB_H_
 
-void setup() {
-  Plaquette::preBegin();
-  begin();
-  Plaquette::postBegin();
-}
+ #if defined(ARDUINO) && ARDUINO >= 100
+ #include "Arduino.h"
+ #else
+ #include "WProgram.h"
+ #endif
 
-void loop() {
-  Plaquette::preStep();
-  step();
-  Plaquette::postStep();
-}
+ // Plaquette builtin functions.
+ #include "pq_lerp.h"
+ #include "pq_map_real.h"
+ #include "pq_print.h"
+ #include "pq_random.h"
+ #include "pq_time.h"
+
+ // Core files.
+ #include "PqCore.h"
+ #include "PqInputs.h"
+ #include "PqOutputs.h"
+
+ // Basic set of extra components.
+ #include "PqExtra.h"
+
+ #endif

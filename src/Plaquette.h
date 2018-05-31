@@ -21,29 +21,23 @@
 #ifndef PLAQUETTE_H_
 #define PLAQUETTE_H_
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
+#include "PlaquetteLib.h"
 
-// Plaquette builtin functions.
-#include "pq_lerp.h"
-#include "pq_map_real.h"
-#include "pq_print.h"
-#include "pq_random.h"
-#include "pq_time.h"
-
-// Core files.
-#include "PqCore.h"
-#include "PqInputs.h"
-#include "PqOutputs.h"
-
-// Basic set of extra components.
-#include "PqExtra.h"
-
-// Plaquette builtin runtime functions.
+// Plaquette builtin runtime functions (to be defined in sketch).
 void begin();
 void step();
+
+// Plaquette redefines setup() and loop() based on begin() and step().
+void setup() {
+  Plaquette::preBegin();
+  begin();
+  Plaquette::postBegin();
+}
+
+void loop() {
+  Plaquette::preStep();
+  step();
+  Plaquette::postStep();
+}
 
 #endif
