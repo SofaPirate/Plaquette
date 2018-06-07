@@ -25,8 +25,10 @@
 
 #include "MovingAverage.h"
 
+#include <float.h>
+
 MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
-  window(seconds);
+  time(seconds);
   reset();
 }
 
@@ -35,15 +37,20 @@ MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
 //   reset(startValue);
 // }
 
-void MovingAverage::window(float seconds) {
+void MovingAverage::time(float seconds) {
   // Save start status - changing alpha will meddle with it.
   bool started = isStarted();
 
   // Assign.
-  _smoothWindow = max(seconds, 0);
+  _smoothTime = max(seconds, 0);
 
   // Reset start state.
   _setStarted(started);
+}
+
+void MovingAverage::cutoff(float hz) {
+  // If hz is null time window is infinite.
+  time(hz == 0 ? FLT_MAX : hz);
 }
 
 void MovingAverage::reset() {
@@ -68,7 +75,7 @@ float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
 }
 
 bool MovingAverage::isStarted() const {
-  return _smoothWindow >= 0;
+  return _smoothTime >= 0;
 }
 
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
@@ -76,5 +83,5 @@ float MovingAverage::applyUpdate(float& runningValue, float newValue, float alph
 }
 
 void MovingAverage::_setStarted(bool start) {
-  _smoothWindow = (start ? +1 : -1) * abs(_smoothWindow);
+  _smoothTime = (start ? +1 : -1) * abs(_smoothTime);
 }

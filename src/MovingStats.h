@@ -40,11 +40,17 @@ public:
   MovingStats(float smoothWindow);
   virtual ~MovingStats() {}
 
-  /// Changes the smoothing window factor (expressed in seconds).
-  void window(float seconds);
+  /// Changes the smoothing window (expressed in seconds).
+  void time(float seconds);
 
-  /// Returns the smoothing window factor.
-  float window() const { return _avg.window(); }
+  /// Returns the smoothing window (expressed in seconds).
+  float time() const { return _avg.time(); }
+
+  /// Changes the smoothing window cutoff frequency (expressed in Hz).
+  void cutoff(float hz);
+
+  /// Returns the smoothing window cutoff frequency (expressed in Hz).
+  float cutoff() const { return (1.0f/time()); }
 
   /// Resets the statistics.
   virtual void reset();

@@ -34,7 +34,7 @@ Smooths the incoming signal by removing fast variations and noise (high frequenc
 
 .. doxygenclass:: Smoother
    :project: Plaquette
-   :members: Smoother, get, put
+   :members: Smoother, get, put, cutoff, time
 
 |SeeAlso|
 ---------

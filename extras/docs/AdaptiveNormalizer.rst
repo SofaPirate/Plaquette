@@ -38,7 +38,7 @@ Therefore, it adapts over time by giving more importance to the most recently se
 
 .. doxygenclass:: AdaptiveNormalizer
    :project: Plaquette
-   :members: AdaptiveNormalizer, get, put, targetMean, targetStdDev, reset
+   :members: AdaptiveNormalizer, get, put, targetMean, targetStdDev, reset, cutoff, time
 
 |SeeAlso|
 ---------

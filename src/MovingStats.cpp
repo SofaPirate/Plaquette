@@ -19,10 +19,16 @@
 
 #include "MovingStats.h"
 
+#include <float.h>
+
 MovingStats::MovingStats(float smoothWindow) : _avg(smoothWindow), _var(0) { }
 
-void MovingStats::window(float seconds) {
-  _avg.window(seconds);
+void MovingStats::time(float seconds) {
+  _avg.time(seconds);
+}
+
+void MovingStats::cutoff(float hz) {
+  _avg.cutoff(hz);
 }
 
 void MovingStats::reset() {

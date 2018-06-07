@@ -20,11 +20,7 @@
 
 #include "PqInputs.h"
 
-PqSmoothable::PqSmoothable(float smoothWindow) : _avg(smoothWindow) {}
-
-void PqSmoothable::smooth(float smoothWindow) {
-  _avg.window(smoothWindow);
-}
+PqSmoothable::PqSmoothable(float smoothTime) : _avg(smoothTime) {}
 
 float PqSmoothable::_smoothed() {
   return _avg.update( _read(), _avg.alpha(sampleRate()) );

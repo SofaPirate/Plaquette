@@ -34,16 +34,25 @@
 /// Superclass for components that can be smoothed.
 class PqSmoothable {
 public:
-  PqSmoothable(float smoothWindow=PLAQUETTE_NO_SMOOTH_WINDOW);
+  PqSmoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
 
   /// Apply smoothing to object.
-  virtual void smooth(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
+  virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { time(smoothTime); }
 
   /// Remove smoothing.
   virtual void noSmooth() { smooth(PLAQUETTE_NO_SMOOTH_WINDOW); }
 
-  /// Returns current smoothing window.
-  float window() const { return _avg.window(); }
+  /// Changes the smoothing window (expressed in seconds).
+  virtual void time(float seconds) { _avg.time(seconds); }
+
+  /// Returns the smoothing window (expressed in seconds).
+  float time() const { return _avg.time(); }
+
+  /// Changes the smoothing window cutoff frequency (expressed in Hz).
+  virtual void cutoff(float hz) { _avg.cutoff(hz); }
+
+  /// Returns the smoothing window cutoff frequency (expressed in Hz).
+  float cutoff() const { return _avg.cutoff(); }
 
 protected:
   // Raw read function.

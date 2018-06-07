@@ -31,7 +31,7 @@
 class MovingAverage {
 protected:
   // The smoothing window (in seconds).
-  float _smoothWindow; // to save space: the sign of alpha is used to represent "started" status
+  float _smoothTime; // to save space: the sign of alpha is used to represent "started" status
 
   // The current value of the exponential moving average.
   float _value;
@@ -44,15 +44,22 @@ public:
   // MovingAverage(float seconds, float startValue);
   virtual ~MovingAverage() {}
 
-  /// Changes the smoothing window factor (expressed in seconds).
-  void window(float seconds);
+  /// Changes the smoothing window (expressed in seconds).
+  void time(float seconds);
 
-  /// Returns the smoothing window factor.
-  float window() const { return _smoothWindow; }
+  /// Returns the smoothing window (expressed in seconds).
+  float time() const { return _smoothTime; }
+
+  /// Changes the smoothing window cutoff frequency (expressed in Hz).
+  void cutoff(float hz);
+
+  /// Returns the smoothing window cutoff frequency (expressed in Hz).
+  float cutoff() const { return (1.0f/time()); }
 
   /// Returns the alpha value computed from given sample rate.
   float alpha(float sampleRate) const {
-    float a = 2 / (_smoothWindow*sampleRate + 1);
+    // Rule of thumb: alpha = 2 / (n_samples+1).
+    float a = 2 / (_smoothTime*sampleRate + 1);
     return min(a, 1); // make sure it does not get over 1
   }
 

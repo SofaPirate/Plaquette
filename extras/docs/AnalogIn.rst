@@ -34,7 +34,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 .. doxygenclass:: AnalogIn
    :project: Plaquette
-   :members: AnalogIn, get, smooth, noSmooth, pin, mode
+   :members: AnalogIn, get, smooth, noSmooth, cutoff, time, pin, mode
 
 .. warning::
 

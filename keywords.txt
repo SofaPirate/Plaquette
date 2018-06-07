@@ -53,6 +53,8 @@ getInt	KEYWORD2
 
 smooth	KEYWORD2
 noSmooth	KEYWORD2
+time	KEYWORD2
+cutoff	KEYWORD2
 
 period  KEYWORD2
 frequency  KEYWORD2
