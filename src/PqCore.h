@@ -89,6 +89,11 @@ public:
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
   static inline void step();
 
+  /**
+   * Optional function to be used within the PlaquetteLib context. No need to call it if the program
+   * is looping indefinitely. Call if the program stops at some point.
+   */
+  static inline void end();
 
   /// Returns the current number of units.
   static uint8_t nUnits() { return _nUnits; }

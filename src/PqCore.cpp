@@ -59,7 +59,13 @@ void Plaquette::postBegin() {
   _seconds = seconds(true);
 }
 
+void Plaquette::end() {
+  if (_firstRun) {
+    postBegin();
+    _firstRun = false;
   }
+  else
+    postStep();
 }
 
 void Plaquette::add(PqUnit* component) {
