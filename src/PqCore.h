@@ -68,6 +68,8 @@ private:
   // Number of steps accomplished.
   static unsigned long _nSteps;
 
+  static bool _firstRun;
+
 public:
   /// Initializes all components (calls begin() on all of them).
   static void preBegin();
@@ -76,10 +78,17 @@ public:
   static void postBegin();
 
   /// Updates all components (calls step() on all of them).
-  static void preStep();
+  static inline void preStep();
 
   /// Performs additional tasks after the class to step().
-  static void postStep();
+  static inline void postStep();
+
+  /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
+  static inline void begin();
+
+  /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
+  static inline void step();
+
 
   /// Returns the current number of units.
   static uint8_t nUnits() { return _nUnits; }
@@ -121,6 +130,7 @@ void sampleRate(float sampleRate);
 
 /// Returns sample rate.
 float sampleRate();
+
 
 /**
  * Main class for components to be added to Plaquette.
@@ -491,5 +501,54 @@ public:
   // The mode (varies according to context).
   uint8_t _mode;
 };
+
+// Inline methods.
+#include <float.h>
+
+void Plaquette::preStep() {
+  // Update every component.
+  for (uint8_t i=0; i<_nUnits; i++)
+    _units[i]->step();
+}
+
+void Plaquette::postStep() {
+  // Increment step.
+  _nSteps++;
+
+  // Calculate true sample rate.
+  float newTime = seconds(true);
+  float trueSampleRate = 1.0f / (newTime - _seconds + FLT_MIN);
+  // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
+  // then we should just assign the true sample rate.
+  if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
+    _sampleRate = trueSampleRate;
+    _seconds = newTime;
+  }
+
+  // Otherwise: Wait in order to synchronize seconds with real time.
+  else {
+    float targetTime = _seconds + 1.0f/_targetSampleRate;
+    unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6);
+    while (micros() < targetTimeUs); // wait
+    _sampleRate = _targetSampleRate;
+    _seconds = targetTime; // not the exact "true" time but more accurate for computations
+  }
+}
+
+void Plaquette::begin() {
+  preBegin();
+}
+
+void Plaquette::step() {
+  if (_firstRun) {
+    postBegin();
+    _firstRun = false;
+  }
+  else
+    postStep();
+
+  // Do the pre-step.
+  preStep();
+}
 
 #endif
