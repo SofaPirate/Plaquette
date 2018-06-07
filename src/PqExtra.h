@@ -87,7 +87,7 @@ public:
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual SquareOsc& frequency(float frequency) { return period(1/frequency); }
+  virtual SquareOsc& frequency(float frequency);
 
   /**
    * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
@@ -161,7 +161,7 @@ public:
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual SineOsc& frequency(float frequency) { return period(1/frequency); }
+  virtual SineOsc& frequency(float frequency);
 
   /**
    * Sets the phase (ie. the offset, in % of period).
@@ -227,7 +227,7 @@ public:
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual TriOsc& frequency(float freq) { return period(1/freq); }
+  virtual TriOsc& frequency(float frequency);
 
   /**
    * Sets the width of the wave.

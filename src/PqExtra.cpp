@@ -98,8 +98,12 @@ void SquareOsc::_updateValue() {
 }
 
 SquareOsc& SquareOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	_period = max(period, FLT_MIN);
 	return *this;
+}
+
+SquareOsc& SquareOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
@@ -165,8 +169,12 @@ void SineOsc::_updateValue() {
 
 SineOsc& SineOsc::period(float period) {
 	if (_period != period)
-		_period = max(period, 1e-6f);
+		_period = max(period, FLT_MIN);
 	return *this;
+}
+
+SineOsc& SineOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 SineOsc& SineOsc::amplitude(float amplitude)  {
@@ -234,8 +242,12 @@ void TriOsc::_updateValue() {
 
 TriOsc& TriOsc::period(float period) {
 	if (period != _period)
-		_period = max(period, 1e-6f);
+		_period = max(period, FLT_MIN);
 	return *this;
+}
+
+TriOsc& TriOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 TriOsc& TriOsc::width(float width) {
