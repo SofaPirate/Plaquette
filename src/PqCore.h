@@ -351,6 +351,18 @@ public:
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _isOn; }
 
+  /// Returns true if the value rose since last call to step().
+  virtual bool rose() { return changeState() > 0; }
+
+  /// Returns true if the value fell since last call to step().
+  virtual bool fell() { return changeState() < 0; }
+
+  /// Returns true if the value changed since last call to step().
+  virtual bool changed() { changeState() == 0; }
+
+  /// Difference between current and previous value of the object since last call to step().
+  virtual int8_t changeState() = 0;
+
 protected:
   bool _isOn;
 };

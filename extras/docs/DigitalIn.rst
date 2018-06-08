@@ -36,7 +36,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 .. doxygenclass:: DigitalIn
    :project: Plaquette
-   :members: DigitalIn, isOn, isOff, pin, mode, smooth, noSmooth, cutoff, time, getInt, get
+   :members: DigitalIn, isOn, isOff, pin, mode, smooth, noSmooth, cutoff, time, getInt, get, rose, fell, changed, changeState
 
 |SeeAlso|
 ---------
