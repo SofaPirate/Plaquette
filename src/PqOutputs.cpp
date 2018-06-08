@@ -21,43 +21,37 @@
 #include "PqOutputs.h"
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqPutter(),
-    _value(0)
+  : PqPinUnit(pin, mode), PqAnalogUnit()
 {}
 
 float AnalogOut::put(float value) {
-  return (_value = write(value));
-}
+  // Make sure value is in [0, 1].
+  _value = constrain(value, 0, 1);
 
-float AnalogOut::write(float value) {
-  // Make sure value is in [0, 1] and remap to [0, 255].
-  value = constrain(value, 0, 1) * 255;
-  int rawValue = round(value);
+  // Remap to [0, 255].
+  value = _value * 255;
+  value = round(value);
   // Write to analog output (inverting if needed).
 #if defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
   dacWrite
 #else
   analogWrite
 #endif
-    (_pin, (_mode == SOURCE ? rawValue : 255 - rawValue));
-  return value;
+    (_pin, (_mode == SOURCE ? value : 255 - value));
+
+  return _value;
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqDigitalPutter()
+  : PqPinUnit(pin, mode), PqDigitalUnit()
 {}
-
-float DigitalOut::put(float value) {
-  // Make sure value is in [0, 1].
-	value = constrain(value, 0, 1);
-  // Set ON status depending on value: invert if mode is SINK.
-  _isOn = analogToDigital(value);
-  // Write to output.
-  digitalWrite(_pin, _isOn ^ (_mode == SOURCE) ? LOW : HIGH);
-  // Return value.
-  return value;
-}
 
 void DigitalOut::begin() {
   pinMode(_pin, OUTPUT);
+}
+
+bool DigitalOut::putOn(bool isOn) {
+  // Write to output.
+  digitalWrite(_pin, isOn ^ (_mode == SOURCE) ? LOW : HIGH);
+  return (_isOn = isOn);
 }

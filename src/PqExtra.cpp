@@ -382,7 +382,7 @@ float OscilloscopeOut::put(float value) {
 }
 
 Smoother::Smoother(float smoothWindow)
-  : PqPutter(),
+  : PqAnalogUnit(),
     MovingAverage(smoothWindow) {
 }
 
@@ -391,7 +391,7 @@ float Smoother::put(float value) {
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
-  : PqPutter(),
+  : PqAnalogUnit(),
     MovingStats(smoothWindow),
     _value(0.5f),
     _targetMean(0.5f),
@@ -400,7 +400,7 @@ AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
-	: PqPutter(),
+	: PqAnalogUnit(),
     MovingStats(smoothWindow),
     _value(mean),
     _targetMean(mean),
@@ -413,7 +413,7 @@ float AdaptiveNormalizer::put(float value) {
 }
 
 Normalizer::Normalizer()
-  : PqPutter(),
+  : PqAnalogUnit(),
     SimpleStats(),
     _value(0.5f),
     _mean(0.5f),
@@ -421,7 +421,7 @@ Normalizer::Normalizer()
 {}
 
 Normalizer::Normalizer(float mean, float stddev)
-	: PqPutter(),
+	: PqAnalogUnit(),
     SimpleStats(),
     _value(mean),
     _mean(mean),
@@ -433,7 +433,7 @@ float Normalizer::put(float value) {
 }
 
 MinMaxScaler::MinMaxScaler()
- : PqPutter(),
+ : PqAnalogUnit(),
    _value(0.5f),
    _minValue(FLT_MAX),
    _maxValue(FLT_MIN)
@@ -446,53 +446,53 @@ float MinMaxScaler::put(float value)
   _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
 	return _value;
 }
-
-Thresholder::Thresholder(float threshold, uint8_t mode)
-  : PqPutter() {
-			_init(threshold, mode, threshold);
-		}
-
-Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
-	: PqPutter() {
-			_init(threshold, mode, resetThreshold);
-		}
-
-float Thresholder::put(float value) {
-  bool high = (value > _threshold);
-  bool low  = (value < _threshold);
-  bool rising = (high && _wasLow);
-  bool falling = (low  && _wasHigh);
-
-	// Reset.
-	if (rising) _wasLow  = false;
-	if (falling) _wasHigh = false;
-  // bool raising = (high && _prev != (+1));
-  // bool falling = (low  && _prev != (-1));
-  switch (_mode) {
-    case THRESHOLD_HIGH:    _value = high;    break;
-    case THRESHOLD_LOW:     _value = low;     break;
-    case THRESHOLD_RISING:  _value = rising; break;
-    case THRESHOLD_FALLING: _value = falling; break;
-    case THRESHOLD_CHANGE:
-    default:                _value = rising || falling;
-  }
-
-	if (value < _resetThreshold)      _wasLow = true;
-	else if (value > _resetThreshold) _wasHigh = true;
-
-//  _prev = (value < _threshold2 ? (-1) : (value > _threshold2 ? (+1) : (0)));
-  return get();
-}
-
-void Thresholder::_init(float threshold, uint8_t mode, float resetThreshold) {
-	_threshold = threshold;
-	_mode = mode;
-	// Set resetThreshold, with correction.
-	if (mode == THRESHOLD_RISING)
-		_resetThreshold = min(resetThreshold, threshold);
-	else if (mode == THRESHOLD_FALLING)
-		_resetThreshold = max(resetThreshold, threshold);
-	else
-		_resetThreshold = threshold;
-	_value = _wasLow = _wasHigh = false;
-}
+//
+// Thresholder::Thresholder(float threshold, uint8_t mode)
+//   : PqAnalogUnit() {
+// 			_init(threshold, mode, threshold);
+// 		}
+//
+// Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
+// 	: PqAnalogUnit() {
+// 			_init(threshold, mode, resetThreshold);
+// 		}
+//
+// float Thresholder::put(float value) {
+//   bool high = (value > _threshold);
+//   bool low  = (value < _threshold);
+//   bool rising = (high && _wasLow);
+//   bool falling = (low  && _wasHigh);
+//
+// 	// Reset.
+// 	if (rising) _wasLow  = false;
+// 	if (falling) _wasHigh = false;
+//   // bool raising = (high && _prev != (+1));
+//   // bool falling = (low  && _prev != (-1));
+//   switch (_mode) {
+//     case THRESHOLD_HIGH:    _value = high;    break;
+//     case THRESHOLD_LOW:     _value = low;     break;
+//     case THRESHOLD_RISING:  _value = rising; break;
+//     case THRESHOLD_FALLING: _value = falling; break;
+//     case THRESHOLD_CHANGE:
+//     default:                _value = rising || falling;
+//   }
+//
+// 	if (value < _resetThreshold)      _wasLow = true;
+// 	else if (value > _resetThreshold) _wasHigh = true;
+//
+// //  _prev = (value < _threshold2 ? (-1) : (value > _threshold2 ? (+1) : (0)));
+//   return get();
+// }
+//
+// void Thresholder::_init(float threshold, uint8_t mode, float resetThreshold) {
+// 	_threshold = threshold;
+// 	_mode = mode;
+// 	// Set resetThreshold, with correction.
+// 	if (mode == THRESHOLD_RISING)
+// 		_resetThreshold = min(resetThreshold, threshold);
+// 	else if (mode == THRESHOLD_FALLING)
+// 		_resetThreshold = max(resetThreshold, threshold);
+// 	else
+// 		_resetThreshold = threshold;
+// 	_value = _wasLow = _wasHigh = false;
+// }

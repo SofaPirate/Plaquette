@@ -30,7 +30,7 @@
 #include "SimpleStats.h"
 
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public PqGetter {
+class StreamIn : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -62,7 +62,7 @@ protected:
 };
 
 /// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public PqGetter {
+class SquareOsc : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -137,7 +137,7 @@ protected:
 };
 
 /// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public PqGetter {
+class SineOsc : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -202,7 +202,7 @@ protected:
 /**
  * Triangle/sawtooth oscillator.
  */
-class TriOsc : public PqGetter {
+class TriOsc : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -280,7 +280,7 @@ protected:
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
  */
-class Ramp : public PqGetter {
+class Ramp : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -355,7 +355,7 @@ protected:
 };
 
 /// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public PqPutter {
+class StreamOut : public PqAnalogUnit {
 public:
   /**
    * Constructor.
@@ -393,7 +393,7 @@ protected:
 
 /// Generates a simple ASCII-based representation of a signal.
 /// Precision represents the number of columns used to represent the signal.
-class OscilloscopeOut : public PqPutter {
+class OscilloscopeOut : public PqAnalogUnit {
 public:
   OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
   virtual ~OscilloscopeOut() {}
@@ -414,7 +414,7 @@ protected:
 };
 
 /// Simple moving average transform filter.
-class Smoother : public PqPutter, public MovingAverage {
+class Smoother : public PqAnalogUnit, public MovingAverage {
 public:
   /**
    * Constructor.
@@ -438,7 +438,7 @@ public:
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
  */
-class AdaptiveNormalizer : public PqPutter, public MovingStats {
+class AdaptiveNormalizer : public PqAnalogUnit, public MovingStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.25.
@@ -487,7 +487,7 @@ protected:
 };
 
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqPutter, public SimpleStats {
+class Normalizer : public PqAnalogUnit, public SimpleStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0 and a standard
@@ -535,7 +535,7 @@ protected:
 };
 
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqPutter {
+class MinMaxScaler : public PqAnalogUnit {
 public:
   /// Constructor.
   MinMaxScaler();
@@ -561,55 +561,55 @@ protected:
   // Maximum value ever put.
   float _maxValue;
 };
-
-#define THRESHOLD_LOW     0
-#define THRESHOLD_HIGH    1
-#define THRESHOLD_FALLING 2
-#define THRESHOLD_RISING  3
-#define THRESHOLD_CHANGE  4
-
-/**
- * Emits a signals that tells if a certain threshold has been crossed.
- * Possible modes are:
- * - THRESHOLD_LOW  : true iff value < threshold
- * - THRESHOLD_HIGH : true iff value > threshold
- * - THRESHOLD_FALLING : true when value becomes < threshold, then waits until it becomes > resetThreshold (*)
- * - THRESHOLD_RISING  : true when value becomes > threshold, then waits until it becomes < resetThreshold (*)
- * - THRESHOLD_CHANGE  : true when value crosses threshold
- * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only
- * used in the FALLING and RISING modes, otherwise it is ignored.
- */
-class Thresholder : public PqPutter, public PqDigitalGetter {
-public:
-  Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
-  Thresholder(float threshold, uint8_t mode, float resetThreshold);
-  virtual ~Thresholder() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns true iff the threshold is crossed.
-  virtual bool isOn() { return _value; }
-
-protected:
-	// Threshold values.
-  float _threshold;
-	float _resetThreshold;
-
-	// Thresholding mode.
-  uint8_t  _mode  : 3;
-
-	// Booleans used to keep track of signal value.
-  bool _value     : 1;
-	bool _wasLow    : 1;
-	bool _wasHigh   : 1;
-
-private:
-	void _init(float threshold, uint8_t mode, float resetThreshold);
-};
+//
+// #define THRESHOLD_LOW     0
+// #define THRESHOLD_HIGH    1
+// #define THRESHOLD_FALLING 2
+// #define THRESHOLD_RISING  3
+// #define THRESHOLD_CHANGE  4
+//
+// /**
+//  * Emits a signals that tells if a certain threshold has been crossed.
+//  * Possible modes are:
+//  * - THRESHOLD_LOW  : true iff value < threshold
+//  * - THRESHOLD_HIGH : true iff value > threshold
+//  * - THRESHOLD_FALLING : true when value becomes < threshold, then waits until it becomes > resetThreshold (*)
+//  * - THRESHOLD_RISING  : true when value becomes > threshold, then waits until it becomes < resetThreshold (*)
+//  * - THRESHOLD_CHANGE  : true when value crosses threshold
+//  * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only
+//  * used in the FALLING and RISING modes, otherwise it is ignored.
+//  */
+// class Thresholder : public PqAnalogUnit, public PqDigitalSource {
+// public:
+//   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
+//   Thresholder(float threshold, uint8_t mode, float resetThreshold);
+//   virtual ~Thresholder() {}
+//
+//   /**
+//    * Pushes value into the unit.
+//    * @param value the value sent to the unit
+//    * @return the new value of the unit
+//    */
+//   virtual float put(float value);
+//
+//   /// Returns true iff the threshold is crossed.
+//   virtual bool isOn() { return _value; }
+//
+// protected:
+// 	// Threshold values.
+//   float _threshold;
+// 	float _resetThreshold;
+//
+// 	// Thresholding mode.
+//   uint8_t  _mode  : 3;
+//
+// 	// Booleans used to keep track of signal value.
+//   bool _value     : 1;
+// 	bool _wasLow    : 1;
+// 	bool _wasHigh   : 1;
+//
+// private:
+// 	void _init(float threshold, uint8_t mode, float resetThreshold);
+// };
 
 #endif

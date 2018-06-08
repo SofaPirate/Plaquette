@@ -26,7 +26,7 @@
 #include <Servo.h>
 
 /// Servo-motor absract object.
-class AbstractServoOut : public PqPutter, public Servo {
+class AbstractServoOut : public PqAnalogUnit, public Servo {
 protected:
   AbstractServoOut(uint8_t pin=9);
 
@@ -35,16 +35,12 @@ public:
 
   virtual float put(float value);
 
-  virtual float get() { return _value; }
-
-  virtual void begin();
-
 	uint8_t pin() const { return _pin; }
 
-  // Current value.
-  float _value;
+protected:
+  virtual void begin();
 
-	// Servo pin (must be PWM).
+  // Servo pin (must be PWM).
   uint8_t _pin;
 };
 

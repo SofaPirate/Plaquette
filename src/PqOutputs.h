@@ -28,7 +28,7 @@
 #define SINK   0x1
 
 /// A generic class representing a simple PWM output.
-class AnalogOut : public PqPinUnit, public PqPutter {
+class AnalogOut : public PqPinUnit, public PqAnalogUnit {
 public:
   /**
    * Constructor.
@@ -41,21 +41,12 @@ public:
   /// Pushes value into the component and returns its (possibly filtered) value.
   virtual float put(float value);
 
-  /// Returns reading in [0, 1].
-  virtual float get() { return _value; }
-
   /// Inverts value by calling ``put(1-get())`` (eg. 0.2 becomes 0.8).
   virtual void invert() { put(1-get()); }
-
-  // Current value.
-  float _value;
-
-  // Writes value to output and returns it.
-  virtual float write(float value);
 };
 
 /// A generic class representing a simple digital output.
-class DigitalOut : public PqPinUnit, public PqDigitalPutter {
+class DigitalOut : public PqPinUnit, public PqDigitalUnit {
 public:
   /**
    * Constructor.
@@ -69,14 +60,12 @@ public:
 #endif
   virtual ~DigitalOut() {}
 
-  /// Pushes value into the component and returns its (possibly filtered) value.
-  virtual float put(float value);
-
-  /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
-
-  // Current value.
-  bool _isOn;
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual bool putOn(bool isOn);
 
 protected:
   virtual void begin();

@@ -161,7 +161,7 @@ protected:
 };
 
 /// A generic class representing a simple source.
-class PqGetter : public PqUnit {
+class PqGetter {
 public:
   /// Constructor.
   PqGetter() {}
@@ -173,7 +173,7 @@ public:
   /// Operator that allows usage in conditional expressions.
 	// NOTE: This operator is defined as explicit so that boolean expression like
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  virtual explicit operator bool() { return analogToDigital(get()); }
+  virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
 
   /// Object can be used directly to access its value.
   operator float() { return get(); }
@@ -269,7 +269,7 @@ public:
 };
 
 /// A generic class representing a simple sink.
-class PqPutter : virtual public PqGetter {
+class PqPutter {
 public:
   /// Constructor.
   PqPutter() {}
@@ -298,88 +298,152 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalPutter : public PqPutter, public PqDigitalGetter {
+class PqDigitalPutter : public PqPutter {
 public:
   /// Constructor.
   PqDigitalPutter() {}
   virtual ~PqDigitalPutter() {}
 
-  void _setIsOn(bool isOn) {
-    put (isOn ? 1 : 0);
-  }
-
   /// Sets output to "on".
-  virtual void on() { _setIsOn(true); }
+  virtual bool on() { return putOn(true); }
 
   /// Sets output to "off".
-  virtual void off() { _setIsOn(false); }
+  virtual bool off() { return putOn(false); }
 
-  /// Switches between on and off.
-  virtual void toggle() {
-    _setIsOn(!isOn());
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value) {
+    putOn(PqUnit::analogToDigital(value));
   }
 
-  /// Returns reading (either 0 or 1).
-  virtual float get() { return PqDigitalGetter::get(); }
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual bool putOn(bool value) = 0;
+  // /// Returns reading (either 0 or 1).
+  // virtual float get() { return PqDigitalGetter::get(); }
+};
 
+class PqAnalogSource : public PqUnit, public PqGetter {
+public:
+  /// Constructor.
+  PqAnalogSource() : _value(0) {}
+  virtual ~PqAnalogSource() {}
+
+  /// Returns value (typically between 0 and 1, may vary depending on class).
+  virtual float get() { return _value; }
+
+protected:
+  float _value;
+};
+
+class PqDigitalSource : public PqUnit, public PqDigitalGetter {
+public:
+  /// Constructor.
+  PqDigitalSource() : _isOn(false) {}
+  virtual ~PqDigitalSource() {}
+
+  /// Returns true iff the input is "on".
+  virtual bool isOn() { return _isOn; }
+
+protected:
+  bool _isOn;
+};
+
+class PqAnalogUnit : public PqAnalogSource, public PqPutter {
+public:
+  /// Constructor.
+  PqAnalogUnit() {}
+  virtual ~PqAnalogUnit() {}
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value) { return (_value = value); }
+};
+
+class PqDigitalUnit : public PqDigitalSource, public PqDigitalPutter {
+public:
+  /// Constructor.
+  PqDigitalUnit() {}
+  virtual ~PqDigitalUnit() {}
+
+  /// Switches between on and off.
+  virtual bool toggle() {
+    return putOn(!isOn());
+  }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual bool putOn(bool isOn) { return (_isOn = isOn); }
 };
 
 // Operators /////////////////////////////////////////////////////
 
-inline PqPutter& operator>>(float value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(float value, PqAnalogUnit& putter) {
   putter.put( value );
   return putter;
 }
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqPutter&)).
-inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
+inline PqAnalogSource& operator>>(PqAnalogSource& getter, PqAnalogUnit& putter) {
 	return ::operator>>(getter.get(), putter);
 }
 
-inline PqPutter& operator>>(double value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(double value, PqAnalogUnit& putter) {
   return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(bool value, PqPutter& putter) {
-	return ::operator>>(value ? 1.0f : 0.0f, putter);
+inline PqAnalogUnit& operator>>(bool value, PqAnalogUnit& putter) {
+	return ::operator>>(PqUnit::digitalToAnalog(value), putter);
 }
 
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
-inline PqPutter& operator>>(int value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(int value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 #endif
 
-inline PqPutter& operator>>(int8_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(int8_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(uint8_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(uint8_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(int16_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(int16_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(uint16_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(uint16_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(int32_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(int32_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(uint32_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(uint32_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(int64_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(int64_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 
-inline PqPutter& operator>>(uint64_t value, PqPutter& putter) {
+inline PqAnalogUnit& operator>>(uint64_t value, PqAnalogUnit& putter) {
 	return ::operator>>((float)value, putter);
 }
 

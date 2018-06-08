@@ -27,7 +27,7 @@ float PqSmoothable::_smoothed() {
 }
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqGetter(), _value(0)
+  : PqPinUnit(pin, mode), PqAnalogSource()
 {}
 
 #ifdef ESP8266
@@ -45,11 +45,16 @@ float AnalogIn::_read() {
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
-void AnalogIn::begin() { step(); }
-void AnalogIn::step() { _value = _smoothed(); }
+void AnalogIn::begin() {
+  step();
+}
+
+void AnalogIn::step() {
+  _value = _smoothed();
+}
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqDigitalGetter(), _isOn(false)
+  : PqPinUnit(pin, mode), PqDigitalSource()
 {}
 
 float DigitalIn::_read() {
@@ -61,7 +66,6 @@ float DigitalIn::_read() {
 
 void DigitalIn::begin() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
-	step();
 }
 
 void DigitalIn::step() {

@@ -65,7 +65,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinUnit, public PqSmoothable, public PqGetter {
+class AnalogIn : public PqPinUnit, public PqSmoothable, public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -75,20 +75,15 @@ public:
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
 
-  /// Returns reading in [0, 1].
-  virtual float get() { return _value; }
-
 protected:
   virtual float _read();
 
   virtual void begin();
   virtual void step();
-
-	float _value;
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinUnit, public PqSmoothable, public PqDigitalGetter {
+class DigitalIn : public PqPinUnit, public PqSmoothable, public PqDigitalSource {
 public:
   /**
    * Constructor.
@@ -98,16 +93,11 @@ public:
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 
-  /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
-
 protected:
   virtual float _read();
 
   virtual void begin();
   virtual void step();
-
-	bool _isOn;
 };
 
 #endif

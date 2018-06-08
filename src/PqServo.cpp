@@ -27,11 +27,11 @@ AbstractServoOut::~AbstractServoOut() { detach(); }
 
 float AbstractServoOut::put(float value)
 {
-	value = constrain(value,  0, 1);
- _value = value;
-  value *= 180;
+	_value = constrain(value, 0, 1);
+  value = _value * 180;
   Servo::write(round(value));
-  return get();
+
+  return _value;
 }
 
 void AbstractServoOut::begin() {
@@ -46,7 +46,7 @@ float ServoOut::putAngle(float angle)
   return getAngle();
 }
 
-float ServoOut::getAngle() { return _value*180; }
+float ServoOut::getAngle() { return round(_value*180); }
 
 ContinuousServoOut::ContinuousServoOut(uint8_t pin) : AbstractServoOut(pin) {}
 
