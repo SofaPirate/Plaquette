@@ -93,11 +93,17 @@ public:
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 
+  /// Difference between current and previous value of the object since last call to step().
+  virtual int8_t changeState() { return _changeState; }
+
 protected:
   virtual float _read();
 
   virtual void begin();
   virtual void step();
+
+  // Keeps track of state changes.
+  int8_t _changeState;
 };
 
 #endif

@@ -54,7 +54,7 @@ void AnalogIn::step() {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqDigitalSource()
+  : PqPinUnit(pin, mode), PqDigitalSource(), _changeState(0)
 {}
 
 float DigitalIn::_read() {
@@ -66,8 +66,14 @@ float DigitalIn::_read() {
 
 void DigitalIn::begin() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
+  _changeState = 0;
 }
 
 void DigitalIn::step() {
-	_isOn = analogToDigital(_smoothed());
+  // Read state.
+	bool isOn = analogToDigital(_smoothed());
+  // Register difference between previous and new state.
+  _changeState = (int8_t)isOn - (int8_t)_isOn;
+  // Save state.
+  _isOn = isOn;
 }
