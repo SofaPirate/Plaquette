@@ -3,6 +3,8 @@
 #ifndef __INC_LIB8TION_TRIG_H
 #define __INC_LIB8TION_TRIG_H
 
+namespace pq {
+  
 #define LIB8STATIC __attribute__ ((unused)) static inline
 #define LIB8STATIC_ALWAYS_INLINE __attribute__ ((always_inline)) static inline
 
@@ -151,7 +153,6 @@ LIB8STATIC int16_t cos16( uint16_t theta)
 #define sin8 sin8_C
 #endif
 
-
 const uint8_t b_m16_interleave[] = { 0, 49, 49, 41, 90, 27, 117, 10 };
 
 /// Fast 8-bit approximation of sin(x). This approximation never varies more than
@@ -261,4 +262,6 @@ LIB8STATIC uint8_t cos8( uint8_t theta)
 }
 
 ///@}
+} // namespace pq
+
 #endif

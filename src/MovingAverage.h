@@ -27,6 +27,8 @@
 
 #include <Arduino.h>
 
+namespace pq {
+
 /// An exponential moving average class.
 class MovingAverage {
 protected:
@@ -89,5 +91,7 @@ protected:
   void _setStarted(bool start);
 
 };
+
+} // namespace pq
 
 #endif /* MOVINGAVERAGE_H_ */

@@ -26,6 +26,8 @@
 #include "Stats.h"
 #include "MovingAverage.h"
 
+namespace pq {
+
 class MovingStats : public Stats {
 public:
   // Moving average over values (ie. mean).
@@ -67,5 +69,7 @@ public:
   /// Returns true iff the statistics have already been started.
   virtual bool isStarted() const;
 };
+
+} // namespace pq
 
 #endif /* MOVINGSTATS_H_ */

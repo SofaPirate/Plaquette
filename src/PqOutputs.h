@@ -23,6 +23,8 @@
 
 #include "PqCore.h"
 
+namespace pq {
+
 // Output constants.
 #define SOURCE 0x0
 #define SINK   0x1
@@ -58,6 +60,7 @@ public:
 #else
   DigitalOut(uint8_t pin=13, uint8_t mode=SOURCE);
 #endif
+
   virtual ~DigitalOut() {}
 
   /**
@@ -70,5 +73,7 @@ public:
 protected:
   virtual void begin();
 };
+
+} // namespace pq
 
 #endif

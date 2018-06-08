@@ -22,6 +22,7 @@
 
 #include "pq_print.h"
 
+namespace pq {
 
 size_t print(const __FlashStringHelper *ifsh)
 {
@@ -137,3 +138,5 @@ size_t println(const Printable& x)
 {
   return Serial.println(x);
 }
+
+} // namespace pq

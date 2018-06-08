@@ -27,6 +27,8 @@
 
 #include <float.h>
 
+namespace pq {
+
 uint8_t Plaquette::_nUnits = 0;
 PqUnit* Plaquette::_units[PLAQUETTE_MAX_UNITS];
 
@@ -103,3 +105,5 @@ PqUnit::PqUnit() {
 
 bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }
 float PqUnit::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
+
+} // namespace pq

@@ -29,6 +29,8 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
+namespace pq {
+
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
 class StreamIn : public PqAnalogSource {
 public:
@@ -611,5 +613,7 @@ protected:
 // private:
 // 	void _init(float threshold, uint8_t mode, float resetThreshold);
 // };
+
+} // namespace pq
 
 #endif

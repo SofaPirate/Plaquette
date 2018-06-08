@@ -23,6 +23,8 @@
 #ifndef PQ_MAP_REAL_H_
 #define PQ_MAP_REAL_H_
 
+namespace pq {
+
 /**
  * Re-maps a number from one range to another.
  * @param value the number to map
@@ -51,5 +53,7 @@ float mapFrom01(double value, double toLow, double toHigh);
  * @return the mapped value in [0, 1]
  */
 float mapTo01(double value, double fromLow, double fromHigh);
+
+} // namespace pq
 
 #endif

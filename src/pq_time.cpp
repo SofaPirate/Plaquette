@@ -21,6 +21,10 @@
 
 #include "pq_time.h"
 
+namespace pq {
+
 float seconds(bool realTime) {
   return Plaquette::seconds(realTime);
 }
+
+} // namespace pq

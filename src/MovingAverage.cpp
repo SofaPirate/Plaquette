@@ -27,6 +27,8 @@
 
 #include <float.h>
 
+namespace pq {
+
 MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
   time(seconds);
   reset();
@@ -85,3 +87,5 @@ float MovingAverage::applyUpdate(float& runningValue, float newValue, float alph
 void MovingAverage::_setStarted(bool start) {
   _smoothTime = (start ? +1 : -1) * abs(_smoothTime);
 }
+
+} // namespace pq

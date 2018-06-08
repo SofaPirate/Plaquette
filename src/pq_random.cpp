@@ -19,6 +19,8 @@
 
 #include "pq_random.h"
 
+namespace pq {
+
 float randomFloat() {
   return (float)rand() / (float) RAND_MAX;
 }
@@ -34,3 +36,5 @@ float randomFloat(float min, float max) {
 float randomUniform() { return randomFloat(); }
 float randomUniform(float max) { return randomFloat(max); }
 float randomUniform(float min, float max) { return randomFloat(min, max); }
+
+} // namespace pq

@@ -22,6 +22,8 @@
 
 #include "pq_map_real.h"
 
+namespace pq {
+
 float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh)
 {
   // Avoid divisions by zero.
@@ -40,3 +42,5 @@ float mapTo01(double value, double fromLow, double fromHigh) {
     return 0.5f; // dummy value
   return (value - fromLow) / (fromHigh - fromLow);
 }
+
+} // namespace pq

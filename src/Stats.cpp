@@ -19,6 +19,8 @@
 
 #include "Stats.h"
 
+namespace pq {
+
 float Stats::stddev() const {
   return sqrt(var());
 }
@@ -26,3 +28,5 @@ float Stats::stddev() const {
 float Stats::normalize(float value) const {
   return ( value - mean() ) / (stddev() + FLT_MIN);
 }
+
+} // namespace pq

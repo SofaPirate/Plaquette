@@ -22,6 +22,8 @@
 #if defined(ARDUINO_ARCH_AVR) or defined(ARDUINO_ARCH_SAM) or defined(ARDUINO_ARCH_SAMD) or defined(ARDUINO_ARCH_STM32F4) or defined(ARDUINO_ARCH_NRF52)
 #include "pq_map_real.h"
 
+namespace pq {
+
 AbstractServoOut::AbstractServoOut(uint8_t pin) : _pin(pin) {}
 AbstractServoOut::~AbstractServoOut() { detach(); }
 
@@ -60,5 +62,7 @@ void ContinuousServoOut::reverse()
 {
 	put( 1 - get() );
 }
+
+} // namespace pq
 
 #endif

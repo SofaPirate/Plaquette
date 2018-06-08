@@ -20,6 +20,11 @@
 
 #include "PqExtra.h"
 
+// Fast trigonometric functions.
+#include "pq_trig8.h"
+
+namespace pq {
+
 StreamIn::StreamIn(Stream& stream) : _value(0), _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
 
 void StreamIn::begin() {
@@ -129,9 +134,6 @@ SquareOsc& SquareOsc::amplitude(float amplitude)  {
 	}
 	return *this;
 }
-
-// Fast trigonometric functions.
-#include "pq_trig8.h"
 
 SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
@@ -496,3 +498,5 @@ float MinMaxScaler::put(float value)
 // 		_resetThreshold = threshold;
 // 	_value = _wasLow = _wasHigh = false;
 // }
+
+} // namespace pq

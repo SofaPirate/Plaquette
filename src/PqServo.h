@@ -25,6 +25,8 @@
 #include "PqCore.h"
 #include <Servo.h>
 
+namespace pq {
+
 /// Servo-motor absract object.
 class AbstractServoOut : public PqAnalogUnit, public Servo {
 protected:
@@ -63,6 +65,8 @@ public:
 	virtual void stop();
 	virtual void reverse();
 };
+
+} // namespace pq
 
 #endif
 

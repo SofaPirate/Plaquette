@@ -23,6 +23,8 @@
 #include <Arduino.h>
 #include <float.h>
 
+namespace pq {
+
 class Stats {
 public:
   virtual ~Stats() {}
@@ -45,5 +47,7 @@ public:
   /// Returns the normalized value according to the computed statistics (mean and variance).
   float normalize(float value) const;
 };
+
+} // namespace pq
 
 #endif /* STATS_H_ */

@@ -28,6 +28,8 @@
 #include <limits.h>
 #include <stdlib.h>
 
+namespace pq {
+
 // Floating point random numbers.
 
 /// Generates a uniform random number in the interval [0,1).
@@ -45,5 +47,7 @@ float randomUniform();
 float randomUniform(float max);
 // Deprecated. Left for backwards compatibility.
 float randomUniform(float min, float max);
+
+} // namespace pq
 
 #endif

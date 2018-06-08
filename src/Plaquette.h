@@ -23,6 +23,8 @@
 
 #include "PlaquetteLib.h"
 
+using namespace pq;
+
 // Plaquette builtin runtime functions (to be defined in sketch).
 void begin();
 void step();

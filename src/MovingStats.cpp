@@ -21,6 +21,8 @@
 
 #include <float.h>
 
+namespace pq {
+
 MovingStats::MovingStats(float smoothWindow) : _avg(smoothWindow), _var(0) { }
 
 void MovingStats::time(float seconds) {
@@ -53,3 +55,5 @@ float MovingStats::update(float value, float sampleRate)
 bool MovingStats::isStarted() const {
   return _avg.isStarted();
 }
+
+} // namespace pq

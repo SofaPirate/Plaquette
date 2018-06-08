@@ -20,6 +20,8 @@
 
 #include "PqOutputs.h"
 
+namespace pq {
+
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
   : PqPinUnit(pin, mode), PqAnalogUnit()
 {}
@@ -55,3 +57,5 @@ bool DigitalOut::putOn(bool isOn) {
   digitalWrite(_pin, isOn ^ (_mode == SOURCE) ? LOW : HIGH);
   return (_isOn = isOn);
 }
+
+} // namespace pq

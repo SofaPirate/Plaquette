@@ -42,6 +42,8 @@
 
 #define PLAQUETTE_NO_SMOOTH_WINDOW 0
 
+namespace pq {
+
 class PqUnit;
 
 /// The main Plaquette static class containing all the components.
@@ -409,54 +411,54 @@ inline PqAnalogUnit& operator>>(float value, PqAnalogUnit& putter) {
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqPutter&)).
 inline PqAnalogSource& operator>>(PqAnalogSource& getter, PqAnalogUnit& putter) {
-	return ::operator>>(getter.get(), putter);
+	return pq::operator>>(getter.get(), putter);
 }
 
 inline PqAnalogUnit& operator>>(double value, PqAnalogUnit& putter) {
-  return ::operator>>((float)value, putter);
+  return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(bool value, PqAnalogUnit& putter) {
-	return ::operator>>(PqUnit::digitalToAnalog(value), putter);
+	return pq::operator>>(PqUnit::digitalToAnalog(value), putter);
 }
 
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
 inline PqAnalogUnit& operator>>(int value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 #endif
 
 inline PqAnalogUnit& operator>>(int8_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(uint8_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(int16_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(uint16_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(int32_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(uint32_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(int64_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline PqAnalogUnit& operator>>(uint64_t value, PqAnalogUnit& putter) {
-	return ::operator>>((float)value, putter);
+	return pq::operator>>((float)value, putter);
 }
 
 inline bool& operator>>(PqDigitalGetter& getter, bool& value) {
@@ -586,6 +588,8 @@ public:
 // Inline methods.
 #include <float.h>
 
+
+
 void Plaquette::preStep() {
   // Update every component.
   for (uint8_t i=0; i<_nUnits; i++)
@@ -631,5 +635,7 @@ void Plaquette::step() {
   // Do the pre-step.
   preStep();
 }
+
+} // namespace pq
 
 #endif

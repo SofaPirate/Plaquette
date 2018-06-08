@@ -29,6 +29,8 @@
 #include "WProgram.h"
 #endif
 
+namespace pq {
+
 size_t print(const __FlashStringHelper *);
 size_t print(const String &);
 size_t print(const char[]);
@@ -53,5 +55,7 @@ size_t println(unsigned long, int = DEC);
 size_t println(double, int = 2);
 size_t println(const Printable&);
 size_t println(void);
+
+} // namespace pq
 
 #endif

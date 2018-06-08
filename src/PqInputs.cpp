@@ -20,6 +20,8 @@
 
 #include "PqInputs.h"
 
+namespace pq {
+
 PqSmoothable::PqSmoothable(float smoothTime) : _avg(smoothTime) {}
 
 float PqSmoothable::_smoothed() {
@@ -77,3 +79,5 @@ void DigitalIn::step() {
   // Save state.
   _isOn = isOn;
 }
+
+} // namespace pq

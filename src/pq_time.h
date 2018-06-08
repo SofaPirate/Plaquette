@@ -30,7 +30,11 @@
 #include "WProgram.h"
 #endif
 
+namespace pq {
+
 /// Returns the number of seconds since start of program (calculated using micros()).
 float seconds(bool realTime=false);
+
+} // namespace pq
 
 #endif

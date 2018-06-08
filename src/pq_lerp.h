@@ -23,6 +23,8 @@
 #ifndef PQ_LERP_H_
 #define PQ_LERP_H_
 
+namespace pq {
+
 /**
  * Calculates a number between two numbers at a specific increment.
  * @param from the starting value
@@ -31,5 +33,7 @@
  * @return the linear interpolation of the two numbers
  */
 float lerp(float from, float to, float amount);
+
+} // namespace pq
 
 #endif

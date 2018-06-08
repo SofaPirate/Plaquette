@@ -28,7 +28,11 @@
 
 #include "pq_map_real.h"
 
+namespace pq {
+
 float lerp(float from, float to, float amount) {
   float value = mapFloat(amount, 0, 1, from, to);
   return constrain(value, from, to);
 }
+
+} // namespace pq

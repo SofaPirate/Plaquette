@@ -20,6 +20,8 @@
 #include "SimpleStats.h"
 #include <limits.h>
 
+namespace pq {
+
 SimpleStats::SimpleStats() {
   reset();
 }
@@ -55,3 +57,5 @@ float SimpleStats::var() const {
   float v = (_mean2 - sq(_mean));
   return max(v, 0.0f); // make sure the result is >= 0
 }
+
+} // namespace pq

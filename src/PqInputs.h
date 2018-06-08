@@ -31,6 +31,8 @@
 #define ANALOG_DEFAULT    0x4
 #define ANALOG_INVERTED   0x8
 
+namespace pq {
+
 /// Superclass for components that can be smoothed.
 class PqSmoothable {
 public:
@@ -105,5 +107,7 @@ protected:
   // Keeps track of state changes.
   int8_t _changeState;
 };
+
+} // namespace pq
 
 #endif

@@ -30,6 +30,8 @@
 
 #include "Stats.h"
 
+namespace pq {
+
 class SimpleStats : public Stats {
 public:
   float _mean;
@@ -63,5 +65,7 @@ public:
 //  float maximum() const { return _max; }
 //  unsigned long nSamples() const { return _nSamples; }
 };
+
+} // namespace pq
 
 #endif /* SIMPLESTATS_H_ */
