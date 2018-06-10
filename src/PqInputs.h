@@ -60,14 +60,21 @@ protected:
   // Raw read function.
   virtual float _read() = 0;
 
-	// Returns smoothed value.
-  virtual float _smoothed();
+  // Resets smoothing.
+  virtual void _begin();
 
+  // Performs update based on value returned by read().
+  virtual void _step();
+
+	// Returns smoothed value.
+  virtual float _smoothed() { return _avg.get(); }
+
+  // The moving average.
   MovingAverage _avg;
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinUnit, public PqSmoothable, public PqAnalogSource {
+class AnalogIn : public PqPinUnit, public PqSmoothable, public PqGetter {
 public:
   /**
    * Constructor.
@@ -76,12 +83,14 @@ public:
    */
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
+  /// Returns value (typically between 0 and 1, may vary depending on class).
+
+  virtual float get() { return _avg.get(); }
 
 protected:
-  virtual float _read();
-
   virtual void begin();
   virtual void step();
+  virtual float _read();
 };
 
 /// A generic class representing a simple digital input.

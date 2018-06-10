@@ -41,16 +41,10 @@ public:
   StreamIn(Stream& stream=Serial);
   virtual ~StreamIn() {}
 
-  /// Returns value read from the stream.
-  virtual float get() { return _value; }
-
 protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
-
-  // Current value.
-  float _value;
 
   // Internal use: keep track of next incoming value in a non-blocking way.
   float _nextValue;
@@ -73,9 +67,6 @@ public:
    */
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
   virtual ~SquareOsc() {}
-
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
 
   /**
    * Sets the period (in seconds).
@@ -119,9 +110,6 @@ protected:
 
   void _updateValue();
 
-  // Is the signal currently on (high) or off (low).
-  float _value;
-
   // Period (seconds).
   float _period;
 
@@ -147,9 +135,6 @@ public:
    */
   SineOsc(float period=1.0f);
   virtual ~SineOsc() {}
-
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
 
   /**
    * Sets the period (in seconds).
@@ -185,9 +170,6 @@ protected:
 
   void _updateValue();
 
-  // Current value of the signal.
-  float _value;
-
   // Period (seconds).
   float _period;
 
@@ -213,9 +195,6 @@ public:
    */
   TriOsc(float period=1.0f, float width=0.5f);
   virtual ~TriOsc() {}
-
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
 
   /**
    * Sets the period (in seconds).
@@ -257,9 +236,6 @@ protected:
 
   void _updateValue();
 
-  // Current value of the signal.
-  float _value;
-
   // Period (seconds).
   float _period;
 
@@ -290,9 +266,6 @@ public:
    */
   Ramp(float initialValue=0.0f);
   virtual ~Ramp() {}
-
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
 
   /**
    * Starts a new ramp (starting from current value).
@@ -330,9 +303,6 @@ public:
 protected:
   virtual void begin();
   virtual void step();
-
-  // The current value of the ramp.
-  float _value;
 
   // The duration.
   float _duration;
@@ -373,9 +343,6 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns value.
-  virtual float get() { return _value; }
-
   /**
    * Sets precision of the output.
    * @param digits the number of digits to show after decimal point
@@ -383,9 +350,6 @@ public:
   virtual void precision(uint8_t digits);
 
 protected:
-  // Current value.
-  float _value;
-
   // Number of digits of precision.
   uint8_t _digits;
 
@@ -402,12 +366,7 @@ public:
 
   virtual float put(float value);
 
-  virtual float get() { return _value; }
-
 protected:
-  // Current value.
-  float _value;
-
   float _minValue;
   float _maxValue;
 
@@ -416,7 +375,7 @@ protected:
 };
 
 /// Simple moving average transform filter.
-class Smoother : public PqAnalogUnit, public MovingAverage {
+class Smoother : public PqPutter, public MovingAverage {
 public:
   /**
    * Constructor.
@@ -476,13 +435,7 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns normalized value.
-  virtual float get() { return _value; }
-
 protected:
-  // Current value (normalized).
-  float _value;
-
   // Target normalization parameters.
   float _targetMean;
   float _targetStddev;
@@ -524,13 +477,7 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns normalized value.
-  virtual float get() { return _value; }
-
 protected:
-  // Current value (normalized).
-  float _value;
-
   // Target normalization parameters.
   float _mean;
   float _stddev;
@@ -550,13 +497,7 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns rescaled value.
-  virtual float get() { return _value; }
-
 protected:
-  // Current value (rescaled).
-  float _value;
-
   // Minmum value ever put.
   float _minValue;
 

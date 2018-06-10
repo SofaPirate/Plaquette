@@ -25,7 +25,7 @@
 
 namespace pq {
 
-StreamIn::StreamIn(Stream& stream) : _value(0), _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
+StreamIn::StreamIn(Stream& stream) :  _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
 
 void StreamIn::begin() {
 	_nextValue = 0;
@@ -135,7 +135,7 @@ SquareOsc& SquareOsc::amplitude(float amplitude)  {
 	return *this;
 }
 
-SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
+SineOsc::SineOsc(float period_) : _phase(0) {
   period(period_);
 	phase(0);
 	amplitude(1.0f);
@@ -276,7 +276,8 @@ TriOsc& TriOsc::phase(float phase) {
 }
 
 Ramp::Ramp(float initialValue_) :
-	_value(initialValue_), _duration(),
+	PqAnalogSource(initialValue_),
+	_duration(0),
 	_from(initialValue_), _change(0),
 	_startTime(0), _offsetTime(0),
 	_isRunning(false)
@@ -340,7 +341,7 @@ void Ramp::step() {
 	}
 }
 
-StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
+StreamOut::StreamOut(Stream& stream) : _digits(4), _stream(&stream) {}
 
 float StreamOut::put(float value) {
   // Copy value.
@@ -359,7 +360,7 @@ void StreamOut::precision(uint8_t digits) {
 
 
 OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
-  : _value(0), _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
+  : _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
 
 float OscilloscopeOut::put(float value) {
   // Copy value.
@@ -384,7 +385,7 @@ float OscilloscopeOut::put(float value) {
 }
 
 Smoother::Smoother(float smoothWindow)
-  : PqAnalogUnit(),
+  : PqPutter(),
     MovingAverage(smoothWindow) {
 }
 
@@ -393,18 +394,16 @@ float Smoother::put(float value) {
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
-  : PqAnalogUnit(),
+  : PqAnalogUnit(0.5f),
     MovingStats(smoothWindow),
-    _value(0.5f),
     _targetMean(0.5f),
     _targetStddev(0.25f)
 {
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
-	: PqAnalogUnit(),
+	: PqAnalogUnit(mean),
     MovingStats(smoothWindow),
-    _value(mean),
     _targetMean(mean),
     _targetStddev(abs(stddev))
 {
@@ -415,17 +414,16 @@ float AdaptiveNormalizer::put(float value) {
 }
 
 Normalizer::Normalizer()
-  : PqAnalogUnit(),
+  : PqAnalogUnit(0.5f),
     SimpleStats(),
-    _value(0.5f),
     _mean(0.5f),
     _stddev(0.25f)
-{}
+{
+}
 
 Normalizer::Normalizer(float mean, float stddev)
-	: PqAnalogUnit(),
+	: PqAnalogUnit(mean),
     SimpleStats(),
-    _value(mean),
     _mean(mean),
     _stddev(abs(stddev))
 {}
@@ -435,11 +433,11 @@ float Normalizer::put(float value) {
 }
 
 MinMaxScaler::MinMaxScaler()
- : PqAnalogUnit(),
-   _value(0.5f),
+ : PqAnalogUnit(0.5f),
    _minValue(FLT_MAX),
    _maxValue(FLT_MIN)
-{}
+{
+}
 
 float MinMaxScaler::put(float value)
 {

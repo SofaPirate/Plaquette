@@ -141,13 +141,13 @@ float sampleRate();
 
 /**
  * Main class for components to be added to Plaquette.
- * Components can be transducers (sensors,actuators) or special integrated circuits.
+ * Components can be transducers (sensors, actuators) or special integrated circuits.
  */
 class PqUnit {
   friend class Plaquette;
 
 public:
-	/// Converts analog (float) value to digital (bool) value.
+  /// Converts analog (float) value to digital (bool) value.
 	static bool  analogToDigital(float f);
 
 	/// Converts digital (bool) value to analog (float) value.
@@ -162,23 +162,23 @@ protected:
   virtual void step() {}
 };
 
-/// A generic class representing a simple source.
-class PqGetter {
-public:
-  /// Constructor.
-  PqGetter() {}
-  virtual ~PqGetter() {}
 
+/// A generic class representing a simple source.
+class PqGetter : public PqUnit {
+public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
 
   /// Operator that allows usage in conditional expressions.
 	// NOTE: This operator is defined as explicit so that boolean expression like
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
+  //virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
 
   /// Object can be used directly to access its value.
   operator float() { return get(); }
+
+protected:
+  PqGetter() {}
 
 private:
   // Prevents assignation operations by making them private.
@@ -187,70 +187,22 @@ private:
   PqGetter& operator=(float);
   PqGetter& operator=(PqGetter&);
   PqGetter(const PqGetter&);
+};
 
-  // // Logical operators.
-  // bool operator==(float value) { return get() == value; }
-  // bool operator!=(float value) { return get() != value; }
-  // bool operator>(float value)  { return get() >  value; }
-  // bool operator>=(float value) { return get() >= value; }
-  // bool operator<(float value)  { return get() <  value; }
-  // bool operator<=(float value) { return get() <= value; }
-  //
-
-  // Math operators.
-  // virtual float operator+(PqGetter& getter) { return get() + getter.get(); }
-  // virtual float operator+(int8_t value)     { return get() + value; }
-  // virtual float operator+(uint8_t value)    { return get() + value; }
-  // virtual float operator+(int16_t value)    { return get() + value; }
-  // virtual float operator+(uint16_t value)   { return get() + value; }
-  // virtual float operator+(int32_t value)    { return get() + value; }
-  // virtual float operator+(uint32_t value)   { return get() + value; }
-  // virtual float operator+(int64_t value)    { return get() + value; }
-  // virtual float operator+(uint64_t value)   { return get() + value; }
-  // virtual float operator+(float value)      { return get() + value; }
-  // virtual float operator+(double value)     { return get() + value; }
-  // virtual float operator-(PqGetter& getter) { return get() - getter.get(); }
-  // virtual float operator-(int8_t value)     { return get() - value; }
-  // virtual float operator-(uint8_t value)    { return get() - value; }
-  // virtual float operator-(int16_t value)    { return get() - value; }
-  // virtual float operator-(uint16_t value)   { return get() - value; }
-  // virtual float operator-(int32_t value)    { return get() - value; }
-  // virtual float operator-(uint32_t value)   { return get() - value; }
-  // virtual float operator-(int64_t value)    { return get() - value; }
-  // virtual float operator-(uint64_t value)   { return get() - value; }
-  // virtual float operator-(float value)      { return get() - value; }
-  // virtual float operator-(double value)     { return get() - value; }
-  // virtual float operator*(PqGetter& getter) { return get() * getter.get(); }
-  // virtual float operator*(int8_t value)     { return get() * value; }
-  // virtual float operator*(uint8_t value)    { return get() * value; }
-  // virtual float operator*(int16_t value)    { return get() * value; }
-  // virtual float operator*(uint16_t value)   { return get() * value; }
-  // virtual float operator*(int32_t value)    { return get() * value; }
-  // virtual float operator*(uint32_t value)   { return get() * value; }
-  // virtual float operator*(int64_t value)    { return get() * value; }
-  // virtual float operator*(uint64_t value)   { return get() * value; }
-  // virtual float operator*(float value)      { return get() * value; }
-  // virtual float operator*(double value)     { return get() * value; }
-  // virtual float operator/(PqGetter& getter) { return get() / getter.get(); }
-  // virtual float operator/(int8_t value)     { return get() / value; }
-  // virtual float operator/(uint8_t value)    { return get() / value; }
-  // virtual float operator/(int16_t value)    { return get() / value; }
-  // virtual float operator/(uint16_t value)   { return get() / value; }
-  // virtual float operator/(int32_t value)    { return get() / value; }
-  // virtual float operator/(uint32_t value)   { return get() / value; }
-  // virtual float operator/(int64_t value)    { return get() / value; }
-  // virtual float operator/(uint64_t value)   { return get() / value; }
-  // virtual float operator/(float value)      { return get() / value; }
-  // virtual float operator/(double value)     { return get() / value; }
+/// A generic class representing a simple filtering unit or sink.
+class PqPutter : public virtual PqGetter {
+public:
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value) = 0;
 };
 
 /// A generic class representing a simple source.
-class PqDigitalGetter : virtual public PqGetter {
+class PqDigitalGetter : public virtual PqGetter {
 public:
-  /// Constructor.
-  PqDigitalGetter() {}
-  virtual ~PqDigitalGetter() {}
-
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
 
@@ -270,42 +222,9 @@ public:
   explicit operator int() { return getInt(); }
 };
 
-/// A generic class representing a simple sink.
-class PqPutter {
-public:
-  /// Constructor.
-  PqPutter() {}
-  virtual ~PqPutter() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value) = 0;
-
-  // // Math operators.
-  // PqPutter& operator+=(PqGetter& getter) { put(get()+getter.get()); return *this; }
-  // PqPutter& operator+=(float value)      { put(get()+value); return *this; }
-  // PqPutter& operator-=(PqGetter& getter) { put(get()-getter.get()); return *this; }
-  // PqPutter& operator-=(float value)      { put(get()-value); return *this; }
-  // PqPutter& operator*=(PqGetter& getter) { put(get()*getter.get()); return *this; }
-  // PqPutter& operator*=(float value)      { put(get()*value); return *this; }
-  // PqPutter& operator/=(PqGetter& getter) { put(get()/getter.get()); return *this; }
-  // PqPutter& operator/=(float value)      { put(get()/value); return *this; }
-
-  // Assignation operators (disabled, replaced for now by the >> operators).
-  //PqPutter& operator=(const PqGetter& x) { put(const_cast<PqGetter*>(&x)->get()); return *this; }
-  //PqPutter& operator=(float value)  { put(value); return *this; }
-};
-
 /// A generic class representing a simple source.
-class PqDigitalPutter : public PqPutter {
+class PqDigitalPutter : public virtual PqDigitalGetter, PqPutter {
 public:
-  /// Constructor.
-  PqDigitalPutter() {}
-  virtual ~PqDigitalPutter() {}
-
   /// Sets output to "on".
   virtual bool on() { return putOn(true); }
 
@@ -327,15 +246,12 @@ public:
    * @return the new value of the unit
    */
   virtual bool putOn(bool value) = 0;
-  // /// Returns reading (either 0 or 1).
-  // virtual float get() { return PqDigitalGetter::get(); }
 };
 
-class PqAnalogSource : public PqUnit, public PqGetter {
+class PqAnalogSource : public virtual PqGetter {
 public:
   /// Constructor.
-  PqAnalogSource() : _value(0) {}
-  virtual ~PqAnalogSource() {}
+  PqAnalogSource(float init=0) : _value(init) {}
 
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return _value; }
@@ -344,11 +260,10 @@ protected:
   float _value;
 };
 
-class PqDigitalSource : public PqUnit, public PqDigitalGetter {
+class PqDigitalSource : public virtual PqDigitalGetter {
 public:
   /// Constructor.
-  PqDigitalSource() : _isOn(false) {}
-  virtual ~PqDigitalSource() {}
+  PqDigitalSource(bool init=false) : _isOn(init) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _isOn; }
@@ -369,11 +284,10 @@ protected:
   bool _isOn;
 };
 
-class PqAnalogUnit : public PqAnalogSource, public PqPutter {
+class PqAnalogUnit : public PqAnalogSource, public virtual PqPutter {
 public:
   /// Constructor.
-  PqAnalogUnit() {}
-  virtual ~PqAnalogUnit() {}
+  PqAnalogUnit(float init=0) : PqAnalogSource(init) {}
 
   /**
    * Pushes value into the unit.
@@ -383,11 +297,10 @@ public:
   virtual float put(float value) { return (_value = value); }
 };
 
-class PqDigitalUnit : public PqDigitalSource, public PqDigitalPutter {
+class PqDigitalUnit : public virtual PqDigitalSource, public virtual PqDigitalPutter {
 public:
   /// Constructor.
-  PqDigitalUnit() {}
-  virtual ~PqDigitalUnit() {}
+  PqDigitalUnit(bool init=false) : PqDigitalSource(init) {}
 
   /// Switches between on and off.
   virtual bool toggle() {
@@ -403,116 +316,115 @@ public:
 };
 
 // Operators /////////////////////////////////////////////////////
-
-inline PqAnalogUnit& operator>>(float value, PqAnalogUnit& putter) {
-  putter.put( value );
-  return putter;
+inline PqPutter& operator>>(float value, PqPutter& unit) {
+  unit.put( value );
+  return unit;
 }
 
-// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqPutter&)).
-inline PqAnalogSource& operator>>(PqAnalogSource& getter, PqAnalogUnit& putter) {
+// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqUnit&)).
+inline PqGetter& operator>>(PqGetter& getter, PqPutter& putter) {
 	return pq::operator>>(getter.get(), putter);
 }
 
-inline PqAnalogUnit& operator>>(double value, PqAnalogUnit& putter) {
-  return pq::operator>>((float)value, putter);
+inline PqPutter& operator>>(double value, PqPutter& unit) {
+  return pq::operator>>((float)value, unit);
 }
 
-inline PqAnalogUnit& operator>>(bool value, PqAnalogUnit& putter) {
-	return pq::operator>>(PqUnit::digitalToAnalog(value), putter);
-}
-
-// This code is needed on the Curie-based AVRs.
-#if defined(__arc__)
-inline PqAnalogUnit& operator>>(int value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-#endif
-
-inline PqAnalogUnit& operator>>(int8_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(uint8_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(int16_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(uint16_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(int32_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(uint32_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(int64_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline PqAnalogUnit& operator>>(uint64_t value, PqAnalogUnit& putter) {
-	return pq::operator>>((float)value, putter);
-}
-
-inline bool& operator>>(PqDigitalGetter& getter, bool& value) {
-  return (value = getter.isOn());
+inline PqPutter& operator>>(bool value, PqPutter& unit) {
+	return pq::operator>>(PqUnit::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
-inline int& operator>>(PqDigitalGetter& getter, int& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(int value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 #endif
 
-inline int8_t& operator>>(PqDigitalGetter& getter, int8_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(int8_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline uint8_t& operator>>(PqDigitalGetter& getter, uint8_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(uint8_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline int16_t& operator>>(PqDigitalGetter& getter, int16_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(int16_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline uint16_t& operator>>(PqDigitalGetter& getter, uint16_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(uint16_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline int32_t& operator>>(PqDigitalGetter& getter, int32_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(int32_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline uint32_t& operator>>(PqDigitalGetter& getter, uint32_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(uint32_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline int64_t& operator>>(PqDigitalGetter& getter, int64_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(int64_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline uint64_t& operator>>(PqDigitalGetter& getter, uint64_t& value) {
-  return (value = getter.getInt());
+inline PqPutter& operator>>(uint64_t value, PqPutter& unit) {
+	return pq::operator>>((float)value, unit);
 }
 
-inline float& operator>>(PqGetter& getter, float& value) {
-  return (value = getter.get());
+inline bool& operator>>(PqDigitalPutter& unit, bool& value) {
+  return (value = unit.isOn());
 }
 
-inline double& operator>>(PqGetter& getter, double& value) {
-  return (value = getter.get());
+// This code is needed on the Curie-based AVRs.
+#if defined(__arc__)
+inline int& operator>>(PqDigitalPutter& unit, int& value) {
+  return (value = unit.getInt());
+}
+#endif
+
+inline int8_t& operator>>(PqDigitalPutter& unit, int8_t& value) {
+  return (value = unit.getInt());
 }
 
-// HACK: These operator overrides are there just to avoid making a bitshift
+inline uint8_t& operator>>(PqDigitalPutter& unit, uint8_t& value) {
+  return (value = unit.getInt());
+}
+
+inline int16_t& operator>>(PqDigitalPutter& unit, int16_t& value) {
+  return (value = unit.getInt());
+}
+
+inline uint16_t& operator>>(PqDigitalPutter& unit, uint16_t& value) {
+  return (value = unit.getInt());
+}
+
+inline int32_t& operator>>(PqDigitalPutter& unit, int32_t& value) {
+  return (value = unit.getInt());
+}
+
+inline uint32_t& operator>>(PqDigitalPutter& unit, uint32_t& value) {
+  return (value = unit.getInt());
+}
+
+inline int64_t& operator>>(PqDigitalPutter& unit, int64_t& value) {
+  return (value = unit.getInt());
+}
+
+inline uint64_t& operator>>(PqDigitalPutter& unit, uint64_t& value) {
+  return (value = unit.getInt());
+}
+
+inline float& operator>>(PqPutter& unit, float& value) {
+  return (value = unit.get());
+}
+
+inline double& operator>>(PqPutter& unit, double& value) {
+  return (value = unit.get());
+}
+
+// NOTE: These operator overrides are there just to avoid making a bitshift
 // by error due to a combination of PqGetter operator float() and
 // PqDigitalGetter int() and bool() which allow bitshift operations.
 inline PqGetter& operator>>(float value,    PqGetter& getter) { return getter; }

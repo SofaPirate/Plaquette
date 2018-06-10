@@ -24,12 +24,15 @@ namespace pq {
 
 PqSmoothable::PqSmoothable(float smoothTime) : _avg(smoothTime) {}
 
-float PqSmoothable::_smoothed() {
-  return _avg.update( _read(), _avg.alpha(sampleRate()) );
+void PqSmoothable::_begin() {
+}
+
+void PqSmoothable::_step() {
+  _avg.update( _read(), _avg.alpha(sampleRate()) );
 }
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqAnalogSource()
+  : PqPinUnit(pin, mode)
 {}
 
 #ifdef ESP8266
@@ -48,11 +51,11 @@ float AnalogIn::_read() {
 }
 
 void AnalogIn::begin() {
-  step();
+  _begin();
 }
 
 void AnalogIn::step() {
-  _value = _smoothed();
+  _step();
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
