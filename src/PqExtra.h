@@ -74,6 +74,7 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& period(float period);
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
@@ -81,6 +82,7 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
 
   /**
    * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
@@ -96,12 +98,15 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& phase(float phase);
+  virtual float phase() const { return _phase; }
+
   /**
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    * @return the unit itself
    */
    virtual SquareOsc& amplitude(float amplitude);
+   virtual float amplitude() const { return _amplitude * 2; }
 
 protected:
   // Core Plaquette methods.
@@ -142,6 +147,7 @@ public:
    * @return the unit itself
    */
   virtual SineOsc& period(float period);
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
@@ -149,6 +155,7 @@ public:
    * @return the unit itself
    */
   virtual SineOsc& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
 
   /**
    * Sets the phase (ie. the offset, in % of period).
@@ -156,12 +163,15 @@ public:
    * @return the unit itself
    */
   virtual SineOsc& phase(float phase);
+  virtual float phase() const { return _phase; }
+
   /**
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    * @return the unit itself
    */
    virtual SineOsc& amplitude(float amplitude);
+   virtual float amplitude() const { return _amplitude * (-32767.0f); }
 
 protected:
   // Core Plaquette methods.
@@ -202,6 +212,7 @@ public:
    * @return the unit itself
    */
   virtual TriOsc& period(float period);
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
@@ -209,6 +220,7 @@ public:
    * @return the unit itself
    */
   virtual TriOsc& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
 
   /**
    * Sets the width of the wave.
@@ -216,18 +228,23 @@ public:
    * @return the unit itself
    */
   virtual TriOsc& width(float width);
+  virtual float width() const { return _width; }
+
   /**
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    * @return the unit itself
    */
    virtual TriOsc& amplitude(float amplitude);
+   virtual float amplitude() const { return _amplitude; }
+
    /**
     * Sets the phase (ie. the offset, in % of period).
     * @param phase the phase (in % of period)
     * @return the unit itself
     */
    virtual TriOsc& phase(float phase);
+   virtual float phase() const { return _phase; }
 
 protected:
   // Core Plaquette methods.
