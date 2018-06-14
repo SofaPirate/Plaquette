@@ -31,15 +31,15 @@ void step();
 
 // Plaquette redefines setup() and loop() based on begin() and step().
 void setup() {
-  Plaquette::preBegin();
+  Plaquette.preBegin();
   begin();
-  Plaquette::postBegin();
+  Plaquette.postBegin();
 }
 
 void loop() {
-  Plaquette::preStep();
+  Plaquette.preStep();
   step();
-  Plaquette::postStep();
+  Plaquette.postStep();
 }
 
 #endif

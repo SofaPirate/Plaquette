@@ -46,82 +46,93 @@ namespace pq {
 
 class PqUnit;
 
-/// The main Plaquette static class containing all the components.
-class Plaquette {
+/// The main Plaquette static class containing all the units.
+class PlaquetteEnv {
   friend class PqUnit;
 
 private:
-  // Used to keep track of components.
-  static PqUnit* _units[PLAQUETTE_MAX_UNITS];
-  static uint8_t _nUnits;
+  // Used to keep track of units.
+  PqUnit* _units[PLAQUETTE_MAX_UNITS];
+  uint8_t _nUnits;
 
   // Snapshot of time in seconds from current step.
-  static float _seconds;
+  float _seconds;
 
   // Sampling rate (ie. how many times per seconds step() is called).
-  static float _sampleRate;
+  float _sampleRate;
 
   // // Internal use.
-  // static float _secondsPerStep;
+  // float _secondsPerStep;
 
   // Whether the auto sample rate mode is activated.
-  static float _targetSampleRate;
+  float _targetSampleRate;
 
   // Number of steps accomplished.
-  static unsigned long _nSteps;
+  unsigned long _nSteps;
 
-  static bool _firstRun;
+  bool _firstRun;
 
 public:
+  PlaquetteEnv();
+
   /// Initializes all components (calls begin() on all of them).
-  static void preBegin();
+  void preBegin();
 
   /// Performs additional tasks after the class to begin().
-  static void postBegin();
+  void postBegin();
 
   /// Updates all components (calls step() on all of them).
-  static inline void preStep();
+  inline void preStep();
 
   /// Performs additional tasks after the class to step().
-  static inline void postStep();
+  inline void postStep();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
-  static inline void begin();
+  inline void begin();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
-  static inline void step();
+  inline void step();
 
   /**
    * Optional function to be used within the PlaquetteLib context. No need to call it if the program
    * is looping indefinitely. Call if the program stops at some point.
    */
-  static inline void end();
+  inline void end();
 
   /// Returns the current number of units.
-  static uint8_t nUnits() { return _nUnits; }
+  uint8_t nUnits() { return _nUnits; }
 
-  /// Returns time in seconds.
-  static float seconds(bool realTime=false);
+  /**
+   * Returns time in seconds. Optional parameter allows to ask for reference time (default)
+   * which will yield the same value through one iteration of step(), or "real" time which Will
+   * return the current total running time.
+   * @param referenceTime determines whether the function returns the reference time or the real time
+   * @return the time in seconds
+   */
+  float seconds(bool referenceTime=true);
 
   /// Returns number of steps.
-  static unsigned long nSteps() { return _nSteps; }
+  unsigned long nSteps() { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
-  static bool autoSampleRate();
+  bool autoSampleRate();
 
   /// Enables auto sample rate mode (default).
-  static void enableAutoSampleRate();
+  void enableAutoSampleRate();
 
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
-  static void sampleRate(float sampleRate);
+  void sampleRate(float sampleRate);
 
   /// Returns sample rate.
-  static float sampleRate() { return _sampleRate; }
+  float sampleRate() { return _sampleRate; }
 
 private:
   /// Adds a component to Plaquette.
-  static void add(PqUnit * component);
+  void add(PqUnit * component);
 };
+
+/// The Plaquette singleton.
+extern PlaquetteEnv Plaquette;
 
 //float seconds(bool realTime=false);
 unsigned long nSteps();
@@ -144,7 +155,7 @@ float sampleRate();
  * Components can be transducers (sensors, actuators) or special integrated circuits.
  */
 class PqUnit {
-  friend class Plaquette;
+  friend class PlaquetteEnv;
 
 public:
   /// Converts analog (float) value to digital (bool) value.
@@ -154,7 +165,7 @@ public:
 	static float digitalToAnalog(bool b);
 
 protected:
-  PqUnit();
+  PqUnit(PlaquetteEnv* env=&Plaquette);
   virtual ~PqUnit() {}
 
 protected:
@@ -172,7 +183,6 @@ public:
   /// Operator that allows usage in conditional expressions.
 	// NOTE: This operator is defined as explicit so that boolean expression like
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  //virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
 
   /// Object can be used directly to access its value.
   operator float() { return get(); }
@@ -181,6 +191,7 @@ protected:
   PqGetter() {}
 
 private:
+  virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
   // Prevents assignation operations by making them private.
   PqGetter& operator=(bool);
   PqGetter& operator=(int);
@@ -498,22 +509,21 @@ public:
 };
 
 // Inline methods.
+
 #include <float.h>
 
-
-
-void Plaquette::preStep() {
+void PlaquetteEnv::preStep() {
   // Update every component.
   for (uint8_t i=0; i<_nUnits; i++)
     _units[i]->step();
 }
 
-void Plaquette::postStep() {
+void PlaquetteEnv::postStep() {
   // Increment step.
   _nSteps++;
 
   // Calculate true sample rate.
-  float newTime = seconds(true);
+  float newTime = seconds(false);
   float trueSampleRate = 1.0f / (newTime - _seconds + FLT_MIN);
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
@@ -532,11 +542,11 @@ void Plaquette::postStep() {
   }
 }
 
-void Plaquette::begin() {
+void PlaquetteEnv::begin() {
   preBegin();
 }
 
-void Plaquette::step() {
+void PlaquetteEnv::step() {
   if (_firstRun) {
     postBegin();
     _firstRun = false;

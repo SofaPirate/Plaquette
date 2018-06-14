@@ -29,17 +29,12 @@
 
 namespace pq {
 
-uint8_t Plaquette::_nUnits = 0;
-PqUnit* Plaquette::_units[PLAQUETTE_MAX_UNITS];
+// Singleton.
+PlaquetteEnv Plaquette;
 
-float Plaquette::_seconds = 0;
-float Plaquette::_sampleRate = FLT_MAX;
-// float Plaquette::_secondsPerStep = 1.0f / PLAQUETTE_DEFAULT_SAMPLE_RATE;
-float Plaquette::_targetSampleRate = 0;
-unsigned long Plaquette::_nSteps = 0;
-bool Plaquette::_firstRun = true;
+PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(FLT_MAX), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
 
-void Plaquette::preBegin() {
+void PlaquetteEnv::preBegin() {
   // Initialize serial.
   Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
 
@@ -56,12 +51,12 @@ void Plaquette::preBegin() {
   }
 }
 
-void Plaquette::postBegin() {
+void PlaquetteEnv::postBegin() {
   // Start timer.
-  _seconds = seconds(true);
+  _seconds = seconds(false);
 }
 
-void Plaquette::end() {
+void PlaquetteEnv::end() {
   if (_firstRun) {
     postBegin();
     _firstRun = false;
@@ -70,7 +65,7 @@ void Plaquette::end() {
     postStep();
 }
 
-void Plaquette::add(PqUnit* component) {
+void PlaquetteEnv::add(PqUnit* component) {
   for (uint8_t i=0; i<_nUnits; i++) {
 		if (_units[i] == component)
 			return; // do not add existing component
@@ -80,27 +75,27 @@ void Plaquette::add(PqUnit* component) {
   }
 }
 
-float Plaquette::seconds(bool realTime) {
-  return realTime ? (micros() / 1e6f) : _seconds;
+float PlaquetteEnv::seconds(bool referenceTime) {
+  return referenceTime ? _seconds : (micros() / 1e6f);
 }
 
-bool Plaquette::autoSampleRate() { return (_targetSampleRate <= 0); }
+bool PlaquetteEnv::autoSampleRate() { return (_targetSampleRate <= 0); }
 
-void Plaquette::enableAutoSampleRate() {
+void PlaquetteEnv::enableAutoSampleRate() {
   _targetSampleRate = 0;
 }
 
-void Plaquette::sampleRate(float sampleRate) {
+void PlaquetteEnv::sampleRate(float sampleRate) {
   _targetSampleRate = max(sampleRate, FLT_MIN);
 }
 
-//float seconds(bool realTime) { return Plaquette::seconds(); }
-unsigned long nSteps() { return Plaquette::nSteps(); }
-void sampleRate(float sampleRate) { Plaquette::sampleRate(sampleRate); }
-float sampleRate() { return Plaquette::sampleRate(); }
+//float seconds(bool realTime) { return PlaquetteEnv::seconds(); }
+unsigned long nSteps() { return Plaquette.nSteps(); }
+void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
+float sampleRate() { return Plaquette.sampleRate(); }
 
-PqUnit::PqUnit() {
-  Plaquette::add(this);
+PqUnit::PqUnit(PlaquetteEnv* env) {
+  env->add(this);
 }
 
 bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }

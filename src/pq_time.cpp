@@ -23,8 +23,8 @@
 
 namespace pq {
 
-float seconds(bool realTime) {
-  return Plaquette::seconds(realTime);
+float seconds(bool referenceTime) {
+  return Plaquette.seconds(referenceTime);
 }
 
 } // namespace pq

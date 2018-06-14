@@ -33,7 +33,7 @@
 namespace pq {
 
 /// Returns the number of seconds since start of program (calculated using micros()).
-float seconds(bool realTime=false);
+float seconds(bool referenceTime=true);
 
 } // namespace pq
 
