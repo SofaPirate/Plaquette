@@ -1,7 +1,8 @@
 /**
- * Pq_ButtonBlink
+ * Pq_Button
  *
- * A button triggers the fast blinking of an LED.
+ * Turns on and off a light emitting diode(LED) connected to digital
+ * pin 13, when pressing a pushbutton attached to digital pin 2.
  *
  * The circuit:
  * - LED attached from digital pin 13 to ground (*)
@@ -12,6 +13,9 @@
  * Created in 2016 by Sofian Audry
  *
  * This example code is in the public domain.
+ *
+ * Inspired from the following code:
+ * http://www.arduino.cc/en/Tutorial/Button
  */
 #include <Plaquette.h>
 
@@ -21,16 +25,11 @@ DigitalOut led(13);
 // The button.
 DigitalIn button(2); // defaults to INTERNAL_PULLUP
 
-// A square-wave (on/off) oscillator.
-SquareOsc oscillator(0.1); // 100 ms period, 50% duty cycle (default)
-
-void begin() {}
+void begin() {
+  button.smooth(); // debounce button
+}
 
 void step() {
-  // If button is pushed, send oscillator value to LED.
-  if (button)
-		oscillator >> led;
-	// ... otherwise send 0 to LED (ie. equivalent of calling "led.off()").
-	else
-		0 >> led;
+  // Send button value to LED.
+  button >> led;
 }

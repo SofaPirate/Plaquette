@@ -14,5 +14,5 @@ void begin() {
 
 void step() {
   // Updates the value and send it back as output.
-  (out + randomUniform(-RATE, RATE)) >> out;
+  (out + randomFloat(-RATE, RATE)) >> out;
 }

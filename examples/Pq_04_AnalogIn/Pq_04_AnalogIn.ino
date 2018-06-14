@@ -6,7 +6,7 @@
  *
  * The circuit:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
-*    to the analog pin one side pin (either one) to ground the other side pin to +5V
+ *   to the analog pin: one side pin (either one) to ground the other side pin to +5V
  * - LED anode (long leg) attached to digital output 13
  * - LED cathode (short leg) attached to ground
  *
@@ -20,13 +20,13 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led; // defaults on pin 13
+DigitalOut led(13);
 
 // The analog input.
-AnalogIn in; // default on pin A0
+AnalogIn in(A0);
 
 // A square-wave (on/off) oscillator.
-SquareOsc oscillator; // default to 1 second period and 50% duty-cycle
+SquareOsc oscillator(3.0); // 3 second period
 
 void begin() {}
 

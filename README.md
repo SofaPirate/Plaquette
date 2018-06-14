@@ -1,6 +1,2 @@
-# Plaquette
-
-High-level hardware interface.
-
-Please consult the wiki for more information:
-https://github.com/SofaPirate/Plaquette/wiki
+Please visit official website for installation instructions and more:
+https://sofapirate.github.io/Plaquette/

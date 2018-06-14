@@ -4,8 +4,8 @@
  *
  * The circuit:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
-*    to the analog pin one side pin (either one) to ground the other side pin to +5V
- * - LED anode (long leg) attached to digital output 9
+ *   to the analog pin: one side pin (either one) to ground the other side pin to +5V
+ * - LED anode (long leg) attached to analog (PWM) output 9
  * - LED cathode (short leg) attached to ground
  *
  * Created in 2016 by Sofian Audry
@@ -15,7 +15,7 @@
 #include <Plaquette.h>
 
 // The analog input.
-AnalogIn in; // default on pin A0
+AnalogIn in(A0);
 
 // The LED.
 AnalogOut led(9);

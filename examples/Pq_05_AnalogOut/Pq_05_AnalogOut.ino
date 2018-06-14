@@ -4,7 +4,7 @@
  * connected to PWM pin 9.
  *
  * The circuit:
- * - LED anode (long leg) attached to digital output 13
+ * - LED anode (long leg) attached to analog (PWM) output 9
  * - LED cathode (short leg) attached to ground
  *
  * Created in 2016 by Sofian Audry
@@ -16,26 +16,16 @@
 // The LED.
 AnalogOut led(9);
 
-// Period during which to ramp up (seconds).
-const float PERIOD = 5.0;
-
-// Stores last time LED was updated.
-float startTime = 0;
+// The triangle/saw oscillator.
+/* NOTES:
+   - try changing the second parameter to 0 and 1 and see how it affects the LED
+   - try replacing the line with the following:
+       SineOsc oscillator(5.0);
+*/
+TriOsc oscillator(5.0); // period of 5 seconds, width of 50% (default)
 
 void begin() {}
 
 void step() {
-  // Check to see if it's time to blink the LED.
-  float currentTime = seconds();
-
-  // If currentTime has passed PERIOD, reset timer.
-  if (currentTime - startTime >= PERIOD) {
-    startTime = currentTime;
-  }
-
-  // Divide the result by PERIOD to project it in the range [0, 1].
-  float ledValue = (currentTime - startTime) / PERIOD;
-
-  // Send LED value to LED output.
-  ledValue >> led;
+	oscillator >> led;
 }

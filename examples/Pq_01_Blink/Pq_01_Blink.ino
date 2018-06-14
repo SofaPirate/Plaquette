@@ -1,9 +1,8 @@
 /**
- * Pq_Blink
+ * Pq_BlinkWithOscillator
  *
  * Turns on and off a light emitting diode (LED) connected to a digital
- * pin, without using the delay() function.  This means that other code
- * can run at the same time without being interrupted by the LED code.
+ * pin using a SquareOsc.
  *
  * The circuit:
  * - LED attached from pin 13 to ground.
@@ -13,32 +12,18 @@
  * Created in 2016 by Sofian Audry
  *
  * This example code is in the public domain.
- *
- * Inspired from the following code:
- * http://www.arduino.cc/en/Tutorial/BlinkWithoutDelay
  */
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led; // defaults on pin 13
+DigitalOut led(13);
 
-// Interval at which to blink (seconds).
-const float INTERVAL = 1.0;
-
-// Stores last time LED was updated.
-float previousTime = 0;
+// A square-wave (on/off) oscillator.
+SquareOsc oscillator(2); // 2 seconds period
 
 void begin() {}
 
 void step() {
-  // Check to see if it's time to blink the LED.
-  float currentTime = seconds();
-
-  if (currentTime - previousTime >= INTERVAL) {
-    // Save the last time you blinked the LED.
-    previousTime = currentTime;
-
-    // Change LED state.
-    led.toggle();
-  }
+  // Send oscillator value to LED.
+  oscillator >> led;
 }
