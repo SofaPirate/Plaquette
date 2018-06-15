@@ -57,6 +57,7 @@ clean:
 .PHONY: doxygen
 doxygen:
 	$(DOXYGENBUILD)
+	sed -i 's/pq:://g' ./xml/*.xml
 
 .PHONY: html
 html:

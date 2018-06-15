@@ -36,7 +36,7 @@ duty cycle is set to 25%, the LED will stay on for 1 second and then off for 3 s
 
 .. doxygenclass:: SquareOsc
    :project: Plaquette
-   :members: SquareOsc, isOn, isOff, period, frequency, dutyCycle, getInt, get
+   :members: SquareOsc, period, frequency, phase, amplitude, dutyCycle, getInt, get
 
 |SeeAlso|
 ---------

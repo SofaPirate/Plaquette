@@ -1,3 +1,4 @@
+
 .. include:: defs.hrst
 
 seconds()
@@ -26,7 +27,7 @@ This function returns the number of seconds since the program started.
 |Reference|
 ----------------
 
-.. doxygenfunction:: seconds
+.. doxygenfunction:: pq::seconds
    :project: Plaquette
 
 |SeeAlso|

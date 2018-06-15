@@ -28,7 +28,7 @@ the traditional sine wave).
 
 .. doxygenclass:: SineOsc
    :project: Plaquette
-   :members: SineOsc, period, frequency, get
+   :members: SineOsc, period, frequency, phase, amplitude, get
 
 |SeeAlso|
 ---------
