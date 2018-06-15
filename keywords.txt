@@ -18,10 +18,13 @@ SquareOsc	KEYWORD1
 TriOsc	KEYWORD1
 SineOsc	KEYWORD1
 
+Metro	KEYWORD1
+Ramp	KEYWORD1
+Timer	KEYWORD1
+
 AdaptiveNormalizer	KEYWORD1
 MinMaxScaler	KEYWORD1
 Normalizer	KEYWORD1
-Ramp	KEYWORD1
 Smoother	KEYWORD1
 Thresholder	KEYWORD1
 
@@ -73,6 +76,8 @@ elapsed KEYWORD2
 progress	KEYWORD2
 isStarted  KEYWORD2
 isComplete	KEYWORD2
+isRunning  KEYWORD2
+hasPassed	KEYWORD2
 
 mapFloat	KEYWORD2
 randomFloat	KEYWORD2

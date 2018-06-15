@@ -6,6 +6,7 @@
 
    base_units
    generators
+   timing
    filters
    functions
    structure

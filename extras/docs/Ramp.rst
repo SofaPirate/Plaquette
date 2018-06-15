@@ -47,8 +47,9 @@ called, followed later by ``start(3.0, 1.0)``:
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: get, start, stop, resume, elapsed, progress, isStarted, isComplete
+   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isComplete, to, fromTo
 
 |SeeAlso|
 ---------
+- :doc:`Timer`
 - :doc:`TriOsc`
