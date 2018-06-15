@@ -275,69 +275,161 @@ TriOsc& TriOsc::phase(float phase) {
 	return *this;
 }
 
-Ramp::Ramp(float initialValue_) :
-	PqAnalogSource(initialValue_),
-	_duration(0),
-	_from(initialValue_), _change(0),
-	_startTime(0), _offsetTime(0),
-	_isRunning(false)
-{
+Metro::Metro(float period_) {
+  period(period_);
 }
 
-void Ramp::start(float to, float duration) {
-	start(_value, to, duration);
+void Metro::begin() {
+	_phaseTime = _phase;
 }
 
-void Ramp::start(float from, float to, float duration) {
-	// Set parameters.
-	_duration = duration;
-	_from = from;
-	_change = (to - from);
+void Metro::step() {
+	_phaseTime += 1.0f / (_period * sampleRate());
+	if (_phaseTime > 1) {
+		_isOn = true;
+		while (_phaseTime > 1) _phaseTime--; // modulo
+	}
+	else
+		_isOn = false;
+}
 
+Metro& Metro::period(float period) {
+	_period = max(period, FLT_MIN);
+	return *this;
+}
+
+Metro& Metro::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+}
+
+Metro& Metro::phase(float phase) {
+	if (phase != _phase) {
+		// Need to readjust _phaseTime.
+		_phaseTime += (phase - _phase);
+		while (_phaseTime > 1) _phaseTime--; // modulo
+		while (_phaseTime < 0) _phaseTime++; // modulo
+		_phase = phase;
+	}
+	return *this;
+}
+
+Chrono::Chrono() {
+	begin();
+}
+
+void Chrono::start() {
 	// Start.
 	_startTime = seconds();
 	_offsetTime = 0;
 	_isRunning = true;
 }
 
-void Ramp::stop() {
+void Chrono::addTime(float time) {
+	_offsetTime += time;
+}
+
+void Chrono::stop() {
 	if (_isRunning) {
 		_offsetTime = elapsed();
 		_isRunning = false;
 	}
 }
 
-void Ramp::resume() {
+void Chrono::resume() {
 	if (!_isRunning) {
 		_startTime = seconds();
 		_isRunning = true;
 	}
 }
 
-float Ramp::progress() const {
-	// Compute progress as % of duration.
-	float prog = elapsed() / _duration;
-	prog = constrain(prog, 0, 1);
-	return prog;
+bool Chrono::hasPassed(float timeout) const
+{
+  return (elapsed() >= timeout);
 }
 
-void Ramp::begin() {
+bool Chrono::hasPassed(float timeout, bool restartIfPassed) {
+  if (hasPassed(timeout)) {
+    if (restartIfPassed)
+      start();
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+void Chrono::begin() {
 	// Basic reset.
 	_startTime = _offsetTime = 0;
 	_isRunning = false;
 }
 
-void Ramp::step() {
+void Chrono::step() {
 	// Offset elapsed time.
 	_elapsedTime = _offsetTime;
 
 	if (_isRunning) {
 		// Add difference to elapsed time.
 	 	_elapsedTime += (seconds() - _startTime);
+	}
+}
 
+AbstractTimer::AbstractTimer(float duration_) {
+	duration(duration_);
+}
+
+void AbstractTimer::duration(float duration) {
+	// Set parameters.
+	_duration = max(duration, 0);
+}
+
+float AbstractTimer::progress() const {
+	// Compute progress as % of duration.
+	float prog = elapsed() / _duration;
+	prog = constrain(prog, 0, 1);
+	return prog;
+}
+
+Ramp::Ramp(float initialValue_) :
+	PqAnalogSource(initialValue_),
+	Chrono(),
+	_from(initialValue_), _change(0)
+{
+}
+
+void Ramp::to(float to) {
+	fromTo(_value, to);
+}
+
+void Ramp::fromTo(float from, float to) {
+	_from = from;
+	_change = (to - from);
+}
+
+void Ramp::start() {
+	AbstractTimer::start();
+}
+
+void Ramp::start(float to, float duration) {
+	start(_value, to, duration);
+}
+
+void Ramp::start(float from, float to, float duration_) {
+	fromTo(from, to);
+
+	// Initialize duration.
+	duration(duration_);
+
+	// Start chronometer.
+	start();
+}
+
+void Ramp::step() {
+	AbstractTimer::step();
+
+	if (_isRunning) {
 		// Compute value if running -- otherwise leave as is.
 		// TODO: implement easing functions
-	  _value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
+		_value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
 	}
 }
 

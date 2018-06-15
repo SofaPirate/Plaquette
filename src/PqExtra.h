@@ -269,20 +269,160 @@ protected:
   float _phaseTime;
 };
 
+/**
+ * Chronometer class which emits a "1" after a certain time.
+ */
+class Metro : public PqDigitalSource {
+public:
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   */
+  Metro(float period=1.0f);
+
+  /**
+   * Sets the period (in seconds).
+   * @param period the period of oscillation (in seconds)
+   * @return the unit itself
+   */
+  virtual Metro& period(float period);
+  virtual float period() const { return _period; }
+
+  /**
+   * Sets the frequency (in Hz).
+   * @param frequency the frequency of oscillation (in Hz)
+   * @return the unit itself
+   */
+  virtual Metro& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
+
+  /**
+   * Sets the phase (ie. the offset, in % of period).
+   * @param phase the phase (in % of period)
+   * @return the unit itself
+   */
+  virtual Metro& phase(float phase);
+  virtual float phase() const { return _phase; }
+
+protected:
+  virtual void begin();
+  virtual void step();
+
+  // Phase (in % of period).
+  float _period;
+
+  // Phase (in % of period).
+  float _phase;
+
+  // Internal use.
+  float _phaseTime;
+};
+
+class Chrono : virtual public PqUnit {
+public:
+  Chrono();
+
+  /// Starts/restarts the chronometer.
+  virtual void start();
+
+  /// Adds/subtracts time to the chronometer.
+  virtual void addTime(float time);
+
+  /// Interrupts the chronometer.
+  virtual void stop();
+
+  /// Resumes process.
+  virtual void resume();
+
+  /// The time currently elapsed by the chronometer (in seconds).
+  virtual float elapsed() const { return _elapsedTime; }
+
+  /// Returns true iff elapsed time has passed given timeout.
+  virtual bool hasPassed(float timeout) const;
+
+  /**
+   * Returns true iff elapsed time has passed given timeout (optional argument to
+   * automatically restart if true).
+   */
+  virtual bool hasPassed(float timeout, bool restartIfPassed);
+
+  /// Returns true iff the chronometer is currently running.
+  bool isRunning() const { return _isRunning; }
+
+protected:
+  virtual void begin();
+  virtual void step();
+
+  // The starting time (in seconds).
+  float _startTime;
+
+  // The offset time
+  float _offsetTime;
+
+  // The current elapsed time.
+  float _elapsedTime;
+
+  // Is th ramp running or not?
+  bool _isRunning;
+};
+
+class AbstractTimer : virtual public Chrono {
+public:
+  AbstractTimer(float duration=1.0f);
+
+  /// Sets the duration of the chronometer.
+  virtual void duration(float duration);
+
+  /// The progress of the chrono process (in %).
+  virtual float progress() const;
+
+  /// Returns true iff the chronometer has completed its process.
+  bool isComplete() const { return progress() >= 1.0; }
+
+protected:
+  // The duration.
+  float _duration;
+};
+
+/**
+ * Chronometer class which becomes "on" after a given duration.
+ */
+class Timer : public AbstractTimer, public PqDigitalGetter {
+public:
+  Timer();
+
+  virtual bool isOn() { return isRunning() && isComplete(); }
+};
+
 // TODO: implement a floating-point version of Chrono in Plaquette and make
 // ramp a subclass of that class.
 /**
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
  */
-class Ramp : public PqAnalogSource {
+class Ramp : public PqAnalogSource, public AbstractTimer {
 public:
   /**
    * Constructor.
    * @param initialValue the value the ramp starts with
    */
   Ramp(float initialValue=0.0f);
-  virtual ~Ramp() {}
+
+  /**
+   * Assign final value of the ramp starting from current value.
+   * @param to the final value
+   */
+  virtual void to(float to);
+
+  /**
+   * Assign initial and final values of the ramp.
+   * @param from the initial value
+   * @param to the final value
+   */
+  virtual void fromTo(float from, float to);
+
+  /// Starts/restarts the chronometer.
+  virtual void start();
 
   /**
    * Starts a new ramp (starting from current value).
@@ -299,48 +439,15 @@ public:
    */
   virtual void start(float from, float to, float duration);
 
-  /// Interrupts the ramp.
-  virtual void stop();
-
-  /// Resumes process.
-  virtual void resume();
-
-  /// The time currently elapsed by the ramp (in seconds).
-  virtual float elapsed() const { return _elapsedTime; }
-
-  /// The progress of the ramping process (in %).
-  virtual float progress() const;
-
-  /// Returns true iff the ramp is currently running.
-  bool isRunning() const { return _isRunning; }
-
-  /// Returns true iff the ramp has completed its process.
-  bool isComplete() const { return progress() >= 1.0; }
-
 protected:
-  virtual void begin();
-  virtual void step();
 
-  // The duration.
-  float _duration;
+  virtual void step();
 
   // The starting point.
   float _from;
 
   // The variation from starting point targetted.
   float _change;
-
-  // The starting time (in seconds).
-  float _startTime;
-
-  // The offset time
-  float _offsetTime;
-
-  // The current elapsed time.
-  float _elapsedTime;
-
-  // Is th ramp running or not?
-  bool _isRunning;
 };
 
 /// Stream/serial output. Number of digits of precision is configurable.
