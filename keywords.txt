@@ -78,7 +78,6 @@ elapsed KEYWORD2
 progress	KEYWORD2
 isStarted  KEYWORD2
 isComplete	KEYWORD2
-isRunning  KEYWORD2
 hasPassed	KEYWORD2
 
 mapFloat	KEYWORD2

@@ -347,7 +347,7 @@ public:
   virtual bool hasPassed(float timeout, bool restartIfPassed);
 
   /// Returns true iff the chronometer is currently running.
-  bool isRunning() const { return _isRunning; }
+  bool isStarted() const { return _isStarted; }
 
 protected:
   virtual void begin();
@@ -362,8 +362,8 @@ protected:
   // The current elapsed time.
   float _elapsedTime;
 
-  // Is th ramp running or not?
-  bool _isRunning;
+  // Is the chrono currently started.
+  bool _isStarted;
 };
 
 class AbstractTimer : virtual public Chrono {
@@ -391,7 +391,7 @@ class Timer : public AbstractTimer, public PqDigitalGetter {
 public:
   Timer();
 
-  virtual bool isOn() { return isRunning() && isComplete(); }
+  virtual bool isOn() { return isStarted() && isComplete(); }
 };
 
 // TODO: implement a floating-point version of Chrono in Plaquette and make
