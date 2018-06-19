@@ -372,12 +372,22 @@ protected:
   bool _isStarted;
 };
 
-class AbstractTimer : virtual public Chrono {
+class AbstractTimer : public Chrono {
 public:
   AbstractTimer(float duration=1.0f);
 
+public:
+  /// Starts/restarts the chronometer.
+  virtual void start();
+
+  /// Starts/restarts the chronometer with specific duration.
+  virtual void start(float duration);
+
   /// Sets the duration of the chronometer.
   virtual void duration(float duration);
+
+  /// Returns duration.
+  virtual float duration() const { return _duration; }
 
   /// The progress of the chrono process (in %).
   virtual float progress() const;
@@ -395,7 +405,7 @@ protected:
  */
 class Timer : public AbstractTimer, public PqDigitalGetter {
 public:
-  Timer();
+  Timer(float duration=1.0f);
 
   virtual bool isOn() { return isStarted() && isComplete(); }
 };
