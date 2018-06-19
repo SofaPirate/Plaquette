@@ -326,7 +326,7 @@ void Chrono::start() {
 	// Start.
 	_startTime = seconds();
 	_offsetTime = 0;
-	_isRunning = true;
+	_isStarted = true;
 }
 
 void Chrono::addTime(float time) {
@@ -334,16 +334,16 @@ void Chrono::addTime(float time) {
 }
 
 void Chrono::stop() {
-	if (_isRunning) {
+	if (_isStarted) {
 		_offsetTime = elapsed();
-		_isRunning = false;
+		_isStarted = false;
 	}
 }
 
 void Chrono::resume() {
-	if (!_isRunning) {
+	if (!_isStarted) {
 		_startTime = seconds();
-		_isRunning = true;
+		_isStarted = true;
 	}
 }
 
@@ -365,14 +365,14 @@ bool Chrono::hasPassed(float timeout, bool restartIfPassed) {
 void Chrono::begin() {
 	// Basic reset.
 	_startTime = _offsetTime = 0;
-	_isRunning = false;
+	_isStarted = false;
 }
 
 void Chrono::step() {
 	// Offset elapsed time.
 	_elapsedTime = _offsetTime;
 
-	if (_isRunning) {
+	if (_isStarted) {
 		// Add difference to elapsed time.
 	 	_elapsedTime += (seconds() - _startTime);
 	}
@@ -380,6 +380,15 @@ void Chrono::step() {
 
 AbstractTimer::AbstractTimer(float duration_) {
 	duration(duration_);
+}
+
+void AbstractTimer::start() {
+	Chrono::start();
+}
+
+void AbstractTimer::start(float duration_) {
+	duration(duration_);
+	start();
 }
 
 void AbstractTimer::duration(float duration) {
@@ -394,9 +403,12 @@ float AbstractTimer::progress() const {
 	return prog;
 }
 
+Timer::Timer(float duration_) : AbstractTimer(duration_) {
+}
+
 Ramp::Ramp(float initialValue_) :
 	PqAnalogSource(initialValue_),
-	Chrono(),
+	AbstractTimer(),
 	_from(initialValue_), _change(0)
 {
 }
@@ -431,7 +443,7 @@ void Ramp::start(float from, float to, float duration_) {
 void Ramp::step() {
 	AbstractTimer::step();
 
-	if (_isRunning) {
+	if (_isStarted) {
 		// Compute value if running -- otherwise leave as is.
 		// TODO: implement easing functions
 		_value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
