@@ -104,7 +104,7 @@ public:
   DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 
-  /// Difference between current and previous value of the object since last call to step().
+  /// Difference between current and previous value of the unit.
   virtual int8_t changeState() { return _changeState; }
 
 protected:

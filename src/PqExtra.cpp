@@ -284,13 +284,18 @@ void Metro::begin() {
 }
 
 void Metro::step() {
+	// Adjust phase time.
 	_phaseTime += 1.0f / (_period * sampleRate());
-	if (_phaseTime > 1) {
-		_isOn = true;
+	// Check if we went over to swtich to "on".
+	bool isOn = (_phaseTime > 1);
+	if (isOn)
 		while (_phaseTime > 1) _phaseTime--; // modulo
-	}
-	else
-		_isOn = false;
+
+	// Register difference between previous and new state.
+	_changeState = (int8_t)isOn - (int8_t)_isOn;
+
+	// Register new value.
+	_isOn = isOn;
 }
 
 Metro& Metro::period(float period) {

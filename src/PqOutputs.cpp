@@ -53,6 +53,8 @@ void DigitalOut::begin() {
 }
 
 bool DigitalOut::putOn(bool isOn) {
+  // Register difference between previous and new state.
+  _changeState = (int8_t)isOn - (int8_t)_isOn;
   // Write to output.
   digitalWrite(_pin, isOn ^ (_mode == SOURCE) ? LOW : HIGH);
   return (_isOn = isOn);
