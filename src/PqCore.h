@@ -234,7 +234,7 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalPutter : public virtual PqDigitalGetter, PqPutter {
+class PqDigitalPutter : public virtual PqDigitalGetter, public virtual PqPutter {
 public:
   /// Sets output to "on".
   virtual bool on() { return putOn(true); }
@@ -308,7 +308,7 @@ public:
   virtual float put(float value) { return (_value = value); }
 };
 
-class PqDigitalUnit : public virtual PqDigitalSource, public virtual PqDigitalPutter {
+class PqDigitalUnit : public PqDigitalSource, public virtual PqDigitalPutter {
 public:
   /// Constructor.
   PqDigitalUnit(bool init=false) : PqDigitalSource(init) {}
