@@ -29,38 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public PqGetter {
-public:
-  /**
-   * Constructor.
-   * @param stream a reference to a Stream object
-   */
-  StreamIn(Stream& stream=Serial);
-  virtual ~StreamIn() {}
-
-  /// Returns value read from the stream.
-  virtual float get() { return _value; }
-
-protected:
-  // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
-
-  // Current value.
-  float _value;
-
-  // Internal use: keep track of next incoming value in a non-blocking way.
-  float _nextValue;
-  float _nextFraction;
-  bool _nextIsValid : 1;
-  bool _nextIsNegative : 1;
-  bool _nextIsFraction : 1;
-
-  // The stream.
-  Stream* _stream;
-};
-
 /// Square oscillator. Duty cycle is expressed as % of period.
 class SquareOsc : public PqDigitalGetter {
 public:
