@@ -29,58 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public PqDigitalGetter {
-public:
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param dutyCycle the duty-cycle as a value in [0, 1]
-   */
-  SquareOsc(float period=1.0f, float dutyCycle=0.5f);
-  virtual ~SquareOsc() {}
-
-  /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
-
-  /**
-   * Sets the period (in seconds).
-   * @param period the period of oscillation (in seconds)
-   * @return the unit itself
-   */
-  virtual SquareOsc& period(float period);
-
-  /**
-   * Sets the frequency (in Hz).
-   * @param frequency the frequency of oscillation (in Hz)
-   * @return the unit itself
-   */
-  virtual SquareOsc& frequency(float frequency) { return period(1/frequency); }
-
-  /**
-   * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
-   * @param dutyCycle the duty-cycle as a value in [0, 1]
-   * @return the unit itself
-   */
-  virtual SquareOsc& dutyCycle(float dutyCycle);
-
-protected:
-  // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
-
-  // Is the signal currently on (high) or off (low).
-  bool _isOn;
-
-  // Period (seconds).
-  float _period;
-
-  // Duty-cycle (in % of period).
-  float _dutyCycle;
-
-  // Start time of each period (in seconds).
-  float _startTime;
-};
 
 /// Sine oscillator. Phase is expressed as % of period.
 class SineOsc : public PqGetter {

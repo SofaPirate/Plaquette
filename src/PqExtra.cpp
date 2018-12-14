@@ -20,35 +20,6 @@
 
 #include "PqExtra.h"
 
-SquareOsc::SquareOsc(float period_, float dutyCycle_) {
-  period(period_);
-  dutyCycle(dutyCycle_);
-}
-
-void SquareOsc::setup() {
-	_startTime = seconds();
-}
-
-void SquareOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float progress = (totalTime - _startTime) / _period;
-	_isOn = (progress < _dutyCycle);
-	if (progress >= 1) // reset
-  	_startTime = totalTime;
-}
-
-SquareOsc& SquareOsc::period(float period) {
-	_period = max(period, 1e-6f);
-	return *this;
-}
-
-SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
-  _dutyCycle = constrain(dutyCycle, 0, 1);
-	return *this;
-}
-
 SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
   period(period_);
 }
