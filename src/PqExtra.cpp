@@ -20,42 +20,6 @@
 
 #include "PqExtra.h"
 
-TriOsc::TriOsc(float period_, float width_) {
-  period(period_);
-  width(width_);
-}
-
-void TriOsc::setup() {
-  _startTime = seconds();
-}
-
-void TriOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float relativeTime = totalTime - _startTime;
-
-  // Check where we are.
-	float progress = relativeTime / _period;
-	if (progress >= 1) {
-		_value = 0;
-		_startTime = totalTime;
-	}
-	else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-	else                         _value = progress / _width;
-}
-
-TriOsc& TriOsc::period(float period) {
-	_period = max(period, 1e-6f);
-	return *this;
-}
-
-TriOsc& TriOsc::width(float width) {
-  _width = constrain(width, 0, 1);
-	return *this;
-}
-
-
 Ramp::Ramp(float initialValue_) :
 	_value(initialValue_), _duration(),
 	_from(initialValue_), _change(0),
