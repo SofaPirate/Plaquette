@@ -29,28 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Generates a simple ASCII-based representation of a signal.
-/// Precision represents the number of columns used to represent the signal.
-class OscilloscopeOut : public PqPutter {
-public:
-  OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
-  virtual ~OscilloscopeOut() {}
-
-  virtual float put(float value);
-
-  virtual float get() { return _value; }
-
-protected:
-  // Current value.
-  float _value;
-
-  float _minValue;
-  float _maxValue;
-
-  // Number of spaces of precision.
-  uint8_t _precision;
-};
-
 /// Simple moving average transform filter.
 class Smoother : public PqPutter, public MovingAverage {
 public:
