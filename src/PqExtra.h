@@ -29,27 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Simple moving average transform filter.
-class Smoother : public PqPutter, public MovingAverage {
-public:
-  /**
-   * Constructor.
-   * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
-   */
-  Smoother(float factor=0.1f);
-  virtual ~Smoother() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns smoothed value.
-  virtual float get() { return MovingAverage::get(); }
-};
-
 /**
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.

@@ -20,15 +20,6 @@
 
 #include "PqExtra.h"
 
-Smoother::Smoother(float factor)
-  : PqPutter(),
-    MovingAverage(factor) {
-}
-
-float Smoother::put(float value) {
-  return MovingAverage::update(value);
-}
-
 AdaptiveNormalizer::AdaptiveNormalizer(float smoothFactor)
   : PqPutter(),
     MovingStats(smoothFactor),
