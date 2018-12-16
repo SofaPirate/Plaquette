@@ -29,43 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public PqPutter {
-public:
-  /**
-   * Constructor.
-   * @param stream a reference to a Stream object
-   */
-  StreamOut(Stream& stream=Serial);
-  virtual ~StreamOut() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns value.
-  virtual float get() { return _value; }
-
-  /**
-   * Sets precision of the output.
-   * @param digits the number of digits to show after decimal point
-   */
-  virtual void precision(uint8_t digits);
-
-protected:
-  // Current value.
-  float _value;
-
-  // Number of digits of precision.
-  uint8_t _digits;
-
-  // The stream.
-  Stream* _stream;
-};
-
 /// Generates a simple ASCII-based representation of a signal.
 /// Precision represents the number of columns used to represent the signal.
 class OscilloscopeOut : public PqPutter {

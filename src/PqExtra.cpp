@@ -20,24 +20,6 @@
 
 #include "PqExtra.h"
 
-StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
-
-float StreamOut::put(float value) {
-  // Copy value.
-  _value = value;
-
-  // Print it.
-  _stream->println(_value, _digits);
-
-  // Return it.
-  return _value;
-}
-
-void StreamOut::precision(uint8_t digits) {
-	_digits = digits;
-}
-
-
 OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
   : _value(0), _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
 
