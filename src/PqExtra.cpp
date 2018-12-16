@@ -20,39 +20,6 @@
 
 #include "PqExtra.h"
 
-SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
-  period(period_);
-}
-
-void SineOsc::setup() {
-  _startTime = seconds();
-  _update(0);
-}
-
-void SineOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float relativeTime = totalTime - _startTime;
-	_update(relativeTime);
-	if (relativeTime >= _period)
-  	_startTime = totalTime;
-}
-
-void SineOsc::_update(float t) {
-  _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
-}
-
-SineOsc& SineOsc::period(float period) {
-	_period = max(period, 1e-6f);
-	return *this;
-}
-
-SineOsc& SineOsc::phase(float phase) {
-  _phase = phase;
-	return *this;
-}
-
 TriOsc::TriOsc(float period_, float width_) {
   period(period_);
   width(width_);

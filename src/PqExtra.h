@@ -29,61 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-
-/// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public PqGetter {
-public:
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   */
-  SineOsc(float period=1.0f);
-  virtual ~SineOsc() {}
-
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
-
-  /**
-   * Sets the period (in seconds).
-   * @param period the period of oscillation (in seconds)
-   * @return the unit itself
-   */
-  virtual SineOsc& period(float period);
-
-  /**
-   * Sets the frequency (in Hz).
-   * @param frequency the frequency of oscillation (in Hz)
-   * @return the unit itself
-   */
-  virtual SineOsc& frequency(float frequency) { return period(1/frequency); }
-
-  /**
-   * Sets the phase (ie. the offset, in seconds).
-   * @param phrase the phase (in seconds)
-   * @return the unit itself
-   */
-  virtual SineOsc& phase(float phase);
-
-protected:
-  // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
-
-  void _update(float t);
-
-  // Current value of the signal.
-  float _value;
-
-  // Period (seconds).
-  float _period;
-
-  // Phase (seconds).
-  float _phase;
-
-  // Start time of each period (in seconds).
-  float _startTime;
-};
-
 /**
  * Triangle/sawtooth oscillator.
  */
