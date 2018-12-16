@@ -29,59 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/**
- * Adaptive normalizer: normalizes values on-the-run using exponential moving
- * averages over mean and standard deviation.
- */
-class AdaptiveNormalizer : public PqPutter, public MovingStats {
-public:
-  /**
-   * Default constructor. Will renormalize data around a mean of 0 and a standard
-   * deviation of 1.
-   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
-   */
-   AdaptiveNormalizer(float smoothFactor=0.001f);
-
-  /**
-   * Constructor.
-   * @param mean the target mean
-   * @param stddev the target standard deviation
-   * @param smoothFactor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
-   */
-  AdaptiveNormalizer(float mean, float stddev, float smoothFactor=0.001f);
-  virtual ~AdaptiveNormalizer() {}
-
-  /**
-   * Sets target mean of normalized values.
-   * @param mean the target mean
-   */
-  AdaptiveNormalizer& targetMean(float mean) { _mean = mean; return *this; }
-
-  /**
-   * Sets target standard deviation of normalized values.
-   * @param stddev the target standard deviation
-   */
-  AdaptiveNormalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns normalized value.
-  virtual float get() { return _value; }
-
-protected:
-  // Current value (normalized).
-  float _value;
-
-  // Target normalization parameters.
-  float _mean;
-  float _stddev;
-};
-
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
 class Normalizer : public PqPutter, public SimpleStats {
 public:
