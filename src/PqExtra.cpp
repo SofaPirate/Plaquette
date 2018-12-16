@@ -20,21 +20,6 @@
 
 #include "PqExtra.h"
 
-MinMaxScaler::MinMaxScaler()
- : PqPutter(),
-   _value(0.5f),
-   _minValue(FLT_MAX),
-   _maxValue(FLT_MIN)
-{}
-
-float MinMaxScaler::put(float value)
-{
-  _minValue = min(value, _minValue);
-  _maxValue = max(value, _maxValue);
-  _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
-	return _value;
-}
-
 Thresholder::Thresholder(float threshold, uint8_t mode)
   : PqPutter() {
 			_init(threshold, mode, threshold);

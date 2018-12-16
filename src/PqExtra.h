@@ -29,34 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqPutter {
-public:
-  /// Constructor.
-  MinMaxScaler();
-  virtual ~MinMaxScaler() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns rescaled value.
-  virtual float get() { return _value; }
-
-protected:
-  // Current value (rescaled).
-  float _value;
-
-  // Minmum value ever put.
-  float _minValue;
-
-  // Maximum value ever put.
-  float _maxValue;
-};
-
 #define THRESHOLD_LOW     0
 #define THRESHOLD_HIGH    1
 #define THRESHOLD_FALLING 2
