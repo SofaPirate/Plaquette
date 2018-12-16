@@ -29,54 +29,6 @@
 #include "MovingStats.h"
 #include "SimpleStats.h"
 
-/// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqPutter, public SimpleStats {
-public:
-  /**
-   * Default constructor. Will renormalize data around a mean of 0 and a standard
-   * deviation of 1.
-   */
-  Normalizer();
-
-  /**
-   * Constructor.
-   * @param mean the target mean
-   * @param stddev the target standard deviation
-   */
-  Normalizer(float mean, float stddev);
-  virtual ~Normalizer() {}
-
-  /**
-   * Sets target mean of normalized values.
-   * @param mean the target mean
-   */
-  Normalizer& targetMean(float mean) { _mean = mean; return *this; }
-
-  /**
-   * Sets target standard deviation of normalized values.
-   * @param stddev the target standard deviation
-   */
-  Normalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
-
-  /// Returns normalized value.
-  virtual float get() { return _value; }
-
-protected:
-  // Current value (normalized).
-  float _value;
-
-  // Target normalization parameters.
-  float _mean;
-  float _stddev;
-};
-
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
 class MinMaxScaler : public PqPutter {
 public:

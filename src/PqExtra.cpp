@@ -20,26 +20,6 @@
 
 #include "PqExtra.h"
 
-Normalizer::Normalizer()
-  : PqPutter(),
-    SimpleStats(),
-    _value(0.5f),
-    _mean(0.5f),
-    _stddev(0.25f)
-{}
-
-Normalizer::Normalizer(float mean, float stddev)
-	: PqPutter(),
-    SimpleStats(),
-    _value(mean),
-    _mean(mean),
-    _stddev(abs(stddev))
-{}
-
-float Normalizer::put(float value) {
-  return (_value = SimpleStats::update(value) * _stddev + _mean);
-}
-
 MinMaxScaler::MinMaxScaler()
  : PqPutter(),
    _value(0.5f),
