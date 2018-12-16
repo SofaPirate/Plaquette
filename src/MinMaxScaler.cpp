@@ -18,6 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "float.h"
+#include "pq_map_real.h"
 #include "MinMaxScaler.h"
 
 MinMaxScaler::MinMaxScaler()
