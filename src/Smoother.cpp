@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * Smoother.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,32 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
-
-// General.
-#include "PqCore.h"
 #include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
+#include "Smoother.h"
 
-// Filters.
-#include "Thresholder.h"
+Smoother::Smoother(float factor)
+  : PqPutter(),
+    MovingAverage(factor) {
+}
 
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
-
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
-
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
-
-#endif
+float Smoother::put(float value) {
+  return MovingAverage::update(value);
+}

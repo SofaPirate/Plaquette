@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * Smoother.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,32 +18,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
+#ifndef SMOOTHER_H_
+#define SMOOTHER_H_
 
-// General.
 #include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
 
-// Filters.
-#include "Thresholder.h"
+/// Simple moving average transform filter.
+class Smoother : public PqPutter, public MovingAverage {
+public:
+  /**
+   * Constructor.
+   * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   */
+  Smoother(float factor=0.1f);
+  virtual ~Smoother() {}
 
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value);
 
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
-
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+  /// Returns smoothed value.
+  virtual float get() { return MovingAverage::get(); }
+};
 
 #endif
