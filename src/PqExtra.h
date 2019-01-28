@@ -21,12 +21,29 @@
 #ifndef PQ_EXTRA_H_
 #define PQ_EXTRA_H_
 
-#include "pq_print.h"
-#include "pq_map_real.h"
-#include "pq_time.h"
+// General.
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
 #include "SimpleStats.h"
+
+// Filters.
+#include "Thresholder.h"
+
+// Normalization.
+#include "MinMaxScaler.h"
+#include "AdaptiveNormalizer.h"
+#include "Normalizer.h"
+
+// Stream.
+#include "StreamIn.h"
+#include "StreamOut.h"
+#include "OscilloscopeOut.h"
+
+// Generators.
+#include "Ramp.h"
+#include "SineOsc.h"
+#include "SquareOsc.h"
+#include "TriOsc.h"
 
 #endif
