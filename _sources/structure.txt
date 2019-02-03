@@ -1,6 +1,8 @@
 Structure
 =========
 
+Core structural functions and operators.
+
 .. toctree::
    :maxdepth: 1
 

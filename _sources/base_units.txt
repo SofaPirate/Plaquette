@@ -1,6 +1,8 @@
 Base Units
 ==========
 
+Basic input-output units.
+
 .. toctree::
    :maxdepth: 1
 

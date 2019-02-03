@@ -27,7 +27,7 @@ Smooths the incoming signal by removing fast variations and noise (high frequenc
 
 .. note::
    The filter uses an `exponential moving average <https://en.wikipedia.org/wiki/Exponential_smoothing>`_
-   which corresponds to a form of `low-pass filter <https://en.wikipedia.org/wiki/Low-pass_filter>_`.
+   which corresponds to a form of `low-pass filter <https://en.wikipedia.org/wiki/Low-pass_filter>`_.
 
 |Reference|
 -----------
