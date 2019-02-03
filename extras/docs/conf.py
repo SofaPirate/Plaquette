@@ -10,10 +10,14 @@ if read_the_docs_build:
 
 html_sidebars = { '**': ['fulltoc.html', 'relations.html', 'searchbox.html'], }
 
+html_logo = "images/Plaquette-LogoText.png"
+html_favicon = "images/plaquette-favicon.ico"
 html_theme = "sphinx_rtd_theme"
 html_style = None
 html_theme_options = { 'collapse_navigation' : True }
 using_rtd_theme = True
+
+html_show_sourcelink = False
 
 html_context = {
     'css_files': ['_static/css/custom.css'],
@@ -27,7 +31,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 project = u'Plaquette'
 copyright = u'2015-2019, Plaquette'
-author = u'Plaquette'
+author = u'Sofian Audry & Thomas O. Fredericks'
 version = '0.2'
 release = '0.2'
 language = None
