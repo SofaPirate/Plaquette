@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * MinMaxScaler.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
+#ifndef MIN_MAX_SCALER_H_
+#define MIN_MAX_SCALER_H_
 
-// General.
 #include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
 
-// Filters.
-//#include "Thresholder.h"
+/// Regularizes signal into [0,1] by rescaling it using the min and max values.
+class MinMaxScaler : public PqPutter {
+public:
+  /// Constructor.
+  MinMaxScaler();
+  virtual ~MinMaxScaler() {}
 
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value);
 
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
+  /// Returns rescaled value.
+  virtual float get() { return _value; }
 
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
+protected:
+  // Current value (rescaled).
+  float _value;
 
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+  // Minmum value ever put.
+  float _minValue;
+
+  // Maximum value ever put.
+  float _maxValue;
+};
 
 #endif

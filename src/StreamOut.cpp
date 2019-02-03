@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * StreamOut.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
-
-// General.
-#include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
-
-// Filters.
-//#include "Thresholder.h"
-
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
-
-// Stream.
-#include "StreamIn.h"
 #include "StreamOut.h"
-#include "OscilloscopeOut.h"
 
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
+StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
 
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+float StreamOut::put(float value) {
+  // Copy value.
+  _value = value;
 
-#endif
+  // Print it.
+  _stream->println(_value, _digits);
+
+  // Return it.
+  return _value;
+}
+
+void StreamOut::precision(uint8_t digits) {
+	_digits = digits;
+}

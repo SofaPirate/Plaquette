@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * Normalizer.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
-
-// General.
-#include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
 #include "SimpleStats.h"
-
-// Filters.
-//#include "Thresholder.h"
-
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
 #include "Normalizer.h"
 
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
+Normalizer::Normalizer()
+  : PqPutter(),
+    SimpleStats(),
+    _value(0.5f),
+    _mean(0.5f),
+    _stddev(0.25f)
+{}
 
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
+Normalizer::Normalizer(float mean, float stddev)
+	: PqPutter(),
+    SimpleStats(),
+    _value(mean),
+    _mean(mean),
+    _stddev(abs(stddev))
+{}
 
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
-
-#endif
+float Normalizer::put(float value) {
+  return (_value = SimpleStats::update(value) * _stddev + _mean);
+}

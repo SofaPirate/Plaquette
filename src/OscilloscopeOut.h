@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * OscilloscopeOut.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
+#ifndef OSCILLOSCOPE_OUT_H_
+#define OSCILLOSCOPE_OUT_H_
 
-// General.
 #include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
 
-// Filters.
-//#include "Thresholder.h"
+/// Generates a simple ASCII-based representation of a signal.
+/// Precision represents the number of columns used to represent the signal.
+class OscilloscopeOut : public PqPutter {
+public:
+  OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
+  virtual ~OscilloscopeOut() {}
 
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
+  virtual float put(float value);
 
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
+  virtual float get() { return _value; }
 
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
+protected:
+  // Current value.
+  float _value;
 
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+  float _minValue;
+  float _maxValue;
+
+  // Number of spaces of precision.
+  uint8_t _precision;
+};
 
 #endif

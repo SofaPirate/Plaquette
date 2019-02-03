@@ -1,3 +1,45 @@
 .rst-content dl:not(.docutils) .property {
   display: none;
 }
+
+.wy-nav-content a:visited {
+  color: #2980B9;
+}
+
+.wy-side-nav-search, .wy-nav-top,
+.wy-nav-side,
+.rst-content .note .admonition-title
+{
+  background: #00ACFC;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption
+{
+  color: #fff;
+}
+
+.wy-side-nav-search .icon {
+  margin-bottom: 0px;
+}
+
+.icon .logo::before {
+  display: none;
+}
+.wy-menu-vertical a
+{
+  color: rgb(255, 255, 255, 0.7)
+}
+
+.wy-side-nav-search > div.version
+{
+  color: rgb(255, 255, 255, 0.7)
+}
+
+.highlight {
+  background: #f9fdff;
+}
+
+.wy-side-nav-search > a:hover, .wy-side-nav-search .wy-dropdown > a:hover
+{
+  background: #00ACFC;
+}

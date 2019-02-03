@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * OscilloscopeOut.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
-
-// General.
-#include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
-
-// Filters.
-//#include "Thresholder.h"
-
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
-
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
 #include "OscilloscopeOut.h"
+#include "pq_print.h"
+#include "pq_map_real.h"
 
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
+OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
+  : _value(0), _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
 
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+float OscilloscopeOut::put(float value) {
+  // Copy value.
+  _value = value;
 
-#endif
+  // Convert to bin.
+  float mapped = mapTo01(_value, _minValue, _maxValue);
+  int bin = round( mapped * _precision );
+  bin = constrain(bin, 0, _precision-1);
+
+  // Print.
+  print(_minValue, 2);
+  print(" |");
+  for (int i=0; i<_precision; i++)
+    print(i == bin ? '*' : ' ');
+  print("| ");
+  print(_maxValue, 2);
+  println();
+
+  // Return it.
+  return _value;
+}

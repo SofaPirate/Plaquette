@@ -1,5 +1,5 @@
 /*
- * PqExtra.h
+ * SquareOsc.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,37 +18,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_EXTRA_H_
-#define PQ_EXTRA_H_
-
-// General.
-#include "PqCore.h"
-#include "MovingAverage.h"
-#include "MovingStats.h"
-#include "SimpleStats.h"
-
-// Filters.
-//#include "Thresholder.h"
-
-// Normalization.
-#include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
-#include "Normalizer.h"
-
-// Stream.
-#include "StreamIn.h"
-#include "StreamOut.h"
-#include "OscilloscopeOut.h"
-
-// Timing.
-#include "Chrono.h"
-#include "Metro.h"
-#include "Timer.h"
-
-// Generators.
-#include "Ramp.h"
-#include "SineOsc.h"
 #include "SquareOsc.h"
-#include "TriOsc.h"
+#include "pq_map_real.h"
+#include "pq_time.h"
 
-#endif
+
+SquareOsc::SquareOsc(float period_, float dutyCycle_) {
+  period(period_);
+  dutyCycle(dutyCycle_);
+}
+
+void SquareOsc::setup() {
+	_startTime = seconds();
+}
+
+void SquareOsc::update() {
+	// Notice: this computation is not exact but manages naturally changes in the period without
+	// inducing dephasings on Arduino boards.
+	float totalTime = seconds();
+	float progress = (totalTime - _startTime) / _period;
+	_isOn = (progress < _dutyCycle);
+	if (progress >= 1) // reset
+  	_startTime = totalTime;
+}
+
+SquareOsc& SquareOsc::period(float period) {
+	_period = max(period, 1e-6f);
+	return *this;
+}
+
+SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
+  _dutyCycle = constrain(dutyCycle, 0, 1);
+	return *this;
+}
