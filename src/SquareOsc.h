@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+
 /// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public PqDigitalGetter {
+class SquareOsc : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -34,22 +36,21 @@ public:
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
   virtual ~SquareOsc() {}
 
-  /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
-
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
    * @return the unit itself
    */
   virtual SquareOsc& period(float period);
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual SquareOsc& frequency(float frequency) { return period(1/frequency); }
+  virtual SquareOsc& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
 
   /**
    * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
@@ -57,14 +58,30 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& dutyCycle(float dutyCycle);
+  virtual float dutyCycle() const { return _dutyCycle; }
+
+  /**
+   * Sets the phase (ie. the offset, in % of period).
+   * @param phase the phase (in % of period)
+   * @return the unit itself
+   */
+  virtual SquareOsc& phase(float phase);
+  virtual float phase() const { return _phase; }
+
+  /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   * @return the unit itself
+   */
+   virtual SquareOsc& amplitude(float amplitude);
+   virtual float amplitude() const { return _amplitude * 2; }
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
+  virtual void begin();
+  virtual void step();
 
-  // Is the signal currently on (high) or off (low).
-  bool _isOn;
+  void _updateValue();
 
   // Period (seconds).
   float _period;
@@ -72,8 +89,16 @@ protected:
   // Duty-cycle (in % of period).
   float _dutyCycle;
 
-  // Start time of each period (in seconds).
-  float _startTime;
+  // Phase (in % of period).
+  float _phase;
+
+  // Amplitude (in %).
+  float _amplitude;
+
+  // Internal use.
+  float _phaseTime;
 };
+
+}
 
 #endif

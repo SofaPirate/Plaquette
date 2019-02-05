@@ -20,7 +20,9 @@
 
 #include "StreamOut.h"
 
-StreamOut::StreamOut(Stream& stream) : _value(0), _digits(4), _stream(&stream) {}
+namespace pq {
+
+StreamOut::StreamOut(Stream& stream) : _digits(4), _stream(&stream) {}
 
 float StreamOut::put(float value) {
   // Copy value.
@@ -35,4 +37,6 @@ float StreamOut::put(float value) {
 
 void StreamOut::precision(uint8_t digits) {
 	_digits = digits;
+}
+
 }

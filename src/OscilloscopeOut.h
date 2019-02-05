@@ -23,26 +23,25 @@
 
 #include "PqCore.h"
 
+namespace pq {
+  
 /// Generates a simple ASCII-based representation of a signal.
 /// Precision represents the number of columns used to represent the signal.
-class OscilloscopeOut : public PqPutter {
+class OscilloscopeOut : public PqAnalogUnit {
 public:
   OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
   virtual ~OscilloscopeOut() {}
 
   virtual float put(float value);
 
-  virtual float get() { return _value; }
-
 protected:
-  // Current value.
-  float _value;
-
   float _minValue;
   float _maxValue;
 
   // Number of spaces of precision.
   uint8_t _precision;
 };
+
+}
 
 #endif

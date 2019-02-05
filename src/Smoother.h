@@ -23,6 +23,8 @@
 
 #include "PqCore.h"
 
+namespace pq {
+  
 /// Simple moving average transform filter.
 class Smoother : public PqPutter, public MovingAverage {
 public:
@@ -30,7 +32,7 @@ public:
    * Constructor.
    * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
    */
-  Smoother(float factor=0.1f);
+  Smoother(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
   virtual ~Smoother() {}
 
   /**
@@ -43,5 +45,7 @@ public:
   /// Returns smoothed value.
   virtual float get() { return MovingAverage::get(); }
 };
+
+}
 
 #endif

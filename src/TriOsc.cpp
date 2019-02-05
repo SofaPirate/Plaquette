@@ -22,37 +22,82 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 
+namespace pq {
+
 TriOsc::TriOsc(float period_, float width_) {
   period(period_);
   width(width_);
+	amplitude(1.0f);
 }
 
-void TriOsc::setup() {
-  _startTime = seconds();
+void TriOsc::begin() {
+	_phaseTime = _phase;
+  _updateValue();
 }
 
-void TriOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float relativeTime = totalTime - _startTime;
+void TriOsc::step() {
+	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
+	_phaseTime += 1.0f / (_period * sampleRate());
+	while (_phaseTime > 1) _phaseTime--; // modulo
+	// Compute next value.
+	_updateValue();
 
-  // Check where we are.
-	float progress = relativeTime / _period;
-	if (progress >= 1) {
-		_value = 0;
-		_startTime = totalTime;
-	}
-	else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-	else                         _value = progress / _width;
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards.
+	// float relativeTime = seconds() - _startTime;
+	//
+  // // Check where we are.
+	// float progress = relativeTime / _period;
+	// if (progress >= 1) {
+	// 	_value = 0;
+	// 	_startTime = seconds();
+	// }
+	// else if (progress >= _width) _value = (1 - progress) / (1 - _width);
+	// else                         _value = progress / _width;
+	//
+	// // Amplify.
+  // _value = _amplitude * (_value - 0.5f) + 0.5f;
+}
+
+void TriOsc::_updateValue() {
+	// Compute triangle depending on raising or falling step.
+	if (_phaseTime >= _width) _value = (1 - _phaseTime) / (1 - _width);
+	else                      _value = _phaseTime / _width;
+	// Amplify.
+  _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 TriOsc& TriOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	if (period != _period)
+		_period = max(period, FLT_MIN);
 	return *this;
 }
 
+TriOsc& TriOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+}
+
 TriOsc& TriOsc::width(float width) {
-  _width = constrain(width, 0, 1);
+	if (width != _width)
+  	_width = constrain(width, 0, 1);
 	return *this;
+}
+
+TriOsc& TriOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude)
+  	_amplitude = constrain(amplitude, 0, 1);
+	return *this;
+}
+
+TriOsc& TriOsc::phase(float phase) {
+	if (phase != _phase) {
+		// Need to readjust _phaseTime.
+		_phaseTime += (phase - _phase);
+		while (_phaseTime > 1) _phaseTime--; // modulo
+		while (_phaseTime < 0) _phaseTime++; // modulo
+		_phase = phase;
+	}
+	return *this;
+}
+
 }

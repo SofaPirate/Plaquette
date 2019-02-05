@@ -20,6 +20,8 @@
 
 #include "Thresholder.h"
 
+namespace pq {
+
 Thresholder::Thresholder(float threshold, uint8_t mode)
   : PqPutter() {
 			_init(threshold, mode, threshold);
@@ -68,4 +70,6 @@ void Thresholder::_init(float threshold, uint8_t mode, float resetThreshold) {
 	else
 		_resetThreshold = threshold;
 	_value = _wasLow = _wasHigh = false;
+}
+
 }

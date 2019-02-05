@@ -21,22 +21,26 @@
 #include "MovingStats.h"
 #include "AdaptiveNormalizer.h"
 
-AdaptiveNormalizer::AdaptiveNormalizer(float smoothFactor)
-  : PqPutter(),
-    MovingStats(smoothFactor),
-    _value(0.5f),
-    _mean(0.5f),
-    _stddev(0.25f)
-{}
+namespace pq {
+  
+AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
+  : PqAnalogUnit(0.5f),
+    MovingStats(smoothWindow),
+    _targetMean(0.5f),
+    _targetStddev(0.25f)
+{
+}
 
-AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothFactor)
-	: PqPutter(),
-    MovingStats(smoothFactor),
-    _value(mean),
-    _mean(mean),
-    _stddev(abs(stddev))
-{}
+AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
+	: PqAnalogUnit(mean),
+    MovingStats(smoothWindow),
+    _targetMean(mean),
+    _targetStddev(abs(stddev))
+{
+}
 
 float AdaptiveNormalizer::put(float value) {
-  return (_value = MovingStats::update(value) * _stddev + _mean);
+  return (_value = MovingStats::update(value, sampleRate()) * _targetStddev + _targetMean);
+}
+
 }

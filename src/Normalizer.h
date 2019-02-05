@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+  
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqPutter, public SimpleStats {
+class Normalizer : public PqAnalogUnit, public SimpleStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0 and a standard
@@ -59,16 +61,12 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns normalized value.
-  virtual float get() { return _value; }
-
 protected:
-  // Current value (normalized).
-  float _value;
-
   // Target normalization parameters.
   float _mean;
   float _stddev;
 };
+
+}
 
 #endif

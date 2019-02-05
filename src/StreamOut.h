@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+  
 /// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public PqPutter {
+class StreamOut : public PqAnalogUnit {
 public:
   /**
    * Constructor.
@@ -40,9 +42,6 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns value.
-  virtual float get() { return _value; }
-
   /**
    * Sets precision of the output.
    * @param digits the number of digits to show after decimal point
@@ -50,14 +49,13 @@ public:
   virtual void precision(uint8_t digits);
 
 protected:
-  // Current value.
-  float _value;
-
   // Number of digits of precision.
   uint8_t _digits;
 
   // The stream.
   Stream* _stream;
 };
+
+}
 
 #endif

@@ -20,9 +20,11 @@
 
 #include "StreamIn.h"
 
-StreamIn::StreamIn(Stream& stream) : _value(0), _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
+namespace pq {
+	
+StreamIn::StreamIn(Stream& stream) :  _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
 
-void StreamIn::setup() {
+void StreamIn::begin() {
 	_nextValue = 0;
 	_nextIsValid = false;
 	_nextIsNegative = false;
@@ -30,7 +32,7 @@ void StreamIn::setup() {
 	_nextFraction = 1;
 }
 
-void StreamIn::update() {
+void StreamIn::step() {
 	while (_stream->available()) {
 
 		int c = _stream->read();
@@ -67,4 +69,6 @@ void StreamIn::update() {
 			_nextFraction = 1;
 		}
 	}
+}
+
 }

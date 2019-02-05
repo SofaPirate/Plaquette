@@ -21,11 +21,15 @@
 #include "MovingAverage.h"
 #include "Smoother.h"
 
-Smoother::Smoother(float factor)
+namespace pq {
+
+Smoother::Smoother(float smoothWindow)
   : PqPutter(),
-    MovingAverage(factor) {
+    MovingAverage(smoothWindow) {
 }
 
 float Smoother::put(float value) {
-  return MovingAverage::update(value);
+  return MovingAverage::update(value, sampleRate());
+}
+
 }

@@ -22,32 +22,67 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 
-
+namespace pq {
+  
 SquareOsc::SquareOsc(float period_, float dutyCycle_) {
   period(period_);
   dutyCycle(dutyCycle_);
+	amplitude(1.0f);
 }
 
-void SquareOsc::setup() {
-	_startTime = seconds();
+void SquareOsc::begin() {
+	_phaseTime = _phase;
 }
 
-void SquareOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float progress = (totalTime - _startTime) / _period;
-	_isOn = (progress < _dutyCycle);
-	if (progress >= 1) // reset
-  	_startTime = totalTime;
+void SquareOsc::step() {
+	_phaseTime += 1.0f / (_period * sampleRate());
+	while (_phaseTime > 1) _phaseTime--; // modulo
+	// Compute next value.
+	_updateValue();
+
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards.
+	// float progress = (seconds() - _startTime) / _period;
+	// _isOn = (progress < _dutyCycle);
+	// if (progress >= 1) // reset
+  // 	_startTime = seconds();
+}
+
+void SquareOsc::_updateValue() {
+	_value = 0.5f + (_phaseTime < _dutyCycle ? _amplitude : -_amplitude);
 }
 
 SquareOsc& SquareOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	_period = max(period, FLT_MIN);
 	return *this;
+}
+
+SquareOsc& SquareOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
   _dutyCycle = constrain(dutyCycle, 0, 1);
 	return *this;
+}
+
+SquareOsc& SquareOsc::phase(float phase) {
+	if (phase != _phase) {
+		// Need to readjust _phaseTime.
+		_phaseTime += (phase - _phase);
+		while (_phaseTime > 1) _phaseTime--; // modulo
+		while (_phaseTime < 0) _phaseTime++; // modulo
+		_phase = phase;
+	}
+	return *this;
+}
+
+SquareOsc& SquareOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude) {
+  	_amplitude = constrain(amplitude, 0, 1);
+		_amplitude *= 0.5f; // hack: premultiplied
+	}
+	return *this;
+}
+
 }

@@ -22,12 +22,14 @@
 #include "pq_map_real.h"
 #include "MinMaxScaler.h"
 
+namespace pq {
+  
 MinMaxScaler::MinMaxScaler()
- : PqPutter(),
-   _value(0.5f),
+ : PqAnalogUnit(0.5f),
    _minValue(FLT_MAX),
    _maxValue(FLT_MIN)
-{}
+{
+}
 
 float MinMaxScaler::put(float value)
 {
@@ -35,4 +37,6 @@ float MinMaxScaler::put(float value)
   _maxValue = max(value, _maxValue);
   _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
 	return _value;
+}
+
 }

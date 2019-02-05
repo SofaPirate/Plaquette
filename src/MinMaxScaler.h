@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+  
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqPutter {
+class MinMaxScaler : public PqAnalogUnit {
 public:
   /// Constructor.
   MinMaxScaler();
@@ -37,18 +39,14 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns rescaled value.
-  virtual float get() { return _value; }
-
 protected:
-  // Current value (rescaled).
-  float _value;
-
   // Minmum value ever put.
   float _minValue;
 
   // Maximum value ever put.
   float _maxValue;
 };
+
+}
 
 #endif

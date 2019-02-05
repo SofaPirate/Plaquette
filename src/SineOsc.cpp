@@ -21,36 +21,72 @@
 #include "SineOsc.h"
 #include "pq_map_real.h"
 #include "pq_time.h"
+#include "pq_trig8.h"
 
-SineOsc::SineOsc(float period_) : _value(0.5f), _phase(0) {
+namespace pq {
+  
+SineOsc::SineOsc(float period_) : _phase(0) {
   period(period_);
+	phase(0);
+	amplitude(1.0f);
 }
 
-void SineOsc::setup() {
-  _startTime = seconds();
-  _update(0);
+#define _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER (65535.5f)
+#define _PQ_SINE_OSC_PHASE_TIME_MAX           (65535)
+
+void SineOsc::begin() {
+	_phaseTime = _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * _phase;
+  _updateValue();
 }
 
-void SineOsc::update() {
-	// Notice: this computation is not exact but manages naturally changes in the period without
-	// inducing dephasings on Arduino boards.
-	float totalTime = seconds();
-	float relativeTime = totalTime - _startTime;
-	_update(relativeTime);
-	if (relativeTime >= _period)
-  	_startTime = totalTime;
+void SineOsc::step() {
+	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
+	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (_period * sampleRate());
+	while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX) _phaseTime-=_PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+	// Compute next value.
+	_updateValue();
+
+	// // Notice: this computation is not exact but manages naturally changes in the period without
+	// // inducing dephasings on Arduino boards and slow processors.
+	// float relativeTime = seconds() - _startTime;
+	// uint16_t theta = ((uint64_t)(65535UL * (_phase + relativeTime / _period))) % 65536;
+	// _value = ((cos16(theta) * _amplitude) + 1) / 2;
+	// if (relativeTime >= _period)
+	// 	_startTime = seconds();
 }
 
-void SineOsc::_update(float t) {
-  _value = (sin( (_phase + (t / _period)) * TWO_PI) + 1) / 2;
+void SineOsc::_updateValue() {
+	_value = ((cos16((uint16_t)(_phaseTime)) * _amplitude) + 1) / 2;
 }
 
 SineOsc& SineOsc::period(float period) {
-	_period = max(period, 1e-6f);
+	if (_period != period)
+		_period = max(period, FLT_MIN);
+	return *this;
+}
+
+SineOsc& SineOsc::frequency(float frequency) {
+	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+}
+
+SineOsc& SineOsc::amplitude(float amplitude)  {
+	if (amplitude != _amplitude)
+  	_amplitude = constrain(amplitude, 0, 1);
+	_amplitude /= -32767.0f; // hack: precompute value
 	return *this;
 }
 
 SineOsc& SineOsc::phase(float phase) {
-  _phase = phase;
+	if (phase != _phase) {
+		phase = constrain(phase, 0, 1);
+		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
+		while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX)
+			_phaseTime -= _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+		while (_phaseTime < 0)
+		 	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+		_phase = phase;
+	}
 	return *this;
+}
+
 }

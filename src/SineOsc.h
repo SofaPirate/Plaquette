@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+
 /// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public PqGetter {
+class SineOsc : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -33,48 +35,58 @@ public:
   SineOsc(float period=1.0f);
   virtual ~SineOsc() {}
 
-  /// Returns value in [0, 1].
-  virtual float get() { return _value; }
-
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
    * @return the unit itself
    */
   virtual SineOsc& period(float period);
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual SineOsc& frequency(float frequency) { return period(1/frequency); }
+  virtual SineOsc& frequency(float frequency);
+  virtual float frequency() const { return (1/_period); }
 
   /**
-   * Sets the phase (ie. the offset, in seconds).
-   * @param phrase the phase (in seconds)
+   * Sets the phase (ie. the offset, in % of period).
+   * @param phase the phase (in % of period)
    * @return the unit itself
    */
   virtual SineOsc& phase(float phase);
+  virtual float phase() const { return _phase; }
+
+  /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   * @return the unit itself
+   */
+   virtual SineOsc& amplitude(float amplitude);
+   virtual float amplitude() const { return _amplitude * (-32767.0f); }
 
 protected:
   // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
+  virtual void begin();
+  virtual void step();
 
-  void _update(float t);
-
-  // Current value of the signal.
-  float _value;
+  void _updateValue();
 
   // Period (seconds).
   float _period;
 
-  // Phase (seconds).
+  // Phase (in % of period).
   float _phase;
 
-  // Start time of each period (in seconds).
-  float _startTime;
+  // Amplitude (in %).
+  float _amplitude;
+
+  // Internal use.
+  float _phaseTime;
 };
+
+}
 
 #endif

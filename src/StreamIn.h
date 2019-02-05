@@ -23,8 +23,10 @@
 
 #include "PqCore.h"
 
+namespace pq {
+
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public PqGetter {
+class StreamIn : public PqAnalogSource {
 public:
   /**
    * Constructor.
@@ -33,16 +35,10 @@ public:
   StreamIn(Stream& stream=Serial);
   virtual ~StreamIn() {}
 
-  /// Returns value read from the stream.
-  virtual float get() { return _value; }
-
 protected:
   // Core Plaquette methods.
-  virtual void setup();
-  virtual void update();
-
-  // Current value.
-  float _value;
+  virtual void begin();
+  virtual void step();
 
   // Internal use: keep track of next incoming value in a non-blocking way.
   float _nextValue;
@@ -54,5 +50,7 @@ protected:
   // The stream.
   Stream* _stream;
 };
+
+}
 
 #endif

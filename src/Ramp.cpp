@@ -22,67 +22,50 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 
+namespace pq {
+
 Ramp::Ramp(float initialValue_) :
-	_value(initialValue_), _duration(),
-	_from(initialValue_), _change(0),
-	_startTime(0), _offsetTime(0),
-	_isRunning(false)
+	PqAnalogSource(initialValue_),
+	AbstractTimer(),
+	_from(initialValue_), _change(0)
 {
+}
+
+void Ramp::to(float to) {
+	fromTo(_value, to);
+}
+
+void Ramp::fromTo(float from, float to) {
+	_from = from;
+	_change = (to - from);
+}
+
+void Ramp::start() {
+	AbstractTimer::start();
 }
 
 void Ramp::start(float to, float duration) {
 	start(_value, to, duration);
 }
 
-void Ramp::start(float from, float to, float duration) {
-	// Set parameters.
-	_duration = duration;
-	_from = from;
-	_change = (to - from);
+void Ramp::start(float from, float to, float duration_) {
+	fromTo(from, to);
 
-	// Start.
-	_startTime = seconds();
-	_offsetTime = 0;
-	_isRunning = true;
+	// Initialize duration.
+	duration(duration_);
+
+	// Start chronometer.
+	start();
 }
 
-void Ramp::stop() {
-	if (_isRunning) {
-		_offsetTime = elapsed();
-		_isRunning = false;
-	}
-}
+void Ramp::step() {
+	AbstractTimer::step();
 
-void Ramp::resume() {
-	if (!_isRunning) {
-		_startTime = seconds();
-		_isRunning = true;
-	}
-}
-
-float Ramp::progress() const {
-	// Compute progress as % of duration.
-	float prog = elapsed() / _duration;
-	prog = constrain(prog, 0, 1);
-	return prog;
-}
-
-void Ramp::setup() {
-	// Basic reset.
-	_startTime = _offsetTime = 0;
-	_isRunning = false;
-}
-
-void Ramp::update() {
-	// Offset elapsed time.
-	_elapsedTime = _offsetTime;
-
-	if (_isRunning) {
-		// Add difference to elapsed time.
-	 	_elapsedTime += (seconds() - _startTime);
-
+	if (_isStarted) {
 		// Compute value if running -- otherwise leave as is.
 		// TODO: implement easing functions
-	  _value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
+		_value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
 	}
+}
+
 }

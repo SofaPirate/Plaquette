@@ -29,6 +29,8 @@
 #define THRESHOLD_RISING  3
 #define THRESHOLD_CHANGE  4
 
+namespace pq {
+
 /**
  * Emits a signals that tells if a certain threshold has been crossed.
  * Possible modes are:
@@ -74,5 +76,7 @@ protected:
 private:
 	void _init(float threshold, uint8_t mode, float resetThreshold);
 };
+
+}
 
 #endif
