@@ -201,7 +201,7 @@ private:
 };
 
 /// A generic class representing a simple filtering unit or sink.
-class PqPutter : public virtual PqGetter {
+class PqPutter : public PqGetter {
 public:
   /**
    * Pushes value into the unit.
@@ -212,7 +212,7 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalGetter : public virtual PqGetter {
+class PqDigitalGetter : public PqGetter {
 public:
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
@@ -234,7 +234,7 @@ public:
 };
 
 /// A generic class representing a simple source.
-class PqDigitalPutter : public virtual PqDigitalGetter, public virtual PqPutter {
+class PqDigitalPutter : public PqDigitalGetter, public PqPutter {
 public:
   /// Sets output to "on".
   virtual bool on() { return putOn(true); }
@@ -259,7 +259,7 @@ public:
   virtual bool putOn(bool value) = 0;
 };
 
-class PqAnalogSource : public virtual PqGetter {
+class PqAnalogSource : public PqGetter {
 public:
   /// Constructor.
   PqAnalogSource(float init=0) : _value(init) {}
@@ -271,7 +271,7 @@ protected:
   float _value;
 };
 
-class PqDigitalSource : public virtual PqDigitalGetter {
+class PqDigitalSource : public PqDigitalGetter {
 public:
   /// Constructor.
   PqDigitalSource(bool init=false) : _isOn(init) {}
@@ -295,10 +295,13 @@ protected:
   bool _isOn;
 };
 
-class PqAnalogUnit : public PqAnalogSource, public virtual PqPutter {
+class PqAnalogUnit : public PqAnalogSource, public PqPutter {
 public:
   /// Constructor.
   PqAnalogUnit(float init=0) : PqAnalogSource(init) {}
+
+  /// Returns value (typically between 0 and 1, may vary depending on class).
+  virtual float get() { return PqAnalogSource::get(); }
 
   /**
    * Pushes value into the unit.
@@ -308,10 +311,16 @@ public:
   virtual float put(float value) { return (_value = value); }
 };
 
-class PqDigitalUnit : public PqDigitalSource, public virtual PqDigitalPutter {
+class PqDigitalUnit : public PqDigitalSource, public PqDigitalPutter {
 public:
   /// Constructor.
   PqDigitalUnit(bool init=false) : PqDigitalSource(init) {}
+
+  /// Returns value (typically between 0 and 1, may vary depending on class).
+  virtual float get() { return PqDigitalSource::get(); }
+
+  /// Returns true iff the input is "on".
+  virtual bool isOn() { return PqDigitalSource::isOn(); }
 
   /// Switches between on and off.
   virtual bool toggle() {

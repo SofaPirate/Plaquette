@@ -46,6 +46,8 @@ public:
   Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
 
+  virtual float get() { return PqDigitalGetter::get(); }
+  
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit
