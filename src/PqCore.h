@@ -180,10 +180,6 @@ public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
 
-  /// Operator that allows usage in conditional expressions.
-	// NOTE: This operator is defined as explicit so that boolean expression like
-	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
-
   /// Object can be used directly to access its value.
   operator float() { return get(); }
 
@@ -191,7 +187,11 @@ protected:
   PqGetter() {}
 
 private:
+  /// Operator that allows usage in conditional expressions.
+	// NOTE: This operator is defined as explicit so that boolean expression like
+	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
   virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
+
   // Prevents assignation operations by making them private.
   PqGetter& operator=(bool);
   PqGetter& operator=(int);
