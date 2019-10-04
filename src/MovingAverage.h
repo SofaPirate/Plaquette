@@ -62,7 +62,7 @@ public:
   float alpha(float sampleRate) const {
     // Rule of thumb: alpha = 2 / (n_samples+1).
     float a = 2 / (_smoothTime*sampleRate + 1);
-    return min(a, 1); // make sure it does not get over 1
+    return min(a, 1.f); // make sure it does not get over 1
   }
 
   /// Resets the moving average.

@@ -44,7 +44,7 @@ void MovingAverage::time(float seconds) {
   bool started = isStarted();
 
   // Assign.
-  _smoothTime = max(seconds, 0);
+  _smoothTime = max(seconds, 0.f);
 
   // Reset start state.
   _setStarted(started);

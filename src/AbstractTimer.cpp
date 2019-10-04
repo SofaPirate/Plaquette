@@ -37,7 +37,7 @@ void AbstractTimer::start(float duration_) {
 
 void AbstractTimer::duration(float duration) {
 	// Set parameters.
-	_duration = max(duration, 0);
+	_duration = max(duration, 0.f);
 }
 
 float AbstractTimer::progress() const {
