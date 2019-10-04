@@ -75,6 +75,8 @@ void DigitalIn::begin() {
 }
 
 void DigitalIn::step() {
+  // Perform basic step.
+  _step();
   // Read state.
 	bool isOn = analogToDigital(_smoothed());
   // Register difference between previous and new state.
