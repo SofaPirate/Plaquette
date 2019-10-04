@@ -333,6 +333,16 @@ public:
    * @return the new value of the unit
    */
   virtual bool putOn(bool isOn) { return (_isOn = isOn); }
+
+  // NOTE: These operators need to be repeated here to prevent compilation errors
+  // related to ambiguous call.
+
+  /// Operator that allows usage in conditional expressions.
+  virtual explicit operator bool() { return PqDigitalSource::operator bool(); }
+
+  /// Operator that return 0 or 1 depending on value.
+  explicit operator int() { return PqDigitalSource::operator int(); }
+
 };
 
 // Operators /////////////////////////////////////////////////////
