@@ -32,7 +32,13 @@
 
 namespace pq {
 
-/// Returns the number of seconds since start of program (calculated using micros()).
+  /**
+   * Returns time in seconds. Optional parameter allows to ask for reference time (default)
+   * which will yield the same value through one iteration of step(), or "real" time which Will
+   * return the current total running time.
+   * @param referenceTime determines whether the function returns the reference time or the real time
+   * @return the time in seconds
+   */
 float seconds(bool referenceTime=true);
 
 } // namespace pq
