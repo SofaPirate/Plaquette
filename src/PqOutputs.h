@@ -37,7 +37,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (SOURCE or SINK)
    */
-  AnalogOut(uint8_t pin=9, uint8_t mode=SOURCE);
+  AnalogOut(uint8_t pin, uint8_t mode=SOURCE);
   virtual ~AnalogOut() {}
 
   /// Pushes value into the component and returns its (possibly filtered) value.
