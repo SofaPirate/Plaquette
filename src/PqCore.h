@@ -274,10 +274,10 @@ protected:
 class PqDigitalSource : public PqDigitalGetter {
 public:
   /// Constructor.
-  PqDigitalSource(bool init=false) : _isOn(init) {}
+  PqDigitalSource(bool init=false) : _onValue(init) {}
 
   /// Returns true iff the input is "on".
-  virtual bool isOn() { return _isOn; }
+  virtual bool isOn() { return _onValue; }
 
   /// Returns true if the value rose.
   virtual bool rose() { return changeState() > 0; }
@@ -292,7 +292,7 @@ public:
   virtual int8_t changeState() = 0;
 
 protected:
-  bool _isOn;
+  bool _onValue;
 };
 
 class PqAnalogUnit : public PqAnalogSource, public PqPutter {
@@ -332,7 +332,7 @@ public:
    * @param value the value sent to the unit
    * @return the new value of the unit
    */
-  virtual bool putOn(bool isOn) { return (_isOn = isOn); }
+  virtual bool putOn(bool on) { return (_onValue = on); }
 
   // NOTE: These operators need to be repeated here to prevent compilation errors
   // related to ambiguous call.

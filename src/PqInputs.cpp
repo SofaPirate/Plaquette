@@ -62,11 +62,11 @@ DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
   : PqPinUnit(pin, mode), PqDigitalSource(), _changeState(0)
 {}
 
-float DigitalIn::_read() {
+bool DigitalIn::_isOn() {
   bool isHigh = (digitalRead(_pin) == HIGH);
   if (_mode == INTERNAL_PULLUP || _mode == EXTERNAL_PULLUP) // inverted
     isHigh = !isHigh;
-  return digitalToAnalog(isHigh);
+  return isHigh;
 }
 
 void DigitalIn::begin() {
@@ -78,11 +78,11 @@ void DigitalIn::step() {
   // Perform basic step.
   _step();
   // Read state.
-	bool isOn = analogToDigital(_smoothed());
+	bool isOn = analogToDigital(_debounced());
   // Register difference between previous and new state.
-  _changeState = (int8_t)isOn - (int8_t)_isOn;
+  _changeState = (int8_t)isOn - (int8_t)_onValue;
   // Save state.
-  _isOn = isOn;
+  _onValue = isOn;
 }
 
 } // namespace pq

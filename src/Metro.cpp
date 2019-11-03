@@ -39,10 +39,10 @@ void Metro::step() {
 		while (_phaseTime > 1) _phaseTime--; // modulo
 
 	// Register difference between previous and new state.
-	_changeState = (int8_t)isOn - (int8_t)_isOn;
+	_changeState = (int8_t)isOn - (int8_t)_onValue;
 
 	// Register new value.
-	_isOn = isOn;
+	_onValue = isOn;
 }
 
 Metro& Metro::period(float period) {

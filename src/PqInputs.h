@@ -94,7 +94,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinUnit, public PqSmoothable, public PqDigitalSource {
+class DigitalIn : public PqPinUnit, public PqDebounceable, public PqDigitalSource {
 public:
   /**
    * Constructor.
@@ -108,7 +108,7 @@ public:
   virtual int8_t changeState() { return _changeState; }
 
 protected:
-  virtual float _read();
+  virtual bool _isOn();
 
   virtual void begin();
   virtual void step();
