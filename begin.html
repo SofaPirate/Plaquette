@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>begin() &mdash; Plaquette 0.2 documentation</title>
+  <title>begin() &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="step()" href="step.html" />
     <link rel="prev" title="Structure" href="structure.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
@@ -171,20 +175,20 @@
             
   <div class="section" id="begin">
 <h1>begin()<a class="headerlink" href="#begin" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">begin()</span></code> function is called when a sketch starts. Use it to initialize
-units, start using libraries, etc. The <code class="docutils literal"><span class="pre">begin()</span></code> function will only run once,
+<p>The <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function is called when a sketch starts. Use it to initialize
+units, start using libraries, etc. The <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function will only run once,
 after each powerup or reset of the board.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Function <code class="docutils literal"><span class="pre">begin()</span></code> is the Plaquette equivalent of Arduino&#8217;s
+<p class="admonition-title">Note</p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">begin()</span></code> is the Plaquette equivalent of Arduino’s
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/setup/">setup()</a>.
 However, Plaquette takes care of many of the initialization calls that need to
-be done in Arduino such as <code class="docutils literal"><span class="pre">pinMode()</span></code>. Therefore in many cases it will
+be done in Arduino such as <code class="docutils literal notranslate"><span class="pre">pinMode()</span></code>. Therefore in many cases it will
 contain only a few calls or even be left empty.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">oscillator</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="n">oscillator</span><span class="p">;</span>
 <span class="n">AnalogIn</span> <span class="nf">input</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
@@ -202,15 +206,15 @@ contain only a few calls or even be left empty.</p>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv25beginv">
-<span class="target" id="_plaquette_8h_1ab0bdf5cca484fb2ba637c39384b27fb2"></span>void <code class="descclassname"></code><code class="descname">begin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv25beginv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6Chrono5beginEv">
+<span id="_CPPv3N6Chrono5beginEv"></span><span id="_CPPv2N6Chrono5beginEv"></span><span id="Chrono::begin"></span><span class="target" id="classpq_1_1_chrono_1a337bc98f80f60aa739e5cba11daca573"></span>void <code class="sig-prename descclassname">Chrono<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">begin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="step.html"><span class="doc">step()</span></a></li>
+<li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -226,7 +230,7 @@ contain only a few calls or even be left empty.</p>
         <a href="step.html" class="btn btn-neutral float-right" title="step()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="structure.html" class="btn btn-neutral" title="Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="structure.html" class="btn btn-neutral float-left" title="Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -235,7 +239,7 @@ contain only a few calls or even be left empty.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -252,35 +256,16 @@ contain only a few calls or even be left empty.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

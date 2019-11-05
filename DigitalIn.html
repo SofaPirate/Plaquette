@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DigitalIn &mdash; Plaquette 0.2 documentation</title>
+  <title>DigitalIn &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="DigitalOut" href="DigitalOut.html" />
     <link rel="prev" title="AnalogOut" href="AnalogOut.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -93,6 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DigitalIn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debouncing">Debouncing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
@@ -104,6 +108,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -173,26 +178,39 @@
             
   <div class="section" id="digitalin">
 <h1>DigitalIn<a class="headerlink" href="#digitalin" title="Permalink to this headline">¶</a></h1>
-<p>A digital (ie. binary) input unit that can be either &#8220;on&#8221; or &#8220;off&#8221;.</p>
-<p>The unit is assigned to a specific <code class="docutils literal"><span class="pre">pin</span></code> on the board.</p>
-<p>The <code class="docutils literal"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
+<p>A digital (ie. binary) input unit that can be either “on” or “off”.</p>
+<p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
 <ul class="simple">
-<li>in <code class="docutils literal"><span class="pre">INTERNAL_PULLUP</span></code> mode (default) the internal 20K pullup resistor is used</li>
-<li>in <code class="docutils literal"><span class="pre">EXTERNAL_PULLUP</span></code> mode you need to use an external pullup resistor connected to Vcc</li>
-<li>in <code class="docutils literal"><span class="pre">EXTERNAL_PULLDOWN</span></code> mode you need to use an external pulldown resistor connected to GND</li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">INTERNAL_PULLUP</span></code> mode (default) the internal 20K pullup resistor is used</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">EXTERNAL_PULLUP</span></code> mode you need to use an external pullup resistor connected to Vcc</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">EXTERNAL_PULLDOWN</span></code> mode you need to use an external pulldown resistor connected to GND</p></li>
 </ul>
+<div class="section" id="debouncing">
+<h2>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this headline">¶</a></h2>
+<p>Some digital inputs such as <a class="reference external" href="https://en.wikipedia.org/wiki/Push-button">push-buttons</a> often
+generate spurious open/close transitions when pressed, due to mechanical and physical issues:
+these transitions called “bouncing” may be read as multiple presses in a very short time, fooling
+the program.</p>
+<p>The DigitalIn object features debouncing capabilities which can prevent this kind of problems. Debouncing
+can be achieved using different modes: default (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_DEFAULT</span></code>), lock-out (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_LOCK_OUT</span></code>)
+and prompt-detect (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_PROMPT_DETECT</span></code>). For more information please refer to the documentation
+of the <a class="reference external" href="https://github.com/thomasfredericks/Bounce2">Bounce2 Arduino Library</a>.</p>
+</div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">button</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span> <span class="c1">// debounce button</span>
+  <span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span> <span class="c1">// debounce button</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">button</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="c1">// Toggle the LED each time the button is pressed.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -200,21 +218,19 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv29DigitalIn">
-<span id="DigitalIn"></span><span class="target" id="class_digital_in"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">DigitalIn</code><a class="headerlink" href="#_CPPv29DigitalIn" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv49DigitalIn">
+<span id="_CPPv39DigitalIn"></span><span id="_CPPv29DigitalIn"></span><span id="DigitalIn"></span><span class="target" id="classpq_1_1_digital_in"></span><em class="property">class </em><code class="sig-name descname">DigitalIn</code> : <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqDebounceable, <em class="property">public</em> PqDigitalSource<a class="headerlink" href="#_CPPv49DigitalIn" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A generic class representing a simple digital input. </p>
-<p>Inherits from PqPinComponent, PqSmoothable, PqDigitalGetter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t">
-<span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="class_digital_in_1acf2e14fef6178487084e7f42634212e6"></span><code class="descname">DigitalIn</code><span class="sig-paren">(</span>uint8_t <em>pin</em>, uint8_t <em>mode</em> = INTERNAL_PULLUP<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t">
+<span id="_CPPv3N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1a009f172acdb8146ef0593321b8e93912"></span><code class="sig-name descname">DigitalIn</code><span class="sig-paren">(</span>uint8_t <em>pin</em>, uint8_t <em>mode</em> = INTERNAL_PULLUP<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">pin</span></code>: the pin number </li>
-<li><code class="docutils literal"><span class="pre">mode</span></code>: the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN) </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: the pin number </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN) </p></li>
 </ul>
 </dd>
 </dl>
@@ -222,50 +238,93 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9DigitalIn4isOnEv">
-<span id="DigitalIn::isOn"></span><span class="target" id="class_digital_in_1a7a789f9edc54f41526a411d19fa06ce2"></span><em class="property">virtual</em> bool <code class="descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9DigitalIn4isOnEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns true iff the input is &#8220;on&#8221;. </p>
+<dt id="_CPPv4N9DigitalIn11changeStateEv">
+<span id="_CPPv3N9DigitalIn11changeStateEv"></span><span id="_CPPv2N9DigitalIn11changeStateEv"></span><span id="DigitalIn::changeState"></span><span class="target" id="classpq_1_1_digital_in_1ad9158b75696a313324b00dc7ac249f37"></span><em class="property">virtual</em> int8_t <code class="sig-name descname">changeState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn11changeStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Difference between current and previous value of the unit. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK14PqPinComponent3pinEv">
-<span id="PqPinComponent::pinC"></span><span class="target" id="class_pq_pin_component_1a6a5caf7c6619e6d8a9a7e82c3b8c785c"></span>uint8_t <code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent3pinEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4NK9PqPinUnit3pinEv">
+<span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK14PqPinComponent4modeEv">
-<span id="PqPinComponent::modeC"></span><span class="target" id="class_pq_pin_component_1ae8ea724dad57da049edb808a1edf16d8"></span>uint8_t <code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent4modeEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4NK9PqPinUnit4modeEv">
+<span id="_CPPv3NK9PqPinUnit4modeEv"></span><span id="_CPPv2NK9PqPinUnit4modeEv"></span><span id="PqPinUnit::modeC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1ac150f62f141f2d3eeab58fc70e65628a"></span>uint8_t <code class="sig-name descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N12PqSmoothable6smoothEf">
-<span id="PqSmoothable::smooth__float"></span><span class="target" id="class_pq_smoothable_1a87556506feb740c0c0c5597b50e544bb"></span>void <code class="descname">smooth</code><span class="sig-paren">(</span>float <em>factor</em> = 0.1f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12PqSmoothable6smoothEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N14PqDebounceable8debounceEf">
+<span id="_CPPv3N14PqDebounceable8debounceEf"></span><span id="_CPPv2N14PqDebounceable8debounceEf"></span><span id="PqDebounceable::debounce__float"></span><span class="target" id="classpq_1_1_pq_debounceable_1a40f24315d609e1366fc7f7fe855b7dfe"></span><em class="property">virtual</em> void <code class="sig-name descname">debounce</code><span class="sig-paren">(</span>float <em>debounceTime</em> = PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14PqDebounceable8debounceEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Apply smoothing to object. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N12PqSmoothable8noSmoothEv">
-<span id="PqSmoothable::noSmooth"></span><span class="target" id="class_pq_smoothable_1a3bf5d53eb3d84fae3b88f5319c10662c"></span><em class="property">virtual</em> void <code class="descname">noSmooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12PqSmoothable8noSmoothEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N14PqDebounceable10noDebounceEv">
+<span id="_CPPv3N14PqDebounceable10noDebounceEv"></span><span id="_CPPv2N14PqDebounceable10noDebounceEv"></span><span id="PqDebounceable::noDebounce"></span><span class="target" id="classpq_1_1_pq_debounceable_1aaaebbc312c2ce87fe32481ccc3c6b458"></span><em class="property">virtual</em> void <code class="sig-name descname">noDebounce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14PqDebounceable10noDebounceEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Remove smoothing. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N15PqDigitalGetter5isOffEv">
-<span id="PqDigitalGetter::isOff"></span><span class="target" id="class_pq_digital_getter_1a1ab24918b47cda2408cbdd0d6a1a22f8"></span><em class="property">virtual</em> bool <code class="descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter5isOffEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns true iff the input is &#8220;off&#8221;. </p>
+<dt id="_CPPv4NK14PqDebounceable12debounceModeEv">
+<span id="_CPPv3NK14PqDebounceable12debounceModeEv"></span><span id="_CPPv2NK14PqDebounceable12debounceModeEv"></span><span id="PqDebounceable::debounceModeC"></span><span class="target" id="classpq_1_1_pq_debounceable_1a1163c4044c9949d3f81fac424841a853"></span>uint8_t <code class="sig-name descname">debounceMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK14PqDebounceable12debounceModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the debounce mode. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N15PqDigitalGetter6getIntEv">
-<span id="PqDigitalGetter::getInt"></span><span class="target" id="class_pq_digital_getter_1afaf63fc22be566ba0f585ca5388f207c"></span><em class="property">virtual</em> int <code class="descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter6getIntEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N14PqDebounceable12debounceModeE7uint8_t">
+<span id="_CPPv3N14PqDebounceable12debounceModeE7uint8_t"></span><span id="_CPPv2N14PqDebounceable12debounceModeE7uint8_t"></span><span id="PqDebounceable::debounceMode__uint8_t"></span><span class="target" id="classpq_1_1_pq_debounceable_1a1311e8220d4ef97cbfde8827f73e9b80"></span>void <code class="sig-name descname">debounceMode</code><span class="sig-paren">(</span>uint8_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14PqDebounceable12debounceModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets debounce mode. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: the debounce mode (DEBOUNCE_DEFAULT, DEBOUNCE_LOCK_OUT or DEBOUNCE_PROMPT_DETECT) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalSource4isOnEv">
+<span id="_CPPv3N15PqDigitalSource4isOnEv"></span><span id="_CPPv2N15PqDigitalSource4isOnEv"></span><span id="PqDigitalSource::isOn"></span><span class="target" id="classpq_1_1_pq_digital_source_1a89ca2d8c3699172ce28fe5e5e3940c6b"></span><em class="property">virtual</em> bool <code class="sig-name descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalSource4isOnEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalSource4roseEv">
+<span id="_CPPv3N15PqDigitalSource4roseEv"></span><span id="_CPPv2N15PqDigitalSource4roseEv"></span><span id="PqDigitalSource::rose"></span><span class="target" id="classpq_1_1_pq_digital_source_1a97531dff6c838146530cafaa14c94586"></span><em class="property">virtual</em> bool <code class="sig-name descname">rose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalSource4roseEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true if the value rose. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalSource4fellEv">
+<span id="_CPPv3N15PqDigitalSource4fellEv"></span><span id="_CPPv2N15PqDigitalSource4fellEv"></span><span id="PqDigitalSource::fell"></span><span class="target" id="classpq_1_1_pq_digital_source_1a6d354dd3b6b946647261aa4ec3027db8"></span><em class="property">virtual</em> bool <code class="sig-name descname">fell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalSource4fellEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true if the value fell. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalSource7changedEv">
+<span id="_CPPv3N15PqDigitalSource7changedEv"></span><span id="_CPPv2N15PqDigitalSource7changedEv"></span><span id="PqDigitalSource::changed"></span><span class="target" id="classpq_1_1_pq_digital_source_1a3743b7020f2365f337db1da9310b3b93"></span><em class="property">virtual</em> bool <code class="sig-name descname">changed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalSource7changedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true if the value changed. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter5isOffEv">
+<span id="_CPPv3N15PqDigitalGetter5isOffEv"></span><span id="_CPPv2N15PqDigitalGetter5isOffEv"></span><span id="PqDigitalGetter::isOff"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a465f224ebd0e6df77e4066831245d9e8"></span><em class="property">virtual</em> bool <code class="sig-name descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalGetter5isOffEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter6getIntEv">
+<span id="_CPPv3N15PqDigitalGetter6getIntEv"></span><span id="_CPPv2N15PqDigitalGetter6getIntEv"></span><span id="PqDigitalGetter::getInt"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a028be252d96ce76e94985c650d68603e"></span><em class="property">virtual</em> int <code class="sig-name descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalGetter6getIntEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns value as integer (0 or 1). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N15PqDigitalGetter3getEv">
-<span id="PqDigitalGetter::get"></span><span class="target" id="class_pq_digital_getter_1a864cc2538e67a18a062a57a05699019c"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N15PqDigitalGetter3getEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N15PqDigitalGetter3getEv">
+<span id="_CPPv3N15PqDigitalGetter3getEv"></span><span id="_CPPv2N15PqDigitalGetter3getEv"></span><span id="PqDigitalGetter::get"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a2d2f50375bc0e41ae970369e53abcab9"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15PqDigitalGetter3getEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns value as float (either 0.0 or 1.0). </p>
 </dd></dl>
 
@@ -276,8 +335,9 @@
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></li>
-<li><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></li>
+<li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
+<li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/thomasfredericks/Bounce2">Bounce2 Arduino Library</a></p></li>
 </ul>
 </div>
 </div>
@@ -293,7 +353,7 @@
         <a href="DigitalOut.html" class="btn btn-neutral float-right" title="DigitalOut" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AnalogOut.html" class="btn btn-neutral" title="AnalogOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="AnalogOut.html" class="btn btn-neutral float-left" title="AnalogOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -302,7 +362,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -319,35 +379,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

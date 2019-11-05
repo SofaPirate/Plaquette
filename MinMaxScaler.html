@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MinMaxScaler &mdash; Plaquette 0.2 documentation</title>
+  <title>MinMaxScaler &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Normalizer" href="Normalizer.html" />
     <link rel="prev" title="AdaptiveNormalizer" href="AdaptiveNormalizer.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">MinMaxScaler</a><ul>
@@ -178,7 +182,7 @@ is mapped to 1.</p>
 <img alt="_images/Plaquette-MinMaxScaler.png" src="_images/Plaquette-MinMaxScaler.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="n">MinMaxScaler</span> <span class="n">scaler</span><span class="p">;</span>
 
@@ -199,28 +203,26 @@ is mapped to 1.</p>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv212MinMaxScaler">
-<span id="MinMaxScaler"></span><span class="target" id="class_min_max_scaler"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">MinMaxScaler</code><a class="headerlink" href="#_CPPv212MinMaxScaler" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv412MinMaxScaler">
+<span id="_CPPv312MinMaxScaler"></span><span id="_CPPv212MinMaxScaler"></span><span id="MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler"></span><em class="property">class </em><code class="sig-name descname">MinMaxScaler</code> : <em class="property">public</em> PqAnalogUnit<a class="headerlink" href="#_CPPv412MinMaxScaler" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Regularizes signal into [0,1] by rescaling it using the min and max values. </p>
-<p>Inherits from PqPutter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N12MinMaxScaler12MinMaxScalerEv">
-<span id="MinMaxScaler::MinMaxScaler"></span><span class="target" id="class_min_max_scaler_1ab8f9afa34cf884b06959514484cc7c5f"></span><code class="descname">MinMaxScaler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler12MinMaxScalerEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N12MinMaxScaler12MinMaxScalerEv">
+<span id="_CPPv3N12MinMaxScaler12MinMaxScalerEv"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerEv"></span><span id="MinMaxScaler::MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler_1a20295d1f7fb53b446bf8cb3ae14cccaf"></span><code class="sig-name descname">MinMaxScaler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N12MinMaxScaler3putEf">
-<span id="MinMaxScaler::put__float"></span><span class="target" id="class_min_max_scaler_1a80a5a7a6dad6afaa557b6caa78df98fc"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler3putEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N12MinMaxScaler3putEf">
+<span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the new value of the unit </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">value</span></code>: the value sent to the unit </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the new value of the unit </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value sent to the unit </p></li>
 </ul>
 </dd>
 </dl>
@@ -228,28 +230,28 @@ is mapped to 1.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N12MinMaxScaler3getEv">
-<span id="MinMaxScaler::get"></span><span class="target" id="class_min_max_scaler_1a518e73aaf18fbb84b38137d91423196a"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N12MinMaxScaler3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns rescaled value. </p>
+<dt id="_CPPv4N12PqAnalogUnit3getEv">
+<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This filtering unit works well as long as there are no &#8220;outliers&#8221; in the signal (ie. extreme values)
-that appear in rare conditions. One way to prevent this is to smooth incoming values using the <code class="docutils literal"><span class="pre">smooth()</span></code>
-method or a <code class="docutils literal"><span class="pre">Smoother</span></code> unit before sending to the <code class="docutils literal"><span class="pre">MinMaxScaler</span></code>. Another approach is to use a
-regularization unit that is less prone to outliers such as the <code class="docutils literal"><span class="pre">Normalizer</span></code> or the <code class="docutils literal"><span class="pre">AdaptiveNormalizer</span></code>.</p>
+<p class="admonition-title">Note</p>
+<p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
+that appear in rare conditions. One way to prevent this is to smooth incoming values using the <code class="docutils literal notranslate"><span class="pre">smooth()</span></code>
+method or a <code class="docutils literal notranslate"><span class="pre">Smoother</span></code> unit before sending to the <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>. Another approach is to use a
+regularization unit that is less prone to outliers such as the <code class="docutils literal notranslate"><span class="pre">Normalizer</span></code> or the <code class="docutils literal notranslate"><span class="pre">AdaptiveNormalizer</span></code>.</p>
 </div>
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></li>
-<li><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></li>
-<li><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></li>
+<li><p><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></p></li>
+<li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></p></li>
+<li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -265,7 +267,7 @@ regularization unit that is less prone to outliers such as the <code class="docu
         <a href="Normalizer.html" class="btn btn-neutral float-right" title="Normalizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AdaptiveNormalizer.html" class="btn btn-neutral" title="AdaptiveNormalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="AdaptiveNormalizer.html" class="btn btn-neutral float-left" title="AdaptiveNormalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -274,7 +276,7 @@ regularization unit that is less prone to outliers such as the <code class="docu
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -291,35 +293,16 @@ regularization unit that is less prone to outliers such as the <code class="docu
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

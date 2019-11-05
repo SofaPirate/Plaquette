@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mapTo01() &mdash; Plaquette 0.2 documentation</title>
+  <title>mapTo01() &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,32 +19,35 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -61,7 +64,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -89,6 +92,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -156,19 +160,19 @@
             
   <div class="section" id="mapto01">
 <h1>mapTo01()<a class="headerlink" href="#mapto01" title="Permalink to this headline">¶</a></h1>
-<p>Re-maps a number to range [0, 1]. That is, a value of <code class="docutils literal"><span class="pre">fromLow</span></code> would get
-mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHigh</span></code> to 1, values in-between to values in-between, etc.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">)</span>
+<p>Re-maps a number to range [0, 1]. That is, a value of <code class="docutils literal notranslate"><span class="pre">fromLow</span></code> would get
+mapped to 0, a value of <code class="docutils literal notranslate"><span class="pre">fromHigh</span></code> to 1, values in-between to values in-between, etc.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>is equivalent to:</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> for more details.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
 <span class="p">}</span>
@@ -185,17 +189,16 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv27mapTo01ddd">
-<span id="mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8h_1acee0d3dee9cb366dffef63a348091308"></span>float <code class="descclassname"></code><code class="descname">mapTo01</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27mapTo01ddd" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv47mapTo01ddd">
+<span id="_CPPv37mapTo01ddd"></span><span id="_CPPv27mapTo01ddd"></span><span id="mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8cpp_1abd87a28c3d4d3af60c2170761b13a8c8"></span>float <code class="sig-name descname">mapTo01</code><span class="sig-paren">(</span>double <em>value</em>, double <em>fromLow</em>, double <em>fromHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47mapTo01ddd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Re-maps a number to the [0, 1] range. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the mapped value in [0, 1] </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">value</span></code>: the number to map </li>
-<li><code class="docutils literal"><span class="pre">fromLow</span></code>: the lower bound of the value’s current range </li>
-<li><code class="docutils literal"><span class="pre">fromHigh</span></code>: the upper bound of the value’s current range </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the mapped value in [0, 1] </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the number to map </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fromLow</span></code>: the lower bound of the value’s current range </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fromHigh</span></code>: the upper bound of the value’s current range </p></li>
 </ul>
 </dd>
 </dl>
@@ -206,8 +209,8 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a></li>
-<li><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a></li>
+<li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a></p></li>
+<li><p><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -223,7 +226,7 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -240,35 +243,16 @@ mapped to 0, a value of <code class="docutils literal"><span class="pre">fromHig
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

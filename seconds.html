@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>seconds() &mdash; Plaquette 0.2 documentation</title>
+  <title>seconds() &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Structure" href="structure.html" />
     <link rel="prev" title="randomFloat()" href="randomFloat.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
@@ -173,7 +177,7 @@
 <p>This function returns the number of seconds since the program started.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
@@ -190,17 +194,26 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv27secondsv">
-<span class="target" id="pq__time_8h_1ab53334924c8ee90693b8d48d8f74793d"></span>float <code class="descclassname"></code><code class="descname">seconds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv27secondsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of seconds since start of program (calculated using micros()). </p>
+<dt id="_CPPv47secondsb">
+<span id="_CPPv37secondsb"></span><span id="_CPPv27secondsb"></span><span id="seconds__b"></span><span class="target" id="pq__time_8cpp_1adecb9f7a6c639a1017442b10f1f61eb5"></span>float <code class="sig-name descname">seconds</code><span class="sig-paren">(</span>bool <em>referenceTime</em> = true<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47secondsb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns time in seconds. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of step(), or “real” time which Will return the current total running time. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the time in seconds </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">referenceTime</span></code>: determines whether the function returns the reference time or the real time </p></li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/micros/">micros()</a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/millis/">millis()</a></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/micros/">micros()</a></p></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/millis/">millis()</a></p></li>
 </ul>
 </div>
 </div>
@@ -216,7 +229,7 @@
         <a href="structure.html" class="btn btn-neutral float-right" title="Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="randomFloat.html" class="btn btn-neutral" title="randomFloat()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="randomFloat.html" class="btn btn-neutral float-left" title="randomFloat()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -225,7 +238,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -242,35 +255,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

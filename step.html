@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>step() &mdash; Plaquette 0.2 documentation</title>
+  <title>step() &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title=". (dot)" href="dot.html" />
     <link rel="prev" title="begin()" href="begin.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
@@ -171,21 +175,21 @@
             
   <div class="section" id="step">
 <h1>step()<a class="headerlink" href="#step" title="Permalink to this headline">¶</a></h1>
-<p>After creating a <code class="docutils literal"><span class="pre">begin()</span></code> function, which initializes and sets the initial
-values, the <code class="docutils literal"><span class="pre">step()</span></code> function does precisely what its name suggests, and performs
+<p>After creating a <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function, which initializes and sets the initial
+values, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function does precisely what its name suggests, and performs
 one processing step that loops indefinitely as fast as possible, allowing your
 program to change and respond. Use it to actively control the board.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Function <code class="docutils literal"><span class="pre">step()</span></code> is the Plaquette equivalent of Arduino&#8217;s
+<p class="admonition-title">Note</p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">step()</span></code> is the Plaquette equivalent of Arduino’s
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/loop/">loop()</a>.
 However, it is highly recommended that this function executes as fast as
 possible. Hence, one should performing computationally-intensive processing
-or calling blocking functions such as <code class="docutils literal"><span class="pre">delay()</span></code></p>
+or calling blocking functions such as <code class="docutils literal notranslate"><span class="pre">delay()</span></code></p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
@@ -201,15 +205,15 @@ or calling blocking functions such as <code class="docutils literal"><span class
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv24stepv">
-<span class="target" id="_plaquette_8h_1ac6bf1a12c5c98ddec5b65e07fe74cabe"></span>void <code class="descclassname"></code><code class="descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv24stepv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6Chrono4stepEv">
+<span id="_CPPv3N6Chrono4stepEv"></span><span id="_CPPv2N6Chrono4stepEv"></span><span id="Chrono::step"></span><span class="target" id="classpq_1_1_chrono_1aaa568a56e9de1053064cbf1b46ede4d2"></span>void <code class="sig-prename descclassname">Chrono<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a></li>
+<li><p><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -225,7 +229,7 @@ or calling blocking functions such as <code class="docutils literal"><span class
         <a href="dot.html" class="btn btn-neutral float-right" title=". (dot)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="begin.html" class="btn btn-neutral" title="begin()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="begin.html" class="btn btn-neutral float-left" title="begin()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -234,7 +238,7 @@ or calling blocking functions such as <code class="docutils literal"><span class
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -251,35 +255,16 @@ or calling blocking functions such as <code class="docutils literal"><span class
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

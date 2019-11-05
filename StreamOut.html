@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>StreamOut &mdash; Plaquette 0.2 documentation</title>
+  <title>StreamOut &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Generators" href="generators.html" />
     <link rel="prev" title="StreamIn" href="StreamIn.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -104,6 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -173,10 +177,10 @@
             
   <div class="section" id="streamout">
 <h1>StreamOut<a class="headerlink" href="#streamout" title="Permalink to this headline">¶</a></h1>
-<p>An output unit that transmits values through a stream &#8211; for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
+<p>An output unit that transmits values through a stream – for example, the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial line</a>. Values are sent in clear text and separated by newlines and/or carriage returns.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
 
@@ -188,32 +192,30 @@
 </div>
 <p>To run this example:</p>
 <ol class="arabic simple">
-<li>Upload the code.</li>
-<li>In the Arduino software open the serial monitor: <strong>Tools &gt; Serial Monitor</strong>.</li>
-<li>Make sure the default baudrate of <strong>9600</strong> bps is selected.</li>
-<li>You should see the seconds increase.</li>
-<li>Close the monitor and open serial plotter: <strong>Tools &gt; Serial Plotter</strong>.</li>
-<li>You should see a graphical representation of the seconds.</li>
-<li>Replace the line in <code class="docutils literal"><span class="pre">step()</span></code> by: <code class="docutils literal"><span class="pre">sin(seconds())</span> <span class="pre">&gt;&gt;</span> <span class="pre">serialOut</span></code> and upload. You should now see a sine wave signal in the serial plotter.</li>
+<li><p>Upload the code.</p></li>
+<li><p>In the Arduino software open the serial monitor: <strong>Tools &gt; Serial Monitor</strong>.</p></li>
+<li><p>Make sure the default baudrate of <strong>9600</strong> bps is selected.</p></li>
+<li><p>You should see the seconds increase.</p></li>
+<li><p>Close the monitor and open serial plotter: <strong>Tools &gt; Serial Plotter</strong>.</p></li>
+<li><p>You should see a graphical representation of the seconds.</p></li>
+<li><p>Replace the line in <code class="docutils literal notranslate"><span class="pre">step()</span></code> by: <code class="docutils literal notranslate"><span class="pre">sin(seconds())</span> <span class="pre">&gt;&gt;</span> <span class="pre">serialOut</span></code> and upload. You should now see a sine wave signal in the serial plotter.</p></li>
 </ol>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv29StreamOut">
-<span id="StreamOut"></span><span class="target" id="class_stream_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">StreamOut</code><a class="headerlink" href="#_CPPv29StreamOut" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv49StreamOut">
+<span id="_CPPv39StreamOut"></span><span id="_CPPv29StreamOut"></span><span id="StreamOut"></span><span class="target" id="classpq_1_1_stream_out"></span><em class="property">class </em><code class="sig-name descname">StreamOut</code> : <em class="property">public</em> PqAnalogUnit<a class="headerlink" href="#_CPPv49StreamOut" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Stream/serial output. Number of digits of precision is configurable. </p>
-<p>Inherits from PqPutter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N9StreamOut9StreamOutER6Stream">
-<span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="class_stream_out_1ad59c0cf4ba569a44fe182f305c40814e"></span><code class="descname">StreamOut</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9StreamOutER6Stream" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9StreamOut9StreamOutER6Stream">
+<span id="_CPPv3N9StreamOut9StreamOutER6Stream"></span><span id="_CPPv2N9StreamOut9StreamOutER6Stream"></span><span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="classpq_1_1_stream_out_1a6b37ac313cd592de17be9ef1ada8bd34"></span><code class="sig-name descname">StreamOut</code><span class="sig-paren">(</span>Stream &amp;<em>stream</em> = Serial<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut9StreamOutER6Stream" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">stream</span></code>: a reference to a Stream object </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stream</span></code>: a reference to a Stream object </p></li>
 </ul>
 </dd>
 </dl>
@@ -221,15 +223,14 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9StreamOut3putEf">
-<span id="StreamOut::put__float"></span><span class="target" id="class_stream_out_1ac95ef84851f702608cdf77d0d8150f5d"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3putEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9StreamOut3putEf">
+<span id="_CPPv3N9StreamOut3putEf"></span><span id="_CPPv2N9StreamOut3putEf"></span><span id="StreamOut::put__float"></span><span class="target" id="classpq_1_1_stream_out_1aad28e81e72333bc0a2125311342ce820"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3putEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the new value of the unit </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">value</span></code>: the value sent to the unit </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the new value of the unit </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value sent to the unit </p></li>
 </ul>
 </dd>
 </dl>
@@ -237,23 +238,22 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9StreamOut3getEv">
-<span id="StreamOut::get"></span><span class="target" id="class_stream_out_1acab60ff320140343d690ecc0affae6ae"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns value. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N9StreamOut9precisionE7uint8_t">
-<span id="StreamOut::precision__uint8_t"></span><span class="target" id="class_stream_out_1a9981f5140a22ac76704abdf2a6ca174c"></span>void <code class="descname">precision</code><span class="sig-paren">(</span>uint8_t <em>digits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9StreamOut9precisionE7uint8_t" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9StreamOut9precisionE7uint8_t">
+<span id="_CPPv3N9StreamOut9precisionE7uint8_t"></span><span id="_CPPv2N9StreamOut9precisionE7uint8_t"></span><span id="StreamOut::precision__uint8_t"></span><span class="target" id="classpq_1_1_stream_out_1a37edbe0f70e34182c9ce252daab6be12"></span>void <code class="sig-name descname">precision</code><span class="sig-paren">(</span>uint8_t <em>digits</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut9precisionE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets precision of the output. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">digits</span></code>: the number of digits to show after decimal point </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">digits</span></code>: the number of digits to show after decimal point </p></li>
 </ul>
 </dd>
 </dl>
 </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N12PqAnalogUnit3getEv">
+<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 </div>
@@ -263,11 +263,11 @@
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></li>
-<li><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></li>
-<li><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial</a></li>
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/stream/">Arduino streams</a></li>
+<li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
+<li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>
+<li><p><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a></p></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial</a></p></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/stream/">Arduino streams</a></p></li>
 </ul>
 </div>
 </div>
@@ -283,7 +283,7 @@
         <a href="generators.html" class="btn btn-neutral float-right" title="Generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="StreamIn.html" class="btn btn-neutral" title="StreamIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="StreamIn.html" class="btn btn-neutral float-left" title="StreamIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -292,7 +292,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -309,35 +309,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

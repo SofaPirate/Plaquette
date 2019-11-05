@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TriOsc &mdash; Plaquette 0.2 documentation</title>
+  <title>TriOsc &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-    <link rel="next" title="Filters" href="filters.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Timing" href="timing.html" />
     <link rel="prev" title="SquareOsc" href="SquareOsc.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,7 +94,6 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="generators.html">Generators</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">TriOsc</a><ul>
@@ -101,6 +103,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -173,9 +176,9 @@
 <p>A source unit that can generate a range of triangle-shaped signals such as the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_wave">triangle wave</a> and the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Sawtooth_wave">sawtooth wave</a>. The signal can be
-adjusted by changing the <code class="docutils literal"><span class="pre">period</span></code> and/or <code class="docutils literal"><span class="pre">frequency</span></code> of the oscillation.</p>
+adjusted by changing the <code class="docutils literal notranslate"><span class="pre">period</span></code> and/or <code class="docutils literal notranslate"><span class="pre">frequency</span></code> of the oscillation.</p>
 <img alt="_images/Plaquette-TriOsc.png" src="_images/Plaquette-TriOsc.png" />
-<p>The <code class="docutils literal"><span class="pre">width</span></code> parameter represents the &#8220;turning point&#8221; during the period at which
+<p>The <code class="docutils literal notranslate"><span class="pre">width</span></code> parameter represents the “turning point” during the period at which
 the signals reaches its maximum and starts going down again. Changing the width
 allows to generate different kinds of triangular-shaped waves. For example, by
 setting width to 1.0 (100%) one obtains a <em>sawtooth</em> wave; by setting it to 0.0 (0%)
@@ -186,7 +189,7 @@ of <em>triangle</em> waves.</p>
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>This code controls a set of traffic lights that go: red, yellow, green, red, yellow,
 green, and so on. It uses a sawtooth to iterate through these three states.</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">red</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">red</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 <span class="n">DigitalOut</span> <span class="nf">yellow</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
 <span class="n">DigitalOut</span> <span class="nf">green</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
 
@@ -210,21 +213,19 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </pre></div>
 </div>
 <dl class="class">
-<dt id="_CPPv26TriOsc">
-<span id="TriOsc"></span><span class="target" id="class_tri_osc"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">TriOsc</code><a class="headerlink" href="#_CPPv26TriOsc" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv46TriOsc">
+<span id="_CPPv36TriOsc"></span><span id="_CPPv26TriOsc"></span><span id="TriOsc"></span><span class="target" id="classpq_1_1_tri_osc"></span><em class="property">class </em><code class="sig-name descname">TriOsc</code> : <em class="property">public</em> PqAnalogSource<a class="headerlink" href="#_CPPv46TriOsc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Triangle/sawtooth oscillator. </p>
-<p>Inherits from PqGetter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N6TriOsc6TriOscEff">
-<span id="TriOsc::TriOsc__float.float"></span><span class="target" id="class_tri_osc_1a8126b6d38dcfb06573dc11dc25757f96"></span><code class="descname">TriOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f, float <em>width</em> = 0.5f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6TriOscEff" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6TriOsc6TriOscEff">
+<span id="_CPPv3N6TriOsc6TriOscEff"></span><span id="_CPPv2N6TriOsc6TriOscEff"></span><span id="TriOsc::TriOsc__float.float"></span><span class="target" id="classpq_1_1_tri_osc_1a1278f373769085764a68b80046a3f004"></span><code class="sig-name descname">TriOsc</code><span class="sig-paren">(</span>float <em>period</em> = 1.0f, float <em>width</em> = 0.5f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6TriOscEff" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
-<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: the period of oscillation (in seconds) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </p></li>
 </ul>
 </dd>
 </dl>
@@ -232,21 +233,14 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6TriOsc3getEv">
-<span id="TriOsc::get"></span><span class="target" id="class_tri_osc_1a8cba0f2200f73d63f68fe28135b4fab7"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2N6TriOsc6periodEf">
-<span id="TriOsc::period__float"></span><span class="target" id="class_tri_osc_1ab8129bfddc426ac48ccb2471b14187fe"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc6periodEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6TriOsc6periodEf">
+<span id="_CPPv3N6TriOsc6periodEf"></span><span id="_CPPv2N6TriOsc6periodEf"></span><span id="TriOsc::period__float"></span><span class="target" id="classpq_1_1_tri_osc_1ab1a495d64eff4ea002ed4c158cfde184"></span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="sig-name descname">period</code><span class="sig-paren">(</span>float <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6periodEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the period (in seconds). </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">period</span></code>: the period of oscillation (in seconds) </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the unit itself </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: the period of oscillation (in seconds) </p></li>
 </ul>
 </dd>
 </dl>
@@ -254,15 +248,14 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6TriOsc9frequencyEf">
-<span id="TriOsc::frequency__float"></span><span class="target" id="class_tri_osc_1a6d00dfbe8a639d5792fdfefa5db856e3"></span><em class="property">virtual</em> <a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">frequency</code><span class="sig-paren">(</span>float <em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc9frequencyEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6TriOsc9frequencyEf">
+<span id="_CPPv3N6TriOsc9frequencyEf"></span><span id="_CPPv2N6TriOsc9frequencyEf"></span><span id="TriOsc::frequency__float"></span><span class="target" id="classpq_1_1_tri_osc_1af2a8ea2c037e5cb872feb932418bd191"></span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="sig-name descname">frequency</code><span class="sig-paren">(</span>float <em>frequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9frequencyEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the frequency (in Hz). </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the unit itself </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>: the frequency of oscillation (in Hz) </p></li>
 </ul>
 </dd>
 </dl>
@@ -270,19 +263,54 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N6TriOsc5widthEf">
-<span id="TriOsc::width__float"></span><span class="target" id="class_tri_osc_1a2af438c36d1788f4360261cef96ddf59"></span><a class="reference internal" href="#_CPPv26TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="descname">width</code><span class="sig-paren">(</span>float <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N6TriOsc5widthEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N6TriOsc5widthEf">
+<span id="_CPPv3N6TriOsc5widthEf"></span><span id="_CPPv2N6TriOsc5widthEf"></span><span id="TriOsc::width__float"></span><span class="target" id="classpq_1_1_tri_osc_1ae783e84babcbf6481b975ef826b4899c"></span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="sig-name descname">width</code><span class="sig-paren">(</span>float <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5widthEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the width of the wave. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the unit itself </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the unit itself </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code>: a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </p></li>
 </ul>
 </dd>
 </dl>
 </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6TriOsc9amplitudeEf">
+<span id="_CPPv3N6TriOsc9amplitudeEf"></span><span id="_CPPv2N6TriOsc9amplitudeEf"></span><span id="TriOsc::amplitude__float"></span><span class="target" id="classpq_1_1_tri_osc_1a227f1b8060df996f1967e553f2b865fe"></span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="sig-name descname">amplitude</code><span class="sig-paren">(</span>float <em>amplitude</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9amplitudeEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amplitude of the wave. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the unit itself </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">amplitude</span></code>: a value in [0, 1] that determines the amplitude of the wave (centered at 0.5). </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6TriOsc5phaseEf">
+<span id="_CPPv3N6TriOsc5phaseEf"></span><span id="_CPPv2N6TriOsc5phaseEf"></span><span id="TriOsc::phase__float"></span><span class="target" id="classpq_1_1_tri_osc_1aafeedce4785083daebae35773f5c9c20"></span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc">TriOsc</a> &amp;<code class="sig-name descname">phase</code><span class="sig-paren">(</span>float <em>phase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5phaseEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the phase (ie. </p>
+<p>the offset, in % of period). <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the unit itself </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phase</span></code>: the phase (in % of period) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N14PqAnalogSource3getEv">
+<span id="_CPPv3N14PqAnalogSource3getEv"></span><span id="_CPPv2N14PqAnalogSource3getEv"></span><span id="PqAnalogSource::get"></span><span class="target" id="classpq_1_1_pq_analog_source_1a305800c0c3f05507bcd8b6b870303281"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 </div>
@@ -292,9 +320,9 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></li>
-<li><a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a></li>
-<li><a class="reference internal" href="SquareOsc.html"><span class="doc">SquareOsc</span></a></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
+<li><p><a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a></p></li>
+<li><p><a class="reference internal" href="SquareOsc.html"><span class="doc">SquareOsc</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -307,10 +335,10 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="filters.html" class="btn btn-neutral float-right" title="Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="timing.html" class="btn btn-neutral float-right" title="Timing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="SquareOsc.html" class="btn btn-neutral" title="SquareOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="SquareOsc.html" class="btn btn-neutral float-left" title="SquareOsc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -319,7 +347,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -336,35 +364,16 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

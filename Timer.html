@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Timer &mdash; Plaquette 0.2.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Filters" href="filters.html" />
+    <link rel="prev" title="Ramp" href="Ramp.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Plaquette
+          
+
+          
+            
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Metro.html">Metro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Timer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="timing.html">Timing</a> &raquo;</li>
+        
+      <li>Timer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="timer">
+<h1>Timer<a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h1>
+<p>A digital source unit that counts time. The timer can be started, stopped, and
+resumed.</p>
+<p>When started, the timer stays “off” until it reaches its timeout duration, after
+which it becomes “on”.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Timer</span> <span class="nf">myTimer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span> <span class="c1">// a chronometer with 2 seconds duration</span>
+
+<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">myTimer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span> <span class="c1">// start timer</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">myTimer</span><span class="p">)</span> <span class="c1">// the timer will stay &quot;on&quot; until it is stopped or restarted</span>
+  <span class="p">{</span>
+    <span class="c1">// Change LED state.</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+
+    <span class="c1">// Restarts the timer with a random duration between 1 and 5 seconds.</span>
+    <span class="n">myTimer</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">));</span>
+    <span class="n">myTimer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv45Timer">
+<span id="_CPPv35Timer"></span><span id="_CPPv25Timer"></span><span id="Timer"></span><span class="target" id="classpq_1_1_timer"></span><em class="property">class </em><code class="sig-name descname">Timer</code> : <em class="property">public</em> AbstractTimer, <em class="property">public</em> PqDigitalGetter<a class="headerlink" href="#_CPPv45Timer" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Chronometer class which becomes “on” after a given duration. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N5Timer4isOnEv">
+<span id="_CPPv3N5Timer4isOnEv"></span><span id="_CPPv2N5Timer4isOnEv"></span><span id="Timer::isOn"></span><span class="target" id="classpq_1_1_timer_1a4223dcced13cf6b29a1599375d7125c2"></span>bool <code class="sig-name descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer4isOnEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the input is “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N13AbstractTimer5startEv">
+<span id="_CPPv3N13AbstractTimer5startEv"></span><span id="_CPPv2N13AbstractTimer5startEv"></span><span id="AbstractTimer::start"></span><span class="target" id="classpq_1_1_abstract_timer_1af50f92b60dbc887be34b87b10c6d8afb"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13AbstractTimer5startEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts/restarts the chronometer. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N13AbstractTimer5startEf">
+<span id="_CPPv3N13AbstractTimer5startEf"></span><span id="_CPPv2N13AbstractTimer5startEf"></span><span id="AbstractTimer::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span>float <em>duration</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Starts/restarts the chronometer with specific duration. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK13AbstractTimer8progressEv">
+<span id="_CPPv3NK13AbstractTimer8progressEv"></span><span id="_CPPv2NK13AbstractTimer8progressEv"></span><span id="AbstractTimer::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span>float <code class="sig-name descname">progress</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dd><p>The progress of the chrono process (in %). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Chrono4stopEv">
+<span id="_CPPv3N6Chrono4stopEv"></span><span id="_CPPv2N6Chrono4stopEv"></span><span id="Chrono::stop"></span><span class="target" id="classpq_1_1_chrono_1ad2174dd015d2516f0c451b8f7e086391"></span>void <code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Interrupts the chronometer. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Chrono6resumeEv">
+<span id="_CPPv3N6Chrono6resumeEv"></span><span id="_CPPv2N6Chrono6resumeEv"></span><span id="Chrono::resume"></span><span class="target" id="classpq_1_1_chrono_1aa324d8091788d860af3a82a0c7138e90"></span>void <code class="sig-name descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Resumes process. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6Chrono7elapsedEv">
+<span id="_CPPv3NK6Chrono7elapsedEv"></span><span id="_CPPv2NK6Chrono7elapsedEv"></span><span id="Chrono::elapsedC"></span><span class="target" id="classpq_1_1_chrono_1afc6061c8b59e2bfed4e3f7204100ac6c"></span><em class="property">virtual</em> float <code class="sig-name descname">elapsed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dd><p>The time currently elapsed by the chronometer (in seconds). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6Chrono9isStartedEv">
+<span id="_CPPv3NK6Chrono9isStartedEv"></span><span id="_CPPv2NK6Chrono9isStartedEv"></span><span id="Chrono::isStartedC"></span><span class="target" id="classpq_1_1_chrono_1a0e90244b09f8d4ebcff8cd489e17328f"></span>bool <code class="sig-name descname">isStarted</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dd><p>Returns true iff the chronometer is currently running. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter5isOffEv">
+<span id="_CPPv3N15PqDigitalGetter5isOffEv"></span><span id="_CPPv2N15PqDigitalGetter5isOffEv"></span><span id="PqDigitalGetter::isOff"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a465f224ebd0e6df77e4066831245d9e8"></span><em class="property">virtual</em> bool <code class="sig-name descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter6getIntEv">
+<span id="_CPPv3N15PqDigitalGetter6getIntEv"></span><span id="_CPPv2N15PqDigitalGetter6getIntEv"></span><span id="PqDigitalGetter::getInt"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a028be252d96ce76e94985c650d68603e"></span><em class="property">virtual</em> int <code class="sig-name descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value as integer (0 or 1). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter3getEv">
+<span id="_CPPv3N15PqDigitalGetter3getEv"></span><span id="_CPPv2N15PqDigitalGetter3getEv"></span><span id="PqDigitalGetter::get"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a2d2f50375bc0e41ae970369e53abcab9"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value as float (either 0.0 or 1.0). </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
+<li><p><a class="reference internal" href="SquareOsc.html"><span class="doc">SquareOsc</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="filters.html" class="btn btn-neutral float-right" title="Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Ramp.html" class="btn btn-neutral float-left" title="Ramp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2019, Plaquette
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

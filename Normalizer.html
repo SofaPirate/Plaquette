@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Normalizer &mdash; Plaquette 0.2 documentation</title>
+  <title>Normalizer &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Smoother" href="Smoother.html" />
     <link rel="prev" title="MinMaxScaler" href="MinMaxScaler.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
@@ -178,7 +182,7 @@ normal distribution (target mean and variance).</p>
 <p>This normalizer computes the mean and variance over all the data it receives.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
@@ -200,28 +204,26 @@ normal distribution (target mean and variance).</p>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv210Normalizer">
-<span id="Normalizer"></span><span class="target" id="class_normalizer"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Normalizer</code><a class="headerlink" href="#_CPPv210Normalizer" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv410Normalizer">
+<span id="_CPPv310Normalizer"></span><span id="_CPPv210Normalizer"></span><span id="Normalizer"></span><span class="target" id="classpq_1_1_normalizer"></span><em class="property">class </em><code class="sig-name descname">Normalizer</code> : <em class="property">public</em> PqAnalogUnit, <em class="property">public</em> SimpleStats<a class="headerlink" href="#_CPPv410Normalizer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Standard normalizer: normalizes values on-the-run using real mean and standard deviation. </p>
-<p>Inherits from PqPutter, SimpleStats</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N10Normalizer10NormalizerEv">
-<span id="Normalizer::Normalizer"></span><span class="target" id="class_normalizer_1af576151323854ff0d4d7e37255c397d1"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N10Normalizer10NormalizerEv">
+<span id="_CPPv3N10Normalizer10NormalizerEv"></span><span id="_CPPv2N10Normalizer10NormalizerEv"></span><span id="Normalizer::Normalizer"></span><span class="target" id="classpq_1_1_normalizer_1ad61ef80087beb790fec03f167dc05549"></span><code class="sig-name descname">Normalizer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default constructor. </p>
 <p>Will renormalize data around a mean of 0 and a standard deviation of 1. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N10Normalizer10NormalizerEff">
-<span id="Normalizer::Normalizer__float.float"></span><span class="target" id="class_normalizer_1a151d67e354556a68b7fb7a3ba43881a6"></span><code class="descname">Normalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10NormalizerEff" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N10Normalizer10NormalizerEff">
+<span id="_CPPv3N10Normalizer10NormalizerEff"></span><span id="_CPPv2N10Normalizer10NormalizerEff"></span><span id="Normalizer::Normalizer__float.float"></span><span class="target" id="classpq_1_1_normalizer_1af0a1c4a704f20a88cf7ac0551a5e70ba"></span><code class="sig-name descname">Normalizer</code><span class="sig-paren">(</span>float <em>mean</em>, float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEff" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">mean</span></code>: the target mean </li>
-<li><code class="docutils literal"><span class="pre">stddev</span></code>: the target standard deviation </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>: the target mean </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stddev</span></code>: the target standard deviation </p></li>
 </ul>
 </dd>
 </dl>
@@ -229,13 +231,12 @@ normal distribution (target mean and variance).</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N10Normalizer10targetMeanEf">
-<span id="Normalizer::targetMean__float"></span><span class="target" id="class_normalizer_1a79dd4da456fa47340a65cecd93ef0edb"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer10targetMeanEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N10Normalizer10targetMeanEf">
+<span id="_CPPv3N10Normalizer10targetMeanEf"></span><span id="_CPPv2N10Normalizer10targetMeanEf"></span><span id="Normalizer::targetMean__float"></span><span class="target" id="classpq_1_1_normalizer_1a2096aaadd83ac38adedcb189aaa920eb"></span><a class="reference internal" href="#_CPPv410Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="sig-name descname">targetMean</code><span class="sig-paren">(</span>float <em>mean</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10targetMeanEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets target mean of normalized values. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">mean</span></code>: the target mean </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code>: the target mean </p></li>
 </ul>
 </dd>
 </dl>
@@ -243,13 +244,12 @@ normal distribution (target mean and variance).</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N10Normalizer12targetStdDevEf">
-<span id="Normalizer::targetStdDev__float"></span><span class="target" id="class_normalizer_1abd461f6ff402a8d4b9f898caa2e4e40b"></span><a class="reference internal" href="#_CPPv210Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer12targetStdDevEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N10Normalizer12targetStdDevEf">
+<span id="_CPPv3N10Normalizer12targetStdDevEf"></span><span id="_CPPv2N10Normalizer12targetStdDevEf"></span><span id="Normalizer::targetStdDev__float"></span><span class="target" id="classpq_1_1_normalizer_1aa7665d990931607e2f71211cc9976a72"></span><a class="reference internal" href="#_CPPv410Normalizer" title="Normalizer">Normalizer</a> &amp;<code class="sig-name descname">targetStdDev</code><span class="sig-paren">(</span>float <em>stddev</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer12targetStdDevEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets target standard deviation of normalized values. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">stddev</span></code>: the target standard deviation </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stddev</span></code>: the target standard deviation </p></li>
 </ul>
 </dd>
 </dl>
@@ -257,15 +257,14 @@ normal distribution (target mean and variance).</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N10Normalizer3putEf">
-<span id="Normalizer::put__float"></span><span class="target" id="class_normalizer_1aa2507df7459eca2ca932f127c7d154c2"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3putEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N10Normalizer3putEf">
+<span id="_CPPv3N10Normalizer3putEf"></span><span id="_CPPv2N10Normalizer3putEf"></span><span id="Normalizer::put__float"></span><span class="target" id="classpq_1_1_normalizer_1a9c2a6da973bb004787faf889622815ef"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer3putEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the new value of the unit </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">value</span></code>: the value sent to the unit </li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the new value of the unit </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value sent to the unit </p></li>
 </ul>
 </dd>
 </dl>
@@ -273,14 +272,14 @@ normal distribution (target mean and variance).</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N10Normalizer3getEv">
-<span id="Normalizer::get"></span><span class="target" id="class_normalizer_1a737ab6d8b003cd2e1b0dae9705f23ee2"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N10Normalizer3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns normalized value. </p>
+<dt id="_CPPv4N12PqAnalogUnit3getEv">
+<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N11SimpleStats5resetEv">
-<span id="SimpleStats::reset"></span><span class="target" id="class_simple_stats_1a9026ad0a9b8859e0c8878c00e0b651ba"></span>void <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N11SimpleStats5resetEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N11SimpleStats5resetEv">
+<span id="_CPPv3N11SimpleStats5resetEv"></span><span id="_CPPv2N11SimpleStats5resetEv"></span><span id="SimpleStats::reset"></span><span class="target" id="classpq_1_1_simple_stats_1a2d1d5ffafa623287a3b4278cedded7e9"></span>void <code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11SimpleStats5resetEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Resets the statistics. </p>
 </dd></dl>
 
@@ -291,9 +290,9 @@ normal distribution (target mean and variance).</p>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></li>
-<li><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></li>
-<li><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></li>
+<li><p><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></p></li>
+<li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></p></li>
+<li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -309,7 +308,7 @@ normal distribution (target mean and variance).</p>
         <a href="Smoother.html" class="btn btn-neutral float-right" title="Smoother" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="MinMaxScaler.html" class="btn btn-neutral" title="MinMaxScaler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="MinMaxScaler.html" class="btn btn-neutral float-left" title="MinMaxScaler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -318,7 +317,7 @@ normal distribution (target mean and variance).</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -335,35 +334,16 @@ normal distribution (target mean and variance).</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>randomFloat() &mdash; Plaquette 0.2 documentation</title>
+  <title>randomFloat() &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="seconds()" href="seconds.html" />
     <link rel="prev" title="mapFloat()" href="mapFloat.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -91,6 +94,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="functions.html">Functions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
@@ -173,7 +177,7 @@
 <p>This function returns a random real-valued number.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
 <span class="p">}</span>
@@ -189,20 +193,20 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv211randomFloatv">
-<span id="randomFloat"></span><span class="target" id="pq__random_8h_1a6861f8cdbc87ca6342c829824e9084e3"></span>float <code class="descclassname"></code><code class="descname">randomFloat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211randomFloatv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv411randomFloatv">
+<span id="_CPPv311randomFloatv"></span><span id="_CPPv211randomFloatv"></span><span id="randomFloat"></span><span class="target" id="pq__random_8cpp_1a9fd847ffcc160738d46c6734c219e76b"></span>float <code class="sig-name descname">randomFloat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Generates a uniform random number in the interval [0,1). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv211randomFloatf">
-<span id="randomFloat__float"></span><span class="target" id="pq__random_8h_1a627ce5c5960883714f7e2679b20d6295"></span>float <code class="descclassname"></code><code class="descname">randomFloat</code><span class="sig-paren">(</span>float <em>max</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211randomFloatf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv411randomFloatf">
+<span id="_CPPv311randomFloatf"></span><span id="_CPPv211randomFloatf"></span><span id="randomFloat__float"></span><span class="target" id="pq__random_8cpp_1adb7ca54e73815302ce3164f14be3c7d1"></span>float <code class="sig-name descname">randomFloat</code><span class="sig-paren">(</span>float <em>max</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Generates a uniform random number in the interval [0,max). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv211randomFloatff">
-<span id="randomFloat__float.float"></span><span class="target" id="pq__random_8h_1ae3fb0a65c5d7fbeb9d97e57d237f7779"></span>float <code class="descclassname"></code><code class="descname">randomFloat</code><span class="sig-paren">(</span>float <em>min</em>, float <em>max</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv211randomFloatff" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv411randomFloatff">
+<span id="_CPPv311randomFloatff"></span><span id="_CPPv211randomFloatff"></span><span id="randomFloat__float.float"></span><span class="target" id="pq__random_8cpp_1a1ae9a09389087e114339b7a49edcd988"></span>float <code class="sig-name descname">randomFloat</code><span class="sig-paren">(</span>float <em>min</em>, float <em>max</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Generates a uniform random number in the interval [min,max) (b&gt;a). </p>
 </dd></dl>
 
@@ -210,7 +214,7 @@
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/random-numbers/random/">random()</a></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/random-numbers/random/">random()</a></p></li>
 </ul>
 </div>
 </div>
@@ -226,7 +230,7 @@
         <a href="seconds.html" class="btn btn-neutral float-right" title="seconds()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mapFloat.html" class="btn btn-neutral" title="mapFloat()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mapFloat.html" class="btn btn-neutral float-left" title="mapFloat()" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -235,7 +239,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -252,35 +256,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ramp &mdash; Plaquette 0.2 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-    <link rel="next" title="SineOsc" href="SineOsc.html" />
-    <link rel="prev" title="Generators" href="generators.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Timer" href="Timer.html" />
+    <link rel="prev" title="Metro" href="Metro.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -90,16 +93,16 @@
               <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="generators.html">Generators</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Metro.html">Metro</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="TriOsc.html">TriOsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Timer.html">Timer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
@@ -150,7 +153,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="generators.html">Generators</a> &raquo;</li>
+          <li><a href="timing.html">Timing</a> &raquo;</li>
         
       <li>Ramp</li>
     
@@ -174,16 +177,16 @@
 <p>A source unit that generates a smooth transition between two values. The unit can be
 triggered to start transitioning to a target value for a certain duration.</p>
 <p>There are two ways to start the ramp.</p>
-<p>By calling <code class="docutils literal"><span class="pre">start(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code> the ramp will transition from value <code class="docutils literal"><span class="pre">from</span></code> to
-value <code class="docutils literal"><span class="pre">to</span></code> in <code class="docutils literal"><span class="pre">duration</span></code> seconds.</p>
-<p>Alternatively, calling <code class="docutils literal"><span class="pre">start(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp&#8217;s
-current value to <code class="docutils literal"><span class="pre">to</span></code> in <code class="docutils literal"><span class="pre">duration</span></code> seconds.</p>
-<p>This diagram shows what happens to the ramp signal if <code class="docutils literal"><span class="pre">start(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
-called, followed later by <code class="docutils literal"><span class="pre">start(3.0,</span> <span class="pre">1.0)</span></code>:</p>
+<p>By calling <code class="docutils literal notranslate"><span class="pre">start(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code> the ramp will transition from value <code class="docutils literal notranslate"><span class="pre">from</span></code> to
+value <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
+<p>Alternatively, calling <code class="docutils literal notranslate"><span class="pre">start(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp’s
+current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
+<p>This diagram shows what happens to the ramp signal if <code class="docutils literal notranslate"><span class="pre">start(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
+called, followed later by <code class="docutils literal notranslate"><span class="pre">start(3.0,</span> <span class="pre">1.0)</span></code>:</p>
 <img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">Ramp</span> <span class="nf">myRamp</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span> <span class="c1">// the ramp is initalized at zero (0)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Ramp</span> <span class="nf">myRamp</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span> <span class="c1">// the ramp is initalized at zero (0)</span>
 
 <span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
 
@@ -205,27 +208,65 @@ called, followed later by <code class="docutils literal"><span class="pre">start
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv24Ramp">
-<span id="Ramp"></span><span class="target" id="class_ramp"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Ramp</code><a class="headerlink" href="#_CPPv24Ramp" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv44Ramp">
+<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><em class="property">class </em><code class="sig-name descname">Ramp</code> : <em class="property">public</em> PqAnalogSource, <em class="property">public</em> AbstractTimer<a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Provides a ramping / tweening mechanism that allows smooth transitions between two values. </p>
-<p>Inherits from PqGetter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N4Ramp3getEv">
-<span id="Ramp::get"></span><span class="target" id="class_ramp_1aedcf38173dbfb2c8113e87525f3ce623"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns value in [0, 1]. </p>
+<dt id="_CPPv4N4Ramp4RampEf">
+<span id="_CPPv3N4Ramp4RampEf"></span><span id="_CPPv2N4Ramp4RampEf"></span><span id="Ramp::Ramp__float"></span><span class="target" id="classpq_1_1_ramp_1a971ebce9ac4ff3975706b7743f84e777"></span><code class="sig-name descname">Ramp</code><span class="sig-paren">(</span>float <em>initialValue</em> = 0.0f<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">initialValue</span></code>: the value the ramp starts with </p></li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4Ramp5startEff">
-<span id="Ramp::start__float.float"></span><span class="target" id="class_ramp_1af8db0081f9d799878ad6269a8f7583da"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEff" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N4Ramp2toEf">
+<span id="_CPPv3N4Ramp2toEf"></span><span id="_CPPv2N4Ramp2toEf"></span><span id="Ramp::to__float"></span><span class="target" id="classpq_1_1_ramp_1a6c471324e2620fb74127801040f4fdb2"></span>void <code class="sig-name descname">to</code><span class="sig-paren">(</span>float <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp2toEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign final value of the ramp starting from current value. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">to</span></code>: the final value </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N4Ramp6fromToEff">
+<span id="_CPPv3N4Ramp6fromToEff"></span><span id="_CPPv2N4Ramp6fromToEff"></span><span id="Ramp::fromTo__float.float"></span><span class="target" id="classpq_1_1_ramp_1aeff4b5ee7cbd8bb857c54f90a478ffec"></span>void <code class="sig-name descname">fromTo</code><span class="sig-paren">(</span>float <em>from</em>, float <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6fromToEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Assign initial and final values of the ramp. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">from</span></code>: the initial value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to</span></code>: the final value </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N4Ramp5startEv">
+<span id="_CPPv3N4Ramp5startEv"></span><span id="_CPPv2N4Ramp5startEv"></span><span id="Ramp::start"></span><span class="target" id="classpq_1_1_ramp_1aead9fb134ed0e30782a6704bf9606e4f"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts/restarts the chronometer. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N4Ramp5startEff">
+<span id="_CPPv3N4Ramp5startEff"></span><span id="_CPPv2N4Ramp5startEff"></span><span id="Ramp::start__float.float"></span><span class="target" id="classpq_1_1_ramp_1aee0323d2c5ab2c770365a6113c31f8fa"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span>float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEff" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Starts a new ramp (starting from current value). </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">to</span></code>: the final value </li>
-<li><code class="docutils literal"><span class="pre">duration</span></code>: the duration of the ramp (in seconds) </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">to</span></code>: the final value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration</span></code>: the duration of the ramp (in seconds) </p></li>
 </ul>
 </dd>
 </dl>
@@ -233,15 +274,14 @@ called, followed later by <code class="docutils literal"><span class="pre">start
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4Ramp5startEfff">
-<span id="Ramp::start__float.float.float"></span><span class="target" id="class_ramp_1ae9fc9c3a405e9361487a43c4fdc6618e"></span>void <code class="descname">start</code><span class="sig-paren">(</span>float <em>from</em>, float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp5startEfff" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N4Ramp5startEfff">
+<span id="_CPPv3N4Ramp5startEfff"></span><span id="_CPPv2N4Ramp5startEfff"></span><span id="Ramp::start__float.float.float"></span><span class="target" id="classpq_1_1_ramp_1ad36bc4074988abb694eb98a8565b1054"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span>float <em>from</em>, float <em>to</em>, float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEfff" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Starts a new ramp. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">from</span></code>: the initial value </li>
-<li><code class="docutils literal"><span class="pre">to</span></code>: the final value </li>
-<li><code class="docutils literal"><span class="pre">duration</span></code>: the duration of the ramp (in seconds) </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">from</span></code>: the initial value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to</span></code>: the final value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration</span></code>: the duration of the ramp (in seconds) </p></li>
 </ul>
 </dd>
 </dl>
@@ -249,33 +289,51 @@ called, followed later by <code class="docutils literal"><span class="pre">start
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4Ramp4stopEv">
-<span id="Ramp::stop"></span><span class="target" id="class_ramp_1a6cc30f24b0fea107274087ed3dd1bb6c"></span>void <code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp4stopEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interrupts the ramp. </p>
+<dt id="_CPPv4N14PqAnalogSource3getEv">
+<span id="_CPPv3N14PqAnalogSource3getEv"></span><span id="_CPPv2N14PqAnalogSource3getEv"></span><span id="PqAnalogSource::get"></span><span class="target" id="classpq_1_1_pq_analog_source_1a305800c0c3f05507bcd8b6b870303281"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14PqAnalogSource3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N4Ramp6resumeEv">
-<span id="Ramp::resume"></span><span class="target" id="class_ramp_1a270b089fd018304009be7cd7a00f4421"></span>void <code class="descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N4Ramp6resumeEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N13AbstractTimer5startEf">
+<span id="_CPPv3N13AbstractTimer5startEf"></span><span id="_CPPv2N13AbstractTimer5startEf"></span><span id="AbstractTimer::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span>void <code class="sig-name descname">start</code><span class="sig-paren">(</span>float <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13AbstractTimer5startEf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts/restarts the chronometer with specific duration. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK13AbstractTimer8progressEv">
+<span id="_CPPv3NK13AbstractTimer8progressEv"></span><span id="_CPPv2NK13AbstractTimer8progressEv"></span><span id="AbstractTimer::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span>float <code class="sig-name descname">progress</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK13AbstractTimer8progressEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The progress of the chrono process (in %). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK13AbstractTimer10isCompleteEv">
+<span id="_CPPv3NK13AbstractTimer10isCompleteEv"></span><span id="_CPPv2NK13AbstractTimer10isCompleteEv"></span><span id="AbstractTimer::isCompleteC"></span><span class="target" id="classpq_1_1_abstract_timer_1a1b8fa0ba7b050960aeaf273fa27cbd75"></span>bool <code class="sig-name descname">isComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK13AbstractTimer10isCompleteEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the chronometer has completed its process. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Chrono4stopEv">
+<span id="_CPPv3N6Chrono4stopEv"></span><span id="_CPPv2N6Chrono4stopEv"></span><span id="Chrono::stop"></span><span class="target" id="classpq_1_1_chrono_1ad2174dd015d2516f0c451b8f7e086391"></span>void <code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Chrono4stopEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interrupts the chronometer. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Chrono6resumeEv">
+<span id="_CPPv3N6Chrono6resumeEv"></span><span id="_CPPv2N6Chrono6resumeEv"></span><span id="Chrono::resume"></span><span class="target" id="classpq_1_1_chrono_1aa324d8091788d860af3a82a0c7138e90"></span>void <code class="sig-name descname">resume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Chrono6resumeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK4Ramp7elapsedEv">
-<span id="Ramp::elapsedC"></span><span class="target" id="class_ramp_1aaf62fd14a15faac1bb5f7a933249aa95"></span><em class="property">virtual</em> float <code class="descname">elapsed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp7elapsedEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The time currently elapsed by the ramp (in seconds). </p>
+<dt id="_CPPv4NK6Chrono7elapsedEv">
+<span id="_CPPv3NK6Chrono7elapsedEv"></span><span id="_CPPv2NK6Chrono7elapsedEv"></span><span id="Chrono::elapsedC"></span><span class="target" id="classpq_1_1_chrono_1afc6061c8b59e2bfed4e3f7204100ac6c"></span><em class="property">virtual</em> float <code class="sig-name descname">elapsed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6Chrono7elapsedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The time currently elapsed by the chronometer (in seconds). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK4Ramp8progressEv">
-<span id="Ramp::progressC"></span><span class="target" id="class_ramp_1a9c71d3eadbbfac69342c269419a5a7a5"></span>float <code class="descname">progress</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp8progressEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>The progress of the ramping process (in %). </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2NK4Ramp10isCompleteEv">
-<span id="Ramp::isCompleteC"></span><span class="target" id="class_ramp_1af4ddc78ee01029db0ae4284df9fbef57"></span>bool <code class="descname">isComplete</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK4Ramp10isCompleteEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns true iff the ramp has completed its process. </p>
+<dt id="_CPPv4NK6Chrono9isStartedEv">
+<span id="_CPPv3NK6Chrono9isStartedEv"></span><span id="_CPPv2NK6Chrono9isStartedEv"></span><span id="Chrono::isStartedC"></span><span class="target" id="classpq_1_1_chrono_1a0e90244b09f8d4ebcff8cd489e17328f"></span>bool <code class="sig-name descname">isStarted</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6Chrono9isStartedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true iff the chronometer is currently running. </p>
 </dd></dl>
 
 </div>
@@ -285,7 +343,8 @@ called, followed later by <code class="docutils literal"><span class="pre">start
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></li>
+<li><p><a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a></p></li>
+<li><p><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -298,10 +357,10 @@ called, followed later by <code class="docutils literal"><span class="pre">start
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SineOsc.html" class="btn btn-neutral float-right" title="SineOsc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Timer.html" class="btn btn-neutral float-right" title="Timer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generators.html" class="btn btn-neutral" title="Generators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Metro.html" class="btn btn-neutral float-left" title="Metro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -310,7 +369,7 @@ called, followed later by <code class="docutils literal"><span class="pre">start
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -327,35 +386,16 @@ called, followed later by <code class="docutils literal"><span class="pre">start
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

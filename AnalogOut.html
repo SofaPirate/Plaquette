@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AnalogOut &mdash; Plaquette 0.2 documentation</title>
+  <title>AnalogOut &mdash; Plaquette 0.2.1 documentation</title>
   
 
   
@@ -19,34 +19,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="DigitalIn" href="DigitalIn.html" />
     <link rel="prev" title="AnalogIn" href="AnalogIn.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.2
+                0.2.1
               </div>
             
           
@@ -104,6 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -174,15 +178,15 @@
   <div class="section" id="analogout">
 <h1>AnalogOut<a class="headerlink" href="#analogout" title="Permalink to this headline">¶</a></h1>
 <p>An analog (ie. continuous) output unit that takes a value between 0 and 1 (ie. 0% and 100%).</p>
-<p>The unit is assigned to a specific <code class="docutils literal"><span class="pre">pin</span></code> on the board.</p>
-<p>The <code class="docutils literal"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
+<p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
 <ul class="simple">
-<li>in <code class="docutils literal"><span class="pre">SOURCE</span></code> mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)</li>
-<li>in <code class="docutils literal"><span class="pre">SINK</span></code> mode the component the source of current is external and should be equal to Vcc</li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">SOURCE</span></code> mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the component the source of current is external and should be equal to Vcc</p></li>
 </ul>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
@@ -198,21 +202,19 @@
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="_CPPv29AnalogOut">
-<span id="AnalogOut"></span><span class="target" id="class_analog_out"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">AnalogOut</code><a class="headerlink" href="#_CPPv29AnalogOut" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv49AnalogOut">
+<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><em class="property">class </em><code class="sig-name descname">AnalogOut</code> : <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqAnalogUnit<a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A generic class representing a simple PWM output. </p>
-<p>Inherits from PqPinComponent, PqPutter</p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t">
-<span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="class_analog_out_1a0f6e83a5fbd26eba99ce99fba4e46ac3"></span><code class="descname">AnalogOut</code><span class="sig-paren">(</span>uint8_t <em>pin</em> = 9, uint8_t <em>mode</em> = SOURCE<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t">
+<span id="_CPPv3N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_out_1a4610514db75a1625064582c64fbcbcd7"></span><code class="sig-name descname">AnalogOut</code><span class="sig-paren">(</span>uint8_t <em>pin</em>, uint8_t <em>mode</em> = SOURCE<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">pin</span></code>: the pin number </li>
-<li><code class="docutils literal"><span class="pre">mode</span></code>: the mode (SOURCE or SINK) </li>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: the pin number </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: the mode (SOURCE or SINK) </p></li>
 </ul>
 </dd>
 </dl>
@@ -220,51 +222,51 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9AnalogOut3putEf">
-<span id="AnalogOut::put__float"></span><span class="target" id="class_analog_out_1abaaf3e90aa3362e07414535023c13320"></span>float <code class="descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9AnalogOut3putEf" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4N9AnalogOut3putEf">
+<span id="_CPPv3N9AnalogOut3putEf"></span><span id="_CPPv2N9AnalogOut3putEf"></span><span id="AnalogOut::put__float"></span><span class="target" id="classpq_1_1_analog_out_1a9f5d2f056bef08b373cc78604d8aa31b"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut3putEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pushes value into the component and returns its (possibly filtered) value. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9AnalogOut3getEv">
-<span id="AnalogOut::get"></span><span class="target" id="class_analog_out_1a789e7b00f6d5ad4364c5e5f96c08ba83"></span><em class="property">virtual</em> float <code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9AnalogOut3getEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns reading in [0, 1]. </p>
+<dt id="_CPPv4N9AnalogOut6invertEv">
+<span id="_CPPv3N9AnalogOut6invertEv"></span><span id="_CPPv2N9AnalogOut6invertEv"></span><span id="AnalogOut::invert"></span><span class="target" id="classpq_1_1_analog_out_1a96398d0fd733795e23f700eee606d9ac"></span><em class="property">virtual</em> void <code class="sig-name descname">invert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut6invertEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inverts value by calling <code class="docutils literal notranslate"><span class="pre">put(1-get())</span></code> (eg. 0.2 becomes 0.8). </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2N9AnalogOut6invertEv">
-<span id="AnalogOut::invert"></span><span class="target" id="class_analog_out_1a7a344c7428dd2266387aabeceb904ebb"></span><em class="property">virtual</em> void <code class="descname">invert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv2N9AnalogOut6invertEv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inverts value by calling <code class="docutils literal"><span class="pre">put(1-get())</span></code> (eg. 0.2 becomes 0.8). </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv2NK14PqPinComponent3pinEv">
-<span id="PqPinComponent::pinC"></span><span class="target" id="class_pq_pin_component_1a6a5caf7c6619e6d8a9a7e82c3b8c785c"></span>uint8_t <code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent3pinEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4NK9PqPinUnit3pinEv">
+<span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv2NK14PqPinComponent4modeEv">
-<span id="PqPinComponent::modeC"></span><span class="target" id="class_pq_pin_component_1ae8ea724dad57da049edb808a1edf16d8"></span>uint8_t <code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv2NK14PqPinComponent4modeEv" title="Permalink to this definition">¶</a></dt>
+<dt id="_CPPv4NK9PqPinUnit4modeEv">
+<span id="_CPPv3NK9PqPinUnit4modeEv"></span><span id="_CPPv2NK9PqPinUnit4modeEv"></span><span id="PqPinUnit::modeC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1ac150f62f141f2d3eeab58fc70e65628a"></span>uint8_t <code class="sig-name descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the mode of the component. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N12PqAnalogUnit3getEv">
+<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">On most Arduino boards analog outputs rely on <a class="reference external" href="https://www.arduino.cc/en/Tutorial/PWM">Pulse Width Modulation (PWM)</a>.
-After a call to <code class="docutils literal"><span class="pre">put(value)</span></code>, the pin will generate a steady square wave of the
-specified duty cycle until the next call to <code class="docutils literal"><span class="pre">put()</span></code> on the same pin. The frequency
+<p class="admonition-title">Note</p>
+<p>On most Arduino boards analog outputs rely on <a class="reference external" href="https://www.arduino.cc/en/Tutorial/PWM">Pulse Width Modulation (PWM)</a>.
+After a call to <code class="docutils literal notranslate"><span class="pre">put(value)</span></code>, the pin will generate a steady square wave of the
+specified duty cycle until the next call to <code class="docutils literal notranslate"><span class="pre">put()</span></code> on the same pin. The frequency
 of the PWM signal on most pins is approximately 490 Hz. On the Uno and similar boards,
 pins 5 and 6 have a frequency of approximately 980 Hz.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">On most Arduino boards (those with the ATmega168 or ATmega328P), this functionality
+<p class="admonition-title">Note</p>
+<p>On most Arduino boards (those with the ATmega168 or ATmega328P), this functionality
 works on pins 3, 5, 6, 9, 10, and 11. On the Arduino Mega, it works on pins
-2 - 13 and 44 - 46. Older Arduino boards with an ATmega8 only support <code class="docutils literal"><span class="pre">AnalogOut</span></code>
+2 - 13 and 44 - 46. Older Arduino boards with an ATmega8 only support <code class="docutils literal notranslate"><span class="pre">AnalogOut</span></code>
 on pins 9, 10, and 11. The Arduino DUE supports analog output on pins 2 through 13,
 plus pins DAC0 and DAC1. Unlike the PWM pins, DAC0 and DAC1 are Digital to Analog
 converters, and act as true analog outputs.</p>
@@ -273,8 +275,8 @@ converters, and act as true analog outputs.</p>
 <div class="section" id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></li>
-<li><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></li>
+<li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
+<li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -290,7 +292,7 @@ converters, and act as true analog outputs.</p>
         <a href="DigitalIn.html" class="btn btn-neutral float-right" title="DigitalIn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AnalogIn.html" class="btn btn-neutral" title="AnalogIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="AnalogIn.html" class="btn btn-neutral float-left" title="AnalogIn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -299,7 +301,7 @@ converters, and act as true analog outputs.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015-2019, Plaquette.
+        &copy; Copyright 2015-2019, Plaquette
 
     </p>
   </div>
@@ -316,35 +318,16 @@ converters, and act as true analog outputs.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.2',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
