@@ -292,7 +292,7 @@ public:
   virtual bool fell() { return changeState() < 0; }
 
   /// Returns true if the value changed.
-  virtual bool changed() { changeState() == 0; }
+  virtual bool changed() { changeState() != 0; }
 
   /// Difference between current and previous value of the unit.
   virtual int8_t changeState() = 0;
