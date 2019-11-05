@@ -26,7 +26,7 @@ DigitalOut led(13);
 DigitalIn button(2); // defaults to INTERNAL_PULLUP
 
 void begin() {
-  button.smooth(); // debounce button
+  button.debounce(); // debounce button
 }
 
 void step() {

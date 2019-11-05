@@ -28,8 +28,13 @@
 #define INTERNAL_PULLUP   0x0
 #define EXTERNAL_PULLUP   0x1
 #define EXTERNAL_PULLDOWN 0x2
+
 #define ANALOG_DEFAULT    0x4
 #define ANALOG_INVERTED   0x8
+
+#define DEBOUNCE_DEFAULT       0x01
+#define DEBOUNCE_LOCK_OUT      0x02
+#define DEBOUNCE_PROMPT_DETECT 0x04
 
 namespace pq {
 
@@ -71,6 +76,58 @@ protected:
 
   // The moving average.
   MovingAverage _avg;
+};
+
+/// Superclass for components that can be debounced.
+class PqDebounceable {
+public:
+  PqDebounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
+
+  /// Apply smoothing to object.
+  virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { time(debounceTime); }
+
+  /// Remove smoothing.
+  virtual void noDebounce() { debounce(PLAQUETTE_NO_DEBOUNCE_WINDOW); }
+
+  /// Changes the debouncing window (expressed in seconds).
+  virtual void time(float seconds) { _interval = seconds; }
+
+  /// Returns the debouncing window (expressed in seconds).
+  float time() const { return _interval; }
+
+  /// Returns the debounce mode.
+  uint8_t debounceMode() const { return _debounceMode; }
+
+  /**
+   * Sets debounce mode.
+   * @param mode the debounce mode (DEBOUNCE_DEFAULT, DEBOUNCE_LOCK_OUT or DEBOUNCE_PROMPT_DETECT)
+   */
+  void debounceMode(uint8_t mode) { _debounceMode = mode; }
+
+protected:
+  // Raw read function.
+  virtual bool _isOn() = 0;
+
+  // Resets debouncing.
+  virtual void _begin();
+
+  // Performs update based on value returned by read().
+  virtual void _step();
+
+	// Returns debounced value.
+  virtual bool _debounced();
+
+  inline void _changeState();
+  inline void _setStateFlag(const uint8_t flag)    { _state |= flag; }
+  inline void _unsetStateFlag(const uint8_t flag)  { _state &= ~flag; }
+  inline void _toggleStateFlag(const uint8_t flag) { _state ^= flag; }
+  inline bool _getStateFlag(const uint8_t flag)    { return((_state & flag) != 0); }
+
+  // The moving average.
+  float _interval;
+  float _startTime;
+  uint8_t _state;
+  uint8_t _debounceMode;
 };
 
 /// A generic class representing a simple analog input.
