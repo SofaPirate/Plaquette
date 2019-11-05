@@ -30,6 +30,7 @@ void begin() {
 }
 
 void step() {
-  // Send button value to LED.
-  button >> led;
+  // Flip the LED each time the button is pressed.
+  if (button.rose())
+    led.toggle();
 }
