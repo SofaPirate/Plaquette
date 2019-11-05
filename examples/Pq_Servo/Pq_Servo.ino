@@ -4,8 +4,8 @@
 // Controls the rate of change of the servo.
 const float RATE = 0.01;
 
-// The servo-motor output.
-ServoOut out;
+// The servo-motor output on pin 9.
+ServoOut out(9);
 
 void begin() {
   // Centers the servo.
