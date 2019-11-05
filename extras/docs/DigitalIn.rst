@@ -13,6 +13,19 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 - in ``EXTERNAL_PULLUP`` mode you need to use an external pullup resistor connected to Vcc
 - in ``EXTERNAL_PULLDOWN`` mode you need to use an external pulldown resistor connected to GND
 
+Debouncing
+----------
+
+Some digital inputs such as `push-buttons <https://en.wikipedia.org/wiki/Push-button>`_ often
+generate spurious open/close transitions when pressed, due to mechanical and physical issues:
+these transitions called "bouncing" may be read as multiple presses in a very short time, fooling
+the program.
+
+The DigitalIn object features debouncing capabilities which can prevent this kind of problems. Debouncing
+can be achieved using different modes: default (```DEBOUNCE_DEFAULT```), lock-out (```DEBOUNCE_LOCK_OUT```)
+and prompt-detect (```DEBOUNCE_PROMPT_DETECT```). For more information consult the documentation
+of the `Bounce2 library <https://github.com/thomasfredericks/Bounce2>`_.
+
 |Example|
 ---------
 
@@ -23,11 +36,13 @@ The ``mode`` specifies the behavior of the component attached to the pin:
    DigitalOut led(13);
 
    void begin() {
-     button.smooth(); // debounce button
+     button.debounce(); // debounce button
    }
 
    void step() {
-     button >> led;
+     // Toggle the LED each time the button is pressed.
+     if (button.fell())
+       led.toggle();
    }
 
 
@@ -36,7 +51,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 .. doxygenclass:: DigitalIn
    :project: Plaquette
-   :members: DigitalIn, isOn, isOff, pin, mode, getInt, get, rose, fell, changed, changeState
+   :members: DigitalIn, isOn, isOff, pin, mode, getInt, get, debounce, noDebounce, rose, fell, changed, changeState
 
 |SeeAlso|
 ---------
