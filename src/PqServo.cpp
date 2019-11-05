@@ -52,6 +52,11 @@ float ServoOut::getAngle() { return round(_value*180); }
 
 ContinuousServoOut::ContinuousServoOut(uint8_t pin) : AbstractServoOut(pin) {}
 
+void ContinuousServoOut::begin() {
+	AbstractServoOut::begin();
+	stop();
+}
+
 void ContinuousServoOut::stop()
 {
 	_value = 0.5f;

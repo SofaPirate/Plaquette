@@ -62,6 +62,8 @@ class ContinuousServoOut : public AbstractServoOut {
 public:
 	ContinuousServoOut(uint8_t pin);
 
+  virtual void begin();
+
 	virtual void stop();
 	virtual void reverse();
 };
