@@ -31,6 +31,7 @@ Smoother	KEYWORD1
 Thresholder	KEYWORD1
 
 ServoOut	KEYWORD1
+ContinuousServoOut	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
