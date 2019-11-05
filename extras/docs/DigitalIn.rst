@@ -22,9 +22,9 @@ these transitions called "bouncing" may be read as multiple presses in a very sh
 the program.
 
 The DigitalIn object features debouncing capabilities which can prevent this kind of problems. Debouncing
-can be achieved using different modes: default (```DEBOUNCE_DEFAULT```), lock-out (```DEBOUNCE_LOCK_OUT```)
-and prompt-detect (```DEBOUNCE_PROMPT_DETECT```). For more information consult the documentation
-of the `Bounce2 library <https://github.com/thomasfredericks/Bounce2>`_.
+can be achieved using different modes: default (``DEBOUNCE_DEFAULT``), lock-out (``DEBOUNCE_LOCK_OUT``)
+and prompt-detect (``DEBOUNCE_PROMPT_DETECT``). For more information please refer to the documentation
+of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 
 |Example|
 ---------
@@ -41,7 +41,7 @@ of the `Bounce2 library <https://github.com/thomasfredericks/Bounce2>`_.
 
    void step() {
      // Toggle the LED each time the button is pressed.
-     if (button.fell())
+     if (button.rose())
        led.toggle();
    }
 
@@ -51,9 +51,10 @@ of the `Bounce2 library <https://github.com/thomasfredericks/Bounce2>`_.
 
 .. doxygenclass:: DigitalIn
    :project: Plaquette
-   :members: DigitalIn, isOn, isOff, pin, mode, getInt, get, debounce, noDebounce, rose, fell, changed, changeState
+   :members: DigitalIn, isOn, isOff, pin, mode, getInt, get, debounce, noDebounce, debounceMode, rose, fell, changed, changeState
 
 |SeeAlso|
 ---------
 - :doc:`AnalogIn`
 - :doc:`DigitalOut`
+- `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_
