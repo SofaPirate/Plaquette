@@ -515,7 +515,7 @@ inline PqGetter& operator>>(uint64_t value, PqGetter& getter) { return getter; }
 //}
 
 /// Superclass for pin-based components.
-class PqPinUnit : public PqUnit {
+class PqPinUnit {
 public:
   PqPinUnit(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
   virtual ~PqPinUnit() {}
