@@ -67,8 +67,8 @@ private:
   // Sampling rate (ie. how many times per seconds step() is called).
   float _sampleRate;
 
-  // // Internal use.
-  // float _secondsPerStep;
+  // Sampling period (ie. 1.0 / sampleRate()).
+  float _samplePeriod;
 
   // Whether the auto sample rate mode is activated.
   float _targetSampleRate;
@@ -130,11 +130,17 @@ public:
   void sampleRate(float sampleRate);
 
   /// Returns sample rate.
-  float sampleRate() { return _sampleRate; }
+  float sampleRate() const { return _sampleRate; }
+
+  /// Returns sample period.
+  float samplePeriod() const { return _samplePeriod; }
 
 private:
   /// Adds a component to Plaquette.
   void add(PqUnit * component);
+
+  // Internal use. Sets sample rate and sample period.
+  inline void _setSampleRate(float sampleRate);
 };
 
 /// The Plaquette singleton.
@@ -154,6 +160,9 @@ void sampleRate(float sampleRate);
 
 /// Returns sample rate.
 float sampleRate();
+
+/// Returns sample period.
+float samplePeriod();
 
 
 /**
@@ -581,6 +590,11 @@ void PlaquetteEnv::step() {
 
   // Do the pre-step.
   preStep();
+}
+
+void PlaquetteEnv::_setSampleRate(float sampleRate) {
+  _sampleRate = max(sampleRate, FLT_MIN); // cannot be zero
+  _samplePeriod = 1.0f / _sampleRate;
 }
 
 } // namespace pq

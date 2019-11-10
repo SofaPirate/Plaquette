@@ -32,7 +32,7 @@ namespace pq {
 // Singleton.
 PlaquetteEnv Plaquette;
 
-PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(FLT_MAX), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
+PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
 
 void PlaquetteEnv::preBegin() {
   // Initialize serial.
@@ -40,10 +40,11 @@ void PlaquetteEnv::preBegin() {
 
   // Initialize variables.
   _seconds = 0;
-  _sampleRate = FLT_MAX;
   _targetSampleRate = 0;
   _nSteps = 0;
   _firstRun = true;
+
+  _setSampleRate(FLT_MAX);
 
   // Initialize all components.
   for (uint8_t i=0; i<_nUnits; i++) {
@@ -93,6 +94,7 @@ void PlaquetteEnv::sampleRate(float sampleRate) {
 unsigned long nSteps() { return Plaquette.nSteps(); }
 void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
 float sampleRate() { return Plaquette.sampleRate(); }
+float samplePeriod() { return Plaquette.samplePeriod(); }
 
 PqUnit::PqUnit(PlaquetteEnv* env) {
   env->add(this);
