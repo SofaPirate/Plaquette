@@ -30,7 +30,7 @@ Chrono::Chrono() {
 void Chrono::start() {
 	// Start.
 	_startTime = seconds();
-	_offsetTime = 0;
+	_offsetTime = _elapsedTime = 0;
 	_isStarted = true;
 }
 
@@ -67,9 +67,10 @@ bool Chrono::hasPassed(float timeout, bool restartIfPassed) {
     return false;
   }
 }
+
 void Chrono::begin() {
 	// Basic reset.
-	_startTime = _offsetTime = 0;
+	_startTime = _offsetTime = _elapsedTime = 0;
 	_isStarted = false;
 }
 
