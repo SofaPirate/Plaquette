@@ -31,7 +31,7 @@ namespace pq {
  */
 class Timer : public AbstractTimer, public PqDigitalGetter {
 public:
-  Timer(float duration=1.0f);
+  Timer(float duration=0.0f);
 
   virtual bool isOn();
 };
