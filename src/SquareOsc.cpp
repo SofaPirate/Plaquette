@@ -23,7 +23,7 @@
 #include "pq_time.h"
 
 namespace pq {
-  
+
 SquareOsc::SquareOsc(float period_, float dutyCycle_) {
   period(period_);
   dutyCycle(dutyCycle_);
@@ -35,7 +35,8 @@ void SquareOsc::begin() {
 }
 
 void SquareOsc::step() {
-	_phaseTime += 1.0f / (_period * sampleRate());
+  float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
+	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate());
 	while (_phaseTime > 1) _phaseTime--; // modulo
 	// Compute next value.
 	_updateValue();
@@ -53,7 +54,8 @@ void SquareOsc::_updateValue() {
 }
 
 SquareOsc& SquareOsc::period(float period) {
-	_period = max(period, FLT_MIN);
+  if (_period != period)
+	  _period = max(period, 0);
 	return *this;
 }
 
