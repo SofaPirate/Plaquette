@@ -41,6 +41,9 @@ void AbstractTimer::duration(float duration) {
 }
 
 float AbstractTimer::progress() const {
+	if (_duration <= 0)
+		return 1.0;
+
 	// Compute progress as % of duration.
 	float prog = elapsed() / _duration;
 	prog = constrain(prog, 0, 1);
