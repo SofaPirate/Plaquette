@@ -276,7 +276,13 @@ public:
   virtual bool putOn(bool value) = 0;
 };
 
-class PqAnalogSource : public PqGetter {
+class PqMappableGetter : public PqGetter {
+public:
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
+};
+
+class PqAnalogSource : public PqMappableGetter {
 public:
   /// Constructor.
   PqAnalogSource(float init=0) : _value(init) {}

@@ -131,7 +131,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinUnit, public PqSmoothable, public PqGetter {
+class AnalogIn : public PqPinUnit, public PqSmoothable, public PqMappableGetter {
 public:
   /**
    * Constructor.

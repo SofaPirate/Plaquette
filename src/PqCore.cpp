@@ -26,6 +26,7 @@
 #include "PqCore.h"
 
 #include <float.h>
+#include "pq_map_real.h"
 
 namespace pq {
 
@@ -98,5 +99,7 @@ PqUnit::PqUnit(PlaquetteEnv* env) {
 
 bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }
 float PqUnit::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
+
+float PqMappableGetter::mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
 } // namespace pq
