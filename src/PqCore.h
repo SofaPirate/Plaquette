@@ -562,7 +562,7 @@ void PlaquetteEnv::postStep() {
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
   if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
-    _sampleRate = trueSampleRate;
+    _setSampleRate(trueSampleRate);
     _seconds = newTime;
   }
 
@@ -571,7 +571,7 @@ void PlaquetteEnv::postStep() {
     float targetTime = _seconds + 1.0f/_targetSampleRate;
     unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6);
     while (micros() < targetTimeUs); // wait
-    _sampleRate = _targetSampleRate;
+    _setSampleRate(_targetSampleRate);
     _seconds = targetTime; // not the exact "true" time but more accurate for computations
   }
 }
