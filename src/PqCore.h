@@ -115,7 +115,7 @@ public:
    * @param referenceTime determines whether the function returns the reference time or the real time
    * @return the time in seconds
    */
-  float seconds(bool referenceTime=true);
+  inline float seconds(bool referenceTime=true);
 
   /// Returns number of steps.
   unsigned long nSteps() { return _nSteps; }
@@ -596,6 +596,11 @@ void PlaquetteEnv::_setSampleRate(float sampleRate) {
   _sampleRate = max(sampleRate, FLT_MIN); // cannot be zero
   _samplePeriod = 1.0f / _sampleRate;
 }
+
+float PlaquetteEnv::seconds(bool referenceTime) {
+  return referenceTime ? _seconds : (micros() / 1e6f);
+}
+
 
 } // namespace pq
 

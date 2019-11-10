@@ -76,10 +76,6 @@ void PlaquetteEnv::add(PqUnit* component) {
   }
 }
 
-float PlaquetteEnv::seconds(bool referenceTime) {
-  return referenceTime ? _seconds : (micros() / 1e6f);
-}
-
 bool PlaquetteEnv::autoSampleRate() { return (_targetSampleRate <= 0); }
 
 void PlaquetteEnv::enableAutoSampleRate() {
