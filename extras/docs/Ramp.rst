@@ -24,7 +24,7 @@ called, followed later by ``start(3.0, 1.0)``:
 
 .. code-block:: c++
 
-   Ramp myRamp(0.5); // the ramp is initalized at zero (0)
+   Ramp myRamp(0.0); // the ramp is initalized at zero (0)
 
    StreamOut serialOut(Serial);
 
