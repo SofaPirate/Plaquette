@@ -25,7 +25,8 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
    void step() {
      // The LED value is changed randomly by a tiny amount (random walk).
-     (led.get() + randomFloat(-0.01, 0.01)) >> led;
+     // Mutliplying by samplePeriod() makes sure the rate of change stays stable.
+     (led + randomFloat(-0.1, 0.1) * samplePeriod()) >> led;
    }
 
 |Reference|

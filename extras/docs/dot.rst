@@ -11,21 +11,21 @@ information encapsulated within an object.
 |Example|
 ---------
 
-.. code-block:: c++
+Switches LED on every 4 seconds.
 
-   int i;
+.. code-block:: c++
 
    DigitalOut led(13);
 
    void begin() {
-     i = 0;
-     led.on();
+     led.off();
    }
 
    void step() {
-     i++;
-     if (i % 1000 == 0)
-       led.toggle();
+     if (round(seconds()) % 4 == 0)
+       led.on();
+    else
+       led.off();
    }
 
 |Syntax|

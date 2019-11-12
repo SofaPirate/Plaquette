@@ -16,7 +16,8 @@ Smooth a sensor over time.
 
    AnalogIn sensor(A0);
 
-   Smoother smoother(0.01);
+   // Smooths over time window of 10 seconds.
+   Smoother smoother(10.0);
 
    StreamOut serialOut(Serial);
 

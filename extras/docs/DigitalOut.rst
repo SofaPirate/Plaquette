@@ -15,9 +15,11 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 |Example|
 -------------
 
+Switches off an LED connected in "sink" mode after a timeout.
+
 .. code-block:: c++
 
-   DigitalOut led(13, SOURCE);
+   DigitalOut led(13, SINK);
 
    void begin() {
      led.on();
