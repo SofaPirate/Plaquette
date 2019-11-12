@@ -33,10 +33,13 @@ namespace pq {
 class MovingAverage {
 protected:
   // The smoothing window (in seconds).
-  float _smoothTime; // to save space: the sign of alpha is used to represent "started" status
+  float _smoothTime;
 
   // The current value of the exponential moving average.
   float _value;
+
+  // Is the moving average started or not.
+  bool _isStarted;
 
 public:
   /**

@@ -76,16 +76,14 @@ float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
     return applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 }
 
-bool MovingAverage::isStarted() const {
-  return _smoothTime >= 0;
-}
+bool MovingAverage::isStarted() const { return _isStarted; }
 
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
   return (runningValue -= alpha * (runningValue - newValue));
 }
 
 void MovingAverage::_setStarted(bool start) {
-  _smoothTime = (start ? +1 : -1) * abs(_smoothTime);
+  _isStarted = start;
 }
 
 } // namespace pq
