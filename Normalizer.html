@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Normalizer &mdash; Plaquette 0.2.1 documentation</title>
+  <title>Normalizer &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -182,6 +182,7 @@ normal distribution (target mean and variance).</p>
 <p>This normalizer computes the mean and variance over all the data it receives.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Uses a normalizer to analyze input sensor values and detect extreme values.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AnalogOut &mdash; Plaquette 0.2.1 documentation</title>
+  <title>AnalogOut &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -194,7 +194,8 @@
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// The LED value is changed randomly by a tiny amount (random walk).</span>
-  <span class="p">(</span><span class="n">led</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">+</span> <span class="n">randomFloat</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="c1">// Mutliplying by samplePeriod() makes sure the rate of change stays stable.</span>
+  <span class="p">(</span><span class="n">led</span> <span class="o">+</span> <span class="n">randomFloat</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">samplePeriod</span><span class="p">())</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -203,7 +204,7 @@
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv49AnalogOut">
-<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><em class="property">class </em><code class="sig-name descname">AnalogOut</code> : <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqAnalogUnit<a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><em class="property">class </em><code class="sig-name descname">AnalogOut</code> : <em class="property">public</em> PqAnalogUnit, <em class="property">public</em> PqPinUnit<a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A generic class representing a simple PWM output. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
@@ -234,6 +235,12 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv4N12PqAnalogUnit3getEv">
+<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv4NK9PqPinUnit3pinEv">
 <span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
@@ -243,12 +250,6 @@
 <dt id="_CPPv4NK9PqPinUnit4modeEv">
 <span id="_CPPv3NK9PqPinUnit4modeEv"></span><span id="_CPPv2NK9PqPinUnit4modeEv"></span><span id="PqPinUnit::modeC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1ac150f62f141f2d3eeab58fc70e65628a"></span>uint8_t <code class="sig-name descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns the mode of the component. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4N12PqAnalogUnit3getEv">
-<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
 </dd></dl>
 
 </div>

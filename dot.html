@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>. (dot) &mdash; Plaquette 0.2.1 documentation</title>
+  <title>. (dot) &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -180,19 +180,18 @@ as specified in the class definition. The dot operator directs the program to th
 information encapsulated within an object.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-
-<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<p>Switches LED on every 4 seconds.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+  <span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">seconds</span><span class="p">())</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+ <span class="k">else</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DigitalOut &mdash; Plaquette 0.2.1 documentation</title>
+  <title>DigitalOut &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -186,7 +186,8 @@
 </ul>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">);</span>
+<p>Switches off an LED connected in “sink” mode after a timeout.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">SINK</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
@@ -204,7 +205,7 @@
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv410DigitalOut">
-<span id="_CPPv310DigitalOut"></span><span id="_CPPv210DigitalOut"></span><span id="DigitalOut"></span><span class="target" id="classpq_1_1_digital_out"></span><em class="property">class </em><code class="sig-name descname">DigitalOut</code> : <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqDigitalUnit<a class="headerlink" href="#_CPPv410DigitalOut" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv310DigitalOut"></span><span id="_CPPv210DigitalOut"></span><span id="DigitalOut"></span><span class="target" id="classpq_1_1_digital_out"></span><em class="property">class </em><code class="sig-name descname">DigitalOut</code> : <em class="property">public</em> PqDigitalUnit, <em class="property">public</em> PqPinUnit<a class="headerlink" href="#_CPPv410DigitalOut" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A generic class representing a simple digital output. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
@@ -220,18 +221,6 @@
 </dd>
 </dl>
 </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4NK9PqPinUnit3pinEv">
-<span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
-<dd><p>Returns the pin this component is attached to. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4NK9PqPinUnit4modeEv">
-<span id="_CPPv3NK9PqPinUnit4modeEv"></span><span id="_CPPv2NK9PqPinUnit4modeEv"></span><span id="PqPinUnit::modeC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1ac150f62f141f2d3eeab58fc70e65628a"></span>uint8_t <code class="sig-name descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
-<dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
 <dl class="function">
@@ -289,6 +278,18 @@
 </dd>
 </dl>
 </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK9PqPinUnit3pinEv">
+<span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dd><p>Returns the pin this component is attached to. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK9PqPinUnit4modeEv">
+<span id="_CPPv3NK9PqPinUnit4modeEv"></span><span id="_CPPv2NK9PqPinUnit4modeEv"></span><span id="PqPinUnit::modeC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1ac150f62f141f2d3eeab58fc70e65628a"></span>uint8_t <code class="sig-name descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
 </div>

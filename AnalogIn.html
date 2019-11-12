@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AnalogIn &mdash; Plaquette 0.2.1 documentation</title>
+  <title>AnalogIn &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -186,6 +186,7 @@
 </ul>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Control an LED using a potentiometer.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span> <span class="nf">potentiometer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
@@ -203,7 +204,7 @@
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv48AnalogIn">
-<span id="_CPPv38AnalogIn"></span><span id="_CPPv28AnalogIn"></span><span id="AnalogIn"></span><span class="target" id="classpq_1_1_analog_in"></span><em class="property">class </em><code class="sig-name descname">AnalogIn</code> : <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqSmoothable, <em class="property">public</em> PqGetter<a class="headerlink" href="#_CPPv48AnalogIn" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv38AnalogIn"></span><span id="_CPPv28AnalogIn"></span><span id="AnalogIn"></span><span class="target" id="classpq_1_1_analog_in"></span><em class="property">class </em><code class="sig-name descname">AnalogIn</code> : <em class="property">public</em> PqMappable, <em class="property">public</em> PqPinUnit, <em class="property">public</em> PqSmoothable<a class="headerlink" href="#_CPPv48AnalogIn" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A generic class representing a simple analog input. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
@@ -228,6 +229,12 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv4N10PqMappable5mapToEff">
+<span id="_CPPv3N10PqMappable5mapToEff"></span><span id="_CPPv2N10PqMappable5mapToEff"></span><span id="PqMappable::mapTo__float.float"></span><span class="target" id="classpq_1_1_pq_mappable_1a639626ba101038a0cef5d0d756b47891"></span>float <code class="sig-name descname">mapTo</code><span class="sig-paren">(</span>float <em>toLow</em>, float <em>toHigh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PqMappable5mapToEff" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Maps value to new range. </p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv4NK9PqPinUnit3pinEv">
 <span id="_CPPv3NK9PqPinUnit3pinEv"></span><span id="_CPPv2NK9PqPinUnit3pinEv"></span><span id="PqPinUnit::pinC"></span><span class="target" id="classpq_1_1_pq_pin_unit_1a05ec866c165d82ec538152b6ec93da7c"></span>uint8_t <code class="sig-name descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK9PqPinUnit3pinEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
@@ -249,18 +256,6 @@
 <dt id="_CPPv4N12PqSmoothable8noSmoothEv">
 <span id="_CPPv3N12PqSmoothable8noSmoothEv"></span><span id="_CPPv2N12PqSmoothable8noSmoothEv"></span><span id="PqSmoothable::noSmooth"></span><span class="target" id="classpq_1_1_pq_smoothable_1afd380ec541c91e7add4839d7cdb85d40"></span><em class="property">virtual</em> void <code class="sig-name descname">noSmooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12PqSmoothable8noSmoothEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Remove smoothing. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4N12PqSmoothable4timeEf">
-<span id="_CPPv3N12PqSmoothable4timeEf"></span><span id="_CPPv2N12PqSmoothable4timeEf"></span><span id="PqSmoothable::time__float"></span><span class="target" id="classpq_1_1_pq_smoothable_1aafe187b4a7eb78e6b1d3df339a4b2e89"></span><em class="property">virtual</em> void <code class="sig-name descname">time</code><span class="sig-paren">(</span>float <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12PqSmoothable4timeEf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Changes the smoothing window (expressed in seconds). </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4NK12PqSmoothable4timeEv">
-<span id="_CPPv3NK12PqSmoothable4timeEv"></span><span id="_CPPv2NK12PqSmoothable4timeEv"></span><span id="PqSmoothable::timeC"></span><span class="target" id="classpq_1_1_pq_smoothable_1a9de4c42f18500fa2e146491f42497905"></span>float <code class="sig-name descname">time</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK12PqSmoothable4timeEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Returns the smoothing window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="function">

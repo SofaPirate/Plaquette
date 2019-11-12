@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Timer &mdash; Plaquette 0.2.1 documentation</title>
+  <title>Timer &mdash; Plaquette 0.2.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.1
+                0.2.2
               </div>
             
           
@@ -180,6 +180,7 @@ resumed.</p>
 which it becomes “on”.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Uses a timer to change the state of built-in LED at random periods of time.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Timer</span> <span class="nf">myTimer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span> <span class="c1">// a chronometer with 2 seconds duration</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
@@ -206,7 +207,7 @@ which it becomes “on”.</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="_CPPv45Timer">
-<span id="_CPPv35Timer"></span><span id="_CPPv25Timer"></span><span id="Timer"></span><span class="target" id="classpq_1_1_timer"></span><em class="property">class </em><code class="sig-name descname">Timer</code> : <em class="property">public</em> AbstractTimer, <em class="property">public</em> PqDigitalGetter<a class="headerlink" href="#_CPPv45Timer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv35Timer"></span><span id="_CPPv25Timer"></span><span id="Timer"></span><span class="target" id="classpq_1_1_timer"></span><em class="property">class </em><code class="sig-name descname">Timer</code> : <em class="property">public</em> PqDigitalGetter, <em class="property">public</em> AbstractTimer<a class="headerlink" href="#_CPPv45Timer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Chronometer class which becomes “on” after a given duration. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
@@ -214,6 +215,24 @@ which it becomes “on”.</p>
 <dt id="_CPPv4N5Timer4isOnEv">
 <span id="_CPPv3N5Timer4isOnEv"></span><span id="_CPPv2N5Timer4isOnEv"></span><span id="Timer::isOn"></span><span class="target" id="classpq_1_1_timer_1a4223dcced13cf6b29a1599375d7125c2"></span>bool <code class="sig-name descname">isOn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer4isOnEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns true iff the input is “on”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter5isOffEv">
+<span id="_CPPv3N15PqDigitalGetter5isOffEv"></span><span id="_CPPv2N15PqDigitalGetter5isOffEv"></span><span id="PqDigitalGetter::isOff"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a465f224ebd0e6df77e4066831245d9e8"></span><em class="property">virtual</em> bool <code class="sig-name descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter6getIntEv">
+<span id="_CPPv3N15PqDigitalGetter6getIntEv"></span><span id="_CPPv2N15PqDigitalGetter6getIntEv"></span><span id="PqDigitalGetter::getInt"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a028be252d96ce76e94985c650d68603e"></span><em class="property">virtual</em> int <code class="sig-name descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value as integer (0 or 1). </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N15PqDigitalGetter3getEv">
+<span id="_CPPv3N15PqDigitalGetter3getEv"></span><span id="_CPPv2N15PqDigitalGetter3getEv"></span><span id="PqDigitalGetter::get"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a2d2f50375bc0e41ae970369e53abcab9"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Returns value as float (either 0.0 or 1.0). </p>
 </dd></dl>
 
 <dl class="function">
@@ -256,24 +275,6 @@ which it becomes “on”.</p>
 <dt id="_CPPv4NK6Chrono9isStartedEv">
 <span id="_CPPv3NK6Chrono9isStartedEv"></span><span id="_CPPv2NK6Chrono9isStartedEv"></span><span id="Chrono::isStartedC"></span><span class="target" id="classpq_1_1_chrono_1a0e90244b09f8d4ebcff8cd489e17328f"></span>bool <code class="sig-name descname">isStarted</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
 <dd><p>Returns true iff the chronometer is currently running. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4N15PqDigitalGetter5isOffEv">
-<span id="_CPPv3N15PqDigitalGetter5isOffEv"></span><span id="_CPPv2N15PqDigitalGetter5isOffEv"></span><span id="PqDigitalGetter::isOff"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a465f224ebd0e6df77e4066831245d9e8"></span><em class="property">virtual</em> bool <code class="sig-name descname">isOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Returns true iff the input is “off”. </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4N15PqDigitalGetter6getIntEv">
-<span id="_CPPv3N15PqDigitalGetter6getIntEv"></span><span id="_CPPv2N15PqDigitalGetter6getIntEv"></span><span id="PqDigitalGetter::getInt"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a028be252d96ce76e94985c650d68603e"></span><em class="property">virtual</em> int <code class="sig-name descname">getInt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Returns value as integer (0 or 1). </p>
-</dd></dl>
-
-<dl class="function">
-<dt id="_CPPv4N15PqDigitalGetter3getEv">
-<span id="_CPPv3N15PqDigitalGetter3getEv"></span><span id="_CPPv2N15PqDigitalGetter3getEv"></span><span id="PqDigitalGetter::get"></span><span class="target" id="classpq_1_1_pq_digital_getter_1a2d2f50375bc0e41ae970369e53abcab9"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Returns value as float (either 0.0 or 1.0). </p>
 </dd></dl>
 
 </div>
