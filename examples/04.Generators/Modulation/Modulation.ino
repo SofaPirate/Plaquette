@@ -2,7 +2,8 @@
  * Modulation
  *
  * Uses a low-frequency oscillator (LFO) to control the frequency of another
- * oscillator to pulse an LED.
+ * oscillator.
+ * Sends values to the serial output: best visualized using the Arduino Serial Plotter.
  *
  * Created in 2019 by Sofian Audry
  *
@@ -23,6 +24,6 @@ StreamOut out;
 void begin() {}
 
 void step() {
-  // Modulate oscillator frequency between 1 to 100 Hz.
-  osc.frequency( lfo.mapTo(1, 100) ) >> out;
+  // Modulate oscillator frequency between 1 to 20 Hz.
+  osc.frequency( mapFrom01(lfo, 1, 20) ) >> out;
 }

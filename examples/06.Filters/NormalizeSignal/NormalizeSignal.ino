@@ -14,7 +14,7 @@
 #include <Plaquette.h>
 
 // The analog input.
-AnalogIn in; // defaults on pin A0
+AnalogIn in(A0); // defaults on pin A0
 
 // The normalization unit.
 // NOTE: Alternatively you can use an AdaptiveNormalizer.

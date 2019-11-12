@@ -25,12 +25,15 @@ SineOsc oscillator(1.0);
 // Sine oscillator with period of 10 sec used to modulate oscillator.
 SineOsc modulator(10.0);
 
+// Default square oscillator.
+SquareOsc baseOscillator(2.0);
+
 void begin() {}
 
 void step() {
   // if button is pressed OR if input signal is big enough then use first oscillator
   if (button || in > 0.2)
-    0 >> led; // another way to write "led.off()"
+    baseOscillator >> led;
   // else modulate by changing the period between [0.5,2.5]
   else
     oscillator.period(0.5 + 2*modulator) >> led;

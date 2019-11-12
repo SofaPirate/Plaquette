@@ -2,6 +2,7 @@
  * ZigZag
  *
  * Sequentially ramps through different values.
+ * Sends values to the serial output: best visualized using the Arduino Serial Plotter.
  *
  * Created in 2019 by Sofian Audry
  *
