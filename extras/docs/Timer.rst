@@ -12,6 +12,8 @@ which it becomes "on".
 |Example|
 ---------
 
+Uses a timer to change the state of built-in LED at random periods of time.
+
 .. code-block:: c++
 
    Timer myTimer(2.0); // a chronometer with 2 seconds duration

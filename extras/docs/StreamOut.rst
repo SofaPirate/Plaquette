@@ -8,6 +8,8 @@ An output unit that transmits values through a stream -- for example, the `Ardui
 |Example|
 ---------
 
+Outputs the number of seconds to serial.
+
 .. code-block:: c++
 
    StreamOut serialOut(Serial);

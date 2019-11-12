@@ -12,6 +12,8 @@ the traditional sine wave).
 |Example|
 ---------
 
+Pulses an LED.
+
 .. code-block:: c++
 
    AnalogOut led(9);

@@ -8,6 +8,9 @@ An input unit that can receive values transmitted through a stream -- for exampl
 |Example|
 ---------
 
+Controls the value of a LED using serial. Try opening the serial monitor and
+sending values between 0 and 1.
+
 .. code-block:: c++
 
    StreamIn serialIn(Serial);

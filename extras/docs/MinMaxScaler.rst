@@ -13,6 +13,9 @@ is mapped to 1.
 |Example|
 ---------
 
+Reacts to high input values by activating an output LED. Scaler is used to
+automatically adapt to incoming sensor values.
+
 .. code-block:: c++
 
    AnalogIn sensor(A0);

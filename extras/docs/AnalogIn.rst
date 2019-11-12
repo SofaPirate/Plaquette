@@ -15,6 +15,8 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 |Example|
 ---------
 
+Control an LED using a potentiometer.
+
 .. code-block:: c++
 
    AnalogIn potentiometer(A0);

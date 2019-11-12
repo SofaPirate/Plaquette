@@ -22,6 +22,8 @@ called, followed later by ``start(3.0, 1.0)``:
 |Example|
 ---------
 
+Sequentially ramps through different values.
+
 .. code-block:: c++
 
    Ramp myRamp(0.0); // the ramp is initalized at zero (0)

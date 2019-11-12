@@ -17,8 +17,8 @@ cycle (period) during which the wave is "on".
 |Example|
 ---------
 
-This code will make the built-in LED blink with a period of 4 seconds. Because the
-duty cycle is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
+Makes the built-in LED blink with a period of 4 seconds. Because the duty cycle
+is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. code-block:: c++
 

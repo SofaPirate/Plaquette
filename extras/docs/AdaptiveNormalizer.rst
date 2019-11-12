@@ -14,6 +14,8 @@ Therefore, it adapts over time by giving more importance to the most recently se
 |Example|
 ---------
 
+Uses an adaptive normalizer to analyze input sensor values and detect extreme values.
+
 .. code-block:: c++
 
    AnalogIn sensor(A0);

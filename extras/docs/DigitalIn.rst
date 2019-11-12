@@ -29,6 +29,9 @@ of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 |Example|
 ---------
 
+Turns on and off a light emitting diode (LED) connected to digital pin 13, when
+pressing a pushbutton attached to digital pin 2.
+
 .. code-block:: c++
 
    DigitalIn button(2);

@@ -13,6 +13,8 @@ This normalizer computes the mean and variance over all the data it receives.
 |Example|
 ---------
 
+Uses a normalizer to analyze input sensor values and detect extreme values.
+
 .. code-block:: c++
 
    AnalogIn sensor(A0);

@@ -22,7 +22,7 @@ of *triangle* waves.
 |Example|
 ---------
 
-This code controls a set of traffic lights that go: red, yellow, green, red, yellow,
+Controls a set of traffic lights that go: red, yellow, green, red, yellow,
 green, and so on. It uses a sawtooth to iterate through these three states.
 
 .. code-block:: c++

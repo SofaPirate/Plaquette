@@ -10,6 +10,8 @@ Smooths the incoming signal by removing fast variations and noise (high frequenc
 |Example|
 ---------
 
+Smooth a sensor over time.
+
 .. code-block:: c++
 
    AnalogIn sensor(A0);
