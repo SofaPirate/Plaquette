@@ -58,8 +58,7 @@ class PqUnit;
 class PlaquetteEnv {
   friend class PqUnit;
 
-public:
-//private:
+private:
   // Used to keep track of units.
   PqUnit* _units[PLAQUETTE_MAX_UNITS];
   uint8_t _nUnits;
@@ -79,10 +78,7 @@ public:
   // Number of steps accomplished.
   unsigned long _nSteps;
 
-  // 0 = constructed
-  // 1 = first run
-  // 2 = rest
-  uint8_t _state;
+  bool _firstRun;
 
 public:
   PlaquetteEnv();
@@ -220,12 +216,12 @@ private:
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
   virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
 
-  // // Prevents assignation operations by making them private.
-  // PqGetter& operator=(bool);
-  // PqGetter& operator=(int);
-  // PqGetter& operator=(float);
-  // PqGetter& operator=(PqGetter&);
-  // PqGetter(const PqGetter&);
+  // Prevents assignation operations by making them private.
+  PqGetter& operator=(bool);
+  PqGetter& operator=(int);
+  PqGetter& operator=(float);
+  PqGetter& operator=(PqGetter&);
+  PqGetter(const PqGetter&);
 };
 
 /// A generic class representing a simple filtering unit or sink.
@@ -583,10 +579,6 @@ public:
 
 #include <float.h>
 
-#define _PLAQUETTE_ENV_STATE_INIT      0
-#define _PLAQUETTE_ENV_STATE_FIRST_RUN 1
-#define _PLAQUETTE_ENV_STATE_RUNNING   2
-
 void PlaquetteEnv::preStep() {
   // Update every component.
   for (uint8_t i=0; i<_nUnits; i++)
@@ -622,9 +614,9 @@ void PlaquetteEnv::begin() {
 }
 
 void PlaquetteEnv::step() {
-  if (_state == _PLAQUETTE_ENV_STATE_FIRST_RUN) {
+  if (_firstRun) {
     postBegin();
-    _state = _PLAQUETTE_ENV_STATE_RUNNING;
+    _firstRun = false;
   }
   else
     postStep();

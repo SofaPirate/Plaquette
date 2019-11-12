@@ -33,7 +33,7 @@ namespace pq {
 // Singleton.
 PlaquetteEnv Plaquette;
 
-PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _state(_PLAQUETTE_ENV_STATE_INIT) {}
+PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
 
 void PlaquetteEnv::preBegin() {
   // Initialize serial.
@@ -43,7 +43,7 @@ void PlaquetteEnv::preBegin() {
   _seconds = 0;
   _targetSampleRate = 0;
   _nSteps = 0;
-  _state = _PLAQUETTE_ENV_STATE_FIRST_RUN;
+  _firstRun = true;
 
   _setSampleRate(FLT_MAX);
 
@@ -54,24 +54,20 @@ void PlaquetteEnv::preBegin() {
 }
 
 void PlaquetteEnv::postBegin() {
-  _nSteps = 0;
   // Start timer.
   _seconds = seconds(false);
 }
 
 void PlaquetteEnv::end() {
-  if (_state == _PLAQUETTE_ENV_STATE_FIRST_RUN) {
+  if (_firstRun) {
     postBegin();
-    _state = _PLAQUETTE_ENV_STATE_RUNNING;
+    _firstRun = false;
   }
   else
     postStep();
 }
 
 void PlaquetteEnv::add(PqUnit* component) {
-  if (_state != _PLAQUETTE_ENV_STATE_INIT)
-    return; // cannot add after begin
-
   for (uint8_t i=0; i<_nUnits; i++) {
 		if (_units[i] == component)
 			return; // do not add existing component
