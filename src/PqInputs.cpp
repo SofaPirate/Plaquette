@@ -26,10 +26,11 @@ namespace pq {
 PqSmoothable::PqSmoothable(float smoothTime) : _avg(smoothTime) {}
 
 void PqSmoothable::_begin() {
+  _avg.reset();
 }
 
 void PqSmoothable::_step() {
-  _avg.update( _read(), _avg.alpha(sampleRate()) );
+  _avg.update( _read(), _avg.alpha(sampleRate()), true );
 }
 
 
