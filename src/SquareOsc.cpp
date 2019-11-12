@@ -24,7 +24,7 @@
 
 namespace pq {
 
-SquareOsc::SquareOsc(float period_, float dutyCycle_) {
+SquareOsc::SquareOsc(float period_, float dutyCycle_) : PqAnalogSource() {
   period(period_);
   dutyCycle(dutyCycle_);
 	amplitude(1.0f);

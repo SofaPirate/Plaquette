@@ -23,12 +23,12 @@
 namespace pq {
 
 Thresholder::Thresholder(float threshold, uint8_t mode)
-  : PqPutter() {
+  : PqDigitalGetter(), PqPutter() {
 			_init(threshold, mode, threshold);
 		}
 
 Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
-	: PqPutter() {
+	: PqDigitalGetter(), PqPutter() {
 			_init(threshold, mode, resetThreshold);
 		}
 

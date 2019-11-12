@@ -22,7 +22,7 @@
 
 namespace pq {
 
-Timer::Timer(float duration_) : AbstractTimer(duration_) {}
+Timer::Timer(float duration_) : PqDigitalGetter(), AbstractTimer(duration_) {}
 
 bool Timer::isOn() { return isStarted() && isComplete(); }
 

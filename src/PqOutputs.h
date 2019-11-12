@@ -30,7 +30,7 @@ namespace pq {
 #define SINK   0x1
 
 /// A generic class representing a simple PWM output.
-class AnalogOut : public PqPinUnit, public PqAnalogUnit {
+class AnalogOut : public PqAnalogUnit, public PqPinUnit {
 public:
   /**
    * Constructor.
@@ -48,7 +48,7 @@ public:
 };
 
 /// A generic class representing a simple digital output.
-class DigitalOut : public PqPinUnit, public PqDigitalUnit {
+class DigitalOut : public PqDigitalUnit, public PqPinUnit {
 public:
   /**
    * Constructor.

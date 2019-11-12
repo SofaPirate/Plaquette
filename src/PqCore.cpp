@@ -93,13 +93,14 @@ void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 
-PqUnit::PqUnit(PlaquetteEnv* env) {
-  env->add(this);
+PqUnit::PqUnit() {
+  Plaquette.add(this);
 }
 
 bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }
 float PqUnit::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
 
-float PqMappableGetter::mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
+float PqMappable::mapTo(float toLow, float toHigh) { return _map(get(), toLow, toHigh); }
+float PqMappable::_map(float value, float toLow, float toHigh) { return mapFrom01(value, toLow, toHigh); }
 
 } // namespace pq

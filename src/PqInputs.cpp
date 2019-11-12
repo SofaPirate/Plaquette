@@ -119,7 +119,7 @@ void PqDebounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode)
+  : PqMappable(), PqPinUnit(pin, mode), PqSmoothable()
 {}
 
 #ifdef ESP8266
@@ -146,7 +146,7 @@ void AnalogIn::step() {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqPinUnit(pin, mode), PqDigitalSource(), _changeState(0)
+  : PqDigitalSource(), PqPinUnit(pin, mode), PqDebounceable(), _changeState(0)
 {}
 
 bool DigitalIn::_isOn() {

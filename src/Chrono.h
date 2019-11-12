@@ -25,8 +25,9 @@
 
 namespace pq {
 
-class Chrono : virtual public PqUnit {
+class Chrono : public PqUnit {
 public:
+  /// Constructor.
   Chrono();
 
   /// Starts/restarts the chronometer.

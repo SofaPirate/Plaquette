@@ -23,7 +23,7 @@
 
 namespace pq {
 
-Chrono::Chrono() {
+Chrono::Chrono() : PqUnit() {
 	begin();
 }
 

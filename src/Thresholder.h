@@ -42,14 +42,14 @@ namespace pq {
  * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only
  * used in the FALLING and RISING modes, otherwise it is ignored.
  */
-class Thresholder : public PqPutter, public PqDigitalGetter {
+class Thresholder : public PqDigitalGetter, public PqPutter {
 public:
   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
   Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
 
   virtual float get() { return PqDigitalGetter::get(); }
-  
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit

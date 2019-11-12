@@ -22,7 +22,7 @@
 
 namespace pq {
 
-AbstractTimer::AbstractTimer(float duration_) {
+AbstractTimer::AbstractTimer(float duration_) : Chrono() {
 	duration(duration_);
 }
 

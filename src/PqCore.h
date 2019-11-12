@@ -182,7 +182,13 @@ public:
 	static float digitalToAnalog(bool b);
 
 protected:
-  PqUnit(PlaquetteEnv* env=&Plaquette);
+  /** Class constructor.
+   * The parameter addUnit specifies whether we should add the unit to the
+   * Plaquette environment. Important to use with multiple inheritance to avoid
+   * adding the same instance twice. See how it is used for example in the
+   * PqDigitalPutter constructor below.
+   */
+  PqUnit();
   virtual ~PqUnit() {}
 
 protected:
@@ -201,7 +207,8 @@ public:
   operator float() { return get(); }
 
 protected:
-  PqGetter() {}
+  /// Constructor.
+  PqGetter() : PqUnit() {}
 
 private:
   /// Operator that allows usage in conditional expressions.
@@ -220,6 +227,9 @@ private:
 /// A generic class representing a simple filtering unit or sink.
 class PqPutter : public PqGetter {
 public:
+  /// Constructor.
+  PqPutter() : PqGetter() {}
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit
@@ -231,6 +241,9 @@ public:
 /// A generic class representing a simple source.
 class PqDigitalGetter : public PqGetter {
 public:
+  /// Constructor.
+  PqDigitalGetter() : PqGetter() {}
+
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
 
@@ -253,6 +266,9 @@ public:
 /// A generic class representing a simple source.
 class PqDigitalPutter : public PqDigitalGetter, public PqPutter {
 public:
+  /// Constructor.
+  PqDigitalPutter() : PqDigitalGetter(), PqPutter() {}
+
   /// Sets output to "on".
   virtual bool on() { return putOn(true); }
 
@@ -276,16 +292,25 @@ public:
   virtual bool putOn(bool value) = 0;
 };
 
-class PqMappableGetter : public PqGetter {
-public:
-  /// Maps value to new range.
-  virtual float mapTo(float toLow, float toHigh);
-};
-
-class PqAnalogSource : public PqMappableGetter {
+class PqMappable : public PqGetter {
 public:
   /// Constructor.
-  PqAnalogSource(float init=0) : _value(init) {}
+  PqMappable() : PqGetter() {}
+  virtual ~PqMappable() {}
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
+
+protected:
+  // This is the function that needs to be overriden by subclasses.
+  virtual float _map(float value, float toLow, float toHigh);
+};
+
+class PqAnalogSource : public PqGetter {
+public:
+  /// Constructor.
+  PqAnalogSource(float init=0.0f) : PqGetter(), _value(init) {}
+  virtual ~PqAnalogSource() {}
 
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return _value; }
@@ -297,7 +322,7 @@ protected:
 class PqDigitalSource : public PqDigitalGetter {
 public:
   /// Constructor.
-  PqDigitalSource(bool init=false) : _onValue(init) {}
+  PqDigitalSource(bool init=false) : PqDigitalGetter(), _onValue(init) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
@@ -321,7 +346,7 @@ protected:
 class PqAnalogUnit : public PqAnalogSource, public PqPutter {
 public:
   /// Constructor.
-  PqAnalogUnit(float init=0) : PqAnalogSource(init) {}
+  PqAnalogUnit(float init=0.0f) : PqAnalogSource(init), PqPutter() {}
 
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return PqAnalogSource::get(); }
@@ -337,7 +362,7 @@ public:
 class PqDigitalUnit : public PqDigitalSource, public PqDigitalPutter {
 public:
   /// Constructor.
-  PqDigitalUnit(bool init=false) : PqDigitalSource(init) {}
+  PqDigitalUnit(bool init=false) : PqDigitalSource(init), PqDigitalPutter() {}
 
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return PqDigitalSource::get(); }

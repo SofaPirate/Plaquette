@@ -27,7 +27,7 @@
 namespace pq {
 
 class AbstractTimer : public Chrono {
-public:
+protected:
   AbstractTimer(float duration=0.0f);
 
 public:

@@ -131,7 +131,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqPinUnit, public PqSmoothable, public PqMappableGetter {
+class AnalogIn : public PqMappable, public PqPinUnit, public PqSmoothable {
 public:
   /**
    * Constructor.
@@ -151,7 +151,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqPinUnit, public PqDebounceable, public PqDigitalSource {
+class DigitalIn : public PqDigitalSource, public PqPinUnit, public PqDebounceable {
 public:
   /**
    * Constructor.
