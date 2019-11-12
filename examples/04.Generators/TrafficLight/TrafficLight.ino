@@ -9,6 +9,7 @@
  *
  * This example code is in the public domain.
  */
+ #include <Plaquette.h>
 
 // The three LEDs used for the lights.
 DigitalOut red(10);
@@ -24,7 +25,7 @@ void begin() {
 
 void step() {
   // Shut down all lights.
-  0 >> led >> yellow >> green;
+  0 >> red >> yellow >> green;
   // Switch on appropriate LED.
   if (osc < 0.4)
     red.on();
