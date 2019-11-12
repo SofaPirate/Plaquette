@@ -229,6 +229,7 @@ Gemfile.lock
 
 # Other
 TODO
+trash
 
 # Images
 *.jpg
@@ -236,3 +237,4 @@ TODO
 *.png
 *.gif
 *.svg
+
