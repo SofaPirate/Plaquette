@@ -89,6 +89,12 @@ public:
   /// Remove smoothing.
   virtual void noDebounce() { debounce(PLAQUETTE_NO_DEBOUNCE_WINDOW); }
 
+  /// Deprecated. Left for backwards compatibility.
+  virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { debounce(smoothTime); }
+
+  /// Remove smoothing.
+  virtual void noSmooth() { noDebounce(); }
+
   /// Changes the debouncing window (expressed in seconds).
   virtual void time(float seconds) { _interval = seconds; }
 
