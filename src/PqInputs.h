@@ -164,7 +164,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN)
    */
-  DigitalIn(uint8_t pin, uint8_t mode=INTERNAL_PULLUP);
+  DigitalIn(uint8_t pin=0, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 
   /// Difference between current and previous value of the unit.
