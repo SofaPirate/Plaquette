@@ -27,9 +27,11 @@ green, and so on. It uses a sawtooth to iterate through these three states.
 
 .. code-block:: c++
 
-   DigitalOut red(10);
+   #include <Plaquette.h>
+
+   DigitalOut green(10);
    DigitalOut yellow(11);
-   DigitalOut green(12);
+   DigitalOut red(12);
 
    TriOsc osc(10.0);
 
@@ -42,11 +44,11 @@ green, and so on. It uses a sawtooth to iterate through these three states.
      0 >> led >> yellow >> green;
      // Switch appropriate LED.
      if (osc < 0.4)
-       red.on();
+       green.on();
      else if (osc < 0.6)
        yellow.on();
      else
-       green.on();
+       red.on();
    }
 
 .. doxygenclass:: TriOsc

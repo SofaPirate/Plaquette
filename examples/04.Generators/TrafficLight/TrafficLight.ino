@@ -12,9 +12,9 @@
  #include <Plaquette.h>
 
 // The three LEDs used for the lights.
-DigitalOut red(10);
+DigitalOut green(10);
 DigitalOut yellow(11);
-DigitalOut green(12);
+DigitalOut red(12);
 
 // The triangle oscillator.
 TriOsc osc(10.0); // 10 seconds period
@@ -28,9 +28,9 @@ void step() {
   0 >> red >> yellow >> green;
   // Switch on appropriate LED.
   if (osc < 0.4)
-    red.on();
+    green.on();
   else if (osc < 0.6)
     yellow.on();
   else
-    green.on();
+    red.on();
 }
