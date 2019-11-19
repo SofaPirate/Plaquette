@@ -18,6 +18,8 @@ automatically adapt to incoming sensor values.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogIn sensor(A0);
 
    MinMaxScaler scaler;

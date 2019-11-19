@@ -351,6 +351,10 @@ public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return PqAnalogSource::get(); }
 
+  /// Object can be used directly to access its value.
+  // Somehow we need to re-write this operator here, otherwise it causes problems.
+  operator float() { return get(); }
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit

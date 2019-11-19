@@ -12,6 +12,8 @@ Outputs the number of seconds to serial.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    StreamOut serialOut(Serial);
 
    void begin() {}

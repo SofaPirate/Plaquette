@@ -31,6 +31,8 @@ Numerical and boolean values can also be used:
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogIn sensor(A0);
 
    MinMaxScaler scaler;

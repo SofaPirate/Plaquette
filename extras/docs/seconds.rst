@@ -11,6 +11,8 @@ This function returns the number of seconds since the program started.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalOut led(13, SOURCE);
 
    void begin() {

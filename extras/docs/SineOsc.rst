@@ -16,6 +16,8 @@ Pulses an LED.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogOut led(9);
 
    SineOsc osc;

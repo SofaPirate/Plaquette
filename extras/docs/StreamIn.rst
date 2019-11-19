@@ -13,6 +13,8 @@ sending values between 0 and 1.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    StreamIn serialIn(Serial);
 
    AnalogOut led(9);

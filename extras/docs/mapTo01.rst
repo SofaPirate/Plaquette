@@ -23,6 +23,8 @@ See :doc:`mapFloat` for more details.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogOut led(9);
 
    void begin() {

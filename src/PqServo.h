@@ -49,7 +49,7 @@ protected:
 /// Standard servo-motor object (angular).
 class ServoOut : public AbstractServoOut {
 public:
-  ServoOut(uint8_t pin);
+  ServoOut(uint8_t pin=9);
 
 	virtual float putAngle(float angle);
 	virtual float getAngle();
@@ -60,7 +60,7 @@ public:
 /// Continuous servo-motor object.
 class ContinuousServoOut : public AbstractServoOut {
 public:
-	ContinuousServoOut(uint8_t pin);
+	ContinuousServoOut(uint8_t pin=9);
 
   virtual void begin();
 

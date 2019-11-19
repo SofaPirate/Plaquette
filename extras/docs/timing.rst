@@ -9,4 +9,3 @@ Time-management source units.
    Metro
    Ramp
    Timer
-   #Chrono

@@ -15,6 +15,8 @@ Switches LED on every 4 seconds.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalOut led(13);
 
    void begin() {

@@ -10,6 +10,8 @@ Description.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+   
    void begin() {}
 
    void step() {

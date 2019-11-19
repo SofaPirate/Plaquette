@@ -10,6 +10,8 @@ A digital source unit that emits an "on" signal at a regular pace.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    Metro myMetro(0.5); // a metronome with a half-second duration
 
    DigitalOut led(13);

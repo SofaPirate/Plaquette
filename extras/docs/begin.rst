@@ -19,6 +19,8 @@ after each powerup or reset of the board.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    SquareOsc oscillator;
    AnalogIn input(A0);
 
