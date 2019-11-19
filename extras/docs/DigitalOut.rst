@@ -19,6 +19,8 @@ Switches off an LED connected in "sink" mode after a timeout.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalOut led(13, SINK);
 
    void begin() {

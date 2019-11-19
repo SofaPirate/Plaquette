@@ -34,6 +34,8 @@ Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/function
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    SineOsc modulator(10.0);
 
    SquareOsc oscillator(1.0);

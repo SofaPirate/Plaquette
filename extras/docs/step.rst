@@ -20,6 +20,8 @@ program to change and respond. Use it to actively control the board.
 
 .. code-block:: c++
 
+  #include <Plaquette.h>
+
   DigitalIn button(2);
 
   DigitalOut led(13);

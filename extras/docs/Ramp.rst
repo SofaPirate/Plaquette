@@ -26,6 +26,8 @@ Sequentially ramps through different values.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    Ramp myRamp(0.0); // the ramp is initalized at zero (0)
 
    StreamOut serialOut(Serial);

@@ -10,6 +10,8 @@ This function returns a random real-valued number.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalOut led(13);
 
    void begin() {

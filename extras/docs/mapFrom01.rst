@@ -23,6 +23,8 @@ See :doc:`mapFloat` for more details.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    SineOsc modulator(10.0);
 
    SquareOsc oscillator(1.0);

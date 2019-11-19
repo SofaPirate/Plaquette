@@ -16,6 +16,8 @@ Uses a timer to change the state of built-in LED at random periods of time.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    Timer myTimer(2.0); // a chronometer with 2 seconds duration
 
    DigitalOut led(13);

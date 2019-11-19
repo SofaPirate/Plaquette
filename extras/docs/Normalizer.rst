@@ -17,6 +17,8 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogIn sensor(A0);
 
    Normalizer normalizer(0, 1);

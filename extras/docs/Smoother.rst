@@ -14,6 +14,8 @@ Smooth a sensor over time.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    AnalogIn sensor(A0);
 
    // Smooths over time window of 10 seconds.

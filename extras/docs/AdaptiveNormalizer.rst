@@ -18,6 +18,8 @@ Uses an adaptive normalizer to analyze input sensor values and detect extreme va
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+   
    AnalogIn sensor(A0);
 
    AdaptiveNormalizer normalizer(0, 1);

@@ -22,6 +22,8 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalOut led(13);
 
    SquareOsc blinkOsc(4.0);

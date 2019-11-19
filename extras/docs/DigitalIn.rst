@@ -34,6 +34,8 @@ pressing a pushbutton attached to digital pin 2.
 
 .. code-block:: c++
 
+   #include <Plaquette.h>
+
    DigitalIn button(2);
 
    DigitalOut led(13);
