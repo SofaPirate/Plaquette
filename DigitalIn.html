@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DigitalIn &mdash; Plaquette 0.2.2 documentation</title>
+  <title>DigitalIn &mdash; Plaquette 0.2.3 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.2.3
               </div>
             
           
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a></li>
 </ul>
 
             
@@ -201,7 +202,9 @@ of the <a class="reference external" href="https://github.com/thomasfredericks/B
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Turns on and off a light emitting diode (LED) connected to digital pin 13, when
 pressing a pushbutton attached to digital pin 2.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
@@ -227,7 +230,7 @@ pressing a pushbutton attached to digital pin 2.</p>
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
 <dt id="_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t">
-<span id="_CPPv3N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1a009f172acdb8146ef0593321b8e93912"></span><code class="sig-name descname">DigitalIn</code><span class="sig-paren">(</span>uint8_t <em>pin</em>, uint8_t <em>mode</em> = INTERNAL_PULLUP<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1a6697addc055552476c58d316808cb6b4"></span><code class="sig-name descname">DigitalIn</code><span class="sig-paren">(</span>uint8_t <em>pin</em> = 0, uint8_t <em>mode</em> = INTERNAL_PULLUP<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TriOsc &mdash; Plaquette 0.2.2 documentation</title>
+  <title>TriOsc &mdash; Plaquette 0.2.3 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.2.2
+                0.2.3
               </div>
             
           
@@ -107,6 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a></li>
 </ul>
 
             
@@ -189,9 +190,11 @@ of <em>triangle</em> waves.</p>
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Controls a set of traffic lights that go: red, yellow, green, red, yellow,
 green, and so on. It uses a sawtooth to iterate through these three states.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">red</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">DigitalOut</span> <span class="nf">green</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 <span class="n">DigitalOut</span> <span class="nf">yellow</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
-<span class="n">DigitalOut</span> <span class="nf">green</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">DigitalOut</span> <span class="nf">red</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
 
 <span class="n">TriOsc</span> <span class="nf">osc</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
 
@@ -204,11 +207,11 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
   <span class="mi">0</span> <span class="o">&gt;&gt;</span> <span class="n">led</span> <span class="o">&gt;&gt;</span> <span class="n">yellow</span> <span class="o">&gt;&gt;</span> <span class="n">green</span><span class="p">;</span>
   <span class="c1">// Switch appropriate LED.</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">osc</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="p">)</span>
-    <span class="n">red</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+    <span class="n">green</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
   <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">osc</span> <span class="o">&lt;</span> <span class="mf">0.6</span><span class="p">)</span>
     <span class="n">yellow</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
   <span class="k">else</span>
-    <span class="n">green</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+    <span class="n">red</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&gt;&gt; (pipe) &mdash; Plaquette 0.2.3 documentation</title>
+  <title>ServoOut &mdash; Plaquette 0.2.3 documentation</title>
   
 
   
@@ -38,8 +38,7 @@
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Advanced" href="advanced.html" />
-    <link rel="prev" title=". (dot)" href="dot.html" /> 
+    <link rel="prev" title="Advanced" href="advanced.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,18 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">&gt;&gt; (pipe)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="advanced.html">Advanced</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ServoOut</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a></li>
 </ul>
 
             
@@ -154,9 +150,9 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="structure.html">Structure</a> &raquo;</li>
+          <li><a href="advanced.html">Advanced</a> &raquo;</li>
         
-      <li>&gt;&gt; (pipe)</li>
+      <li>ServoOut</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -173,49 +169,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pipe">
-<h1>&gt;&gt; (pipe)<a class="headerlink" href="#pipe" title="Permalink to this headline">¶</a></h1>
-<p>Sends data across units from left to right. This operator is specific to Plaquette
-and can be used in a chained manner.</p>
-<p>The operation uses the <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> methods of units in such a way that:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">input</span> <span class="o">&gt;&gt;</span> <span class="n">output</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>is equivalent to:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">output</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
-</pre></div>
-</div>
-<p>Numerical and boolean values can also be used:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="o">&gt;&gt;</span> <span class="n">output</span><span class="p">;</span>
-<span class="mf">0.8</span> <span class="o">&gt;&gt;</span> <span class="n">output</span><span class="p">;</span>
-<span class="nb">true</span> <span class="o">&gt;&gt;</span> <span class="n">output</span><span class="p">;</span>
-</pre></div>
-</div>
+  <div class="section" id="servoout">
+<h1>ServoOut<a class="headerlink" href="#servoout" title="Permalink to this headline">¶</a></h1>
+<p>A source unit that controls a servo-motor.</p>
+<p>Servo motors have three wires: power, ground, and signal. The power wire is
+typically red, and should be connected to the 5V pin on the Arduino board.
+The ground wire is typically black or brown and should be connected to a ground
+pin on the Arduino board. The signal pin is typically yellow, orange or white
+and should be connected to a digital pin on the Arduino board. Note that servos
+draw considerable power, so if you need to drive more than one or two, you’ll
+probably need to power them from a separate supply (i.e. not the +5V pin on
+your Arduino). Be sure to connect the grounds of the Arduino and external power
+supply together.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Controls a set of traffic lights that go: red, yellow, green, red, yellow,
+green, and so on. It uses a sawtooth to iterate through these three states.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
 
-<span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="c1">// The servo-motor output on pin 9.</span>
+<span class="n">ServoOut</span> <span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<span class="n">MinMaxScaler</span> <span class="n">scaler</span><span class="p">;</span>
+<span class="c1">// Oscillator to make the servo sweep.</span>
+<span class="n">SineOsc</span> <span class="nf">oscillator</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
 
-<span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
-
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Position the servo in center.</span>
+  <span class="n">servo</span><span class="p">.</span><span class="n">center</span><span class="p">();</span>
+<span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Rescale value and send the result to LED.</span>
-  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">scaler</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="c1">// Updates the value and send it back as output.</span>
+  <span class="n">oscillator</span> <span class="o">&gt;&gt;</span> <span class="n">servo</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<dl class="class">
+<dt id="_CPPv48ServoOut">
+<span id="_CPPv38ServoOut"></span><span id="_CPPv28ServoOut"></span><span id="ServoOut"></span><span class="target" id="classpq_1_1_servo_out"></span><em class="property">class </em><code class="sig-name descname">ServoOut</code> : <em class="property">public</em> AbstractServoOut<a class="headerlink" href="#_CPPv48ServoOut" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Standard servo-motor object (angular). </p>
+</dd></dl>
+
 </div>
-<div class="section" id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">input</span> <span class="o">&gt;&gt;</span> <span class="n">output</span>
-<span class="n">input</span> <span class="o">&gt;&gt;</span> <span class="n">filter</span> <span class="o">&gt;&gt;</span> <span class="n">output</span>
-</pre></div>
-</div>
+<div class="section" id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
+</ul>
 </div>
 </div>
 
@@ -227,10 +228,8 @@ and can be used in a chained manner.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="dot.html" class="btn btn-neutral float-left" title=". (dot)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-left" title="Advanced" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
