@@ -97,7 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 
             
@@ -180,6 +180,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="begin.html#_CPPv4N16AbstractServoOut5beginEv">AbstractServoOut::begin (C++ function)</a>
 </li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK16AbstractServoOut3pinEv">AbstractServoOut::pin (C++ function)</a>, <a href="ServoOut.html#_CPPv4NK16AbstractServoOut3pinEv">[1]</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N16AbstractServoOut3putEf">AbstractServoOut::put (C++ function)</a>, <a href="ServoOut.html#_CPPv4N16AbstractServoOut3putEf">[1]</a>
+</li>
       <li><a href="Ramp.html#_CPPv4NK13AbstractTimer10isCompleteEv">AbstractTimer::isComplete (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK13AbstractTimer8progressEv">AbstractTimer::progress (C++ function)</a>, <a href="Timer.html#_CPPv4NK13AbstractTimer8progressEv">[1]</a>
@@ -192,10 +196,10 @@
 </li>
       <li><a href="AdaptiveNormalizer.html#_CPPv4N18AdaptiveNormalizer3putEf">AdaptiveNormalizer::put (C++ function)</a>
 </li>
-      <li><a href="AdaptiveNormalizer.html#_CPPv4N18AdaptiveNormalizer10targetMeanEf">AdaptiveNormalizer::targetMean (C++ function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="AdaptiveNormalizer.html#_CPPv4N18AdaptiveNormalizer10targetMeanEf">AdaptiveNormalizer::targetMean (C++ function)</a>
+</li>
       <li><a href="AdaptiveNormalizer.html#_CPPv4N18AdaptiveNormalizer12targetStdDevEf">AdaptiveNormalizer::targetStdDev (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv48AnalogIn">AnalogIn (C++ class)</a>
@@ -222,11 +226,19 @@
 </li>
       <li><a href="Ramp.html#_CPPv4NK6Chrono9isStartedEv">Chrono::isStarted (C++ function)</a>, <a href="Timer.html#_CPPv4NK6Chrono9isStartedEv">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Ramp.html#_CPPv4N6Chrono6resumeEv">Chrono::resume (C++ function)</a>, <a href="Timer.html#_CPPv4N6Chrono6resumeEv">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N6Chrono4stopEv">Chrono::stop (C++ function)</a>, <a href="Timer.html#_CPPv4N6Chrono4stopEv">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ContinuousServoOut.html#_CPPv418ContinuousServoOut">ContinuousServoOut (C++ class)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut18ContinuousServoOutE7uint8_t">ContinuousServoOut::ContinuousServoOut (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut7reverseEv">ContinuousServoOut::reverse (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut4stopEv">ContinuousServoOut::stop (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -314,7 +326,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Ramp.html#_CPPv4N14PqAnalogSource3getEv">PqAnalogSource::get (C++ function)</a>, <a href="SineOsc.html#_CPPv4N14PqAnalogSource3getEv">[1]</a>, <a href="SquareOsc.html#_CPPv4N14PqAnalogSource3getEv">[2]</a>, <a href="StreamIn.html#_CPPv4N14PqAnalogSource3getEv">[3]</a>, <a href="TriOsc.html#_CPPv4N14PqAnalogSource3getEv">[4]</a>
 </li>
-      <li><a href="AdaptiveNormalizer.html#_CPPv4N12PqAnalogUnit3getEv">PqAnalogUnit::get (C++ function)</a>, <a href="AnalogOut.html#_CPPv4N12PqAnalogUnit3getEv">[1]</a>, <a href="MinMaxScaler.html#_CPPv4N12PqAnalogUnit3getEv">[2]</a>, <a href="Normalizer.html#_CPPv4N12PqAnalogUnit3getEv">[3]</a>, <a href="StreamOut.html#_CPPv4N12PqAnalogUnit3getEv">[4]</a>
+      <li><a href="AdaptiveNormalizer.html#_CPPv4N12PqAnalogUnit3getEv">PqAnalogUnit::get (C++ function)</a>, <a href="AnalogOut.html#_CPPv4N12PqAnalogUnit3getEv">[1]</a>, <a href="ContinuousServoOut.html#_CPPv4N12PqAnalogUnit3getEv">[2]</a>, <a href="MinMaxScaler.html#_CPPv4N12PqAnalogUnit3getEv">[3]</a>, <a href="Normalizer.html#_CPPv4N12PqAnalogUnit3getEv">[4]</a>, <a href="ServoOut.html#_CPPv4N12PqAnalogUnit3getEv">[5]</a>, <a href="StreamOut.html#_CPPv4N12PqAnalogUnit3getEv">[6]</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N14PqDebounceable8debounceEf">PqDebounceable::debounce (C++ function)</a>
 </li>
@@ -394,6 +406,14 @@
 </li>
       <li><a href="ServoOut.html#_CPPv48ServoOut">ServoOut (C++ class)</a>
 </li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut6centerEv">ServoOut::center (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut8getAngleEv">ServoOut::getAngle (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut8putAngleEf">ServoOut::putAngle (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut8ServoOutE7uint8_t">ServoOut::ServoOut (C++ function)</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4N11SimpleStats5resetEv">SimpleStats::reset (C++ function)</a>
 </li>
       <li><a href="SineOsc.html#_CPPv47SineOsc">SineOsc (C++ class)</a>
@@ -412,12 +432,12 @@
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother3getEv">Smoother::get (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Smoother.html#_CPPv4N8Smoother3putEf">Smoother::put (C++ function)</a>
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother8SmootherEf">Smoother::Smoother (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="SquareOsc.html#_CPPv49SquareOsc">SquareOsc (C++ class)</a>
 </li>
       <li><a href="SquareOsc.html#_CPPv4N9SquareOsc9amplitudeEf">SquareOsc::amplitude (C++ function)</a>
