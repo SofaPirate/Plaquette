@@ -1,7 +1,7 @@
-Advanced
-========
+Extra
+=====
 
-Advanced units.
+Extra units.
 
 .. toctree::
    :maxdepth: 1
