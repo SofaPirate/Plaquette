@@ -35,8 +35,14 @@ protected:
 public:
   virtual ~AbstractServoOut();
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   virtual float put(float value);
 
+  /// Returns the pin this servomotor is attached to.
 	uint8_t pin() const { return _pin; }
 
 protected:
@@ -46,26 +52,46 @@ protected:
   uint8_t _pin;
 };
 
-/// Standard servo-motor object (angular).
+/// Standard servo-motor (angular).
 class ServoOut : public AbstractServoOut {
 public:
+  /**
+   * Constructor for a standard servo-motor.
+   * @param pin the pin number
+   */
   ServoOut(uint8_t pin=9);
 
+  /**
+   * Sets the servomotor position to a specific angle between 0 and 180 degrees.
+   * @param angle the angle in degrees
+   * @returns the current angle
+   */
 	virtual float putAngle(float angle);
+
+  /// Return the current angular angle in [0, 180].
 	virtual float getAngle();
 
+  /// Re-centers the servo-motor.
 	virtual void center() { put(0.5); }
 };
 
-/// Continuous servo-motor object.
+/// Continuous servo-motor.
 class ContinuousServoOut : public AbstractServoOut {
 public:
+  /**
+   * Constructor for a continuous rotation servo-motor.
+   * @param pin the pin number
+   */
 	ContinuousServoOut(uint8_t pin=9);
 
-  virtual void begin();
-
+  /// Stops the servo-motor.
 	virtual void stop();
+
+  /// Sends servo-motor in reverse mode.
 	virtual void reverse();
+
+protected:
+  virtual void begin();
 };
 
 } // namespace pq
