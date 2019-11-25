@@ -174,6 +174,8 @@ float sampleRate();
 /// Returns sample period.
 float samplePeriod();
 
+/// Restarts main serial. This method will make sure to flush data from the pipeline.
+void beginSerial(unsigned long baudRate);
 
 /**
  * Main class for components to be added to Plaquette.

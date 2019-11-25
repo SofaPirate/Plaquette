@@ -45,6 +45,7 @@ enableAutoSampleRate  KEYWORD2
 sampleRate  KEYWORD2
 samplePeriod  KEYWORD2
 seconds  KEYWORD2
+beginSerial KEYWORD2
 
 pin	KEYWORD2
 mode	KEYWORD2

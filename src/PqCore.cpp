@@ -41,7 +41,8 @@ PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetS
 
 void PlaquetteEnv::preBegin() {
   // Initialize serial.
-  Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
+//  Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
+  beginSerial(PLAQUETTE_SERIAL_BAUD_RATE);
 
   // Initialize variables.
   _seconds = 0;
@@ -98,6 +99,15 @@ unsigned long nSteps() { return Plaquette.nSteps(); }
 void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
+
+void beginSerial(unsigned long baudRate) {
+  // Wait for last transmitted data to be sent.
+  Serial.flush();
+  // Start serial with new baudrate.
+  Serial.begin(baudRate);
+  // Empty  out possible garbage from input buffer.
+  while (Serial.available()) Serial.read();
+}
 
 PqUnit::PqUnit() {
 #if defined(CORE_TEENSY)
