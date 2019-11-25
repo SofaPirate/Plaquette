@@ -420,8 +420,9 @@ inline PqPutter& operator>>(bool value, PqPutter& unit) {
 	return pq::operator>>(PqUnit::digitalToAnalog(value), unit);
 }
 
-// This code is needed on the Curie-based AVRs.
-#if defined(__arc__)
+// This code is needed on the Curie and ARM chips.
+// Otherwise it causes an ambiguous operator error.
+#if defined(__arc__) || defined(__arm__)
 inline PqPutter& operator>>(int value, PqPutter& unit) {
 	return pq::operator>>((float)value, unit);
 }
