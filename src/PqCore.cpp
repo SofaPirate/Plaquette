@@ -69,9 +69,11 @@ void PlaquetteEnv::end() {
 
 void PlaquetteEnv::add(PqUnit* component) {
   for (uint8_t i=0; i<_nUnits; i++) {
-		if (_units[i] == component)
+		if (_units[i] == component) {
 			return; // do not add existing component
+    }
 	}
+  // Append component to list.
   if (_nUnits < PLAQUETTE_MAX_UNITS) {
     _units[_nUnits++] = component;
   }

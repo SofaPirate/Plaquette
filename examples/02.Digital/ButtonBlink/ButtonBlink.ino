@@ -16,7 +16,7 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(13);
+DigitalOut led(LED_BUILTIN);
 
 // The button.
 DigitalIn button(2); // defaults to INTERNAL_PULLUP

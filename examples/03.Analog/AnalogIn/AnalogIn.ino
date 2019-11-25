@@ -21,7 +21,7 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(13);
+DigitalOut led(LED_BUILTIN);
 
 // The analog input.
 AnalogIn pot(A0);

@@ -51,6 +51,7 @@ mode	KEYWORD2
 
 on	KEYWORD2
 off	KEYWORD2
+toggle	KEYWORD2
 put	KEYWORD2
 putOn	KEYWORD2
 

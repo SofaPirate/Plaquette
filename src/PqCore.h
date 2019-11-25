@@ -287,7 +287,7 @@ public:
    * @return the new value of the unit
    */
   virtual float put(float value) {
-    putOn(PqUnit::analogToDigital(value));
+    return PqUnit::digitalToAnalog(putOn(PqUnit::analogToDigital(value)));
   }
 
   /**
@@ -340,7 +340,7 @@ public:
   virtual bool fell() { return changeState() < 0; }
 
   /// Returns true if the value changed.
-  virtual bool changed() { changeState() != 0; }
+  virtual bool changed() { return changeState() != 0; }
 
   /// Difference between current and previous value of the unit.
   virtual int8_t changeState() = 0;
@@ -422,8 +422,9 @@ inline PqPutter& operator>>(bool value, PqPutter& unit) {
 	return pq::operator>>(PqUnit::digitalToAnalog(value), unit);
 }
 
-// This code is needed on the Curie-based AVRs.
-#if defined(__arc__)
+// This code is needed on the Curie and ARM chips.
+// Otherwise it causes an ambiguous operator error.
+#if defined(__arc__) || defined(__arm__)
 inline PqPutter& operator>>(int value, PqPutter& unit) {
 	return pq::operator>>((float)value, unit);
 }
