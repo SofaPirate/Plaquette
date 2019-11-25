@@ -15,7 +15,7 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(13);
+DigitalOut led(LED_BUILTIN);
 
 // The timer.
 Metro metro(1.0); // period: 1 second

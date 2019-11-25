@@ -16,7 +16,7 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(13);
+DigitalOut led(LED_BUILTIN);
 
 // The timer.
 Timer timer(1.0); // starting duration: 1 second

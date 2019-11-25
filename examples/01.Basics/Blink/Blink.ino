@@ -16,7 +16,7 @@
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(13);
+DigitalOut led(LED_BUILTIN);
 
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator(2.0); // 2 seconds period
