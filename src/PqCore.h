@@ -138,10 +138,12 @@ public:
   float samplePeriod() const { return _samplePeriod; }
 
   // Returns singleton.
+#if defined(CORE_TEENSY)
   static PlaquetteEnv& singleton() {
     static PlaquetteEnv inst;
     return inst;
   }
+#endif
 
 private:
   /// Adds a component to Plaquette.
