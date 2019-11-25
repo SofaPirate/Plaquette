@@ -31,7 +31,7 @@
 namespace pq {
 
 // Singleton.
-PlaquetteEnv Plaquette;
+PlaquetteEnv Plaquette = PlaquetteEnv::singleton();
 
 PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
 
@@ -94,7 +94,7 @@ float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 
 PqUnit::PqUnit() {
-  Plaquette.add(this);
+  PlaquetteEnv::singleton().add(this);
 }
 
 bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }

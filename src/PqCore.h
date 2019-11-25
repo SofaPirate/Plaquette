@@ -137,6 +137,12 @@ public:
   /// Returns sample period.
   float samplePeriod() const { return _samplePeriod; }
 
+  // Returns singleton.
+  static PlaquetteEnv& singleton() {
+    static PlaquetteEnv inst;
+    return inst;
+  }
+
 private:
   /// Adds a component to Plaquette.
   void add(PqUnit * component);
