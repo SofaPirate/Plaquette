@@ -70,7 +70,7 @@ void TriOsc::_updateValue() {
 
 TriOsc& TriOsc::period(float period) {
 	if (period != _period)
-		_period = max(period, 0);
+		_period = max(period, 0.0f);
 	return *this;
 }
 

@@ -62,7 +62,7 @@ void SineOsc::_updateValue() {
 
 SineOsc& SineOsc::period(float period) {
 	if (_period != period)
-		_period = max(period, 0);
+		_period = max(period, 0.0f);
 	return *this;
 }
 
