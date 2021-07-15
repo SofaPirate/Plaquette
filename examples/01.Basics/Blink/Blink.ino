@@ -21,7 +21,9 @@ DigitalOut led(LED_BUILTIN);
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator(2.0); // 2 seconds period
 
-void begin() {}
+void begin() {
+  oscillator.dutyCycle(0.1);
+}
 
 void step() {
   // Send oscillator value to LED.
