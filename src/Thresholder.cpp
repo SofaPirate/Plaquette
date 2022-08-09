@@ -33,8 +33,8 @@ Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
 		}
 
 float Thresholder::put(float value) {
-  bool high = (value > _threshold);
-  bool low  = (value < _threshold);
+  bool high = (value >= _threshold);
+  bool low  = (value <= _threshold);
   bool rising = (high && _wasLow);
   bool falling = (low  && _wasHigh);
 
