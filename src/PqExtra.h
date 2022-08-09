@@ -34,6 +34,7 @@
 #include "MinMaxScaler.h"
 #include "AdaptiveNormalizer.h"
 #include "Normalizer.h"
+#include "Smoother.h"
 
 // Stream.
 #include "StreamIn.h"
