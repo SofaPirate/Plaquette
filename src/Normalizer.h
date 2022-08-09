@@ -29,8 +29,8 @@ namespace pq {
 class Normalizer : public PqAnalogUnit, public SimpleStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0 and a standard
-   * deviation of 1.
+   * Default constructor. Will renormalize data around a mean of 0.5 and a standard
+   * deviation of 0.25.
    */
   Normalizer();
 
