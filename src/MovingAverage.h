@@ -38,8 +38,8 @@ protected:
   // The current value of the exponential moving average.
   float _value;
 
-  // Is the moving average started or not.
-  bool _isStarted;
+  // Number of samples that have been processed thus far.
+  unsigned int _nSamples;
 
 public:
   /**
@@ -62,11 +62,7 @@ public:
   float cutoff() const { return (1.0f/time()); }
 
   /// Returns the alpha value computed from given sample rate.
-  float alpha(float sampleRate) const {
-    // Rule of thumb: alpha = 2 / (n_samples+1).
-    float a = 2 / (_smoothTime*sampleRate + 1);
-    return min(a, 1.f); // make sure it does not get over 1
-  }
+  float alpha(float sampleRate) const;
 
   /// Resets the moving average.
   virtual void reset();
@@ -89,10 +85,6 @@ public:
    * factor #alpha#.
    */
   static float applyUpdate(float& runningValue, float newValue, float alpha);
-
-protected:
-  void _setStarted(bool start);
-
 };
 
 } // namespace pq
