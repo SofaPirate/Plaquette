@@ -26,20 +26,20 @@ namespace pq {
 Normalizer::Normalizer()
   : PqAnalogUnit(0.5f),
     SimpleStats(),
-    _mean(0.5f),
-    _stddev(0.25f)
+    _targetMean(0.5f),
+    _targetStddev(0.25f)
 {
 }
 
 Normalizer::Normalizer(float mean, float stddev)
 	: PqAnalogUnit(mean),
     SimpleStats(),
-    _mean(mean),
-    _stddev(abs(stddev))
+    _targetMean(mean),
+    _targetStddev(abs(stddev))
 {}
 
 float Normalizer::put(float value) {
-  return (_value = SimpleStats::update(value) * _stddev + _mean);
+  return (_value = SimpleStats::update(value) * _targetStddev + _targetMean);
 }
 
 }

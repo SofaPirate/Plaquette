@@ -52,11 +52,17 @@ public:
    */
   AdaptiveNormalizer& targetMean(float mean) { _targetMean = mean; return *this; }
 
+  /// Returns target mean.
+  float targetMean() const { return _targetMean; }
+
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
   AdaptiveNormalizer& targetStdDev(float stddev) { _targetStddev = stddev; return *this; }
+
+  /// Returns target standard deviation.
+  float targetStdDev() const { return _targetStddev; }
 
   /**
    * Pushes value into the unit.

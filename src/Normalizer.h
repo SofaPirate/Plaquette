@@ -46,13 +46,19 @@ public:
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  Normalizer& targetMean(float mean) { _mean = mean; return *this; }
+  Normalizer& targetMean(float mean) { _targetMean = mean; return *this; }
+
+  /// Returns target mean.
+  float targetMean() const { return _targetMean; }
 
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  Normalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
+  Normalizer& targetStdDev(float stddev) { _targetStddev = stddev; return *this; }
+  
+  /// Returns target standard deviation.
+  float targetStdDev() const { return _targetStddev; }
 
   /**
    * Pushes value into the unit.
@@ -63,8 +69,8 @@ public:
 
 protected:
   // Target normalization parameters.
-  float _mean;
-  float _stddev;
+  float _targetMean;
+  float _targetStddev;
 };
 
 }
