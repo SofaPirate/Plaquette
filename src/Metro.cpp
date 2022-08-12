@@ -19,6 +19,7 @@
  */
 
 #include "Metro.h"
+#include "pq_wrap.h"
 
 namespace pq {
 
@@ -36,7 +37,7 @@ void Metro::step() {
 	// Check if we went over to swtich to "on".
 	bool isOn = (_phaseTime > 1);
 	if (isOn)
-		while (_phaseTime > 1) _phaseTime--; // modulo
+    _phaseTime = wrap01(_phaseTime);
 
 	// Register difference between previous and new state.
 	_changeState = (int8_t)isOn - (int8_t)_onValue;
