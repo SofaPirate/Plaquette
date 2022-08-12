@@ -26,7 +26,7 @@
 
 namespace pq {
 
-class AbstractTimer : public Chrono,  public PqMappable {
+class AbstractTimer : public Chrono {
 protected:
   AbstractTimer(float duration=0.0f);
 
