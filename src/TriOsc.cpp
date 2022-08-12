@@ -28,11 +28,11 @@ namespace pq {
 TriOsc::TriOsc(float period_, float width_) : PqAnalogSource() {
   period(period_);
   width(width_);
-	amplitude(1.0f);
+  amplitude(1.0f);
 }
 
 void TriOsc::begin() {
-	_phaseTime = _phase;
+  _phaseTime = _phase;
   _updateValue();
 }
 

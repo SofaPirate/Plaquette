@@ -24,7 +24,7 @@
 #include "PqCore.h"
 
 namespace pq {
-  
+
 /**
  * Triangle/sawtooth oscillator.
  */
