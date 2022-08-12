@@ -36,7 +36,7 @@ void Ramp::to(float to) {
 
 void Ramp::fromTo(float from, float to) {
 	_from = from;
-	_change = (to - from);
+	_to   = to;
 }
 
 void Ramp::start() {
@@ -63,7 +63,7 @@ void Ramp::step() {
 	if (_isStarted) {
 		// Compute value if running -- otherwise leave as is.
 		// TODO: implement easing functions
-		_value = mapFloat(progress(), 0.0f, 1.0f, _from, (_from + _change));
+		_value = mapFrom01(progress(), _from, _to);
 	}
 }
 

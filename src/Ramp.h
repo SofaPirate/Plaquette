@@ -76,8 +76,11 @@ protected:
   // The starting point.
   float _from;
 
-  // The variation from starting point targetted.
-  float _change;
+  // The end point.
+  float _to;
+
+  // The current value.
+  float _value;
 };
 
 }
