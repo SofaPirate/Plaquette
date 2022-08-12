@@ -137,7 +137,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqMappable, public PqPinUnit, public PqSmoothable {
+class AnalogIn : public PqGetter, public PqPinUnit, public PqMappable, public PqSmoothable {
 public:
   /**
    * Constructor.
@@ -146,9 +146,12 @@ public:
    */
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
-  /// Returns value (typically between 0 and 1, may vary depending on class).
 
+  /// Returns value in [0, 1].
   virtual float get() { return _avg.get(); }
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
 
 protected:
   virtual void begin();

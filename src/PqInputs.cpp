@@ -20,6 +20,7 @@
 
 #include "PqInputs.h"
 #include "pq_time.h"
+#include "pq_map_real.h"
 
 namespace pq {
 
@@ -120,7 +121,7 @@ void PqDebounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqMappable(), PqPinUnit(pin, mode), PqSmoothable()
+  : PqGetter(), PqPinUnit(pin, mode), PqMappable(), PqSmoothable()
 {}
 
 #ifdef ESP8266
@@ -144,6 +145,10 @@ void AnalogIn::begin() {
 
 void AnalogIn::step() {
   _step();
+}
+
+float AnalogIn::mapTo(float toLow, float toHigh) {
+  return mapFrom01(get(), toLow, toHigh);
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
