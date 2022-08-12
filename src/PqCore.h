@@ -188,10 +188,10 @@ class PqUnit {
 
 public:
   /// Converts analog (float) value to digital (bool) value.
-	static bool  analogToDigital(float f);
+	static bool  analogToDigital(float f) { return (f >= 0.5); }
 
 	/// Converts digital (bool) value to analog (float) value.
-	static float digitalToAnalog(bool b);
+	static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
   /** Class constructor.
@@ -321,14 +321,12 @@ class PqAnalogSource : public PqGetter, public PqMappable {
 public:
   /// Constructor.
   PqAnalogSource(float init=0.0f) : PqGetter(), PqMappable() { _value = constrain(init, 0, 1); }
-
   virtual ~PqAnalogSource() {}
 
   /// Returns value in [0, 1].
   virtual float get() { return _value; }
 
-  /// Returns value (typically between 0 and 1, may vary depending on class). The programmer
-  /// is responsible to make sure the value stays within boundaries.
+  /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
 protected:
