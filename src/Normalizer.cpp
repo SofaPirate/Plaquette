@@ -22,9 +22,9 @@
 #include "Normalizer.h"
 
 namespace pq {
-  
+
 Normalizer::Normalizer()
-  : PqAnalogUnit(0.5f),
+  : PqStoredValuePutter(0.5f),
     SimpleStats(),
     _targetMean(0.5f),
     _targetStddev(0.25f)
@@ -32,7 +32,7 @@ Normalizer::Normalizer()
 }
 
 Normalizer::Normalizer(float mean, float stddev)
-	: PqAnalogUnit(mean),
+	: PqStoredValuePutter(mean),
     SimpleStats(),
     _targetMean(mean),
     _targetStddev(abs(stddev))

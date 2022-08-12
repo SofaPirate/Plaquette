@@ -22,9 +22,9 @@
 #include "AdaptiveNormalizer.h"
 
 namespace pq {
-  
+
 AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
-  : PqAnalogUnit(0.5f),
+  : PqStoredValuePutter(0.5f),
     MovingStats(smoothWindow),
     _targetMean(0.5f),
     _targetStddev(0.25f)
@@ -32,7 +32,7 @@ AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
-	: PqAnalogUnit(mean),
+	: PqStoredValuePutter(mean),
     MovingStats(smoothWindow),
     _targetMean(mean),
     _targetStddev(abs(stddev))

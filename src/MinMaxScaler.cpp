@@ -23,9 +23,10 @@
 #include "MinMaxScaler.h"
 
 namespace pq {
-  
+
 MinMaxScaler::MinMaxScaler()
- : PqAnalogUnit(0.5f),
+ : PqAnalogSource(0.5f),
+   PqPutter(),
    _minValue(FLT_MAX),
    _maxValue(FLT_MIN)
 {

@@ -24,9 +24,9 @@
 #include "PqCore.h"
 
 namespace pq {
-  
+
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqAnalogUnit, public SimpleStats {
+class Normalizer : public PqStoredValuePutter, public SimpleStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0.5 and a standard
@@ -56,7 +56,7 @@ public:
    * @param stddev the target standard deviation
    */
   Normalizer& targetStdDev(float stddev) { _targetStddev = stddev; return *this; }
-  
+
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStddev; }
 

@@ -30,7 +30,7 @@ namespace pq {
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
  */
-class Ramp : public PqAnalogSource, public AbstractTimer {
+class Ramp : public AbstractTimer {
 public:
   /**
    * Constructor.

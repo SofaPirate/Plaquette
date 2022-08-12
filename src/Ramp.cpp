@@ -24,10 +24,9 @@
 
 namespace pq {
 
-Ramp::Ramp(float initialValue_) :
-	PqAnalogSource(initialValue_),
+Ramp::Ramp(float initialValue) :
 	AbstractTimer(),
-	_from(initialValue_), _change(0)
+	_from(initialValue), _to(initialValue)
 {
 }
 

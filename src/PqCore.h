@@ -27,6 +27,8 @@
 #include "WProgram.h"
 #endif
 
+#include "pq_map_real.h"
+
 #ifndef PLAQUETTE_MAX_UNITS
 /// Max. components that can be added. Can be pre-defined.
 #define PLAQUETTE_MAX_UNITS 32
@@ -302,33 +304,38 @@ public:
   virtual bool putOn(bool value) = 0;
 };
 
-class PqMappable : public PqGetter {
+/// Mappable interface, allows units to call mapTo(low, high).
+class PqMappable {
 public:
   /// Constructor.
-  PqMappable() : PqGetter() {}
+  PqMappable(){}
   virtual ~PqMappable() {}
 
   /// Maps value to new range.
-  virtual float mapTo(float toLow, float toHigh);
-
-protected:
-  // This is the function that needs to be overriden by subclasses.
-  virtual float _map(float value, float toLow, float toHigh);
+  virtual float mapTo(float toLow, float toHigh) = 0;
 };
 
-class PqAnalogSource : public PqGetter {
+/// An analog analog source that contains a value in [0, 1].
+/// It is the responsability of the programmer to make sure the value stays within the [0, 1] range.
+class PqAnalogSource : public PqGetter, public PqMappable {
 public:
   /// Constructor.
-  PqAnalogSource(float init=0.0f) : PqGetter(), _value(init) {}
+  PqAnalogSource(float init=0.0f) : PqGetter(), PqMappable() { _value = constrain(init, 0, 1); }
+
   virtual ~PqAnalogSource() {}
 
-  /// Returns value (typically between 0 and 1, may vary depending on class).
+  /// Returns value in [0, 1].
   virtual float get() { return _value; }
+
+  /// Returns value (typically between 0 and 1, may vary depending on class). The programmer
+  /// is responsible to make sure the value stays within boundaries.
+  virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
 protected:
   float _value;
 };
 
+/// A digital source that contains a true/false value.
 class PqDigitalSource : public PqDigitalGetter {
 public:
   /// Constructor.
@@ -353,17 +360,18 @@ protected:
   bool _onValue;
 };
 
-class PqAnalogUnit : public PqAnalogSource, public PqPutter {
+/// A filter or sink that contains a numerical value.
+class PqStoredValuePutter : public PqPutter {
 public:
   /// Constructor.
-  PqAnalogUnit(float init=0.0f) : PqAnalogSource(init), PqPutter() {}
+  PqStoredValuePutter(float init=0.0f) : PqPutter(), _value(init) {}
 
   /// Returns value (typically between 0 and 1, may vary depending on class).
-  virtual float get() { return PqAnalogSource::get(); }
+  virtual float get() { return _value; }
 
-  /// Object can be used directly to access its value.
-  // Somehow we need to re-write this operator here, otherwise it causes problems.
-  operator float() { return get(); }
+  // /// Object can be used directly to access its value.
+  // // Somehow we need to re-write this operator here, otherwise it causes problems.
+  // operator float() { return get(); }
 
   /**
    * Pushes value into the unit.
@@ -371,8 +379,12 @@ public:
    * @return the new value of the unit
    */
   virtual float put(float value) { return (_value = value); }
+
+protected:
+  float _value;
 };
 
+/// A digital input-output unit.
 class PqDigitalUnit : public PqDigitalSource, public PqDigitalPutter {
 public:
   /// Constructor.
@@ -404,7 +416,6 @@ public:
 
   /// Operator that return 0 or 1 depending on value.
   explicit operator int() { return PqDigitalSource::operator int(); }
-
 };
 
 // Operators /////////////////////////////////////////////////////

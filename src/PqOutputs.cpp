@@ -23,7 +23,7 @@
 namespace pq {
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
-  : PqAnalogUnit(), PqPinUnit(pin, mode)
+  : PqStoredValuePutter(), PqPinUnit(pin, mode)
 {}
 
 float AnalogOut::put(float value) {
