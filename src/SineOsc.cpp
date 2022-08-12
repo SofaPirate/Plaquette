@@ -21,6 +21,7 @@
 #include "SineOsc.h"
 #include "pq_map_real.h"
 #include "pq_time.h"
+#include "pq_wrap.h"
 #include "pq_trig8.h"
 
 namespace pq {
@@ -43,7 +44,7 @@ void SineOsc::step() {
   float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
 	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (max(_period, minPeriod) * sampleRate());
-	while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX) _phaseTime-=_PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+  _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
 	// Compute next value.
 	_updateValue();
 
@@ -81,10 +82,7 @@ SineOsc& SineOsc::phase(float phase) {
 	if (phase != _phase) {
 		phase = constrain(phase, 0, 1);
 		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
-		while (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_MAX)
-			_phaseTime -= _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
-		while (_phaseTime < 0)
-		 	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_MAX; // modulo
+    _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
 		_phase = phase;
 	}
 	return *this;
