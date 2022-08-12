@@ -31,8 +31,8 @@
 //#include "Thresholder.h"
 
 // Normalization.
-#include "MinMaxScaler.h"
 #include "AdaptiveNormalizer.h"
+#include "MinMaxScaler.h"
 #include "Normalizer.h"
 #include "Smoother.h"
 
