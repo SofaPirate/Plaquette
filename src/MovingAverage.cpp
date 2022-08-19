@@ -29,7 +29,7 @@
 
 namespace pq {
 
-MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
+MovingAverage::MovingAverage(float seconds, float initValue) : _value(initValue) {
   time(seconds);
   reset();
 }
@@ -62,8 +62,9 @@ float MovingAverage::alpha(float sampleRate) const {
   return min(alpha, 1.f); // make sure it does not get over 1
 }
 
-void MovingAverage::reset() {
+void MovingAverage::reset(float initValue) {
   _nSamples = 1;
+  _value = initValue;
 }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {

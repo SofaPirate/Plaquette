@@ -45,7 +45,7 @@ public:
   /**
    * Constructs the moving average.
    */
-  MovingAverage(float smooth);
+  MovingAverage(float smooth, float initValue=0.5f);
   // MovingAverage(float seconds, float startValue);
   virtual ~MovingAverage() {}
 
@@ -65,7 +65,7 @@ public:
   float alpha(float sampleRate) const;
 
   /// Resets the moving average.
-  virtual void reset();
+  virtual void reset(float initValue=0.5f);
 
   // /// Resets the moving average to #startValue#.
   // virtual void reset(float startValue);
