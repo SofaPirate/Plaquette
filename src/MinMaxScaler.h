@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqAnalogSource, public PqPutter {
+class MinMaxScaler : public PqStoredValuePutter {
 public:
   /// Constructor.
   MinMaxScaler();
