@@ -23,6 +23,12 @@
 #ifndef PQ_LERP_H_
 #define PQ_LERP_H_
 
+#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
+#include <Arduino.h>
+#else
+#include <WProgram.h>
+#endif
+
 namespace pq {
 
 /**

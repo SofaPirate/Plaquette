@@ -21,14 +21,17 @@
 #ifndef PQ_CORE_H_
 #define PQ_CORE_H_
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
+#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
+#include <Arduino.h>
 #else
-#include "WProgram.h"
+#include <WProgram.h>
 #endif
 
 #include "pq_map_real.h"
 
+#if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
+#define PLAQUETTE_USE_SINGLETON
+#endif
 #ifndef PLAQUETTE_MAX_UNITS
 /// Max. components that can be added. Can be pre-defined.
 #define PLAQUETTE_MAX_UNITS 32
@@ -142,7 +145,7 @@ public:
   float samplePeriod() const { return _samplePeriod; }
 
   // Returns singleton.
-#if defined(CORE_TEENSY)
+#ifdef PLAQUETTE_USE_SINGLETON
   static PlaquetteEnv& singleton() {
     static PlaquetteEnv inst;
     return inst;

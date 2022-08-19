@@ -21,10 +21,10 @@
  #ifndef PLAQUETTE_LIB_H_
  #define PLAQUETTE_LIB_H_
 
- #if defined(ARDUINO) && ARDUINO >= 100
- #include "Arduino.h"
+ #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
+ #include <Arduino.h>
  #else
- #include "WProgram.h"
+ #include <WProgram.h>
  #endif
 
  // Plaquette builtin functions.

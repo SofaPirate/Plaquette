@@ -19,7 +19,11 @@
 #ifndef PQ_WRAP_H
 #define PQ_WRAP_H
 
+#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
 #include <Arduino.h>
+#else
+#include <WProgram.h>
+#endif
 
 //#define USE_FMODF
 #ifdef USE_FMODF

@@ -17,12 +17,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
 #include "PqCore.h"
 
 #include <float.h>
@@ -31,7 +25,7 @@ namespace pq {
 
 // Singleton.
 PlaquetteEnv Plaquette
-#if defined(CORE_TEENSY)
+#ifdef PLAQUETTE_USE_SINGLETON
    = PlaquetteEnv::singleton()
 #endif
 ;
@@ -109,7 +103,7 @@ void beginSerial(unsigned long baudRate) {
 }
 
 PqUnit::PqUnit() {
-#if defined(CORE_TEENSY)
+#ifdef PLAQUETTE_USE_SINGLETON
   PlaquetteEnv::singleton()
 #else
   Plaquette
