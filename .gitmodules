@@ -1,0 +1,6 @@
+[submodule "libraries/EpoxyDuino"]
+	path = libraries/EpoxyDuino
+	url = https://github.com/bxparks/EpoxyDuino
+[submodule "libraries/AUnit"]
+	path = libraries/AUnit
+	url = https://github.com/bxparks/AUnit
