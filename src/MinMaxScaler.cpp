@@ -24,19 +24,46 @@
 
 namespace pq {
 
-MinMaxScaler::MinMaxScaler(float window)
+MinMaxScaler::MinMaxScaler(float decayWindow)
  : PqStoredValuePutter(0.5f),
    _minValue(FLT_MAX),
-   _maxValue(FLT_MIN)
+   _maxValue(-FLT_MAX),
+   _decayWindow(decayWindow)
 {
+}
+
+void MinMaxScaler::time(float seconds) {
+  _decayWindow = ::max(seconds, 0.0f); // make sure it is positive
+}
+
+void MinMaxScaler::cutoff(float hz) {
+  // If hz is null time window is infinite.
+  time(hz == 0 ? FLT_MAX : hz);
 }
 
 float MinMaxScaler::put(float value)
 {
-  _minValue = min(value, _minValue);
-  _maxValue = max(value, _maxValue);
-  _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
-	return _value;
+  // Compute alpha mixing factor.
+  float alpha = MovingAverage::alpha(sampleRate(), _decayWindow);
+
+  // Update min. value.
+  if (value < _minValue) {
+    _minValue = value;
+  }
+  else {
+    MovingAverage::applyUpdate(_minValue, value, alpha);
+  }
+
+  // Update max. value.
+  if (value > _maxValue) {
+    _maxValue = value;
+  }
+  else {
+    MovingAverage::applyUpdate(_maxValue, value, alpha);
+  }
+
+  _value = mapTo01(value, _minValue, _maxValue);
+  return _value;
 }
 
 }

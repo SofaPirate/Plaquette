@@ -22,6 +22,7 @@
 #define MIN_MAX_SCALER_H_
 
 #include "PqCore.h"
+#include "MovingAverage.h"
 
 namespace pq {
 
@@ -29,7 +30,7 @@ namespace pq {
 class MinMaxScaler : public PqStoredValuePutter {
 public:
   /// Constructor.
-  MinMaxScaler();
+  MinMaxScaler(float decayWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
   virtual ~MinMaxScaler() {}
 
   /**
@@ -39,12 +40,33 @@ public:
    */
   virtual float put(float value);
 
+  /// Returns the current min. value.
+  float min() const { return _minValue; }
+
+  /// Returns the current max. value.
+  float max() const { return _maxValue; }
+
+  /// Changes the smoothing window (expressed in seconds).
+  void time(float seconds);
+
+  /// Returns the smoothing window (expressed in seconds).
+  float time() const { return _decayWindow; }
+
+  /// Changes the smoothing window cutoff frequency (expressed in Hz).
+  void cutoff(float hz);
+
+  /// Returns the smoothing window cutoff frequency (expressed in Hz).
+  float cutoff() const { return (1.0f/time()); }
+
 protected:
   // Minmum value ever put.
   float _minValue;
 
   // Maximum value ever put.
   float _maxValue;
+
+  // The decay window (in seconds). After that time the min. and max. values will tend to decay towards average.
+  float _decayWindow;
 };
 
 }
