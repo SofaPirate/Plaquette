@@ -533,23 +533,23 @@ inline double& operator>>(PqPutter& unit, double& value) {
 }
 
 // NOTE: These operator overrides are there just to avoid making a bitshift
-// by error due to a combination of PqGetter operator float() and
-// PqDigitalGetter int() and bool() which allow bitshift operations.
-inline PqGetter& operator>>(float value,    PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(double value,   PqGetter& getter) { return getter; }
+// by error due to a combination of PqGetter operato and
+// PqDigitalGetter int() and bool() which allow bitshift.
+inline PqGetter& operator>>(float,    PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(double,   PqGetter& getter) { return getter; }
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
-inline PqGetter& operator>>(int value,      PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(int,      PqGetter& getter) { return getter; }
 #endif
-inline PqGetter& operator>>(bool value,     PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(int8_t value,   PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(uint8_t value,  PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(int16_t value,  PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(uint16_t value, PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(int32_t value,  PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(uint32_t value, PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(int64_t value,  PqGetter& getter) { return getter; }
-inline PqGetter& operator>>(uint64_t value, PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(bool,    PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(int8_t,   PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(uint8_t,  PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(int16_t,  PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(uint16_t, PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(int32_t,  PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(uint32_t, PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(int64_t,  PqGetter& getter) { return getter; }
+inline PqGetter& operator>>(uint64_t, PqGetter& getter) { return getter; }
 
 // inline float operator+(PqGetter& getter1, PqGetter& getter2) { return getter1.get() + getter2.get(); }
 // inline float operator+(PqGetter& getter, int8_t value)     { return getter.get() + value; }
