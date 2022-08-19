@@ -45,14 +45,14 @@
 #define PLAQUETTE_DEFAULT_SMOOTH_WINDOW 0.1F
 #endif
 
-#define PLAQUETTE_NO_SMOOTH_WINDOW 0
+#define PLAQUETTE_NO_SMOOTH_WINDOW 0.0F
 #define PLAQUETTE_INFINITE_SMOOTH_WINDOW FLT_MAX
 
 #ifndef PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW
 #define PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW 0.005F // 5 ms
 #endif
 
-#define PLAQUETTE_NO_DEBOUNCE_WINDOW 0
+#define PLAQUETTE_NO_DEBOUNCE_WINDOW 0.0F
 
 // This constant is used in the oscillators to prevent phaseTime from increasing
 // too fast (which would be useless).
