@@ -26,6 +26,7 @@
 #define MOVINGAVERAGE_H_
 
 #include <Arduino.h>
+#include <limits.h>
 
 namespace pq {
 
@@ -85,6 +86,9 @@ public:
    * factor #alpha#.
    */
   static float applyUpdate(float& runningValue, float newValue, float alpha);
+
+  /// Returns the alpha value computed from given sample rate, time window, and number of samples.
+  static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
 };
 
 } // namespace pq

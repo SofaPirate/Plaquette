@@ -49,17 +49,7 @@ void MovingAverage::cutoff(float hz) {
 }
 
 float MovingAverage::alpha(float sampleRate) const {
-  
-  float nSamplesTarget = _smoothTime * sampleRate;
-
-  // In order to do a smooth transition and prevent first values to take too much weight compared to
-  // later values, we start by averaging using a non-moving average for the first series of valus.
-  if (_nSamples < nSamplesTarget && _nSamples < UINT_MAX)
-    nSamplesTarget = _nSamples;
-
-  // Rule of thumb: alpha = 2 / (nSamplesTarget + 1).
-  float alpha = 2 / (_smoothTime*sampleRate + 1);
-  return min(alpha, 1.f); // make sure it does not get over 1
+  return alpha(sampleRate, _smoothTime, _nSamples);
 }
 
 void MovingAverage::reset(float initValue) {
@@ -75,7 +65,7 @@ float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
     _nSamples++;
-  
+
   return v;
 }
 
@@ -83,6 +73,20 @@ bool MovingAverage::isStarted() const { return _nSamples > 1; }
 
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
   return (runningValue -= alpha * (runningValue - newValue));
+}
+
+float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
+  // Target n. samples.
+  float nSamplesTarget = smoothTime * sampleRate;
+
+  // In order to do a smooth transition and prevent first values to take too much weight compared to
+  // later values, we start by averaging using a non-moving average for the first series of valus.
+  if (nSamples < nSamplesTarget && nSamples < UINT_MAX)
+    nSamplesTarget = nSamples;
+
+  // Rule of thumb: alpha = 2 / (nSamplesTarget + 1).
+  float alpha = 2 / (nSamplesTarget + 1);
+  return min(alpha, 1.0f); // make sure it does not get over 1
 }
 
 } // namespace pq
