@@ -222,7 +222,7 @@ public:
   virtual float get() = 0;
 
   /// Object can be used directly to access its value.
-  operator float() { return get(); }
+  virtual operator float() { return get(); }
 
 protected:
   /// Constructor.
@@ -275,10 +275,10 @@ public:
   virtual float get() { return getInt(); }
 
   /// Operator that allows usage in conditional expressions.
-  virtual explicit operator bool() { return isOn(); }
+  virtual operator bool() { return isOn(); }
 
   /// Operator that return 0 or 1 depending on value.
-  explicit operator int() { return getInt(); }
+  virtual explicit operator int() { return getInt(); }
 };
 
 /// A generic class representing a simple source.
@@ -375,7 +375,7 @@ public:
 
   // /// Object can be used directly to access its value.
   // // Somehow we need to re-write this operator here, otherwise it causes problems.
-  // operator float() { return get(); }
+  virtual operator float() { return get(); }
 
   /**
    * Pushes value into the unit.
