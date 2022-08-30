@@ -227,10 +227,6 @@ _site
 _data
 Gemfile.lock
 
-# Other
-TODO
-trash
-
 # Images
 *.jpg
 *.jpeg
@@ -238,3 +234,12 @@ trash
 *.gif
 *.svg
 
+# Other
+*.o
+TODO
+trash
+.clang_complete
+.gcc-flags.json
+.pio/
+lib/
+include/
