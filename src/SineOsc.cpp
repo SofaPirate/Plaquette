@@ -34,6 +34,7 @@ SineOsc::SineOsc(float period_) : PqAnalogSource(), _phase(0) {
 
 #define _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER (65535.5f)
 #define _PQ_SINE_OSC_PHASE_TIME_MAX           (65535)
+#define _PQ_SINE_OSC_AMPLITUDE_DIVIDER        (-32767.0f)
 
 void SineOsc::begin() {
 	_phaseTime = _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * _phase;
@@ -43,8 +44,11 @@ void SineOsc::begin() {
 void SineOsc::step() {
   float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
+  // NOTE: the max increment is about (0.5 * _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER)
 	_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER / (max(_period, minPeriod) * sampleRate());
-  _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
+  // _phaseTime will never be >= (2*_PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER) cause it cannot in
+  if (_phaseTime > _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER)
+    _phaseTime -= _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER;
 	// Compute next value.
 	_updateValue();
 
@@ -74,8 +78,12 @@ SineOsc& SineOsc::frequency(float frequency) {
 SineOsc& SineOsc::amplitude(float amplitude)  {
 	if (amplitude != _amplitude)
   	_amplitude = constrain(amplitude, 0, 1);
-	_amplitude /= -32767.0f; // hack: precompute value
+	_amplitude /= _PQ_SINE_OSC_AMPLITUDE_DIVIDER; // hack: precompute value
 	return *this;
+}
+
+float SineOsc::amplitude() const {
+  return _amplitude * _PQ_SINE_OSC_AMPLITUDE_DIVIDER;
 }
 
 SineOsc& SineOsc::phase(float phase) {
