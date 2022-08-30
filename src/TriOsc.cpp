@@ -39,9 +39,8 @@ void TriOsc::begin() {
 void TriOsc::step() {
   float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
-	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate());
-  _phaseTime = wrap01(_phaseTime);
-//	while (_phaseTime > 1) _phaseTime--; // modulo
+	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate()); // the max. increment is about 0.5
+  if (_phaseTime > 1) _phaseTime--; // _phaseTime will never be >= 2 cause it cannot in
 	// Compute next value.
 	_updateValue();
 
