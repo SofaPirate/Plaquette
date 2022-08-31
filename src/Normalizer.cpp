@@ -18,28 +18,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SimpleStats.h"
+#include "MovingStats.h"
 #include "Normalizer.h"
 
 namespace pq {
 
-Normalizer::Normalizer()
+Normalizer::Normalizer(float smoothWindow)
   : AnalogSource(0.5f),
-    SimpleStats(),
+    MovingStats(smoothWindow),
     _targetMean(0.5f),
-    _targetStddev(0.25f)
+    _targetStdDev(0.25f)
 {
 }
 
-Normalizer::Normalizer(float mean, float stddev)
+Normalizer::Normalizer(float mean, float stddev, float smoothWindow)
 	: AnalogSource(mean),
-    SimpleStats(),
+    MovingStats(smoothWindow),
     _targetMean(mean),
-    _targetStddev(abs(stddev))
-{}
+    _targetStdDev(abs(stddev))
+{
+}
 
 float Normalizer::put(float value) {
-  return (_value = SimpleStats::update(value) * _targetStddev + _targetMean);
+  return (_value = MovingStats::update(value, sampleRate()) * _targetStdDev + _targetMean);
 }
 
 }

@@ -52,7 +52,7 @@ public:
   void cutoff(float hz);
 
   /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return (1.0f/time()); }
+  float cutoff() const { return _avg.cutoff(); }
 
   /// Resets the statistics.
   virtual void reset();

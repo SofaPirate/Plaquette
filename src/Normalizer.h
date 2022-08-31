@@ -25,21 +25,25 @@
 
 namespace pq {
 
-/// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public AnalogSource, public SimpleStats {
+/**
+ * Adaptive normalizer: normalizes values on-the-run using exponential moving
+ * averages over mean and standard deviation.
+ */
+class Normalizer : public AnalogSource, public MovingStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0.5 and a standard
-   * deviation of 0.25.
+   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.25.
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer();
+   Normalizer(float smoothWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
 
   /**
    * Constructor.
    * @param mean the target mean
    * @param stddev the target standard deviation
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stddev);
+  Normalizer(float mean, float stddev, float smoothWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
   virtual ~Normalizer() {}
 
   /**
@@ -55,10 +59,10 @@ public:
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  Normalizer& targetStdDev(float stddev) { _targetStddev = stddev; return *this; }
+  Normalizer& targetStdDev(float stddev) { _targetStdDev = stddev; return *this; }
 
   /// Returns target standard deviation.
-  float targetStdDev() const { return _targetStddev; }
+  float targetStdDev() const { return _targetStdDev; }
 
   /**
    * Pushes value into the unit.
@@ -70,7 +74,7 @@ public:
 protected:
   // Target normalization parameters.
   float _targetMean;
-  float _targetStddev;
+  float _targetStdDev;
 };
 
 }
