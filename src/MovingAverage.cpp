@@ -54,12 +54,12 @@ void MovingAverage::reset(float initValue) {
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
 
-  // Exponential moving average.
-  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
-
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
     _nSamples++;
+
+  // Exponential moving average.
+  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 
   return v;
 }
