@@ -417,11 +417,11 @@ inline Node& operator>>(uint64_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
+// Node to value operators ///////////////////////////////////////
+
 inline bool& operator>>(DigitalNode& unit, bool& value) {
   return (value = unit.isOn());
 }
-
-// Node to value operators ///////////////////////////////////////
 
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
