@@ -71,11 +71,11 @@ float MovingAverage::applyUpdate(float& runningValue, float newValue, float alph
 }
 
 float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
-  // Target n. samples.
+  // Approximative number of samples in time window.
   float nSamplesTarget = smoothTime * sampleRate;
 
   // In order to do a smooth transition and prevent first values to take too much weight compared to
-  // later values, we start by averaging using a non-moving average for the first series of valus.
+  // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
   if (nSamples < nSamplesTarget && nSamples < UINT_MAX)
     nSamplesTarget = nSamples;
 
