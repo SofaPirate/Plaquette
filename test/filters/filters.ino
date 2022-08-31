@@ -5,7 +5,7 @@
 using namespace pq;
 
 #define N_UNITS 1
-PqPutter* units[N_UNITS] = {
+PqNode* units[N_UNITS] = {
   // new MinMaxScaler(0.01f),
   new MinMaxScaler(1.0f)
 };
