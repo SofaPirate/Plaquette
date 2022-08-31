@@ -21,6 +21,7 @@ testing(nSteps) {
 
 testing(valuesIn01) {
   static unsigned long startTime = millis();
+  Plaquette.step();
 
   for (int i=0; i<N_GENERATORS; i++) {
     Node* unit = generators[i];

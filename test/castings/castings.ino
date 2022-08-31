@@ -24,6 +24,7 @@ Node* units[N_UNITS] = {
 
 testing(valuesIn01) {
   static unsigned long startTime = millis();
+  Plaquette.step();
 
   for (int i=0; i<N_UNITS; i++) {
     Node* unit = units[i];
@@ -139,6 +140,7 @@ class TestPiping: public TestAgain {
 
 testingF(TestPiping, test) {
   static unsigned long startTime = millis();
+  Plaquette.step();
   testDigital();
   testAnalog();
   testValues();
