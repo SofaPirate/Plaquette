@@ -24,7 +24,7 @@
 namespace pq {
 
 AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
-  : PqStoredValuePutter(0.5f),
+  : PqAnalogSource(0.5f),
     MovingStats(smoothWindow),
     _targetMean(0.5f),
     _targetStddev(0.25f)
@@ -32,7 +32,7 @@ AdaptiveNormalizer::AdaptiveNormalizer(float smoothWindow)
 }
 
 AdaptiveNormalizer::AdaptiveNormalizer(float mean, float stddev, float smoothWindow)
-	: PqStoredValuePutter(mean),
+	: PqAnalogSource(mean),
     MovingStats(smoothWindow),
     _targetMean(mean),
     _targetStddev(abs(stddev))

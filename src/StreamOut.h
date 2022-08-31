@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public PqStoredValuePutter {
+class StreamOut : public PqAnalogSource {
 public:
   /**
    * Constructor.

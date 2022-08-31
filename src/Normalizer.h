@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqStoredValuePutter, public SimpleStats {
+class Normalizer : public PqAnalogSource, public SimpleStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0.5 and a standard

@@ -41,13 +41,11 @@ namespace pq {
  * - THRESHOLD_CHANGE  : true when value crosses threshold
  * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only used in the FALLING, RISING, MIN, and MAX modes, otherwise it is ignored.
  */
-class Thresholder : public PqDigitalGetter, public PqPutter {
+class Thresholder : public PqDigitalNode {
 public:
   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
   Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
-
-  virtual float get() { return PqDigitalGetter::get(); }
 
   /**
    * Pushes value into the unit.

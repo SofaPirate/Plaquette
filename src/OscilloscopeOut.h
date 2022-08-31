@@ -27,7 +27,7 @@ namespace pq {
 
 /// Generates a simple ASCII-based representation of a signal.
 /// Precision represents the number of columns used to represent the signal.
-class OscilloscopeOut : public PqStoredValuePutter {
+class OscilloscopeOut : public PqAnalogSource {
 public:
   OscilloscopeOut(float minValue=0, float maxValue=1, uint8_t precision=100);
   virtual ~OscilloscopeOut() {}

@@ -25,7 +25,7 @@
 namespace pq {
 
 MinMaxScaler::MinMaxScaler(float decayWindow)
- : PqStoredValuePutter(0.5f),
+ : PqAnalogSource(0.5f),
    _minValue(FLT_MAX),
    _maxValue(-FLT_MAX),
    _decayWindow(decayWindow)

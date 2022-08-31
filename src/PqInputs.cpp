@@ -121,7 +121,7 @@ void PqDebounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqGetter(), PqPinUnit(pin, mode), PqMappable(), PqSmoothable()
+  : PqNode(), PqPinUnit(pin, mode), PqSmoothable()
 {}
 
 #ifdef ESP8266
