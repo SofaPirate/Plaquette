@@ -27,6 +27,7 @@
 
 #include <Arduino.h>
 #include <limits.h>
+#include <float.h>
 
 namespace pq {
 
@@ -46,8 +47,11 @@ public:
   /**
    * Constructs the moving average.
    */
-  MovingAverage(float smooth, float initValue=0.5f);
+  MovingAverage(float smooth=FLT_MAX);
   virtual ~MovingAverage() {}
+
+  /// Sets to "infinite" smoothing window.
+  void infiniteTime();
 
   /// Changes the smoothing window (expressed in seconds).
   void time(float seconds);
@@ -59,13 +63,13 @@ public:
   void cutoff(float hz);
 
   /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return (1.0f/time()); }
-
+  float cutoff() const;
+  
   /// Returns the alpha value computed from given sample rate.
   float alpha(float sampleRate) const;
 
   /// Resets the moving average.
-  virtual void reset(float initValue=0.5f);
+  virtual void reset();
 
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);

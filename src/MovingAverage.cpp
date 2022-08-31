@@ -29,9 +29,13 @@
 
 namespace pq {
 
-MovingAverage::MovingAverage(float seconds, float initValue) : _value(initValue) {
+MovingAverage::MovingAverage(float seconds) : _value(0) {
   time(seconds);
   reset();
+}
+
+void MovingAverage::infiniteTime() {
+  time(FLT_MAX);
 }
 
 void MovingAverage::time(float seconds) {
@@ -43,13 +47,17 @@ void MovingAverage::cutoff(float hz) {
   time(hz == 0 ? FLT_MAX : hz);
 }
 
+float MovingAverage::cutoff() const {
+  return (_smoothTime == FLT_MAX ? 0 : 1.0f/_smoothTime);
+}
+
 float MovingAverage::alpha(float sampleRate) const {
   return alpha(sampleRate, _smoothTime, _nSamples);
 }
 
-void MovingAverage::reset(float initValue) {
+void MovingAverage::reset() {
   _nSamples = 1;
-  _value = initValue;
+  _value = FLT_MAX; // dummy value
 }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
