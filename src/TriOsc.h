@@ -28,7 +28,7 @@ namespace pq {
 /**
  * Triangle/sawtooth oscillator.
  */
-class TriOsc : public PqAnalogSource {
+class TriOsc : public AnalogSource {
 public:
   /**
    * Constructor.

@@ -29,7 +29,7 @@ namespace pq {
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
  */
-class AdaptiveNormalizer : public PqAnalogSource, public MovingStats {
+class AdaptiveNormalizer : public AnalogSource, public MovingStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.25.

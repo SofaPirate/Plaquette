@@ -26,7 +26,7 @@ namespace pq {
 
 OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
   :
-  PqAnalogSource(),
+  AnalogSource(),
   _minValue(minValue),
   _maxValue(maxValue),
   _precision(precision) {}

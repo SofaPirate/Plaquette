@@ -26,7 +26,7 @@
 namespace pq {
   
 /// Simple moving average transform filter.
-class Smoother : public PqNode, public MovingAverage {
+class Smoother : public Node, public MovingAverage {
 public:
   /**
    * Constructor.

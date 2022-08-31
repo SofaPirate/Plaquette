@@ -24,7 +24,7 @@
 namespace pq {
 
 Normalizer::Normalizer()
-  : PqAnalogSource(0.5f),
+  : AnalogSource(0.5f),
     SimpleStats(),
     _targetMean(0.5f),
     _targetStddev(0.25f)
@@ -32,7 +32,7 @@ Normalizer::Normalizer()
 }
 
 Normalizer::Normalizer(float mean, float stddev)
-	: PqAnalogSource(mean),
+	: AnalogSource(mean),
     SimpleStats(),
     _targetMean(mean),
     _targetStddev(abs(stddev))

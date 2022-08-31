@@ -24,13 +24,13 @@
 
 namespace pq {
 
-PqSmoothable::PqSmoothable(float smoothTime) : _avg(smoothTime) {}
+Smoothable::Smoothable(float smoothTime) : _avg(smoothTime) {}
 
-void PqSmoothable::_begin() {
+void Smoothable::_begin() {
   _avg.reset();
 }
 
-void PqSmoothable::_step() {
+void Smoothable::_step() {
   _avg.update( _read(), _avg.alpha(sampleRate()), true );
 }
 
@@ -40,19 +40,19 @@ void PqSmoothable::_step() {
 #define UNSTABLE_STATE  0x02
 #define CHANGED_STATE   0x04
 
-PqDebounceable::PqDebounceable(float debounceTime, uint8_t mode) : _interval(0), _startTime(0), _state(0) {
+Debounceable::Debounceable(float debounceTime, uint8_t mode) : _interval(0), _startTime(0), _state(0) {
    time(debounceTime);
    debounceMode(mode);
  }
 
-void PqDebounceable::_begin() {
+void Debounceable::_begin() {
   _startTime = seconds();
   if (_isOn()) {
     _setStateFlag(DEBOUNCED_STATE | UNSTABLE_STATE);
   }
 }
 
-void PqDebounceable::_step() {
+void Debounceable::_step() {
 
   _unsetStateFlag(CHANGED_STATE);
 
@@ -110,18 +110,18 @@ void PqDebounceable::_step() {
   }
 }
 
-bool PqDebounceable::_debounced() {
+bool Debounceable::_debounced() {
   return _getStateFlag(DEBOUNCED_STATE);
 }
 
-void PqDebounceable::_changeState() {
+void Debounceable::_changeState() {
   _toggleStateFlag(DEBOUNCED_STATE);
 	_setStateFlag(CHANGED_STATE) ;
 }
 
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : PqNode(), PqPinUnit(pin, mode), PqSmoothable()
+  : Node(), PinUnit(pin, mode), Smoothable()
 {}
 
 #ifdef ESP8266
@@ -152,7 +152,7 @@ float AnalogIn::mapTo(float toLow, float toHigh) {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : PqDigitalSource(), PqPinUnit(pin, mode), PqDebounceable(), _changeState(0)
+  : DigitalSource(), PinUnit(pin, mode), Debounceable(), _changeState(0)
 {}
 
 bool DigitalIn::_isOn() {

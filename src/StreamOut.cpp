@@ -23,7 +23,7 @@
 namespace pq {
 
 StreamOut::StreamOut(Stream& stream) :
-  PqAnalogSource(),
+  AnalogSource(),
   _digits(4),
   _stream(&stream)
 {}

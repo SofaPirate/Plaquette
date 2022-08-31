@@ -26,7 +26,7 @@
 
 namespace pq {
 
-SineOsc::SineOsc(float period_) : PqAnalogSource(), _phase(0) {
+SineOsc::SineOsc(float period_) : AnalogSource(), _phase(0) {
   period(period_);
 	phase(0);
 	amplitude(1.0f);

@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public PqAnalogSource {
+class SquareOsc : public AnalogSource {
 public:
   /**
    * Constructor.

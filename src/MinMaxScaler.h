@@ -27,7 +27,7 @@
 namespace pq {
 
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqAnalogSource {
+class MinMaxScaler : public AnalogSource {
 public:
   /// Constructor.
   MinMaxScaler(float decayWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);

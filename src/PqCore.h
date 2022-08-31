@@ -60,15 +60,15 @@
 
 namespace pq {
 
-class PqUnit;
+class Unit;
 
 /// The main Plaquette static class containing all the units.
 class PlaquetteEnv {
-  friend class PqUnit;
+  friend class Unit;
 
 private:
   // Used to keep track of units.
-  PqUnit* _units[PLAQUETTE_MAX_UNITS];
+  Unit* _units[PLAQUETTE_MAX_UNITS];
   uint8_t _nUnits;
 
   // Snapshot of time in seconds from current step.
@@ -155,7 +155,7 @@ public:
 
 private:
   /// Adds a component to Plaquette.
-  void add(PqUnit * component);
+  void add(Unit * component);
 
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
@@ -189,7 +189,7 @@ void beginSerial(unsigned long baudRate);
  * Main class for components to be added to Plaquette.
  * Components can be transducers (sensors, actuators) or special integrated circuits.
  */
-class PqUnit {
+class Unit {
   friend class PlaquetteEnv;
 
 public:
@@ -204,10 +204,10 @@ protected:
    * The parameter addUnit specifies whether we should add the unit to the
    * Plaquette environment. Important to use with multiple inheritance to avoid
    * adding the same instance twice. See how it is used for example in the
-   * PqDigitalNode constructor below.
+   * DigitalNode constructor below.
    */
-  PqUnit();
-  virtual ~PqUnit() {}
+  Unit();
+  virtual ~Unit() {}
 
 protected:
   virtual void begin() {}
@@ -220,7 +220,7 @@ protected:
  * Each such node can be read using function get(). Values
  * can also be sent to a node using put().
  */
-class PqNode : public PqUnit {
+class Node : public Unit {
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
@@ -240,27 +240,27 @@ public:
 
 protected:
   /// Constructor.
-  PqNode() : PqUnit() {}
+  Node() : Unit() {}
 
 private:
   /// Operator that allows usage in conditional expressions.
 	// NOTE: This operator is defined as explicit so that boolean expression like
 	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  virtual explicit operator bool() { return PqUnit::analogToDigital(get()); }
+  virtual explicit operator bool() { return Unit::analogToDigital(get()); }
 
   // Prevents assignation operations by making them private.
-  PqNode& operator=(bool);
-  PqNode& operator=(int);
-  PqNode& operator=(float);
-  PqNode& operator=(PqNode&);
-  PqNode(const PqNode&);
+  Node& operator=(bool);
+  Node& operator=(int);
+  Node& operator=(float);
+  Node& operator=(Node&);
+  Node(const Node&);
 };
 
 /// A generic class representing a simple source.
-class PqDigitalNode : public PqNode {
+class DigitalNode : public Node {
 public:
   /// Constructor.
-  PqDigitalNode() : PqNode() {}
+  DigitalNode() : Node() {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
@@ -286,7 +286,7 @@ public:
    * @return the new value of the unit
    */
   virtual float put(float value) {
-    return PqUnit::digitalToAnalog(putOn(PqUnit::analogToDigital(value)));
+    return Unit::digitalToAnalog(putOn(Unit::analogToDigital(value)));
   }
 
   /**
@@ -311,11 +311,11 @@ public:
  * It is the responsability of the subclass's programmer to make sure the value stays
  * within the [0, 1] range OR to update the mapTo() function accordingly.
  */
-class PqAnalogSource : public PqNode {
+class AnalogSource : public Node {
 public:
   /// Constructor.
-  PqAnalogSource(float init=0.0f) : PqNode() { _value = constrain(init, 0, 1); }
-  virtual ~PqAnalogSource() {}
+  AnalogSource(float init=0.0f) : Node() { _value = constrain(init, 0, 1); }
+  virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
   virtual float get() { return _value; }
@@ -328,10 +328,10 @@ protected:
 };
 
 /// A digital source that contains a true/false value.
-class PqDigitalSource : public PqDigitalNode {
+class DigitalSource : public DigitalNode {
 public:
   /// Constructor.
-  PqDigitalSource(bool init=false) : PqDigitalNode(), _onValue(init) {}
+  DigitalSource(bool init=false) : DigitalNode(), _onValue(init) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
@@ -359,65 +359,65 @@ protected:
 // Value to node operators ///////////////////////////////////////
 
 // Base value to node operator.
-inline PqNode& operator>>(float value, PqNode& unit) {
+inline Node& operator>>(float value, Node& unit) {
   unit.put(value);
   return unit;
 }
 
-// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, PqUnit&)).
-inline PqNode& operator>>(PqNode& source, PqNode& sink) {
+// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Unit&)).
+inline Node& operator>>(Node& source, Node& sink) {
 	return pq::operator>>(source.get(), sink);
 }
 
-inline PqNode& operator>>(double value, PqNode& unit) {
+inline Node& operator>>(double value, Node& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(bool value, PqNode& unit) {
-	return pq::operator>>(PqUnit::digitalToAnalog(value), unit);
+inline Node& operator>>(bool value, Node& unit) {
+	return pq::operator>>(Unit::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie and ARM chips.
 // Otherwise it causes an ambiguous operator error.
 #if defined(__arc__) || defined(__arm__)
-inline PqNode& operator>>(int value, PqNode& unit) {
+inline Node& operator>>(int value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 #endif
 
-inline PqNode& operator>>(int8_t value, PqNode& unit) {
+inline Node& operator>>(int8_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(uint8_t value, PqNode& unit) {
+inline Node& operator>>(uint8_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(int16_t value, PqNode& unit) {
+inline Node& operator>>(int16_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(uint16_t value, PqNode& unit) {
+inline Node& operator>>(uint16_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(int32_t value, PqNode& unit) {
+inline Node& operator>>(int32_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(uint32_t value, PqNode& unit) {
+inline Node& operator>>(uint32_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(int64_t value, PqNode& unit) {
+inline Node& operator>>(int64_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline PqNode& operator>>(uint64_t value, PqNode& unit) {
+inline Node& operator>>(uint64_t value, Node& unit) {
 	return pq::operator>>((float)value, unit);
 }
 
-inline bool& operator>>(PqDigitalNode& unit, bool& value) {
+inline bool& operator>>(DigitalNode& unit, bool& value) {
   return (value = unit.isOn());
 }
 
@@ -425,56 +425,56 @@ inline bool& operator>>(PqDigitalNode& unit, bool& value) {
 
 // This code is needed on the Curie-based AVRs.
 #if defined(__arc__)
-inline int& operator>>(PqDigitalNode& unit, int& value) {
+inline int& operator>>(DigitalNode& unit, int& value) {
   return (value = unit.getInt());
 }
 #endif
 
-inline int8_t& operator>>(PqDigitalNode& unit, int8_t& value) {
+inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
   return (value = unit.getInt());
 }
 
-inline uint8_t& operator>>(PqDigitalNode& unit, uint8_t& value) {
+inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
   return (value = unit.getInt());
 }
 
-inline int16_t& operator>>(PqDigitalNode& unit, int16_t& value) {
+inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
   return (value = unit.getInt());
 }
 
-inline uint16_t& operator>>(PqDigitalNode& unit, uint16_t& value) {
+inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
   return (value = unit.getInt());
 }
 
-inline int32_t& operator>>(PqDigitalNode& unit, int32_t& value) {
+inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
   return (value = unit.getInt());
 }
 
-inline uint32_t& operator>>(PqDigitalNode& unit, uint32_t& value) {
+inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
   return (value = unit.getInt());
 }
 
-inline int64_t& operator>>(PqDigitalNode& unit, int64_t& value) {
+inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
   return (value = unit.getInt());
 }
 
-inline uint64_t& operator>>(PqDigitalNode& unit, uint64_t& value) {
+inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
   return (value = unit.getInt());
 }
 
-inline float& operator>>(PqNode& unit, float& value) {
+inline float& operator>>(Node& unit, float& value) {
   return (value = unit.get());
 }
 
-inline double& operator>>(PqNode& unit, double& value) {
+inline double& operator>>(Node& unit, double& value) {
   return (value = unit.get());
 }
 
 /// Superclass for pin-based components.
-class PqPinUnit {
+class PinUnit {
 public:
-  PqPinUnit(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
-  virtual ~PqPinUnit() {}
+  PinUnit(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
+  virtual ~PinUnit() {}
 
   /// Returns the pin this component is attached to.
   uint8_t pin() const { return _pin; }

@@ -23,12 +23,12 @@
 namespace pq {
 
 Thresholder::Thresholder(float threshold, uint8_t mode)
-  : PqDigitalNode() {
+  : DigitalNode() {
 			_init(threshold, mode, threshold);
 		}
 
 Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
-	: PqDigitalNode() {
+	: DigitalNode() {
 			_init(threshold, mode, resetThreshold);
 		}
 

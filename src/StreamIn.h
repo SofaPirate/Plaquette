@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public PqNode {
+class StreamIn : public Node {
 public:
   /**
    * Constructor.

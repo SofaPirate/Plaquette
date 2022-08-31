@@ -65,7 +65,7 @@ void PlaquetteEnv::end() {
     postStep();
 }
 
-void PlaquetteEnv::add(PqUnit* component) {
+void PlaquetteEnv::add(Unit* component) {
   for (uint8_t i=0; i<_nUnits; i++) {
 		if (_units[i] == component) {
 			return; // do not add existing component
@@ -102,7 +102,7 @@ void beginSerial(unsigned long baudRate) {
   while (Serial.available()) Serial.read();
 }
 
-PqUnit::PqUnit() {
+Unit::Unit() {
 #ifdef PLAQUETTE_USE_SINGLETON
   PlaquetteEnv::singleton()
 #else

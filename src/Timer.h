@@ -29,7 +29,7 @@ namespace pq {
 /**
  * Chronometer class which becomes "on" after a given duration.
  */
-class Timer : public PqDigitalNode, public AbstractTimer {
+class Timer : public DigitalNode, public AbstractTimer {
 public:
   Timer(float duration=0.0f);
 

@@ -24,7 +24,7 @@
 namespace pq {
 
 Smoother::Smoother(float smoothWindow)
-  : PqNode(),
+  : Node(),
     MovingAverage(smoothWindow) {
 }
 

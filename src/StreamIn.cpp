@@ -23,7 +23,7 @@
 namespace pq {
 
 StreamIn::StreamIn(Stream& stream) :
- 	PqNode(),
+ 	Node(),
 	_nextValue(0),
 	_nextFraction(1),
 	_nextIsValid(false),

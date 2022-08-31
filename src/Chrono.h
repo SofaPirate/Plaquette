@@ -25,7 +25,7 @@
 
 namespace pq {
 
-class Chrono : public PqUnit {
+class Chrono : public Unit {
 public:
   /// Constructor.
   Chrono();
