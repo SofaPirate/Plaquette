@@ -47,7 +47,6 @@ public:
    * Constructs the moving average.
    */
   MovingAverage(float smooth, float initValue=0.5f);
-  // MovingAverage(float seconds, float startValue);
   virtual ~MovingAverage() {}
 
   /// Changes the smoothing window (expressed in seconds).
@@ -67,9 +66,6 @@ public:
 
   /// Resets the moving average.
   virtual void reset(float initValue=0.5f);
-
-  // /// Resets the moving average to #startValue#.
-  // virtual void reset(float startValue);
 
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);

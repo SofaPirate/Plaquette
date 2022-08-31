@@ -34,11 +34,6 @@ MovingAverage::MovingAverage(float seconds, float initValue) : _value(initValue)
   reset();
 }
 
-// MovingAverage::MovingAverage(float seconds, float startValue) {
-//   window(seconds);
-//   reset(startValue);
-// }
-
 void MovingAverage::time(float seconds) {
   _smoothTime = max(seconds, 0.0f); // make sure it is positive
 }
