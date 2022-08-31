@@ -236,6 +236,10 @@ Gemfile.lock
 
 # Other
 *.o
+*.out
+.travis.yml
+*.dia
+*.dia.autosave
 TODO
 trash
 .clang_complete
