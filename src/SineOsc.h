@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public PqAnalogSource {
+class SineOsc : public AnalogSource {
 public:
   /**
    * Constructor.

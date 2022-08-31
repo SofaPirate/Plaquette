@@ -39,9 +39,9 @@
 namespace pq {
 
 /// Superclass for components that can be smoothed.
-class PqSmoothable {
+class Smoothable {
 public:
-  PqSmoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
+  Smoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
 
   /// Apply smoothing to object.
   virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { time(smoothTime); }
@@ -79,9 +79,9 @@ protected:
 };
 
 /// Superclass for components that can be debounced.
-class PqDebounceable {
+class Debounceable {
 public:
-  PqDebounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
+  Debounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
 
   /// Apply smoothing to object.
   virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { time(debounceTime); }
@@ -137,7 +137,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqGetter, public PqPinUnit, public PqMappable, public PqSmoothable {
+class AnalogIn : public Node, public PinUnit, public Smoothable {
 public:
   /**
    * Constructor.
@@ -162,7 +162,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqDigitalSource, public PqPinUnit, public PqDebounceable {
+class DigitalIn : public DigitalSource, public PinUnit, public Debounceable {
 public:
   /**
    * Constructor.

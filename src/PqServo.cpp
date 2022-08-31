@@ -24,7 +24,7 @@
 
 namespace pq {
 
-AbstractServoOut::AbstractServoOut(uint8_t pin) : PqStoredValuePutter(), _pin(pin) {}
+AbstractServoOut::AbstractServoOut(uint8_t pin) : AnalogSource(), _pin(pin) {}
 AbstractServoOut::~AbstractServoOut() { detach(); }
 
 float AbstractServoOut::put(float value)
