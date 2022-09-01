@@ -32,17 +32,16 @@ MinMaxScaler::MinMaxScaler(float decayWindow)
 {
 }
 
-void MinMaxScaler::time(float seconds) {
-  _decayWindow = ::max(seconds, 0.0f); // make sure it is positive
+void MinMaxScaler::infiniteTimeWindow() {
+  _timeWindow = MOVING_FILTER_INFINITE_TIME_WINDOW;
 }
 
-void MinMaxScaler::cutoff(float hz) {
-  // If hz is null time window is infinite.
-  time(hz == 0 ? FLT_MAX : hz);
+void MinMaxScaler::timeWindow(float seconds) {
+  _timeWindow = max(seconds, 0.0f); // make sure it is positive
 }
 
-float MinMaxScaler::cutoff() const {
-  return (_decayWindow == FLT_MAX ? 0 : 1.0f/_decayWindow);
+float MinMaxScaler::timeWindow() const { return _timeWindow; }
+
 }
 
 float MinMaxScaler::put(float value)

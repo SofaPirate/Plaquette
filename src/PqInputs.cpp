@@ -41,7 +41,7 @@ void Smoothable::_step() {
 #define CHANGED_STATE   0x04
 
 Debounceable::Debounceable(float debounceTime, uint8_t mode) : _interval(0), _startTime(0), _state(0) {
-   time(debounceTime);
+   timeWindow(debounceTime);
    debounceMode(mode);
  }
 

@@ -58,6 +58,16 @@ Normalizer::Normalizer(float mean, float stddev, float timeWindow)
 {
 }
 
+void Normalizer::infiniteTimeWindow() {
+  MovingStats::infiniteTimeWindow();
+}
+
+void Normalizer::timeWindow(float seconds) {
+  MovingStats::timeWindow(seconds);
+}
+
+float Normalizer::timeWindow() const { return MovingStats::timeWindow(); }
+
 float Normalizer::put(float value) {
   return (_value = MovingStats::update(value, sampleRate()) * _targetStdDev + _targetMean);
 }

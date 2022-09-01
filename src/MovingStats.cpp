@@ -26,8 +26,8 @@ namespace pq {
 MovingStats::MovingStats() : _avg(), _var(0) { }
 MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _var(0) { }
 
-void MovingStats::time(float seconds) {
-  _avg.time(seconds);
+void MovingStats::timeWindow(float seconds) {
+  _avg.timeWindow(seconds);
 }
 
 void MovingStats::cutoff(float hz) {

@@ -53,13 +53,13 @@ public:
   virtual ~MovingAverage() {}
 
   /// Sets to "infinite" smoothing window.
-  void infiniteTime();
+  void infiniteTimeWindow();
 
   /// Changes the smoothing window (expressed in seconds).
-  void time(float seconds);
+  void timeWindow(float seconds);
 
   /// Returns the smoothing window (expressed in seconds).
-  float time() const { return _smoothTime; }
+  float timeWindow() const { return _smoothTime; }
 
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);

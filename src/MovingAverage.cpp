@@ -32,26 +32,26 @@ namespace pq {
 #define INFINITE_WINDOW (-1)
 
 MovingAverage::MovingAverage() : _value(0) {
-  infiniteTime();
+  infiniteTimeWindow();
   reset();
 }
 
-MovingAverage::MovingAverage(float timeWindow) : _value(0) {
-  time(timeWindow);
+MovingAverage::MovingAverage(float timeWindow_) : _value(0) {
+  timeWindow(timeWindow_);
   reset();
 }
 
-void MovingAverage::infiniteTime() {
+void MovingAverage::infiniteTimeWindow() {
   _smoothTime = INFINITE_WINDOW;
 }
 
-void MovingAverage::time(float seconds) {
+void MovingAverage::timeWindow(float seconds) {
   _smoothTime = max(seconds, 0.0f); // make sure it is positive
 }
 
 void MovingAverage::cutoff(float hz) {
   // If hz is null time window is infinite.
-  time(hz == 0 ? INFINITE_WINDOW : hz);
+  timeWindow(hz == 0 ? INFINITE_WINDOW : hz);
 }
 
 float MovingAverage::cutoff() const {

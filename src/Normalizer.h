@@ -77,6 +77,15 @@ public:
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStdDev; }
 
+  /// Sets time window to infinite.
+  virtual void infiniteTimeWindow();
+
+  /// Changes the time window (expressed in seconds).
+  virtual void timeWindow(float seconds);
+
+  /// Returns the time window (expressed in seconds).
+  virtual float timeWindow() const;
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit
