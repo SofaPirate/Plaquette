@@ -58,4 +58,10 @@ bool MovingStats::isStarted() const {
   return _avg.isStarted();
 }
 
+float MovingStats::stddev() const { return sqrt(var()); }
+
+float MovingStats::normalize(float value) const {
+  return ( value - mean() ) / (stddev() + FLT_MIN);
+}
+
 } // namespace pq

@@ -28,7 +28,7 @@
 
 namespace pq {
 
-class MovingStats : public Stats {
+class MovingStats {
 public:
   // Moving average over values (ie. mean).
   MovingAverage _avg;
@@ -70,6 +70,12 @@ public:
 
   /// Returns an exponential moving variance of the samples.
   virtual float var() const { return _var; }
+
+  /// Returns the standard deviation of the samples.
+  virtual float stddev() const;
+
+  /// Returns the normalized value according to the computed statistics (mean and variance).
+  float normalize(float value) const;
 
   /// Returns true iff the statistics have already been started.
   virtual bool isStarted() const;
