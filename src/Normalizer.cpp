@@ -18,28 +18,48 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SimpleStats.h"
+#include "MovingStats.h"
 #include "Normalizer.h"
 
 namespace pq {
 
+#define NORMALIZER_DEFAULT_MEAN   0.5f
+#define NORMALIZER_DEFAULT_STDDEV 0.15f
+
 Normalizer::Normalizer()
-  : AnalogSource(0.5f),
-    SimpleStats(),
-    _targetMean(0.5f),
-    _targetStddev(0.25f)
+: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+  MovingStats(),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+{
+}
+
+Normalizer::Normalizer(float timeWindow)
+: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+  MovingStats(timeWindow),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
 {
 }
 
 Normalizer::Normalizer(float mean, float stddev)
 	: AnalogSource(mean),
-    SimpleStats(),
+    MovingStats(),
     _targetMean(mean),
-    _targetStddev(abs(stddev))
-{}
+    _targetStdDev(abs(stddev))
+{
+}
+
+Normalizer::Normalizer(float mean, float stddev, float timeWindow)
+	: AnalogSource(mean),
+    MovingStats(timeWindow),
+    _targetMean(mean),
+    _targetStdDev(abs(stddev))
+{
+}
 
 float Normalizer::put(float value) {
-  return (_value = SimpleStats::update(value) * _targetStddev + _targetMean);
+  return (_value = MovingStats::update(value, sampleRate()) * _targetStdDev + _targetMean);
 }
 
 }

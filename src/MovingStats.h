@@ -28,7 +28,7 @@
 
 namespace pq {
 
-class MovingStats : public Stats {
+class MovingStats {
 public:
   // Moving average over values (ie. mean).
   MovingAverage _avg;
@@ -36,11 +36,16 @@ public:
   // Moving average of variance.
   float _var;
 
-  /**
-   * Constructs the moving statistics.
-   */
-  MovingStats(float smoothWindow);
+  /// Default constructor (infinite time window).
+  MovingStats();
+
+  /// Default constructor (finite time window).
+  MovingStats(float timeWindow);
+
   virtual ~MovingStats() {}
+
+  /// Sets to "infinite" smoothing window.
+  void infiniteTime() { _avg.infiniteTime(); }
 
   /// Changes the smoothing window (expressed in seconds).
   void time(float seconds);
@@ -52,7 +57,7 @@ public:
   void cutoff(float hz);
 
   /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return (1.0f/time()); }
+  float cutoff() const { return _avg.cutoff(); }
 
   /// Resets the statistics.
   virtual void reset();
@@ -65,6 +70,12 @@ public:
 
   /// Returns an exponential moving variance of the samples.
   virtual float var() const { return _var; }
+
+  /// Returns the standard deviation of the samples.
+  virtual float stddev() const;
+
+  /// Returns the normalized value according to the computed statistics (mean and variance).
+  float normalize(float value) const;
 
   /// Returns true iff the statistics have already been started.
   virtual bool isStarted() const;

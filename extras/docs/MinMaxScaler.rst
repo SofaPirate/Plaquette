@@ -52,6 +52,5 @@ automatically adapt to incoming sensor values.
 
 |SeeAlso|
 ---------
-- :doc:`AdaptiveNormalizer`
 - :doc:`Normalizer`
 - :doc:`Smoother`
