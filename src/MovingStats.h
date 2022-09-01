@@ -36,11 +36,16 @@ public:
   // Moving average of variance.
   float _var;
 
-  /**
-   * Constructs the moving statistics.
-   */
-  MovingStats(float smoothWindow);
+  /// Default constructor (infinite time window).
+  MovingStats();
+
+  /// Default constructor (finite time window).
+  MovingStats(float timeWindow);
+
   virtual ~MovingStats() {}
+
+  /// Sets to "infinite" smoothing window.
+  void infiniteTime() { _avg.infiniteTime(); }
 
   /// Changes the smoothing window (expressed in seconds).
   void time(float seconds);

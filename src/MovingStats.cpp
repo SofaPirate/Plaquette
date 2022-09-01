@@ -23,7 +23,8 @@
 
 namespace pq {
 
-MovingStats::MovingStats(float smoothWindow) : _avg(smoothWindow), _var(0) { }
+MovingStats::MovingStats() : _avg(), _var(0) { }
+MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _var(0) { }
 
 void MovingStats::time(float seconds) {
   _avg.time(seconds);

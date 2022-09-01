@@ -29,13 +29,20 @@
 
 namespace pq {
 
-MovingAverage::MovingAverage(float seconds) : _value(0) {
-  time(seconds);
+#define INFINITE_WINDOW (-1)
+
+MovingAverage::MovingAverage() : _value(0) {
+  infiniteTime();
+  reset();
+}
+
+MovingAverage::MovingAverage(float timeWindow) : _value(0) {
+  time(timeWindow);
   reset();
 }
 
 void MovingAverage::infiniteTime() {
-  time(FLT_MAX);
+  _smoothTime = INFINITE_WINDOW;
 }
 
 void MovingAverage::time(float seconds) {
@@ -44,11 +51,11 @@ void MovingAverage::time(float seconds) {
 
 void MovingAverage::cutoff(float hz) {
   // If hz is null time window is infinite.
-  time(hz == 0 ? FLT_MAX : hz);
+  time(hz == 0 ? INFINITE_WINDOW : hz);
 }
 
 float MovingAverage::cutoff() const {
-  return (_smoothTime == FLT_MAX ? 0 : 1.0f/_smoothTime);
+  return (_smoothTime == INFINITE_WINDOW ? 0 : 1.0f/_smoothTime);
 }
 
 float MovingAverage::alpha(float sampleRate) const {
@@ -57,22 +64,21 @@ float MovingAverage::alpha(float sampleRate) const {
 
 void MovingAverage::reset() {
   _nSamples = 1;
-  _value = FLT_MAX; // dummy value
 }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
+
+  // Exponential moving average.
+  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
     _nSamples++;
 
-  // Exponential moving average.
-  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
-
   return v;
 }
 
-bool MovingAverage::isStarted() const { return _nSamples > 1; }
+bool MovingAverage::isStarted() const { return _nSamples > 0; }
 
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
   return (runningValue -= alpha * (runningValue - newValue));
@@ -80,16 +86,13 @@ float MovingAverage::applyUpdate(float& runningValue, float newValue, float alph
 
 float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
   // Approximative number of samples in time window.
-  float nSamplesTarget = smoothTime * sampleRate;
+  float nSamplesTarget = (smoothTime >= 0 ? smoothTime * sampleRate : FLT_MAX);
+
+  nSamplesTarget = min((float)nSamples, nSamplesTarget);
 
   // In order to do a smooth transition and prevent first values to take too much weight compared to
   // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
-  if (nSamples < nSamplesTarget && nSamples < UINT_MAX)
-    nSamplesTarget = nSamples;
-
-  // Rule of thumb: alpha = 2 / (nSamplesTarget + 1).
-  float alpha = 2 / (nSamplesTarget + 1);
-  return min(alpha, 1.0f); // make sure it does not get over 1
+  return (nSamplesTarget > 1.0f ? 1.0f / nSamplesTarget : 1.0f);
 }
 
 } // namespace pq

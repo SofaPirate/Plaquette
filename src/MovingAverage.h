@@ -44,10 +44,12 @@ protected:
   unsigned int _nSamples;
 
 public:
-  /**
-   * Constructs the moving average.
-   */
-  MovingAverage(float smooth=FLT_MAX);
+  /// Default constructor (infinite time window).
+  MovingAverage();
+
+  /// Default constructor (finite time window).
+  MovingAverage(float timeWindow);
+
   virtual ~MovingAverage() {}
 
   /// Sets to "infinite" smoothing window.
@@ -64,7 +66,7 @@ public:
 
   /// Returns the smoothing window cutoff frequency (expressed in Hz).
   float cutoff() const;
-  
+
   /// Returns the alpha value computed from given sample rate.
   float alpha(float sampleRate) const;
 
