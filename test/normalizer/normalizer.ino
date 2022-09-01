@@ -4,10 +4,10 @@
 
 using namespace pq;
 
-#define N_UNITS 2
+#define N_UNITS 3
 Node* units[N_UNITS] = {
   new Normalizer(0, 1),
-  // new Normalizer(0, 1, 0.5f),
+  new Normalizer(0, 1, 0.5f),
   new Normalizer(0, 1, 1.0f)
 };
 
@@ -37,12 +37,12 @@ testing(valuesIn01) {
     //   assertNear(unit->normalize(-100), -1.0f, 0.5f);
     // }
   }
-  if (millis() - startTime > 2000) pass();
+  if (millis() - startTime > 5000) pass();
 }
 
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(1000);
+//  Plaquette.sampleRate(10000);
 
 }
 void loop() {
