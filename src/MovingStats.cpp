@@ -41,14 +41,15 @@ void MovingStats::reset() {
 
 float MovingStats::update(float value, float sampleRate)
  {
+  // Get alpha.
   float alpha = _avg.alpha(sampleRate);
+
+  // Update average.
   _avg.update(value, alpha, true); // force alpha
-  if (!isStarted())
-    _var = 0;
-  else {
-    float diff = value - _avg.get();
-    MovingAverage::applyUpdate(_var, sq(diff), alpha);
-  }
+
+  // Update variance.
+  float diff = value - _avg.get();
+  MovingAverage::applyUpdate(_var, sq(diff), alpha);
 
   return normalize(value);
 }
