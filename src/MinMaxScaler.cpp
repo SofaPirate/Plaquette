@@ -41,6 +41,10 @@ void MinMaxScaler::cutoff(float hz) {
   time(hz == 0 ? FLT_MAX : hz);
 }
 
+float MinMaxScaler::cutoff() const {
+  return (_decayWindow == FLT_MAX ? 0 : 1.0f/_decayWindow);
+}
+
 float MinMaxScaler::put(float value)
 {
   // Compute alpha mixing factor.
