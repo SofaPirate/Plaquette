@@ -10,7 +10,12 @@
  * - LED anode (long leg) attached to 220-330 Ohm resistor
  * - resistor attached to analog (PWM) output 9
  *
- * Created in 2016 by Sofian Audry
+ * The program will calibrate itself for the first 30 seconds,
+ * after which it will stay stable. Upon program launch, try different
+ * light conditions (eg. switch interior lights on/off, cover photocell, etc.)
+ * during the calibration period.
+ *
+ * Created in 2022 by Sofian Audry
  *
  * This example code is in the public domain.
  *
@@ -31,6 +36,11 @@ MinMaxScaler scaler;
 void begin() {}
 
 void step() {
+  // After 30 seconds, stop calibration. The scaler will still rescale
+  // values but will stop updating its min. and max. values.
+  if (scaler.isStarted() && seconds() >= 30.0f)
+    scaler.stop(); // stop calibration
+
 	// Analog input is rescaled then sent as LED value.
 	in >> scaler >> led;
 }
