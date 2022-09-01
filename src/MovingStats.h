@@ -23,7 +23,6 @@
 #ifndef MOVINGSTATS_H_
 #define MOVINGSTATS_H_
 
-#include "Stats.h"
 #include "MovingAverage.h"
 
 namespace pq {

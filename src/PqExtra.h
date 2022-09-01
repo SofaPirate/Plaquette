@@ -25,7 +25,6 @@
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
-#include "SimpleStats.h"
 
 // Filters.
 //#include "Thresholder.h"
