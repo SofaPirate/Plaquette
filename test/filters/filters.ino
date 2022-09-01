@@ -4,9 +4,9 @@
 
 using namespace pq;
 
-#define N_UNITS 1
+#define N_UNITS 2
 Node* units[N_UNITS] = {
-  // new MinMaxScaler(0.01f),
+  new MinMaxScaler(),
   new MinMaxScaler(1.0f)
 };
 
@@ -39,8 +39,10 @@ testing(smoothing) {
   static boolean started = false;
 
   Plaquette.step();
+
   if (startTime <= 0)
     startTime = seconds();
+
   if (!started) {
     for (int i=0; i<N_UNITS; i++) {
       MinMaxScaler* unit =(MinMaxScaler*) units[i];
@@ -49,18 +51,21 @@ testing(smoothing) {
     }
     started = true;
   }
+
   else {
     float t = seconds() - startTime;
     for (int i=0; i<N_UNITS; i++) {
       MinMaxScaler* unit =(MinMaxScaler*) units[i];
+
       float value = unit->put(0);
-      assertMoreOrEqual(unit->min(), -100.0f);
-      assertLessOrEqual(unit->max(),  100.0f);
-      assertLess(abs(unit->max() + unit->min()), 50.0f);
-      // Serial.printf("val=%f min=%f max=%f ==> %f\n", value, unit->min(), unit->max(), value );
+
+      assertMoreOrEqual(unit->minValue(), -100.0f);
+      assertLessOrEqual(unit->maxValue(),  100.0f);
+      // Serial.printf("val=%f min=%f max=%f ==> %f\n", value, unit->minValue(), unit->maxValue(), value );
+      assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
       if (t >= unit->time()*2) {
-        assertMoreOrEqual(unit->min(),  -50.0f);
-        assertLessOrEqual(unit->max(),   50.0f);
+        assertMoreOrEqual(unit->minValue(),  -50.0f);
+        assertLessOrEqual(unit->maxValue(),   50.0f);
       }
     }
     if (t > 1) pass();
