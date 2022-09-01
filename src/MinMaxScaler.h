@@ -41,10 +41,10 @@ public:
   virtual float put(float value);
 
   /// Returns the current min. value.
-  float min() const { return _minValue; }
+  float minValue() const { return _minValue; }
 
   /// Returns the current max. value.
-  float max() const { return _maxValue; }
+  float maxValue() const { return _maxValue; }
 
   /// Changes the smoothing window (expressed in seconds).
   void time(float seconds);
