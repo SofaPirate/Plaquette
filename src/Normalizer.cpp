@@ -23,17 +23,36 @@
 
 namespace pq {
 
-Normalizer::Normalizer(float smoothWindow)
-  : AnalogSource(0.5f),
-    MovingStats(smoothWindow),
-    _targetMean(0.5f),
-    _targetStdDev(0.25f)
+#define NORMALIZER_DEFAULT_MEAN   0.5f
+#define NORMALIZER_DEFAULT_STDDEV 0.15f
+
+Normalizer::Normalizer()
+: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+  MovingStats(),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
 {
 }
 
-Normalizer::Normalizer(float mean, float stddev, float smoothWindow)
+Normalizer::Normalizer(float timeWindow)
+: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+  MovingStats(timeWindow),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+{
+}
+
+Normalizer::Normalizer(float mean, float stddev)
 	: AnalogSource(mean),
-    MovingStats(smoothWindow),
+    MovingStats(),
+    _targetMean(mean),
+    _targetStdDev(abs(stddev))
+{
+}
+
+Normalizer::Normalizer(float mean, float stddev, float timeWindow)
+	: AnalogSource(mean),
+    MovingStats(timeWindow),
     _targetMean(mean),
     _targetStdDev(abs(stddev))
 {

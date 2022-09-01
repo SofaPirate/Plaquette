@@ -32,10 +32,23 @@ namespace pq {
 class Normalizer : public AnalogSource, public MovingStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.25.
+   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
+   */
+  Normalizer();
+
+  /**
+   * Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-   Normalizer(float smoothWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
+  Normalizer(float timeWindow);
+
+  /**
+   * Constructor with infinite time window.
+   * @param mean the target mean
+   * @param stddev the target standard deviation
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
+   */
+  Normalizer(float mean, float stddev);
 
   /**
    * Constructor.
@@ -43,7 +56,7 @@ public:
    * @param stddev the target standard deviation
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stddev, float smoothWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
+  Normalizer(float mean, float stddev, float timeWindow);
   virtual ~Normalizer() {}
 
   /**
@@ -59,7 +72,7 @@ public:
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  Normalizer& targetStdDev(float stddev) { _targetStdDev = stddev; return *this; }
+  Normalizer& targetStdDev(float stddev) { _targetStdDev = abs(stddev); return *this; }
 
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStdDev; }
