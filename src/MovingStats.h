@@ -73,8 +73,11 @@ public:
   /// Returns the standard deviation of the samples.
   virtual float stddev() const;
 
+  /// Returns the normalized value according N(0, 1).
+  float normalize(float value) const;
+
   /// Returns the normalized value according to the computed statistics (mean and variance).
-  float normalize(float value, float mean=0, float stddev=1) const;
+  float normalize(float value, float mean, float stddev) const;
 };
 
 } // namespace pq

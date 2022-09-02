@@ -70,15 +70,19 @@ float MovingStats::stddev() const {
   (var());
 }
 
-float MovingStats::normalize(float value, float mean_, float stddev_) const {
+float MovingStats::normalize(float value) const {
   float s = stddev();
-  return ( value - mean() ) * stddev_ + mean_ /
+  return ( value - mean() ) /
 #if USE_FAST_SQRT
   s // Saves a call to max() since fastSqrt(0) returns small positive values
 #else
   (max(s, FLT_MIN)) // Need to cover the case where s = 0.
   #endif
   ;
+}
+
+float MovingStats::normalize(float value, float mean_, float stddev_) const {
+  return normalize(value) * stddev_ + mean_;
 }
 
 } // namespace pq
