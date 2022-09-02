@@ -1,7 +1,8 @@
-// Source: https://github.com/FastLED/FastLED/blob/master/lib8tion/trig8.h
+// Fast trigonometric functions for AVR.
+// Source: http://fastled.io/docs/3.1/trig8_8h_source.html
 
-#ifndef __INC_LIB8TION_TRIG_H
-#define __INC_LIB8TION_TRIG_H
+#ifndef PQ_TRIG8_H_
+#define PQ_TRIG8_H_
 
 namespace pq {
 
