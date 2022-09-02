@@ -39,8 +39,7 @@ Normalizer::Normalizer(float timeWindow)
 : MovingFilter(timeWindow),
   MovingStats(timeWindow),
   _targetMean(NORMALIZER_DEFAULT_MEAN),
-  _targetStdDev(NORMALIZER_DEFAULT_STDDEV),
-  _isAdaptive(true)
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
 {
 }
 
@@ -48,8 +47,7 @@ Normalizer::Normalizer(float mean, float stddev)
 	: MovingFilter(),
     MovingStats(),
     _targetMean(mean),
-    _targetStdDev(abs(stddev)),
-    _isAdaptive(true)
+    _targetStdDev(abs(stddev))
 {
 }
 
@@ -57,8 +55,7 @@ Normalizer::Normalizer(float mean, float stddev, float timeWindow)
 	: MovingFilter(timeWindow),
     MovingStats(timeWindow),
     _targetMean(mean),
-    _targetStdDev(abs(stddev)),
-    _isAdaptive(true)
+    _targetStdDev(abs(stddev))
 {
 }
 
