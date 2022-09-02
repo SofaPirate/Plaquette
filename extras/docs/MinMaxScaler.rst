@@ -59,7 +59,7 @@ automatically adapt to incoming sensor values.
 
 .. doxygenclass:: MinMaxScaler
    :project: Plaquette
-   :members: MinMaxScaler, get, put, time
+   :members: MinMaxScaler, get, put, timeWindow, infiniteTimeWindow, reset, start, stop, isStarted
 
 |SeeAlso|
 ---------

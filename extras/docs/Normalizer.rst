@@ -43,7 +43,7 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
 .. doxygenclass:: Normalizer
    :project: Plaquette
-   :members: Normalizer, get, put, targetMean, targetStdDev, reset
+   :members: Normalizer, get, put, timeWindow, infiniteTimeWindow, reset, start, stop, isStarted, targetMean, targetStdDev
 
 |SeeAlso|
 ---------
