@@ -26,9 +26,9 @@
 namespace pq {
 
 /**
- * Chronometer class which emits a "1" after a certain time.
+ * Chronometer class which emits a "1" at a regular pace.
  */
-class Metro : public PqDigitalSource {
+class Metro : public DigitalSource {
 public:
   /**
    * Constructor.

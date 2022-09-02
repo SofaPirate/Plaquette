@@ -23,7 +23,7 @@
 namespace pq {
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
-  : PqAnalogUnit(), PqPinUnit(pin, mode)
+  : AnalogSource(), PinUnit(pin, mode)
 {}
 
 float AnalogOut::put(float value) {
@@ -45,7 +45,7 @@ float AnalogOut::put(float value) {
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
-  : PqDigitalUnit(), PqPinUnit(pin, mode)
+  : DigitalSource(), PinUnit(pin, mode)
 {}
 
 void DigitalOut::begin() {

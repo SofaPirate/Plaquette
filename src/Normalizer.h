@@ -22,40 +22,75 @@
 #define NORMALIZER_H_
 
 #include "PqCore.h"
+#include "MovingFilter.h"
+#include "MovingStats.h"
 
 namespace pq {
-  
-/// Standard normalizer: normalizes values on-the-run using real mean and standard deviation.
-class Normalizer : public PqAnalogUnit, public SimpleStats {
+
+/**
+ * Adaptive normalizer: normalizes values on-the-run using exponential moving
+ * averages over mean and standard deviation.
+ */
+class Normalizer : public MovingFilter, public MovingStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0 and a standard
-   * deviation of 1.
+   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
    */
   Normalizer();
+
+  /**
+   * Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
+   */
+  Normalizer(float timeWindow);
+
+  /**
+   * Constructor with infinite time window.
+   * @param mean the target mean
+   * @param stddev the target standard deviation
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
+   */
+  Normalizer(float mean, float stddev);
 
   /**
    * Constructor.
    * @param mean the target mean
    * @param stddev the target standard deviation
+   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stddev);
+  Normalizer(float mean, float stddev, float timeWindow);
   virtual ~Normalizer() {}
 
   /**
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  Normalizer& targetMean(float mean) { _mean = mean; return *this; }
+  Normalizer& targetMean(float mean) { _targetMean = mean; return *this; }
+
+  /// Returns target mean.
+  float targetMean() const { return _targetMean; }
 
   /**
    * Sets target standard deviation of normalized values.
    * @param stddev the target standard deviation
    */
-  Normalizer& targetStdDev(float stddev) { _stddev = stddev; return *this; }
+  Normalizer& targetStdDev(float stddev) { _targetStdDev = abs(stddev); return *this; }
+
+  /// Returns target standard deviation.
+  float targetStdDev() const { return _targetStdDev; }
+
+  /// Sets time window to infinite.
+  virtual void infiniteTimeWindow();
+
+  /// Changes the time window (expressed in seconds).
+  virtual void timeWindow(float seconds);
+
+  /// Returns the time window (expressed in seconds).
+  virtual float timeWindow() const;
 
   /**
-   * Pushes value into the unit.
+   * Pushes value into the unit. If isStarted() is false the filter will not be
+   * updated but will just return the filtered value.
    * @param value the value sent to the unit
    * @return the new value of the unit
    */
@@ -63,8 +98,8 @@ public:
 
 protected:
   // Target normalization parameters.
-  float _mean;
-  float _stddev;
+  float _targetMean;
+  float _targetStdDev;
 };
 
 }

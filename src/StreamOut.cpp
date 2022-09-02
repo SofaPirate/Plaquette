@@ -22,7 +22,11 @@
 
 namespace pq {
 
-StreamOut::StreamOut(Stream& stream) : _digits(4), _stream(&stream) {}
+StreamOut::StreamOut(Stream& stream) :
+  AnalogSource(),
+  _digits(4),
+  _stream(&stream)
+{}
 
 float StreamOut::put(float value) {
   // Copy value.

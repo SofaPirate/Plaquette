@@ -34,21 +34,18 @@ namespace pq {
 /**
  * Emits a signals that tells if a certain threshold has been crossed.
  * Possible modes are:
- * - THRESHOLD_LOW  : true iff value < threshold
- * - THRESHOLD_HIGH : true iff value > threshold
- * - THRESHOLD_FALLING : true when value becomes < threshold, then waits until it becomes > resetThreshold (*)
- * - THRESHOLD_RISING  : true when value becomes > threshold, then waits until it becomes < resetThreshold (*)
+ * - THRESHOLD_LOW  : true iff value <= threshold
+ * - THRESHOLD_HIGH : true iff value >= threshold
+ * - THRESHOLD_FALLING : true when value becomes <= threshold, then waits until it becomes > resetThreshold (*)
+ * - THRESHOLD_RISING  : true when value becomes >= threshold, then waits until it becomes < resetThreshold (*)
  * - THRESHOLD_CHANGE  : true when value crosses threshold
- * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only
- * used in the FALLING and RISING modes, otherwise it is ignored.
+ * (*) If resetThreshold is not specified, it is set to threshold by default. Parameter resetThreshold is only used in the FALLING, RISING, MIN, and MAX modes, otherwise it is ignored.
  */
-class Thresholder : public PqDigitalGetter, public PqPutter {
+class Thresholder : public DigitalNode {
 public:
   Thresholder(float threshold, uint8_t mode=THRESHOLD_HIGH);
   Thresholder(float threshold, uint8_t mode, float resetThreshold);
   virtual ~Thresholder() {}
-
-  virtual float get() { return PqDigitalGetter::get(); }
 
   /**
    * Pushes value into the unit.

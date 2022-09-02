@@ -8,7 +8,8 @@ standard deviation. It works by computing the normal distribution of the incomin
 standard variation) and uses this information to re-normalize the data according to a different
 normal distribution (target mean and variance).
 
-This normalizer computes the mean and variance over all the data it receives.
+By default, the unit computes the mean and variance over all the data ever received. However,
+it can instead compute over a time window using an `exponential moving average <https://www.investopedia.com/terms/e/ema.asp>`_.
 
 |Example|
 ---------
@@ -21,6 +22,7 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
    AnalogIn sensor(A0);
 
+   // Creates a normalizer with mean 0 and standard deviation 1.
    Normalizer normalizer(0, 1);
 
    DigitalOut led(13);
@@ -41,10 +43,9 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
 .. doxygenclass:: Normalizer
    :project: Plaquette
-   :members: Normalizer, get, put, targetMean, targetStdDev, reset
+   :members: Normalizer, get, put, timeWindow, infiniteTimeWindow, reset, start, stop, isStarted, targetMean, targetStdDev
 
 |SeeAlso|
 ---------
-- :doc:`AdaptiveNormalizer`
 - :doc:`MinMaxScaler`
 - :doc:`Smoother`

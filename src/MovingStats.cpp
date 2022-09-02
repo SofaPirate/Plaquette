@@ -23,10 +23,11 @@
 
 namespace pq {
 
-MovingStats::MovingStats(float smoothWindow) : _avg(smoothWindow), _var(0) { }
+MovingStats::MovingStats() : _avg(), _var(0) { }
+MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _var(0) { }
 
-void MovingStats::time(float seconds) {
-  _avg.time(seconds);
+void MovingStats::timeWindow(float seconds) {
+  _avg.timeWindow(seconds);
 }
 
 void MovingStats::cutoff(float hz) {
@@ -40,20 +41,24 @@ void MovingStats::reset() {
 
 float MovingStats::update(float value, float sampleRate)
  {
+  // Get alpha.
   float alpha = _avg.alpha(sampleRate);
+
+  // Update average.
   _avg.update(value, alpha, true); // force alpha
-  if (!isStarted())
-    _var = 0;
-  else {
-    float diff = value - _avg.get();
-    MovingAverage::applyUpdate(_var, sq(diff), alpha);
-  }
+
+  // Update variance.
+  float diff = value - _avg.get();
+  MovingAverage::applyUpdate(_var, sq(diff), alpha);
 
   return normalize(value);
 }
 
-bool MovingStats::isStarted() const {
-  return _avg.isStarted();
+float MovingStats::stddev() const { return sqrt(var()); }
+
+float MovingStats::normalize(float value, float mean_, float stddev_) const {
+  float s = stddev();
+  return ( value - mean() ) / (max(s, FLT_MIN)) * stddev_ + mean_;
 }
 
 } // namespace pq

@@ -29,61 +29,68 @@
 
 namespace pq {
 
-MovingAverage::MovingAverage(float seconds) : _value(0.5f) {
-  time(seconds);
+#define INFINITE_WINDOW (-1)
+
+MovingAverage::MovingAverage() : _value(0) {
+  infiniteTimeWindow();
   reset();
 }
 
-// MovingAverage::MovingAverage(float seconds, float startValue) {
-//   window(seconds);
-//   reset(startValue);
-// }
+MovingAverage::MovingAverage(float timeWindow_) : _value(0) {
+  timeWindow(timeWindow_);
+  reset();
+}
 
-void MovingAverage::time(float seconds) {
-  // Save start status - changing alpha will meddle with it.
-  bool started = isStarted();
+void MovingAverage::infiniteTimeWindow() {
+  _smoothTime = INFINITE_WINDOW;
+}
 
-  // Assign.
-  _smoothTime = max(seconds, 0.f);
-
-  // Reset start state.
-  _setStarted(started);
+void MovingAverage::timeWindow(float seconds) {
+  _smoothTime = max(seconds, 0.0f); // make sure it is positive
 }
 
 void MovingAverage::cutoff(float hz) {
   // If hz is null time window is infinite.
-  time(hz == 0 ? FLT_MAX : hz);
+  timeWindow(hz == 0 ? INFINITE_WINDOW : hz);
+}
+
+float MovingAverage::cutoff() const {
+  return (_smoothTime == INFINITE_WINDOW ? 0 : 1.0f/_smoothTime);
+}
+
+float MovingAverage::alpha(float sampleRate) const {
+  return alpha(sampleRate, _smoothTime, _nSamples);
 }
 
 void MovingAverage::reset() {
-  _setStarted(false);
+  _nSamples = 1;
 }
-
-// void MovingAverage::reset(float startValue) {
-//   _value = startValue;
-//   _setStarted(true);
-// }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
-  if (!isStarted()) {
-    // Initialize value with first read value -- which is always an unbiased sample.
-    _value = v;
-    _setStarted(true); // start
-    return _value;
-  }
-  else
-    // Exponential moving average.
-    return applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
-}
 
-bool MovingAverage::isStarted() const { return _isStarted; }
+  // Exponential moving average.
+  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
+
+  // Increase number of samples.
+  if (_nSamples < UINT_MAX)
+    _nSamples++;
+
+  return v;
+}
 
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
   return (runningValue -= alpha * (runningValue - newValue));
 }
 
-void MovingAverage::_setStarted(bool start) {
-  _isStarted = start;
+float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
+  // Approximative number of samples in time window.
+  float nSamplesTarget = (smoothTime >= 0 ? smoothTime * sampleRate : FLT_MAX);
+
+  nSamplesTarget = min((float)nSamples, nSamplesTarget);
+
+  // In order to do a smooth transition and prevent first values to take too much weight compared to
+  // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
+  return (nSamplesTarget > 1.0f ? 1.0f / nSamplesTarget : 1.0f);
 }
 
 } // namespace pq

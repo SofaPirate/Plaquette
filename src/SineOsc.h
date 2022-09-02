@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public PqAnalogSource {
+class SineOsc : public AnalogSource {
 public:
   /**
    * Constructor.
@@ -65,7 +65,7 @@ public:
    * @return the unit itself
    */
    virtual SineOsc& amplitude(float amplitude);
-   virtual float amplitude() const { return _amplitude * (-32767.0f); }
+   virtual float amplitude() const;
 
 protected:
   // Core Plaquette methods.

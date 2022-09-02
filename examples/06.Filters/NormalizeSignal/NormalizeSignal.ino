@@ -17,7 +17,6 @@
 AnalogIn in(A0); // defaults on pin A0
 
 // The normalization unit.
-// NOTE: Alternatively you can use an AdaptiveNormalizer.
 Normalizer normalizer;
 
 // The serial output.

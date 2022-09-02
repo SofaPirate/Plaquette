@@ -21,10 +21,11 @@
 #include "SquareOsc.h"
 #include "pq_map_real.h"
 #include "pq_time.h"
+#include "pq_wrap.h"
 
 namespace pq {
 
-SquareOsc::SquareOsc(float period_, float dutyCycle_) : PqAnalogSource() {
+SquareOsc::SquareOsc(float period_, float dutyCycle_) : AnalogSource() {
   period(period_);
   dutyCycle(dutyCycle_);
 	amplitude(1.0f);
@@ -36,8 +37,8 @@ void SquareOsc::begin() {
 
 void SquareOsc::step() {
   float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
-	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate());
-	while (_phaseTime > 1) _phaseTime--; // modulo
+  _phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate()); // the max. increment is about 0.5
+  if (_phaseTime > 1) _phaseTime--; // _phaseTime will never be >= 2 cause it cannot in
 	// Compute next value.
 	_updateValue();
 
@@ -72,8 +73,7 @@ SquareOsc& SquareOsc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
 		_phaseTime += (phase - _phase);
-		while (_phaseTime > 1) _phaseTime--; // modulo
-		while (_phaseTime < 0) _phaseTime++; // modulo
+    _phaseTime = wrap01(_phaseTime);
 		_phase = phase;
 	}
 	return *this;

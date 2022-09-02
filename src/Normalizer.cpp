@@ -18,28 +18,64 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SimpleStats.h"
+#include "MovingStats.h"
 #include "Normalizer.h"
 
 namespace pq {
-  
+
+#define NORMALIZER_DEFAULT_MEAN   0.5f
+#define NORMALIZER_DEFAULT_STDDEV 0.15f
+
 Normalizer::Normalizer()
-  : PqAnalogUnit(0.5f),
-    SimpleStats(),
-    _mean(0.5f),
-    _stddev(0.25f)
+: MovingFilter(),
+  MovingStats(),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+{
+  _value = NORMALIZER_DEFAULT_MEAN;
+}
+
+Normalizer::Normalizer(float timeWindow)
+: MovingFilter(timeWindow),
+  MovingStats(timeWindow),
+  _targetMean(NORMALIZER_DEFAULT_MEAN),
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV),
+  _isAdaptive(true)
 {
 }
 
 Normalizer::Normalizer(float mean, float stddev)
-	: PqAnalogUnit(mean),
-    SimpleStats(),
-    _mean(mean),
-    _stddev(abs(stddev))
-{}
+	: MovingFilter(),
+    MovingStats(),
+    _targetMean(mean),
+    _targetStdDev(abs(stddev)),
+    _isAdaptive(true)
+{
+}
+
+Normalizer::Normalizer(float mean, float stddev, float timeWindow)
+	: MovingFilter(timeWindow),
+    MovingStats(timeWindow),
+    _targetMean(mean),
+    _targetStdDev(abs(stddev)),
+    _isAdaptive(true)
+{
+}
+
+void Normalizer::infiniteTimeWindow() {
+  MovingStats::infiniteTimeWindow();
+}
+
+void Normalizer::timeWindow(float seconds) {
+  MovingStats::timeWindow(seconds);
+}
+
+float Normalizer::timeWindow() const { return MovingStats::timeWindow(); }
 
 float Normalizer::put(float value) {
-  return (_value = SimpleStats::update(value) * _stddev + _mean);
+  _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
+  _value = _value * max(_targetStdDev, FLT_MIN) + _targetMean;
+  return _value;
 }
 
 }

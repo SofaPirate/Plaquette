@@ -4,7 +4,7 @@
 #define __INC_LIB8TION_TRIG_H
 
 namespace pq {
-  
+
 #define LIB8STATIC __attribute__ ((unused)) static inline
 #define LIB8STATIC_ALWAYS_INLINE __attribute__ ((always_inline)) static inline
 

@@ -39,21 +39,21 @@
 namespace pq {
 
 /// Superclass for components that can be smoothed.
-class PqSmoothable {
+class Smoothable {
 public:
-  PqSmoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
+  Smoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
 
   /// Apply smoothing to object.
-  virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { time(smoothTime); }
+  virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { timeWindow(smoothTime); }
 
   /// Remove smoothing.
   virtual void noSmooth() { smooth(PLAQUETTE_NO_SMOOTH_WINDOW); }
 
   /// Changes the smoothing window (expressed in seconds).
-  virtual void time(float seconds) { _avg.time(seconds); }
+  virtual void timeWindow(float seconds) { _avg.timeWindow(seconds); }
 
   /// Returns the smoothing window (expressed in seconds).
-  float time() const { return _avg.time(); }
+  float timeWindow() const { return _avg.timeWindow(); }
 
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   virtual void cutoff(float hz) { _avg.cutoff(hz); }
@@ -79,12 +79,12 @@ protected:
 };
 
 /// Superclass for components that can be debounced.
-class PqDebounceable {
+class Debounceable {
 public:
-  PqDebounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
+  Debounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
 
   /// Apply smoothing to object.
-  virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { time(debounceTime); }
+  virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { timeWindow(debounceTime); }
 
   /// Remove smoothing.
   virtual void noDebounce() { debounce(PLAQUETTE_NO_DEBOUNCE_WINDOW); }
@@ -96,10 +96,10 @@ public:
   virtual void noSmooth() { noDebounce(); }
 
   /// Changes the debouncing window (expressed in seconds).
-  virtual void time(float seconds) { _interval = seconds; }
+  virtual void timeWindow(float seconds) { _interval = seconds; }
 
   /// Returns the debouncing window (expressed in seconds).
-  float time() const { return _interval; }
+  float timeWindow() const { return _interval; }
 
   /// Returns the debounce mode.
   uint8_t debounceMode() const { return _debounceMode; }
@@ -137,7 +137,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public PqMappable, public PqPinUnit, public PqSmoothable {
+class AnalogIn : public Node, public PinUnit, public Smoothable {
 public:
   /**
    * Constructor.
@@ -146,9 +146,14 @@ public:
    */
   AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
-  /// Returns value (typically between 0 and 1, may vary depending on class).
 
+  /// Returns value in [0, 1].
   virtual float get() { return _avg.get(); }
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
+
+  virtual operator float() { return get(); }
 
 protected:
   virtual void begin();
@@ -157,7 +162,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public PqDigitalSource, public PqPinUnit, public PqDebounceable {
+class DigitalIn : public DigitalSource, public PinUnit, public Debounceable {
 public:
   /**
    * Constructor.

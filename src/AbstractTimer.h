@@ -43,11 +43,14 @@ public:
   /// Returns duration.
   virtual float duration() const { return _duration; }
 
-  /// The progress of the chrono process (in %).
+  /// The progress of the timer process (in %).
   virtual float progress() const;
 
   /// Returns true iff the chronometer has completed its process.
   bool isComplete() const { return progress() >= 1.0; }
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
 
 protected:
   // The duration.

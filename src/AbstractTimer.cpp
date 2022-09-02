@@ -50,4 +50,8 @@ float AbstractTimer::progress() const {
 	return prog;
 }
 
+float AbstractTimer::mapTo(float toLow, float toHigh) {
+  return mapFrom01(progress(), toLow, toHigh);
+}
+
 }

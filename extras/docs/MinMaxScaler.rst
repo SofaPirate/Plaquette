@@ -10,6 +10,24 @@ is mapped to 1.
 
 .. image:: images/Plaquette-MinMaxScaler.png
 
+In order to accomodate signals that might be changing through time, the user can specify a
+"decay time window" to control the rate of decay of the mininum and maximum boundaries. The
+principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` make use of
+`exponential moving average <https://www.investopedia.com/terms/e/ema.asp>`_.
+
+.. warning::
+   This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
+   that appear in rare conditions. Such values will replace the mininum or maximum value and greatly
+   restrict the spread of the filtered values.
+
+   There are three ways to prevent this:
+
+   #. Specifying a decay window using the ``time(decayTime)`` function.
+   #. Smoothing incoming values using the ``smooth()`` method or a :doc:`Smoother` unit before sending to the ``MinMaxScaler``.
+   #. Using a regularization unit that is less prone to outliers such as the :doc:`Normalizer`.
+
+
+
 |Example|
 ---------
 
@@ -41,17 +59,9 @@ automatically adapt to incoming sensor values.
 
 .. doxygenclass:: MinMaxScaler
    :project: Plaquette
-   :members: MinMaxScaler, get, put
-
-.. note::
-
-   This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
-   that appear in rare conditions. One way to prevent this is to smooth incoming values using the ``smooth()``
-   method or a ``Smoother`` unit before sending to the ``MinMaxScaler``. Another approach is to use a
-   regularization unit that is less prone to outliers such as the ``Normalizer`` or the ``AdaptiveNormalizer``.
+   :members: MinMaxScaler, get, put, timeWindow, infiniteTimeWindow, reset, start, stop, isStarted
 
 |SeeAlso|
 ---------
-- :doc:`AdaptiveNormalizer`
 - :doc:`Normalizer`
 - :doc:`Smoother`

@@ -24,9 +24,9 @@
 #include "PqCore.h"
 
 namespace pq {
-  
+
 /// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public PqAnalogUnit {
+class StreamOut : public AnalogSource {
 public:
   /**
    * Constructor.

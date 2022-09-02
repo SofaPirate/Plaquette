@@ -26,6 +26,8 @@
 #define MOVINGAVERAGE_H_
 
 #include <Arduino.h>
+#include <limits.h>
+#include <float.h>
 
 namespace pq {
 
@@ -38,41 +40,38 @@ protected:
   // The current value of the exponential moving average.
   float _value;
 
-  // Is the moving average started or not.
-  bool _isStarted;
+  // Number of samples that have been processed thus far.
+  unsigned int _nSamples;
 
 public:
-  /**
-   * Constructs the moving average.
-   */
-  MovingAverage(float smooth);
-  // MovingAverage(float seconds, float startValue);
+  /// Default constructor (infinite time window).
+  MovingAverage();
+
+  /// Default constructor (finite time window).
+  MovingAverage(float timeWindow);
+
   virtual ~MovingAverage() {}
 
+  /// Sets to "infinite" smoothing window.
+  void infiniteTimeWindow();
+
   /// Changes the smoothing window (expressed in seconds).
-  void time(float seconds);
+  void timeWindow(float seconds);
 
   /// Returns the smoothing window (expressed in seconds).
-  float time() const { return _smoothTime; }
+  float timeWindow() const { return _smoothTime; }
 
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 
   /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return (1.0f/time()); }
+  float cutoff() const;
 
   /// Returns the alpha value computed from given sample rate.
-  float alpha(float sampleRate) const {
-    // Rule of thumb: alpha = 2 / (n_samples+1).
-    float a = 2 / (_smoothTime*sampleRate + 1);
-    return min(a, 1.f); // make sure it does not get over 1
-  }
+  float alpha(float sampleRate) const;
 
   /// Resets the moving average.
   virtual void reset();
-
-  // /// Resets the moving average to #startValue#.
-  // virtual void reset(float startValue);
 
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
@@ -81,18 +80,14 @@ public:
   float get() { return _value; }
   float constGet() const { return _value; }
 
-  /// Returns true iff the moving average has already been started.
-  bool isStarted() const;
-
   /**
    * Applies a single update on #runningValue# with new sample #newValue# and mixing
    * factor #alpha#.
    */
   static float applyUpdate(float& runningValue, float newValue, float alpha);
 
-protected:
-  void _setStarted(bool start);
-
+  /// Returns the alpha value computed from given sample rate, time window, and number of samples.
+  static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
 };
 
 } // namespace pq

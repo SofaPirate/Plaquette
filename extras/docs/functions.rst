@@ -7,5 +7,7 @@ Standalone utility functions.
    :maxdepth: 1
 
    mapFloat
+   mapFrom01
+   mapTo01
    randomFloat
    seconds

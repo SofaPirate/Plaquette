@@ -17,22 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
 #include "PqCore.h"
 
 #include <float.h>
-#include "pq_map_real.h"
 
 namespace pq {
 
 // Singleton.
 PlaquetteEnv Plaquette
-#if defined(CORE_TEENSY)
+#ifdef PLAQUETTE_USE_SINGLETON
    = PlaquetteEnv::singleton()
 #endif
 ;
@@ -72,7 +65,7 @@ void PlaquetteEnv::end() {
     postStep();
 }
 
-void PlaquetteEnv::add(PqUnit* component) {
+void PlaquetteEnv::add(Unit* component) {
   for (uint8_t i=0; i<_nUnits; i++) {
 		if (_units[i] == component) {
 			return; // do not add existing component
@@ -109,19 +102,13 @@ void beginSerial(unsigned long baudRate) {
   while (Serial.available()) Serial.read();
 }
 
-PqUnit::PqUnit() {
-#if defined(CORE_TEENSY)
+Unit::Unit() {
+#ifdef PLAQUETTE_USE_SINGLETON
   PlaquetteEnv::singleton()
 #else
   Plaquette
 #endif
     .add(this);
 }
-
-bool  PqUnit::analogToDigital(float f) { return (f >= 0.5); }
-float PqUnit::digitalToAnalog(bool  b) { return (b ? 1.0f : 0.0f); }
-
-float PqMappable::mapTo(float toLow, float toHigh) { return _map(get(), toLow, toHigh); }
-float PqMappable::_map(float value, float toLow, float toHigh) { return mapFrom01(value, toLow, toHigh); }
 
 } // namespace pq

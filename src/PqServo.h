@@ -28,7 +28,7 @@
 namespace pq {
 
 /// Servo-motor absract object.
-class AbstractServoOut : public PqAnalogUnit, public Servo {
+class AbstractServoOut : public AnalogSource, public Servo {
 protected:
   AbstractServoOut(uint8_t pin=9);
 

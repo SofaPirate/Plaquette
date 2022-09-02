@@ -22,18 +22,39 @@
 #define MIN_MAX_SCALER_H_
 
 #include "PqCore.h"
+#include "MovingFilter.h"
 
 namespace pq {
-  
+
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public PqAnalogUnit {
+class MinMaxScaler : public MovingFilter {
 public:
   /// Constructor.
   MinMaxScaler();
+  MinMaxScaler(float decayWindow);
   virtual ~MinMaxScaler() {}
 
+  /// Returns the current min. value.
+  float minValue() const { return _minValue; }
+
+  /// Returns the current max. value.
+  float maxValue() const { return _maxValue; }
+
+  /// Sets time window to infinite.
+  virtual void infiniteTimeWindow();
+
+  /// Changes the time window (expressed in seconds).
+  virtual void timeWindow(float seconds);
+
+  /// Returns the time window (expressed in seconds).
+  virtual float timeWindow() const;
+
+  /// Resets the moving filter.
+  virtual void reset();
+
   /**
-   * Pushes value into the unit.
+   * Pushes value into the unit. If isStarted() is false the filter will not be
+   * updated but will just return the filtered value.
    * @param value the value sent to the unit
    * @return the new value of the unit
    */

@@ -21,8 +21,17 @@
 #include "StreamIn.h"
 
 namespace pq {
-	
-StreamIn::StreamIn(Stream& stream) :  _nextValue(0), _nextFraction(1), _nextIsValid(false), _nextIsNegative(false), _nextIsFraction(false), _stream(&stream) {}
+
+StreamIn::StreamIn(Stream& stream) :
+ 	Node(),
+	_nextValue(0),
+	_nextFraction(1),
+	_nextIsValid(false),
+	_nextIsNegative(false),
+	_nextIsFraction(false),
+	_stream(&stream),
+	_value(0)
+{}
 
 void StreamIn::begin() {
 	_nextValue = 0;

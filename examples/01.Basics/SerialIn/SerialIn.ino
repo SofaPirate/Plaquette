@@ -29,3 +29,31 @@ void step() {
 	// Send value to LED.
  serialIn >> led;
 }
+
+/*
+// Processing code (processing.org). Use it to send values from
+// the computer to the Plaquette program by serial.
+
+import processing.serial.*;
+
+Serial myPort;
+
+void setup()
+{
+  size(500, 200);
+  // Open whatever port is the one you're using.
+  String portName = Serial.list()[0];
+  myPort = new Serial(this, portName, 115200);
+}
+
+void draw() {
+  // Draw moving circle along x axis.
+  background(0);
+  fill(255);
+  noStroke();
+  ellipse(mouseX, height/2, 50, 50);
+  // Send value in [0, 1] to serial depending on mouse position.
+  myPort.write(map(mouseX, 0, width, 0, 1) + "\n");
+}
+
+ */

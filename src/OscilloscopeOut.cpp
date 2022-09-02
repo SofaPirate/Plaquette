@@ -23,9 +23,13 @@
 #include "pq_map_real.h"
 
 namespace pq {
-  
+
 OscilloscopeOut::OscilloscopeOut(float minValue, float maxValue, uint8_t precision)
-  : _minValue(minValue), _maxValue(maxValue), _precision(precision) {}
+  :
+  AnalogSource(),
+  _minValue(minValue),
+  _maxValue(maxValue),
+  _precision(precision) {}
 
 float OscilloscopeOut::put(float value) {
   // Copy value.

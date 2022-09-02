@@ -25,15 +25,14 @@
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
-#include "SimpleStats.h"
 
 // Filters.
 //#include "Thresholder.h"
 
 // Normalization.
 #include "MinMaxScaler.h"
-#include "AdaptiveNormalizer.h"
 #include "Normalizer.h"
+#include "Smoother.h"
 
 // Stream.
 #include "StreamIn.h"

@@ -18,25 +18,66 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "float.h"
-#include "pq_map_real.h"
 #include "MinMaxScaler.h"
 
+#include "float.h"
+#include "pq_map_real.h"
+#include "MovingAverage.h"
+
 namespace pq {
-  
+
 MinMaxScaler::MinMaxScaler()
- : PqAnalogUnit(0.5f),
-   _minValue(FLT_MAX),
-   _maxValue(FLT_MIN)
+  : MovingFilter()
 {
+}
+
+MinMaxScaler::MinMaxScaler(float decayWindow)
+  : MovingFilter(decayWindow)
+{
+}
+
+void MinMaxScaler::infiniteTimeWindow() {
+  _timeWindow = MOVING_FILTER_INFINITE_TIME_WINDOW;
+}
+
+void MinMaxScaler::timeWindow(float seconds) {
+  _timeWindow = max(seconds, 0.0f); // make sure it is positive
+}
+
+float MinMaxScaler::timeWindow() const { return _timeWindow; }
+
+void MinMaxScaler::reset() {
+  _minValue = FLT_MAX;
+  _maxValue = -FLT_MAX;
 }
 
 float MinMaxScaler::put(float value)
 {
-  _minValue = min(value, _minValue);
-  _maxValue = max(value, _maxValue);
-  _value = (_minValue == _maxValue ? 0.5f : mapTo01(value, _minValue, _maxValue));
-	return _value;
+  if (isStarted()) {
+    // Compute alpha mixing factor.
+    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
+
+    // Update min. value.
+    if (value < _minValue) {
+      _minValue = value;
+    }
+    else {
+      MovingAverage::applyUpdate(_minValue, value, alpha);
+    }
+
+    // Update max. value.
+    if (value > _maxValue) {
+      _maxValue = value;
+    }
+    else {
+      MovingAverage::applyUpdate(_maxValue, value, alpha);
+    }
+  }
+
+  // Compute rescaled value.
+  _value = mapTo01(value, _minValue, _maxValue);
+  _value = constrain(_value, 0, 1); // make sure it stays in [0, 1]
+  return _value;
 }
 
 }

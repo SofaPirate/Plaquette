@@ -21,25 +21,26 @@
 #include "TriOsc.h"
 #include "pq_map_real.h"
 #include "pq_time.h"
+#include "pq_wrap.h"
 
 namespace pq {
 
-TriOsc::TriOsc(float period_, float width_) : PqAnalogSource() {
+TriOsc::TriOsc(float period_, float width_) : AnalogSource() {
   period(period_);
   width(width_);
-	amplitude(1.0f);
+  amplitude(1.0f);
 }
 
 void TriOsc::begin() {
-	_phaseTime = _phase;
+  _phaseTime = _phase;
   _updateValue();
 }
 
 void TriOsc::step() {
   float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
 	// Wave needs to compute its own "time" to allow smooth transitions when changing period.
-	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate());
-	while (_phaseTime > 1) _phaseTime--; // modulo
+	_phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate()); // the max. increment is about 0.5
+  if (_phaseTime > 1) _phaseTime--; // _phaseTime will never be >= 2 cause it cannot in
 	// Compute next value.
 	_updateValue();
 
@@ -94,8 +95,7 @@ TriOsc& TriOsc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
 		_phaseTime += (phase - _phase);
-		while (_phaseTime > 1) _phaseTime--; // modulo
-		while (_phaseTime < 0) _phaseTime++; // modulo
+    _phaseTime = wrap01(_phaseTime);
 		_phase = phase;
 	}
 	return *this;

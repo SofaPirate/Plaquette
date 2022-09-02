@@ -23,18 +23,18 @@
 namespace pq {
 
 Thresholder::Thresholder(float threshold, uint8_t mode)
-  : PqDigitalGetter(), PqPutter() {
+  : DigitalNode() {
 			_init(threshold, mode, threshold);
 		}
 
 Thresholder::Thresholder(float threshold, uint8_t mode, float resetThreshold)
-	: PqDigitalGetter(), PqPutter() {
+	: DigitalNode() {
 			_init(threshold, mode, resetThreshold);
 		}
 
 float Thresholder::put(float value) {
-  bool high = (value > _threshold);
-  bool low  = (value < _threshold);
+  bool high = (value >= _threshold);
+  bool low  = (value <= _threshold);
   bool rising = (high && _wasLow);
   bool falling = (low  && _wasHigh);
 
