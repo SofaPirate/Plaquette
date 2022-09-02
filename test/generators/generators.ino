@@ -11,14 +11,6 @@ Node* generators[N_GENERATORS] = {
   new SineOsc(0.5)
 };
 
-testing(nSteps) {
-  static int nSteps = 0;
-  Plaquette.step();
-  assertEqual((int)Plaquette.nSteps(), nSteps);
-  nSteps ++;
-  if (nSteps > 100) pass();
-}
-
 testing(valuesIn01) {
   static unsigned long startTime = millis();
   Plaquette.step();

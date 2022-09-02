@@ -63,7 +63,7 @@ testing(smoothing) {
       assertLessOrEqual(unit->maxValue(),  100.0f);
       // Serial.printf("val=%f min=%f max=%f ==> %f\n", value, unit->minValue(), unit->maxValue(), value );
       assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
-      if (t >= unit->time()*2) {
+      if (t >= unit->timeWindow()*2) {
         assertMoreOrEqual(unit->minValue(),  -50.0f);
         assertLessOrEqual(unit->maxValue(),   50.0f);
       }
@@ -79,8 +79,8 @@ test(nUnits) {
 void setup() {
   Plaquette.begin();
   Plaquette.sampleRate(1000);
-
 }
+
 void loop() {
   aunit::TestRunner::run();
 }
