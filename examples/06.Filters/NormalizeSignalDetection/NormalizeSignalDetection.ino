@@ -29,7 +29,12 @@ Normalizer normalizer(0, 1); // N(0, 1)
 // Digital LED output.
 DigitalOut led(13);
 
-void begin() {}
+void begin() {
+  // Set a time window of 1 minute (60 seconds) on normalizer.
+  // This will allow the normalier to slowly readjust itself
+  // if the lighting conditions change.
+  normalizer.timeWindow(60.0f);
+}
 
 void step() {
   // Signal will be renormalized according to N(0, 1).
