@@ -13,6 +13,8 @@ Plaquette allows you to:
  * Automatically calibrate sensors to generate stable interactions in changing environments.
  * Design complex interactive behaviors by seamlessly combining powerful effects such as ramps and oscillators.
 
+ .. image:: images/Plaquette-LogoTextAnim.gif
+
 Object-oriented
 ---------------
 
@@ -91,33 +93,3 @@ core Arduino functionalities while remaining fully compatible with Arduino code.
   the documentation has been borrowed and/or adapted from the `Arduino Reference
   <https://www.arduino.cc/reference/en/>`_ and from the `Processing Reference
   <https://processing.org/reference/>`_ texts.
-
-Credits
--------
-
-Developers:
-
-- Sofian Audry • `Website <http://sofianaudry.com>`__ • `GitHub <https://github.com/sofian>`__
-- Thomas Ouellet Fredericks • `Website <http://www.t-o-f.info>`__ • `GitHub <https://github.com/thomasfredericks>`__
-
-Plaquette's base source code was produced as part of a research project
-at `labXmodal <http://xmodal.hexagram.ca>`__. A special thanks to `Chris
-Salter <http://chrissalter.com>`__ for his support.
-
-Plaquette borrows ideas from the `Arduino <https://arduino.cc>`__,
-`ChucK <http://chuck.cs.princeton.edu/>`__,
-`mbed <https://www.mbed.com/>`__,
-`Processing <https://processing.org/>`__, and `Pure
-Data <https://puredata.info/>`__.
-
-License
--------
-
-Plaquette is distributed under the `Gnu General Public License v
-3.0 <https://www.gnu.org/licenses/gpl-3.0.en.html>`__.
-
-The text of the Plaquette documentation is licensed under a `Creative Commons
-Attribution-ShareAlike 3.0
-License <https://creativecommons.org/licenses/by-sa/3.0/>`__. Parts of
-the text was copied and/or adapted from the `Arduino documentation <https://www.arduino.cc/>`_. Code
-samples in the guide are released into the public domain.

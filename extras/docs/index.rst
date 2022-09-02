@@ -6,6 +6,8 @@
 
    getting_started
    advanced
+   credits
+   license
 
 .. toctree::
    :caption: Reference
