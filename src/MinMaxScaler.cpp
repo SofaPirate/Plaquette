@@ -76,6 +76,7 @@ float MinMaxScaler::put(float value)
 
   // Compute rescaled value.
   _value = mapTo01(value, _minValue, _maxValue);
+  _value = constrain(_value, 0, 1); // make sure it stays in [0, 1]
   return _value;
 }
 
