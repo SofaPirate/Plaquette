@@ -69,7 +69,7 @@ providing a set of :doc:`timing units <timing>` as well as time-based
 allowing interactive and generative processes to flow smoothly.
 
 .. warning::
-  Plaquette forbids the use blocking functions such as Arduino's `delay() <https://www.arduino.cc/reference/en/language/functions/time/delay/>`_
+  Plaquette forbids the use of blocking functions such as Arduino's `delay() <https://www.arduino.cc/reference/en/language/functions/time/delay/>`_
   and `delayMicroseconds() <https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/>`_.
   Rather, it invites programmers to adopt a frame-by-frame approach to coding
   similar to `Processing <https://processing.org/>`_.
