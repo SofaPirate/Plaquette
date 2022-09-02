@@ -4,6 +4,7 @@
    :caption: Guide
    :maxdepth: 2
 
+   why_plaquette
    getting_started
    advanced
    credits
