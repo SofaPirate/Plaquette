@@ -21,6 +21,12 @@
 
 #include <float.h>
 
+#define USE_FAST_SQRT 1
+
+#if USE_FAST_SQRT
+#include "pq_fastmath.h"
+#endif
+
 namespace pq {
 
 MovingStats::MovingStats() : _avg(), _var(0) { }
@@ -54,11 +60,25 @@ float MovingStats::update(float value, float sampleRate)
   return normalize(value);
 }
 
-float MovingStats::stddev() const { return sqrt(var()); }
+float MovingStats::stddev() const {
+  return
+#if USE_FAST_SQRT
+  fastSqrt
+#else
+  sqrt
+#endif
+  (var());
+}
 
 float MovingStats::normalize(float value, float mean_, float stddev_) const {
   float s = stddev();
-  return ( value - mean() ) / (max(s, FLT_MIN)) * stddev_ + mean_;
+  return ( value - mean() ) * stddev_ + mean_ /
+#if USE_FAST_SQRT
+  s // Saves a call to max() since fastSqrt(0) returns small positive values
+#else
+  (max(s, FLT_MIN)) // Need to cover the case where s = 0.
+  #endif
+  ;
 }
 
 } // namespace pq
