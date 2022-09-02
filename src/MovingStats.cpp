@@ -56,8 +56,9 @@ float MovingStats::update(float value, float sampleRate)
 
 float MovingStats::stddev() const { return sqrt(var()); }
 
-float MovingStats::normalize(float value) const {
-  return ( value - mean() ) / (stddev() + FLT_MIN);
+float MovingStats::normalize(float value, float mean_, float stddev_) const {
+  float s = stddev();
+  return ( value - mean() ) / (max(s, FLT_MIN)) * stddev_ + mean_;
 }
 
 } // namespace pq

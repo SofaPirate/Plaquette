@@ -74,10 +74,7 @@ public:
   virtual float stddev() const;
 
   /// Returns the normalized value according to the computed statistics (mean and variance).
-  float normalize(float value) const;
-
-  /// Returns true iff the statistics have already been started.
-  virtual bool isStarted() const;
+  float normalize(float value, float mean=0, float stddev=1) const;
 };
 
 } // namespace pq
