@@ -24,7 +24,6 @@ Metro	KEYWORD1
 Ramp	KEYWORD1
 Timer	KEYWORD1
 
-AdaptiveNormalizer	KEYWORD1
 MinMaxScaler	KEYWORD1
 Normalizer	KEYWORD1
 Smoother	KEYWORD1
@@ -69,7 +68,8 @@ noSmooth	KEYWORD2
 debounce  KEYWORD2
 noDebounce  KEYWORD2
 debounceMode  KEYWORD2
-time	KEYWORD2
+infiniteTimeWindow	KEYWORD2
+timeWindow	KEYWORD2
 cutoff	KEYWORD2
 
 period  KEYWORD2
