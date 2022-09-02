@@ -22,6 +22,8 @@
 #define NORMALIZER_H_
 
 #include "PqCore.h"
+#include "MovingFilter.h"
+#include "MovingStats.h"
 
 namespace pq {
 
@@ -29,7 +31,7 @@ namespace pq {
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
  */
-class Normalizer : public AnalogSource, public MovingStats {
+class Normalizer : public MovingFilter, public MovingStats {
 public:
   /**
    * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
@@ -87,7 +89,8 @@ public:
   virtual float timeWindow() const;
 
   /**
-   * Pushes value into the unit.
+   * Pushes value into the unit. If isStarted() is false the filter will not be
+   * updated but will just return the filtered value.
    * @param value the value sent to the unit
    * @return the new value of the unit
    */

@@ -78,8 +78,6 @@ float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
   return v;
 }
 
-bool MovingAverage::isStarted() const { return _nSamples > 0; }
-
 float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
   return (runningValue -= alpha * (runningValue - newValue));
 }

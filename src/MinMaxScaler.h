@@ -22,23 +22,17 @@
 #define MIN_MAX_SCALER_H_
 
 #include "PqCore.h"
-#include "MovingAverage.h"
+#include "MovingFilter.h"
 
 namespace pq {
 
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
-class MinMaxScaler : public AnalogSource {
+class MinMaxScaler : public MovingFilter {
 public:
   /// Constructor.
-  MinMaxScaler(float decayWindow=PLAQUETTE_INFINITE_SMOOTH_WINDOW);
+  MinMaxScaler();
+  MinMaxScaler(float decayWindow);
   virtual ~MinMaxScaler() {}
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value);
 
   /// Returns the current min. value.
   float minValue() const { return _minValue; }
@@ -46,17 +40,25 @@ public:
   /// Returns the current max. value.
   float maxValue() const { return _maxValue; }
 
-  /// Changes the smoothing window (expressed in seconds).
-  void time(float seconds);
+  /// Sets time window to infinite.
+  virtual void infiniteTimeWindow();
 
-  /// Returns the smoothing window (expressed in seconds).
-  float time() const { return _decayWindow; }
+  /// Changes the time window (expressed in seconds).
+  virtual void timeWindow(float seconds);
 
-  /// Changes the smoothing window cutoff frequency (expressed in Hz).
-  void cutoff(float hz);
+  /// Returns the time window (expressed in seconds).
+  virtual float timeWindow() const;
 
-  /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const;
+  /// Resets the moving filter.
+  virtual void reset();
+
+  /**
+   * Pushes value into the unit. If isStarted() is false the filter will not be
+   * updated but will just return the filtered value.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value);
 
 protected:
   // Minmum value ever put.
@@ -64,9 +66,6 @@ protected:
 
   // Maximum value ever put.
   float _maxValue;
-
-  // The decay window (in seconds). After that time the min. and max. values will tend to decay towards average.
-  float _decayWindow;
 };
 
 }

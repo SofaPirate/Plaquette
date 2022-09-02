@@ -27,34 +27,38 @@ namespace pq {
 #define NORMALIZER_DEFAULT_STDDEV 0.15f
 
 Normalizer::Normalizer()
-: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+: MovingFilter(),
   MovingStats(),
   _targetMean(NORMALIZER_DEFAULT_MEAN),
   _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
 {
+  _value = NORMALIZER_DEFAULT_MEAN;
 }
 
 Normalizer::Normalizer(float timeWindow)
-: AnalogSource(NORMALIZER_DEFAULT_MEAN),
+: MovingFilter(timeWindow),
   MovingStats(timeWindow),
   _targetMean(NORMALIZER_DEFAULT_MEAN),
-  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV),
+  _isAdaptive(true)
 {
 }
 
 Normalizer::Normalizer(float mean, float stddev)
-	: AnalogSource(mean),
+	: MovingFilter(),
     MovingStats(),
     _targetMean(mean),
-    _targetStdDev(abs(stddev))
+    _targetStdDev(abs(stddev)),
+    _isAdaptive(true)
 {
 }
 
 Normalizer::Normalizer(float mean, float stddev, float timeWindow)
-	: AnalogSource(mean),
+	: MovingFilter(timeWindow),
     MovingStats(timeWindow),
     _targetMean(mean),
-    _targetStdDev(abs(stddev))
+    _targetStdDev(abs(stddev)),
+    _isAdaptive(true)
 {
 }
 
@@ -69,7 +73,9 @@ void Normalizer::timeWindow(float seconds) {
 float Normalizer::timeWindow() const { return MovingStats::timeWindow(); }
 
 float Normalizer::put(float value) {
-  return (_value = MovingStats::update(value, sampleRate()) * _targetStdDev + _targetMean);
+  _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
+  _value = _value * max(_targetStdDev, FLT_MIN) + _targetMean;
+  return _value;
 }
 
 }

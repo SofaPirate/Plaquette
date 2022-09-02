@@ -80,9 +80,6 @@ public:
   float get() { return _value; }
   float constGet() const { return _value; }
 
-  /// Returns true iff the moving average has already been started.
-  bool isStarted() const;
-
   /**
    * Applies a single update on #runningValue# with new sample #newValue# and mixing
    * factor #alpha#.
