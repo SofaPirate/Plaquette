@@ -82,14 +82,7 @@ Arduino compatible
 Plaquette is installed as an Arduino library and provides a replacement for the
 core Arduino functionalities while remaining fully compatible with Arduino code.
 
-.. note::
-  Plaquette is still at an experimental stage of development. If you
-  have any issues or questions, please contact the developers or file
-  a bug in our `issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
-
-.. note::
-  The Plaquette reference text is licensed under a `Creative Commons Attribution-Share
-  Alike 3.0 License <https://creativecommons.org/licenses/by-sa/3.0/>`_. Parts of
-  the documentation has been borrowed and/or adapted from the `Arduino Reference
-  <https://www.arduino.cc/reference/en/>`_ and from the `Processing Reference
-  <https://processing.org/reference/>`_ texts.
+.. warning::
+   Plaquette is still at an experimental stage of development. If you
+   have any issues or questions, please contact the developers or file
+   a bug in our `issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
