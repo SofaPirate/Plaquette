@@ -52,6 +52,9 @@ public:
   /// Returns the smoothing window (expressed in seconds).
   float timeWindow() const { return _avg.timeWindow(); }
 
+  /// Returns true if time window is infinite.
+  bool timeWindowIsInfinite() const { return _avg.timeWindowIsInfinite(); }
+
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 

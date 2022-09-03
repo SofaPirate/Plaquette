@@ -61,6 +61,9 @@ public:
   /// Returns the smoothing window (expressed in seconds).
   float timeWindow() const { return _smoothTime; }
 
+  /// Returns true if time window is infinite.
+  bool timeWindowIsInfinite() const;
+  
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 

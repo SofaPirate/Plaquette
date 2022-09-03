@@ -35,13 +35,16 @@ protected:
 
 public:
   /// Sets time window to infinite.
-  virtual void infiniteTimeWindow() {}
+  virtual void infiniteTimeWindow() = 0;
 
   /// Changes the time window (expressed in seconds).
-  virtual void timeWindow(float seconds) {}
+  virtual void timeWindow(float seconds) = 0;
 
   /// Returns the time window (expressed in seconds).
   virtual float timeWindow() const = 0;
+
+  /// Returns true if time window is infinite.
+  virtual bool timeWindowIsInfinite() const = 0;
 
   /// Changes the time window cutoff frequency (expressed in Hz).
   virtual void cutoff(float hz);

@@ -49,6 +49,9 @@ public:
   /// Returns the time window (expressed in seconds).
   virtual float timeWindow() const;
 
+  /// Returns true if time window is infinite.
+  virtual bool timeWindowIsInfinite() const;
+
   /// Resets the moving filter.
   virtual void reset();
 

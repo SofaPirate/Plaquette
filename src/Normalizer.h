@@ -62,6 +62,7 @@ public:
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
   Normalizer(float mean, float stddev, float timeWindow);
+
   virtual ~Normalizer() {}
 
   /**
@@ -90,6 +91,9 @@ public:
 
   /// Returns the time window (expressed in seconds).
   virtual float timeWindow() const;
+
+  /// Returns true if time window is infinite.
+  virtual bool timeWindowIsInfinite() const;
 
   /**
    * Pushes value into the unit. If isStarted() is false the filter will not be
