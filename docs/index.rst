@@ -1,5 +1,8 @@
 .. include:: ../README.rst
 
+Table of Contents
+=================
+
 .. toctree::
    :caption: Guide
    :maxdepth: 2
