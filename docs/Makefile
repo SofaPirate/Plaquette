@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 DOXYGENBUILD  = doxygen
 PAPER         =
-BUILDDIR      = ../../../Plaquette-docs
+BUILDDIR      = ../../Plaquette-docs
 PDFBUILDDIR   = /tmp
 PDF           = ../extras/Plaquette-Manual.pdf
 
