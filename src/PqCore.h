@@ -304,8 +304,11 @@ public:
   /// Operator that allows usage in conditional expressions.
   virtual operator bool() { return isOn(); }
 
-  /// Operator that return 0 or 1 depending on value.
-  virtual explicit operator int() { return getInt(); }
+  // IMPORTANT: LEAVE COMMENTED
+  // virtual operator int() { return getInt(); }
+
+  // IMPORTANT: This operator is redefined as explicit to make default return a bool.
+  virtual explicit operator float() { return Node::operator float(); }
 };
 
 /**
