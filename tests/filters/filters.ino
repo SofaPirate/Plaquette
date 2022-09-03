@@ -10,6 +10,26 @@ Node* units[N_UNITS] = {
   new MinMaxScaler(1.0f)
 };
 
+MinMaxScaler basic;
+
+test(basic) {
+  Plaquette.step();
+
+  basic.put(-100);
+  assertEqual(basic.minValue(), -100.0f);
+  Plaquette.step();
+
+  basic.put(+100);
+  assertEqual(basic.maxValue(), 100.0f);
+  Plaquette.step();
+
+  for (float f = -100; f<=100; f++) {
+    assertNear(basic.put(f), mapFloat(f, -100, 100, 0, 1), 0.01f);
+    Plaquette.step();
+  }
+
+}
+
 // testing(nSteps) {
 //   static int nSteps = (int)Plaquette.nSteps();
 //   Plaquette.step();
@@ -61,19 +81,17 @@ testing(smoothing) {
 
       assertMoreOrEqual(unit->minValue(), -100.0f);
       assertLessOrEqual(unit->maxValue(),  100.0f);
-      // Serial.printf("val=%f min=%f max=%f ==> %f\n", value, unit->minValue(), unit->maxValue(), value );
+
       assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
-      if (t >= unit->timeWindow()*2) {
+
+      if (!unit->timeWindowIsInfinite() &&
+          t >= unit->timeWindow()*2) {
         assertMoreOrEqual(unit->minValue(),  -50.0f);
         assertLessOrEqual(unit->maxValue(),   50.0f);
       }
     }
     if (t > 1) pass();
   }
-}
-
-test(nUnits) {
-  assertEqual((int)Plaquette.nUnits(), N_UNITS);
 }
 
 void setup() {
