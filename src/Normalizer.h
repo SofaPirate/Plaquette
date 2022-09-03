@@ -27,6 +27,9 @@
 
 namespace pq {
 
+#define NORMALIZER_DEFAULT_MEAN   0.5f
+#define NORMALIZER_DEFAULT_STDDEV 0.15f
+
 /**
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
