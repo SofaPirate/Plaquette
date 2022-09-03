@@ -26,7 +26,7 @@ is to look at the kind of values we get and set a threshold.
 
 .. code-block:: c++
 
-  if (value > 607)
+  if (value > 716)
     // do something
 
 Nice. But there are two problems with this. First, while it might work under
@@ -34,21 +34,20 @@ certain light conditions, it will likely stop working if these conditions change
 forcing us to make adjustments by hand to the threshold value.
 
 Second, and perhaps more importantly, this piece of code does not really
-expresses what we are after. As creative practitioners, we don't want to know
-if the light is above 607: what we really want to know is whether it is
-significantly high compared to ambient light.
+*expresses* what we are after. As creative practitioners, we don't care whether
+the light signal is above 716 or 456 or whatnot: what we really want to know
+is whether it is *significantly high compared to ambient light*.
 
 What this example shows is that the way we are teaching and learning about sensor
-data is ineffective for creative applications. In other words: *raw digital data
-lacks expressiveness*. Furthermore, it makes interoperability difficult, often
-even within a certain environment.
+data is ineffective for creative applications. In other words: **raw digital data
+lacks expressiveness**.
 
 Continuing with our example, consider how one would take the input value and
-directly reroute it to an analog (PWM) output on pin 3:
+directly reroute it to an analog (PWM) output on pin ``9``:
 
 .. code-block:: c++
 
-   analogWrite(3, value / 4);
+   analogWrite(9, value / 4);
 
 Why do we need to perform that division by 4? That's because while the ADC gives
 us 10-bit values (1024 possibilities), the PWM only supports 8 bits (256 possibilities)
@@ -79,7 +78,7 @@ Plaquette responds to these challenges by adopting the following characteristics
    common problems faced by creators ie. limited to only a few core functionalities
    that will solve 95% of your problems)
  - Real-time (allow responsive interaction without interruptions by calls to ``delay()``)
- - Focused on signals (rather than on numerical values such as 255, 1024, 607, etc.)
+ - Focused on signals (rather than on numerical values such as 255, 1024, 716, etc.)
  - Robust (it needs to tolerate changes in the sensory context without breaking
    down, because media artworks are often presented in environments that are difficult
    to fully control)
