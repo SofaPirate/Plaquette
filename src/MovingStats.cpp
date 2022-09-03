@@ -85,4 +85,18 @@ float MovingStats::normalize(float value, float mean_, float stddev_) const {
   return normalize(value) * stddev_ + mean_;
 }
 
+bool MovingStats::isOutlier(float value, float nStdDev) {
+  float z = normalize(value);
+  return abs(z) >= abs(nStdDev);
+}
+
+bool MovingStats::isLowOutlier(float value, float nStdDev) {
+  return normalize(value) <= (-abs(nStdDev));
+}
+
+bool MovingStats::isHighOutlier(float value, float nStdDev) {
+  return normalize(value) >= abs(nStdDev);
+}
+
+
 } // namespace pq

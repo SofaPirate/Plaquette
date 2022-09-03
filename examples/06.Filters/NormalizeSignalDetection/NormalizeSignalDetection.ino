@@ -23,8 +23,8 @@
 // The analog input.
 AnalogIn in(A0); // defaults on pin A0
 
-// The normalization unit with mean 0 and stddev 1.
-Normalizer normalizer(0, 1); // N(0, 1)
+// The normalization unit.
+Normalizer normalizer;
 
 // Digital LED output.
 DigitalOut led(13);
@@ -42,5 +42,5 @@ void step() {
 
   // Light LED if value differs from mean by more
   // than twice the standard deviation.
-  (normalizer > 2.0) >> led;
+  normalizer.isHighOutlier(in) >> led;
 }

@@ -11,7 +11,7 @@ Node* units[N_UNITS] = {
   new Normalizer(0, 1, 1.0f)
 };
 
-testing(valuesIn01) {
+testing(valuesInRange) {
   static unsigned long startTime = millis();
   static int currentRandom = 0;
   static float currentSign = 1;
@@ -27,9 +27,14 @@ testing(valuesIn01) {
     float value = unit->put(randomValue);
 
     if (millis() - startTime > 1000) {
-      // Serial.printf("val=%f ==> %f\n", randomValue, value );
+//      Serial.printf("val=%f ==> %f\n", randomValue, value );
       assertMoreOrEqual(value, -3.1f);
       assertLessOrEqual(value,  3.1f);
+
+      assertEqual(unit->isLowOutlier(-100, 1.0f), true);
+      assertEqual(unit->isHighOutlier(100, 1.0f), true);
+      assertEqual(unit->isOutlier(-100, 1.0f), true);
+      assertEqual(unit->isOutlier(-100, 1.0f), true);
     }
 
     // if (millis() - startTime > 4000) {
@@ -42,9 +47,9 @@ testing(valuesIn01) {
 
 void setup() {
   Plaquette.begin();
-//  Plaquette.sampleRate(10000);
-
+// Plaquette.sampleRate(20000);
 }
+
 void loop() {
   aunit::TestRunner::run();
 }
