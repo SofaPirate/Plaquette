@@ -8,7 +8,7 @@ DOXYGENBUILD  = doxygen
 PAPER         =
 BUILDDIR      = ../../../Plaquette-docs
 PDFBUILDDIR   = /tmp
-PDF           = ../../../Plaquette-docs/html/Plaquette-Manual.pdf
+PDF           = ../extras/Plaquette-Manual.pdf
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
