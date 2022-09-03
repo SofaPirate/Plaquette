@@ -9,6 +9,7 @@ Table of Contents
 
    why_plaquette
    getting_started
+   regularizing
    advanced
    credits
    license
