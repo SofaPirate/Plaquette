@@ -73,6 +73,11 @@ bool Normalizer::timeWindowIsInfinite() const {
   return (_timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW);
 }
 
+void Normalizer::reset() {
+  MovingStats::reset();
+  MovingFilter::reset();
+}
+
 float Normalizer::put(float value) {
   _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
   _value = _value * max(_targetStdDev, FLT_MIN) + _targetMean;

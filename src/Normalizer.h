@@ -95,6 +95,8 @@ public:
   /// Returns true if time window is infinite.
   virtual bool timeWindowIsInfinite() const;
 
+  virtual void reset();
+  
   /**
    * Pushes value into the unit. If isStarted() is false the filter will not be
    * updated but will just return the filtered value.
