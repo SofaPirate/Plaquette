@@ -83,6 +83,9 @@ public:
   float get() { return _value; }
   float constGet() const { return _value; }
 
+  /// Returns the number of samples processed since reset().
+  unsigned int nSamples() const { return _nSamples; }
+
   /**
    * Applies a single update on #runningValue# with new sample #newValue# and mixing
    * factor #alpha#.
