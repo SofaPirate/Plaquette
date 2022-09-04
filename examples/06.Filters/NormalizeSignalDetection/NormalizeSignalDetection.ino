@@ -15,6 +15,7 @@
  * that's attached to pin 13, so no hardware is needed for this example.
  *
  * Created in 2018 by Sofian Audry
+ * Modified in 2022 by Sofian Audry
  *
  * This example code is in the public domain.
  */
@@ -27,9 +28,12 @@ AnalogIn in(A0); // defaults on pin A0
 Normalizer normalizer;
 
 // Digital LED output.
-DigitalOut led(13);
+DigitalOut led;
 
 void begin() {
+  // Smooth incoming signal.
+  in.smooth();
+
   // Set a time window of 1 minute (60 seconds) on normalizer.
   // This will allow the normalier to slowly readjust itself
   // if the lighting conditions change.
@@ -40,7 +44,10 @@ void step() {
   // Signal will be renormalized according to N(0, 1).
   in >> normalizer;
 
-  // Light LED if value differs from mean by more
-  // than twice the standard deviation.
-  normalizer.isHighOutlier(in) >> led;
+  // Light LED if photo cell value drops below mean in a
+  // significant way. You can adjust sensitivity by calling
+  // isLowOutlier() with different parameter eg.
+  // normalizer.isLowOutlier(in, 1.2) (more sensitive)
+  // normalizer.isLowOutlier(in, 2.5) (less sensitive)
+  normalizer.isLowOutlier(in) >> led;
 }
