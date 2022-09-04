@@ -25,11 +25,14 @@ Control an LED using a potentiometer.
 
    AnalogOut led(9);
 
+   SineOsc oscillator;
+
    void begin() {}
 
    void step() {
-     // The analog input controls the intensity of the LED.
-     potentiometer >> led;
+     // The analog input controls the frequency of the LED's oscillation.
+     oscillator.frequency(potentiometer.mapTo(2.0, 10.0));
+     oscillator >> led;
    }
 
 
