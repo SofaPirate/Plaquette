@@ -74,7 +74,7 @@ public:
   float alpha(float sampleRate) const;
 
   /// Resets the moving average.
-  virtual void reset();
+  void reset();
 
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
