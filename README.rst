@@ -13,4 +13,4 @@ Plaquette allows you to:
  * Automatically calibrate sensors to generate stable interactions in changing environments.
  * Design complex interactive behaviors by seamlessly combining powerful effects such as ramps and oscillators.
 
- .. image:: images/Plaquette-LogoTextAnim.gif
+ .. image:: images/Plaquette-LogoTextAnim.*

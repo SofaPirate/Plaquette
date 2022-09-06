@@ -10,6 +10,18 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
     subprocess.call('doxygen', shell=True)
 
+# This is to make sure we use animated GIFs in HTML but not in LaTeX
+# Source: https://stackoverflow.com/questions/45969711/sphinx-doc-how-do-i-render-an-animated-gif-when-building-for-html-but-a-png-wh
+from sphinx.builders.html import StandaloneHTMLBuilder
+new_supported_image_types = [
+    'image/svg+xml',
+    'image/gif',
+    'image/png',
+    'image/jpeg'
+]
+additional_default_supported_images = list(set(StandaloneHTMLBuilder.supported_image_types) - set(new_supported_image_types))
+StandaloneHTMLBuilder.supported_image_types = new_supported_image_types + additional_default_supported_images
+
 html_sidebars = { '**': ['fulltoc.html', 'relations.html', 'searchbox.html'], }
 
 html_logo = "Plaquette-LogoText.png"
