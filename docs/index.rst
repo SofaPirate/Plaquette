@@ -8,6 +8,7 @@ Table of Contents
    :maxdepth: 2
 
    why_plaquette
+   features
    getting_started
    regularizing
    advanced
