@@ -33,12 +33,6 @@ program to change and respond. Use it to actively control the board.
     button >> led;
   }
 
-|Reference|
------------
-
-.. doxygenfunction:: step()
-   :project: Plaquette
-
 |SeeAlso|
 ---------
 - :doc:`begin`

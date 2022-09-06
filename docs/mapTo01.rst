@@ -41,7 +41,7 @@ See :doc:`mapFloat` for more details.
 |Reference|
 -----------
 
-.. doxygenfunction:: mapTo01()
+.. doxygenfunction:: mapTo01(double, double, double)
    :project: Plaquette
 
 |SeeAlso|

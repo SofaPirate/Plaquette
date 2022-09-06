@@ -34,12 +34,6 @@ after each powerup or reset of the board.
      // ...
    }
 
-|Reference|
------------
-
-.. doxygenfunction:: begin()
-   :project: Plaquette
-
 |SeeAlso|
 ---------
 - :doc:`step`
