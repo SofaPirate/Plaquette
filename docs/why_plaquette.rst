@@ -62,24 +62,24 @@ As a way to address these issues, we propose to create a general-purpose standar
 interface for simple, real-time signal processing for media artists.
 The objectives are as follow:
 
- #. Allow creators to concentrate on the *creative dimensions* of their work rather
+ #. **Allow creators to concentrate on the creative dimensions of their work** rather
     than on irrelevant numerical questions, hence also facilitating their learning.
- #. Provide creative practitioners with simple, accessible, easy-to-understand tools
-    that grasp high-level concepts such as "normalizing" and "detecting peaks"
-    (rather than specific, arcane techniques on "how" to extract these informations
-    such as "FFT", "zero-crossing" or "Chebyshev filtering").
- #. Facilitate team work and interoperability between applications by favouring
+ #. **Provide creators practitioners with accessible tools** that grasp high-level
+    concepts such as "normalizing" and "detecting peaks" (rather than specific,
+    arcane techniques on "how" to extract these informations such as "FFT", "zero-crossing" or "Chebyshev filtering").
+ #. **Facilitate team work and interoperability** between applications by favouring
     an easily understandable, cross-platform way of thinking about real-time signals
     (for example by keeping all signals "in check" between 0 and 1).
 
 Plaquette responds to these challenges by adopting the following characteristics:
 
- - Easy to learn (concepts in the API should be chosen carefully to respond to
+ - **Easy to learn** by provide carefully-chosen functionalities that respond to
    common problems faced by creators ie. limited to only a few core functionalities
-   that will solve 95% of your problems)
- - Real-time (allow responsive interaction without interruptions by calls to ``delay()``)
- - Focused on signals (rather than on numerical values such as 255, 1024, 716, etc.)
- - Robust (it needs to tolerate changes in the sensory context without breaking
-   down, because media artworks are often presented in environments that are difficult
-   to fully control)
- - Interoperable and extensible (fully compatible with Arduino)
+   that will solve 95% of your problems.
+ - **Real-time** by allowing responsive interaction without interruptions.
+ - **Focused on signals** rather than on numerical values such as 255, 1024, 716, etc.)
+ - **Robust** by tolerating changes in the sensory context without breaking
+   down, because interactive works are often presented in environments that are difficult
+   to fully control.
+ - **Interoperable and extensible** by adopting an object-oriented architecture
+   fully compatible with Arduino.
