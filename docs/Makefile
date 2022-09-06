@@ -53,11 +53,13 @@ help:
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/html/*
+	rm -rf $(BUILDDIR)/xml
+	rm -rf $(BUILDDIR)/doctrees
 
 .PHONY: doxygen
 doxygen:
 	$(DOXYGENBUILD)
-	sed -i 's/pq:://g' ./xml/*.xml
+	sed -i 's/pq:://g' ./xml/*.xml # remove pq:: namespace from XML
 
 .PHONY: html
 html:
