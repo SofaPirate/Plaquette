@@ -24,7 +24,7 @@ LED using an input photocell:
 
    void loop() {
      // Read value from photocell (between 0..1023).
-     float value = analogRead(photoCellPin);
+     int value = analogRead(photoCellPin);
 
      // Write value to LED (between 0..255).
      analogWrite(ledPin, value / 4);

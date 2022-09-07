@@ -115,7 +115,7 @@ LED using an input photocell:</p>
 
 <span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Read value from photocell (between 0..1023).</span>
-  <span class="kt">float</span> <span class="n">value</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">);</span>
 
   <span class="c1">// Write value to LED (between 0..255).</span>
   <span class="n">analogWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">4</span><span class="p">);</span>
