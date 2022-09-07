@@ -4,8 +4,8 @@ Why Plaquette?
 Rationale
 ---------
 
-Media creators such as artists, musicians, and designers work with real-time
-sensory signals all the time. However, few of them (especially beginners) really
+Media creators such as artists, interactive designers, and electronic musicians
+work with real-time sensory signals all the time. However, few of them (especially beginners) really
 "know their signals" and how to extract high-level informations from them
 (such as debouncing, smoothing, normalizing, detecting peaks and regularities).
 
