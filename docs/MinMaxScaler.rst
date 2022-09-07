@@ -16,6 +16,7 @@ principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` ma
 `exponential moving average <https://www.investopedia.com/terms/e/ema.asp>`_.
 
 .. warning::
+
    This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
    that appear in rare conditions. Such values will replace the mininum or maximum value and greatly
    restrict the spread of the filtered values.
@@ -27,9 +28,8 @@ principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` ma
    #. Using a regularization unit that is less prone to outliers such as the :doc:`Normalizer`.
 
 
-
 |Example|
----------
+--------
 
 Reacts to high input values by activating an output LED. Scaler is used to
 automatically adapt to incoming sensor values.
