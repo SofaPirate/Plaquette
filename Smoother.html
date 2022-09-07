@@ -1,77 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Smoother &mdash; Plaquette 0.2.5 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smoother &mdash; Plaquette 0.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Functions" href="functions.html" />
     <link rel="prev" title="Normalizer" href="Normalizer.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Plaquette
-          
-
-          
-            
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.5
+                0.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,24 +42,23 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Reference</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Smoother</a><ul>
@@ -112,74 +74,36 @@
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="filters.html">Filters</a> &raquo;</li>
-        
       <li>Smoother</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="smoother">
-<h1>Smoother<a class="headerlink" href="#smoother" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="smoother">
+<h1>Smoother<a class="headerlink" href="#smoother" title="Permalink to this headline"></a></h1>
 <p>Smooths the incoming signal by removing fast variations and noise (high frequencies).</p>
 <img alt="_images/Plaquette-Smooth.png" src="_images/Plaquette-Smooth.png" />
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <p>Smooth a sensor over time.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
@@ -203,133 +127,112 @@
 <p>The filter uses an <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_smoothing">exponential moving average</a>
 which corresponds to a form of <a class="reference external" href="https://en.wikipedia.org/wiki/Low-pass_filter">low-pass filter</a>.</p>
 </div>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="_CPPv48Smoother">
-<span id="_CPPv38Smoother"></span><span id="_CPPv28Smoother"></span><span id="Smoother"></span><span class="target" id="classpq_1_1_smoother"></span><em class="property">class </em><code class="sig-name descname">Smoother</code> : <em class="property">public</em> PqPutter, <em class="property">public</em> MovingAverage<a class="headerlink" href="#_CPPv48Smoother" title="Permalink to this definition">¶</a><br /></dt>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48Smoother">
+<span id="_CPPv38Smoother"></span><span id="_CPPv28Smoother"></span><span id="Smoother"></span><span class="target" id="classpq_1_1_smoother"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingAverage</span></span><a class="headerlink" href="#_CPPv48Smoother" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Simple moving average transform filter. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
-<dl class="function">
-<dt id="_CPPv4N8Smoother8SmootherEf">
-<span id="_CPPv3N8Smoother8SmootherEf"></span><span id="_CPPv2N8Smoother8SmootherEf"></span><span id="Smoother::Smoother__float"></span><span class="target" id="classpq_1_1_smoother_1a0b12698c3e3bd763d24499d57774a1f6"></span><code class="sig-name descname">Smoother</code><span class="sig-paren">(</span>float <em>smoothWindow</em> = PLAQUETTE_DEFAULT_SMOOTH_WINDOW<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEf" title="Permalink to this definition">¶</a><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother8SmootherEf">
+<span id="_CPPv3N8Smoother8SmootherEf"></span><span id="_CPPv2N8Smoother8SmootherEf"></span><span id="Smoother::Smoother__float"></span><span class="target" id="classpq_1_1_smoother_1a0b12698c3e3bd763d24499d57774a1f6"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothWindow</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_DEFAULT_SMOOTH_WINDOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
-<p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">factor</span></code>: a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means <em>more</em> smoothing) </p></li>
-</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>factor</strong> – a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means <em>more</em> smoothing) </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N8Smoother3putEf">
-<span id="_CPPv3N8Smoother3putEf"></span><span id="_CPPv2N8Smoother3putEf"></span><span id="Smoother::put__float"></span><span class="target" id="classpq_1_1_smoother_1a663bdf40ad70eb9fa4e4f13a18e25bc0"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother3putEf">
+<span id="_CPPv3N8Smoother3putEf"></span><span id="_CPPv2N8Smoother3putEf"></span><span id="Smoother::put__float"></span><span class="target" id="classpq_1_1_smoother_1a663bdf40ad70eb9fa4e4f13a18e25bc0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>the new value of the unit </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value sent to the unit </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N8Smoother3getEv">
-<span id="_CPPv3N8Smoother3getEv"></span><span id="_CPPv2N8Smoother3getEv"></span><span id="Smoother::get"></span><span class="target" id="classpq_1_1_smoother_1a513d42c0f87eb8aeb43e10940cb8f2b6"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3getEv" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother3getEv">
+<span id="_CPPv3N8Smoother3getEv"></span><span id="_CPPv2N8Smoother3getEv"></span><span id="Smoother::get"></span><span class="target" id="classpq_1_1_smoother_1a513d42c0f87eb8aeb43e10940cb8f2b6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns smoothed value. </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N13MovingAverage4timeEf">
-<span id="_CPPv3N13MovingAverage4timeEf"></span><span id="_CPPv2N13MovingAverage4timeEf"></span><span id="MovingAverage::time__float"></span><span class="target" id="classpq_1_1_moving_average_1a851bf5925fb9aa293dfab740dec88941"></span>void <code class="sig-name descname">time</code><span class="sig-paren">(</span>float <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13MovingAverage4timeEf" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother10timeWindowEf">
+<span id="_CPPv3N8Smoother10timeWindowEf"></span><span id="_CPPv2N8Smoother10timeWindowEf"></span><span id="Smoother::timeWindow__float"></span><span class="target" id="classpq_1_1_moving_average_1a52c72676771917bfd7d02170d0f6385d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Changes the smoothing window (expressed in seconds). </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4NK13MovingAverage4timeEv">
-<span id="_CPPv3NK13MovingAverage4timeEv"></span><span id="_CPPv2NK13MovingAverage4timeEv"></span><span id="MovingAverage::timeC"></span><span class="target" id="classpq_1_1_moving_average_1a2ed58191e8708bd04fa997501ec5f0e1"></span>float <code class="sig-name descname">time</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK13MovingAverage4timeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother10timeWindowEv">
+<span id="_CPPv3NK8Smoother10timeWindowEv"></span><span id="_CPPv2NK8Smoother10timeWindowEv"></span><span id="Smoother::timeWindowC"></span><span class="target" id="classpq_1_1_moving_average_1a6826ef56a2026934126da5c5980d0f84"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the smoothing window (expressed in seconds). </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N13MovingAverage6cutoffEf">
-<span id="_CPPv3N13MovingAverage6cutoffEf"></span><span id="_CPPv2N13MovingAverage6cutoffEf"></span><span id="MovingAverage::cutoff__float"></span><span class="target" id="classpq_1_1_moving_average_1a852dc2e13debcfb32ae54247f4c7433e"></span>void <code class="sig-name descname">cutoff</code><span class="sig-paren">(</span>float <em>hz</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13MovingAverage6cutoffEf" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother6cutoffEf">
+<span id="_CPPv3N8Smoother6cutoffEf"></span><span id="_CPPv2N8Smoother6cutoffEf"></span><span id="Smoother::cutoff__float"></span><span class="target" id="classpq_1_1_moving_average_1a852dc2e13debcfb32ae54247f4c7433e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother6cutoffEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Changes the smoothing window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4NK13MovingAverage6cutoffEv">
-<span id="_CPPv3NK13MovingAverage6cutoffEv"></span><span id="_CPPv2NK13MovingAverage6cutoffEv"></span><span id="MovingAverage::cutoffC"></span><span class="target" id="classpq_1_1_moving_average_1af633b34d73d74978b5b1354c29441c4d"></span>float <code class="sig-name descname">cutoff</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK13MovingAverage6cutoffEv" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother6cutoffEv">
+<span id="_CPPv3NK8Smoother6cutoffEv"></span><span id="_CPPv2NK8Smoother6cutoffEv"></span><span id="Smoother::cutoffC"></span><span class="target" id="classpq_1_1_moving_average_1af633b34d73d74978b5b1354c29441c4d"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother6cutoffEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the smoothing window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-<div class="section" id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Normalizer.html" class="btn btn-neutral float-left" title="Normalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Normalizer.html" class="btn btn-neutral float-left" title="Normalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2015-2019, Plaquette
-
-    </p>
+    <p>&#169; Copyright 2015-2022, Plaquette.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

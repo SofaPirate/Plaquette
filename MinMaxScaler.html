@@ -1,77 +1,40 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>MinMaxScaler &mdash; Plaquette 0.2.5 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinMaxScaler &mdash; Plaquette 0.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Normalizer" href="Normalizer.html" />
-    <link rel="prev" title="AdaptiveNormalizer" href="AdaptiveNormalizer.html" /> 
+    <link rel="prev" title="Filters" href="filters.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Plaquette
-          
-
-          
-            
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                0.2.5
+                0.3
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,24 +42,23 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Reference</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="AdaptiveNormalizer.html">AdaptiveNormalizer</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">MinMaxScaler</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
@@ -112,77 +74,55 @@
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Plaquette</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="filters.html">Filters</a> &raquo;</li>
-        
       <li>MinMaxScaler</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="minmaxscaler">
-<h1>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="minmaxscaler">
+<h1>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this headline"></a></h1>
 <p>This filtering unit regularizes incoming signals by remapping them into a new interval of [0, 1].
 It does so by keeping track of the minimum and the maximum values ever taken by the signal and
 rescales it such that the minimum value of the signal is mapped to 0 and the maximum value
 is mapped to 1.</p>
 <img alt="_images/Plaquette-MinMaxScaler.png" src="_images/Plaquette-MinMaxScaler.png" />
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>In order to accomodate signals that might be changing through time, the user can specify a
+“decay time window” to control the rate of decay of the mininum and maximum boundaries. The
+principle is similar to the how the <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> and the <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a> make use of
+<a class="reference external" href="https://www.investopedia.com/terms/e/ema.asp">exponential moving average</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
+that appear in rare conditions. Such values will replace the mininum or maximum value and greatly
+restrict the spread of the filtered values.</p>
+<p>There are three ways to prevent this:</p>
+<ol class="arabic simple">
+<li><p>Specifying a decay window using the <code class="docutils literal notranslate"><span class="pre">time(decayTime)</span></code> function.</p></li>
+<li><p>Smoothing incoming values using the <code class="docutils literal notranslate"><span class="pre">smooth()</span></code> method or a <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> unit before sending to the <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>.</p></li>
+<li><p>Using a regularization unit that is less prone to outliers such as the <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a>.</p></li>
+</ol>
+</div>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <p>Reacts to high input values by activating an output LED. Scaler is used to
 automatically adapt to incoming sensor values.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
@@ -204,110 +144,134 @@ automatically adapt to incoming sensor values.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="_CPPv412MinMaxScaler">
-<span id="_CPPv312MinMaxScaler"></span><span id="_CPPv212MinMaxScaler"></span><span id="MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler"></span><em class="property">class </em><code class="sig-name descname">MinMaxScaler</code> : <em class="property">public</em> PqAnalogUnit<a class="headerlink" href="#_CPPv412MinMaxScaler" title="Permalink to this definition">¶</a><br /></dt>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv412MinMaxScaler">
+<span id="_CPPv312MinMaxScaler"></span><span id="_CPPv212MinMaxScaler"></span><span id="MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingFilter</span></span><a class="headerlink" href="#_CPPv412MinMaxScaler" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Regularizes signal into [0,1] by rescaling it using the min and max values. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
-<dl class="function">
-<dt id="_CPPv4N12MinMaxScaler12MinMaxScalerEv">
-<span id="_CPPv3N12MinMaxScaler12MinMaxScalerEv"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerEv"></span><span id="MinMaxScaler::MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler_1a20295d1f7fb53b446bf8cb3ae14cccaf"></span><code class="sig-name descname">MinMaxScaler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerEv" title="Permalink to this definition">¶</a><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler12MinMaxScalerEv">
+<span id="_CPPv3N12MinMaxScaler12MinMaxScalerEv"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerEv"></span><span id="MinMaxScaler::MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler_1a20295d1f7fb53b446bf8cb3ae14cccaf"></span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N12MinMaxScaler3putEf">
-<span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span>float <code class="sig-name descname">put</code><span class="sig-paren">(</span>float <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler18infiniteTimeWindowEv">
+<span id="_CPPv3N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="_CPPv2N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="MinMaxScaler::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_min_max_scaler_1a290bc065189a7a3b16d6425723870b95"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler10timeWindowEf">
+<span id="_CPPv3N12MinMaxScaler10timeWindowEf"></span><span id="_CPPv2N12MinMaxScaler10timeWindowEf"></span><span id="MinMaxScaler::timeWindow__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1a8bade4b6f7ab7e4873d1d730d6c0289a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler10timeWindowEv">
+<span id="_CPPv3NK12MinMaxScaler10timeWindowEv"></span><span id="_CPPv2NK12MinMaxScaler10timeWindowEv"></span><span id="MinMaxScaler::timeWindowC"></span><span class="target" id="classpq_1_1_min_max_scaler_1ae1c1f870ad163fd06fcca714a177ea82"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv">
+<span id="_CPPv3NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="MinMaxScaler::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_min_max_scaler_1a6bd8e3b94294967aa2507bac0835fc14"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if time window is infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5resetEv">
+<span id="_CPPv3N12MinMaxScaler5resetEv"></span><span id="_CPPv2N12MinMaxScaler5resetEv"></span><span id="MinMaxScaler::reset"></span><span class="target" id="classpq_1_1_min_max_scaler_1af60aac47e64d63386d4f61cfb64207fd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the moving filter. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler3putEf">
+<span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>the new value of the unit </p>
+<p>If <a class="reference internal" href="Normalizer.html#classpq_1_1_moving_filter_1a23edee5744e257f605783acd560776f5"><span class="std std-ref">isStarted()</span></a> is false the filter will not be updated but will just return the filtered value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value sent to the unit </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv4N12PqAnalogUnit3getEv">
-<span id="_CPPv3N12PqAnalogUnit3getEv"></span><span id="_CPPv2N12PqAnalogUnit3getEv"></span><span id="PqAnalogUnit::get"></span><span class="target" id="classpq_1_1_pq_analog_unit_1a3a4c2485cc71a203b3bd3bb22ea1115e"></span><em class="property">virtual</em> float <code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Returns value (typically between 0 and 1, may vary depending on class). </p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5startEv">
+<span id="_CPPv3N12MinMaxScaler5startEv"></span><span id="_CPPv2N12MinMaxScaler5startEv"></span><span id="MinMaxScaler::start"></span><span class="target" id="classpq_1_1_moving_filter_1a1d4e8fd14afa65c94ec2b9733ed6ee3c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5startEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Starts calibration. </p>
+<p>When calibration is started, calls to put(value) will return normalized value AND update the normalization statistics. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler4stopEv">
+<span id="_CPPv3N12MinMaxScaler4stopEv"></span><span id="_CPPv2N12MinMaxScaler4stopEv"></span><span id="MinMaxScaler::stop"></span><span class="target" id="classpq_1_1_moving_filter_1af685c351a34171c73304a5c6e43e661f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler4stopEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Stops calibration. </p>
+<p>When calibration is stopped, calls to put(value) will return normalized value without updating the normalization statistics. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler9isStartedEv">
+<span id="_CPPv3NK12MinMaxScaler9isStartedEv"></span><span id="_CPPv2NK12MinMaxScaler9isStartedEv"></span><span id="MinMaxScaler::isStartedC"></span><span class="target" id="classpq_1_1_moving_filter_1a23edee5744e257f605783acd560776f5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler9isStartedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the statistics have already been started. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler3getEv">
+<span id="_CPPv3N12MinMaxScaler3getEv"></span><span id="_CPPv2N12MinMaxScaler3getEv"></span><span id="MinMaxScaler::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
-that appear in rare conditions. One way to prevent this is to smooth incoming values using the <code class="docutils literal notranslate"><span class="pre">smooth()</span></code>
-method or a <code class="docutils literal notranslate"><span class="pre">Smoother</span></code> unit before sending to the <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code>. Another approach is to use a
-regularization unit that is less prone to outliers such as the <code class="docutils literal notranslate"><span class="pre">Normalizer</span></code> or the <code class="docutils literal notranslate"><span class="pre">AdaptiveNormalizer</span></code>.</p>
-</div>
-</div>
-<div class="section" id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="AdaptiveNormalizer.html"><span class="doc">AdaptiveNormalizer</span></a></p></li>
 <li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></p></li>
 <li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Normalizer.html" class="btn btn-neutral float-right" title="Normalizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="AdaptiveNormalizer.html" class="btn btn-neutral float-left" title="AdaptiveNormalizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="filters.html" class="btn btn-neutral float-left" title="Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Normalizer.html" class="btn btn-neutral float-right" title="Normalizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2015-2019, Plaquette
-
-    </p>
+    <p>&#169; Copyright 2015-2022, Plaquette.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
