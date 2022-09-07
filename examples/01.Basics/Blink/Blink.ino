@@ -22,7 +22,8 @@ DigitalOut led(LED_BUILTIN);
 SquareOsc oscillator(2.0); // 2 seconds period
 
 void begin() {
-  oscillator.dutyCycle(0.1);
+  // Set duty cycle of wave.
+  oscillator.dutyCycle(0.1); // 0.1 => 10% up, 90% down
 }
 
 void step() {
