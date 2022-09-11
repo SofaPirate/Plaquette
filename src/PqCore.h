@@ -141,6 +141,9 @@ public:
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
   void sampleRate(float sampleRate);
 
+  /// Sets sample period to a fixed value, thus disabling auto sampling rate.
+  void samplePeriod(float samplePeriod);
+
   /// Returns sample rate.
   float sampleRate() const { return _sampleRate; }
 
@@ -177,6 +180,9 @@ void enableAutoSampleRate();
 
 /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
 void sampleRate(float sampleRate);
+
+/// Sets sample period to a fixed value, thus disabling auto sampling rate.
+void samplePeriod(float samplePeriod);
 
 /// Returns sample rate.
 float sampleRate();

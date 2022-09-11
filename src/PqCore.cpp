@@ -87,9 +87,17 @@ void PlaquetteEnv::sampleRate(float sampleRate) {
   _targetSampleRate = max(sampleRate, FLT_MIN);
 }
 
+void PlaquetteEnv::samplePeriod(float samplePeriod) {
+  if (samplePeriod > 0)
+    sampleRate(1.0f / samplePeriod);
+  else
+    autoSampleRate();
+}
+
 //float seconds(bool realTime) { return PlaquetteEnv::seconds(); }
 unsigned long nSteps() { return Plaquette.nSteps(); }
 void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
+void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 
