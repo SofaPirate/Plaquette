@@ -7,8 +7,9 @@ Avoiding Plaquette Style
 ------------------------
 
 If you don't want to use Plaquette's :doc:`>> <pipe>` operator, or Plaquette's
-auto-conversion of units to values, you can avoid these features by simply using
-Plaquette's units's ``get()`` and ``put()`` methods. These methods are defined as follow:
+auto-conversion of units to values (eg., ``if (input)``, ``input >> output``),
+you can avoid these features by simply using Plaquette units's ``get()`` and
+``put()`` methods.
 
 The ``get()`` method returns the current value of the unit:
 
@@ -23,7 +24,13 @@ of the unit (the same that would be returned by ``get()``):
 
   float put(float value)
 
-Hence, the following statements are equivalent:
+Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metro`,
+and :doc:`Timer`, have a ``boolean isOn()`` method that work for boolean
+``true/false`` values. Additionally, digital output units such as
+:doc:`DigitalOut` have a ``boolean putOn(boolean value)`` method.
+
+Here are some examples of how to adopt a classic object-oriented functions style
+instead of the Plaquette style.
 
 .. list-table::
   :widths: 50 50
@@ -31,14 +38,20 @@ Hence, the following statements are equivalent:
 
   * - Plaquette Style
     - Object-Oriented Style
-  * - ``input >> output``
-    - ``output.put(input.get())``
-  * - ``(2 * input) >> output``
-    - ``output.put(2 * input.get())``
-  * - ``if (input)``
-    - ``if (input.get())``
-  * - ``input >> filter >> output``
-    - ``output.put(filter.put(input.get()))``
+  * - ``input >> output;``
+    - ``output.put(input.get());``
+  * - ``digitalInput >> digitalOutput;``
+    - ``digitalOutput.putOn(digitalInput.isOn());``
+  * - ``(2 * input) >> output;``
+    - ``output.put(2 * input.get());``
+  * - ``!digitalInput >> digitalOutput;``
+    - ``digitalOutput.putOn(!digitalInput.isOn());``
+  * - ``if (digitalInput)``
+    - ``if (digitalInput.isOn())``
+  * - ``if (input < 0.4)``
+    - ``if (input.get() < 0.4)``
+  * - ``input >> filter >> output;``
+    - ``output.put(filter.put(input.get()));``
 
 Using Plaquette as an External Library
 --------------------------------------
