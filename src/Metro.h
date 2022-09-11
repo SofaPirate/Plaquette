@@ -26,7 +26,7 @@
 namespace pq {
 
 /**
- * Chronometer class which emits a "1" at a regular pace.
+ * Chronometer digital unit which emits 1/true/"on" for one frame, at a regular pace.
  */
 class Metro : public DigitalSource {
 public:
