@@ -20,7 +20,7 @@ AnalogIn in(A0); // defaults on pin A0
 Normalizer normalizer;
 
 // The serial output.
-StreamOut out(Serial);
+StreamOut out;
 
 void begin() {}
 

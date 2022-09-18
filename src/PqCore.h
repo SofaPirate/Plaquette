@@ -54,6 +54,8 @@
 
 #define PLAQUETTE_NO_DEBOUNCE_WINDOW 0.0F
 
+#define PLAQUETTE_MAX_SAMPLE_RATE FLT_MAX
+
 // This constant is used in the oscillators to prevent phaseTime from increasing
 // too fast (which would be useless).
 #define PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER 2.000001 // = almost 2
@@ -139,6 +141,9 @@ public:
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
   void sampleRate(float sampleRate);
 
+  /// Sets sample period to a fixed value, thus disabling auto sampling rate.
+  void samplePeriod(float samplePeriod);
+
   /// Returns sample rate.
   float sampleRate() const { return _sampleRate; }
 
@@ -175,6 +180,9 @@ void enableAutoSampleRate();
 
 /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
 void sampleRate(float sampleRate);
+
+/// Sets sample period to a fixed value, thus disabling auto sampling rate.
+void samplePeriod(float samplePeriod);
 
 /// Returns sample rate.
 float sampleRate();
@@ -302,8 +310,11 @@ public:
   /// Operator that allows usage in conditional expressions.
   virtual operator bool() { return isOn(); }
 
-  /// Operator that return 0 or 1 depending on value.
-  virtual explicit operator int() { return getInt(); }
+  // IMPORTANT: LEAVE COMMENTED
+  // virtual operator int() { return getInt(); }
+
+  // IMPORTANT: This operator is redefined as explicit to make default return a bool.
+  virtual explicit operator float() { return Node::operator float(); }
 };
 
 /**
@@ -505,7 +516,8 @@ void PlaquetteEnv::postStep() {
 
   // Calculate true sample rate.
   float newTime = seconds(false);
-  float trueSampleRate = 1.0f / (newTime - _seconds + FLT_MIN);
+  float diffTime = newTime - _seconds;
+  float trueSampleRate = (diffTime > 0 ? 1.0f / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
   if (autoSampleRate() || trueSampleRate < _targetSampleRate) {

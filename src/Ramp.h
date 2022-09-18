@@ -30,13 +30,16 @@ namespace pq {
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
  */
-class Ramp : public AbstractTimer {
+class Ramp : public Node, public AbstractTimer {
 public:
   /**
    * Constructor.
    * @param initialValue the value the ramp starts with
    */
   Ramp(float initialValue=0.0f);
+
+  /// Returns value of ramp.
+  virtual float get() { return _value; }
 
   /**
    * Assign final value of the ramp starting from current value.
@@ -70,7 +73,7 @@ public:
   virtual void start(float from, float to, float duration);
 
 protected:
-
+  // Overrides Node.step().
   virtual void step();
 
   // The starting point.

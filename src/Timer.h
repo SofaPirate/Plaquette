@@ -27,13 +27,14 @@
 namespace pq {
 
 /**
- * Chronometer class which becomes "on" after a given duration.
+ * Chronometer class which ramps from 0 to 1 in a given duration.
  */
-class Timer : public DigitalNode, public AbstractTimer {
+class Timer : public Node, public AbstractTimer {
 public:
   Timer(float duration=0.0f);
 
-  virtual bool isOn();
+  /// Returns progress in [0, 1].
+  virtual float get();
 };
 
 }

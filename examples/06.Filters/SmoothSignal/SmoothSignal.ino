@@ -39,9 +39,15 @@ Serial myPort;
 void setup()
 {
   size(500, 200);
+
   // Open whatever port is the one you're using.
-  String portName = Serial.list()[0];
-  myPort = new Serial(this, portName, 115200);
+  // To print a list run: println(Serial.list());
+  myPort = new Serial(this, "/dev/ttyUSB0", 115200);
+  //myPort = new Serial(this, "/dev/ttyACM0", 115200);
+  //myPort = new Serial(this, "COM1", 115200);
+
+  // Slow down frame rate to avoid overflowing the serial.
+  frameRate(20);
 }
 
 void draw() {

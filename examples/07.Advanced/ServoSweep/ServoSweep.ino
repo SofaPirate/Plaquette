@@ -19,8 +19,11 @@
 #include <Plaquette.h>
 #include <PqServo.h>
 
-// Sine wave source.
-SineOut osc(5.0); // period of 5 seconds
+// Triangular wave source.
+TriOsc osc(5.0); // period = 5 seconds
+
+// Metronome.
+Metro metro(10.0); // Triggers every 10 seconds.
 
 // The servo-motor output on pin 9.
 ServoOut servo(9);
@@ -28,6 +31,10 @@ ServoOut servo(9);
 void begin() {}
 
 void step() {
-  // Control the servomotor directly with the sine wave.
+  // When metro triggers, change width.
+  if (metro)
+    osc.width(randomFloat()); // set width to random value in [0, 1]
+
+  // Control the servomotor directly with the triangular wave.
   osc >> servo;
 }

@@ -22,8 +22,8 @@
 
 namespace pq {
 
-Timer::Timer(float duration_) : DigitalNode(), AbstractTimer(duration_) {}
+Timer::Timer(float duration_) : Node(), AbstractTimer(duration_) {}
 
-bool Timer::isOn() { return isStarted() && isComplete(); }
+float Timer::get() { return progress(); }
 
 }

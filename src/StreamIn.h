@@ -26,7 +26,7 @@
 namespace pq {
 
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public Node {
+class StreamIn : public AnalogSource {
 public:
   /**
    * Constructor.
@@ -49,9 +49,6 @@ protected:
 
   // The stream.
   Stream* _stream;
-
-  // Current value.
-  float _value;
 };
 
 }

@@ -23,9 +23,6 @@
 
 namespace pq {
 
-#define NORMALIZER_DEFAULT_MEAN   0.5f
-#define NORMALIZER_DEFAULT_STDDEV 0.15f
-
 Normalizer::Normalizer()
 : MovingFilter(),
   MovingStats(),
@@ -36,30 +33,30 @@ Normalizer::Normalizer()
 }
 
 Normalizer::Normalizer(float timeWindow)
-: MovingFilter(timeWindow),
+: MovingFilter(),
   MovingStats(timeWindow),
   _targetMean(NORMALIZER_DEFAULT_MEAN),
-  _targetStdDev(NORMALIZER_DEFAULT_STDDEV),
-  _isAdaptive(true)
+  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
 {
+  _value = NORMALIZER_DEFAULT_MEAN;
 }
 
 Normalizer::Normalizer(float mean, float stddev)
 	: MovingFilter(),
     MovingStats(),
     _targetMean(mean),
-    _targetStdDev(abs(stddev)),
-    _isAdaptive(true)
+    _targetStdDev(abs(stddev))
 {
+  _value = mean;
 }
 
 Normalizer::Normalizer(float mean, float stddev, float timeWindow)
-	: MovingFilter(timeWindow),
+	: MovingFilter(),
     MovingStats(timeWindow),
     _targetMean(mean),
-    _targetStdDev(abs(stddev)),
-    _isAdaptive(true)
+    _targetStdDev(abs(stddev))
 {
+  _value = mean;
 }
 
 void Normalizer::infiniteTimeWindow() {
@@ -71,6 +68,15 @@ void Normalizer::timeWindow(float seconds) {
 }
 
 float Normalizer::timeWindow() const { return MovingStats::timeWindow(); }
+
+bool Normalizer::timeWindowIsInfinite() const {
+  return (_timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW);
+}
+
+void Normalizer::reset() {
+  MovingStats::reset();
+  MovingFilter::reset();
+}
 
 float Normalizer::put(float value) {
   _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);

@@ -1,50 +1,40 @@
 /**
  * Timer
  *
- * Turns on and off a light emitting diode (LED) at increasingly long
- * durations.
+ * Boosts up LED value from 0% to 100% over a random duration
+ * each time.
  *
  * The circuit:
- * - LED attached from pin 13 to ground.
- * Note: on most Arduinos, there is already an LED on the board
- * that's attached to pin 13, so no hardware is needed for this example.
+ * - LED cathode (short leg) attached to ground
+ * - LED anode (long leg) attached to 220-330 Ohm resistor
+ * - resistor attached to analog (PWM) output 9
  *
- * Created in 2018 by Sofian Audry
+ * Created in 2022 by Sofian Audry
  *
  * This example code is in the public domain.
  */
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(LED_BUILTIN);
+AnalogOut led(9);
 
 // The timer.
-Timer timer(1.0); // starting duration: 1 second
+Timer timer; // starting duration: 1 second
 
-// Keeps track of increasing duration of LED.
-float ledDuration;
+// This function restarts the timer with a random duration.
+void restartTimer() {
+  timer.start(randomFloat(1.0, 10.0)); // duration between 1 and 10 seconds
+}
 
 void begin() {
-  // Initalize ledDuration to starting timer duration.
-  ledDuration = timer.duration();
-
-  // Start timer.
-  timer.start();
+  restartTimer();
 }
 
 void step() {
-  // If timer has reached its duration, perform some actions.
-  if (timer) {
-    // Switch LED.
-    led.toggle();
+  // Send timer progress from 0..1 to LED value.
+  timer >> led;
 
-    // If LED is "on" keep it on for a certain time.
-    if (led) {
-      ledDuration += 0.5;
-      timer.start(ledDuration);
-    }
-    // Otherwise keep it off for half a second.
-    else
-      timer.start(0.5);
-  }
+  // If timer has run its course, restart it.
+  if (timer.isComplete())
+    restartTimer();
 }

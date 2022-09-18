@@ -51,11 +51,18 @@ void MovingAverage::timeWindow(float seconds) {
 
 void MovingAverage::cutoff(float hz) {
   // If hz is null time window is infinite.
-  timeWindow(hz == 0 ? INFINITE_WINDOW : hz);
+  if (hz <= 0)
+    infiniteTimeWindow();
+  else
+    timeWindow(1.0f / hz);
 }
 
 float MovingAverage::cutoff() const {
-  return (_smoothTime == INFINITE_WINDOW ? 0 : 1.0f/_smoothTime);
+  return (timeWindowIsInfinite() ? 0 : 1.0f/_smoothTime);
+}
+
+bool MovingAverage::timeWindowIsInfinite() const {
+  return _smoothTime == INFINITE_WINDOW;
 }
 
 float MovingAverage::alpha(float sampleRate) const {

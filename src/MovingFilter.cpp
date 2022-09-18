@@ -25,14 +25,6 @@ MovingFilter::MovingFilter()
   : AnalogSource(),
     _isAdaptive(true)
 {
-  infiniteTimeWindow();
-}
-
-MovingFilter::MovingFilter(float timeWindow_)
-  : AnalogSource(),
-    _isAdaptive(true)
-{
-  timeWindow(timeWindow_);
 }
 
 void MovingFilter::cutoff(float hz) {
@@ -43,7 +35,7 @@ void MovingFilter::cutoff(float hz) {
 }
 
 float MovingFilter::cutoff() const {
-  return (_timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW ? 0 : 1.0f/_timeWindow);
+  return (timeWindowIsInfinite() ? 0 : 1.0f/_timeWindow);
 }
 
 void MovingFilter::reset() {

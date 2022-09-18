@@ -1,7 +1,7 @@
 /**
  * ServoKnob
  *
- * Control the position of a RC (hobby) servo motor with your Arduino and a potentiometer.
+ * Control the oscillation of a RC (hobby) servo motor with your Arduino and a potentiometer.
  *
  * Circuit:
  *
@@ -19,10 +19,12 @@
  * the +5V pin on your Arduino). Be sure to connect the grounds of the Arduino and
  * external power supply together.
  *
+ * Modified in 2022 by Sofian Audry
  * Created in 2019 by Sofian Audry
  *
  * Inspired from the following code:
  * https://www.arduino.cc/en/Tutorial/Knob
+ * https://www.arduino.cc/en/Tutorial/Sweep
  */
 #include <Plaquette.h>
 #include <PqServo.h>
@@ -30,12 +32,15 @@
 // The analog input.
 AnalogIn pot(A0);
 
+// Sine wave source.
+SineOut osc;
+
 // The servo-motor output on pin 9.
 ServoOut servo(9);
 
 void begin() {}
 
 void step() {
-  // Control the servomotor directly using the potentiometer.
-  pot >> servo;
+  // Control the servomotor's oscillation speed using the potentiometer.
+  osc.period(pot.mapTo(5.0, 1.0)) >> servo;
 }

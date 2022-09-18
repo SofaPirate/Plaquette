@@ -52,6 +52,9 @@ public:
   /// Returns the smoothing window (expressed in seconds).
   float timeWindow() const { return _avg.timeWindow(); }
 
+  /// Returns true if time window is infinite.
+  bool timeWindowIsInfinite() const { return _avg.timeWindowIsInfinite(); }
+
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 
@@ -73,8 +76,35 @@ public:
   /// Returns the standard deviation of the samples.
   virtual float stddev() const;
 
+  /// Returns the normalized value according N(0, 1).
+  virtual float normalize(float value) const;
+
   /// Returns the normalized value according to the computed statistics (mean and variance).
-  float normalize(float value, float mean=0, float stddev=1) const;
+  virtual float normalize(float value, float mean, float stddev) const;
+
+  /**
+   * Returns true if the value is considered an outlier.
+   * @param value the raw value to be tested (non-normalized)
+   * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
+   * @return true if value is nStdDev number of standard deviations above or below mean
+   */
+  virtual bool isOutlier(float value, float nStdDev=1.5f);
+
+  /**
+   * Returns true if the value is considered a low outlier (below average).
+   * @param value the raw value to be tested (non-normalized)
+   * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
+   * @return true if value is nStdDev number of standard deviations below mean
+   */
+  virtual bool isLowOutlier(float value, float nStdDev=1.5f);
+
+  /**
+   * Returns true if the value is considered a high outlier (above average).
+   * @param value the raw value to be tested (non-normalized)
+   * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
+   * @return true if value is nStdDev number of standard deviations above mean
+   */
+  virtual bool isHighOutlier(float value, float nStdDev=1.5f);
 };
 
 } // namespace pq

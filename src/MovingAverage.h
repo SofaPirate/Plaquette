@@ -61,6 +61,9 @@ public:
   /// Returns the smoothing window (expressed in seconds).
   float timeWindow() const { return _smoothTime; }
 
+  /// Returns true if time window is infinite.
+  bool timeWindowIsInfinite() const;
+  
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 
@@ -71,7 +74,7 @@ public:
   float alpha(float sampleRate) const;
 
   /// Resets the moving average.
-  virtual void reset();
+  void reset();
 
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
@@ -79,6 +82,9 @@ public:
   /// Returns the value of the moving average. This is undefined if isValid() == false.
   float get() { return _value; }
   float constGet() const { return _value; }
+
+  /// Returns the number of samples processed since reset().
+  unsigned int nSamples() const { return _nSamples; }
 
   /**
    * Applies a single update on #runningValue# with new sample #newValue# and mixing

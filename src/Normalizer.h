@@ -27,6 +27,9 @@
 
 namespace pq {
 
+#define NORMALIZER_DEFAULT_MEAN   0.5f
+#define NORMALIZER_DEFAULT_STDDEV 0.15f
+
 /**
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
@@ -59,6 +62,7 @@ public:
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
   Normalizer(float mean, float stddev, float timeWindow);
+
   virtual ~Normalizer() {}
 
   /**
@@ -88,6 +92,11 @@ public:
   /// Returns the time window (expressed in seconds).
   virtual float timeWindow() const;
 
+  /// Returns true if time window is infinite.
+  virtual bool timeWindowIsInfinite() const;
+
+  virtual void reset();
+  
   /**
    * Pushes value into the unit. If isStarted() is false the filter will not be
    * updated but will just return the filtered value.

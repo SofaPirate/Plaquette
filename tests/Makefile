@@ -1,0 +1,13 @@
+TOPTARGETS := all clean
+
+SUBDIRS := castings filters generators normalizer operations
+
+$(TOPTARGETS): $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+test:
+	@for d in $(SUBDIRS); do ./$$d/$$d.out; done
+
+.PHONY: $(TOPTARGETS) $(SUBDIRS)

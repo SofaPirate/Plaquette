@@ -27,16 +27,16 @@ DigitalOut led(LED_BUILTIN);
 AnalogIn pot(A0);
 
 // A square-wave (on/off) oscillator.
-SquareOsc oscillator(1.0);
+SquareOsc oscillator;
 
 void begin() {}
 
 void step() {
   // Set oscillation period according to value of analog input and send value to LED.
-  // NOTE: Period is in interval [1.0, 5.0] seconds.
-  oscillator.period(1.0 + 4.0*pot);
+  // NOTE: Period is in interval [0.2, 5.0] seconds.
+  oscillator.period(pot.mapTo(0.2, 5.0));
   oscillator >> led;
 
   // NOTE: These lines of code can be rewritten using a single line of code:
-  // oscillator.period(1.0 + 4.0*pot) >> led;
+  // oscillator.period(pot.mapTo(0.2, 5.0)) >> led;
 }

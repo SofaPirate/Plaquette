@@ -29,11 +29,15 @@ namespace pq {
 MinMaxScaler::MinMaxScaler()
   : MovingFilter()
 {
+  infiniteTimeWindow();
+  reset();
 }
 
 MinMaxScaler::MinMaxScaler(float decayWindow)
-  : MovingFilter(decayWindow)
+  : MovingFilter()
 {
+  timeWindow(decayWindow);
+  reset();
 }
 
 void MinMaxScaler::infiniteTimeWindow() {
@@ -46,30 +50,34 @@ void MinMaxScaler::timeWindow(float seconds) {
 
 float MinMaxScaler::timeWindow() const { return _timeWindow; }
 
+bool MinMaxScaler::timeWindowIsInfinite() const {
+  return _timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW;
+}
+
 void MinMaxScaler::reset() {
-  _minValue = FLT_MAX;
+  _minValue =  FLT_MAX;
   _maxValue = -FLT_MAX;
 }
 
 float MinMaxScaler::put(float value)
 {
   if (isStarted()) {
-    // Compute alpha mixing factor.
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
-
     // Update min. value.
     if (value < _minValue) {
       _minValue = value;
-    }
-    else {
-      MovingAverage::applyUpdate(_minValue, value, alpha);
     }
 
     // Update max. value.
     if (value > _maxValue) {
       _maxValue = value;
     }
-    else {
+
+    if (!timeWindowIsInfinite()) {
+      // Compute alpha mixing factor.
+      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
+
+      // Decay min. and max. values.
+      MovingAverage::applyUpdate(_minValue, value, alpha);
       MovingAverage::applyUpdate(_maxValue, value, alpha);
     }
   }
