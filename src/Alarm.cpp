@@ -1,8 +1,8 @@
 /*
- * Timer.h
+ * Alarm.cpp
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
- * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * (c) 2018 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,25 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_TIMER_H_
-#define PQ_TIMER_H_
-
-#include "PqCore.h"
-#include "AbstractTimer.h"
+#include "Alarm.h"
 
 namespace pq {
 
-/**
- * Chronometer class which ramps from 0 to 1 in a given duration.
- */
-class Timer : public Node, public AbstractTimer {
-public:
-  Timer(float duration=0.0f);
+Alarm::Alarm(float duration_) : DigitalNode(), AbstractTimer(duration_) {}
 
-  /// Returns progress in [0, 1].
-  virtual float get();
-};
+bool Alarm::isOn() { return isComplete(); }
 
 }
-
-#endif

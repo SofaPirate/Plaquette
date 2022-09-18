@@ -1,5 +1,5 @@
 /*
- * Timer.h
+ * Alarm.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_TIMER_H_
-#define PQ_TIMER_H_
+#ifndef PQ_ALARM_H_
+#define PQ_ALARM_H_
 
 #include "PqCore.h"
 #include "AbstractTimer.h"
@@ -27,14 +27,14 @@
 namespace pq {
 
 /**
- * Chronometer class which ramps from 0 to 1 in a given duration.
+ * Chronometer class which becomes "on" after a given duration.
  */
-class Timer : public Node, public AbstractTimer {
+class Alarm : public DigitalNode, public AbstractTimer {
 public:
-  Timer(float duration=0.0f);
+  Alarm(float duration=0.0f);
 
-  /// Returns progress in [0, 1].
-  virtual float get();
+  /// True when time is up.
+  virtual bool isOn();
 };
 
 }
