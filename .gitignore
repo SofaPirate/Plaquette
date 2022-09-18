@@ -247,3 +247,5 @@ trash
 .pio/
 lib/
 include/
+docs/xml/
+docs/*env/
