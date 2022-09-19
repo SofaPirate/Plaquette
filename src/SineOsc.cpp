@@ -89,7 +89,7 @@ float SineOsc::amplitude() const {
 SineOsc& SineOsc::phase(float phase) {
 	if (phase != _phase) {
 		phase = constrain(phase, 0, 1);
-		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (phase - _phase);
+		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (_phase - phase);
     _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
 		_phase = phase;
 	}

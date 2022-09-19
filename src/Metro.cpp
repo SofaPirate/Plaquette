@@ -58,7 +58,7 @@ Metro& Metro::frequency(float frequency) {
 Metro& Metro::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-		_phaseTime += (phase - _phase);
+		_phaseTime += (_phase - phase);
 		while (_phaseTime > 1) _phaseTime--; // modulo
 		while (_phaseTime < 0) _phaseTime++; // modulo
 		_phase = phase;

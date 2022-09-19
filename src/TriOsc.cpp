@@ -94,7 +94,7 @@ TriOsc& TriOsc::amplitude(float amplitude)  {
 TriOsc& TriOsc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-		_phaseTime += (phase - _phase);
+		_phaseTime += (_phase - phase);
     _phaseTime = wrap01(_phaseTime);
 		_phase = phase;
 	}
