@@ -50,8 +50,7 @@ Metro& Metro::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
 		_phaseTime += (_phase - phase);
-		while (_phaseTime > 1) _phaseTime--; // modulo
-		while (_phaseTime < 0) _phaseTime++; // modulo
+    _phaseTime = wrap01(_phaseTime);
 		_phase = phase;
 	}
 	return *this;
