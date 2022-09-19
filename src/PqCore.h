@@ -342,7 +342,7 @@ protected:
 class DigitalSource : public DigitalNode {
 public:
   /// Constructor.
-  DigitalSource(bool init=false) : DigitalNode(), _onValue(init) {}
+  DigitalSource(bool init=false) : DigitalNode(), _onValue(init), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
@@ -360,11 +360,22 @@ public:
   virtual bool toggle() { return putOn(!isOn()); }
 
   /// Difference between current and previous value of the unit.
-  virtual int8_t changeState() = 0;
+  virtual int8_t changeState() { return _changeState; }
 
 protected:
+  // Helper function. Sets both _onValue and _changeState.
+  void _setOn(bool newOnValue) {
+    // Register difference between previous and new state.
+    _changeState = (int8_t)newOnValue - (int8_t)_onValue;
+
+    // Register new value.
+    _onValue = newOnValue;
+  }
+
   // The value contained in the node.
-  bool _onValue;
+  bool    _onValue     : 1;
+  int8_t  _changeState : 2;
+  uint8_t _data        : 5; // unused extra space
 };
 
 // Value to node operators ///////////////////////////////////////
