@@ -152,7 +152,7 @@ float AnalogIn::mapTo(float toLow, float toHigh) {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : DigitalSource(), PinUnit(pin, mode), Debounceable(), _changeState(0)
+  : DigitalSource(), PinUnit(pin, mode), Debounceable()
 {}
 
 bool DigitalIn::_isOn() {
@@ -164,7 +164,6 @@ bool DigitalIn::_isOn() {
 
 void DigitalIn::begin() {
   pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
-  _changeState = 0;
 }
 
 void DigitalIn::step() {
@@ -172,10 +171,8 @@ void DigitalIn::step() {
   _step();
   // Read state.
 	bool isOn = analogToDigital(_debounced());
-  // Register difference between previous and new state.
-  _changeState = (int8_t)isOn - (int8_t)_onValue;
   // Save state.
-  _onValue = isOn;
+  _setOn(isOn);
 }
 
 } // namespace pq

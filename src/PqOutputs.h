@@ -70,14 +70,8 @@ public:
    */
   virtual bool putOn(bool isOn);
 
-  /// Difference between current and previous value of the unit.
-  virtual int8_t changeState() { return _changeState; }
-
 protected:
   virtual void begin();
-
-  // Keeps track of state changes.
-  int8_t _changeState;
 };
 
 } // namespace pq

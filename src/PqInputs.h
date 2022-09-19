@@ -172,17 +172,11 @@ public:
   DigitalIn(uint8_t pin=0, uint8_t mode=INTERNAL_PULLUP);
   virtual ~DigitalIn() {}
 
-  /// Difference between current and previous value of the unit.
-  virtual int8_t changeState() { return _changeState; }
-
 protected:
   virtual bool _isOn();
 
   virtual void begin();
   virtual void step();
-
-  // Keeps track of state changes.
-  int8_t _changeState;
 };
 
 } // namespace pq

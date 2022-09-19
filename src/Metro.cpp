@@ -23,7 +23,7 @@
 
 namespace pq {
 
-Metro::Metro(float period_) {
+Metro::Metro(float period_) : DigitalSource() {
   period(period_);
 }
 

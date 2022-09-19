@@ -60,9 +60,6 @@ public:
   virtual Metro& phase(float phase);
   virtual float phase() const { return _phase; }
 
-  /// Difference between current and previous value of the unit.
-  virtual int8_t changeState() { return _changeState; }
-
 protected:
   virtual void begin();
   virtual void step();
@@ -75,9 +72,6 @@ protected:
 
   // Internal use.
   float _phaseTime;
-
-  // Keeps track of state changes.
-  int8_t _changeState;
 };
 
 }
