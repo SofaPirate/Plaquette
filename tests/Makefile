@@ -1,6 +1,6 @@
 TOPTARGETS := all clean
 
-SUBDIRS := castings filters generators normalizer operations
+SUBDIRS := castings filters generators normalizer operations timing
 
 $(TOPTARGETS): $(SUBDIRS)
 
