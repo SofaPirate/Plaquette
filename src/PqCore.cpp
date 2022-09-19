@@ -38,7 +38,7 @@ void PlaquetteEnv::preBegin() {
   beginSerial(PLAQUETTE_SERIAL_BAUD_RATE);
 
   // Initialize variables.
-  _seconds = 0;
+  _seconds = seconds(false);
   _targetSampleRate = 0;
   _nSteps = 0;
   _firstRun = true;
