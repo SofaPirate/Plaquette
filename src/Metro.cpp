@@ -20,6 +20,7 @@
 
 #include "Metro.h"
 #include "pq_wrap.h"
+#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -32,18 +33,8 @@ void Metro::begin() {
 }
 
 void Metro::step() {
-	// Adjust phase time.
-	_phaseTime += 1.0f / (_period * sampleRate());
-	// Check if we went over to swtich to "on".
-	bool isOn = (_phaseTime > 1);
-	if (isOn)
-    _phaseTime = wrap01(_phaseTime);
-
-	// Register difference between previous and new state.
-	_changeState = (int8_t)isOn - (int8_t)_onValue;
-
-	// Register new value.
-	_onValue = isOn;
+  // Adjust phase time.
+  _setOn(phaseTimeUpdate(_phaseTime, _period, sampleRate()));
 }
 
 Metro& Metro::period(float period) {

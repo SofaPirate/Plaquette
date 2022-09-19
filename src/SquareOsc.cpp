@@ -22,6 +22,7 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
+#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -36,9 +37,9 @@ void SquareOsc::begin() {
 }
 
 void SquareOsc::step() {
-  float minPeriod = PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER * samplePeriod();
-  _phaseTime += 1.0f / (max(_period, minPeriod) * sampleRate()); // the max. increment is about 0.5
-  if (_phaseTime > 1) _phaseTime--; // _phaseTime will never be >= 2 cause it cannot in
+  // Update phase time.
+  phaseTimeUpdate(_phaseTime, _period, sampleRate());
+
 	// Compute next value.
 	_updateValue();
 
