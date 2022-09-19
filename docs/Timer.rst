@@ -3,7 +3,7 @@
 Timer
 =====
 
-A digital source unit that counts time. The timer can be started, stopped, and
+A timer digital source unit that counts time. The timer can be started, stopped, and
 resumed.
 
 When started, the timer goes from 0 to 1 through its duration.
@@ -48,7 +48,7 @@ new random duration.
 
 .. doxygenclass:: Timer
    :project: Plaquette
-   :members: Timer, isOn, isOff, getInt, get, rose, fell, changed, changeState, start, stop, resume, elapsed, progress, isStarted
+   :members: Timer, get, start, stop, resume, elapsed, isStarted, isComplete
 
 |SeeAlso|
 ---------

@@ -3,7 +3,7 @@
 Metro
 =====
 
-A digital source unit that emits an "on" signal at a regular pace.
+A metronome digital source unit. Emits an "on" signal at a regular pace.
 
 |Example|
 ---------

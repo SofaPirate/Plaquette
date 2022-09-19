@@ -3,7 +3,7 @@
 Alarm
 =====
 
-A digital source unit that counts time and becomes "on" when time is up.
+An alarm clock digital source unit. Counts time and becomes "on" when time is up.
 The alarm can be started, stopped, and resumed.
 
 When started, the alarm stays "off" until it reaches its timeout duration, after
