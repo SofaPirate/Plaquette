@@ -30,31 +30,33 @@
 #include <math.h>
 #endif
 
+
 // Source: https://stackoverflow.com/posts/707426/revisions
 inline float wrap(float f, float low, float high) {
-#ifndef USE_FMODF
-  while (f >= high) f -= high;
-  while (f <  low)  f += low;
-  return f;
-#else
+#ifdef USE_FMODF
   float rangeSize = high - low + 1;
 
   if (f < low)
     f += rangeSize * ((low - f) / rangeSize + 1);
 
   return low + fmodf(f - low, rangeSize);
+#else
+  while (f >= high) f -= high;
+  while (f <  low)  f += low;
+  return f;
 #endif
 }
 
 inline float wrap01(float f) {
-#ifndef USE_FMODF
+#ifdef USE_FMODF
+  float mod = fmodf(f, 1);
+  return (f >= 0 ? mod : 1 + mod);
+#else
   while (f >= 1) f--;
   while (f <  0) f++;
   return f;
-#else
-  float mod = fmodf(f, 1);
-  return (f >= 0 ? mod : 1 + mod);
 #endif
 }
+
 
 #endif
