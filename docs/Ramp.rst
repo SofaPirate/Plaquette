@@ -55,5 +55,7 @@ Sequentially ramps through different values.
 
 |SeeAlso|
 ---------
+- :doc:`Alarm`
+- :doc:`Metro`
 - :doc:`Timer`
 - :doc:`TriOsc`

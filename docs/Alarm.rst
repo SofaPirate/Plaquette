@@ -44,10 +44,11 @@ Uses an alarm to change the state of built-in LED at random periods of time.
 
 .. doxygenclass:: Alarm
    :project: Plaquette
-   :members: Alarm, isOn, isOff, getInt, get, rose, fell, changed, changeState, start, stop, resume, elapsed, progress, isStarted
+   :members: Alarm, isOn, isOff, getInt, get, start, stop, resume, elapsed, progress, isStarted
 
 |SeeAlso|
 ---------
+- :doc:`Metro`
 - :doc:`Ramp`
 - :doc:`Timer`
 - :doc:`SquareOsc`

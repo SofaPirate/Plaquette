@@ -53,5 +53,6 @@ new random duration.
 |SeeAlso|
 ---------
 - :doc:`Alarm`
+- :doc:`Metro`
 - :doc:`Ramp`
 - :doc:`TriOsc`
