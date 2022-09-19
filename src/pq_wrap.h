@@ -30,6 +30,7 @@
 #include <math.h>
 #endif
 
+namespace pq {
 
 // Source: https://stackoverflow.com/posts/707426/revisions
 inline float wrap(float f, float low, float high) {
@@ -58,5 +59,6 @@ inline float wrap01(float f) {
 #endif
 }
 
+}
 
 #endif
