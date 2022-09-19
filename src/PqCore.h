@@ -539,7 +539,7 @@ void PlaquetteEnv::postStep() {
   // Otherwise: Wait in order to synchronize seconds with real time.
   else {
     float targetTime = _seconds + 1.0f/_targetSampleRate;
-    unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6);
+    unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6 + 0.5f); // round
     while (micros() < targetTimeUs); // wait
     _setSampleRate(_targetSampleRate);
     _seconds = targetTime; // not the exact "true" time but more accurate for computations
