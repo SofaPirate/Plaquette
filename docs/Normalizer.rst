@@ -20,11 +20,13 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
    #include <Plaquette.h>
 
+   // Analog sensor (eg. photocell or microphone).
    AnalogIn sensor(A0);
 
    // Creates a normalizer with mean 0 and standard deviation 1.
    Normalizer normalizer(0, 1);
 
+   // Output indicator LED.
    DigitalOut led(13);
 
    void begin() {}
