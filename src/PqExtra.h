@@ -32,6 +32,7 @@
 // Normalization.
 #include "MinMaxScaler.h"
 #include "Normalizer.h"
+#include "PeakDetector.h"
 #include "Smoother.h"
 
 // Stream.
