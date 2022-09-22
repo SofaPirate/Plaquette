@@ -53,7 +53,7 @@ void PeakDetector::reloadThreshold(float reloadThreshold) {
 }
 
 void PeakDetector::fallbackTolerance(float fallbackTolerance) {
-  _fallbackTolerance = max(fallbackTolerance, 0.0f);
+  _fallbackTolerance = constrain(fallbackTolerance, 0.0f, 1.0f);
 }
 
 void PeakDetector::mode(uint8_t mode) {
