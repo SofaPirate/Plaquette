@@ -42,6 +42,9 @@ void begin() {
   // detector.triggerThreshold(-1.5f);
   // detector.reloadThreshold(-1.0f);
 
+  // Smooth signal to avoid false peaks due to noise.
+  in.smooth();
+
   // Set a time window of 1 minute (60 seconds) on normalizer.
   // This will allow the normalier to slowly readjust itself
   // if the lighting conditions change.
