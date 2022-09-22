@@ -79,7 +79,7 @@ bool PeakDetector::modeCrossing() const {
   return (_mode == PEAK_RISING || _mode == PEAK_FALLING);
 }
 
-bool PeakDetector::modePeak() const {
+bool PeakDetector::modeApex() const {
   return !modeCrossing();
 }
 

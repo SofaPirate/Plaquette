@@ -77,7 +77,7 @@ public:
   bool modeCrossing() const;
 
   /// Returns true if mode is PEAK_MAX or PEAK_MIN.
-  bool modePeak() const;
+  bool modeApex() const;
 
   /// Sets mode.
   void mode(uint8_t mode);
