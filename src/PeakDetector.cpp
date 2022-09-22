@@ -22,43 +22,65 @@
 
 namespace pq {
 
-PeakDetector::PeakDetector(float threshold, uint8_t mode, float resetMinDrop, float fallbackTolerance)
+PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
   : DigitalNode()
 {
   // Assign mode.
-  _mode = constrain(mode, 0, 5);
+  mode(mode_);
 
-  // Assign threshold (flip if necessary).
-  _threshold = modeInverted() ? -threshold : threshold;
+  // Assign triggerThreshold (flip if necessary).
+  triggerThreshold(triggerThreshold_);
 
-  // Make sure reset and fallback drops are positive.
-  resetMinDrop = max(resetMinDrop, 0.0f);
-  _fallbackTolerance = max(fallbackTolerance, 0.0f);
-
-  _resetThreshold = _threshold - resetMinDrop;
+  // Set default values.
+  reloadThreshold(triggerThreshold_);
+  fallbackTolerance(0.1f);
 
   // Init peak value to -inf.
   _peakValue = -FLT_MAX;
 
   // Set everything to false.
   _onValue = _isHigh = _wasLow = _crossed = false;
+
 }
 
+void PeakDetector::triggerThreshold(float triggerThreshold) {
+  _triggerThreshold = modeInverted() ? -triggerThreshold : triggerThreshold;
+}
+
+void PeakDetector::reloadThreshold(float reloadThreshold) {
+  if (modeInverted()) reloadThreshold = -reloadThreshold;
+  _reloadThreshold = min(reloadThreshold, _triggerThreshold);
+}
+
+void PeakDetector::fallbackTolerance(float fallbackTolerance) {
+  _fallbackTolerance = max(fallbackTolerance, 0.0f);
+}
+
+void PeakDetector::mode(uint8_t mode) {
+  // Save current state.
+  bool wasInverted = modeInverted();
+
+  // Change mode.
+  _mode = constrain(mode, PEAK_RISING, PEAK_MIN);
+
+  // If mode inversion was changed, adjust triggerThresholds.
+  if (modeInverted() != wasInverted) {
+    // Flip.
+    _triggerThreshold = -_triggerThreshold;
+    _reloadThreshold = -_reloadThreshold;
+  }
+}
 
 bool PeakDetector::modeInverted() const {
-  return (_mode == PEAK_DETECTOR_LOW || _mode == PEAK_DETECTOR_FALLING || _mode == PEAK_DETECTOR_MIN);
-}
-
-bool PeakDetector::modeThreshold() const {
-  return (_mode == PEAK_DETECTOR_HIGH || _mode == PEAK_DETECTOR_LOW);
+  return (_mode == PEAK_FALLING || _mode == PEAK_MIN);
 }
 
 bool PeakDetector::modeCrossing() const {
-  return (_mode == PEAK_DETECTOR_RISING || _mode == PEAK_DETECTOR_FALLING);
+  return (_mode == PEAK_RISING || _mode == PEAK_FALLING);
 }
 
 bool PeakDetector::modePeak() const {
-  return (_mode == PEAK_DETECTOR_MAX || _mode == PEAK_DETECTOR_MIN);
+  return !modeCrossing();
 }
 
 float PeakDetector::put(float value) {
@@ -70,8 +92,8 @@ float PeakDetector::put(float value) {
   _peakValue = max(_peakValue, value);
 
   // Compute flags.
-  bool high = (value >= _threshold); // value is high if above threshold
-  bool rising = (high && _wasLow);   // value is rising if just crossed threshold
+  bool high = (value >= _triggerThreshold); // value is high if above triggerThreshold
+  bool rising = (high && _wasLow);   // value is rising if just crossed triggerThreshold
 
 	// Reset.
 	if (rising) {
@@ -79,10 +101,10 @@ float PeakDetector::put(float value) {
     _crossed = true;
   }
 
-  // Fallback detected after crossing if either (1) falls below threshold or (2) drops by % tolerance.
+  // Fallback detected after crossing if either (1) falls below triggerThreshold or (2) drops by % tolerance.
   bool fallingBack = (_crossed &&
                        (!high ||
-                        (mapTo01(value, _peakValue, _threshold) >= _fallbackTolerance)));
+                        (mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance)));
 
   // Reset.
   if (fallingBack) {
@@ -90,19 +112,15 @@ float PeakDetector::put(float value) {
     _peakValue = -FLT_MAX;
   }
 
-  // Check if value is below reset threshold.
-  if (value < _resetThreshold)
+  // Check if value is below reset triggerThreshold.
+  if (value < _reloadThreshold)
     _wasLow = true;
 
   // Assign value depending on mode.
-  if (modeThreshold())
-    _onValue = high;
-  else if (modeCrossing())
-    _onValue = rising;
-  else
-    _onValue = fallingBack;
+  _onValue = (modeCrossing() ? rising : fallingBack);
 
   return get();
 }
+
 
 }

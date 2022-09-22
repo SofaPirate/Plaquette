@@ -55,7 +55,7 @@ void setup() {
 
   for (int i=0; i<N_DETECTOR_TYPES; i++)
     for (int j=0; j<N_GENERATORS; j++) {
-      detectors[i][j] = new PeakDetector(0.5, (uint8_t)(i+2));
+      detectors[i][j] = new PeakDetector(0.5, (uint8_t)(i));
     }
 }
 
