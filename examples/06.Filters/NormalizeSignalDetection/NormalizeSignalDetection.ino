@@ -3,9 +3,8 @@
  *
  * Shows how to normalize an analog signal in order to detect
  * outliers. In order to do so we use a Normalizer object to
- * to produce a normalized value with mean 0 and stddev 1.
- * We use it to detect outler values based on deviation from
- * mean.
+ * to produce a normalized value. We use it to detect outlier
+ * values based on deviation from mean.
  *
  * The circuit:
  * - A photoresistor connected to analog pin and to +5V.
@@ -41,7 +40,7 @@ void begin() {
 }
 
 void step() {
-  // Signal will be renormalized according to N(0, 1).
+  // Signal is normalized.
   in >> normalizer;
 
   // Light LED if photo cell value drops below mean in a
