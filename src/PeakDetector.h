@@ -30,7 +30,7 @@
 namespace pq {
 
 /**
- * Emits a signals that tells if a certain triggerThreshold has been crossed.
+ * Emits a signals when a signal peaks.
  */
 class PeakDetector : public DigitalNode {
 public:
