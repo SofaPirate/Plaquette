@@ -22,6 +22,7 @@
 #define SINE_OSC_H_
 
 #include "PqCore.h"
+#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -84,7 +85,7 @@ protected:
   float _amplitude;
 
   // Internal use.
-  float _phaseTime;
+  phase_time_t _phaseTime;
 };
 
 }

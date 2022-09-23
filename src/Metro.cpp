@@ -20,7 +20,6 @@
 
 #include "Metro.h"
 #include "pq_wrap.h"
-#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -29,7 +28,7 @@ Metro::Metro(float period_) : DigitalSource() {
 }
 
 void Metro::begin() {
-	_phaseTime = _phase;
+	_phaseTime = float2phaseTime(_phase);
 }
 
 void Metro::step() {
@@ -49,8 +48,7 @@ Metro& Metro::frequency(float frequency) {
 Metro& Metro::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-		_phaseTime += (_phase - phase);
-    _phaseTime = wrap01(_phaseTime);
+    phaseTimeAdd(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
 	return *this;

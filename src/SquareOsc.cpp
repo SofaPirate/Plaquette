@@ -22,18 +22,17 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
-#include "pq_osc_utils.h"
 
 namespace pq {
 
-SquareOsc::SquareOsc(float period_, float dutyCycle_) : AnalogSource() {
+SquareOsc::SquareOsc(float period_, float dutyCycle_) : AnalogSource(), _phase(0) {
   period(period_);
   dutyCycle(dutyCycle_);
 	amplitude(1.0f);
 }
 
 void SquareOsc::begin() {
-	_phaseTime = _phase;
+  _phaseTime = float2phaseTime(_phase);
 }
 
 void SquareOsc::step() {
@@ -66,15 +65,14 @@ SquareOsc& SquareOsc::frequency(float frequency) {
 }
 
 SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
-  _dutyCycle = constrain(dutyCycle, 0, 1);
+  _dutyCycle = float2phaseTime(constrain(dutyCycle, 0, 1));
 	return *this;
 }
 
 SquareOsc& SquareOsc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-		_phaseTime += (_phase - phase);
-    _phaseTime = wrap01(_phaseTime);
+    phaseTimeAdd(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
 	return *this;

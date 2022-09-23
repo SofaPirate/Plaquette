@@ -22,7 +22,6 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
-#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -33,7 +32,7 @@ TriOsc::TriOsc(float period_, float width_) : AnalogSource() {
 }
 
 void TriOsc::begin() {
-  _phaseTime = _phase;
+  _phaseTime = float2phaseTime(_phase);
   _updateValue();
 }
 
@@ -62,9 +61,11 @@ void TriOsc::step() {
 }
 
 void TriOsc::_updateValue() {
+  // Convert phase time to float in [0, 1].
+  float phaseTimeFloat = phaseTime2float(_phaseTime);
 	// Compute triangle depending on raising or falling step.
-	if (_phaseTime >= _width) _value = (1 - _phaseTime) / (1 - _width);
-	else                      _value = _phaseTime / _width;
+	if (phaseTimeFloat >= _width) _value = (1 - phaseTimeFloat) / (1 - _width);
+	else                          _value = phaseTimeFloat / _width;
 	// Amplify.
   _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
@@ -94,8 +95,7 @@ TriOsc& TriOsc::amplitude(float amplitude)  {
 TriOsc& TriOsc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-		_phaseTime += (_phase - phase);
-    _phaseTime = wrap01(_phaseTime);
+    phaseTimeAdd(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
 	return *this;

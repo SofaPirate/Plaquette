@@ -22,6 +22,7 @@
 #define SQUARE_OSC_H_
 
 #include "PqCore.h"
+#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -58,7 +59,7 @@ public:
    * @return the unit itself
    */
   virtual SquareOsc& dutyCycle(float dutyCycle);
-  virtual float dutyCycle() const { return _dutyCycle; }
+  virtual float dutyCycle() const { return phaseTime2float(_dutyCycle); }
 
   /**
    * Sets the phase (ie. the offset, in % of period).
@@ -87,7 +88,7 @@ protected:
   float _period;
 
   // Duty-cycle (in % of period).
-  float _dutyCycle;
+  phase_time_t _dutyCycle;
 
   // Phase (in % of period).
   float _phase;
@@ -96,7 +97,7 @@ protected:
   float _amplitude;
 
   // Internal use.
-  float _phaseTime;
+  phase_time_t _phaseTime;
 };
 
 }

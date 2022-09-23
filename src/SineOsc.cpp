@@ -22,7 +22,6 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
-#include "pq_osc_utils.h"
 #include "pq_trig8.h"
 
 namespace pq {
@@ -33,18 +32,16 @@ SineOsc::SineOsc(float period_) : AnalogSource(), _phase(0) {
 	amplitude(1.0f);
 }
 
-#define _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER (65535.5f)
-#define _PQ_SINE_OSC_PHASE_TIME_MAX           (65535)
 #define _PQ_SINE_OSC_AMPLITUDE_DIVIDER        (-32767.0f)
 
 void SineOsc::begin() {
-	_phaseTime = _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * _phase;
+	_phaseTime = float2phaseTime(_phase);
   _updateValue();
 }
 
 void SineOsc::step() {
   // Update phase time.
-  phaseTimeUpdate(_phaseTime, _period, sampleRate(), _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER);
+  phaseTimeUpdate(_phaseTime, _period, sampleRate());
 
 	// Compute next value.
 	_updateValue();
@@ -59,7 +56,7 @@ void SineOsc::step() {
 }
 
 void SineOsc::_updateValue() {
-	_value = ((cos16((uint16_t)(_phaseTime)) * _amplitude) + 1) / 2;
+	_value = (cos16((uint16_t)(_phaseTime >> 16)) * _amplitude / _PQ_SINE_OSC_AMPLITUDE_DIVIDER) + 0.5f;
 }
 
 SineOsc& SineOsc::period(float period) {
@@ -73,22 +70,26 @@ SineOsc& SineOsc::frequency(float frequency) {
 }
 
 SineOsc& SineOsc::amplitude(float amplitude)  {
-	if (amplitude != _amplitude)
+  if (amplitude != _amplitude) {
   	_amplitude = constrain(amplitude, 0, 1);
-	_amplitude /= _PQ_SINE_OSC_AMPLITUDE_DIVIDER; // hack: precompute value
+		_amplitude *= 0.5f; // hack: premultiplied
+	}
 	return *this;
 }
 
 float SineOsc::amplitude() const {
-  return _amplitude * _PQ_SINE_OSC_AMPLITUDE_DIVIDER;
+  return _amplitude;
 }
 
 SineOsc& SineOsc::phase(float phase) {
 	if (phase != _phase) {
-		phase = constrain(phase, 0, 1);
-		_phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (_phase - phase);
-    _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
+    // Need to readjust _phaseTime.
+    phaseTimeAdd(_phaseTime, _phase - phase);
 		_phase = phase;
+		// phase = constrain(phase, 0, 1);
+		// _phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (_phase - phase);
+    // _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
+		// _phase = phase;
 	}
 	return *this;
 }

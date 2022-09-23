@@ -26,24 +26,49 @@
 #endif
 
 #include "pq_wrap.h"
+#include <limits.h>
 
 namespace pq {
 
-/// Computes new phase time for oscillators and returns when phase time crosses maxPhaseTime.
-inline bool phaseTimeUpdate(float& phaseTime, float period, float sampleRate, float maxPhaseTime=1) {
+#define PHASE_TIME_MAX 4294967295
+typedef uint32_t phase_time_t;
+
+/// Converts floating point to phase_time_t.
+inline phase_time_t float2phaseTime(double v) {
+  return PHASE_TIME_MAX * v;
+}
+
+/// Converts phase_time_t to floating point.
+inline float phaseTime2float(phase_time_t v) {
+  return float(v) / PHASE_TIME_MAX;
+}
+
+/// Adds floating point value in [-1, 1] to phaseTime.
+inline void phaseTimeAdd(phase_time_t& phaseTime, float increment) {
+  if (increment >= 0)
+    phaseTime += float2phaseTime(increment);
+  else
+    phaseTime -= float2phaseTime(-increment);
+}
+
+/// Computes new phase time for oscillators and returns when phase time overflows.
+inline bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate) {
   // Premultiply period.
   period *= sampleRate;
 
+  // Extreme case: infinite increment.
   if (period == 0)
-    return true; // crossed
+    return true;
+
+  // Normal case.
   else {
-    phaseTime += maxPhaseTime / period;
-    bool crossed = (phaseTime > maxPhaseTime);
-    if (crossed)
-      phaseTime = maxPhaseTime == 1 ?
-                    wrap01(phaseTime) :
-                    wrap(phaseTime, 0, maxPhaseTime);
-    return crossed;
+    // Increment to add to phaseTime.
+    phase_time_t increment = float2phaseTime(1.0f / period);
+    // Check if increment will overflow.
+    bool overflow = (increment > PHASE_TIME_MAX - phaseTime);
+    // Add increment (will overflow when reaching max).
+    phaseTime += increment;
+    return overflow;
   }
 }
 
