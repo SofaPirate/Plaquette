@@ -25,7 +25,7 @@
 
 namespace pq {
 
-TriOsc::TriOsc(float period_, float width_) : AnalogSource() {
+TriOsc::TriOsc(float period_, float width_) : AnalogSource(), _phase(0) {
   period(period_);
   width(width_);
   amplitude(1.0f);
