@@ -30,7 +30,7 @@ PlaquetteEnv Plaquette
 #endif
 ;
 
-PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _seconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
+PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
 
 void PlaquetteEnv::preBegin() {
   // Initialize serial.
@@ -38,7 +38,7 @@ void PlaquetteEnv::preBegin() {
   beginSerial(PLAQUETTE_SERIAL_BAUD_RATE);
 
   // Initialize variables.
-  _seconds = seconds(false);
+  _microSeconds = micros();
   _targetSampleRate = 0;
   _nSteps = 0;
   _firstRun = true;
@@ -53,7 +53,7 @@ void PlaquetteEnv::preBegin() {
 
 void PlaquetteEnv::postBegin() {
   // Start timer.
-  _seconds = seconds(false);
+  _microSeconds = micros();
 }
 
 void PlaquetteEnv::end() {

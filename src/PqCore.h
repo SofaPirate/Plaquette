@@ -74,7 +74,7 @@ private:
   uint8_t _nUnits;
 
   // Snapshot of time in seconds from current step.
-  float _seconds;
+  unsigned long _microSeconds;
 
   // Sampling rate (ie. how many times per seconds step() is called).
   float _sampleRate;
@@ -526,23 +526,22 @@ void PlaquetteEnv::postStep() {
   _nSteps++;
 
   // Calculate true sample rate.
-  float newTime = seconds(false);
-  float diffTime = newTime - _seconds;
-  float trueSampleRate = (diffTime > 0 ? 1.0f / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
+  unsigned long newTime = micros();
+  unsigned long diffTime = newTime - _microSeconds;
+  float trueSampleRate = (diffTime > 0 ? 1e6f / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
   if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
     _setSampleRate(trueSampleRate);
-    _seconds = newTime;
+    _microSeconds = newTime;
   }
 
   // Otherwise: Wait in order to synchronize seconds with real time.
   else {
-    float targetTime = _seconds + 1.0f/_targetSampleRate;
-    unsigned long targetTimeUs = (unsigned long)(targetTime * 1e6 + 0.5f); // round
-    while (micros() < targetTimeUs); // wait
+    unsigned long targetTime = _microSeconds + (unsigned long)(1e6f/_targetSampleRate + 0.5f);
+    while (micros() < targetTime); // wait
     _setSampleRate(_targetSampleRate);
-    _seconds = targetTime; // not the exact "true" time but more accurate for computations
+    _microSeconds = targetTime; // not the exact "true" time but more accurate for computations
   }
 }
 
@@ -568,7 +567,7 @@ void PlaquetteEnv::_setSampleRate(float sampleRate) {
 }
 
 float PlaquetteEnv::seconds(bool referenceTime) {
-  return referenceTime ? _seconds : (micros() / 1e6f);
+  return (referenceTime ? _microSeconds : micros()) / 1e6f;
 }
 
 
