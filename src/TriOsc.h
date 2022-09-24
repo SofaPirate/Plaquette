@@ -21,15 +21,14 @@
 #ifndef TRI_OSC_H_
 #define TRI_OSC_H_
 
-#include "PqCore.h"
-#include "pq_osc_utils.h"
+#include "Osc.h"
 
 namespace pq {
 
 /**
  * Triangle/sawtooth oscillator.
  */
-class TriOsc : public AnalogSource {
+class TriOsc : public Osc {
 public:
   /**
    * Constructor.
@@ -40,22 +39,6 @@ public:
   virtual ~TriOsc() {}
 
   /**
-   * Sets the period (in seconds).
-   * @param period the period of oscillation (in seconds)
-   * @return the unit itself
-   */
-  virtual TriOsc& period(float period);
-  virtual float period() const { return _period; }
-
-  /**
-   * Sets the frequency (in Hz).
-   * @param frequency the frequency of oscillation (in Hz)
-   * @return the unit itself
-   */
-  virtual TriOsc& frequency(float frequency);
-  virtual float frequency() const { return (1/_period); }
-
-  /**
    * Sets the width of the wave.
    * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
    * @return the unit itself
@@ -63,43 +46,12 @@ public:
   virtual TriOsc& width(float width);
   virtual float width() const { return _width; }
 
-  /**
-   * Sets the amplitude of the wave.
-   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
-   * @return the unit itself
-   */
-   virtual TriOsc& amplitude(float amplitude);
-   virtual float amplitude() const { return _amplitude; }
-
-   /**
-    * Sets the phase (ie. the offset, in % of period).
-    * @param phase the phase (in % of period)
-    * @return the unit itself
-    */
-   virtual TriOsc& phase(float phase);
-   virtual float phase() const { return _phase; }
-
 protected:
-  // Core Plaquette methods.
-  virtual void begin();
-  virtual void step();
-
-  void _updateValue();
-
-  // Period (seconds).
-  float _period;
-
-  // Phase (in % of period).
-  float _phase;
+  // Oscillator value update.
+  virtual void _updateValue();
 
   // Tipping-point (in % of period).
   float _width;
-
-  // Amplitude (in %).
-  float _amplitude;
-
-  // Internal use.
-  phase_time_t _phaseTime;
 };
 
 }

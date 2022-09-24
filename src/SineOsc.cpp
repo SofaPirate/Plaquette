@@ -26,72 +26,12 @@
 
 namespace pq {
 
-SineOsc::SineOsc(float period_) : AnalogSource(), _phase(0) {
-  period(period_);
-	phase(0);
-	amplitude(1.0f);
-}
+#define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
 
-#define _PQ_SINE_OSC_AMPLITUDE_DIVIDER        (-32767.0f)
-
-void SineOsc::begin() {
-	_phaseTime = float2phaseTime(_phase);
-  _updateValue();
-}
-
-void SineOsc::step() {
-  // Update phase time.
-  phaseTimeUpdate(_phaseTime, _period, sampleRate());
-
-	// Compute next value.
-	_updateValue();
-
-	// // Notice: this computation is not exact but manages naturally changes in the period without
-	// // inducing dephasings on Arduino boards and slow processors.
-	// float relativeTime = seconds() - _startTime;
-	// uint16_t theta = ((uint64_t)(65535UL * (_phase + relativeTime / _period))) % 65536;
-	// _value = ((cos16(theta) * _amplitude) + 1) / 2;
-	// if (relativeTime >= _period)
-	// 	_startTime = seconds();
-}
+SineOsc::SineOsc(float period_) : Osc(period_) {}
 
 void SineOsc::_updateValue() {
-	_value = (cos16((uint16_t)(_phaseTime >> 16)) * _amplitude / _PQ_SINE_OSC_AMPLITUDE_DIVIDER) + 0.5f;
-}
-
-SineOsc& SineOsc::period(float period) {
-	if (_period != period)
-		_period = max(period, 0.0f);
-	return *this;
-}
-
-SineOsc& SineOsc::frequency(float frequency) {
-	return period( frequency == 0 ? FLT_MAX : 1/frequency );
-}
-
-SineOsc& SineOsc::amplitude(float amplitude)  {
-  if (amplitude != _amplitude) {
-  	_amplitude = constrain(amplitude, 0, 1);
-		_amplitude *= 0.5f; // hack: premultiplied
-	}
-	return *this;
-}
-
-float SineOsc::amplitude() const {
-  return _amplitude;
-}
-
-SineOsc& SineOsc::phase(float phase) {
-	if (phase != _phase) {
-    // Need to readjust _phaseTime.
-    phaseTimeAdd(_phaseTime, _phase - phase);
-		_phase = phase;
-		// phase = constrain(phase, 0, 1);
-		// _phaseTime += _PQ_SINE_OSC_PHASE_TIME_PREMULTIPLIER * (_phase - phase);
-    // _phaseTime = wrap(_phaseTime, 0, _PQ_SINE_OSC_PHASE_TIME_MAX);
-		// _phase = phase;
-	}
-	return *this;
+	_value = 0.5f + 0.5f * (cos16((uint16_t)(_phaseTime >> 16)) * _amplitude / PQ_SINE_OSC_AMPLITUDE_DIVIDER);
 }
 
 }

@@ -21,13 +21,12 @@
 #ifndef SINE_OSC_H_
 #define SINE_OSC_H_
 
-#include "PqCore.h"
-#include "pq_osc_utils.h"
+#include "Osc.h"
 
 namespace pq {
 
 /// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public AnalogSource {
+class SineOsc : public Osc {
 public:
   /**
    * Constructor.
@@ -36,56 +35,9 @@ public:
   SineOsc(float period=1.0f);
   virtual ~SineOsc() {}
 
-  /**
-   * Sets the period (in seconds).
-   * @param period the period of oscillation (in seconds)
-   * @return the unit itself
-   */
-  virtual SineOsc& period(float period);
-  virtual float period() const { return _period; }
-
-  /**
-   * Sets the frequency (in Hz).
-   * @param frequency the frequency of oscillation (in Hz)
-   * @return the unit itself
-   */
-  virtual SineOsc& frequency(float frequency);
-  virtual float frequency() const { return (1/_period); }
-
-  /**
-   * Sets the phase (ie. the offset, in % of period).
-   * @param phase the phase (in % of period)
-   * @return the unit itself
-   */
-  virtual SineOsc& phase(float phase);
-  virtual float phase() const { return _phase; }
-
-  /**
-   * Sets the amplitude of the wave.
-   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
-   * @return the unit itself
-   */
-   virtual SineOsc& amplitude(float amplitude);
-   virtual float amplitude() const;
-
 protected:
-  // Core Plaquette methods.
-  virtual void begin();
-  virtual void step();
-
-  void _updateValue();
-
-  // Period (seconds).
-  float _period;
-
-  // Phase (in % of period).
-  float _phase;
-
-  // Amplitude (in %).
-  float _amplitude;
-
-  // Internal use.
-  phase_time_t _phaseTime;
+  // Oscillator value update.
+  virtual void _updateValue();
 };
 
 }

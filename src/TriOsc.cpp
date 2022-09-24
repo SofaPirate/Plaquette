@@ -19,85 +19,28 @@
  */
 
 #include "TriOsc.h"
-#include "pq_map_real.h"
-#include "pq_time.h"
-#include "pq_wrap.h"
 
 namespace pq {
 
-TriOsc::TriOsc(float period_, float width_) : AnalogSource(), _phase(0) {
-  period(period_);
+TriOsc::TriOsc(float period_, float width_) : Osc(period_), _width(0) {
   width(width_);
-  amplitude(1.0f);
-}
-
-void TriOsc::begin() {
-  _phaseTime = float2phaseTime(_phase);
-  _updateValue();
-}
-
-void TriOsc::step() {
-  // Update phase time.
-  phaseTimeUpdate(_phaseTime, _period, sampleRate());
-
-	// Compute next value.
-	_updateValue();
-
-	// // Notice: this computation is not exact but manages naturally changes in the period without
-	// // inducing dephasings on Arduino boards.
-	// float relativeTime = seconds() - _startTime;
-	//
-  // // Check where we are.
-	// float progress = relativeTime / _period;
-	// if (progress >= 1) {
-	// 	_value = 0;
-	// 	_startTime = seconds();
-	// }
-	// else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-	// else                         _value = progress / _width;
-	//
-	// // Amplify.
-  // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 void TriOsc::_updateValue() {
   // Convert phase time to float in [0, 1].
   float phaseTimeFloat = phaseTime2float(_phaseTime);
 	// Compute triangle depending on raising or falling step.
-	if (phaseTimeFloat >= _width) _value = (1 - phaseTimeFloat) / (1 - _width);
-	else                          _value = phaseTimeFloat / _width;
+  if (phaseTimeFloat <= _width)
+    _value = phaseTimeFloat / _width;
+	else
+    _value = (1 - phaseTimeFloat) / (1 - _width);
 	// Amplify.
-  _value = _amplitude * (_value - 0.5f) + 0.5f;
-}
-
-TriOsc& TriOsc::period(float period) {
-	if (period != _period)
-		_period = max(period, 0.0f);
-	return *this;
-}
-
-TriOsc& TriOsc::frequency(float frequency) {
-	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+  _value = 0.5f + 0.5f * (_amplitude * (2*_value - 1));
 }
 
 TriOsc& TriOsc::width(float width) {
 	if (width != _width)
   	_width = constrain(width, 0, 1);
-	return *this;
-}
-
-TriOsc& TriOsc::amplitude(float amplitude)  {
-	if (amplitude != _amplitude)
-  	_amplitude = constrain(amplitude, 0, 1);
-	return *this;
-}
-
-TriOsc& TriOsc::phase(float phase) {
-	if (phase != _phase) {
-		// Need to readjust _phaseTime.
-    phaseTimeAdd(_phaseTime, _phase - phase);
-		_phase = phase;
-	}
 	return *this;
 }
 

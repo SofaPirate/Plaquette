@@ -1,5 +1,5 @@
 /*
- * pq_osc_utils.h
+ * pq_osc_utils.cpp
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  *
@@ -16,40 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PQ_OSC_UTILS_H
-#define PQ_OSC_UTILS_H
-
-#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
-#include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
-#include "pq_wrap.h"
-#include <stdint.h>
+#include "pq_osc_utils.h"
 
 namespace pq {
 
-#define PHASE_TIME_MAX UINT32_MAX
-typedef uint32_t phase_time_t;
-
-/// Converts floating point to phase_time_t.
-inline phase_time_t float2phaseTime(float v) {
-  v = PHASE_TIME_MAX * v;
-  return round(v);
+void phaseTimeAdd(phase_time_t& phaseTime, float increment) {
+  if (increment >= 0)
+    phaseTime += float2phaseTime(increment);
+  else
+    phaseTime -= float2phaseTime(-increment);
 }
-
-/// Converts phase_time_t to floating point.
-inline float phaseTime2float(phase_time_t v) {
-  return float(v) / PHASE_TIME_MAX;
-}
-
-/// Adds floating point value in [-1, 1] to phaseTime.
-void phaseTimeAdd(phase_time_t& phaseTime, float increment);
 
 /// Computes new phase time for oscillators and returns when phase time overflows.
-bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate);
+bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate) {
+  // Premultiply period.
+  period *= sampleRate;
 
+  // Extreme case: infinite increment.
+  if (period == 0)
+    return true;
+
+  // Normal case.
+  else {
+    // Increment to add to phaseTime.
+    phase_time_t increment = float2phaseTime(1.0f / period);
+    // Check if increment will overflow.
+    bool overflow = (increment > PHASE_TIME_MAX - phaseTime);
+    // Add increment (will overflow when reaching max).
+    phaseTime += increment;
+    return overflow;
+  }
 }
 
-#endif
+}
