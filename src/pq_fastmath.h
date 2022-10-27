@@ -22,14 +22,16 @@
 #ifndef PQ_FAST_MATH_H_
 #define PQ_FAST_MATH_H_
 
+#include <stdint.h>
+
 namespace pq {
 
 /// Returns the square root. Notice that sqrt(0) returns a non-zero, small positive number.
 // Source: https://www.gamedev.net/forums/topic/704525-3-quick-ways-to-calculate-the-square-root-in-c/
 float fastSqrt(const float& n)
 {
-    static union {int i; float f;} u;
-    u.i = 0x2035AD0C + (*(int*)&n >> 1);
+    static union {int32_t i; float f;} u;
+    u.i = 0x2035AD0C + (*(int32_t*)&n >> 1);
    return n / u.f + u.f * 0.25f;
 }
 
