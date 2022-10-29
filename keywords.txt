@@ -94,6 +94,11 @@ hasPassed	KEYWORD2
 mapFloat	KEYWORD2
 randomFloat	KEYWORD2
 lerp	KEYWORD2
+fallbackTolerance	KEYWORD2
+modeInverted	KEYWORD2
+modeCrossing	KEYWORD2
+modeApex	KEYWORD2
+
 
 #######################################
 # Instances (KEYWORD2)
