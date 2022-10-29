@@ -11,19 +11,18 @@ code.
 For example, the code ``DigitalOut led`` creates a new digital output object
 that can be used to control and LED.
 
-.. list-table::
-  :widths: 40 30 30
-  :header-rows: 1
 
-  * - Action
-    - Arduino
-    - Plaquette
-  * - Create digital output to control an LED
-    - ``pinMode(12, OUTPUT);``
-    - ``DigitalOut led(12);``
-  * - Create digital input push-button
-    - ``pinMode(2, INPUT_PULLUP);``
-    - ``DigitalIn button(2);``
++------------------------------------------------+------------------------------------------------+
+| Arduino                                        | Plaquette                                      |
++================================================+================================================+
+| *Create digital output to control an LED:*                                                      |
++------------------------------------------------+------------------------------------------------+
+| ``pinMode(12, OUTPUT);``                       | ``DigitalOut led(12);``                        |
++------------------------------------------------+------------------------------------------------+
+| *Create digital input push-button:*                                                             |
++------------------------------------------------+------------------------------------------------+
+| ``pinMode(2, INPUT_PULLUP);``                  | ``DigitalIn button(2);``                       |
++------------------------------------------------+------------------------------------------------+
 
 User-friendly
 -------------
@@ -34,19 +33,17 @@ experts to create truly expressive code. For example, switching our LED
 object can be achieved by calling: ``led.on()``. Find out more about Plaquette's
 base units by following :doc:`this link <base_units>`.
 
-.. list-table::
-  :widths: 40 30 30
-  :header-rows: 1
-
-  * - Action
-    - Arduino
-    - Plaquette
-  * - Turn LED on
-    - ``digitalWrite(12, HIGH);``
-    - ``led.on();``
-  * - Check if button is pushed
-    - ``if (digitalRead(2) == LOW)``
-    - ``if (button.isOn())``
++------------------------------------------------+------------------------------------------------+
+| Arduino                                        | Plaquette                                      |
++================================================+================================================+
+| *Turn LED on:*                                                                                  |
++------------------------------------------------+------------------------------------------------+
+| ``digitalWrite(12, HIGH);``                    | ``led.on();``                                  |
++------------------------------------------------+------------------------------------------------+
+| *Check if button is pushed:*                                                                    |
++------------------------------------------------+------------------------------------------------+
+| ``if (digitalRead(2) == LOW)``                 | ``if (button.isOn())``                         |
++------------------------------------------------+------------------------------------------------+
 
 Signal-centric
 --------------
@@ -59,19 +56,17 @@ of analog signals such as those emitted by a light sensor, microphone, or
 potentiometer. No more need to perform counter-intuitive conversions on integer
 values.
 
-.. list-table::
-  :widths: 40 30 30
-  :header-rows: 1
-
-  * - Action
-    - Arduino
-    - Plaquette
-  * - Check if button is released
-    - ``if (digitalRead(2) != LOW)``
-    - ``if (!button)``
-  * - Check if sensor value is higher than 70%
-    - ``if (analogRead(A0) >= 716)``
-    - ``if (sensor >= 0.7)``
++------------------------------------------------+------------------------------------------------+
+| Arduino                                        | Plaquette                                      |
++================================================+================================================+
+| *Check if button is released:*                                                                  |
++------------------------------------------------+------------------------------------------------+
+| ``if (digitalRead(2) != LOW)``                 | ``if (!button)``                               |
++------------------------------------------------+------------------------------------------------+
+| *Check if sensor value is higher than 70%:*                                                     |
++------------------------------------------------+------------------------------------------------+
+| ``if (analogRead(A0) >= 716)``                 | ``if (sensor >= 0.7)``                         |
++------------------------------------------------+------------------------------------------------+
 
 Signal Filtering
 ----------------
@@ -89,20 +84,18 @@ While this can be achieved using function calls, Plaquette further provides a
 special **piping operator** (``>>``) which allows the sending of data from one unit
 to another.
 
-.. list-table::
-  :widths: 60 40
-  :header-rows: 1
-
-  * - Arduino
-    - Plaquette
-  * - *Set LED to ON when button is pressed:*
-    -
-  * - ``digitalWrite(12, digitalRead(2));``
-    - ``button >> led;``
-  * - *Set LED to ON when input sensor is high:*
-    -
-  * - ``digitalWrite(12, (analogRead(A0) >= 716 ? HIGH : LOW));``
-    - ``(sensor >= 0.7) >> led;``
++------------------------------------------------+------------------------------------------------+
+| Arduino                                        | Plaquette                                      |
++================================================+================================================+
+| *Set LED to ON when button is pressed:*                                                         |
++------------------------------------------------+------------------------------------------------+
+| ``digitalWrite(12, digitalRead(2));``          | ``button >> led;``                             |
++------------------------------------------------+------------------------------------------------+
+| *Set LED to ON when input sensor is high:*                                                      |
++------------------------------------------------+------------------------------------------------+
+| ``digitalWrite(12, (analogRead(A0) >= 716 ?    | ``(sensor >= 0.7) >> led;``                    |
+| HIGH : LOW));``                                |                                                |
++------------------------------------------------+------------------------------------------------+
 
 Read :doc:`regularizing` to see how you can take full advantage of
 Plaquette's signal filtering features.
