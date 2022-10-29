@@ -1,6 +1,11 @@
 Features
 ========
 
+Plaquette is an object-oriented_, user-friendly_, signal-centric_ framework that
+facilitates `signal filtering`_ in real-time_. It is fully `compatible with Arduino`_.
+
+.. _object-oriented:
+
 Object-oriented
 ---------------
 
@@ -10,7 +15,6 @@ code.
 
 For example, the code ``DigitalOut led`` creates a new digital output object
 that can be used to control and LED.
-
 
 +------------------------------------------------+------------------------------------------------+
 | Arduino                                        | Plaquette                                      |
@@ -23,6 +27,8 @@ that can be used to control and LED.
 +------------------------------------------------+------------------------------------------------+
 | ``pinMode(2, INPUT_PULLUP);``                  | ``DigitalIn button(2);``                       |
 +------------------------------------------------+------------------------------------------------+
+
+.. _user-friendly:
 
 User-friendly
 -------------
@@ -44,6 +50,8 @@ base units by following :doc:`this link <base_units>`.
 +------------------------------------------------+------------------------------------------------+
 | ``if (digitalRead(2) == LOW)``                 | ``if (button.isOn())``                         |
 +------------------------------------------------+------------------------------------------------+
+
+.. _signal-centric:
 
 Signal-centric
 --------------
@@ -67,6 +75,8 @@ values.
 +------------------------------------------------+------------------------------------------------+
 | ``if (analogRead(A0) >= 716)``                 | ``if (sensor >= 0.7)``                         |
 +------------------------------------------------+------------------------------------------------+
+
+.. _signal filtering:
 
 Signal Filtering
 ----------------
@@ -100,6 +110,7 @@ to another.
 Read :doc:`regularizing` to see how you can take full advantage of
 Plaquette's signal filtering features.
 
+.. _real-time:
 
 Real-time
 ---------
@@ -142,6 +153,8 @@ Plaquette's real-time approach:
 |     }                                          |                                                |
 |   }                                            |                                                |
 +------------------------------------------------+------------------------------------------------+
+
+.. _compatible with Arduino:
 
 Arduino compatible
 ------------------

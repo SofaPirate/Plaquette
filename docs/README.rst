@@ -12,6 +12,11 @@ physical computing systems in an intuitive fashion.
 Plaquette allows you to:
  * React to multiple sensors and actuators in real-time without interruption.
  * Automatically calibrate sensors to generate stable interactions in changing environments.
- * Design complex interactive behaviors by seamlessly combining powerful effects such as ramps and oscillators.
+ * Design complex interactive behaviors by seamlessly combining powerful effects.
+
+Quick links:
+ * :doc:`Discover the features <features>`
+ * :doc:`Learn the basics <getting_started>`
+ * :doc:`Learn about signal regularization <regularizing>`
 
  .. image:: images/Plaquette-LogoTextAnim.*
