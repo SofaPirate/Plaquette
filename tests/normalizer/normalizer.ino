@@ -73,8 +73,6 @@ Node* units[N_UNITS] = {
 testing(matchRandomNormal) {
   static unsigned long startTime = millis();
   static bool initialized = false;
-  static int currentRandom = 0;
-  static float currentSign = 1;
 
   if (!initialized) {
     for (int i=0; i<N_UNITS; i++) {
