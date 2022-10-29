@@ -16,7 +16,7 @@ Plaquette allows you to:
 
 Quick links:
  * :doc:`Discover the features <features>`
- * :doc:`Learn the basics <getting_started>`
- * :doc:`Learn about signal regularization <regularizing>`
+ * :doc:`Get started <getting_started>`
+ * :doc:`Filter your signals <regularizing>`
 
  .. image:: images/Plaquette-LogoTextAnim.*
