@@ -36,6 +36,7 @@ ContinuousServoOut	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
+# Core
 begin	KEYWORD2
 step	KEYWORD2
 
@@ -46,32 +47,51 @@ samplePeriod  KEYWORD2
 seconds  KEYWORD2
 beginSerial KEYWORD2
 
-pin	KEYWORD2
-mode	KEYWORD2
+# Utils
+mapFloat	KEYWORD2
+randomFloat	KEYWORD2
+lerp	KEYWORD2
 
+# Node
+put	KEYWORD2
+get	KEYWORD2
+
+# AnalogNode
+mapTo	KEYWORD2
+
+# DigitalNode
 on	KEYWORD2
 off	KEYWORD2
 toggle	KEYWORD2
-put	KEYWORD2
 putOn	KEYWORD2
-
 isOn	KEYWORD2
 isOff	KEYWORD2
-get	KEYWORD2
 getInt	KEYWORD2
+
+# DigitalSource
 fell  KEYWORD2
 rose  KEYWORD2
 changed  KEYWORD2
 
+# PinUnit
+pin	KEYWORD2
+mode	KEYWORD2
+
+# Smoothable
 smooth	KEYWORD2
 noSmooth	KEYWORD2
+
+# Debounceable
 debounce  KEYWORD2
 noDebounce  KEYWORD2
 debounceMode  KEYWORD2
+
+# Window-based
 infiniteTimeWindow	KEYWORD2
 timeWindow	KEYWORD2
 cutoff	KEYWORD2
 
+# Oscillators
 period  KEYWORD2
 frequency  KEYWORD2
 dutyCycle  KEYWORD2
@@ -79,9 +99,12 @@ width  KEYWORD2
 phase  KEYWORD2
 amplitude  KEYWORD2
 precision  KEYWORD2
+
+# Normalizer
 targetMean	KEYWORD2
 targetStdDev	KEYWORD2
 
+# AbstractTimer
 start  KEYWORD2
 stop	KEYWORD2
 resume	KEYWORD2
@@ -91,9 +114,9 @@ isStarted  KEYWORD2
 isComplete	KEYWORD2
 hasPassed	KEYWORD2
 
-mapFloat	KEYWORD2
-randomFloat	KEYWORD2
-lerp	KEYWORD2
+# PeakDetector
+reloadThreshold	KEYWORD2
+triggerThreshold	KEYWORD2
 fallbackTolerance	KEYWORD2
 modeInverted	KEYWORD2
 modeCrossing	KEYWORD2
