@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.3 documentation</title>
+  <title>Advanced Usage &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -96,8 +96,9 @@
 <section id="avoiding-plaquette-style">
 <h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Permalink to this headline"></a></h2>
 <p>If you don’t want to use Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator, or Plaquette’s
-auto-conversion of units to values, you can avoid these features by simply using
-Plaquette’s units’s <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> methods. These methods are defined as follow:</p>
+auto-conversion of units to values (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>),
+you can avoid these features by simply using Plaquette units’s <code class="docutils literal notranslate"><span class="pre">get()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">put()</span></code> methods.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns the current value of the unit:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">get</span><span class="p">()</span>
 </pre></div>
@@ -107,7 +108,12 @@ of the unit (the same that would be returned by <code class="docutils literal no
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">put</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Hence, the following statements are equivalent:</p>
+<p>Additionally, digital input units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a>,
+and <a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a>, have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isOn()</span></code> method that work for boolean
+<code class="docutils literal notranslate"><span class="pre">true/false</span></code> values. Additionally, digital output units such as
+<a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code> method.</p>
+<p>Here are some examples of how to adopt a classic object-oriented functions style
+instead of the Plaquette style.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -119,17 +125,26 @@ of the unit (the same that would be returned by <code class="docutils literal no
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">output.put(input.get())</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">output.put(input.get());</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">*</span> <span class="pre">input)</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">output.put(2</span> <span class="pre">*</span> <span class="pre">input.get())</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">digitalInput</span> <span class="pre">&gt;&gt;</span> <span class="pre">digitalOutput;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">digitalOutput.putOn(digitalInput.isOn());</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input.get())</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(2</span> <span class="pre">*</span> <span class="pre">input)</span> <span class="pre">&gt;&gt;</span> <span class="pre">output;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">output.put(2</span> <span class="pre">*</span> <span class="pre">input.get());</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">filter</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">output.put(filter.put(input.get()))</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!digitalInput</span> <span class="pre">&gt;&gt;</span> <span class="pre">digitalOutput;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">digitalOutput.putOn(!digitalInput.isOn());</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalInput)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalInput.isOn())</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input</span> <span class="pre">&lt;</span> <span class="pre">0.4)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input.get()</span> <span class="pre">&lt;</span> <span class="pre">0.4)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">filter</span> <span class="pre">&gt;&gt;</span> <span class="pre">output;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">output.put(filter.put(input.get()));</span></code></p></td>
 </tr>
 </tbody>
 </table>

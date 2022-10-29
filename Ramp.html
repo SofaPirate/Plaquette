@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.3 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -58,6 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Metro.html">Metro</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
@@ -138,7 +139,7 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv44Ramp">
-<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Provides a ramping / tweening mechanism that allows smooth transitions between two values. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -151,6 +152,12 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <dd class="field-odd"><p><strong>initialValue</strong> – the value the ramp starts with </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp3getEv">
+<span id="_CPPv3N4Ramp3getEv"></span><span id="_CPPv2N4Ramp3getEv"></span><span id="Ramp::get"></span><span class="target" id="classpq_1_1_ramp_1ac6a354b0667bce24ccf3d37096d7d9d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value of ramp. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -227,7 +234,7 @@ called, followed later by <code class="docutils literal notranslate"><span class
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp10isCompleteEv">
-<span id="_CPPv3NK4Ramp10isCompleteEv"></span><span id="_CPPv2NK4Ramp10isCompleteEv"></span><span id="Ramp::isCompleteC"></span><span class="target" id="classpq_1_1_abstract_timer_1a1b8fa0ba7b050960aeaf273fa27cbd75"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isComplete</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp10isCompleteEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp10isCompleteEv"></span><span id="_CPPv2NK4Ramp10isCompleteEv"></span><span id="Ramp::isCompleteC"></span><span class="target" id="classpq_1_1_abstract_timer_1ad1dad69f77428bf236af90a1ae484755"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isComplete</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp10isCompleteEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer has completed its process. </p>
 </dd></dl>
 
@@ -262,6 +269,8 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <section id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
 <ul class="simple">
+<li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
+<li><p><a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a></p></li>
 <li><p><a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a></p></li>
 <li><p><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></p></li>
 </ul>

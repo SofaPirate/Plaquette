@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalizer &mdash; Plaquette 0.3 documentation</title>
+  <title>Normalizer &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Smoother" href="Smoother.html" />
+    <link rel="next" title="PeakDetector" href="PeakDetector.html" />
     <link rel="prev" title="MinMaxScaler" href="MinMaxScaler.html" /> 
 </head>
 
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -66,6 +66,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
 </li>
@@ -111,11 +112,13 @@ it can instead compute over a time window using an <a class="reference external"
 <p>Uses a normalizer to analyze input sensor values and detect extreme values.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
+<span class="c1">// Analog sensor (eg. photocell or microphone).</span>
 <span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="c1">// Creates a normalizer with mean 0 and standard deviation 1.</span>
 <span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
+<span class="c1">// Output indicator LED.</span>
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
@@ -361,7 +364,7 @@ it can instead compute over a time window using an <a class="reference external"
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="MinMaxScaler.html" class="btn btn-neutral float-left" title="MinMaxScaler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Smoother.html" class="btn btn-neutral float-right" title="Smoother" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="PeakDetector.html" class="btn btn-neutral float-right" title="PeakDetector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

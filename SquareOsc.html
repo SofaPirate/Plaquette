@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SquareOsc &mdash; Plaquette 0.3 documentation</title>
+  <title>SquareOsc &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -127,7 +127,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49SquareOsc">
-<span id="_CPPv39SquareOsc"></span><span id="_CPPv29SquareOsc"></span><span id="SquareOsc"></span><span class="target" id="classpq_1_1_square_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SquareOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><a class="headerlink" href="#_CPPv49SquareOsc" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv39SquareOsc"></span><span id="_CPPv29SquareOsc"></span><span id="SquareOsc"></span><span class="target" id="classpq_1_1_square_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SquareOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Osc</span></span><a class="headerlink" href="#_CPPv49SquareOsc" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Square oscillator. Duty cycle is expressed as % of period. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -141,34 +141,6 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 <li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
 <li><p><strong>dutyCycle</strong> – the duty-cycle as a value in [0, 1] </p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc6periodEf">
-<span id="_CPPv3N9SquareOsc6periodEf"></span><span id="_CPPv2N9SquareOsc6periodEf"></span><span id="SquareOsc::period__float"></span><span class="target" id="classpq_1_1_square_osc_1a946483fe4c233f75ca04af99195d3701"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SquareOsc" title="SquareOsc"><span class="n"><span class="pre">SquareOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc6periodEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the period (in seconds). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc9frequencyEf">
-<span id="_CPPv3N9SquareOsc9frequencyEf"></span><span id="_CPPv2N9SquareOsc9frequencyEf"></span><span id="SquareOsc::frequency__float"></span><span class="target" id="classpq_1_1_square_osc_1a61bead9c7f2bf705cc9663e0cb637934"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SquareOsc" title="SquareOsc"><span class="n"><span class="pre">SquareOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9frequencyEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the frequency (in Hz). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
 </dd>
 </dl>
 </dd></dl>
@@ -189,13 +161,26 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc5phaseEf">
-<span id="_CPPv3N9SquareOsc5phaseEf"></span><span id="_CPPv2N9SquareOsc5phaseEf"></span><span id="SquareOsc::phase__float"></span><span class="target" id="classpq_1_1_square_osc_1a3377c08cd322c9301eb964745661adc3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SquareOsc" title="SquareOsc"><span class="n"><span class="pre">SquareOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc5phaseEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the phase (ie. </p>
-<p>the offset, in % of period). </p>
+<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc6periodEf">
+<span id="_CPPv3N9SquareOsc6periodEf"></span><span id="_CPPv2N9SquareOsc6periodEf"></span><span id="SquareOsc::period__float"></span><span class="target" id="classpq_1_1_osc_1aaacac2eff4cbbb6522730fda61ccfcb3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc6periodEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the period (in seconds). </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>phase</strong> – the phase (in % of period) </p>
+<dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the unit itself </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc9frequencyEf">
+<span id="_CPPv3N9SquareOsc9frequencyEf"></span><span id="_CPPv2N9SquareOsc9frequencyEf"></span><span id="SquareOsc::frequency__float"></span><span class="target" id="classpq_1_1_osc_1ab806917431f53c713b48422af0041784"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9frequencyEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the frequency (in Hz). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the unit itself </p>
@@ -205,11 +190,26 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc9amplitudeEf">
-<span id="_CPPv3N9SquareOsc9amplitudeEf"></span><span id="_CPPv2N9SquareOsc9amplitudeEf"></span><span id="SquareOsc::amplitude__float"></span><span class="target" id="classpq_1_1_square_osc_1aee4547e83d84df625af117077642b044"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SquareOsc" title="SquareOsc"><span class="n"><span class="pre">SquareOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9amplitudeEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9SquareOsc9amplitudeEf"></span><span id="_CPPv2N9SquareOsc9amplitudeEf"></span><span id="SquareOsc::amplitude__float"></span><span class="target" id="classpq_1_1_osc_1aeac2c721f7de1309b0c24ab2d48caabd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9amplitudeEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the amplitude of the wave. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>amplitude</strong> – a value in [0, 1] that determines the amplitude of the wave (centered at 0.5). </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the unit itself </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc5phaseEf">
+<span id="_CPPv3N9SquareOsc5phaseEf"></span><span id="_CPPv2N9SquareOsc5phaseEf"></span><span id="SquareOsc::phase__float"></span><span class="target" id="classpq_1_1_osc_1aa7a7d1811acc18ac836126dcfe1ec6c4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc5phaseEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the phase (ie. </p>
+<p>the offset, in % of period). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phase</strong> – the phase (in % of period) </p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the unit itself </p>

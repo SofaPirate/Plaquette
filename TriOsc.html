@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TriOsc &mdash; Plaquette 0.3 documentation</title>
+  <title>TriOsc &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -142,7 +142,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv46TriOsc">
-<span id="_CPPv36TriOsc"></span><span id="_CPPv26TriOsc"></span><span id="TriOsc"></span><span class="target" id="classpq_1_1_tri_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><a class="headerlink" href="#_CPPv46TriOsc" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv36TriOsc"></span><span id="_CPPv26TriOsc"></span><span id="TriOsc"></span><span class="target" id="classpq_1_1_tri_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Osc</span></span><a class="headerlink" href="#_CPPv46TriOsc" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Triangle/sawtooth oscillator. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -156,34 +156,6 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 <li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
 <li><p><strong>width</strong> – a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6TriOsc6periodEf">
-<span id="_CPPv3N6TriOsc6periodEf"></span><span id="_CPPv2N6TriOsc6periodEf"></span><span id="TriOsc::period__float"></span><span class="target" id="classpq_1_1_tri_osc_1ab1a495d64eff4ea002ed4c158cfde184"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc"><span class="n"><span class="pre">TriOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6periodEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the period (in seconds). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6TriOsc9frequencyEf">
-<span id="_CPPv3N6TriOsc9frequencyEf"></span><span id="_CPPv2N6TriOsc9frequencyEf"></span><span id="TriOsc::frequency__float"></span><span class="target" id="classpq_1_1_tri_osc_1af2a8ea2c037e5cb872feb932418bd191"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc"><span class="n"><span class="pre">TriOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9frequencyEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the frequency (in Hz). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
 </dd>
 </dl>
 </dd></dl>
@@ -203,8 +175,36 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6TriOsc6periodEf">
+<span id="_CPPv3N6TriOsc6periodEf"></span><span id="_CPPv2N6TriOsc6periodEf"></span><span id="TriOsc::period__float"></span><span class="target" id="classpq_1_1_osc_1aaacac2eff4cbbb6522730fda61ccfcb3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6periodEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the period (in seconds). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the unit itself </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6TriOsc9frequencyEf">
+<span id="_CPPv3N6TriOsc9frequencyEf"></span><span id="_CPPv2N6TriOsc9frequencyEf"></span><span id="TriOsc::frequency__float"></span><span class="target" id="classpq_1_1_osc_1ab806917431f53c713b48422af0041784"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9frequencyEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the frequency (in Hz). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the unit itself </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc9amplitudeEf">
-<span id="_CPPv3N6TriOsc9amplitudeEf"></span><span id="_CPPv2N6TriOsc9amplitudeEf"></span><span id="TriOsc::amplitude__float"></span><span class="target" id="classpq_1_1_tri_osc_1a227f1b8060df996f1967e553f2b865fe"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc"><span class="n"><span class="pre">TriOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9amplitudeEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc9amplitudeEf"></span><span id="_CPPv2N6TriOsc9amplitudeEf"></span><span id="TriOsc::amplitude__float"></span><span class="target" id="classpq_1_1_osc_1aeac2c721f7de1309b0c24ab2d48caabd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9amplitudeEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the amplitude of the wave. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,7 +218,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc5phaseEf">
-<span id="_CPPv3N6TriOsc5phaseEf"></span><span id="_CPPv2N6TriOsc5phaseEf"></span><span id="TriOsc::phase__float"></span><span class="target" id="classpq_1_1_tri_osc_1aafeedce4785083daebae35773f5c9c20"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46TriOsc" title="TriOsc"><span class="n"><span class="pre">TriOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5phaseEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc5phaseEf"></span><span id="_CPPv2N6TriOsc5phaseEf"></span><span id="TriOsc::phase__float"></span><span class="target" id="classpq_1_1_osc_1aa7a7d1811acc18ac836126dcfe1ec6c4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5phaseEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the phase (ie. </p>
 <p>the offset, in % of period). </p>
 <dl class="field-list simple">

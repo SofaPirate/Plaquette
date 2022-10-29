@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timer &mdash; Plaquette 0.3 documentation</title>
+  <title>Timer &mdash; Plaquette 0.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.3
+                0.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -58,6 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Metro.html">Metro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Timer</a><ul>
@@ -100,32 +101,36 @@
              
   <section id="timer">
 <h1>Timer<a class="headerlink" href="#timer" title="Permalink to this headline"></a></h1>
-<p>A digital source unit that counts time. The timer can be started, stopped, and
+<p>A timer digital source unit that counts time. The timer can be started, stopped, and
 resumed.</p>
-<p>When started, the timer stays “off” until it reaches its timeout duration, after
-which it becomes “on”.</p>
+<p>When started, the timer goes from 0 to 1 through its duration.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
-<p>Uses a timer to change the state of built-in LED at random periods of time.</p>
+<p>Uses a timer to change the duty cycle of a blinking LED, then restarts with a
+new random duration.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">Timer</span> <span class="nf">myTimer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span> <span class="c1">// a chronometer with 2 seconds duration</span>
+<span class="n">Timer</span> <span class="nf">myTimer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span> <span class="c1">// a timer with 2 seconds duration</span>
 
 <span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="n">SquareOsc</span> <span class="nf">osc</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span> <span class="c1">// a square oscillator with a 3 seconds period</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">myTimer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span> <span class="c1">// start timer</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">myTimer</span><span class="p">)</span> <span class="c1">// the timer will stay &quot;on&quot; until it is stopped or restarted</span>
-  <span class="p">{</span>
-    <span class="c1">// Change LED state.</span>
-    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+  <span class="c1">// Adjust oscillator&#39;s duty cycle according to current timer progress.</span>
+  <span class="n">osc</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="n">myTimer</span><span class="p">);</span>
 
+  <span class="c1">// Apply oscillator to LED state.</span>
+  <span class="n">osc</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">myTimer</span><span class="p">.</span><span class="n">isComplete</span><span class="p">())</span> <span class="c1">// if the timer has completed its course</span>
+  <span class="p">{</span>
     <span class="c1">// Restarts the timer with a random duration between 1 and 5 seconds.</span>
-    <span class="n">myTimer</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">));</span>
-    <span class="n">myTimer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="n">myTimer</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -135,32 +140,14 @@ which it becomes “on”.</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv45Timer">
-<span id="_CPPv35Timer"></span><span id="_CPPv25Timer"></span><span id="Timer"></span><span class="target" id="classpq_1_1_timer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalNode</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv45Timer" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Chronometer class which becomes “on” after a given duration. </p>
+<span id="_CPPv35Timer"></span><span id="_CPPv25Timer"></span><span id="Timer"></span><span class="target" id="classpq_1_1_timer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Timer</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv45Timer" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Chronometer class which ramps from 0 to 1 in a given duration. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Timer4isOnEv">
-<span id="_CPPv3N5Timer4isOnEv"></span><span id="_CPPv2N5Timer4isOnEv"></span><span id="Timer::isOn"></span><span class="target" id="classpq_1_1_timer_1a4223dcced13cf6b29a1599375d7125c2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer4isOnEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns true iff the input is “on”. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Timer5isOffEv">
-<span id="_CPPv3N5Timer5isOffEv"></span><span id="_CPPv2N5Timer5isOffEv"></span><span id="Timer::isOff"></span><span class="target" id="classpq_1_1_digital_node_1a0a7e76e191047a68ad732cb2b7a0929d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer5isOffEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns true iff the input is “off”. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Timer6getIntEv">
-<span id="_CPPv3N5Timer6getIntEv"></span><span id="_CPPv2N5Timer6getIntEv"></span><span id="Timer::getInt"></span><span class="target" id="classpq_1_1_digital_node_1a661b8fc93852267880411fe8cd9ba634"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer6getIntEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns value as integer (0 or 1). </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Timer3getEv">
-<span id="_CPPv3N5Timer3getEv"></span><span id="_CPPv2N5Timer3getEv"></span><span id="Timer::get"></span><span class="target" id="classpq_1_1_digital_node_1abf3f1a54e4d88b3369cb0811397e1a58"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer3getEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns value as float (either 0.0 or 1.0). </p>
+<span id="_CPPv3N5Timer3getEv"></span><span id="_CPPv2N5Timer3getEv"></span><span id="Timer::get"></span><span class="target" id="classpq_1_1_timer_1a8096652b8e99576f494f0b27ab9c5a7a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Timer3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns progress in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -176,9 +163,9 @@ which it becomes “on”.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK5Timer8progressEv">
-<span id="_CPPv3NK5Timer8progressEv"></span><span id="_CPPv2NK5Timer8progressEv"></span><span id="Timer::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Timer8progressEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>The progress of the timer process (in %). </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Timer10isCompleteEv">
+<span id="_CPPv3NK5Timer10isCompleteEv"></span><span id="_CPPv2NK5Timer10isCompleteEv"></span><span id="Timer::isCompleteC"></span><span class="target" id="classpq_1_1_abstract_timer_1ad1dad69f77428bf236af90a1ae484755"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isComplete</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Timer10isCompleteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the chronometer has completed its process. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -212,8 +199,10 @@ which it becomes “on”.</p>
 <section id="seealso">
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
 <ul class="simple">
+<li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
+<li><p><a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a></p></li>
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
-<li><p><a class="reference internal" href="SquareOsc.html"><span class="doc">SquareOsc</span></a></p></li>
+<li><p><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></p></li>
 </ul>
 </section>
 </section>
