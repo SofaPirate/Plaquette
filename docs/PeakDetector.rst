@@ -6,26 +6,23 @@ PeakDetector
 This unit detects peaks (minima or maxima) in an incoming signal. Peaks are detected
 based on crossing a trigger threshold above (or below) which a peak is detected.
 
-Two different ways are supported to do this.
+Two different ways are supported to do this:
 
-In **crossing** modes (``PEAK_RISING`` and ``PEAK_FALLING``) the peak is detected *as soon
-as the signal crosses* the ``triggerThreshold``.
-
-In **apex** modes (``PEAK_MAX`` and ``PEAK_MIN``) the peak is detected after the signal
-crosses the ``triggerThreshold``, reaches its apex, and then *falls back* by a certain
-proportion between the threshold and the apex (controlled by the ``fallbackTolerance``
-parameter).
+ - In **crossing** modes (``PEAK_RISING`` and ``PEAK_FALLING``) the peak is detected *as soon as the signal crosses* the ``triggerThreshold``.
+ - In **apex** modes (``PEAK_MAX`` and ``PEAK_MIN``) the peak is detected after the signal crosses the ``triggerThreshold``, reaches its apex, and then *falls back* by a certain proportion (%) between the threshold and the apex (controlled by the ``fallbackTolerance`` parameter).
 
 In all cases, after a peak is detected, the detector will wait until the signal
 crosses back the ``reloadThreshold`` (which can be adjusted to control detection
 sensitivity) before it can be triggered again.
 
+.. image:: images/Plaquette-PeakDetector.png
+
 In summary, the four different modes available are:
 
  - ``PEAK_RISING``  : peak detected as soon as ``value >= triggerThreshold``, then wait until ``value < reloadThreshold``
  - ``PEAK_FALLING`` : peak detected as soon as ``value <= triggerThreshold``, then wait until ``value > reloadThreshold``
- - ``PEAK_MAX``     : peak detected after ``value >= triggerThreshold`` and then falls back after peaking; then waits until ``value < reloadThreshold``
- - ``PEAK_MIN``     : peak detected after ``value <= triggerThreshold`` and then falls back after peaking; then waits until ``value > reloadThreshold``
+ - ``PEAK_MAX``     : peak detected after ``value >= triggerThreshold`` and then *falls back* after peaking; then waits until ``value < reloadThreshold``
+ - ``PEAK_MIN``     : peak detected after ``value <= triggerThreshold`` and then *falls back* after peaking; then waits until ``value > reloadThreshold``
 
 .. note::
    Before sending a signal to a PeakDetector unit, it is recommended to normalize
@@ -59,7 +56,7 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
       // Adjust reload threshold (by default = threshold).
       detector.reloadThreshold(1.0);
 
-      // Adjust fallback tolerance as % between apex and trigget threshold.
+      // Adjust fallback tolerance as % between apex and trigger threshold.
       detector.fallbackTolerance(0.2); // 0.2 = 20% (default: 10%)
 
       // Smooth signal to avoid false peaks due to noise.
