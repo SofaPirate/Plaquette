@@ -258,3 +258,45 @@ Here is a complete version of the code:
      // directly to the LED.
      regularizer.isOutlierHigh(photoCell) >> led;
    }
+
+Step 6 : Detecting Peaks
+------------------------
+
+The outlier detection method is useful to find extreme values. However, it also
+comes with an important limitation. The ``isOutlierHigh()`` and ``isOutlierLow()``
+methods return ``true`` *as long as* the received value is considered to be an
+outlier, making these methods unsuitable to trigger instantanous events such as
+toggling the status of an LED, starting a sound event, activating a motor, etc.
+
+The :doc:`PeakDetector` unit addresses this limitation. It is best used in combination
+with a Normalizer unit. First, let's make sure our Normalizer has a target mean
+of zero (0.0) and a standard deviation of one (1.0):
+
+.. code-block:: c++
+
+    Normalizer normalizer(0, 1);
+
+Then, let's create a PeakDetector unit with a trigger threshold of ``1.5``, which
+means that a peak will only be detected after the normalized value crosses 1.5 (in
+other words, 1.5 times the standard deviation):
+
+.. code-block:: c++
+
+    PeakDetector detector(1.5);
+
+Finally, let's rewrite the ``step()`` function with our new peak detector, so
+that only when a **peak** is detected will the LED change state:
+
+.. code-block:: c++
+
+    void step() {
+      // Signal is normalized and sent to peak detector.
+      sensor >> normalizer >> detector;
+
+      // Toggle LED when peak detector triggers.
+      if (detector)
+        led.toggle();
+    }
+
+The PeakDetector unit offers many options to fine-tune the peak detection process.
+Please read the :doc:`full documentation of the unit <PeakDetector>` for details.
