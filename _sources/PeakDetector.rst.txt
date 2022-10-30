@@ -47,7 +47,9 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
     Normalizer normalizer(0, 1);
 
     // Peak detector. Threshold is set at 1.5 standard deviations above normal.
-    PeakDetector detector(1.5);
+    PeakDetector detector(1.5); // default mode = PEAK_MAX
+    // NOTE: You can change mode using optional 2nd parameter, example:
+    // PeakDetector detector(1.5, PEAK_FALLING));
 
     // Digital LED output.
     DigitalOut led;

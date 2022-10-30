@@ -143,7 +143,9 @@ unit.</p>
 <span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
 <span class="c1">// Peak detector. Threshold is set at 1.5 standard deviations above normal.</span>
-<span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="mf">1.5</span><span class="p">);</span>
+<span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="mf">1.5</span><span class="p">);</span> <span class="c1">// default mode = PEAK_MAX</span>
+<span class="c1">// NOTE: You can change mode using optional 2nd parameter, example:</span>
+<span class="c1">// PeakDetector detector(1.5, PEAK_FALLING));</span>
 
 <span class="c1">// Digital LED output.</span>
 <span class="n">DigitalOut</span> <span class="n">led</span><span class="p">;</span>

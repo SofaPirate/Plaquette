@@ -54,6 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#step-3-reacting-to-signal-changes">Step 3 : Reacting to Signal Changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-4-adapting-to-changing-conditions">Step 4 : Adapting to Changing Conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-5-detecting-outliers">Step 5 : Detecting Outliers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-detecting-peaks">Step 6 : Detecting Peaks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
@@ -176,16 +177,26 @@ while in full daylight, it might range between 70% and 95%.</p>
 <p>In order to resolve that issue, we need to <strong>regularize</strong> the photocell’s signal.
 We can do so using a filtering unit such as a <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a>. This unit automatically
 keeps track of the minimum and maximum values taken by the incoming signal over time
-(for example, 10% and 50%) and remaps them into a new interval of [0, 1].</p>
+(for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).</p>
 <p>To do so, we will simply create the unit:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MinMaxScaler</span> <span class="n">regularizer</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>… and then insert it in the pipeline between the incoming photocell signal and
+<p>… and then <em>insert it</em> in the pipeline between the incoming photocell signal and
 the output LED:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">photoCell</span> <span class="o">&gt;&gt;</span> <span class="n">regularizer</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 </pre></div>
 </div>
+<p>The above expression will do the following, in order:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Read the raw photocell value using the <code class="docutils literal notranslate"><span class="pre">photoCell</span></code> unit.</p></li>
+<li><p>Send that raw value from the <code class="docutils literal notranslate"><span class="pre">photoCell</span></code> unit to the <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> unit.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> unit updates itself if the value is a new extreme value (minimum or maximum).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> then remaps the raw photocell value to the full range of [0, 1] and sends it to the <code class="docutils literal notranslate"><span class="pre">led</span></code> unit.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">led</span></code> unit takes the input value in [0, 1] and applies it to the intensity of the LED.</p></li>
+</ol>
+</div></blockquote>
 </section>
 <section id="step-3-reacting-to-signal-changes">
 <h2>Step 3 : Reacting to Signal Changes<a class="headerlink" href="#step-3-reacting-to-signal-changes" title="Permalink to this headline"></a></h2>
@@ -303,6 +314,40 @@ are much more robust than our 716 and even to our 0.7 number from earlier.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="step-6-detecting-peaks">
+<h2>Step 6 : Detecting Peaks<a class="headerlink" href="#step-6-detecting-peaks" title="Permalink to this headline"></a></h2>
+<p>The outlier detection method is useful to find extreme values. However, it also
+comes with an important limitation. The <code class="docutils literal notranslate"><span class="pre">isOutlierHigh()</span></code> and <code class="docutils literal notranslate"><span class="pre">isOutlierLow()</span></code>
+methods return <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>as long as</em> the received value is considered to be an
+outlier, making these methods unsuitable to trigger instantanous events such as
+toggling the status of an LED, starting a sound event, activating a motor, etc.</p>
+<p>The <a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a> unit addresses this limitation. It is best used in combination
+with a Normalizer unit. First, let’s make sure our Normalizer has a target mean
+of zero (0.0) and a standard deviation of one (1.0):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then, let’s create a PeakDetector unit with a trigger threshold of <code class="docutils literal notranslate"><span class="pre">1.5</span></code>, which
+means that a peak will only be detected after the normalized value crosses 1.5 (in
+other words, 1.5 times the standard deviation):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="mf">1.5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Finally, let’s rewrite the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function with our new peak detector, so
+that only when a <strong>peak</strong> is detected will the LED change state:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Signal is normalized and sent to peak detector.</span>
+  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">normalizer</span> <span class="o">&gt;&gt;</span> <span class="n">detector</span><span class="p">;</span>
+
+  <span class="c1">// Toggle LED when peak detector triggers.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">detector</span><span class="p">)</span>
+    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The PeakDetector unit offers many options to fine-tune the peak detection process.
+Please read the <a class="reference internal" href="PeakDetector.html"><span class="doc">full documentation of the unit</span></a> for details.</p>
 </section>
 </section>
 
