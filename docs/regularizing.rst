@@ -98,7 +98,7 @@ while in full daylight, it might range between 70% and 95%.
 In order to resolve that issue, we need to **regularize** the photocell's signal.
 We can do so using a filtering unit such as a :doc:`MinMaxScaler`. This unit automatically
 keeps track of the minimum and maximum values taken by the incoming signal over time
-(for example, 10% and 50%) and remaps them into a new interval of [0, 1].
+(for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).
 
 To do so, we will simply create the unit:
 
@@ -106,12 +106,20 @@ To do so, we will simply create the unit:
 
    MinMaxScaler regularizer;
 
-... and then insert it in the pipeline between the incoming photocell signal and
+... and then *insert it* in the pipeline between the incoming photocell signal and
 the output LED:
 
 .. code-block:: c++
 
    photoCell >> regularizer >> led;
+
+The above expression will do the following, in order:
+
+ #. Read the raw photocell value using the ``photoCell`` unit.
+ #. Send that raw value from the ``photoCell`` unit to the ``regularizer`` unit.
+ #. The ``regularizer`` unit updates itself if the value is a new extreme value (minimum or maximum).
+ #. The ``regularizer`` then remaps the raw photocell value to the full range of [0, 1] and sends it to the ``led`` unit.
+ #. The ``led`` unit takes the input value in [0, 1] and applies it to the intensity of the LED.
 
 Step 3 : Reacting to Signal Changes
 -----------------------------------
