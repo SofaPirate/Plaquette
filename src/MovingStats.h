@@ -88,7 +88,7 @@ public:
    * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
    * @return true if value is nStdDev number of standard deviations above or below mean
    */
-  virtual bool isOutlier(float value, float nStdDev=1.5f);
+  virtual bool isOutlier(float value, float nStdDev=1.5f) const;
 
   /**
    * Returns true if the value is considered a low outlier (below average).
@@ -96,7 +96,7 @@ public:
    * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
    * @return true if value is nStdDev number of standard deviations below mean
    */
-  virtual bool isLowOutlier(float value, float nStdDev=1.5f);
+  virtual bool isLowOutlier(float value, float nStdDev=1.5f) const;
 
   /**
    * Returns true if the value is considered a high outlier (above average).
@@ -104,7 +104,8 @@ public:
    * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
    * @return true if value is nStdDev number of standard deviations above mean
    */
-  virtual bool isHighOutlier(float value, float nStdDev=1.5f);
+  virtual bool isHighOutlier(float value, float nStdDev=1.5f) const;
+
   /// \deprecated
   /// Returns the standard deviation of the samples.
   virtual float stddev() const { return stdDev(); }
