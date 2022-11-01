@@ -21,8 +21,8 @@
 // The analog input.
 AnalogIn in(A0); // defaults on pin A0
 
-// The normalization unit. Will normalize according to N(0, 1) (mean=0, stddev=1).
-Normalizer normalizer(0, 1);
+// The normalization unit.
+Normalizer normalizer;
 
 // The peak detector. Threshold is set at 1.5 standard deviations above normal.
 PeakDetector detector(1.5f);
@@ -32,7 +32,7 @@ DigitalOut led;
 
 void begin() {
   // Adjust reload threshold (by default = threshold).
-  detector.reloadThreshold(1.0f);
+  detector.reloadThreshold(normalizer.highOutlierThreshold());
 
   // Default mode is PEAK_MAX.
   // Try changing to other modes eg.
