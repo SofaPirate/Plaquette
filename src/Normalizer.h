@@ -50,18 +50,18 @@ public:
   /**
    * Constructor with infinite time window.
    * @param mean the target mean
-   * @param stddev the target standard deviation
+   * @param stdDev the target standard deviation
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stddev);
+  Normalizer(float mean, float stdDev);
 
   /**
    * Constructor.
    * @param mean the target mean
-   * @param stddev the target standard deviation
+   * @param stdDev the target standard deviation
    * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stddev, float timeWindow);
+  Normalizer(float mean, float stdDev, float timeWindow);
 
   virtual ~Normalizer() {}
 
@@ -76,9 +76,9 @@ public:
 
   /**
    * Sets target standard deviation of normalized values.
-   * @param stddev the target standard deviation
+   * @param stdDev the target standard deviation
    */
-  Normalizer& targetStdDev(float stddev) { _targetStdDev = abs(stddev); return *this; }
+  Normalizer& targetStdDev(float stdDev) { _targetStdDev = abs(stdDev); return *this; }
 
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStdDev; }
@@ -96,7 +96,7 @@ public:
   virtual bool timeWindowIsInfinite() const;
 
   virtual void reset();
-  
+
   /**
    * Pushes value into the unit. If isStarted() is false the filter will not be
    * updated but will just return the filtered value.

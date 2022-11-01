@@ -60,7 +60,7 @@ float MovingStats::update(float value, float sampleRate)
   return normalize(value);
 }
 
-float MovingStats::stddev() const {
+float MovingStats::stdDev() const {
   return
 #if USE_FAST_SQRT
   fastSqrt
@@ -71,7 +71,7 @@ float MovingStats::stddev() const {
 }
 
 float MovingStats::normalize(float value) const {
-  float s = stddev();
+  float s = stdDev();
   return ( value - mean() ) /
 #if USE_FAST_SQRT
   s // Saves a call to max() since fastSqrt(0) returns small positive values
@@ -81,8 +81,8 @@ float MovingStats::normalize(float value) const {
   ;
 }
 
-float MovingStats::normalize(float value, float mean_, float stddev_) const {
-  return normalize(value) * stddev_ + mean_;
+float MovingStats::normalize(float value, float mean_, float stdDev_) const {
+  return normalize(value) * stdDev_ + mean_;
 }
 
 bool MovingStats::isOutlier(float value, float nStdDev) {

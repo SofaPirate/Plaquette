@@ -74,13 +74,13 @@ public:
   virtual float var() const { return _var; }
 
   /// Returns the standard deviation of the samples.
-  virtual float stddev() const;
+  virtual float stdDev() const;
 
   /// Returns the normalized value according N(0, 1).
   virtual float normalize(float value) const;
 
   /// Returns the normalized value according to the computed statistics (mean and variance).
-  virtual float normalize(float value, float mean, float stddev) const;
+  virtual float normalize(float value, float mean, float stdDev) const;
 
   /**
    * Returns true if the value is considered an outlier.
@@ -105,6 +105,9 @@ public:
    * @return true if value is nStdDev number of standard deviations above mean
    */
   virtual bool isHighOutlier(float value, float nStdDev=1.5f);
+  /// \deprecated
+  /// Returns the standard deviation of the samples.
+  virtual float stddev() const { return stdDev(); }
 };
 
 } // namespace pq

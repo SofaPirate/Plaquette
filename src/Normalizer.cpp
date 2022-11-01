@@ -41,20 +41,20 @@ Normalizer::Normalizer(float timeWindow)
   _value = NORMALIZER_DEFAULT_MEAN;
 }
 
-Normalizer::Normalizer(float mean, float stddev)
+Normalizer::Normalizer(float mean, float stdDev)
 	: MovingFilter(),
     MovingStats(),
     _targetMean(mean),
-    _targetStdDev(abs(stddev))
+    _targetStdDev(abs(stdDev))
 {
   _value = mean;
 }
 
-Normalizer::Normalizer(float mean, float stddev, float timeWindow)
+Normalizer::Normalizer(float mean, float stdDev, float timeWindow)
 	: MovingFilter(),
     MovingStats(timeWindow),
     _targetMean(mean),
-    _targetStdDev(abs(stddev))
+    _targetStdDev(abs(stdDev))
 {
   _value = mean;
 }
