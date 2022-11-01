@@ -103,6 +103,15 @@ precision  KEYWORD2
 # Normalizer
 targetMean	KEYWORD2
 targetStdDev	KEYWORD2
+mean    KEYWORD2
+stdDev    KEYWORD2
+var    KEYWORD2
+normalize    KEYWORD2
+isOutlier    KEYWORD2
+isHighOutlier    KEYWORD2
+isLowOutlier    KEYWORD2
+highOutlierThreshold    KEYWORD2
+lowOutlierThreshold    KEYWORD2
 
 # AbstractTimer
 start  KEYWORD2
