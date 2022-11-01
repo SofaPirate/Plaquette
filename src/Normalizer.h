@@ -105,6 +105,22 @@ public:
    */
   virtual float put(float value);
 
+  /**
+   * Returns value above which value is considered to be a low outler (below average).
+   * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
+   */
+  virtual float lowOutlierThreshold(float nStdDev=1.5f) const {
+    return _targetMean - abs(nStdDev)*_targetStdDev;
+  }
+
+  /**
+   * Returns value above which value is considered to be a high outler (above average).
+   * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive
+   */
+  virtual float highOutlierThreshold(float nStdDev=1.5f) const  {
+    return _targetMean + abs(nStdDev)*_targetStdDev;
+  }
+
 protected:
   // Target normalization parameters.
   float _targetMean;
