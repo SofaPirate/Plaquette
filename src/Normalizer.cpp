@@ -84,4 +84,12 @@ float Normalizer::put(float value) {
   return _value;
 }
 
+float Normalizer::lowOutlierThreshold(float nStdDev) const {
+  return targetMean() - abs(nStdDev) * targetStdDev();
+}
+
+float Normalizer::highOutlierThreshold(float nStdDev) const  {
+  return targetMean() + abs(nStdDev) * targetStdDev();
+}
+
 }
