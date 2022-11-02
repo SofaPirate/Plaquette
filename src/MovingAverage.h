@@ -33,16 +33,6 @@ namespace pq {
 
 /// An exponential moving average class.
 class MovingAverage {
-protected:
-  // The smoothing window (in seconds).
-  float _smoothTime;
-
-  // The current value of the exponential moving average.
-  float _value;
-
-  // Number of samples that have been processed thus far.
-  unsigned int _nSamples;
-
 public:
   /// Default constructor (infinite time window).
   MovingAverage();
@@ -63,7 +53,7 @@ public:
 
   /// Returns true if time window is infinite.
   bool timeWindowIsInfinite() const;
-  
+
   /// Changes the smoothing window cutoff frequency (expressed in Hz).
   void cutoff(float hz);
 
@@ -94,6 +84,16 @@ public:
 
   /// Returns the alpha value computed from given sample rate, time window, and number of samples.
   static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
+
+protected:
+  // The smoothing window (in seconds).
+  float _smoothTime;
+
+  // The current value of the exponential moving average.
+  float _value;
+
+  // Number of samples that have been processed thus far.
+  unsigned int _nSamples;
 };
 
 } // namespace pq
