@@ -73,7 +73,7 @@ public:
    * Sets target mean of normalized values.
    * @param mean the target mean
    */
-  Normalizer& targetMean(float mean) { _targetMean = mean; return *this; }
+  void targetMean(float mean) { _targetMean = mean; }
 
   /// Returns target mean.
   float targetMean() const { return _targetMean; }
@@ -82,7 +82,7 @@ public:
    * Sets target standard deviation of normalized values.
    * @param stdDev the target standard deviation
    */
-  Normalizer& targetStdDev(float stdDev) { _targetStdDev = abs(stdDev); return *this; }
+  void targetStdDev(float stdDev) { _targetStdDev = abs(stdDev); }
 
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStdDev; }
