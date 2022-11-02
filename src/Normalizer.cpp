@@ -84,7 +84,8 @@ void Normalizer::reset() {
 
 float Normalizer::put(float value) {
   _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
-  _value = _value * max(_targetStdDev, FLT_MIN) + _targetMean;
+
+  _value = _value * _targetStdDev + _targetMean;
   // Check for clamp.
   if (isClamped())
     _value = _clamp(_value);
