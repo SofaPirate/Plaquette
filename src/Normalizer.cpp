@@ -83,12 +83,15 @@ void Normalizer::reset() {
 }
 
 float Normalizer::put(float value) {
+  // Update only if started.
   _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
 
+  // Normalize value to target normal.
   _value = _value * _targetStdDev + _targetMean;
   // Check for clamp.
   if (isClamped())
     _value = _clamp(_value);
+
   return _value;
 }
 

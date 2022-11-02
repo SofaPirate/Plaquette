@@ -99,6 +99,7 @@ public:
   /// Returns true if time window is infinite.
   virtual bool timeWindowIsInfinite() const;
 
+  /// Resets the statistics.
   virtual void reset();
 
   /**
@@ -127,7 +128,7 @@ public:
   /**
    * Assign clamping value. Values will then be clamped between reasonable range
    * (targetMean() +/- nStdDev * targetStdDev()).
-   * @param nStdDev the number of standard deviations (typically between 1 and 3)
+   * @param nStdDev the number of standard deviations (default: 3.333333333)
    */
   void clamp(float nStdDev=NORMALIZER_DEFAULT_CLAMP_STDDEV);
 
