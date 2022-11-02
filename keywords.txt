@@ -112,6 +112,9 @@ isHighOutlier    KEYWORD2
 isLowOutlier    KEYWORD2
 highOutlierThreshold    KEYWORD2
 lowOutlierThreshold    KEYWORD2
+clamp    KEYWORD2
+noClamp    KEYWORD2
+isClamped    KEYWORD2
 
 # AbstractTimer
 start  KEYWORD2

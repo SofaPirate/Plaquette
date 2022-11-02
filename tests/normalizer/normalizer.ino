@@ -29,12 +29,10 @@ Node* units[N_UNITS] = {
   new Normalizer(0, 1, 0.5f),
   new Normalizer(0, 1, 1.0f)
 };
-// 
+//
 // testing(valuesInRange) {
 //   static unsigned long startTime = millis();
 //   static bool initialized = false;
-//   static int currentRandom = 0;
-//   static float currentSign = 1;
 //
 //   if (!initialized) {
 //     for (int i=0; i<N_UNITS; i++) {
@@ -52,20 +50,16 @@ Node* units[N_UNITS] = {
 //     float value = unit->put(randomValue);
 //
 //     if (millis() - startTime > 1000) {
-// //      Serial.printf("val=%f ==> %f\n", randomValue, value );
-//       assertMoreOrEqual(value, -3.1f);
-//       assertLessOrEqual(value,  3.1f);
+//       unit->noClamp();
+//      // Serial.printf("val=%f ==> %f\n", randomValue, value );
+//       assertMoreOrEqual(value, -3.3f);
+//       assertLessOrEqual(value,  3.3f);
 //
 //       assertEqual(unit->isLowOutlier(-100, 1.0f), true);
 //       assertEqual(unit->isHighOutlier(100, 1.0f), true);
 //       assertEqual(unit->isOutlier(-100, 1.0f), true);
 //       assertEqual(unit->isOutlier(-100, 1.0f), true);
 //     }
-//
-//     // if (millis() - startTime > 4000) {
-//     //   assertNear(unit->normalize(100),   1.0f, 0.5f);
-//     //   assertNear(unit->normalize(-100), -1.0f, 0.5f);
-//     // }
 //   }
 //   if (millis() - startTime > 5000) pass();
 // }
@@ -94,8 +88,14 @@ testing(matchRandomNormal) {
   if (millis() - startTime > 5000) {
     for (int i=0; i<N_UNITS; i++) {
       Normalizer* unit =(Normalizer*) units[i];
+      unit->noClamp();
       assertNear(unit->mean(), 0.0f, 0.2f);
       assertNear(unit->stddev(), 1.0f, 0.2f);
+      unit->clamp();
+      unit->targetMean(NORMALIZER_DEFAULT_MEAN);
+      unit->targetStdDev(NORMALIZER_DEFAULT_STDDEV);
+      assertNear(unit->put(1000), 1.0f, FLT_MIN);
+      assertNear(unit->put(-1000), 0.0f, FLT_MIN);
     }
     pass();
   }

@@ -30,6 +30,10 @@ namespace pq {
 #define NORMALIZER_DEFAULT_MEAN   0.5f
 #define NORMALIZER_DEFAULT_STDDEV 0.15f
 
+const float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f / NORMALIZER_DEFAULT_STDDEV - FLT_MIN; // this is so that the basic normalizer will stay within range [0, 1].
+
+#define NORMALIZER_NO_CLAMP 0
+
 /**
  * Adaptive normalizer: normalizes values on-the-run using exponential moving
  * averages over mean and standard deviation.
@@ -117,12 +121,29 @@ public:
    */
   virtual float highOutlierThreshold(float nStdDev=1.5f) const;
 
-  }
+  /// Return true iff the normalized value is clamped within reasonable range.
+  bool isClamped() const;
+
+  /**
+   * Assign clamping value. Values will then be clamped between reasonable range
+   * (targetMean() +/- nStdDev * targetStdDev()).
+   * @param nStdDev the number of standard deviations (typically between 1 and 3)
+   */
+  void clamp(float nStdDev=NORMALIZER_DEFAULT_CLAMP_STDDEV);
+
+  /// Remove clamping.
+  void noClamp();
 
 protected:
+  // Returns clamped value.
+  float _clamp(float value) const;
+
   // Target normalization parameters.
   float _targetMean;
   float _targetStdDev;
+
+  // clamped standard deviation (if 0 = no clamp).
+  float _clampStdDev;
 };
 
 }

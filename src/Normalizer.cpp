@@ -25,38 +25,42 @@ namespace pq {
 
 Normalizer::Normalizer()
 : MovingFilter(),
-  MovingStats(),
-  _targetMean(NORMALIZER_DEFAULT_MEAN),
-  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+  MovingStats()
 {
   _value = NORMALIZER_DEFAULT_MEAN;
+  targetMean(NORMALIZER_DEFAULT_MEAN);
+  targetStdDev(NORMALIZER_DEFAULT_STDDEV);
+  clamp();
 }
 
 Normalizer::Normalizer(float timeWindow)
 : MovingFilter(),
-  MovingStats(timeWindow),
-  _targetMean(NORMALIZER_DEFAULT_MEAN),
-  _targetStdDev(NORMALIZER_DEFAULT_STDDEV)
+  MovingStats(timeWindow)
 {
   _value = NORMALIZER_DEFAULT_MEAN;
+  targetMean(NORMALIZER_DEFAULT_MEAN);
+  targetStdDev(NORMALIZER_DEFAULT_STDDEV);
+  clamp();
 }
 
 Normalizer::Normalizer(float mean, float stdDev)
 	: MovingFilter(),
-    MovingStats(),
-    _targetMean(mean),
-    _targetStdDev(abs(stdDev))
+    MovingStats()
 {
   _value = mean;
+  targetMean(mean);
+  targetStdDev(stdDev);
+  clamp();
 }
 
 Normalizer::Normalizer(float mean, float stdDev, float timeWindow)
 	: MovingFilter(),
-    MovingStats(timeWindow),
-    _targetMean(mean),
-    _targetStdDev(abs(stdDev))
+    MovingStats(timeWindow)
 {
   _value = mean;
+  targetMean(mean);
+  targetStdDev(stdDev);
+  clamp();
 }
 
 void Normalizer::infiniteTimeWindow() {
@@ -81,6 +85,9 @@ void Normalizer::reset() {
 float Normalizer::put(float value) {
   _value = isStarted() ? MovingStats::update(value, sampleRate()) : normalize(value);
   _value = _value * max(_targetStdDev, FLT_MIN) + _targetMean;
+  // Check for clamp.
+  if (isClamped())
+    _value = _clamp(_value);
   return _value;
 }
 
@@ -90,6 +97,23 @@ float Normalizer::lowOutlierThreshold(float nStdDev) const {
 
 float Normalizer::highOutlierThreshold(float nStdDev) const  {
   return targetMean() + abs(nStdDev) * targetStdDev();
+}
+
+bool Normalizer::isClamped() const {
+  return (_clampStdDev != NORMALIZER_NO_CLAMP);
+}
+
+void Normalizer::clamp(float nStdDev) {
+  _clampStdDev = abs(nStdDev);
+}
+
+void Normalizer::noClamp() {
+  _clampStdDev = NORMALIZER_NO_CLAMP;
+}
+
+float Normalizer::_clamp(float value) const {
+  float absStdDevOutlier = _clampStdDev * targetStdDev();
+  return constrain(value, _targetMean - absStdDevOutlier, _targetMean + absStdDevOutlier);
 }
 
 }
