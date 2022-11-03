@@ -34,7 +34,8 @@ In summary, the four different modes available are:
 |Example|
 ---------
 
-Uses a normalizer to analyze input sensor values and detect extreme values.
+Uses a Normalizer and a PeakDetector to analyze input sensor values and detect
+peaks. Toggle and LED each time a peak is detected.
 
 .. code-block:: c++
 
@@ -43,11 +44,11 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
     // Analog sensor (eg. photocell or microphone).
     AnalogIn sensor(A0);
 
-    // Normalization unit to normalize according to N(0, 1) (mean=0, stddev=1).
-    Normalizer normalizer(0, 1);
+    // Normalization unit to normalize values.
+    Normalizer normalizer;
 
     // Peak detector. Threshold is set at 1.5 standard deviations above normal.
-    PeakDetector detector(1.5); // default mode = PEAK_MAX
+    PeakDetector detector(normalizer.highOutlierThreshold(1.5)); // default mode = PEAK_MAX
     // NOTE: You can change mode using optional 2nd parameter, example:
     // PeakDetector detector(1.5, PEAK_FALLING));
 
@@ -55,8 +56,8 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
     DigitalOut led;
 
     void begin() {
-      // Adjust reload threshold (by default = threshold).
-      detector.reloadThreshold(1.0);
+      // Adjust reload threshold to smaller value than reloadThreshold.
+      detector.reloadThreshold(normalizer.highOutlierThreshold(1.0));
 
       // Adjust fallback tolerance as % between apex and trigger threshold.
       detector.fallbackTolerance(0.2); // 0.2 = 20% (default: 10%)

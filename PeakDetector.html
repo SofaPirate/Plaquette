@@ -133,17 +133,18 @@ unit.</p>
 </div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
-<p>Uses a normalizer to analyze input sensor values and detect extreme values.</p>
+<p>Uses a Normalizer and a PeakDetector to analyze input sensor values and detect
+peaks. Toggle and LED each time a peak is detected.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// Analog sensor (eg. photocell or microphone).</span>
 <span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
-<span class="c1">// Normalization unit to normalize according to N(0, 1) (mean=0, stddev=1).</span>
-<span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="c1">// Normalization unit to normalize values.</span>
+<span class="n">Normalizer</span> <span class="n">normalizer</span><span class="p">;</span>
 
 <span class="c1">// Peak detector. Threshold is set at 1.5 standard deviations above normal.</span>
-<span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="mf">1.5</span><span class="p">);</span> <span class="c1">// default mode = PEAK_MAX</span>
+<span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.5</span><span class="p">));</span> <span class="c1">// default mode = PEAK_MAX</span>
 <span class="c1">// NOTE: You can change mode using optional 2nd parameter, example:</span>
 <span class="c1">// PeakDetector detector(1.5, PEAK_FALLING));</span>
 
@@ -151,8 +152,8 @@ unit.</p>
 <span class="n">DigitalOut</span> <span class="n">led</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Adjust reload threshold (by default = threshold).</span>
-  <span class="n">detector</span><span class="p">.</span><span class="n">reloadThreshold</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+  <span class="c1">// Adjust reload threshold to smaller value than reloadThreshold.</span>
+  <span class="n">detector</span><span class="p">.</span><span class="n">reloadThreshold</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
 
   <span class="c1">// Adjust fallback tolerance as % between apex and trigger threshold.</span>
   <span class="n">detector</span><span class="p">.</span><span class="n">fallbackTolerance</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.2 = 20% (default: 10%)</span>

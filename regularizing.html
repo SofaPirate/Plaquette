@@ -269,22 +269,25 @@ based on how much they diverge from the mean.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Normalizer</span> <span class="n">regularizer</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>… and let’s use the <code class="docutils literal notranslate"><span class="pre">isOutlierHigh()</span></code> function to find values that are higher
+<p>… and let’s use the <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> function to find values that are higher
 than usual:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">photoCell</span> <span class="o">&gt;&gt;</span> <span class="n">regularizer</span><span class="p">;</span>
-  <span class="n">regularizer</span><span class="p">.</span><span class="n">isOutlierHigh</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>By default, the <code class="docutils literal notranslate"><span class="pre">isOutlierHigh()</span></code> function detects values that are more than
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> function detects values that are more than
 1.5 deviations from the mean. The function can be made more or less sensitive by
 adjusting the number of deviations (typically between 1.0 and 3.0). For example,
-<code class="docutils literal notranslate"><span class="pre">isOutlierHigh(value,</span> <span class="pre">1.2)</span></code> will be more sensitive,
-<code class="docutils literal notranslate"><span class="pre">isOutlierHigh(value,</span> <span class="pre">2.5)</span></code> will be less sensitive, and <code class="docutils literal notranslate"><span class="pre">isOutlierHigh(value,</span> <span class="pre">3.0)</span></code>
-will only respond to rarely-occuring extremes.</p>
-<p>While these numbers (1.2, 1.5, 2.5, etc.) still need to be hand-picked, they
-are much more robust than our 716 and even to our 0.7 number from earlier.</p>
+<code class="docutils literal notranslate"><span class="pre">isHighOutlier(value,</span> <span class="pre">1.2)</span></code> will be more sensitive,
+<code class="docutils literal notranslate"><span class="pre">isHighOutlier(value,</span> <span class="pre">2.5)</span></code> will be less sensitive, and <code class="docutils literal notranslate"><span class="pre">isHighOutlier(value,</span> <span class="pre">3.0)</span></code>
+will only respond to rarely-occuring extremes. While these numbers (1.2, 1.5, 2.5, etc.)
+still need to be hand-picked, they are much more robust than our 716 and even to
+our 0.7 number from earlier.</p>
+</div>
 <p>Here is a complete version of the code:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="c1"> // include the Plaquette library</span><span class="cp"></span>
 
@@ -310,7 +313,7 @@ are much more robust than our 716 and even to our 0.7 number from earlier.</p>
 
   <span class="c1">// Detect outliers and send the value (1=true=outlier, 0=false=no outlier)</span>
   <span class="c1">// directly to the LED.</span>
-  <span class="n">regularizer</span><span class="p">.</span><span class="n">isOutlierHigh</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
+  <span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -318,21 +321,29 @@ are much more robust than our 716 and even to our 0.7 number from earlier.</p>
 <section id="step-6-detecting-peaks">
 <h2>Step 6 : Detecting Peaks<a class="headerlink" href="#step-6-detecting-peaks" title="Permalink to this headline"></a></h2>
 <p>The outlier detection method is useful to find extreme values. However, it also
-comes with an important limitation. The <code class="docutils literal notranslate"><span class="pre">isOutlierHigh()</span></code> and <code class="docutils literal notranslate"><span class="pre">isOutlierLow()</span></code>
+comes with an important limitation. The <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> and <code class="docutils literal notranslate"><span class="pre">isOutlierLow()</span></code>
 methods return <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>as long as</em> the received value is considered to be an
 outlier, making these methods unsuitable to trigger instantanous events such as
 toggling the status of an LED, starting a sound event, activating a motor, etc.</p>
 <p>The <a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a> unit addresses this limitation. It is best used in combination
-with a Normalizer unit. First, let’s make sure our Normalizer has a target mean
-of zero (0.0) and a standard deviation of one (1.0):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Normalizer</span> <span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+with a Normalizer unit. We will use the default mode of the PeakDetector (<code class="docutils literal notranslate"><span class="pre">PEAK_MAX</span></code>):
+for a peak to be detected, the signal will need to (1) cross a <em>trigger threshold</em> value
+(<code class="docutils literal notranslate"><span class="pre">triggerThreshold</span></code>); (2) reach its <em>apex</em> (max); and (3) <em>fall back</em> by a certain
+proportion (%) between the threshold and the apex (controlled by the <code class="docutils literal notranslate"><span class="pre">fallbackTolerance</span></code>
+parameter).</p>
+<p>Building on the previous section for outlier detection, we will assign the PeakDetector’s
+<code class="docutils literal notranslate"><span class="pre">triggerThreshold</span></code> to the value above which a value is considered to be a high outler,
+which can be obtained by calling the Normalizer’s function <code class="docutils literal notranslate"><span class="pre">highOutlierThreshold()</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">());</span>
 </pre></div>
 </div>
-<p>Then, let’s create a PeakDetector unit with a trigger threshold of <code class="docutils literal notranslate"><span class="pre">1.5</span></code>, which
-means that a peak will only be detected after the normalized value crosses 1.5 (in
-other words, 1.5 times the standard deviation):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="mf">1.5</span><span class="p">);</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As for the <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> function, the <code class="docutils literal notranslate"><span class="pre">highOutlierThreshold()</span></code> function
+is set to return, by default, a threshold that is 1.5 standard deviations from the mean. The
+function can be made more or less sensitive by adjusting the number of deviations.
+For example, <code class="docutils literal notranslate"><span class="pre">highOutlierThreshold(1.2)</span></code> will be more sensitive, while
+<code class="docutils literal notranslate"><span class="pre">highOutlierThreshold(2.5)</span></code> will be less sensitive.</p>
 </div>
 <p>Finally, let’s rewrite the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function with our new peak detector, so
 that only when a <strong>peak</strong> is detected will the LED change state:</p>

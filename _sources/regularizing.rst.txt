@@ -208,25 +208,25 @@ Let's replace our MinMaxScaler by a Normalizer unit:
 
    Normalizer regularizer;
 
-... and let's use the ``isOutlierHigh()`` function to find values that are higher
+... and let's use the ``isHighOutlier()`` function to find values that are higher
 than usual:
 
 .. code-block:: c++
 
     void step() {
       photoCell >> regularizer;
-      regularizer.isOutlierHigh(photoCell) >> led;
+      regularizer.isHighOutlier(photoCell) >> led;
     }
 
-By default, the ``isOutlierHigh()`` function detects values that are more than
-1.5 deviations from the mean. The function can be made more or less sensitive by
-adjusting the number of deviations (typically between 1.0 and 3.0). For example,
-``isOutlierHigh(value, 1.2)`` will be more sensitive,
-``isOutlierHigh(value, 2.5)`` will be less sensitive, and ``isOutlierHigh(value, 3.0)``
-will only respond to rarely-occuring extremes.
-
-While these numbers (1.2, 1.5, 2.5, etc.) still need to be hand-picked, they
-are much more robust than our 716 and even to our 0.7 number from earlier.
+.. note::
+  By default, the ``isHighOutlier()`` function detects values that are more than
+  1.5 deviations from the mean. The function can be made more or less sensitive by
+  adjusting the number of deviations (typically between 1.0 and 3.0). For example,
+  ``isHighOutlier(value, 1.2)`` will be more sensitive,
+  ``isHighOutlier(value, 2.5)`` will be less sensitive, and ``isHighOutlier(value, 3.0)``
+  will only respond to rarely-occuring extremes. While these numbers (1.2, 1.5, 2.5, etc.)
+  still need to be hand-picked, they are much more robust than our 716 and even to
+  our 0.7 number from earlier.
 
 Here is a complete version of the code:
 
@@ -256,33 +256,40 @@ Here is a complete version of the code:
 
      // Detect outliers and send the value (1=true=outlier, 0=false=no outlier)
      // directly to the LED.
-     regularizer.isOutlierHigh(photoCell) >> led;
+     regularizer.isHighOutlier(photoCell) >> led;
    }
 
 Step 6 : Detecting Peaks
 ------------------------
 
 The outlier detection method is useful to find extreme values. However, it also
-comes with an important limitation. The ``isOutlierHigh()`` and ``isOutlierLow()``
+comes with an important limitation. The ``isHighOutlier()`` and ``isOutlierLow()``
 methods return ``true`` *as long as* the received value is considered to be an
 outlier, making these methods unsuitable to trigger instantanous events such as
 toggling the status of an LED, starting a sound event, activating a motor, etc.
 
 The :doc:`PeakDetector` unit addresses this limitation. It is best used in combination
-with a Normalizer unit. First, let's make sure our Normalizer has a target mean
-of zero (0.0) and a standard deviation of one (1.0):
+with a Normalizer unit. We will use the default mode of the PeakDetector (``PEAK_MAX``):
+for a peak to be detected, the signal will need to (1) cross a *trigger threshold* value
+(``triggerThreshold``); (2) reach its *apex* (max); and (3) *fall back* by a certain
+proportion (%) between the threshold and the apex (controlled by the ``fallbackTolerance``
+parameter).
+
+Building on the previous section for outlier detection, we will assign the PeakDetector's
+``triggerThreshold`` to the value above which a value is considered to be a high outler,
+which can be obtained by calling the Normalizer's function ``highOutlierThreshold()``:
 
 .. code-block:: c++
 
-    Normalizer normalizer(0, 1);
+    PeakDetector detector(normalizer.highOutlierThreshold());
 
-Then, let's create a PeakDetector unit with a trigger threshold of ``1.5``, which
-means that a peak will only be detected after the normalized value crosses 1.5 (in
-other words, 1.5 times the standard deviation):
+.. note::
 
-.. code-block:: c++
-
-    PeakDetector detector(1.5);
+  As for the ``isHighOutlier()`` function, the ``highOutlierThreshold()`` function
+  is set to return, by default, a threshold that is 1.5 standard deviations from the mean. The
+  function can be made more or less sensitive by adjusting the number of deviations.
+  For example, ``highOutlierThreshold(1.2)`` will be more sensitive, while
+  ``highOutlierThreshold(2.5)`` will be less sensitive.
 
 Finally, let's rewrite the ``step()`` function with our new peak detector, so
 that only when a **peak** is detected will the LED change state:
@@ -297,6 +304,7 @@ that only when a **peak** is detected will the LED change state:
       if (detector)
         led.toggle();
     }
+
 
 The PeakDetector unit offers many options to fine-tune the peak detection process.
 Please read the :doc:`full documentation of the unit <PeakDetector>` for details.
