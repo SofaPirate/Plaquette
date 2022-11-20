@@ -23,16 +23,43 @@
 #define PQ_FAST_MATH_H_
 
 #include <stdint.h>
+#include "pq_trig8.h"
+#include "pq_wrap.h"
 
 namespace pq {
 
 /// Returns the square root. Notice that sqrt(0) returns a non-zero, small positive number.
 // Source: https://www.gamedev.net/forums/topic/704525-3-quick-ways-to-calculate-the-square-root-in-c/
-float fastSqrt(const float& n)
+inline float fastSqrt(const float& n)
 {
     static union {int32_t i; float f;} u;
     u.i = 0x2035AD0C + (*(int32_t*)&n >> 1);
    return n / u.f + u.f * 0.25f;
+}
+
+inline float fastCos(float x) {
+    x = wrap01(x/TWO_PI) * 65535;
+    return cos16( (uint16_t)x ) / 32767.0f;
+}
+
+inline float fastSin(float x) {
+    x = wrap01(x/TWO_PI) * 65535;
+    return sin16( (uint16_t)x ) / 32767.0f;
+}
+
+//Source: https://martin.ankerl.com/2007/10/04/optimized-pow-approximation-for-java-and-c-c/
+inline double fastPow(double a, double b) {
+    union {
+        double d;
+        int32_t x[2];
+    } u = { a };
+    u.x[1] = (int32_t)(b * (u.x[1] - 1072632447) + 1072632447);
+    u.x[0] = 0;
+    return u.d;
+}
+
+inline float fastPow(float a, float b) {
+    return (float)fastPow((double)a, (double)b);
 }
 
 } // namespace pq
