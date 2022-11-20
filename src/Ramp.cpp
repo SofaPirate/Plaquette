@@ -24,19 +24,39 @@
 
 namespace pq {
 
-Ramp::Ramp(float initialValue) :
+Ramp::Ramp(float initialValue, easing_function easing) :
 	AbstractTimer(),
-	_from(initialValue), _to(initialValue)
+	_from(initialValue), _to(initialValue), _easing(easing)
 {
+}
+
+Ramp::Ramp(easing_function easing) :
+	AbstractTimer(),
+	_from(0.0f), _to(0.0f), _easing(easing)
+{
+}
+
+void Ramp::easing(easing_function easing) {
+	_easing = easing;
 }
 
 void Ramp::to(float to) {
 	fromTo(_value, to);
 }
 
+void Ramp::to(float to, easing_function easing_) {
+	fromTo(_value, to, easing_);
+}
+
 void Ramp::fromTo(float from, float to) {
 	_from = from;
 	_to   = to;
+}
+
+void Ramp::fromTo(float from, float to, easing_function easing_) {
+	fromTo(from, to);
+	easing(easing_);
+
 }
 
 void Ramp::start() {
@@ -47,8 +67,22 @@ void Ramp::start(float to, float duration) {
 	start(_value, to, duration);
 }
 
+void Ramp::start(float to, float duration, easing_function easing_) {
+	start(_value, to, duration, easing_);
+}
+
 void Ramp::start(float from, float to, float duration_) {
 	fromTo(from, to);
+
+	// Initialize duration.
+	duration(duration_);
+
+	// Start chronometer.
+	start();
+}
+
+void Ramp::start(float from, float to, float duration_, easing_function easing_) {
+	fromTo(from, to, easing_);
 
 	// Initialize duration.
 	duration(duration_);
@@ -63,7 +97,7 @@ void Ramp::step() {
 	if (_isStarted) {
 		// Compute value if running -- otherwise leave as is.
 		// TODO: implement easing functions
-		_value = mapFrom01(progress(), _from, _to);
+		_value = mapFrom01(_easing(progress()), _from, _to);
 	}
 }
 

@@ -23,6 +23,7 @@
 
 #include "PqCore.h"
 #include "AbstractTimer.h"
+#include "pq_easing.h"
 
 namespace pq {
 
@@ -36,16 +37,22 @@ public:
    * Constructor.
    * @param initialValue the value the ramp starts with
    */
-  Ramp(float initialValue=0.0f);
+  Ramp(float initialValue=0.0f, easing_function easing=easeNone);
+
+  Ramp(easing_function easing);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }
+
+  void easing(easing_function easing);
+  void noEasing() { easing(easeNone); }
 
   /**
    * Assign final value of the ramp starting from current value.
    * @param to the final value
    */
   virtual void to(float to);
+  virtual void to(float to, easing_function easing);
 
   /**
    * Assign initial and final values of the ramp.
@@ -53,6 +60,7 @@ public:
    * @param to the final value
    */
   virtual void fromTo(float from, float to);
+  virtual void fromTo(float from, float to, easing_function easing);
 
   /// Starts/restarts the chronometer.
   virtual void start();
@@ -63,6 +71,7 @@ public:
    * @param duration the duration of the ramp (in seconds)
    */
   virtual void start(float to, float duration);
+  virtual void start(float to, float duration, easing_function easing);
 
   /**
    * Starts a new ramp.
@@ -71,6 +80,7 @@ public:
    * @param duration the duration of the ramp (in seconds)
    */
   virtual void start(float from, float to, float duration);
+  virtual void start(float from, float to, float duration, easing_function easing);
 
 protected:
   // Overrides Node.step().
@@ -84,6 +94,9 @@ protected:
 
   // The current value.
   float _value;
+
+  // Optional easing function.
+  easing_function _easing;
 };
 
 }
