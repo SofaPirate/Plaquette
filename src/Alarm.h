@@ -31,7 +31,7 @@ namespace pq {
  */
 class Alarm : public DigitalNode, public AbstractTimer {
 public:
-  Alarm(float duration=0.0f);
+  Alarm(float duration);
 
   /// True when time is up.
   virtual bool isOn();
