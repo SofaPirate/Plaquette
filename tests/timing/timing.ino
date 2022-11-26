@@ -17,8 +17,12 @@ SquareOsc* osc[N_METRO] = {
   new SquareOsc(0.1)
 };
 
+const float RAMP_TIME = 5.0f;
+Ramp testRamp;
+
 testing(metro) {
   static float startTime = Plaquette.seconds();
+
   static float nMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
   // static float nMetro[N_METRO] = { 0.0f , 0.0f};
   // static float nMetro[N_METRO] = { 0.0f };
@@ -53,6 +57,23 @@ testing(metro) {
   }
 }
 
+testing(ramp) {
+  static float startTime = Plaquette.seconds();
+
+  assertMoreOrEqual(testRamp.get(), 0.0f);
+  assertLessOrEqual(testRamp.get(), 100.0f);
+  assertNear(testRamp.get(), mapFrom01((Plaquette.seconds()-startTime)/RAMP_TIME, 0, 100), 0.1f);
+    // for (int i=0; i<(int)testRamp.get(); i++)
+    //   print(" ");
+    // println("*");
+  
+  if (Plaquette.seconds() - startTime > RAMP_TIME) {
+    pass();
+  }
+
+}
+
+
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
@@ -60,6 +81,7 @@ void setup() {
     unit2->phase(-0.25f);
     unit2->dutyCycle(0.75f);
   }
+  testRamp.start(0, 100, RAMP_TIME);
   Plaquette.sampleRate(100000.0f);
 }
 
