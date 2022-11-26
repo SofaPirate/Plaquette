@@ -28,7 +28,7 @@ namespace pq {
 
 class AbstractTimer : public Chrono {
 protected:
-  AbstractTimer(float duration=0.0f);
+  AbstractTimer(float durationf);
 
 public:
   /// Starts/restarts the chronometer.
