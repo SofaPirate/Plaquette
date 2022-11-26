@@ -34,17 +34,32 @@ namespace pq {
 class Ramp : public Node, public AbstractTimer {
 public:
   /**
-   * Constructor.
-   * @param initialValue the value the ramp starts with
+   * Basic constructor. Use one of the start(...) functions to launch ramps
+   * with specific parameters.
+   * @param from the value the ramp starts with
    */
-  Ramp(float initialValue=0.0f, easing_function easing=easeNone);
+  Ramp(float from=0.0f);
 
-  Ramp(easing_function easing);
+  /**
+   * Basic constructor. Use one of the start(...) functions to launch ramps
+   * with specific parameters.
+   * @param from the initial value
+   * @param to the final value
+   * @param duration the duration of the ramp (in seconds)
+   * @param easing the easing function to apply (default: no easing)
+   */
+  Ramp(float from, float to, float duration, easing_function easing=easeNone);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }
 
+  /**
+   * Sets easing function to apply to ramp.
+   * @param easing the easing function
+   */
   void easing(easing_function easing);
+
+  /// Remove easing function (linear/no easing).
   void noEasing() { easing(easeNone); }
 
   /**
@@ -52,7 +67,6 @@ public:
    * @param to the final value
    */
   virtual void to(float to);
-  virtual void to(float to, easing_function easing);
 
   /**
    * Assign initial and final values of the ramp.
@@ -60,27 +74,26 @@ public:
    * @param to the final value
    */
   virtual void fromTo(float from, float to);
-  virtual void fromTo(float from, float to, easing_function easing);
 
-  /// Starts/restarts the chronometer.
+  /// Starts/restarts the ramp. Will repeat the last ramp.
   virtual void start();
 
   /**
-   * Starts a new ramp (starting from current value).
+   * Starts a new ramp, starting from current value.
    * @param to the final value
    * @param duration the duration of the ramp (in seconds)
+   * @param easing the easing function (optional)
    */
-  virtual void start(float to, float duration);
-  virtual void start(float to, float duration, easing_function easing);
+  virtual void start(float to, float duration, easing_function easing=0);
 
   /**
    * Starts a new ramp.
    * @param from the initial value
    * @param to the final value
    * @param duration the duration of the ramp (in seconds)
+   * @param easing the easing function (optional).
    */
-  virtual void start(float from, float to, float duration);
-  virtual void start(float from, float to, float duration, easing_function easing);
+  virtual void start(float from, float to, float duration, easing_function easing=0);
 
 protected:
   // Overrides Node.step().

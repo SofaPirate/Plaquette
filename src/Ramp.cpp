@@ -24,15 +24,15 @@
 
 namespace pq {
 
-Ramp::Ramp(float initialValue, easing_function easing) :
-	AbstractTimer(),
-	_from(initialValue), _to(initialValue), _easing(easing)
+Ramp::Ramp(float from) :
+	AbstractTimer(0.0f),
+	_from(from), _to(from), _easing(easeNone)
 {
 }
 
-Ramp::Ramp(easing_function easing) :
-	AbstractTimer(),
-	_from(0.0f), _to(0.0f), _easing(easing)
+Ramp::Ramp(float from, float to, float duration, easing_function easing) :
+	AbstractTimer(duration),
+	_from(from), _to(to), _easing(easing)
 {
 }
 
@@ -44,45 +44,26 @@ void Ramp::to(float to) {
 	fromTo(_value, to);
 }
 
-void Ramp::to(float to, easing_function easing_) {
-	fromTo(_value, to, easing_);
-}
-
 void Ramp::fromTo(float from, float to) {
 	_from = from;
 	_to   = to;
-}
-
-void Ramp::fromTo(float from, float to, easing_function easing_) {
-	fromTo(from, to);
-	easing(easing_);
-
 }
 
 void Ramp::start() {
 	AbstractTimer::start();
 }
 
-void Ramp::start(float to, float duration) {
-	start(_value, to, duration);
-}
-
 void Ramp::start(float to, float duration, easing_function easing_) {
 	start(_value, to, duration, easing_);
 }
 
-void Ramp::start(float from, float to, float duration_) {
+void Ramp::start(float from, float to, float duration_, easing_function easing_) {
+	// Set from and to values.
 	fromTo(from, to);
 
-	// Initialize duration.
-	duration(duration_);
-
-	// Start chronometer.
-	start();
-}
-
-void Ramp::start(float from, float to, float duration_, easing_function easing_) {
-	fromTo(from, to, easing_);
+	// Change easing if specified.
+	if (easing_)
+		easing(easing_);
 
 	// Initialize duration.
 	duration(duration_);
