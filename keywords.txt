@@ -136,6 +136,36 @@ modeInverted	KEYWORD2
 modeCrossing	KEYWORD2
 modeApex	KEYWORD2
 
+# Easing functions
+easeOutSine	KEYWORD2
+easeInOutSine	KEYWORD2
+easeInQuad	KEYWORD2
+easeOutQuad	KEYWORD2
+easeInOutQuad	KEYWORD2
+easeInCubic	KEYWORD2
+easeOutCubic	KEYWORD2
+easeInOutCubic	KEYWORD2
+easeInQuart	KEYWORD2
+easeOutQuart	KEYWORD2
+easeInOutQuart	KEYWORD2
+easeInQuint	KEYWORD2
+easeOutQuint	KEYWORD2
+easeInOutQuint	KEYWORD2
+easeInExpo	KEYWORD2
+easeOutExpo	KEYWORD2
+easeInOutExpo	KEYWORD2
+easeInCirc	KEYWORD2
+easeOutCirc	KEYWORD2
+easeInOutCirc	KEYWORD2
+easeInBack	KEYWORD2
+easeOutBack	KEYWORD2
+easeInOutBack	KEYWORD2
+easeInElastic	KEYWORD2
+easeOutElastic	KEYWORD2
+easeInOutElastic	KEYWORD2
+easeInBounce	KEYWORD2
+easeOutBounce	KEYWORD2
+easeInOutBounce	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
