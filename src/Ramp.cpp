@@ -36,6 +36,11 @@ Ramp::Ramp(float from, float to, float duration, easing_function easing) :
 {
 }
 
+float Ramp::put(float value) {
+  stop();
+  return (_value = value);
+}
+
 void Ramp::easing(easing_function easing) {
 	_easing = easing;
 }

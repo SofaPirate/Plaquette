@@ -54,6 +54,14 @@ public:
   virtual float get() { return _value; }
 
   /**
+   * Forces value in the ramp. If this happens while the ramp is running, it will
+   * interrupt the ramp.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value);
+
+  /**
    * Sets easing function to apply to ramp.
    * @param easing the easing function
    */
