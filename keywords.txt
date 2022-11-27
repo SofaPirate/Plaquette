@@ -20,6 +20,7 @@ SquareOsc	KEYWORD1
 TriOsc	KEYWORD1
 SineOsc	KEYWORD1
 
+Alarm	KEYWORD1
 Metro	KEYWORD1
 Ramp	KEYWORD1
 Timer	KEYWORD1
@@ -49,8 +50,9 @@ beginSerial KEYWORD2
 
 # Utils
 mapFloat	KEYWORD2
+mapFrom01	KEYWORD2
+mapTo01 KEYWORD2
 randomFloat	KEYWORD2
-lerp	KEYWORD2
 
 # Node
 put	KEYWORD2
