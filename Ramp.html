@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.4.1 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.4.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.1
+                0.4.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -108,9 +108,17 @@ triggered to start transitioning to a target value for a certain duration.</p>
 value <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
 <p>Alternatively, calling <code class="docutils literal notranslate"><span class="pre">start(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp’s
 current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
-<p>This diagram shows what happens to the ramp signal if <code class="docutils literal notranslate"><span class="pre">start(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
+<p>The following diagram shows what happens to the ramp signal if <code class="docutils literal notranslate"><span class="pre">start(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
 called, followed later by <code class="docutils literal notranslate"><span class="pre">start(3.0,</span> <span class="pre">1.0)</span></code>:</p>
 <img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ramps also support the use of <a class="reference external" href="http://easings.net">easing functions</a> in order to
+create different kinds of expressive effects with signals. An easing function can
+optionally be specified at the end of a <code class="docutils literal notranslate"><span class="pre">start()</span></code> command or by calling the
+<code class="docutils literal notranslate"><span class="pre">easing()</span></code> function.</p>
+<p>Please refer to <a class="reference internal" href="easings.html"><span class="doc">this page</span></a> for a full list of available easing functions.</p>
+</div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <p>Sequentially ramps through different values.</p>
@@ -121,6 +129,8 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <span class="n">StreamOut</span> <span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
 
 <span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Apply an easing function (optional).</span>
+  <span class="n">myRamp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeOutSine</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
@@ -145,11 +155,29 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp4RampEf">
-<span id="_CPPv3N4Ramp4RampEf"></span><span id="_CPPv2N4Ramp4RampEf"></span><span id="Ramp::Ramp__float"></span><span class="target" id="classpq_1_1_ramp_1a971ebce9ac4ff3975706b7743f84e777"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">initialValue</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Constructor. </p>
+<span id="_CPPv3N4Ramp4RampEf"></span><span id="_CPPv2N4Ramp4RampEf"></span><span id="Ramp::Ramp__float"></span><span class="target" id="classpq_1_1_ramp_1a248391ac817c304a719f056882517d7a"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Basic constructor. </p>
+<p>Use one of the start(…) functions to launch ramps with specific parameters. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>initialValue</strong> – the value the ramp starts with </p>
+<dd class="field-odd"><p><strong>from</strong> – the value the ramp starts with </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp4RampEfff15easing_function">
+<span id="_CPPv3N4Ramp4RampEfff15easing_function"></span><span id="_CPPv2N4Ramp4RampEfff15easing_function"></span><span id="Ramp::Ramp__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1a024d685c187086c34d72cfec081767e7"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easeNone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEfff15easing_function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Basic constructor. </p>
+<p>Use one of the start(…) functions to launch ramps with specific parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from</strong> – the initial value </p></li>
+<li><p><strong>to</strong> – the final value </p></li>
+<li><p><strong>duration</strong> – the duration of the ramp (in seconds) </p></li>
+<li><p><strong>easing</strong> – the easing function to apply (default: no easing) </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -158,6 +186,23 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp3getEv">
 <span id="_CPPv3N4Ramp3getEv"></span><span id="_CPPv2N4Ramp3getEv"></span><span id="Ramp::get"></span><span class="target" id="classpq_1_1_ramp_1ac6a354b0667bce24ccf3d37096d7d9d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value of ramp. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp6easingE15easing_function">
+<span id="_CPPv3N4Ramp6easingE15easing_function"></span><span id="_CPPv2N4Ramp6easingE15easing_function"></span><span id="Ramp::easing__easing_function"></span><span class="target" id="classpq_1_1_ramp_1abe926ae6541f6a57740c6d4902b05750"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">easing</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6easingE15easing_function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets easing function to apply to ramp. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>easing</strong> – the easing function </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp8noEasingEv">
+<span id="_CPPv3N4Ramp8noEasingEv"></span><span id="_CPPv2N4Ramp8noEasingEv"></span><span id="Ramp::noEasing"></span><span class="target" id="classpq_1_1_ramp_1a8b973e9f7e7318320fad41349e9902c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noEasing</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8noEasingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remove easing function (linear/no easing). </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -188,26 +233,27 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEv">
 <span id="_CPPv3N4Ramp5startEv"></span><span id="_CPPv2N4Ramp5startEv"></span><span id="Ramp::start"></span><span class="target" id="classpq_1_1_ramp_1aead9fb134ed0e30782a6704bf9606e4f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Starts/restarts the chronometer. </p>
+<dd><p>Starts/restarts the ramp. Will repeat the last ramp. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEff">
-<span id="_CPPv3N4Ramp5startEff"></span><span id="_CPPv2N4Ramp5startEff"></span><span id="Ramp::start__float.float"></span><span class="target" id="classpq_1_1_ramp_1aee0323d2c5ab2c770365a6113c31f8fa"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEff" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Starts a new ramp (starting from current value). </p>
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEff15easing_function">
+<span id="_CPPv3N4Ramp5startEff15easing_function"></span><span id="_CPPv2N4Ramp5startEff15easing_function"></span><span id="Ramp::start__float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1aa8d300c8f26ebec4958ff66f1d4fa535"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEff15easing_function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Starts a new ramp, starting from current value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>to</strong> – the final value </p></li>
 <li><p><strong>duration</strong> – the duration of the ramp (in seconds) </p></li>
+<li><p><strong>easing</strong> – the easing function (optional) </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEfff">
-<span id="_CPPv3N4Ramp5startEfff"></span><span id="_CPPv2N4Ramp5startEfff"></span><span id="Ramp::start__float.float.float"></span><span class="target" id="classpq_1_1_ramp_1ad36bc4074988abb694eb98a8565b1054"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEfff" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEfff15easing_function">
+<span id="_CPPv3N4Ramp5startEfff15easing_function"></span><span id="_CPPv2N4Ramp5startEfff15easing_function"></span><span id="Ramp::start__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1ac60bff38b0c9df062433f06d15d1f430"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEfff15easing_function" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Starts a new ramp. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -215,6 +261,7 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <li><p><strong>from</strong> – the initial value </p></li>
 <li><p><strong>to</strong> – the final value </p></li>
 <li><p><strong>duration</strong> – the duration of the ramp (in seconds) </p></li>
+<li><p><strong>easing</strong> – the easing function (optional). </p></li>
 </ul>
 </dd>
 </dl>
@@ -270,6 +317,7 @@ called, followed later by <code class="docutils literal notranslate"><span class
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
+<li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a></p></li>
 <li><p><a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a></p></li>
 <li><p><a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a></p></li>
 <li><p><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></p></li>

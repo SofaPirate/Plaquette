@@ -14,10 +14,18 @@ value ``to`` in ``duration`` seconds.
 Alternatively, calling ``start(to, duration)`` will start a transition from the ramp's
 current value to ``to`` in ``duration`` seconds.
 
-This diagram shows what happens to the ramp signal if ``start(5.0, 1.0, 2.0)`` is
+The following diagram shows what happens to the ramp signal if ``start(5.0, 1.0, 2.0)`` is
 called, followed later by ``start(3.0, 1.0)``:
 
 .. image:: images/Plaquette-Ramp.png
+
+.. note::
+  Ramps also support the use of `easing functions <http://easings.net>`_ in order to
+  create different kinds of expressive effects with signals. An easing function can
+  optionally be specified at the end of a ``start()`` command or by calling the
+  ``easing()`` function.
+
+  Please refer to :doc:`this page <easings>` for a full list of available easing functions.
 
 |Example|
 ---------
@@ -33,6 +41,8 @@ Sequentially ramps through different values.
    StreamOut serialOut(Serial);
 
    void begin() {
+     // Apply an easing function (optional).
+     myRamp.easing(easeOutSine);
    }
 
    void step() {
@@ -51,11 +61,12 @@ Sequentially ramps through different values.
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isComplete, to, fromTo
+   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isComplete, easing, noEasing, to, fromTo
 
 |SeeAlso|
 ---------
 - :doc:`Alarm`
+- :doc:`easings`
 - :doc:`Metro`
 - :doc:`Timer`
 - :doc:`TriOsc`
