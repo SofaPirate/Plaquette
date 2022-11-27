@@ -28,7 +28,6 @@
  #endif
 
  // Plaquette builtin functions.
- #include "pq_lerp.h"
  #include "pq_map_real.h"
  #include "pq_print.h"
  #include "pq_random.h"
