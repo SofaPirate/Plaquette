@@ -25,16 +25,16 @@
 #include "MovingAverage.h"
 
 // Output constants.
-#define INTERNAL_PULLUP   0x0
-#define EXTERNAL_PULLUP   0x1
-#define EXTERNAL_PULLDOWN 0x2
+#define DIGITAL_DEFAULT      0x0
+#define DIGITAL_INVERTED     0x1
+#define DIGITAL_INPUT_PULLUP 0x2
 
-#define ANALOG_DEFAULT    0x4
-#define ANALOG_INVERTED   0x8
+#define ANALOG_DEFAULT  0x0
+#define ANALOG_INVERTED 0x1
 
-#define DEBOUNCE_DEFAULT       0x01
-#define DEBOUNCE_LOCK_OUT      0x02
-#define DEBOUNCE_PROMPT_DETECT 0x04
+#define DEBOUNCE_DEFAULT       0x00
+#define DEBOUNCE_LOCK_OUT      0x01
+#define DEBOUNCE_PROMPT_DETECT 0x02
 
 namespace pq {
 
@@ -144,7 +144,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (ANALOG_DEFAULT or ANALOG_INVERTED)
    */
-  AnalogIn(uint8_t pin=A0, uint8_t mode=ANALOG_DEFAULT);
+  AnalogIn(uint8_t pin, uint8_t mode=ANALOG_DEFAULT);
   virtual ~AnalogIn() {}
 
   /// Returns value in [0, 1].
@@ -167,9 +167,9 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN)
+   * @param mode the mode (DIGITAL_DEFAULT, DIGITAL_INVERTED, or DIGITAL_INPUT_PULLUP)
    */
-  DigitalIn(uint8_t pin=0, uint8_t mode=INTERNAL_PULLUP);
+  DigitalIn(uint8_t pin, uint8_t mode=DIGITAL_DEFAULT);
   virtual ~DigitalIn() {}
 
 protected:

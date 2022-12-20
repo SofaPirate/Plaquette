@@ -23,7 +23,7 @@
 DigitalOut led(LED_BUILTIN);
 
 // The button.
-DigitalIn button(2); // defaults to INTERNAL_PULLUP
+DigitalIn button(2, DIGITAL_INPUT_PULLUP);
 
 void begin() {
   button.debounce(); // debounce button
