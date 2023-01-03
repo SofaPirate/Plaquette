@@ -25,7 +25,7 @@ of the unit (the same that would be returned by ``get()``):
   float put(float value)
 
 Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metro`,
-and :doc:`Timer`, have a ``boolean isOn()`` method that work for boolean
+and :doc:`Timer`, have a ``boolean isOn()`` method that works for boolean
 ``true/false`` values. Additionally, digital output units such as
 :doc:`DigitalOut` have a ``boolean putOn(boolean value)`` method.
 
@@ -61,11 +61,11 @@ builtin ``begin()`` and ``step()`` functions, or they may want to include Plaque
 self-updating loop in a timer interrupt function. It is possible to do so by
 including the file ``PlaquetteLib.h`` instead of ``Plaquette.h``.
 
-One is then responsible for calling ``Plaquette.begin()`` at the beginning of the
-``setup()`` function and to call ``Plaquette.step()`` at the beginning of the
-``loop()`` function or inside the interrupt.
+After this step, you is then responsible for calling ``Plaquette.begin()`` at the beginning of the
+``setup()`` function, and also to call ``Plaquette.step()`` at the beginning of the
+``loop()`` function, or inside the interrupt.
 
-Here is an example of our blinking code rewritten using this feature:
+Here is an example of our blinking code rewritten by using this feature:
 
 .. code:: cpp
 

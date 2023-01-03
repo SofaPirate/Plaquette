@@ -10,6 +10,7 @@ Contributors:
 
 - Logo: Ian Donnelly • `Website <https://ijdonnelly.com/>`__
 - Code: Matthew Loewen • `Website <https://www.mloewen.com/>`__`GitHub <https://github.com/mattdoescode>`__
+- Copy Editing: Erin Gee • `Website <https://www.eringee.net/>`__`GitHub <https://github.com/eringee>`__
 
 Plaquette's base source code was produced as part of a research project
 at `labXmodal <http://xmodal.hexagram.ca>`__. A special thanks to `Chris

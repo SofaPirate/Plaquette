@@ -3,7 +3,8 @@
 AnalogOut
 =========
 
-An analog (ie. continuous) output unit that takes a value between 0 and 1 (ie. 0% and 100%).
+An analog (ie. continuous) output unit that converts a value between 0 and 1 (ie. 0% and 100%) into an analog
+voltage on one of the analog output pins.
 
 The unit is assigned to a specific ``pin`` on the board.
 
