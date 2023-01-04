@@ -24,6 +24,6 @@ namespace pq {
 
 Alarm::Alarm(float duration_) : DigitalNode(), AbstractTimer(duration_) {}
 
-bool Alarm::isOn() { return isComplete(); }
+bool Alarm::isOn() { return isFinished(); }
 
 }

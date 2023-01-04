@@ -47,7 +47,10 @@ public:
   virtual float progress() const;
 
   /// Returns true iff the chronometer has completed its process.
-  virtual bool isComplete() const { return progress() >= 1.0; }
+  virtual bool isFinished() const { return progress() >= 1.0; }
+
+  /// @deprecated
+  virtual bool isComplete() const { return isFinished(); }
 
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh);

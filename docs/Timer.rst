@@ -35,7 +35,7 @@ new random duration.
      // Apply oscillator to LED state.
      osc >> led;
 
-     if (myTimer.isComplete()) // if the timer has completed its course
+     if (myTimer.isFinished()) // if the timer has completed its course
      {
        // Restarts the timer with a random duration between 1 and 5 seconds.
        myTimer.start(randomFloat(1.0, 5.0));
@@ -48,7 +48,7 @@ new random duration.
 
 .. doxygenclass:: Timer
    :project: Plaquette
-   :members: Timer, get, start, stop, resume, elapsed, isStarted, isComplete
+   :members: Timer, get, start, stop, resume, elapsed, isStarted, isFinished
 
 |SeeAlso|
 ---------

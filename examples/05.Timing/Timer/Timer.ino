@@ -35,6 +35,6 @@ void step() {
   timer >> led;
 
   // If timer has run its course, restart it.
-  if (timer.isComplete())
+  if (timer.isFinished())
     restartTimer();
 }

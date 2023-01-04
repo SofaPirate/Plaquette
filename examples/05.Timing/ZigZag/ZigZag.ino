@@ -20,7 +20,7 @@ void begin() {}
 
 void step() {
   // When ramp is complete, re-launch it.
-  if (zigZagRamp.isComplete())
+  if (zigZagRamp.isFinished())
   {
     // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
     zigZagRamp.start(randomFloat(-10, 10), 2.0);
