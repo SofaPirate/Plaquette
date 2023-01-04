@@ -66,6 +66,9 @@ public:
    */
   virtual bool putOn(bool isOn);
 
+  /// Changes the mode of the component.
+  virtual void mode(uint8_t mode);
+
 protected:
   virtual void begin();
 };

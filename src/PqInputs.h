@@ -165,6 +165,9 @@ public:
   DigitalIn(uint8_t pin, uint8_t mode=DEFAULT);
   virtual ~DigitalIn() {}
 
+  /// Changes the mode of the component.
+  virtual void mode(uint8_t mode);
+
 protected:
   virtual bool _isOn();
 

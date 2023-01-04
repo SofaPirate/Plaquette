@@ -162,8 +162,13 @@ bool DigitalIn::_isOn() {
   return isHigh;
 }
 
+void DigitalIn::mode(uint8_t mode) {
+  _mode = mode;
+  begin();
+}
+
 void DigitalIn::begin() {
-  pinMode(_pin, _mode == DIGITAL_PULLUP ? INPUT_PULLUP : INPUT);
+  pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
 }
 
 void DigitalIn::step() {
