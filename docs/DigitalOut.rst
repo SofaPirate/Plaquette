@@ -9,8 +9,8 @@ The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``SOURCE`` mode (default) the pin acts as the source of current and the component is "on" when the pin is "high" (Vcc)
-- in ``SINK`` mode the source of current is external and the component is "on" when the pin is "low" (GND)
+- in ``SOURCE`` mode (default) the pin acts as the source of current and the component is "on" when the pin is "high" (Vcc, typically 5V)
+- in ``SINK`` mode the source of current is external (Vcc) and the component is "on" when the pin is "low" (GND)
 
 |Example|
 -------------

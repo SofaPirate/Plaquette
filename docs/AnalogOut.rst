@@ -11,7 +11,7 @@ The unit is assigned to a specific ``pin`` on the board.
 The ``mode`` specifies the behavior of the component attached to the pin:
 
 - in ``SOURCE`` mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)
-- in ``SINK`` mode the component the source of current is external and should be equal to Vcc
+- in ``SINK`` mode the source of current is external (Vcc)
 
 |Example|
 ---------
