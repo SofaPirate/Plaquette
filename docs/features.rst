@@ -9,7 +9,7 @@ facilitates `signal filtering`_ in real-time_. It is fully `compatible with Ardu
 Object-oriented
 ---------------
 
-Plaquette is designed using input, output, and filtering units that are easily 
+Plaquette is designed using input, output, and filtering units that are easily
 interchangeable in a plug-and-play fashion. Units are created using expressive
 code.
 
@@ -61,7 +61,7 @@ In Plaquette, signals are represented either as ``true/false`` conditions (in th
 case of digital binary signals such as those coming from a button or switch), or as
 floating-point numbers in the [0.0-0.1] range (ie. 0% to 100%) (in the case
 of analog signals such as those emitted by a light sensor, microphone, or
-potentiometer.) Because of this, there is no more need for users to perform counter-intuitive 
+potentiometer.) Because of this, there is no more need for users to perform counter-intuitive
 conversions on integer values.
 
 +------------------------------------------------+------------------------------------------------+
@@ -83,9 +83,9 @@ Signal Filtering
 
 Plaquette provides simple yet powerful data filtering tools for debouncing,
 smoothing, and normalizing data. Removing noise in input signals can be as simple as
-calling a function such as ``debounce()`` or ``smooth()``. Rather than guessing the right threshold 
+calling a function such as ``debounce()`` or ``smooth()``. Rather than guessing the right threshold
 for triggering an event based on input sensor input, one can use auto-normalizing
- :doc:`filters <filters>` such as :doc:`MinMaxScaler` and :doc:`Normalizer`.
+:doc:`filters <filters>` such as :doc:`MinMaxScaler` and :doc:`Normalizer`.
 
 Signals in Plaquette can easily flow between units, in a similar fashion to modern
 data-flow softwares such as `Max <https://cycling74.com/products/max>`_,

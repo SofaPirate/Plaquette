@@ -51,7 +51,7 @@ In this statement, ``DigitalOut`` is the **type** of unit that we are
 creating. There also exists other types of units, which will be described later.
 ``DigitalOut`` is a type of software unit that can represent one of the many
 hardware pins for digital output on the Arduino board. One way to think about this is that
- the ``DigitalOut`` is a "virtual" version of the Arduino pin. These can be set to one of two
+the ``DigitalOut`` is a "virtual" version of the Arduino pin. These can be set to one of two
 states: ("on/off", "high/low", "1/0").
 
 The word ``myLed`` is a **name** for the object we are creating.

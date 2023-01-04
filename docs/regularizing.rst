@@ -87,7 +87,7 @@ The complete Plaquette code will look like this:
    }
 
 Step 2 : Getting the Full Range of the Signal
------------------------------------------
+---------------------------------------------
 
 If we run this program, we will likely notice that the LED brightness will not
 span the full range from 0% to 100%. That's because depending on ambient lighting
@@ -169,7 +169,7 @@ So far so good. The number 0.7 is still a bit of an arbitrary, hand-picked numbe
 more sense than 716 because it refers to a more human-understandable concept
 (70% instead of 716 / 1023). However, this approach will still be sensitive to changes in
 the ambient light, and behave differently under different light conditions (for example, it might
- work as expected in the morning, but work less well in the late afternoon when the sun starts to go down.)
+work as expected in the morning, but work less well in the late afternoon when the sun starts to go down.)
 
 One thing we could do would be to make sure that our regularization unit adapts
 to changing conditions. In order to do this, rather than having our MinMaxScaler
