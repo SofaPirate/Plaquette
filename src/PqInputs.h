@@ -25,16 +25,16 @@
 #include "MovingAverage.h"
 
 // Output constants.
-#define DIGITAL_DEFAULT      0x0
-#define DIGITAL_INVERTED     0x1
-#define DIGITAL_INPUT_PULLUP 0x2
+#define DIGITAL_DEFAULT  0x0
+#define DIGITAL_INVERTED 0x1
+#define DIGITAL_PULLUP   0x2
 
 #define ANALOG_DEFAULT  0x0
 #define ANALOG_INVERTED 0x1
 
-#define DEBOUNCE_DEFAULT       0x00
-#define DEBOUNCE_LOCK_OUT      0x01
-#define DEBOUNCE_PROMPT_DETECT 0x02
+#define DEBOUNCE_DEFAULT       0x0
+#define DEBOUNCE_LOCK_OUT      0x1
+#define DEBOUNCE_PROMPT_DETECT 0x2
 
 namespace pq {
 

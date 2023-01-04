@@ -22,7 +22,7 @@
 using namespace pq;
 
 // The button.
-DigitalIn button(2); // defaults to INTERNAL_PULLUP
+DigitalIn button(2, DIGITAL_PULLUP);
 
 void setup() {
   Plaquette.begin(); // needs to be called at top of setup()
