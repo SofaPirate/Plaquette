@@ -9,9 +9,9 @@ The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``INTERNAL_PULLUP`` mode (default) the internal 20K pullup resistor is used
-- in ``EXTERNAL_PULLUP`` mode you need to use an external pullup resistor connected to Vcc
-- in ``EXTERNAL_PULLDOWN`` mode you need to use an external pulldown resistor connected to GND
+- in ``DIGITAL_DEFAULT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vcc, VRef)
+- in ``DIGITAL_INVERTED`` mode the unit will be "on" when the voltage on the pin is low (GND)
+- in ``DIGITAL_PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
 
 Debouncing
 ----------
@@ -36,7 +36,7 @@ pressing a pushbutton attached to digital pin 2.
 
    #include <Plaquette.h>
 
-   DigitalIn button(2);
+   DigitalIn button(2, DIGITAL_PULLUP);
 
    DigitalOut led(13);
 

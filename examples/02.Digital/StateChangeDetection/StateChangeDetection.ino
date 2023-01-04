@@ -26,7 +26,7 @@
 DigitalOut led(LED_BUILTIN);
 
 // The button.
-DigitalIn button(2); // defaults to INTERNAL_PULLUP
+DigitalIn button(2, DIGITAL_PULLUP);
 
 // Counter for the number of button presses.
 int buttonPushCounter = 0;

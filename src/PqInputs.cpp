@@ -157,13 +157,13 @@ DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
 
 bool DigitalIn::_isOn() {
   bool isHigh = (digitalRead(_pin) == HIGH);
-  if (_mode == INTERNAL_PULLUP || _mode == EXTERNAL_PULLUP) // inverted
+  if (_mode == DIGITAL_PULLUP || _mode == DIGITAL_INVERTED) // inverted
     isHigh = !isHigh;
   return isHigh;
 }
 
 void DigitalIn::begin() {
-  pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
+  pinMode(_pin, _mode == DIGITAL_PULLUP ? INPUT_PULLUP : INPUT);
 }
 
 void DigitalIn::step() {

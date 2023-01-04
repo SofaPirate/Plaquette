@@ -14,7 +14,7 @@
 AnalogIn in(A0);
 
 // Digital input.
-DigitalIn button(2);
+DigitalIn button(2, DIGITAL_PULLUP);
 
 // Analog output.
 AnalogOut led(9);
