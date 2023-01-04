@@ -134,7 +134,7 @@ AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
 float AnalogIn::_read() {
   // Convert
   int rawValue = analogRead(_pin);
-  if (_mode == ANALOG_INVERTED)
+  if (_mode == INVERTED)
     rawValue = ANALOG_READ_MAX_VALUE - rawValue;
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
@@ -157,7 +157,7 @@ DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
 
 bool DigitalIn::_isOn() {
   bool isHigh = (digitalRead(_pin) == HIGH);
-  if (_mode == DIGITAL_PULLUP || _mode == DIGITAL_INVERTED) // inverted
+  if (_mode == INTERNAL_PULLUP || _mode == INVERTED) // inverted
     isHigh = !isHigh;
   return isHigh;
 }

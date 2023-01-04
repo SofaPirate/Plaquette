@@ -48,6 +48,11 @@ DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
   : DigitalSource(), PinUnit(pin, mode)
 {}
 
+void DigitalOut::mode(uint8_t mode) {
+  _mode = mode;
+  begin();
+}
+
 void DigitalOut::begin() {
   pinMode(_pin, OUTPUT);
 }

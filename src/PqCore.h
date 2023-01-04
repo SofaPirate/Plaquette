@@ -60,6 +60,32 @@
 // too fast (which would be useless).
 #define PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER 2.000001 // = almost 2
 
+// Input modes.
+#ifndef DEFAULT
+#define DEFAULT         0
+#endif
+
+#if DEFAULT == 0
+#define INVERTED        1
+#define INTERNAL_PULLUP 2
+#elif DEFAULT == 1
+#define INVERTED        2
+#define INTERNAL_PULLUP 3
+#else
+#define INVERTED        (DEFAULT+1)
+#define INTERNAL_PULLUP (DEFAULT+2)
+#endif
+
+// Output modes.
+#define SOURCE DEFAULT
+#define SINK   INVERTED
+
+// Deprecated.
+#define EXTERNAL_PULLDOWN DEFAULT
+#define EXTERNAL_PULLUP   INVERTED
+#define ANALOG_DEFAULT    DEFAULT
+#define ANALOG_INVERTED   INVERTED
+
 namespace pq {
 
 class Unit;
@@ -504,6 +530,10 @@ public:
   /// Returns the mode of the component.
   uint8_t mode() const { return _mode; }
 
+  /// Changes the mode of the component.
+  virtual void mode(uint8_t mode) { _mode = mode; }
+
+protected:
   // The attached pin.
   uint8_t _pin;
 

@@ -19,7 +19,7 @@
 DigitalOut led(LED_BUILTIN);
 
 // The button.
-DigitalIn button(2, DIGITAL_PULLUP);
+DigitalIn button(2, INTERNAL_PULLUP);
 
 // A square-wave (on/off) oscillator.
 SquareOsc oscillator(0.1); // 100 ms period, 50% duty cycle (default)

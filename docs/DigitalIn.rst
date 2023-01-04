@@ -9,9 +9,9 @@ The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``DIGITAL_DEFAULT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vcc, VRef)
-- in ``DIGITAL_INVERTED`` mode the unit will be "on" when the voltage on the pin is low (GND)
-- in ``DIGITAL_PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
+- in ``DEFAULT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vref, typically 5V)
+- in ``INVERTED`` mode the unit will be "on" when the voltage on the pin is low (GND)
+- in ``PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
 
 Debouncing
 ----------
@@ -22,7 +22,7 @@ these transitions called "bouncing" may be read as multiple presses in a very sh
 the program.
 
 The DigitalIn object features debouncing capabilities which can prevent this kind of problems. Debouncing
-can be achieved using different modes: default (``DEBOUNCE_DEFAULT``), lock-out (``DEBOUNCE_LOCK_OUT``)
+can be achieved using different modes: stable (default) (``DEBOUNCE_STABLE``), lock-out (``DEBOUNCE_LOCK_OUT``)
 and prompt-detect (``DEBOUNCE_PROMPT_DETECT``). For more information please refer to the documentation
 of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 
@@ -36,7 +36,7 @@ pressing a pushbutton attached to digital pin 2.
 
    #include <Plaquette.h>
 
-   DigitalIn button(2, DIGITAL_PULLUP);
+   DigitalIn button(2, INTERNAL_PULLUP);
 
    DigitalOut led(13);
 

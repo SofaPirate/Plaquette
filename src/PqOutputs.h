@@ -25,10 +25,6 @@
 
 namespace pq {
 
-// Output constants.
-#define SOURCE 0x0
-#define SINK   0x1
-
 /// A generic class representing a simple PWM output.
 class AnalogOut : public AnalogSource, public PinUnit {
 public:

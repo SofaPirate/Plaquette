@@ -24,17 +24,10 @@
 #include "PqCore.h"
 #include "MovingAverage.h"
 
-// Output constants.
-#define DIGITAL_DEFAULT  0x0
-#define DIGITAL_INVERTED 0x1
-#define DIGITAL_PULLUP   0x2
-
-#define ANALOG_DEFAULT  0x0
-#define ANALOG_INVERTED 0x1
-
-#define DEBOUNCE_DEFAULT       0x0
-#define DEBOUNCE_LOCK_OUT      0x1
-#define DEBOUNCE_PROMPT_DETECT 0x2
+#define DEBOUNCE_STABLE        0
+#define DEBOUNCE_LOCK_OUT      1
+#define DEBOUNCE_PROMPT_DETECT 2
+#define DEBOUNCE_DEFAULT       DEBOUNCE_STABLE
 
 namespace pq {
 
@@ -142,9 +135,9 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (ANALOG_DEFAULT or ANALOG_INVERTED)
+   * @param mode the mode (DEFAULT or INVERTED)
    */
-  AnalogIn(uint8_t pin, uint8_t mode=ANALOG_DEFAULT);
+  AnalogIn(uint8_t pin, uint8_t mode=DEFAULT);
   virtual ~AnalogIn() {}
 
   /// Returns value in [0, 1].
@@ -167,9 +160,9 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (DIGITAL_DEFAULT, DIGITAL_INVERTED, or DIGITAL_INPUT_PULLUP)
+   * @param mode the mode (DEFAULT, INVERTED, or INTERNAL_PULLUP)
    */
-  DigitalIn(uint8_t pin, uint8_t mode=DIGITAL_DEFAULT);
+  DigitalIn(uint8_t pin, uint8_t mode=DEFAULT);
   virtual ~DigitalIn() {}
 
 protected:
