@@ -21,15 +21,12 @@
 #ifndef PQ_EXTRA_H_
 #define PQ_EXTRA_H_
 
-// General.
+// Base.
 #include "PqCore.h"
 #include "MovingAverage.h"
 #include "MovingStats.h"
 
 // Filters.
-//#include "Thresholder.h"
-
-// Normalization.
 #include "MinMaxScaler.h"
 #include "Normalizer.h"
 #include "PeakDetector.h"
@@ -41,12 +38,12 @@
 #include "OscilloscopeOut.h"
 
 // Timing.
-#include "Chrono.h"
+#include "Alarm.h"
 #include "Metro.h"
+#include "Ramp.h"
 #include "Timer.h"
 
 // Generators.
-#include "Ramp.h"
 #include "SineOsc.h"
 #include "SquareOsc.h"
 #include "TriOsc.h"
