@@ -23,10 +23,10 @@ LED using an input photocell:
    }
 
    void loop() {
-     // Read value from photocell (between 0..1023).
+     // Read value from photocell (between 0 and 1023).
      int value = analogRead(photoCellPin);
 
-     // Write value to LED (between 0..255).
+     // Write value to LED (between 0 and 255).
      analogWrite(ledPin, value / 4);
    }
 
