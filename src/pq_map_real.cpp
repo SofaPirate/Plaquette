@@ -22,25 +22,51 @@
 
 #include "pq_map_real.h"
 
+// Safe version of the constrain() macro which makes sure x is within low and high even if low > high.
+float safeConstrain(double x, double low, double high) {
+  // Swap high and low if needed.
+  if (high < low) {
+    double lowCopy = low;
+    low = high;
+    high = lowCopy;
+  }
+
+  // Return contrained value.
+  return (x < low ? low : (x > high ? high : x));
+}
+
+
 namespace pq {
 
-float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh)
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, bool constrain_)
 {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
-    return (toLow + toHigh) / 2.0f; // dummy value
- return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+    value = (toLow + toHigh) / 2.0f; // dummy value
+  else
+    value = (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+
+  // Return and constrain.
+  return (constrain_ ? safeConstrain(value, toLow, toHigh) : value);
 }
 
-float mapFrom01(double value, double toLow, double toHigh) {
-  return (value * (toHigh - toLow)) + toLow;
+float mapFrom01(double value, double toLow, double toHigh, bool constrain_) {
+  // Compute value.
+  value = (value * (toHigh - toLow)) + toLow;
+
+  // Return and constrain.
+  return (constrain_ ? safeConstrain(value, toLow, toHigh) : value);
 }
 
-float mapTo01(double value, double fromLow, double fromHigh) {
+float mapTo01(double value, double fromLow, double fromHigh, bool constrain_) {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
-    return 0.5f; // dummy value
-  return (value - fromLow) / (fromHigh - fromLow);
+    value = 0.5f; // dummy value
+  else
+    value = (value - fromLow) / (fromHigh - fromLow);
+
+  // Return and constrain.
+  return (constrain_ ? safeConstrain(value, 0.0, 1.0) : value);  
 }
 
 } // namespace pq

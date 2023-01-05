@@ -3,8 +3,8 @@
 mapTo01()
 =========
 
-Re-maps a number to range [0, 1]. That is, a value of ``fromLow`` would get
-mapped to 0, a value of ``fromHigh`` to 1, values in-between to values in-between, etc.
+Re-maps a number between 0.0 and 1.0. That is, a value of ``fromLow`` would get
+mapped to 0.0, a value of ``fromHigh`` to 1.0, values in-between to values in-between, etc.
 
 .. code-block:: c++
 
@@ -14,7 +14,15 @@ is equivalent to:
 
 .. code-block:: c++
 
-   y = mapFloat(x, fromLow, fromHigh, 0, 1)
+   mapFloat(x, fromLow, fromHigh, 0, 1)
+
+By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
+out-of-range values are sometimes intended and useful. In order to constrain the return value within
+range, use the ``CONSTRAIN`` argument as the last parameter:
+
+.. code-block:: c++
+
+   mapTo01(x, fromLow, fromHigh, CONSTRAIN)
 
 See :doc:`mapFloat` for more details.
 
@@ -33,7 +41,8 @@ See :doc:`mapFloat` for more details.
    void step() {
      // Generate a sinusoidal values between -1 and 1.
      float x = sin(seconds());
-     // Remap to [0, 1] and send to LED.
+
+     // Remap to the range [0, 1] and send to LED.
      mapTo01(x, -1, 1) >> led;
    }
 
