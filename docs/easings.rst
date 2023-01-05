@@ -13,7 +13,7 @@ All easing functions have the same signature:
 
    float easeFunction(float t)
 
-Value ``x`` should be in range [0, 1] and returned value is also in [0, 1].
+Value ``x`` should be between 0.0 and 1.0, the returned value is also between 0.0 and 1.0.
 
 This is the list of all easing functions (source: http://easings.net):
 

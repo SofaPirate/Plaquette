@@ -6,7 +6,7 @@ Timer
 A timer digital source unit that counts time. The timer can be started, stopped, and
 resumed.
 
-When started, the timer goes from 0 to 1 through its duration.
+When started, the timer goes from 0.0 to 1.0 (ie. 0% to 100%) through its duration.
 
 |Example|
 ---------
