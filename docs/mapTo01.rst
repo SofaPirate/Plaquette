@@ -50,7 +50,7 @@ See :doc:`mapFloat` for more details.
 |Reference|
 -----------
 
-.. doxygenfunction:: mapTo01(double, double, double)
+.. doxygenfunction:: mapTo01(double, double, double, bool)
    :project: Plaquette
 
 |SeeAlso|

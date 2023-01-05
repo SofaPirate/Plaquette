@@ -64,7 +64,7 @@ Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/function
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFloat(double, double, double, double, double)
+.. doxygenfunction:: mapFloat(double, double, double, double, double, bool)
    :project: Plaquette
 
 |SeeAlso|

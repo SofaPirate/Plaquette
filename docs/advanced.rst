@@ -6,10 +6,10 @@ Advanced Usage
 Avoiding Plaquette Style
 ------------------------
 
-If you don't want to use Plaquette's :doc:`>> <pipe>` operator, or Plaquette's
-auto-conversion of units to values (eg., ``if (input)``, ``input >> output``),
-you can avoid these features by simply using Plaquette units's ``get()`` and
-``put()`` methods.
+If you don't want to use Plaquette's :doc:`>> <pipe>` operator or auto-conversion 
+of units to values (eg., ``if (input)``, ``input >> output``) in favor of a more
+typical object-oriented programming style, you can avoid using these features by 
+simply using Plaquette units' ``get()`` and ``put()`` methods.
 
 The ``get()`` method returns the current value of the unit:
 
@@ -26,8 +26,8 @@ of the unit (the same that would be returned by ``get()``):
 
 Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metro`,
 and :doc:`Timer`, have a ``boolean isOn()`` method that works for boolean
-``true/false`` values. Additionally, digital output units such as
-:doc:`DigitalOut` have a ``boolean putOn(boolean value)`` method.
+``true/false`` values, while digital output units such as :doc:`DigitalOut` 
+have a ``boolean putOn(boolean value)`` method.
 
 Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.
