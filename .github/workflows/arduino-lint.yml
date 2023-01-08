@@ -24,3 +24,4 @@ jobs:
         with:
           project-type: library
           library-manager: update
+          compliance: permissive
