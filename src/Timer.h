@@ -27,7 +27,7 @@
 namespace pq {
 
 /**
- * Chronometer class which ramps from 0 to 1 in a given duration.
+ * Chronometer class which ramps from 0.0 to 1.0 in a given duration.
  */
 class Timer : public Node, public AbstractTimer {
 public:

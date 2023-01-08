@@ -82,7 +82,6 @@ void Ramp::step() {
 
 	if (_isStarted) {
 		// Compute value if running -- otherwise leave as is.
-		// TODO: implement easing functions
 		_value = mapFrom01(_easing(progress()), _from, _to);
 	}
 }
