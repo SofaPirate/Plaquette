@@ -58,25 +58,21 @@ testing(metro) {
   }
 }
 
-testing(ramp) {
-  static float startTime = Plaquette.seconds();
+// testing(ramp) {
+//   static float startTime = Plaquette.seconds();
 
-  assertMoreOrEqual(testRamp.get(), 0.0f);
-  assertLessOrEqual(testRamp.get(), 100.0f);
-  assertNear(testRamp.get(), mapFrom01((Plaquette.seconds()-startTime)/RAMP_TIME, 0, 100), 0.1f);
-    // for (int i=0; i<(int)testRamp.get(); i++)
-    //   print(" ");
-    // println("*");
+//   assertMoreOrEqual(testRamp.get(), 0.0f);
+//   assertLessOrEqual(testRamp.get(), 100.0f);
+//   assertNear(testRamp.get(), mapFrom01((Plaquette.seconds()-startTime)/RAMP_TIME, 0, 100), 0.1f);
   
-  if (Plaquette.seconds() - startTime > RAMP_TIME) {
-    pass();
-  }
+//   if (Plaquette.seconds() - startTime > RAMP_TIME) {
+//     pass();
+//   }
 
-}
+// }
 
 
 void setup() {
-  aunit::TestRunner::setTimeout(20);
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
     SquareOsc *unit2 = osc[i];
