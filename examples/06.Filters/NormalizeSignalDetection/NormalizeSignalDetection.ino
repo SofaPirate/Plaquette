@@ -27,7 +27,7 @@ AnalogIn in(A0); // defaults on pin A0
 Normalizer normalizer;
 
 // Digital LED output.
-DigitalOut led;
+DigitalOut led(LED_BUILTIN);
 
 void begin() {
   // Smooth incoming signal.

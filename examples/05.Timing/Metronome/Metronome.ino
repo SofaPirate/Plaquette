@@ -24,8 +24,8 @@ AnalogIn pot(A0);
 // The metronome object.
 Metro metronome(1.0);
 
-// The timer object (to make sure the LED light stays visible for a short time).
-Timer ledOnTimer(0.05);
+// An alarm object (to make sure the LED light stays visible for a short time).
+Alarm ledOnAlarm(0.05);
 
 void begin() {
   // Start with LED off.
@@ -39,10 +39,10 @@ void step() {
   // When the metronome "hits": switch LED on and start timer.
   if (metronome) {
     led.on();
-    ledOnTimer.start();
+    ledOnAlarm.start();
   }
 
   // Switch off LED when timer has completed.
-  if (ledOnTimer)
+  if (ledOnAlarm)
     led.off();
 }

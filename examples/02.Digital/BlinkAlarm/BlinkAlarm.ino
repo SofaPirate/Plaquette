@@ -1,5 +1,5 @@
 /**
- * BlinkTimer
+ * BlinkAlarm
  *
  * Turns on and off a light emitting diode (LED) using a Timer unit.
  *
@@ -18,20 +18,20 @@
 DigitalOut led(LED_BUILTIN);
 
 // The timer.
-Timer timer(1.0); // period: 1 second
+Alarm alarm(1.0); // period: 1 second
 
 void begin() {
   // Start timer.
-  timer.start();
+  alarm.start();
 }
 
 void step() {
   // Every time the metronome "fires": change LED state.
-  if (timer) {
+  if (alarm) {
     // Flip LED state.
     led.toggle();
 
     // Restart timer.
-    timer.start();
+    alarm.start();
   }
 }
