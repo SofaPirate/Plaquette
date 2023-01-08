@@ -36,6 +36,15 @@ public:
   SquareOsc(float period=1.0f, float dutyCycle=0.5f);
   virtual ~SquareOsc() {}
 
+  /// Returns true iff the input is "on".
+  virtual bool isOn();
+
+  /// Returns true iff the input is "off".
+  virtual bool isOff() { return !isOn(); }
+
+  /// Operator that allows usage in conditional expressions.
+  virtual operator bool() { return isOn(); }
+
   /**
    * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
    * @param dutyCycle the duty-cycle as a value in [0, 1]
