@@ -1,6 +1,13 @@
 name: AUnit Tests
 
-on: [push]
+on:
+  push:
+    paths:
+    - '**.ino'
+    - '**.cpp'
+    - '**.h'
+    - '**auint_tests.yml'
+  pull_request:
 
 jobs:
   build:

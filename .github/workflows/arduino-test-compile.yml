@@ -1,13 +1,12 @@
 name: Compile Examples
 on:
-  - push
-  - pull_request
-#  push: # see: https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
-#    paths:
-#    - '**.ino'
-#    - '**.cpp'
-#    - '**.h'
-#  pull_request:
+  push:
+    paths:
+    - '**.ino'
+    - '**.cpp'
+    - '**.h'
+    - '**arduino-test-compile.yml'
+  pull_request:
 jobs:
   build:
     name: ${{ matrix.arduino-boards-fqbn }} - test compiling examples
