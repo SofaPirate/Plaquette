@@ -75,7 +75,7 @@ testing(ramp) {
 
 
 void setup() {
-  aunit::TestRunner::setTimeOut(20);
+  aunit::TestRunner::setTimeout(20);
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
     SquareOsc *unit2 = osc[i];
