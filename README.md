@@ -1,5 +1,11 @@
 [![arduino-library-badge](http://www.ardu-badge.com/badge/Plaquette.svg)](http://www.ardu-badge.com/Plaquette)
 
+[![Compile Examples](https://github.com/SofaPirate/Plaquette/actions/workflows/arduino-test-compile.yml/badge.svg)](https://github.com/SofaPirate/Plaquette/actions/workflows/arduino-test-compile.yml)
+
+[![AUnit Tests](https://github.com/SofaPirate/Plaquette/actions/workflows/aunit_tests.yml/badge.svg)](https://github.com/SofaPirate/Plaquette/actions/workflows/aunit_tests.yml)
+
+[![Arduino Lint](https://github.com/SofaPirate/Plaquette/actions/workflows/arduino-lint.yml/badge.svg)](https://github.com/SofaPirate/Plaquette/actions/workflows/arduino-lint.yml)
+
 Please visit official website for installation instructions and more: https://sofapirate.github.io/Plaquette/
 
 Plaquette is an object-oriented, user-friendly, signal-centric programming
