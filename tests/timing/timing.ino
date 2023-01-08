@@ -17,6 +17,8 @@ SquareOsc* osc[N_METRO] = {
   new SquareOsc(0.1)
 };
 
+#define RAMP_TIME 5.0f
+
 Ramp testRamp;
 
 testing(metro) {
@@ -58,8 +60,6 @@ testing(metro) {
 
 testing(ramp) {
   static float startTime = Plaquette.seconds();
-
-  static const float RAMP_TIME = 5.0f;
 
   assertMoreOrEqual(testRamp.get(), 0.0f);
   assertLessOrEqual(testRamp.get(), 100.0f);
