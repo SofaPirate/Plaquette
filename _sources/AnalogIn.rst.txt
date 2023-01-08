@@ -9,8 +9,8 @@ The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``ANALOG_DEFAULT`` mode (default) the value is expressed as a percentage of the reference voltage (Vref, typically 5V)
-- in ``ANALOG_INVERTED`` mode the value is inverted (ie. 0V corresponds to 100% while 2.5V corresponds to 50%).
+- in ``DEFAULT`` mode (default) the value is expressed as a percentage of the reference voltage (Vref, typically 5V)
+- in ``INVERTED`` mode the value is inverted (ie. 0V corresponds to 100% while 2.5V corresponds to 50%).
 
 |Example|
 ---------

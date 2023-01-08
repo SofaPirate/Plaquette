@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mapTo01() &mdash; Plaquette 0.4.2 documentation</title>
+  <title>mapTo01() &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -101,40 +102,47 @@
            <div itemprop="articleBody">
              
   <section id="mapto01">
-<h1>mapTo01()<a class="headerlink" href="#mapto01" title="Permalink to this headline"></a></h1>
-<p>Re-maps a number to range [0, 1]. That is, a value of <code class="docutils literal notranslate"><span class="pre">fromLow</span></code> would get
-mapped to 0, a value of <code class="docutils literal notranslate"><span class="pre">fromHigh</span></code> to 1, values in-between to values in-between, etc.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">)</span>
+<h1>mapTo01()<a class="headerlink" href="#mapto01" title="Permalink to this heading"></a></h1>
+<p>Re-maps a number between 0.0 and 1.0. That is, a value of <code class="docutils literal notranslate"><span class="pre">fromLow</span></code> would get
+mapped to 0.0, a value of <code class="docutils literal notranslate"><span class="pre">fromHigh</span></code> to 1.0, values in-between to values in-between, etc.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">fromLow</span><span class="p">,</span><span class="w"> </span><span class="n">fromHigh</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>is equivalent to:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fromLow</span><span class="p">,</span> <span class="n">fromHigh</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">fromLow</span><span class="p">,</span><span class="w"> </span><span class="n">fromHigh</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>By default, does <em>not</em> constrain output to stay within the [<code class="docutils literal notranslate"><span class="pre">fromHigh</span></code>, <code class="docutils literal notranslate"><span class="pre">toHigh</span></code>] range, because
+out-of-range values are sometimes intended and useful. In order to constrain the return value within
+range, use the <code class="docutils literal notranslate"><span class="pre">CONSTRAIN</span></code> argument as the last parameter:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">fromLow</span><span class="p">,</span><span class="w"> </span><span class="n">fromHigh</span><span class="p">,</span><span class="w"> </span><span class="n">CONSTRAIN</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> for more details.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Generate a sinusoidal values between -1 and 1.</span>
-  <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">seconds</span><span class="p">());</span>
-  <span class="c1">// Remap to [0, 1] and send to LED.</span>
-  <span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">-1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Generate a sinusoidal values between -1 and 1.</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">seconds</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Remap to the range [0, 1] and send to LED.</span>
+<span class="w">  </span><span class="n">mapTo01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N2pq7mapTo01Eddd">
-<span id="_CPPv3N2pq7mapTo01Eddd"></span><span id="_CPPv2N2pq7mapTo01Eddd"></span><span id="pq::mapTo01__double.double.double"></span><span class="target" id="pq__map__real_8cpp_1abd87a28c3d4d3af60c2170761b13a8c8"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapTo01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq7mapTo01Eddd" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N2pq7mapTo01Edddb">
+<span id="_CPPv3N2pq7mapTo01Edddb"></span><span id="_CPPv2N2pq7mapTo01Edddb"></span><span id="pq::mapTo01__double.double.double.b"></span><span class="target" id="pq__map__real_8cpp_1a5ec9f606504faddfabe3d5c58ec7af71"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapTo01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromHigh</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">constrain</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UNCONSTRAIN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq7mapTo01Edddb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Re-maps a number to the [0, 1] range. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -142,6 +150,7 @@ mapped to 0, a value of <code class="docutils literal notranslate"><span class="
 <li><p><strong>value</strong> – the number to map </p></li>
 <li><p><strong>fromLow</strong> – the lower bound of the value’s current range </p></li>
 <li><p><strong>fromHigh</strong> – the upper bound of the value’s current range </p></li>
+<li><p><strong>constrain</strong> – set to CONSTRAIN to constrain the return value between toLow and toHigh </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -152,7 +161,7 @@ mapped to 0, a value of <code class="docutils literal notranslate"><span class="
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a></p></li>
 <li><p><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a></p></li>

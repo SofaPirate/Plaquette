@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnalogOut &mdash; Plaquette 0.4.2 documentation</title>
+  <title>AnalogOut &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -102,32 +103,33 @@
            <div itemprop="articleBody">
              
   <section id="analogout">
-<h1>AnalogOut<a class="headerlink" href="#analogout" title="Permalink to this headline"></a></h1>
-<p>An analog (ie. continuous) output unit that takes a value between 0 and 1 (ie. 0% and 100%).</p>
+<h1>AnalogOut<a class="headerlink" href="#analogout" title="Permalink to this heading"></a></h1>
+<p>An analog (ie. continuous) output unit that converts a value between 0 and 1 (ie. 0% and 100%) into an analog
+voltage on one of the analog output pins.</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
 <ul class="simple">
 <li><p>in <code class="docutils literal notranslate"><span class="pre">SOURCE</span></code> mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)</p></li>
-<li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the component the source of current is external and should be equal to Vcc</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the source of current is external (Vcc)</p></li>
 </ul>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// The LED value is changed randomly by a tiny amount (random walk).</span>
-  <span class="c1">// Mutliplying by samplePeriod() makes sure the rate of change stays stable.</span>
-  <span class="p">(</span><span class="n">led</span> <span class="o">+</span> <span class="n">randomFloat</span><span class="p">(</span><span class="mf">-0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">samplePeriod</span><span class="p">())</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// The LED value is changed randomly by a tiny amount (random walk).</span>
+<span class="w">  </span><span class="c1">// Mutliplying by samplePeriod() makes sure the rate of change stays stable.</span>
+<span class="w">  </span><span class="p">(</span><span class="n">led</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samplePeriod</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49AnalogOut">
 <span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition"></a><br /></dt>
@@ -136,7 +138,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t">
-<span id="_CPPv3N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_out_1acf74a1db57c5f958f8832c1b19b1ca31"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">9</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">SOURCE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_out_1a1901787e6425ff897f542db7e9060836"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -178,6 +180,12 @@
 <dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut4modeE7uint8_t">
+<span id="_CPPv3N9AnalogOut4modeE7uint8_t"></span><span id="_CPPv2N9AnalogOut4modeE7uint8_t"></span><span id="AnalogOut::mode__uint8_t"></span><span class="target" id="classpq_1_1_pin_unit_1a75f6d84cc48e03b69c04f03bd42b1ea3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut4modeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the mode of the component. </p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -200,7 +208,7 @@ converters, and act as true analog outputs.</p>
 </div>
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>

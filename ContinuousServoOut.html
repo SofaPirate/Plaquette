@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ContinuousServoOut &mdash; Plaquette 0.4.2 documentation</title>
+  <title>ContinuousServoOut &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -98,7 +99,7 @@
            <div itemprop="articleBody">
              
   <section id="continuousservoout">
-<h1>ContinuousServoOut<a class="headerlink" href="#continuousservoout" title="Permalink to this headline"></a></h1>
+<h1>ContinuousServoOut<a class="headerlink" href="#continuousservoout" title="Permalink to this heading"></a></h1>
 <p>A source unit that controls a continous rotation servo-motor. A continuous
 servo-motor can move indefinitely forward or backwards.</p>
 <p>Servo motors have three wires: power, ground, and signal. The power wire is
@@ -111,42 +112,42 @@ probably need to power them from a separate supply (i.e. not the +5V pin on
 your Arduino). Be sure to connect the grounds of the Arduino and external power
 supply together.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Everytime a button is pushed, the motor is stopped. Then upon button release it
 starts moving in the opposite direction.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// The servo-motor output on pin 9.</span>
-<span class="n">ContinuousServoOut</span> <span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">ContinuousServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// The push-button.</span>
-<span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Preserves the servo last speed value.</span>
-<span class="kt">float</span> <span class="n">lastValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Debounce button.</span>
-  <span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span>
-  <span class="c1">// Starts the servo.</span>
-  <span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Debounce button.</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Starts the servo.</span>
+<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Save speed.</span>
-    <span class="n">lastValue</span> <span class="o">=</span> <span class="n">servo</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
-    <span class="c1">// Stop servo.</span>
-    <span class="n">servo</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">fell</span><span class="p">())</span> <span class="p">{</span>
-    <span class="c1">// Reset speed.</span>
-    <span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">lastValue</span><span class="p">);</span>
-    <span class="c1">// ... then invert it.</span>
-    <span class="n">servo</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Save speed.</span>
+<span class="w">    </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">servo</span><span class="p">.</span><span class="n">get</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Stop servo.</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">fell</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reset speed.</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">lastValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ... then invert it.</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="cpp class">
@@ -209,7 +210,7 @@ starts moving in the opposite direction.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="ServoOut.html"><span class="doc">ServoOut</span></a></p></li>

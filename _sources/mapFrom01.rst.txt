@@ -14,7 +14,15 @@ is equivalent to:
 
 .. code-block:: c++
 
-   y = mapFloat(x, 0, 1, toLow, toHigh)
+   mapFloat(x, 0, 1, toLow, toHigh)
+
+By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
+out-of-range values are sometimes intended and useful. In order to constrain the return value within
+range, use the ``CONSTRAIN`` argument as the last parameter:
+
+.. code-block:: c++
+
+   mapFrom01(x, toLow, toHigh, CONSTRAIN)
 
 See :doc:`mapFloat` for more details.
 
@@ -36,7 +44,9 @@ See :doc:`mapFloat` for more details.
 
    void step() {
      // Change duty-cycle of oscillator in range [0.2, 0.8].
-     oscillator.dutyCycle(mapFrom01(modulator, 0.2, 0.8));
+     float dutyCycle = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
+     oscillator.dutyCycle(dutyCycle);
+
      // Send to LED.
      oscillator >> led;
    }
@@ -45,7 +55,7 @@ See :doc:`mapFloat` for more details.
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFrom01(double, double, double)
+.. doxygenfunction:: mapFrom01(double, double, double, bool)
    :project: Plaquette
 
 |SeeAlso|

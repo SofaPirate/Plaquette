@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ServoOut &mdash; Plaquette 0.4.2 documentation</title>
+  <title>ServoOut &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -32,7 +33,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -97,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="servoout">
-<h1>ServoOut<a class="headerlink" href="#servoout" title="Permalink to this headline"></a></h1>
+<h1>ServoOut<a class="headerlink" href="#servoout" title="Permalink to this heading"></a></h1>
 <p>A source unit that controls a standard servo-motor.</p>
 <p>Servo motors have three wires: power, ground, and signal. The power wire is
 typically red, and should be connected to the 5V pin on the Arduino board.
@@ -109,26 +110,26 @@ probably need to power them from a separate supply (i.e. not the +5V pin on
 your Arduino). Be sure to connect the grounds of the Arduino and external power
 supply together.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Sweeps the shaft of a servo motor back and forth across 180 degrees.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// The servo-motor output on pin 9.</span>
-<span class="n">ServoOut</span> <span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">ServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Oscillator to make the servo sweep.</span>
-<span class="n">SineOsc</span> <span class="nf">oscillator</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="n">SineOsc</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Position the servo in center.</span>
-  <span class="n">servo</span><span class="p">.</span><span class="n">center</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Position the servo in center.</span>
+<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">center</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Updates the value and send it back as output.</span>
-  <span class="n">oscillator</span> <span class="o">&gt;&gt;</span> <span class="n">servo</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Updates the value and send it back as output.</span>
+<span class="w">  </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">servo</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="cpp class">
@@ -205,7 +206,7 @@ supply together.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="ContinuousServoOut.html"><span class="doc">ContinuousServoOut</span></a></p></li>

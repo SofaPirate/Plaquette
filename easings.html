@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Easings &mdash; Plaquette 0.4.2 documentation</title>
+  <title>Easings &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -97,19 +98,19 @@
            <div itemprop="articleBody">
              
   <section id="easings">
-<h1>Easings<a class="headerlink" href="#easings" title="Permalink to this headline"></a></h1>
+<h1>Easings<a class="headerlink" href="#easings" title="Permalink to this heading"></a></h1>
 <p>Easing functions apply non-linear effects to changing values, in order to create
 expressive real-time outputs. Plaquette provides users with a wide range of such
 functions, typically used with a Ramp unit.</p>
 <p>All easing functions have the same signature:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">easeFunction</span><span class="p">(</span><span class="kt">float</span> <span class="n">t</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">easeFunction</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Value <code class="docutils literal notranslate"><span class="pre">x</span></code> should be in range [0, 1] and returned value is also in [0, 1].</p>
+<p>Value <code class="docutils literal notranslate"><span class="pre">x</span></code> should be between 0.0 and 1.0, the returned value is also between 0.0 and 1.0.</p>
 <p>This is the list of all easing functions (source: <a class="reference external" href="http://easings.net">http://easings.net</a>):</p>
 <img alt="_images/easings.png" src="_images/easings.png" />
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
 </ul>

@@ -46,7 +46,7 @@ Sequentially ramps through different values.
    }
 
    void step() {
-     if (myRamp.isComplete())
+     if (myRamp.isFinished())
      {
        // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
        myRamp.start(randomFloat(-10, 10), 2.0);
@@ -61,7 +61,7 @@ Sequentially ramps through different values.
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isComplete, easing, noEasing, to, fromTo
+   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isFinished, easing, noEasing, to, fromTo
 
 |SeeAlso|
 ---------

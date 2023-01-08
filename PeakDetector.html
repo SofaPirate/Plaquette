@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PeakDetector &mdash; Plaquette 0.4.2 documentation</title>
+  <title>PeakDetector &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -100,7 +101,7 @@
            <div itemprop="articleBody">
              
   <section id="peakdetector">
-<h1>PeakDetector<a class="headerlink" href="#peakdetector" title="Permalink to this headline"></a></h1>
+<h1>PeakDetector<a class="headerlink" href="#peakdetector" title="Permalink to this heading"></a></h1>
 <p>This unit detects peaks (minima or maxima) in an incoming signal. Peaks are detected
 based on crossing a trigger threshold above (or below) which a peak is detected.</p>
 <p>Two different ways are supported to do this:</p>
@@ -132,54 +133,54 @@ by calling the source unit’s <code class="docutils literal notranslate"><span 
 unit.</p>
 </div>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Uses a Normalizer and a PeakDetector to analyze input sensor values and detect
 peaks. Toggle and LED each time a peak is detected.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// Analog sensor (eg. photocell or microphone).</span>
-<span class="n">AnalogIn</span> <span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Normalization unit to normalize values.</span>
-<span class="n">Normalizer</span> <span class="n">normalizer</span><span class="p">;</span>
+<span class="n">Normalizer</span><span class="w"> </span><span class="n">normalizer</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Peak detector. Threshold is set at 1.5 standard deviations above normal.</span>
-<span class="n">PeakDetector</span> <span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.5</span><span class="p">));</span> <span class="c1">// default mode = PEAK_MAX</span>
+<span class="n">PeakDetector</span><span class="w"> </span><span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.5</span><span class="p">));</span><span class="w"> </span><span class="c1">// default mode = PEAK_MAX</span>
 <span class="c1">// NOTE: You can change mode using optional 2nd parameter, example:</span>
 <span class="c1">// PeakDetector detector(1.5, PEAK_FALLING));</span>
 
 <span class="c1">// Digital LED output.</span>
-<span class="n">DigitalOut</span> <span class="n">led</span><span class="p">;</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Adjust reload threshold to smaller value than reloadThreshold.</span>
-  <span class="n">detector</span><span class="p">.</span><span class="n">reloadThreshold</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Adjust reload threshold to smaller value than reloadThreshold.</span>
+<span class="w">  </span><span class="n">detector</span><span class="p">.</span><span class="n">reloadThreshold</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span><span class="w"></span>
 
-  <span class="c1">// Adjust fallback tolerance as % between apex and trigger threshold.</span>
-  <span class="n">detector</span><span class="p">.</span><span class="n">fallbackTolerance</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span> <span class="c1">// 0.2 = 20% (default: 10%)</span>
+<span class="w">  </span><span class="c1">// Adjust fallback tolerance as % between apex and trigger threshold.</span>
+<span class="w">  </span><span class="n">detector</span><span class="p">.</span><span class="n">fallbackTolerance</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0.2 = 20% (default: 10%)</span>
 
-  <span class="c1">// Smooth signal to avoid false peaks due to noise.</span>
-  <span class="n">sensor</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Smooth signal to avoid false peaks due to noise.</span>
+<span class="w">  </span><span class="n">sensor</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span><span class="w"></span>
 
-  <span class="c1">// Set a time window of 1 minute (60 seconds) on normalizer.</span>
-  <span class="c1">// This will allow the normalier to slowly readjust itself</span>
-  <span class="c1">// if the lighting conditions change.</span>
-  <span class="n">normalizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">60.0f</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="w">  </span><span class="c1">// Set a time window of 1 minute (60 seconds) on normalizer.</span>
+<span class="w">  </span><span class="c1">// This will allow the normalier to slowly readjust itself</span>
+<span class="w">  </span><span class="c1">// if the lighting conditions change.</span>
+<span class="w">  </span><span class="n">normalizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">60.0f</span><span class="p">);</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Signal is normalized and sent to peak detector.</span>
-  <span class="n">sensor</span> <span class="o">&gt;&gt;</span> <span class="n">normalizer</span> <span class="o">&gt;&gt;</span> <span class="n">detector</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Signal is normalized and sent to peak detector.</span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">normalizer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span><span class="w"></span>
 
-  <span class="c1">// Toggle LED when peak detector triggers.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">detector</span><span class="p">)</span>
-    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// Toggle LED when peak detector triggers.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">detector</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv412PeakDetector">
 <span id="_CPPv312PeakDetector"></span><span id="_CPPv212PeakDetector"></span><span id="PeakDetector"></span><span class="target" id="classpq_1_1_peak_detector"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PeakDetector</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalNode</span></span><a class="headerlink" href="#_CPPv412PeakDetector" title="Permalink to this definition"></a><br /></dt>
@@ -298,7 +299,7 @@ peaks. Toggle and LED each time a peak is detected.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></p></li>
 <li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></p></li>

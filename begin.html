@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>begin() &mdash; Plaquette 0.4.2 documentation</title>
+  <title>begin() &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -99,7 +100,7 @@
            <div itemprop="articleBody">
              
   <section id="begin">
-<h1>begin()<a class="headerlink" href="#begin" title="Permalink to this headline"></a></h1>
+<h1>begin()<a class="headerlink" href="#begin" title="Permalink to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function is called when a sketch starts. Use it to initialize
 units, start using libraries, etc. The <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function will only run once,
 after each powerup or reset of the board.</p>
@@ -112,26 +113,26 @@ be done in Arduino such as <code class="docutils literal notranslate"><span clas
 contain only a few calls or even be left empty.</p>
 </div>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">SquareOsc</span> <span class="n">oscillator</span><span class="p">;</span>
-<span class="n">AnalogIn</span> <span class="nf">input</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="n">oscillator</span><span class="p">;</span><span class="w"></span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">input</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">oscillator</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-  <span class="n">oscillator</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.75</span><span class="p">);</span>
-  <span class="n">input</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">oscillator</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">oscillator</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.75</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">input</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a></p></li>
 </ul>

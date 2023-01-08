@@ -29,7 +29,7 @@ principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` ma
 
 
 |Example|
---------
+---------
 
 Reacts to high input values by activating an output LED. Scaler is used to
 automatically adapt to incoming sensor values.

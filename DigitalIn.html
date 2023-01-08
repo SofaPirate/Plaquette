@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DigitalIn &mdash; Plaquette 0.4.2 documentation</title>
+  <title>DigitalIn &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -103,50 +104,50 @@
            <div itemprop="articleBody">
              
   <section id="digitalin">
-<h1>DigitalIn<a class="headerlink" href="#digitalin" title="Permalink to this headline"></a></h1>
+<h1>DigitalIn<a class="headerlink" href="#digitalin" title="Permalink to this heading"></a></h1>
 <p>A digital (ie. binary) input unit that can be either “on” or “off”.</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
 <ul class="simple">
-<li><p>in <code class="docutils literal notranslate"><span class="pre">INTERNAL_PULLUP</span></code> mode (default) the internal 20K pullup resistor is used</p></li>
-<li><p>in <code class="docutils literal notranslate"><span class="pre">EXTERNAL_PULLUP</span></code> mode you need to use an external pullup resistor connected to Vcc</p></li>
-<li><p>in <code class="docutils literal notranslate"><span class="pre">EXTERNAL_PULLDOWN</span></code> mode you need to use an external pulldown resistor connected to GND</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> mode (default) the unit will be “on” when the voltage on the pin is high (Vref, typically 5V)</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">INVERTED</span></code> mode the unit will be “on” when the voltage on the pin is low (GND)</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">PULLUP</span></code> mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons</p></li>
 </ul>
 <section id="debouncing">
-<h2>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this headline"></a></h2>
+<h2>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this heading"></a></h2>
 <p>Some digital inputs such as <a class="reference external" href="https://en.wikipedia.org/wiki/Push-button">push-buttons</a> often
 generate spurious open/close transitions when pressed, due to mechanical and physical issues:
 these transitions called “bouncing” may be read as multiple presses in a very short time, fooling
 the program.</p>
 <p>The DigitalIn object features debouncing capabilities which can prevent this kind of problems. Debouncing
-can be achieved using different modes: default (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_DEFAULT</span></code>), lock-out (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_LOCK_OUT</span></code>)
+can be achieved using different modes: stable (default) (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_STABLE</span></code>), lock-out (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_LOCK_OUT</span></code>)
 and prompt-detect (<code class="docutils literal notranslate"><span class="pre">DEBOUNCE_PROMPT_DETECT</span></code>). For more information please refer to the documentation
 of the <a class="reference external" href="https://github.com/thomasfredericks/Bounce2">Bounce2 Arduino Library</a>.</p>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Turns on and off a light emitting diode (LED) connected to digital pin 13, when
 pressing a pushbutton attached to digital pin 2.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span> <span class="c1">// debounce button</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// debounce button</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Toggle the LED each time the button is pressed.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span>
-    <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Toggle the LED each time the button is pressed.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49DigitalIn">
 <span id="_CPPv39DigitalIn"></span><span id="_CPPv29DigitalIn"></span><span id="DigitalIn"></span><span class="target" id="classpq_1_1_digital_in"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DigitalIn</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Debounceable</span></span><a class="headerlink" href="#_CPPv49DigitalIn" title="Permalink to this definition"></a><br /></dt>
@@ -155,16 +156,22 @@ pressing a pushbutton attached to digital pin 2.</p>
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t">
-<span id="_CPPv3N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1a6697addc055552476c58d316808cb6b4"></span><span class="sig-name descname"><span class="n"><span class="pre">DigitalIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">INTERNAL_PULLUP</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="_CPPv2N9DigitalIn9DigitalInE7uint8_t7uint8_t"></span><span id="DigitalIn::DigitalIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1afc30d80a2afd4ef4bde93248d1b96c35"></span><span class="sig-name descname"><span class="n"><span class="pre">DigitalIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn9DigitalInE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin number </p></li>
-<li><p><strong>mode</strong> – the mode (INTERNAL_PULLUP, EXTERNAL_PULLUP, or EXTERNAL_PULLDOWN) </p></li>
+<li><p><strong>mode</strong> – the mode (DEFAULT, INVERTED, or INTERNAL_PULLUP) </p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9DigitalIn4modeE7uint8_t">
+<span id="_CPPv3N9DigitalIn4modeE7uint8_t"></span><span id="_CPPv2N9DigitalIn4modeE7uint8_t"></span><span id="DigitalIn::mode__uint8_t"></span><span class="target" id="classpq_1_1_digital_in_1a875b2533a92a8b384057700fdfe3194c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9DigitalIn4modeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the mode of the component. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -261,7 +268,7 @@ pressing a pushbutton attached to digital pin 2.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>

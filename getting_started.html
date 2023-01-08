@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started &mdash; Plaquette 0.4.2 documentation</title>
+  <title>Getting started &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -109,9 +110,12 @@
            <div itemprop="articleBody">
              
   <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<p>This short introduction will guide you through the first steps of using Plaquette.</p>
+<p>We also recommend watching our introductory <a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">video tutorial series</a>.</p>
+<a class="reference external image-reference" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip"><img alt="IMAGE ALT TEXT HERE" src="https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg" /></a>
 <section id="step-1-install-plaquette">
-<h2>Step 1: Install Plaquette<a class="headerlink" href="#step-1-install-plaquette" title="Permalink to this headline"></a></h2>
+<h2>Step 1: Install Plaquette<a class="headerlink" href="#step-1-install-plaquette" title="Permalink to this heading"></a></h2>
 <p>If you do not have Arduino installed on your machine you need to
 <a class="reference external" href="https://www.arduino.cc/en/Main/Software">download and install the Arduino
 IDE</a> for your platform.</p>
@@ -120,11 +124,11 @@ library following <a class="reference external" href="https://www.arduino.cc/en/
 instructions</a>.</p>
 </section>
 <section id="step-2-your-first-plaquette-program">
-<h2>Step 2: Your first Plaquette program<a class="headerlink" href="#step-2-your-first-plaquette-program" title="Permalink to this headline"></a></h2>
+<h2>Step 2: Your first Plaquette program<a class="headerlink" href="#step-2-your-first-plaquette-program" title="Permalink to this heading"></a></h2>
 <p>We will begin by creating a simple program that will make the built-in
-LED blink.</p>
+LED on your microcontroller blink.</p>
 <section id="create-a-new-sketch">
-<h3>Create a new sketch<a class="headerlink" href="#create-a-new-sketch" title="Permalink to this headline"></a></h3>
+<h3>Create a new sketch<a class="headerlink" href="#create-a-new-sketch" title="Permalink to this heading"></a></h3>
 <p>Create a new empty sketch by selecting <strong>File &gt; New</strong>.</p>
 <p><strong>IMPORTANT:</strong> New Arduino sketches are initialized with some “slug”
 starting code. Make sure to erase the content of the sketch before
@@ -132,44 +136,45 @@ beginning. You can use <strong>Edit &gt; Select All</strong> and then click <str
 <strong>Backspace</strong>.</p>
 </section>
 <section id="include-library">
-<h3>Include library<a class="headerlink" href="#include-library" title="Permalink to this headline"></a></h3>
+<h3>Include library<a class="headerlink" href="#include-library" title="Permalink to this heading"></a></h3>
 <p>Include the Plaquette library by typing:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
 </section>
 <section id="create-an-output-unit">
-<h3>Create an output unit<a class="headerlink" href="#create-an-output-unit" title="Permalink to this headline"></a></h3>
+<h3>Create an output unit<a class="headerlink" href="#create-an-output-unit" title="Permalink to this heading"></a></h3>
 <p>Now, we will create a new unit that will allow us to control the
 built-in LED:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span> <span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"> </span><span class="c1">//or whatever pin the built-in LED is located on for your microcontroller</span>
 </pre></div>
 </div>
 <p>In this statement, <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is the <strong>type</strong> of unit that we are
-creating. There exist other types of units as we will soon see.
-<code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a type of unit that is attached to one of the many
-digital outputs on the Arduino board which can be set to one of two
-states (“on/off”, “high/low”, “1/0”).</p>
+creating. There also exists other types of units, which will be described later.
+<code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a type of software unit that can represent one of the many
+hardware pins for digital output on the Arduino board. One way to think about this is that
+the <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a “virtual” version of the Arduino pin. These can be set to one of two
+states: (“on/off”, “high/low”, “1/0”).</p>
 <p>The word <code class="docutils literal notranslate"><span class="pre">myLed</span></code> is a <strong>name</strong> for the object we are creating.</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">13</span></code> is a <strong>parameter</strong> of the object <code class="docutils literal notranslate"><span class="pre">myLed</span></code> that
-specifies the <em>pin</em> it corresponds to on the board.</p>
+specifies the hardware <em>pin</em> that it corresponds to on the board.</p>
 <p>In English, the statement would thus read as: “Create a unit named
 <code class="docutils literal notranslate"><span class="pre">myLed</span></code> of type <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal notranslate"><span class="pre">13</span></code>.”</p>
 </section>
 <section id="create-an-input-unit">
-<h3>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Permalink to this headline"></a></h3>
+<h3>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Permalink to this heading"></a></h3>
 <p>We will now create another unit that will generate a signal which will
 be sent to the LED to make it blink. To this effect, we will use the
 <code class="docutils literal notranslate"><span class="pre">SquareOsc</span></code> unit type which generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
 wave</a> oscillating between
-“on/high/one” and “off/low/zero” at a regular period of 2.0 seconds and
+“on/high/one” and “off/low/zero” at a regular period of 2.0 seconds, and
 a <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">duty-cycle</a> of 50%:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="create-the-begin-function">
-<h3>Create the begin() function<a class="headerlink" href="#create-the-begin-function" title="Permalink to this headline"></a></h3>
+<h3>Create the begin() function<a class="headerlink" href="#create-the-begin-function" title="Permalink to this heading"></a></h3>
 <p>Each Plaquette sketch necessitates the declaration of two functions:
 <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code>.</p>
 <p>Function <code class="docutils literal notranslate"><span class="pre">begin()</span></code> is called only once at the beginning of the sketch
@@ -178,109 +183,109 @@ a <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">
 function in Arduino). In our case, we do not to perform any special
 configuration at startup so we will leave the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function
 empty:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="create-the-step-function">
-<h3>Create the step() function<a class="headerlink" href="#create-the-step-function" title="Permalink to this headline"></a></h3>
+<h3>Create the step() function<a class="headerlink" href="#create-the-step-function" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">step()</span></code> function is called repetitively and indefinitely during
 the course of the program (like the
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/loop/">loop()</a>
 function in Arduino).</p>
-<p>Here, we need to send the signal generated by the <code class="docutils literal notranslate"><span class="pre">myOsc</span></code> input unit
-to the <code class="docutils literal notranslate"><span class="pre">myLed</span></code> output unit. We will do this using Plaquette’s special
+<p>Here, we will send the signal generated by the <code class="docutils literal notranslate"><span class="pre">myOsc</span></code> input unit
+to the <code class="docutils literal notranslate"><span class="pre">myLed</span></code> output unit. We will do this by using Plaquette’s special
 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In plain English, the statement <code class="docutils literal notranslate"><span class="pre">myOsc</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: “Take the
 value generated by <code class="docutils literal notranslate"><span class="pre">myOsc</span></code> and put it in <code class="docutils literal notranslate"><span class="pre">myLed</span></code>.”</p>
 </section>
 <section id="upload-sketch">
-<h3>Upload sketch<a class="headerlink" href="#upload-sketch" title="Permalink to this headline"></a></h3>
+<h3>Upload sketch<a class="headerlink" href="#upload-sketch" title="Permalink to this heading"></a></h3>
 <p>Upload your sketch to the Arduino board. You should see the LED on the
 board blinking once every two seconds at a regular pace.</p>
 <p>Et voilà!</p>
 </section>
 <section id="full-code">
-<h3>Full code<a class="headerlink" href="#full-code" title="Permalink to this headline"></a></h3>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<h3>Full code<a class="headerlink" href="#full-code" title="Permalink to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span> <span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">SquareOsc</span> <span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="step-3-experiment">
-<h2>Step 3 : Experiment!<a class="headerlink" href="#step-3-experiment" title="Permalink to this headline"></a></h2>
+<h2>Step 3 : Experiment!<a class="headerlink" href="#step-3-experiment" title="Permalink to this heading"></a></h2>
 <section id="period-and-duty-cycle">
-<h3>Period and duty cycle<a class="headerlink" href="#period-and-duty-cycle" title="Permalink to this headline"></a></h3>
+<h3>Period and duty cycle<a class="headerlink" href="#period-and-duty-cycle" title="Permalink to this heading"></a></h3>
 <p>Try changing the <em>period</em> and/or <em>duty-cycle</em> parameters in the square
 wave unit construction:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="nf">myOsc</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;period&gt;</span></code> can be any positive number representing the period of
 oscillation (in seconds)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;duty-cycle&gt;</span></code> can be any number between 0.0 (0%) and 1.0 (100%)
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;duty-cycle&gt;</span></code> can be any number between 0.0 (0%) and 1.0 (100%),
 and represents the proportion of the period during which the signal
 is “high” (ie. “on duty”)</p></li>
 </ul>
 <p>What happens?</p>
 </section>
 <section id="adding-and-multiplying">
-<h3>Adding and multiplying<a class="headerlink" href="#adding-and-multiplying" title="Permalink to this headline"></a></h3>
+<h3>Adding and multiplying<a class="headerlink" href="#adding-and-multiplying" title="Permalink to this heading"></a></h3>
 <p>Add another oscillator with a different period and duty cycle: multiply
 their values and send the result to the LED.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span> <span class="nf">myOsc2</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc2</span><span class="p">(</span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">duty</span><span class="o">-</span><span class="n">cycle</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// ...</span>
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">(</span><span class="n">myOsc</span> <span class="o">*</span> <span class="n">myOsc2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">myOsc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">myOsc2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Try adding their values instead: what do you see?</p>
 </section>
 <section id="use-a-conditional">
-<h3>Use a conditional<a class="headerlink" href="#use-a-conditional" title="Permalink to this headline"></a></h3>
+<h3>Use a conditional<a class="headerlink" href="#use-a-conditional" title="Permalink to this heading"></a></h3>
 <p>Add a third oscillator that will “switch” between the two oscillators
 every 5 seconds using an
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/control-structure/if/">if…else</a>
 statement.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// TIP: omitting the duty-cycle parameter results in default value (0.5)</span>
-<span class="n">SquareOsc</span> <span class="nf">mySwitcher</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">mySwitcher</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// ...</span>
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">mySwitcher</span><span class="p">)</span>
-    <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">myOsc2</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mySwitcher</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">myOsc2</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>ADVANCED</strong>: You can rewrite this expression in a more compact way
 using the <a class="reference external" href="https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm">? : conditional
 operator</a>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">(</span><span class="n">mySwitcher</span> <span class="o">?</span> <span class="nl">myOsc</span> <span class="p">:</span> <span class="n">myOsc2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">mySwitcher</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">myOsc</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">myOsc2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="more-examples">
-<h3>More examples<a class="headerlink" href="#more-examples" title="Permalink to this headline"></a></h3>
+<h3>More examples<a class="headerlink" href="#more-examples" title="Permalink to this heading"></a></h3>
 <p>You will find more examples in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
 <ul class="simple">
 <li><p>Using a button</p></li>

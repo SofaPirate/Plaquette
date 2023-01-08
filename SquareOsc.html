@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SquareOsc &mdash; Plaquette 0.4.2 documentation</title>
+  <title>SquareOsc &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -98,7 +99,7 @@
            <div itemprop="articleBody">
              
   <section id="squareosc">
-<h1>SquareOsc<a class="headerlink" href="#squareosc" title="Permalink to this headline"></a></h1>
+<h1>SquareOsc<a class="headerlink" href="#squareosc" title="Permalink to this heading"></a></h1>
 <p>A source unit that generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square wave</a>
 signal. The signal can be tuned by changing the <code class="docutils literal notranslate"><span class="pre">period</span></code> and/or <code class="docutils literal notranslate"><span class="pre">frequency</span></code>
 of the oscillation, as well as the <code class="docutils literal notranslate"><span class="pre">duty</span> <span class="pre">cycle</span></code>.</p>
@@ -107,22 +108,22 @@ of the oscillation, as well as the <code class="docutils literal notranslate"><s
 cycle (period) during which the wave is “on”.</p>
 <img alt="_images/Plaquette-SquareOsc-DutyCycle.png" src="_images/Plaquette-SquareOsc-DutyCycle.png" />
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Makes the built-in LED blink with a period of 4 seconds. Because the duty cycle
 is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">SquareOsc</span> <span class="nf">blinkOsc</span><span class="p">(</span><span class="mf">4.0</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">blinkOsc</span><span class="p">(</span><span class="mf">4.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">blinkOsc</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span> <span class="c1">// Sets the duty cycle to 25%</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">blinkOsc</span><span class="p">.</span><span class="n">dutyCycle</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sets the duty cycle to 25%</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">blinkOsc</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">blinkOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="cpp class">
@@ -147,7 +148,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9SquareOsc9dutyCycleEf">
-<span id="_CPPv3N9SquareOsc9dutyCycleEf"></span><span id="_CPPv2N9SquareOsc9dutyCycleEf"></span><span id="SquareOsc::dutyCycle__float"></span><span class="target" id="classpq_1_1_square_osc_1a84e803ec07be2dd6367d95b52e08be2e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SquareOsc" title="SquareOsc"><span class="n"><span class="pre">SquareOsc</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">dutyCycle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dutyCycle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9dutyCycleEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9SquareOsc9dutyCycleEf"></span><span id="_CPPv2N9SquareOsc9dutyCycleEf"></span><span id="SquareOsc::dutyCycle__float"></span><span class="target" id="classpq_1_1_square_osc_1a839927dd8852c0f94c8a788e31e25ec8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dutyCycle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dutyCycle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9SquareOsc9dutyCycleEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the duty-cycle (ie. </p>
 <p>the proportion of time during which the signal is on). </p>
 <dl class="field-list simple">
@@ -228,7 +229,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this headline"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a></p></li>
 <li><p><a class="reference internal" href="TriOsc.html"><span class="doc">TriOsc</span></a></p></li>

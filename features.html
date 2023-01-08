@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Plaquette 0.4.2 documentation</title>
+  <title>Features &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -96,16 +97,16 @@
            <div itemprop="articleBody">
              
   <section id="features">
-<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h1>
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h1>
 <p>Plaquette is an <a class="reference internal" href="#object-oriented">object-oriented</a>, <a class="reference internal" href="#user-friendly">user-friendly</a>, <a class="reference internal" href="#signal-centric">signal-centric</a> framework that
 facilitates <a class="reference internal" href="#signal-filtering">signal filtering</a> in <a class="reference internal" href="#real-time">real-time</a>. It is fully <a class="reference internal" href="#compatible-with-arduino">compatible with Arduino</a>.</p>
 <section id="object-oriented">
-<span id="id1"></span><h2>Object-oriented<a class="headerlink" href="#object-oriented" title="Permalink to this headline"></a></h2>
-<p>Plaquette is designed using input, output, and filtering units that can be
-easily interchanged in a plug-and-play fashion. Units are created using expressive
+<span id="id1"></span><h2>Object-oriented<a class="headerlink" href="#object-oriented" title="Permalink to this heading"></a></h2>
+<p>Plaquette is designed using input, output, and filtering units that are easily
+interchangeable in a plug-and-play fashion. Units are created using expressive
 code.</p>
 <p>For example, the code <code class="docutils literal notranslate"><span class="pre">DigitalOut</span> <span class="pre">led</span></code> creates a new digital output object
-that can be used to control and LED.</p>
+that can be used to control an LED.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -131,11 +132,11 @@ that can be used to control and LED.</p>
 </table>
 </section>
 <section id="user-friendly">
-<span id="id2"></span><h2>User-friendly<a class="headerlink" href="#user-friendly" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>User-friendly<a class="headerlink" href="#user-friendly" title="Permalink to this heading"></a></h2>
 <p>Plaquette allows users to quickly design interactive systems using an expressive
-language that abstracts away low-level functions. This allows both beginners and
+language that abstracts low-level functions. This allows both beginners and
 experts to create truly expressive code. For example, switching our LED
-object can be achieved by calling: <code class="docutils literal notranslate"><span class="pre">led.on()</span></code>. Find out more about Plaquette’s
+object on or off can be achieved by calling: <code class="docutils literal notranslate"><span class="pre">led.on()</span></code>. Find out more about Plaquette’s
 base units by following <a class="reference internal" href="base_units.html"><span class="doc">this link</span></a>.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -162,14 +163,14 @@ base units by following <a class="reference internal" href="base_units.html"><sp
 </table>
 </section>
 <section id="signal-centric">
-<span id="id3"></span><h2>Signal-centric<a class="headerlink" href="#signal-centric" title="Permalink to this headline"></a></h2>
+<span id="id3"></span><h2>Signal-centric<a class="headerlink" href="#signal-centric" title="Permalink to this heading"></a></h2>
 <p>Plaquette helps designers manipulate real-time signals from inputs to outputs.
-In Plaquette, signals are represented as either <code class="docutils literal notranslate"><span class="pre">true/false</span></code> conditions in the
-case of digital binary signals such as those coming from a button or switch, or as
-floating-point numbers typically in the [0..1] range (ie. 0% to 100%) in the case
+In Plaquette, signals are represented either as <code class="docutils literal notranslate"><span class="pre">true/false</span></code> conditions (in the
+case of digital binary signals such as those coming from a button or switch), or as
+floating-point numbers in the [0.0-0.1] range (ie. 0% to 100%) (in the case
 of analog signals such as those emitted by a light sensor, microphone, or
-potentiometer. No more need to perform counter-intuitive conversions on integer
-values.</p>
+potentiometer.) Because of this, there is no more need for users to perform counter-intuitive
+conversions on integer values.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -195,17 +196,17 @@ values.</p>
 </table>
 </section>
 <section id="signal-filtering">
-<span id="id4"></span><h2>Signal Filtering<a class="headerlink" href="#signal-filtering" title="Permalink to this headline"></a></h2>
+<span id="id4"></span><h2>Signal Filtering<a class="headerlink" href="#signal-filtering" title="Permalink to this heading"></a></h2>
 <p>Plaquette provides simple yet powerful data filtering tools for debouncing,
 smoothing, and normalizing data. Removing noise in input signals can be as simple as
-calling a function such as <code class="docutils literal notranslate"><span class="pre">debounce()</span></code> or <code class="docutils literal notranslate"><span class="pre">smooth()</span></code>. Rather than guessing by
-trial-and-error the right threshold to trigger an event based on an input sensor,
-one can use auto-normalizing <a class="reference internal" href="filters.html"><span class="doc">filters</span></a> such as <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> and <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a>.</p>
-<p>Signals in Plaquette can easily flow between units, in a similar fashion as modern
+calling a function such as <code class="docutils literal notranslate"><span class="pre">debounce()</span></code> or <code class="docutils literal notranslate"><span class="pre">smooth()</span></code>. Rather than guessing the right threshold
+for triggering an event based on input sensor input, one can use auto-normalizing
+<a class="reference internal" href="filters.html"><span class="doc">filters</span></a> such as <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> and <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a>.</p>
+<p>Signals in Plaquette can easily flow between units, in a similar fashion to modern
 data-flow softwares such as <a class="reference external" href="https://cycling74.com/products/max">Max</a>,
 <a class="reference external" href="https://puredata.info">Pure Data</a>, and <a class="reference external" href="https://derivative.ca">TouchDesigner</a>.
-While this can be achieved using function calls, Plaquette further provides a
-special <strong>piping operator</strong> (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) which allows the sending of data from one unit
+While this can be achieved using function calls, Plaquette provides a
+special <strong>piping operator</strong> (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) which allows data to be sent from one unit
 to another.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -235,19 +236,18 @@ to another.</p>
 Plaquette’s signal filtering features.</p>
 </section>
 <section id="real-time">
-<span id="id5"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this headline"></a></h2>
+<span id="id5"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this heading"></a></h2>
 <p>Plaquette avoids blocking processes such as Arduino’s (in)famous <code class="docutils literal notranslate"><span class="pre">delay()</span></code> by
 providing a set of <a class="reference internal" href="timing.html"><span class="doc">timing units</span></a> as well as time-based
-<a class="reference internal" href="generators.html"><span class="doc">signal generators</span></a>. The processing loop is thus never interrupted,
+<a class="reference internal" href="generators.html"><span class="doc">signal generators</span></a>. As such, the processing loop is never interrupted,
 allowing interactive and generative processes to flow smoothly.</p>
 <p>Plaquette forbids the use of blocking functions such as Arduino’s
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/delay/">delay()</a> and
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/">delayMicroseconds()</a>.
 Rather, it invites programmers to adopt a frame-by-frame approach to coding similar
 to <a class="reference external" href="https://processing.org/">Processing</a>.</p>
-<p>Compare how a naive attempt to make an <a class="reference external" href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink">LED blink</a>
-when pressing a button results in a slowly responding behavior in Arduino, versus
-Plaquette’s real-time approach:</p>
+<p>Compare this (albeit naive) attempt to make an <a class="reference external" href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink">LED blink</a>
+when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -259,39 +259,39 @@ Plaquette’s real-time approach:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">buttonPin</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">ledPin</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<tr class="row-even"><td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">buttonPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ledPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">pinMode</span><span class="p">(</span><span class="n">buttonPin</span><span class="p">,</span> <span class="n">INPUT_PULLUP</span><span class="p">);</span>
-  <span class="n">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">buttonPin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_PULLUP</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Button is checked only one per second.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">buttonPin</span><span class="p">)</span> <span class="o">==</span> <span class="n">LOW</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="c1">// do nothing for 500ms</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span> <span class="c1">// do nothing for 500ms</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Button is checked only one per second.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">buttonPin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// do nothing for 500ms</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// do nothing for 500ms</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span> <span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">DigitalOut</span> <span class="nf">led</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Square wave with period of 1 second.</span>
-<span class="n">SquareOsc</span> <span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">step</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Button is checked all the time.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">)</span>
-    <span class="n">oscillator</span> <span class="o">&gt;&gt;</span> <span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Button is checked all the time.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </td>
@@ -300,19 +300,19 @@ Plaquette’s real-time approach:</p>
 </table>
 </section>
 <section id="arduino-compatible">
-<span id="compatible-with-arduino"></span><h2>Arduino compatible<a class="headerlink" href="#arduino-compatible" title="Permalink to this headline"></a></h2>
+<span id="compatible-with-arduino"></span><h2>Arduino compatible<a class="headerlink" href="#arduino-compatible" title="Permalink to this heading"></a></h2>
 <p>Plaquette is installed as an Arduino library and provides a replacement for the
 core Arduino functionalities while remaining fully compatible with Arduino code.
 Seasoned Arduino users should consult the <a class="reference internal" href="advanced.html"><span class="doc">Advanced Usage</span></a> section for some tips
 on how to integrate Plaquette into their existing code.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="sc">&#39;T&#39;</span><span class="p">)</span>
-  <span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;T&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Plaquette is still at an experimental stage of development. If you
-have any issues or questions, please contact the developers or file
+have any issues or questions, please contact the developers, or file
 a bug in our <a class="reference external" href="https://github.com/SofaPirate/Plaquette/issues">issue tracker</a>.</p>
 </div>
 </section>

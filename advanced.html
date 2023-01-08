@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.4.2 documentation</title>
+  <title>Advanced Usage &mdash; Plaquette 0.4.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -16,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.2
+                0.4.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -92,26 +93,26 @@
            <div itemprop="articleBody">
              
   <section id="advanced-usage">
-<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline"></a></h1>
+<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this heading"></a></h1>
 <section id="avoiding-plaquette-style">
-<h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Permalink to this headline"></a></h2>
-<p>If you don’t want to use Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator, or Plaquette’s
-auto-conversion of units to values (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>),
-you can avoid these features by simply using Plaquette units’s <code class="docutils literal notranslate"><span class="pre">get()</span></code> and
-<code class="docutils literal notranslate"><span class="pre">put()</span></code> methods.</p>
+<h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Permalink to this heading"></a></h2>
+<p>If you don’t want to use Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion
+of units to values (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>) in favor of a more
+typical object-oriented programming style, you can avoid using these features by
+simply using Plaquette units’ <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> methods.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns the current value of the unit:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">get</span><span class="p">()</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">get</span><span class="p">()</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">put()</span></code> method sends a value to the unit and then returns the current value
 of the unit (the same that would be returned by <code class="docutils literal notranslate"><span class="pre">get()</span></code>):</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">put</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">put</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Additionally, digital input units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a>,
-and <a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a>, have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isOn()</span></code> method that work for boolean
-<code class="docutils literal notranslate"><span class="pre">true/false</span></code> values. Additionally, digital output units such as
-<a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code> method.</p>
+and <a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a>, have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isOn()</span></code> method that works for boolean
+<code class="docutils literal notranslate"><span class="pre">true/false</span></code> values, while digital output units such as <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>
+have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code> method.</p>
 <p>Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.</p>
 <table class="colwidths-given docutils align-default">
@@ -150,31 +151,31 @@ instead of the Plaquette style.</p>
 </table>
 </section>
 <section id="using-plaquette-as-an-external-library">
-<h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Permalink to this headline"></a></h2>
+<h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Permalink to this heading"></a></h2>
 <p>Seasoned Arduino coders might want to avoid rewriting their code using Plaquette’s
 builtin <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code> functions, or they may want to include Plaquette’s
 self-updating loop in a timer interrupt function. It is possible to do so by
 including the file <code class="docutils literal notranslate"><span class="pre">PlaquetteLib.h</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Plaquette.h</span></code>.</p>
-<p>One is then responsible for calling <code class="docutils literal notranslate"><span class="pre">Plaquette.begin()</span></code> at the beginning of the
-<code class="docutils literal notranslate"><span class="pre">setup()</span></code> function and to call <code class="docutils literal notranslate"><span class="pre">Plaquette.step()</span></code> at the beginning of the
-<code class="docutils literal notranslate"><span class="pre">loop()</span></code> function or inside the interrupt.</p>
-<p>Here is an example of our blinking code rewritten using this feature:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;PlaquetteLib.h&gt;</span><span class="cp"></span>
+<p>After this step, you is then responsible for calling <code class="docutils literal notranslate"><span class="pre">Plaquette.begin()</span></code> at the beginning of the
+<code class="docutils literal notranslate"><span class="pre">setup()</span></code> function, and also to call <code class="docutils literal notranslate"><span class="pre">Plaquette.step()</span></code> at the beginning of the
+<code class="docutils literal notranslate"><span class="pre">loop()</span></code> function, or inside the interrupt.</p>
+<p>Here is an example of our blinking code rewritten by using this feature:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PlaquetteLib.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="nn">pq</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">pq</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">DigitalOut</span> <span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">SquareOsc</span> <span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">Plaquette</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">Plaquette</span><span class="p">.</span><span class="n">step</span><span class="p">();</span>
-  <span class="n">myOsc</span> <span class="o">&gt;&gt;</span> <span class="n">myLed</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

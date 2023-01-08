@@ -23,26 +23,26 @@ LED using an input photocell:
    }
 
    void loop() {
-     // Read value from photocell (between 0..1023).
+     // Read value from photocell (between 0 and 1023).
      int value = analogRead(photoCellPin);
 
-     // Write value to LED (between 0..255).
+     // Write value to LED (between 0 and 255).
      analogWrite(ledPin, value / 4);
    }
 
-As explained in :doc:`why_plaquette`, this simple code is complicated by the fact
+As explained in :doc:`why_plaquette` section, this simple code is made complicated by the fact
 that the programmer needs to remember low-level information concerning the ranges
-of raw number values (1023, 255, ...) Furthermore, it fails to adapt to changing
+of raw number values (1023, 255, ...) Furthermore, this code fails to adapt to changing
 conditions such as the range of the ambient light.
 
-Let's see how Plaquette can help us creating more expressive code using inputs and
+Let's see how Plaquette can help us to create more expressive code by using inputs and
 outputs signals rather than meaningless raw numbers.
 
 
 Step 1 : Direct Input-to-Output
 -------------------------------
 
-To begin, we will reimplement the example above using more expressive code.
+To begin, we will re-implement the example above, by using a more "expressive" code.
 
 First, let's define our input photocell on pin ``A0`` using an :doc:`AnalogIn` unit:
 
@@ -58,7 +58,7 @@ Then, let's add an output analog LED on pin `9` using an :doc:`AnalogOut` unit:
 
 If we want to directly control the value of the LED from the value of the
 photocell, all we need to do is to send the photocell's value to the led. The
-easiest way to do so is using the :doc:`>> <pipe>` operator:
+easiest way to do so is by using the :doc:`>> <pipe>` operator:
 
 .. code-block:: c++
 
@@ -82,25 +82,25 @@ The complete Plaquette code will look like this:
 
    // Define frame-by-frame operations.
    void step() {
-     // Just send photo-cell value to LED.
+     // Send photocell value directly to the LED.
      photoCell >> led;
    }
 
-Step 2 : Getting the Full Range of Signal
------------------------------------------
+Step 2 : Getting the Full Range of the Signal
+---------------------------------------------
 
 If we run this program, we will likely notice that the LED brightness will not
 span the full range from 0% to 100%. That's because depending on ambient lighting
 conditions, the photocell's values will not move across the full spectrum of
-possibilities. For instance, in the dark, the photocell might range from 10% to 50%,
+possibility. For instance, in the dark, the photocell might range from 10% to 50%,
 while in full daylight, it might range between 70% and 95%.
 
-In order to resolve that issue, we need to **regularize** the photocell's signal.
+In order to resolve this issue, we need to **regularize** the photocell's signal.
 We can do so using a filtering unit such as a :doc:`MinMaxScaler`. This unit automatically
-keeps track of the minimum and maximum values taken by the incoming signal over time
+keeps track of the minimum and maximum values of the incoming signal over time
 (for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).
 
-To do so, we will simply create the unit:
+To use this approach, create the unit:
 
 .. code-block:: c++
 
@@ -124,7 +124,7 @@ The above expression will do the following, in order:
 Step 3 : Reacting to Signal Changes
 -----------------------------------
 
-Remember our example from :doc:`ealier <why_plaquette>` where we were trying to detect high-valued
+Remember our example from :doc:`ealier <why_plaquette>`, where we were trying to detect high-valued
 signals using arbitary numbers?
 
 .. code-block:: c++
@@ -133,11 +133,11 @@ signals using arbitary numbers?
      // do something
 
 Suppose that instead of directly controlling the LED value based on the photocell's
-value, we instead want to react to abrupt changes in the photocell's value by
-triggering the LED? In other words, we would like to detect **peaks** in the
+value, we instead want to use sudden changes in the photocell's value to
+trigger the on/off state of the LED? In other words, we would like to work with the **peaks** in the
 incoming signal (such as when someone points a light source towards the photocell).
 
-One first way to do so would be to pick a threshold in the regularized signal
+One way to do so would be to pick a threshold in the regularized signal
 above which we would react to the light source. Let's say that we will react
 when the signal goes above 70%. The code of the ``step()`` function now
 becomes:
@@ -165,18 +165,17 @@ expression ``(regularizer > 0.7)`` to the output LED:
 Step 4 : Adapting to Changing Conditions
 ----------------------------------------
 
-So far so good. The number 0.7 is still a hand-picked number but it makes
+So far so good. The number 0.7 is still a bit of an arbitrary, hand-picked number, but it makes
 more sense than 716 because it refers to a more human-understandable concept
-(70% instead of 716 / 1023). However, it will still be sensitive to changes in
-the ambient light and behave differently under different light conditions. In
-other words, it might work as expected in the morning, but might start working
-less well in the afternoon.
+(70% instead of 716 / 1023). However, this approach will still be sensitive to changes in
+the ambient light, and behave differently under different light conditions (for example, it might
+work as expected in the morning, but work less well in the late afternoon when the sun starts to go down.)
 
-One first thing we could do would be to make sure our regularization unit adapts
+One thing we could do would be to make sure that our regularization unit adapts
 to changing conditions. In order to do this, rather than having our MinMaxScaler
-remaps values depending on every single incoming values ever seen, we can have it
+remap values depending on every single incoming value, we can have it
 adapt over a **time window**. This will allow our regularizer to slowly forget
-what it has learnt and reprogram itself after a certain amount of time has passed.
+what it has learned, and reprogram itself after a certain amount of time has passed.
 
 This can be accomplished by calling the ``timeWindow(seconds)`` function inside
 the ``begin()`` function:
@@ -193,8 +192,8 @@ Step 5 : Detecting Outliers
 
 The MinMaxScaler is a very useful unit for making sure signals stay within a
 [0, 1] range. However, it is not always the best for signal detection since it
-only accounts for extreme values (minimum and maximum) which makes it sensitive
-to rare events, and someone switching the lights off and on again might completely
+only accounts for extreme values (minimum and maximum), which makes it sensitive
+to rare events. Someone switching the lights on and off again rapidly might completely
 ruin the show.
 
 A better alternative is the :doc:`Normalizer` unit, which regularizes incoming signals
@@ -208,7 +207,7 @@ Let's replace our MinMaxScaler by a Normalizer unit:
 
    Normalizer regularizer;
 
-... and let's use the ``isHighOutlier()`` function to find values that are higher
+... and use the ``isHighOutlier()`` function to find values that are higher
 than usual:
 
 .. code-block:: c++
@@ -265,18 +264,18 @@ Step 6 : Detecting Peaks
 The outlier detection method is useful to find extreme values. However, it also
 comes with an important limitation. The ``isHighOutlier()`` and ``isOutlierLow()``
 methods return ``true`` *as long as* the received value is considered to be an
-outlier, making these methods unsuitable to trigger instantanous events such as
+outlier, making these methods unsuitable for triggering instantanous events, such as
 toggling the status of an LED, starting a sound event, activating a motor, etc.
 
 The :doc:`PeakDetector` unit addresses this limitation. It is best used in combination
 with a Normalizer unit. We will use the default mode of the PeakDetector (``PEAK_MAX``):
-for a peak to be detected, the signal will need to (1) cross a *trigger threshold* value
+for a peak to be detected. In this mode, the signal will need to (1) cross a *trigger threshold* value
 (``triggerThreshold``); (2) reach its *apex* (max); and (3) *fall back* by a certain
 proportion (%) between the threshold and the apex (controlled by the ``fallbackTolerance``
 parameter).
 
 Building on the previous section for outlier detection, we will assign the PeakDetector's
-``triggerThreshold`` to the value above which a value is considered to be a high outler,
+``triggerThreshold`` to the value above which a value is considered to be a high outlier,
 which can be obtained by calling the Normalizer's function ``highOutlierThreshold()``:
 
 .. code-block:: c++
