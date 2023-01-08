@@ -33,7 +33,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (SOURCE or SINK)
    */
-  AnalogOut(uint8_t pin=9, uint8_t mode=SOURCE);
+  AnalogOut(uint8_t pin, uint8_t mode=DIRECT);
   virtual ~AnalogOut() {}
 
   /// Pushes value into the component and returns its (possibly filtered) value.
@@ -51,11 +51,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (SOURCE or SINK)
    */
-#ifdef LED_BUILTIN
-  DigitalOut(uint8_t pin=LED_BUILTIN, uint8_t mode=SOURCE);
-#else
-  DigitalOut(uint8_t pin=13, uint8_t mode=SOURCE);
-#endif
+  DigitalOut(uint8_t pin, uint8_t mode=DIRECT);
 
   virtual ~DigitalOut() {}
 
