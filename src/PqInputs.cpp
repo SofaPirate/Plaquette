@@ -56,7 +56,7 @@ void Debounceable::_step() {
 
   _unsetStateFlag(CHANGED_STATE);
 
-  if (_debounceMode == DEBOUNCE_DEFAULT) {
+  if (_debounceMode == DEBOUNCE_STABLE) {
     // Read the state of the switch in a temporary variable.
     bool currentState = _isOn();
 

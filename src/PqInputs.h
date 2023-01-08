@@ -24,12 +24,24 @@
 #include "PqCore.h"
 #include "MovingAverage.h"
 
-#define DEBOUNCE_STABLE        0
-#define DEBOUNCE_LOCK_OUT      1
-#define DEBOUNCE_PROMPT_DETECT 2
-#define DEBOUNCE_DEFAULT       DEBOUNCE_STABLE
-
 namespace pq {
+
+/// @brief Debounce modes.
+enum {
+  DEBOUNCE_STABLE,
+  DEBOUNCE_LOCK_OUT,
+  DEBOUNCE_PROMPT_DETECT
+};
+
+// Maybe?
+#define PULLDOWN DIRECT
+#define PULLUP  INVERTED
+
+// Deprecated.
+#define EXTERNAL_PULLDOWN DIRECT
+#define EXTERNAL_PULLUP   INVERTED
+#define ANALOG_DEFAULT    DIRECT
+#define ANALOG_INVERTED   INVERTED
 
 /// Superclass for components that can be smoothed.
 class Smoothable {
@@ -74,7 +86,7 @@ protected:
 /// Superclass for components that can be debounced.
 class Debounceable {
 public:
-  Debounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_DEFAULT);
+  Debounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_STABLE);
 
   /// Apply smoothing to object.
   virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { timeWindow(debounceTime); }
@@ -135,9 +147,9 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (DEFAULT or INVERTED)
+   * @param mode the mode (DIRECT or INVERTED)
    */
-  AnalogIn(uint8_t pin, uint8_t mode=DEFAULT);
+  AnalogIn(uint8_t pin, uint8_t mode=DIRECT);
   virtual ~AnalogIn() {}
 
   /// Returns value in [0, 1].
@@ -162,7 +174,7 @@ public:
    * @param pin the pin number
    * @param mode the mode (DEFAULT, INVERTED, or INTERNAL_PULLUP)
    */
-  DigitalIn(uint8_t pin, uint8_t mode=DEFAULT);
+  DigitalIn(uint8_t pin, uint8_t mode=DIRECT);
   virtual ~DigitalIn() {}
 
   /// Changes the mode of the component.
