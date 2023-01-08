@@ -1,4 +1,4 @@
- name: AUnit Tests
+name: AUnit Tests
 
 # Trigger on 'push' on all branches.
 #
