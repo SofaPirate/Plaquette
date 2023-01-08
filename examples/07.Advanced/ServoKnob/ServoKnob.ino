@@ -33,7 +33,7 @@
 AnalogIn pot(A0);
 
 // Sine wave source.
-SineOut osc;
+SineOsc osc;
 
 // The servo-motor output on pin 9.
 ServoOut servo(9);
