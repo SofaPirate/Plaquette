@@ -28,7 +28,7 @@ Normalizer normalizer;
 PeakDetector detector(1.5f);
 
 // Digital LED output.
-DigitalOut led;
+DigitalOut led(LED_BUILTIN);
 
 void begin() {
   // Adjust reload threshold (by default = threshold).
