@@ -6,7 +6,7 @@ on:
     - '**.ino'
     - '**.cpp'
     - '**.h'
-    - '**auint_tests.yml'
+    - '**aunit_tests.yml'
   pull_request:
 
 jobs:
