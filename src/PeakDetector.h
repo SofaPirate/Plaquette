@@ -22,10 +22,13 @@
 
 #include "PqCore.h"
 
-#define PEAK_RISING  0
-#define PEAK_FALLING 1
-#define PEAK_MAX     2
-#define PEAK_MIN     3
+/// @brief Peak modes.
+enum {
+  PEAK_RISING,
+  PEAK_FALLING,
+  PEAK_MAX,
+  PEAK_MIN
+};
 
 namespace pq {
 
