@@ -31,7 +31,7 @@ float safeConstrain(double x, double low, double high) {
     high = lowCopy;
   }
 
-  // Return contrained value.
+  // Return constrained value.
   return (x < low ? low : (x > high ? high : x));
 }
 

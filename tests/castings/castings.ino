@@ -6,18 +6,18 @@
 using namespace pq;
 using namespace aunit;
 
-AnalogIn   aIn(A0);
-AnalogOut  aOut(9);
-DigitalIn  dIn(0);
-DigitalOut dOut(10);
+AnalogIn   analogIn(A0);
+AnalogOut  analogOut(9);
+DigitalIn  digitalIn(0);
+DigitalOut digitalOut(10);
 SquareOsc  square(0.5);
 TriOsc     tri(0.5);
 Metro      metro(0.5);
 
 #define N_UNITS 7
 Node* units[N_UNITS] = {
-  (Node*)&aIn,  (Node*)&aOut,
-  (Node*)&dIn,  (Node*)&dOut,
+  (Node*)&analogIn,  (Node*)&analogOut,
+  (Node*)&digitalIn,  (Node*)&digitalOut,
   (Node*)&tri,  (Node*)&square,
   (Node*)&metro
 };
@@ -103,37 +103,37 @@ class TestPiping: public TestAgain {
     }
 
     void testDigital() {
-      testDigitalPiping(dIn, dOut);
-      testDigitalPiping(dIn, dOut);
+      testDigitalPiping(digitalIn, digitalOut);
+      testDigitalPiping(digitalIn, digitalOut);
     }
 
     void testAnalog() {
-      testPiping(metro, dOut);
-      testPiping(aIn, aOut);
-      testPiping(square, aOut);
-      testPiping(tri, aOut);
-      testPiping(metro, aOut);
+      testPiping(metro, digitalOut);
+      testPiping(analogIn, analogOut);
+      testPiping(square, analogOut);
+      testPiping(tri, analogOut);
+      testPiping(metro, analogOut);
     }
 
     void testValues() {
-      testValueDigitalPipingTo(dOut);
-      dOut.toggle();
-      testValueDigitalPipingFrom(dOut);
-      bool prev = dOut;
-      !dOut >> dOut;
-      testValueDigitalPipingFrom(dOut);
-      assertEqual(!dOut.isOn(), prev);
+      testValueDigitalPipingTo(digitalOut);
+      digitalOut.toggle();
+      testValueDigitalPipingFrom(digitalOut);
+      bool prev = digitalOut;
+      !digitalOut >> digitalOut;
+      testValueDigitalPipingFrom(digitalOut);
+      assertEqual(!digitalOut.isOn(), prev);
 
-      testValuePipingTo(aOut);
-      testValuePipingFrom(aOut);
-      (aOut + 1) / 2 >> aOut;
-      testValuePipingFrom(aOut);
-      (aOut * randomUniform()) >> aOut;
-      testValuePipingFrom(aOut);
+      testValuePipingTo(analogOut);
+      testValuePipingFrom(analogOut);
+      (analogOut + 1) / 2 >> analogOut;
+      testValuePipingFrom(analogOut);
+      (analogOut * randomUniform()) >> analogOut;
+      testValuePipingFrom(analogOut);
 
-      assertEqual(aOut + 1, aOut.get() + 1);
-      assertEqual(aOut * 0.5, aOut.get() / 2);
-      assertEqual(aOut + aOut, aOut.get() * 2);
+      assertEqual(analogOut + 1, analogOut.get() + 1);
+      assertEqual(analogOut * 0.5, analogOut.get() / 2);
+      assertEqual(analogOut + analogOut, analogOut.get() * 2);
     }
 
 };

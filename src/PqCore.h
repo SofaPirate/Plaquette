@@ -330,7 +330,7 @@ public:
 
 /**
  * An analog analog source that contains a value (typically in [0, 1]).
- * It is the responsability of the subclass's programmer to make sure the value stays
+ * It is the responsibility of the subclass's programmer to make sure the value stays
  * within the [0, 1] range OR to update the mapTo() function accordingly.
  */
 class AnalogSource : public Node {

@@ -66,7 +66,7 @@ The objectives are as follow:
     than on irrelevant numerical questions, hence also facilitating their learning.
  #. **Provide creative practitioners with accessible tools** that grasp high-level
     concepts such as "normalizing" and "detecting peaks" (rather than specific,
-    arcane techniques on "how" to extract these informations such as "FFT", "zero-crossing" or "Chebyshev filtering").
+    arcane techniques on "how" to extract this information such as "FFT", "zero-crossing" or "Chebyshev filtering").
  #. **Facilitate teamwork and interoperability** between applications by favouring
     an easily understandable, cross-platform way of thinking about real-time signals
     (for example, by keeping all signals "in check" between 0 and 1).

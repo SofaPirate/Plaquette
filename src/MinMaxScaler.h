@@ -64,7 +64,7 @@ public:
   virtual float put(float value);
 
 protected:
-  // Minmum value ever put.
+  // Minimum value ever put.
   float _minValue;
 
   // Maximum value ever put.

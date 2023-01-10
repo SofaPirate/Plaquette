@@ -36,7 +36,7 @@ Sequentially ramps through different values.
 
    #include <Plaquette.h>
 
-   Ramp myRamp(0.0); // the ramp is initalized at zero (0)
+   Ramp myRamp(0.0); // the ramp is initialized at zero (0)
 
    StreamOut serialOut(Serial);
 
