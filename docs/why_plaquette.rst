@@ -6,7 +6,7 @@ Rationale
 
 Media creators such as artists, interactive designers, and electronic musicians
 work with real-time sensory signals all the time. However, few of them (especially beginners) really
-"know their signals" and how to extract high-level informations from them
+"know their signals" and how to extract high-level information from them
 (such as debouncing, smoothing, normalizing, detecting peaks and regularities).
 
 Consider the following case of learning how to work with a simple photoresistor

@@ -11,7 +11,7 @@
 #include <Plaquette.h>
 
 // The ramp object.
-Ramp zigZagRamp(0.0); // the ramp is initalized at 0
+Ramp zigZagRamp(0.0); // the ramp is initialized at 0
 
 // Serial output.
 StreamOut serialOut(Serial);

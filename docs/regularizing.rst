@@ -125,7 +125,7 @@ Step 3 : Reacting to Signal Changes
 -----------------------------------
 
 Remember our example from :doc:`ealier <why_plaquette>`, where we were trying to detect high-valued
-signals using arbitary numbers?
+signals using arbitrary numbers?
 
 .. code-block:: c++
 

@@ -25,7 +25,7 @@ Alarm alarm(1.0); // starting duration: 1 second
 float ledDuration;
 
 void begin() {
-  // Initalize ledDuration to starting timer duration.
+  // Initialize ledDuration to starting timer duration.
   ledDuration = alarm.duration();
 
   // Start timer.

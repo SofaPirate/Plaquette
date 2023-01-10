@@ -3,7 +3,7 @@
 ContinuousServoOut
 ==================
 
-A source unit that controls a continous rotation servo-motor. A continuous
+A source unit that controls a continuous rotation servo-motor. A continuous
 servo-motor can move indefinitely forward or backwards.
 
 Servo motors have three wires: power, ground, and signal. The power wire is
@@ -19,7 +19,7 @@ supply together.
 |Example|
 ---------
 
-Everytime a button is pushed, the motor is stopped. Then upon button release it
+Every time a button is pushed, the motor is stopped. Then upon button release it
 starts moving in the opposite direction.
 
 .. code-block:: c++

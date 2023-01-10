@@ -38,7 +38,7 @@ jobs:
           # Although dependencies will be installed automatically via the
           # library manager, your library under test may require an
           # unofficial version of a dependency.  In those cases, the custom
-          # libraries must be insalled prior to the test execution; those
+          # libraries must be installed prior to the test execution; those
           # installation commands should be placed in a shell script (that
           # will be executed by /bin/sh) stored in your library.
           #

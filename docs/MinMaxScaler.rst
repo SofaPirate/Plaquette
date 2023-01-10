@@ -10,7 +10,7 @@ is mapped to 1.
 
 .. image:: images/Plaquette-MinMaxScaler.png
 
-In order to accomodate signals that might be changing through time, the user can specify a
+In order to accommodate signals that might be changing through time, the user can specify a
 "decay time window" to control the rate of decay of the mininum and maximum boundaries. The
 principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` make use of
 `exponential moving average <https://www.investopedia.com/terms/e/ema.asp>`_.
