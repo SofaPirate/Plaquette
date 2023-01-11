@@ -1,5 +1,5 @@
 /*
- * Chrono.h
+ * Chronometer.h
  *
  * (c) 2018 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,17 +18,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_CHRONO_H_
-#define PQ_CHRONO_H_
+#ifndef PQ_CHRONOMETER_H_
+#define PQ_CHRONOMETER_H_
 
 #include "PqCore.h"
 
 namespace pq {
 
-class Chrono : public Unit {
+class Chronometer : public Unit {
 public:
   /// Constructor.
-  Chrono();
+  Chronometer();
 
   /// Starts/restarts the chronometer.
   virtual void start();

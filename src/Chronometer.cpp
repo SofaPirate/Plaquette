@@ -1,5 +1,5 @@
 /*
- * Chrono.cpp
+ * Chronometer.cpp
  *
  * (c) 2018 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,46 +18,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Chrono.h"
+#include "Chronometer.h"
 #include "pq_time.h"
 
 namespace pq {
 
-Chrono::Chrono() : Unit() {
+Chronometer::Chronometer() : Unit() {
 	begin();
 }
 
-void Chrono::start() {
+void Chronometer::start() {
 	// Start.
 	_startTime = seconds();
 	_offsetTime = _elapsedTime = 0;
 	_isStarted = true;
 }
 
-void Chrono::addTime(float time) {
+void Chronometer::addTime(float time) {
 	_offsetTime += time;
 }
 
-void Chrono::stop() {
+void Chronometer::stop() {
 	if (_isStarted) {
 		_offsetTime = elapsed();
 		_isStarted = false;
 	}
 }
 
-void Chrono::resume() {
+void Chronometer::resume() {
 	if (!_isStarted) {
 		_startTime = seconds();
 		_isStarted = true;
 	}
 }
 
-bool Chrono::hasPassed(float timeout) const
+bool Chronometer::hasPassed(float timeout) const
 {
   return (elapsed() >= timeout);
 }
 
-bool Chrono::hasPassed(float timeout, bool restartIfPassed) {
+bool Chronometer::hasPassed(float timeout, bool restartIfPassed) {
   if (hasPassed(timeout)) {
     if (restartIfPassed)
       start();
@@ -68,13 +68,13 @@ bool Chrono::hasPassed(float timeout, bool restartIfPassed) {
   }
 }
 
-void Chrono::begin() {
+void Chronometer::begin() {
 	// Basic reset.
 	_startTime = _offsetTime = _elapsedTime = 0;
 	_isStarted = false;
 }
 
-void Chrono::step() {
+void Chronometer::step() {
 	// Offset elapsed time.
 	_elapsedTime = _offsetTime;
 

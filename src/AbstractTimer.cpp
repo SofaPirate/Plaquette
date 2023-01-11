@@ -22,12 +22,12 @@
 
 namespace pq {
 
-AbstractTimer::AbstractTimer(float duration_) : Chrono() {
+AbstractTimer::AbstractTimer(float duration_) : Chronometer() {
 	duration(duration_);
 }
 
 void AbstractTimer::start() {
-	Chrono::start();
+	Chronometer::start();
 }
 
 void AbstractTimer::start(float duration_) {

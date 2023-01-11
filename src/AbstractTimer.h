@@ -22,11 +22,11 @@
 #define ABSTRACT_TIMER_H_
 
 #include "PqCore.h"
-#include "Chrono.h"
+#include "Chronometer.h"
 
 namespace pq {
 
-class AbstractTimer : public Chrono {
+class AbstractTimer : public Chronometer {
 protected:
   AbstractTimer(float durationf);
 
