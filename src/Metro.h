@@ -37,6 +37,9 @@ public:
    */
   Metro(float period=1.0f);
 
+  /// The progress of the timer process (in %).
+  virtual float progress() const { return phaseTime2float(_phaseTime); }
+
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
