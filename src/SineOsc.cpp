@@ -30,8 +30,9 @@ namespace pq {
 
 SineOsc::SineOsc(float period_) : Osc(period_) {}
 
-void SineOsc::_updateValue() {
-	_value = 0.5f + 0.5f * (cos16((uint16_t)(_phaseTime >> 16)) * _amplitude / PQ_SINE_OSC_AMPLITUDE_DIVIDER);
+  // Returns value in [0, 1].
+float SineOsc::_get(phase_time_t t) {
+	return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
 }
 
 }
