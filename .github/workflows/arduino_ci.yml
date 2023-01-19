@@ -48,4 +48,3 @@ jobs:
           # to find that directory nor change to it from within the script.
           #
           # CUSTOM_INIT_SCRIPT: install_dependencies.sh
-
