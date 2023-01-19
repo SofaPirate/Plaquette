@@ -20,11 +20,14 @@
 
 namespace pq {
 
-void phaseTimeAdd(phase_time_t& phaseTime, float increment) {
-  if (increment >= 0)
-    phaseTime += float2phaseTime(increment);
-  else
-    phaseTime -= float2phaseTime(-increment);
+/// Returns phase time value with offset.
+phase_time_t phaseTimeAddPhase(phase_time_t phaseTime, float phase) {
+  return phaseTime + float2phaseTime(phase);
+}
+
+/// Returns phase time value with offset.
+phase_time_t phaseTimeAddTime(phase_time_t phaseTime, float period, float time) {
+  return phaseTimeAddPhase(phaseTime, timeToPhase(period, time));
 }
 
 /// Computes new phase time for oscillators and returns when phase time overflows.

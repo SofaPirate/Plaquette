@@ -25,8 +25,9 @@
 #include <WProgram.h>
 #endif
 
-#include "pq_wrap.h"
 #include <stdint.h>
+
+#include "pq_wrap.h"
 
 namespace pq {
 
@@ -37,14 +38,18 @@ typedef uint32_t phase_time_t;
 inline phase_time_t float2phaseTime(float x) { return wrap(x) * PHASE_TIME_MAX; }
 
 /// Converts phase_time_t to floating point.
-inline float phaseTime2float(phase_time_t v) {
-  return float(v) / PHASE_TIME_MAX;
-}
+inline float phaseTime2float(phase_time_t x) { return float(x) / PHASE_TIME_MAX; }
 
-/// Adds floating point value in [-1, 1] to phaseTime.
-void phaseTimeAdd(phase_time_t& phaseTime, float increment);
+/// Converts time in seconds to phase in %.
+inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }
 
-/// Computes new phase time for oscillators and returns when phase time overflows.
+/// Returns phase time value with offset.
+phase_time_t phaseTimeAddPhase(phase_time_t phaseTime, float phase);
+
+/// Returns phase time value with time offset.
+phase_time_t phaseTimeAddTime(phase_time_t phaseTime, float period, float time);
+
+/// Computes new phase time for oscillators and returns true when phase time overflows.
 bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate);
 
 }
