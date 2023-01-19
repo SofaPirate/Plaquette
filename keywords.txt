@@ -53,6 +53,7 @@ mapFloat	KEYWORD2
 mapFrom01	KEYWORD2
 mapTo01 KEYWORD2
 randomFloat	KEYWORD2
+wrap	KEYWORD2
 
 # Node
 put	KEYWORD2
@@ -100,7 +101,8 @@ dutyCycle  KEYWORD2
 width  KEYWORD2
 phase  KEYWORD2
 amplitude  KEYWORD2
-precision  KEYWORD2
+shiftBy  KEYWORD2
+timeToPhase  KEYWORD2
 
 # Normalizer
 targetMean	KEYWORD2
@@ -127,6 +129,9 @@ progress	KEYWORD2
 isStarted  KEYWORD2
 isComplete	KEYWORD2
 hasPassed	KEYWORD2
+
+# Stream
+precision  KEYWORD2
 
 # PeakDetector
 reloadThreshold	KEYWORD2
