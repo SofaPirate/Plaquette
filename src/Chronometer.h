@@ -61,6 +61,8 @@ protected:
   virtual void begin();
   virtual void step();
 
+  void _begin();
+
   // The starting time (in seconds).
   float _startTime;
 

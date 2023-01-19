@@ -24,7 +24,7 @@
 namespace pq {
 
 Chronometer::Chronometer() : Unit() {
-	begin();
+	_begin();
 }
 
 void Chronometer::start() {
@@ -69,9 +69,7 @@ bool Chronometer::hasPassed(float timeout, bool restartIfPassed) {
 }
 
 void Chronometer::begin() {
-	// Basic reset.
-	_startTime = _offsetTime = _elapsedTime = 0;
-	_isStarted = false;
+	_begin();
 }
 
 void Chronometer::step() {
@@ -82,6 +80,12 @@ void Chronometer::step() {
 		// Add difference to elapsed time.
 	 	_elapsedTime += (seconds() - _startTime);
 	}
+}
+
+void Chronometer::_begin() {
+	// Basic reset.
+	_startTime = _offsetTime = _elapsedTime = 0;
+	_isStarted = false;
 }
 
 }
