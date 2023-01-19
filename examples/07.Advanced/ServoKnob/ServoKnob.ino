@@ -41,5 +41,6 @@ void begin() {}
 
 void step() {
   // Control the servomotor's oscillation speed using the potentiometer.
-  osc.period(pot.mapTo(5.0, 1.0)) >> servo;
+  osc.period(pot.mapTo(5.0, 1.0));
+  osc >> servo;
 }
