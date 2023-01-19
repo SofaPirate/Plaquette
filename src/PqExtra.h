@@ -48,4 +48,6 @@
 #include "SquareOsc.h"
 #include "TriOsc.h"
 
+#include "PqServo.h"
+
 #endif
