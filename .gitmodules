@@ -4,3 +4,6 @@
 [submodule "libraries/AUnit"]
 	path = libraries/AUnit
 	url = https://github.com/bxparks/AUnit
+[submodule "libraries/MemoryStream"]
+	path = libraries/MemoryStream
+	url = https://github.com/SofaPirate/MemoryStream
