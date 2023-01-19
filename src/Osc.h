@@ -70,6 +70,20 @@ public:
    virtual void phase(float phase);
    virtual float phase() const { return _phase; }
 
+   /**
+    * Utility function to convert time to phase.
+    * @param t relative time in seconds
+    * @return the equivalent phase
+    */
+  virtual float timeToPhase(float time) const;
+
+   /**
+    * Sets value with a certain phase shift (in %).
+    * @param phase the phase shift (in % of period)
+    * @return the value
+    */
+   virtual float shiftBy(float phase);
+
 protected:
   // Core Plaquette methods.
   virtual void begin();
