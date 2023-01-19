@@ -38,12 +38,12 @@ inline float fastSqrt(const float& n)
 }
 
 inline float fastCos(float x) {
-    x = wrap01(x/TWO_PI) * 65535;
+    x = wrap(x/TWO_PI) * 65535;
     return cos16( (uint16_t)x ) / 32767.0f;
 }
 
 inline float fastSin(float x) {
-    x = wrap01(x/TWO_PI) * 65535;
+    x = wrap(x/TWO_PI) * 65535;
     return sin16( (uint16_t)x ) / 32767.0f;
 }
 
