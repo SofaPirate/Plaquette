@@ -33,7 +33,9 @@ public:
    * @param stream a reference to a Stream object
    */
   StreamOut(Stream& stream=Serial);
-  virtual ~StreamOut() {}
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
   /**
    * Pushes value into the unit.

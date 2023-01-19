@@ -33,7 +33,9 @@ public:
    * @param stream a reference to a Stream object
    */
   StreamIn(Stream& stream=Serial);
-  virtual ~StreamIn() {}
+
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
 protected:
   // Core Plaquette methods.
