@@ -12,7 +12,8 @@ which it becomes "on".
 |Example|
 ---------
 
-Uses an alarm to change the state of built-in LED at random periods of time.
+Uses an alarm to activate built-in LED. Button is used to reset the 
+alarm at random periods of time.
 
 .. code-block:: c++
 
@@ -22,17 +23,20 @@ Uses an alarm to change the state of built-in LED at random periods of time.
 
    DigitalOut led(13);
 
+   DigitalIn button(2, INTERNAL_PULLUP);
+
    void begin() {
      myAlarm.start(); // start alarm
    }
 
    void step() {
-     if (myAlarm) // the alarm will stay "on" until it is stopped or restarted
-     {
-       // Change LED state.
-       led.toggle();
+     // Activate LED when alarm rings.
+     myAlarm >> led; // the alarm will stay "on" until it is stopped or restarted
 
-       // Restarts the timer with a random duration between 1 and 5 seconds.
+     // Reset alarm when button is pushed.
+     if (myAlarm && button.rose())
+     {
+       // Restarts the alarm with a random duration between 1 and 5 seconds.
        myAlarm.duration(randomFloat(1.0, 5.0));
        myAlarm.start();
      }
