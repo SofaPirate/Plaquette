@@ -34,10 +34,7 @@ namespace pq {
 typedef uint32_t phase_time_t;
 
 /// Converts floating point to phase_time_t.
-inline phase_time_t float2phaseTime(float v) {
-  v = PHASE_TIME_MAX * v;
-  return round(v);
-}
+inline phase_time_t float2phaseTime(float x) { return wrap(x) * PHASE_TIME_MAX; }
 
 /// Converts phase_time_t to floating point.
 inline float phaseTime2float(phase_time_t v) {
