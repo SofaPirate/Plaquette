@@ -17,12 +17,12 @@ Plaquette allows you to:
 **Quick links:**
 
 .. list-table::
-  :widths: 25 25 25 25
+  :widths: 50 50
   :header-rows: 0
 
   * - :doc:`Discover the features <features>`
     - :doc:`Get started <getting_started>`
-    - `Watch video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_
+  * - `Watch video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_
     - :doc:`Filter your signals <regularizing>`
 
 
