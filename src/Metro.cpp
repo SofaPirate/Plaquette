@@ -36,22 +36,20 @@ void Metro::step() {
   _setOn(phaseTimeUpdate(_phaseTime, _period, sampleRate()));
 }
 
-Metro& Metro::period(float period) {
+void Metro::period(float period) {
 	_period = max(period, FLT_MIN);
-	return *this;
 }
 
-Metro& Metro::frequency(float frequency) {
-	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+void Metro::frequency(float frequency) {
+	period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
-Metro& Metro::phase(float phase) {
+void Metro::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-    phaseTimeAdd(_phaseTime, _phase - phase);
+    _phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
-	return *this;
 }
 
 }

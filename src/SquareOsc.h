@@ -50,7 +50,7 @@ public:
    * @param dutyCycle the duty-cycle as a value in [0, 1]
    * @return the unit itself
    */
-  virtual SquareOsc& dutyCycle(float dutyCycle);
+  virtual void dutyCycle(float dutyCycle);
   virtual float dutyCycle() const { return phaseTime2float(_dutyCycle); }
 
 protected:

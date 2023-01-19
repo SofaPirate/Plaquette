@@ -43,8 +43,8 @@ public:
    * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
    * @return the unit itself
    */
-  virtual TriOsc& width(float width);
-  virtual float width() const { return _width; }
+  virtual void width(float width);
+  virtual float width() const { return phaseTime2float(_width); }
 
 protected:
   // Oscillator value update.

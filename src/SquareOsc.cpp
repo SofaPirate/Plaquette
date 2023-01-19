@@ -34,9 +34,8 @@ void SquareOsc::_updateValue() {
 	_value = 0.5f + 0.5f * (_phaseTime <= _dutyCycle ? _amplitude : -_amplitude);
 }
 
-SquareOsc& SquareOsc::dutyCycle(float dutyCycle) {
+void SquareOsc::dutyCycle(float dutyCycle) {
   _dutyCycle = float2phaseTime(constrain(dutyCycle, 0, 1));
-	return *this;
 }
 
 }

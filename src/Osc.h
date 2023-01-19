@@ -43,7 +43,7 @@ public:
    * @param period the period of oscillation (in seconds)
    * @return the unit itself
    */
-  virtual Node& period(float period);
+  virtual void period(float period);
   virtual float period() const { return _period; }
 
   /**
@@ -51,7 +51,7 @@ public:
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual Node& frequency(float frequency);
+  virtual void frequency(float frequency);
   virtual float frequency() const { return (1/_period); }
 
   /**
@@ -59,7 +59,7 @@ public:
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    * @return the unit itself
    */
-   virtual Node& amplitude(float amplitude);
+   virtual void amplitude(float amplitude);
    virtual float amplitude() const { return _amplitude; }
 
    /**
@@ -67,7 +67,7 @@ public:
     * @param phase the phase (in % of period)
     * @return the unit itself
     */
-   virtual Node& phase(float phase);
+   virtual void phase(float phase);
    virtual float phase() const { return _phase; }
 
 protected:

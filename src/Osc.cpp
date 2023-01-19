@@ -62,29 +62,28 @@ void Osc::step() {
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
-Node& Osc::period(float period) {
+
+void Osc::period(float period) {
 	if (period != _period)
 		_period = max(period, 0.0f);
-	return *this;
 }
 
-Node& Osc::frequency(float frequency) {
-	return period( frequency == 0 ? FLT_MAX : 1/frequency );
+void Osc::frequency(float frequency) {
+	period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
-Node& Osc::amplitude(float amplitude)  {
+void Osc::amplitude(float amplitude)  {
 	if (amplitude != _amplitude)
   	_amplitude = constrain(amplitude, 0, 1);
-	return *this;
 }
 
-Node& Osc::phase(float phase) {
+void Osc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
     phaseTimeAdd(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
-	return *this;
+}
 }
 
 }

@@ -45,7 +45,7 @@ public:
    * @param period the period of oscillation (in seconds)
    * @return the unit itself
    */
-  virtual Metro& period(float period);
+  virtual void period(float period);
   virtual float period() const { return _period; }
 
   /**
@@ -53,7 +53,7 @@ public:
    * @param frequency the frequency of oscillation (in Hz)
    * @return the unit itself
    */
-  virtual Metro& frequency(float frequency);
+  virtual void frequency(float frequency);
   virtual float frequency() const { return (1/_period); }
 
   /**
@@ -61,7 +61,7 @@ public:
    * @param phase the phase (in % of period)
    * @return the unit itself
    */
-  virtual Metro& phase(float phase);
+  virtual void phase(float phase);
   virtual float phase() const { return _phase; }
 
 protected:
