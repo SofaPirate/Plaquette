@@ -25,5 +25,6 @@ void begin() {}
 
 void step() {
   // Modulate oscillator frequency between 1 to 20 Hz.
-  osc.frequency( mapFrom01(lfo, 1, 20) ) >> out;
+  osc.frequency( mapFrom01(lfo, 1, 20) );
+  osc >> out;
 }
