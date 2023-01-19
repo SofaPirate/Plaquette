@@ -54,8 +54,8 @@ public:
   virtual float dutyCycle() const { return phaseTime2float(_dutyCycle); }
 
 protected:
-  // Oscillator value update.
-  virtual void _updateValue();
+  // Returns value in [0, 1].
+  virtual float _get(phase_time_t t);
 
   // Duty-cycle (in % of period).
   phase_time_t _dutyCycle;

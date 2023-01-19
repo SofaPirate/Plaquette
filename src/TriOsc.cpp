@@ -26,22 +26,14 @@ TriOsc::TriOsc(float period_, float width_) : Osc(period_), _width(0) {
   width(width_);
 }
 
-void TriOsc::_updateValue() {
-  // Convert phase time to float in [0, 1].
-  float phaseTimeFloat = phaseTime2float(_phaseTime);
+  // Returns value in [0, 1].
+float TriOsc::_get(phase_time_t t) {
 	// Compute triangle depending on raising or falling step.
-  if (phaseTimeFloat <= _width)
-    _value = phaseTimeFloat / _width;
-	else
-    _value = (1 - phaseTimeFloat) / (1 - _width);
-	// Amplify.
-  _value = 0.5f + 0.5f * (_amplitude * (2*_value - 1));
+  return (t <= _width) ? (t / (float)_width) : ((PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width));
 }
 
-TriOsc& TriOsc::width(float width) {
-	if (width != _width)
-  	_width = constrain(width, 0, 1);
-	return *this;
+void TriOsc::width(float width) {
+  _width = float2phaseTime(constrain(width, 0, 1));
 }
 
 }

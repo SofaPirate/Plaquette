@@ -36,8 +36,8 @@ public:
   virtual ~SineOsc() {}
 
 protected:
-  // Oscillator value update.
-  virtual void _updateValue();
+  // Returns value in [0, 1].
+  virtual float _get(phase_time_t t);
 };
 
 }

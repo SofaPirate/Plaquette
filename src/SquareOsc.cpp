@@ -30,8 +30,8 @@ bool SquareOsc::isOn() {
   return analogToDigital(_value);
 }
 
-void SquareOsc::_updateValue() {
-	_value = 0.5f + 0.5f * (_phaseTime <= _dutyCycle ? _amplitude : -_amplitude);
+float SquareOsc::_get(phase_time_t t) {
+  return (t <= _dutyCycle ? 1.0f : 0.0f);
 }
 
 void SquareOsc::dutyCycle(float dutyCycle) {

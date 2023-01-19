@@ -35,15 +35,15 @@ void Osc::begin() {
   _phaseTime = float2phaseTime(_phase);
 
   // Compute initial value.
-  _updateValue();
+  _value = _getAmplified(_phaseTime);
 }
 
 void Osc::step() {
   // Update phase time.
   phaseTimeUpdate(_phaseTime, _period, sampleRate());
 
-	// Compute next value.
-	_updateValue();
+  // Compute next value.
+  _value = _getAmplified(_phaseTime);
 
 	// // Notice: this computation is not exact but manages naturally changes in the period without
 	// // inducing dephasings on Arduino boards.
@@ -62,6 +62,9 @@ void Osc::step() {
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
+float Osc::_getAmplified(phase_time_t t) {
+	return mapFrom01(_get(t), (1 - _amplitude) / 2, (1 + _amplitude)/2);
+}
 
 void Osc::period(float period) {
 	if (period != _period)
@@ -80,7 +83,7 @@ void Osc::amplitude(float amplitude)  {
 void Osc::phase(float phase) {
 	if (phase != _phase) {
 		// Need to readjust _phaseTime.
-    phaseTimeAdd(_phaseTime, _phase - phase);
+    	_phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
 		_phase = phase;
 	}
 }

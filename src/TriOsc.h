@@ -47,11 +47,11 @@ public:
   virtual float width() const { return phaseTime2float(_width); }
 
 protected:
-  // Oscillator value update.
-  virtual void _updateValue();
+  // Returns value in [0, 1].
+  virtual float _get(phase_time_t t);
 
   // Tipping-point (in % of period).
-  float _width;
+  phase_time_t _width;
 };
 
 }

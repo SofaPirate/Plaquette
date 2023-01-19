@@ -89,7 +89,11 @@ protected:
   virtual void begin();
   virtual void step();
 
-  virtual void _updateValue() = 0;
+  // Returns value in [0, 1] (to be defined by subclasses).
+  virtual float _get(phase_time_t t) = 0;
+
+  // Returns amplified version of _get(t).
+  virtual float _getAmplified(phase_time_t t);
 
   // Period (seconds).
   float _period;
