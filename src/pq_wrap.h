@@ -1,7 +1,7 @@
 /*
  * pq_wrap.h
  *
- * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2023 Sofian Audry        :: info(@)sofianaudry(.)com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,39 +25,32 @@
 #include <WProgram.h>
 #endif
 
-//#define USE_FMODF
+#define USE_FMODF
 #ifdef USE_FMODF
 #include <math.h>
 #endif
 
+#include <pq_map_real.h>
+
 namespace pq {
 
-// Source: https://stackoverflow.com/posts/707426/revisions
-inline float wrap(float f, float low, float high) {
-#ifdef USE_FMODF
-  float rangeSize = high - low + 1;
+/// @brief Wraps value in range [0, 1).
+/// @param x the value to wrap
+/// @return the value wrapped around [0, 1).
+float wrap(float f);
 
-  if (f < low)
-    f += rangeSize * ((low - f) / rangeSize + 1);
+/// @brief Wraps value in range [0, high).
+/// @param x the value to wrap
+/// @param high the higher bound
+/// @return the value wrapped around [0, high) or [high, 0) if high is negative
+float wrap(float x, float high);
 
-  return low + fmodf(f - low, rangeSize);
-#else
-  while (f >= high) f -= high;
-  while (f <  low)  f += low;
-  return f;
-#endif
-}
-
-inline float wrap01(float f) {
-#ifdef USE_FMODF
-  float mod = fmodf(f, 1);
-  return (f >= 0 ? mod : 1 + mod);
-#else
-  while (f >= 1) f--;
-  while (f <  0) f++;
-  return f;
-#endif
-}
+/// @brief Wraps value in range [low, high).
+/// @param x the value to wrap
+/// @param low the lower boundary
+/// @param high the higher boundary
+/// @return the value wrapped around [low, high) or [high, low) if high < low
+float wrap(float x, float low, float high);
 
 }
 
