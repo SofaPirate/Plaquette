@@ -34,7 +34,10 @@ void step() {
   // if button is pressed OR if input signal is big enough then use first oscillator
   if (button || in > 0.2)
     baseOscillator >> led;
-  // else modulate by changing the period between [0.5,2.5]
-  else
-    oscillator.period(0.5 + 2*modulator) >> led;
+
+  // else modulate by changing the period between 0.5 and 2.5 seconds
+  else {
+    oscillator.period(modulator.mapTo(0.5, 2.0));
+    oscillator >> led;
+  }
 }
