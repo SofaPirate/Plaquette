@@ -37,7 +37,7 @@ namespace pq {
 /// @brief Wraps value in range [0, 1).
 /// @param x the value to wrap
 /// @return the value wrapped around [0, 1).
-float wrap(float f);
+float wrap(float x);
 
 /// @brief Wraps value in range [0, high).
 /// @param x the value to wrap
