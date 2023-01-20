@@ -172,7 +172,7 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (DEFAULT, INVERTED, or INTERNAL_PULLUP)
+   * @param mode the mode (DIRECT, INVERTED, or INTERNAL_PULLUP)
    */
   DigitalIn(uint8_t pin, uint8_t mode=DIRECT);
   virtual ~DigitalIn() {}
