@@ -6,7 +6,7 @@ This short introduction will guide you through the first steps of using Plaquett
 We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
 
 .. image:: https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg
-    :alt: IMAGE ALT TEXT HERE
+    :alt: Introduction to Plaquette video tutorial series
     :target: https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip
 
 Step 1: Install Plaquette
@@ -229,14 +229,6 @@ operator <https://www.tutorialspoint.com/arduino/arduino_conditional_operator.ht
 More examples
 ~~~~~~~~~~~~~
 
-We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
-
-.. image:: https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg
-    :alt: IMAGE ALT TEXT HERE
-    :target: https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip
-
-+ Reference
-
 You will find more examples in **File > Examples > Plaquette** including:
 
 - Using a button
@@ -244,3 +236,5 @@ You will find more examples in **File > Examples > Plaquette** including:
 - Using an analog output
 - Basic filtering (smoothing, re-scaling)
 - Serial input and output
+
+We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
