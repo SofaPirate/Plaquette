@@ -8,6 +8,16 @@
 using namespace pq;
 using namespace aunit;
 
+test(wrapInt) {
+  assertEqual(wrap(1,   3),  1.0f);
+  assertEqual(wrap(1,  -3),  -2.0f);
+
+  assertEqual(wrap(1, -3, 3),   1.0f);
+  assertEqual(wrap(3, -3, 3),  -3.0f);
+  assertEqual(wrap(4, -3, 3),  -2.0f);
+  assertEqual(wrap(-4, -3, 3),  2.0f);
+}
+
 test(wrapBase) {
   assertNear(wrap(0.3,  2.0),  0.3, 0.0001);
   assertNear(wrap(0.3, -2.0), -1.7, 0.0001);
