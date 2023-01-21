@@ -88,7 +88,7 @@ for triggering an event based on input sensor input, one can use auto-normalizin
 :doc:`filters <filters>` such as :doc:`MinMaxScaler` and :doc:`Normalizer`.
 
 Signals in Plaquette can easily flow between units, in a similar fashion to modern
-data-flow softwares such as `Max <https://cycling74.com/products/max>`_,
+data-flow software such as `Max <https://cycling74.com/products/max>`_,
 `Pure Data <https://puredata.info>`_, and `TouchDesigner <https://derivative.ca>`_.
 While this can be achieved using function calls, Plaquette provides a
 special **piping operator** (``>>``) which allows data to be sent from one unit

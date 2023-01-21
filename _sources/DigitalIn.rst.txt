@@ -9,9 +9,9 @@ The unit is assigned to a specific ``pin`` on the board.
 
 The ``mode`` specifies the behavior of the component attached to the pin:
 
-- in ``DEFAULT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vref, typically 5V)
+- in ``DIRECT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vref, typically 5V)
 - in ``INVERTED`` mode the unit will be "on" when the voltage on the pin is low (GND)
-- in ``PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
+- in ``INTERNAL_PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
 
 Debouncing
 ----------

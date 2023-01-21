@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StreamIn &mdash; Plaquette 0.4.3 documentation</title>
+  <title>StreamIn &mdash; Plaquette 0.4.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -136,13 +136,13 @@ sending values between 0 and 1.</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv48StreamIn">
-<span id="_CPPv38StreamIn"></span><span id="_CPPv28StreamIn"></span><span id="StreamIn"></span><span class="target" id="classpq_1_1_stream_in"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><a class="headerlink" href="#_CPPv48StreamIn" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv38StreamIn"></span><span id="_CPPv28StreamIn"></span><span id="StreamIn"></span><span class="target" id="classpq_1_1_stream_in"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><a class="headerlink" href="#_CPPv48StreamIn" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Stream/serial input. Reads float values using Arduino built-in parseFloat(). </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn8StreamInER6Stream8uint16_t">
-<span id="_CPPv3N8StreamIn8StreamInER6Stream8uint16_t"></span><span id="_CPPv2N8StreamIn8StreamInER6Stream8uint16_t"></span><span id="StreamIn::StreamIn__StreamR.uint16_t"></span><span class="target" id="classpq_1_1_stream_in_1ae62b50e08be0ea184dde0d1b9e368f18"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Serial</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn8StreamInER6Stream8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn8StreamInER6Stream">
+<span id="_CPPv3N8StreamIn8StreamInER6Stream"></span><span id="_CPPv2N8StreamIn8StreamInER6Stream"></span><span id="StreamIn::StreamIn__StreamR"></span><span class="target" id="classpq_1_1_stream_in_1a956dca89b36835fc5143892384bb5965"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Serial</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn8StreamInER6Stream" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -153,13 +153,7 @@ sending values between 0 and 1.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8StreamIn3getEv">
-<span id="_CPPv3N8StreamIn3getEv"></span><span id="_CPPv2N8StreamIn3getEv"></span><span id="StreamIn::get"></span><span class="target" id="classpq_1_1_stream_in_1a2aec6aa9769e1eca5b17a9906e20cfef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn3getEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn3getE8uint16_t">
-<span id="_CPPv3N8StreamIn3getE8uint16_t"></span><span id="_CPPv2N8StreamIn3getE8uint16_t"></span><span id="StreamIn::get__uint16_t"></span><span class="target" id="classpq_1_1_stream_in_1a8ea9b6f2a3426d9e17e3297e9df646b1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn3getE8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8StreamIn3getEv"></span><span id="_CPPv2N8StreamIn3getEv"></span><span id="StreamIn::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
@@ -190,7 +184,7 @@ sending values between 0 and 1.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2022, Plaquette.</p>
+    <p>&#169; Copyright 2015-2023, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

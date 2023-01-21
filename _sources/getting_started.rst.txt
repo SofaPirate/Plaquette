@@ -6,7 +6,7 @@ This short introduction will guide you through the first steps of using Plaquett
 We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
 
 .. image:: https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg
-    :alt: IMAGE ALT TEXT HERE
+    :alt: Introduction to Plaquette video tutorial series
     :target: https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip
 
 Step 1: Install Plaquette
@@ -53,7 +53,7 @@ built-in LED:
 
 .. code:: cpp
 
-    DigitalOut myLed(13); //or whatever pin the built-in LED is located on for your microcontroller
+    DigitalOut myLed(13);
 
 In this statement, ``DigitalOut`` is the **type** of unit that we are
 creating. There also exists other types of units, which will be described later.
@@ -64,11 +64,14 @@ states: ("on/off", "high/low", "1/0").
 
 The word ``myLed`` is a **name** for the object we are creating.
 
-Finally, ``13`` is a **parameter** of the object ``myLed`` that
-specifies the hardware *pin* that it corresponds to on the board.
+Finally, ``13`` is a **parameter** of the object ``myLed`` that specifies the hardware
+*pin* that it corresponds to on the board. In English, the statement would thus read 
+as: "Create a unit named``myLed`` of type ``DigitalOut`` on pin ``13``."
 
-In English, the statement would thus read as: "Create a unit named
-``myLed`` of type ``DigitalOut`` on pin ``13``."
+.. note::
+  Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on 
+  most boards, this LED is connected to digital pin ``13``. The constant ``LED_BUILTIN`` is 
+  the number of the pin to which the on-board LED is connected.
 
 Create an input unit
 ~~~~~~~~~~~~~~~~~~~~
@@ -77,12 +80,11 @@ We will now create another unit that will generate a signal which will
 be sent to the LED to make it blink. To this effect, we will use the
 ``SquareOsc`` unit type which generates a `square
 wave <https://en.wikipedia.org/wiki/Square_wave>`__ oscillating between
-"on/high/one" and "off/low/zero" at a regular period of 2.0 seconds, and
-a `duty-cycle <https://en.wikipedia.org/wiki/Duty_cycle>`__ of 50%:
+"on/high/one" and "off/low/zero" at a regular period of 2.0 seconds:
 
 .. code:: cpp
 
-    SquareOsc myOsc(2.0, 0.5);
+    SquareOsc myOsc(2.0);
 
 Create the begin() function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,8 +95,8 @@ Each Plaquette sketch necessitates the declaration of two functions:
 Function ``begin()`` is called only once at the beginning of the sketch
 (just like the
 `setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
-function in Arduino). In our case, we do not to perform any special
-configuration at startup so we will leave the ``begin()`` function
+function in Arduino). For our first program, we do not need to perform any 
+special configuration at startup so we will leave the ``begin()`` function
 empty:
 
 .. code:: cpp
@@ -139,7 +141,7 @@ Full code
 
     DigitalOut myLed(13);
 
-    SquareOsc myOsc(2.0, 0.5);
+    SquareOsc myOsc(2.0);
 
     void begin() {}
 
@@ -153,20 +155,30 @@ Step 3 : Experiment!
 Period and duty cycle
 ~~~~~~~~~~~~~~~~~~~~~
 
-Try changing the *period* and/or *duty-cycle* parameters in the square
-wave unit construction:
+The ``SquareOsc`` unit type provides two parameters to configure the oscillator's behavior:
 
 .. code:: cpp
 
-    SquareOsc myOsc(<period>, <duty-cycle>);
+    SquareOsc myOsc(period, dutyCycle);
 
--  ``<period>`` can be any positive number representing the period of
+-  ``period`` can be any positive number representing the period of
    oscillation (in seconds)
--  ``<duty-cycle>`` can be any number between 0.0 (0%) and 1.0 (100%),
+-  ``dutyCycle`` can be any number between 0.0 (0%) and 1.0 (100%),
    and represents the proportion of the period during which the signal
-   is "high" (ie. "on duty")
+   is "high" (ie. "on duty") (default: 0.5)
 
-What happens?
+Try changing the first parameter in the square oscillator unit to change 
+the period of oscillation. What happens?
+
+You can also try to add a second parameter to  the constructor to control 
+the oscillator's `duty -ycle <https://en.wikipedia.org/wiki/Duty_cycle>`__. 
+
+
+For a fixed period, try changing the dutyCycle to different percentages between 0.0 and 1.0.
+Example:
+ - ``SquareOsc myOsc(2.0, 0.5);`` for a duty-cycle of 50% (default)
+ - ``SquareOsc myOsc(2.0, 0.25);`` for a duty-cycle of 25%
+ - ``SquareOsc myOsc(2.0, 0.75);`` for a duty-cycle of 75%
 
 Adding and multiplying
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -176,7 +188,7 @@ their values and send the result to the LED.
 
 .. code:: cpp
 
-    SquareOsc myOsc2(<period>, <duty-cycle>);
+    SquareOsc myOsc2(period, dutyCycle);
     // ...
     void step() {
       (myOsc * myOsc2) >> myLed;
@@ -224,3 +236,5 @@ You will find more examples in **File > Examples > Plaquette** including:
 - Using an analog output
 - Basic filtering (smoothing, re-scaling)
 - Serial input and output
+
+We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.

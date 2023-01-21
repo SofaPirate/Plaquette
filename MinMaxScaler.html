@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinMaxScaler &mdash; Plaquette 0.4.3 documentation</title>
+  <title>MinMaxScaler &mdash; Plaquette 0.4.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -107,14 +107,14 @@ It does so by keeping track of the minimum and the maximum values ever taken by 
 rescales it such that the minimum value of the signal is mapped to 0 and the maximum value
 is mapped to 1.</p>
 <img alt="_images/Plaquette-MinMaxScaler.png" src="_images/Plaquette-MinMaxScaler.png" />
-<p>In order to accomodate signals that might be changing through time, the user can specify a
-“decay time window” to control the rate of decay of the mininum and maximum boundaries. The
+<p>In order to accommodate signals that might be changing through time, the user can specify a
+“decay time window” to control the rate of decay of the minimum and maximum boundaries. The
 principle is similar to the how the <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> and the <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a> make use of
 <a class="reference external" href="https://www.investopedia.com/terms/e/ema.asp">exponential moving average</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
-that appear in rare conditions. Such values will replace the mininum or maximum value and greatly
+that appear in rare conditions. Such values will replace the minimum or maximum value and greatly
 restrict the spread of the filtered values.</p>
 <p>There are three ways to prevent this:</p>
 <ol class="arabic simple">
@@ -256,7 +256,7 @@ automatically adapt to incoming sensor values.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2022, Plaquette.</p>
+    <p>&#169; Copyright 2015-2023, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StreamOut &mdash; Plaquette 0.4.3 documentation</title>
+  <title>StreamOut &mdash; Plaquette 0.4.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -135,13 +135,13 @@
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49StreamOut">
-<span id="_CPPv39StreamOut"></span><span id="_CPPv29StreamOut"></span><span id="StreamOut"></span><span class="target" id="classpq_1_1_stream_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><a class="headerlink" href="#_CPPv49StreamOut" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv39StreamOut"></span><span id="_CPPv29StreamOut"></span><span id="StreamOut"></span><span class="target" id="classpq_1_1_stream_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><a class="headerlink" href="#_CPPv49StreamOut" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Stream/serial output. Number of digits of precision is configurable. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut9StreamOutER6Stream8uint16_t">
-<span id="_CPPv3N9StreamOut9StreamOutER6Stream8uint16_t"></span><span id="_CPPv2N9StreamOut9StreamOutER6Stream8uint16_t"></span><span id="StreamOut::StreamOut__StreamR.uint16_t"></span><span class="target" id="classpq_1_1_stream_out_1a7665242a8f9173bdc751344870dcb60d"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Serial</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut9StreamOutER6Stream8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut9StreamOutER6Stream">
+<span id="_CPPv3N9StreamOut9StreamOutER6Stream"></span><span id="_CPPv2N9StreamOut9StreamOutER6Stream"></span><span id="StreamOut::StreamOut__StreamR"></span><span class="target" id="classpq_1_1_stream_out_1a6b37ac313cd592de17be9ef1ada8bd34"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Serial</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut9StreamOutER6Stream" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -151,34 +151,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut3getEv">
-<span id="_CPPv3N9StreamOut3getEv"></span><span id="_CPPv2N9StreamOut3getEv"></span><span id="StreamOut::get"></span><span class="target" id="classpq_1_1_stream_out_1a5011916f84ac5f211b523399641200a0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3getEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut3getE8uint16_t">
-<span id="_CPPv3N9StreamOut3getE8uint16_t"></span><span id="_CPPv2N9StreamOut3getE8uint16_t"></span><span id="StreamOut::get__uint16_t"></span><span class="target" id="classpq_1_1_stream_out_1a41392e9328f9004b9ac6fe507d0e3d2e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3getE8uint16_t" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns value in [0, 1]. </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9StreamOut3putEf">
 <span id="_CPPv3N9StreamOut3putEf"></span><span id="_CPPv2N9StreamOut3putEf"></span><span id="StreamOut::put__float"></span><span class="target" id="classpq_1_1_stream_out_1aad28e81e72333bc0a2125311342ce820"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3putEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Pushes value into the unit. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the new value of the unit </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut3putE8uint16_tf">
-<span id="_CPPv3N9StreamOut3putE8uint16_tf"></span><span id="_CPPv2N9StreamOut3putE8uint16_tf"></span><span id="StreamOut::put__uint16_t.float"></span><span class="target" id="classpq_1_1_stream_out_1a31a24916a8bc85cdaa32003b083cc728"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3putE8uint16_tf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -199,6 +173,12 @@
 <dd class="field-odd"><p><strong>digits</strong> – the number of digits to show after decimal point </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9StreamOut3getEv">
+<span id="_CPPv3N9StreamOut3getEv"></span><span id="_CPPv2N9StreamOut3getEv"></span><span id="StreamOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9StreamOut3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 </div>
@@ -228,7 +208,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2022, Plaquette.</p>
+    <p>&#169; Copyright 2015-2023, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

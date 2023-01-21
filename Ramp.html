@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.4.3 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.4.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -125,7 +125,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <p>Sequentially ramps through different values.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">Ramp</span><span class="w"> </span><span class="nf">myRamp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// the ramp is initalized at zero (0)</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">myRamp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// the ramp is initialized at zero (0)</span>
 
 <span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
 
@@ -288,25 +288,25 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp4stopEv">
-<span id="_CPPv3N4Ramp4stopEv"></span><span id="_CPPv2N4Ramp4stopEv"></span><span id="Ramp::stop"></span><span class="target" id="classpq_1_1_chrono_1ad2174dd015d2516f0c451b8f7e086391"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4stopEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp4stopEv"></span><span id="_CPPv2N4Ramp4stopEv"></span><span id="Ramp::stop"></span><span class="target" id="classpq_1_1_chronometer_1aaf7fc746e6a054e072f18b3ccd6aaff0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4stopEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Interrupts the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp6resumeEv">
-<span id="_CPPv3N4Ramp6resumeEv"></span><span id="_CPPv2N4Ramp6resumeEv"></span><span id="Ramp::resume"></span><span class="target" id="classpq_1_1_chrono_1aa324d8091788d860af3a82a0c7138e90"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6resumeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp6resumeEv"></span><span id="_CPPv2N4Ramp6resumeEv"></span><span id="Ramp::resume"></span><span class="target" id="classpq_1_1_chronometer_1a6ab079fc5c9a258894572134b79c3889"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6resumeEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp7elapsedEv">
-<span id="_CPPv3NK4Ramp7elapsedEv"></span><span id="_CPPv2NK4Ramp7elapsedEv"></span><span id="Ramp::elapsedC"></span><span class="target" id="classpq_1_1_chrono_1afc6061c8b59e2bfed4e3f7204100ac6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7elapsedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp7elapsedEv"></span><span id="_CPPv2NK4Ramp7elapsedEv"></span><span id="Ramp::elapsedC"></span><span class="target" id="classpq_1_1_chronometer_1ade8f5f29ad44858a4b19486d70d1cb49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7elapsedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The time currently elapsed by the chronometer (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp9isStartedEv">
-<span id="_CPPv3NK4Ramp9isStartedEv"></span><span id="_CPPv2NK4Ramp9isStartedEv"></span><span id="Ramp::isStartedC"></span><span class="target" id="classpq_1_1_chrono_1a0e90244b09f8d4ebcff8cd489e17328f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp9isStartedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp9isStartedEv"></span><span id="_CPPv2NK4Ramp9isStartedEv"></span><span id="Ramp::isStartedC"></span><span class="target" id="classpq_1_1_chronometer_1af3aa1cc637d09fc787300bb45b73c92d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp9isStartedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer is currently running. </p>
 </dd></dl>
 
@@ -337,7 +337,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2022, Plaquette.</p>
+    <p>&#169; Copyright 2015-2023, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

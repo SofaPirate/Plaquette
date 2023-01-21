@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alarm &mdash; Plaquette 0.4.3 documentation</title>
+  <title>Alarm &mdash; Plaquette 0.4.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.3
+                0.4.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -108,24 +108,28 @@ The alarm can be started, stopped, and resumed.</p>
 which it becomes “on”.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
-<p>Uses an alarm to change the state of built-in LED at random periods of time.</p>
+<p>Uses an alarm to activate built-in LED. Button is used to reset the
+alarm at random periods of time.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">Alarm</span><span class="w"> </span><span class="nf">myAlarm</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// an alarm with 2 seconds duration</span>
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// start alarm</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myAlarm</span><span class="p">)</span><span class="w"> </span><span class="c1">// the alarm will stay &quot;on&quot; until it is stopped or restarted</span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Change LED state.</span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Activate LED when alarm rings.</span>
+<span class="w">  </span><span class="n">myAlarm</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// the alarm will stay &quot;on&quot; until it is stopped or restarted</span>
 
-<span class="w">    </span><span class="c1">// Restarts the timer with a random duration between 1 and 5 seconds.</span>
+<span class="w">  </span><span class="c1">// Reset alarm when button is pushed.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myAlarm</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Restarts the alarm with a random duration between 1 and 5 seconds.</span>
 <span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">));</span><span class="w"></span>
 <span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -185,25 +189,25 @@ which it becomes “on”.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm4stopEv">
-<span id="_CPPv3N5Alarm4stopEv"></span><span id="_CPPv2N5Alarm4stopEv"></span><span id="Alarm::stop"></span><span class="target" id="classpq_1_1_chrono_1ad2174dd015d2516f0c451b8f7e086391"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4stopEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm4stopEv"></span><span id="_CPPv2N5Alarm4stopEv"></span><span id="Alarm::stop"></span><span class="target" id="classpq_1_1_chronometer_1aaf7fc746e6a054e072f18b3ccd6aaff0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4stopEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Interrupts the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm6resumeEv">
-<span id="_CPPv3N5Alarm6resumeEv"></span><span id="_CPPv2N5Alarm6resumeEv"></span><span id="Alarm::resume"></span><span class="target" id="classpq_1_1_chrono_1aa324d8091788d860af3a82a0c7138e90"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6resumeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm6resumeEv"></span><span id="_CPPv2N5Alarm6resumeEv"></span><span id="Alarm::resume"></span><span class="target" id="classpq_1_1_chronometer_1a6ab079fc5c9a258894572134b79c3889"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6resumeEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm7elapsedEv">
-<span id="_CPPv3NK5Alarm7elapsedEv"></span><span id="_CPPv2NK5Alarm7elapsedEv"></span><span id="Alarm::elapsedC"></span><span class="target" id="classpq_1_1_chrono_1afc6061c8b59e2bfed4e3f7204100ac6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm7elapsedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm7elapsedEv"></span><span id="_CPPv2NK5Alarm7elapsedEv"></span><span id="Alarm::elapsedC"></span><span class="target" id="classpq_1_1_chronometer_1ade8f5f29ad44858a4b19486d70d1cb49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm7elapsedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The time currently elapsed by the chronometer (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm9isStartedEv">
-<span id="_CPPv3NK5Alarm9isStartedEv"></span><span id="_CPPv2NK5Alarm9isStartedEv"></span><span id="Alarm::isStartedC"></span><span class="target" id="classpq_1_1_chrono_1a0e90244b09f8d4ebcff8cd489e17328f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9isStartedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm9isStartedEv"></span><span id="_CPPv2NK5Alarm9isStartedEv"></span><span id="Alarm::isStartedC"></span><span class="target" id="classpq_1_1_chronometer_1af3aa1cc637d09fc787300bb45b73c92d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9isStartedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer is currently running. </p>
 </dd></dl>
 
@@ -233,7 +237,7 @@ which it becomes “on”.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2022, Plaquette.</p>
+    <p>&#169; Copyright 2015-2023, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
