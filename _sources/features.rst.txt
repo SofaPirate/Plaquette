@@ -25,7 +25,7 @@ that can be used to control an LED.
 +------------------------------------------------+------------------------------------------------+
 | *Create digital input push-button:*                                                             |
 +------------------------------------------------+------------------------------------------------+
-| ``pinMode(2, INPUT_PULLUP);``                  | ``DigitalIn button(2);``                       |
+| ``pinMode(2, INPUT);``                         | ``DigitalIn button(2);``                       |
 +------------------------------------------------+------------------------------------------------+
 
 .. _user-friendly:
@@ -48,7 +48,7 @@ base units by following :doc:`this link <base_units>`.
 +------------------------------------------------+------------------------------------------------+
 | *Check if button is pushed:*                                                                    |
 +------------------------------------------------+------------------------------------------------+
-| ``if (digitalRead(2) == LOW)``                 | ``if (button.isOn())``                         |
+| ``if (digitalRead(2) == HIGH)``                | ``if (button.isOn())``                         |
 +------------------------------------------------+------------------------------------------------+
 
 .. _signal-centric:
@@ -69,7 +69,7 @@ conversions on integer values.
 +================================================+================================================+
 | *Check if button is released:*                                                                  |
 +------------------------------------------------+------------------------------------------------+
-| ``if (digitalRead(2) != LOW)``                 | ``if (!button)``                               |
+| ``if (digitalRead(2) != HIGH)``                | ``if (!button)``                               |
 +------------------------------------------------+------------------------------------------------+
 | *Check if sensor value is higher than 70%:*                                                     |
 +------------------------------------------------+------------------------------------------------+
@@ -137,13 +137,13 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 |   int buttonPin = 2;                           |     DigitalIn button(2);                       |
 |   int ledPin = 12;                             |     DigitalOut led(12);                        |
 |                                                |                                                |
-|   void setup() {                               |     // Square wave with period of 1 second.    |
+|   void setup() {                               |     // Square wave 1 second period.            |
 |     pinMode(buttonPin, INPUT_PULLUP);          |     SquareOsc oscillator(1.0);                 |
 |     pinMode(ledPin, OUTPUT);                   |                                                |
 |   }                                            |     void begin() {}                            |
 |                                                |                                                |
 |   void loop() {                                |     void step() {                              |
-|     // Button is checked only one per second.  |       // Button is checked all the time.       |
+|     // Button is checked once per second.      |       // Button is checked at all time.        |
 |     if (digitalRead(buttonPin) == LOW) {       |       if (button)                              |
 |       digitalWrite(ledPin, HIGH);              |         oscillator >> led;                     |
 |       delay(500); // do nothing for 500ms      |     }                                          |
