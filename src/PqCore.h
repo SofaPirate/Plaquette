@@ -65,10 +65,10 @@ namespace pq {
 /// @brief Input/output modes.
 enum {
   DIRECT,
-  INVERTED, // or FLIPPED ???? https://wikidiff.com/invert/flip
+  INVERTED,
   INTERNAL_PULLUP,
-  PULLDOWN = DIRECT,
-  PULLUP = INVERTED,
+  // PULLDOWN = DIRECT,
+  // PULLUP = INVERTED,
   SOURCE = DIRECT,
   SINK = INVERTED
 };

@@ -33,10 +33,6 @@ enum {
   DEBOUNCE_PROMPT_DETECT
 };
 
-// Maybe?
-#define PULLDOWN DIRECT
-#define PULLUP  INVERTED
-
 // Deprecated.
 #define EXTERNAL_PULLDOWN DIRECT
 #define EXTERNAL_PULLUP   INVERTED
