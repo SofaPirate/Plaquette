@@ -21,24 +21,11 @@
  */
 
 #include "pq_map_real.h"
-
-// Safe version of the constrain() macro which makes sure x is within low and high even if low > high.
-float safeConstrain(double x, double low, double high) {
-  // Swap high and low if needed.
-  if (high < low) {
-    double lowCopy = low;
-    low = high;
-    high = lowCopy;
-  }
-
-  // Return constrained value.
-  return (x < low ? low : (x > high ? high : x));
-}
-
+#include "pq_wrap.h"
 
 namespace pq {
 
-float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, bool constrain_)
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode)
 {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
@@ -47,18 +34,28 @@ float mapFloat(double value, double fromLow, double fromHigh, double toLow, doub
     value = (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 
   // Return and constrain.
-  return (constrain_ ? safeConstrain(value, toLow, toHigh) : value);
+  switch (mode) {
+    case UNCONSTRAIN: return value;
+    case CONSTRAIN:   return safeConstrain(value, toLow, toHigh);
+    case WRAP:        return wrap(value, toLow, toHigh);
+    default:          return value;
+  }
 }
 
-float mapFrom01(double value, double toLow, double toHigh, bool constrain_) {
+float mapFrom01(double value, double toLow, double toHigh, uint8_t mode) {
   // Compute value.
   value = (value * (toHigh - toLow)) + toLow;
 
   // Return and constrain.
-  return (constrain_ ? safeConstrain(value, toLow, toHigh) : value);
+  switch (mode) {
+    case UNCONSTRAIN: return value;
+    case CONSTRAIN:   return safeConstrain(value, toLow, toHigh);
+    case WRAP:        return wrap(value, toLow, toHigh);
+    default:          return value;
+  }
 }
 
-float mapTo01(double value, double fromLow, double fromHigh, bool constrain_) {
+float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode) {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
     value = 0.5f; // dummy value
@@ -66,7 +63,12 @@ float mapTo01(double value, double fromLow, double fromHigh, bool constrain_) {
     value = (value - fromLow) / (fromHigh - fromLow);
 
   // Return and constrain.
-  return (constrain_ ? safeConstrain(value, 0.0, 1.0) : value);  
+  switch (mode) {
+    case UNCONSTRAIN: return value;
+    case CONSTRAIN:   return safeConstrain(value, 0, 1);
+    case WRAP:        return wrap(value);
+    default:          return value;
+  }
 }
 
 } // namespace pq

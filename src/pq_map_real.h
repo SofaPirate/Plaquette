@@ -23,11 +23,14 @@
 #ifndef PQ_MAP_REAL_H_
 #define PQ_MAP_REAL_H_
 
+#include <stdint.h>
+
 namespace pq {
 
 enum {
   UNCONSTRAIN = 0,
-  CONSTRAIN = 1
+  CONSTRAIN = 1,
+  WRAP = 2
 };
 
 /**
@@ -37,30 +40,31 @@ enum {
  * @param fromHigh the upper bound of the value’s current range
  * @param toLow the lower bound of the value’s target range
  * @param toHigh the upper bound of the value’s target range
- * @param constrain set to CONSTRAIN to constrain the return value between toLow and toHigh
+ * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value
  */
-float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, bool constrain=UNCONSTRAIN);
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode=UNCONSTRAIN);
 
 /**
  * Re-maps a number in range [0, 1] to a new range.
  * @param value the number to map (in [0,1])
  * @param toLow the lower bound of the value’s target range
  * @param toHigh the upper bound of the value’s target range
- * @param constrain set to CONSTRAIN to constrain the return value between toLow and toHigh
+ * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value in [toLow, toHigh]
  */
-float mapFrom01(double value, double toLow, double toHigh, bool constrain=UNCONSTRAIN);
+float mapFrom01(double value, double toLow, double toHigh, uint8_t mode=UNCONSTRAIN);
 
 /**
  * Re-maps a number to the [0, 1] range.
  * @param value the number to map
  * @param fromLow the lower bound of the value’s current range
  * @param fromHigh the upper bound of the value’s current range
- * @param constrain set to CONSTRAIN to constrain the return value between toLow and toHigh
+ * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value in [0, 1]
  */
-float mapTo01(double value, double fromLow, double fromHigh, bool constrain=UNCONSTRAIN);
+float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode=UNCONSTRAIN);
+
 
 } // namespace pq
 
