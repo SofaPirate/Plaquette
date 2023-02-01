@@ -25,6 +25,16 @@
 
 namespace pq {
 
+float _mapConvert(float value, float toLow, float toHigh, uint8_t mode) {
+  // Return and constrain.
+  switch (mode) {
+    case UNCONSTRAIN: return value;
+    case CONSTRAIN:   return toLow <= toHigh ? constrain(value, toLow, toHigh) : constrain(value, toHigh, toLow);
+    case WRAP:        return wrap(value, toLow, toHigh);
+    default:          return value;
+  }
+}
+
 float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode)
 {
   // Avoid divisions by zero.
@@ -33,13 +43,7 @@ float mapFloat(double value, double fromLow, double fromHigh, double toLow, doub
   else
     value = (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
 
-  // Return and constrain.
-  switch (mode) {
-    case UNCONSTRAIN: return value;
-    case CONSTRAIN:   return safeConstrain(value, toLow, toHigh);
-    case WRAP:        return wrap(value, toLow, toHigh);
-    default:          return value;
-  }
+  return _mapConvert(value, toLow, toHigh, mode);
 }
 
 float mapFrom01(double value, double toLow, double toHigh, uint8_t mode) {
@@ -47,12 +51,7 @@ float mapFrom01(double value, double toLow, double toHigh, uint8_t mode) {
   value = (value * (toHigh - toLow)) + toLow;
 
   // Return and constrain.
-  switch (mode) {
-    case UNCONSTRAIN: return value;
-    case CONSTRAIN:   return safeConstrain(value, toLow, toHigh);
-    case WRAP:        return wrap(value, toLow, toHigh);
-    default:          return value;
-  }
+  return _mapConvert(value, toLow, toHigh, mode);
 }
 
 float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode) {
@@ -63,12 +62,7 @@ float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode) {
     value = (value - fromLow) / (fromHigh - fromLow);
 
   // Return and constrain.
-  switch (mode) {
-    case UNCONSTRAIN: return value;
-    case CONSTRAIN:   return safeConstrain(value, 0, 1);
-    case WRAP:        return wrap(value);
-    default:          return value;
-  }
+  return _mapConvert(value, 0.0, 1.0, mode);
 }
 
 } // namespace pq
