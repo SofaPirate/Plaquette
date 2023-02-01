@@ -5,6 +5,8 @@
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2022 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * 
+ * Source: https://github.com/nicolausYes/easing-functions/blob/master/src/easing.cpp
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,19 +25,11 @@
 #ifndef PQ_EASING_H_
 #define PQ_EASING_H_
 
-#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
-#include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 namespace pq {
-
-// Source: https://github.com/nicolausYes/easing-functions/blob/master/src/easing.cpp
 
 typedef float (*easing_function)(float);
 
-/// Linear easing function (t = t).
+/// Linear easing function f(t) = t.
 float easeNone(float t);
 
 float easeInSine(float t);
