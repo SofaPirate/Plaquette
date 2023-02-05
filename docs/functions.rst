@@ -11,3 +11,4 @@ Standalone utility functions.
    mapTo01
    randomFloat
    seconds
+   wrap
