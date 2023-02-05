@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mapFloat() &mdash; Plaquette 0.4.4 documentation</title>
+  <title>mapFloat() &mdash; Plaquette 0.4.5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.4
+                0.4.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -71,6 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrap.html">wrap()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -106,18 +107,22 @@
 <p>Re-maps a number from one range to another. That is, a value of <code class="docutils literal notranslate"><span class="pre">fromLow</span></code> would get
 mapped to <code class="docutils literal notranslate"><span class="pre">toLow</span></code>, a value of <code class="docutils literal notranslate"><span class="pre">fromHigh</span></code> to <code class="docutils literal notranslate"><span class="pre">toHigh</span></code>, and values in-between to values
 in-between, proportionally.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The function also handles negative numbers well, so that this example</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-100.0</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-100.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>is also valid and works well.</p>
 <p>By default, does <em>not</em> constrain output to stay within the [<code class="docutils literal notranslate"><span class="pre">fromHigh</span></code>, <code class="docutils literal notranslate"><span class="pre">toHigh</span></code>] range, because
 out-of-range values are sometimes intended and useful. In order to constrain the return value within
-range, use the <code class="docutils literal notranslate"><span class="pre">CONSTRAIN</span></code> argument as the last parameter:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-100.0</span><span class="p">,</span><span class="w"> </span><span class="n">CONSTRAIN</span><span class="p">);</span><span class="w"></span>
+range, you can use one of the alternative modes:
+* the <code class="docutils literal notranslate"><span class="pre">CONSTRAIN</span></code> mode to simply keep the value within range by restricting extreme
+values as in <cite>constrain() &lt;https://www.arduino.cc/reference/en/language/functions/math/constrain/&gt;</cite>
+* the <code class="docutils literal notranslate"><span class="pre">WRAP</span></code> mode to wrap the values around as in <a class="reference internal" href="wrap.html"><span class="doc">wrap()</span></a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-100.0</span><span class="p">,</span><span class="w"> </span><span class="n">CONSTRAIN</span><span class="p">);</span><span class="w"></span>
+<span class="n">mapFloat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-100.0</span><span class="p">,</span><span class="w"> </span><span class="n">WRAP</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -127,7 +132,7 @@ the “upper bounds” (<code class="docutils literal notranslate"><span class="
 range of numbers, for example</p>
 </div>
 <p>Unlike the Arduino <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/math/map/">map()</a> function,
-<code class="docutils literal notranslate"><span class="pre">mapReal()</span></code> uses floating-point math and <em>will</em> generate fractions.</p>
+<code class="docutils literal notranslate"><span class="pre">mapFloat()</span></code> uses floating-point math and <em>will</em> generate fractions.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
@@ -153,8 +158,8 @@ range of numbers, for example</p>
 <section id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N2pq8mapFloatEdddddb">
-<span id="_CPPv3N2pq8mapFloatEdddddb"></span><span id="_CPPv2N2pq8mapFloatEdddddb"></span><span id="pq::mapFloat__double.double.double.double.double.b"></span><span class="target" id="pq__map__real_8cpp_1ab82b498ed880105cff01067cff87aa8a"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromHigh</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">constrain</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UNCONSTRAIN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq8mapFloatEdddddb" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N2pq8mapFloatEddddd7uint8_t">
+<span id="_CPPv3N2pq8mapFloatEddddd7uint8_t"></span><span id="_CPPv2N2pq8mapFloatEddddd7uint8_t"></span><span id="pq::mapFloat__double.double.double.double.double.uint8_t"></span><span class="target" id="pq__map__real_8cpp_1a55956275609ce761514f551405d4ea89"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fromHigh</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UNCONSTRAIN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq8mapFloatEddddd7uint8_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Re-maps a number from one range to another. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -164,7 +169,7 @@ range of numbers, for example</p>
 <li><p><strong>fromHigh</strong> – the upper bound of the value’s current range </p></li>
 <li><p><strong>toLow</strong> – the lower bound of the value’s target range </p></li>
 <li><p><strong>toHigh</strong> – the upper bound of the value’s target range </p></li>
-<li><p><strong>constrain</strong> – set to CONSTRAIN to constrain the return value between toLow and toHigh </p></li>
+<li><p><strong>mode</strong> – set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mapFrom01() &mdash; Plaquette 0.4.4 documentation</title>
+  <title>mapFrom01() &mdash; Plaquette 0.4.5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.4
+                0.4.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -71,6 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrap.html">wrap()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -146,8 +147,8 @@ range, use the <code class="docutils literal notranslate"><span class="pre">CONS
 <section id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N2pq9mapFrom01Edddb">
-<span id="_CPPv3N2pq9mapFrom01Edddb"></span><span id="_CPPv2N2pq9mapFrom01Edddb"></span><span id="pq::mapFrom01__double.double.double.b"></span><span class="target" id="pq__map__real_8cpp_1a04de5d7f088f7e7fd9501e31c0765d1c"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapFrom01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">constrain</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UNCONSTRAIN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq9mapFrom01Edddb" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N2pq9mapFrom01Eddd7uint8_t">
+<span id="_CPPv3N2pq9mapFrom01Eddd7uint8_t"></span><span id="_CPPv2N2pq9mapFrom01Eddd7uint8_t"></span><span id="pq::mapFrom01__double.double.double.uint8_t"></span><span class="target" id="pq__map__real_8cpp_1a2253ee28ef3b438b41ad4116a424e389"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">mapFrom01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UNCONSTRAIN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq9mapFrom01Eddd7uint8_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Re-maps a number in range [0, 1] to a new range. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -155,7 +156,7 @@ range, use the <code class="docutils literal notranslate"><span class="pre">CONS
 <li><p><strong>value</strong> – the number to map (in [0,1]) </p></li>
 <li><p><strong>toLow</strong> – the lower bound of the value’s target range </p></li>
 <li><p><strong>toHigh</strong> – the upper bound of the value’s target range </p></li>
-<li><p><strong>constrain</strong> – set to CONSTRAIN to constrain the return value between toLow and toHigh </p></li>
+<li><p><strong>mode</strong> – set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

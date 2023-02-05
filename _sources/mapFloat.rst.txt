@@ -9,33 +9,35 @@ in-between, proportionally.
 
 .. code-block:: c++
 
-   y = mapFloat(x, 10.0, 50.0, 100.0, 0.0);
+   float y = mapFloat(x, 10.0, 50.0, 100.0, 0.0);
 
 The function also handles negative numbers well, so that this example
 
 .. code-block:: c++
 
-   y = mapFloat(x, 10.0, 50.0, 100.0, -100.0);
+   float y = mapFloat(x, 10.0, 50.0, 100.0, -100.0);
 
 is also valid and works well.
 
 By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
 out-of-range values are sometimes intended and useful. In order to constrain the return value within
-range, use the ``CONSTRAIN`` argument as the last parameter:
+range, you can use one of the alternative modes:
+* the ``CONSTRAIN`` mode to simply keep the value within range by restricting extreme
+values as in `constrain() <https://www.arduino.cc/reference/en/language/functions/math/constrain/>`
+* the ``WRAP`` mode to wrap the values around as in :doc:`wrap`
 
 .. code-block:: c++
 
-   y = mapFloat(x, 10.0, 50.0, 100.0, -100.0, CONSTRAIN);
-
+   mapFloat(x, 10.0, 50.0, 100.0, -100.0, CONSTRAIN);
+   mapFloat(x, 10.0, 50.0, 100.0, -100.0, WRAP);
 
 .. note::
    Note that the "lower bounds" (``fromLow`` and ``toLow``) of either range may be larger or smaller than 
    the "upper bounds" (``fromHigh`` and ``toHigh``) so the ``mapFloat()`` function may be used to reverse a
    range of numbers, for example
 
-
 Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/functions/math/map/>`_ function,
-``mapReal()`` uses floating-point math and *will* generate fractions.
+``mapFloat()`` uses floating-point math and *will* generate fractions.
 
 |Example|
 ---------
@@ -64,7 +66,7 @@ Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/function
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFloat(double, double, double, double, double, bool)
+.. doxygenfunction:: mapFloat(double, double, double, double, double, uint8_t)
    :project: Plaquette
 
 |SeeAlso|
