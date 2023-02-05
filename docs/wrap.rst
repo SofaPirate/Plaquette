@@ -59,7 +59,7 @@ Ramp LED up and then back to zero once every 10 second:
 .. doxygenfunction:: wrap(double, double)
    :project: Plaquette
 
-.. doxygenfunction:: wrap(double)
+.. doxygenfunction:: wrap01(double)
    :project: Plaquette
 
 |SeeAlso|
