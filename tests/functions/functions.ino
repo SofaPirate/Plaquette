@@ -8,6 +8,24 @@
 using namespace pq;
 using namespace aunit;
 
+test(map) {
+  
+  for (uint8_t mode=0; mode<=2; mode++) {
+    assertEqual(mapFrom01(0, -10, 10, mode), -10.0);
+    assertEqual(mapFrom01(1, -10, 10, mode),  mode == WRAP ? -10: 10.0);
+
+    assertEqual(mapTo01(-10, -10, 10, mode), 0.0);
+    assertEqual(mapTo01( 10, -10, 10, mode), mode == WRAP ? 0.0 : 1.0);
+
+    assertEqual(mapFloat(-10, -10, 10, -20, 20, mode), -20.0);
+    assertEqual(mapFloat( 10, -10, 10, -20, 20, mode), mode == WRAP ? -20.0 : 20.0);
+  }
+
+  assertEqual(mapFloat(-20, -10, 10, -20, 20, UNCONSTRAIN), -40.0);
+  assertEqual(mapFloat(-20, -10, 10, -20, 20, CONSTRAIN), -20.0);
+  assertEqual(mapFloat(-20, -10, 10, -20, 20, WRAP), 0.0);
+}
+
 test(wrapInt) {
   assertEqual(wrap(1,   3),  1.0f);
   assertEqual(wrap(1,  -3),  -2.0f);
