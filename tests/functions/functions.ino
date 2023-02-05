@@ -48,11 +48,11 @@ test(wrapBase) {
 test(wrap01) {
   for (float frac = 0; frac < 1; frac += 0.0001)
     for (float f = -5.0f; f < 5.0f; f += 1.0f)
-      assertNear(wrap(f+frac),    frac, 0.0001);
+      assertNear(wrap01(f+frac),    frac, 0.0001);
 
   for (float f = -2.5f; f <= 2.5f; f += 0.1f) {
-    assertEqual(wrap(f, 1),    wrap(f));
-    assertEqual(wrap(f, 0, 1), wrap(f));
+    assertEqual(wrap(f, 1),    wrap01(f));
+    assertEqual(wrap(f, 0, 1), wrap01(f));
   }
 }
 
