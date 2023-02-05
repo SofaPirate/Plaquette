@@ -34,23 +34,23 @@
 
 namespace pq {
 
-/// @brief Wraps value in range [0, 1).
+/// @brief Restricts value to the interval [0, 1) by wrapping it around.
 /// @param x the value to wrap
 /// @return the value wrapped around [0, 1).
-float wrap(float x);
+float wrap01(double x);
 
-/// @brief Wraps value in range [0, high).
+/// @brief Restricts value to the interval [0, high) by wrapping it around.
 /// @param x the value to wrap
 /// @param high the higher bound
 /// @return the value wrapped around [0, high) or [high, 0) if high is negative
-float wrap(float x, float high);
+float wrap(double x, double high);
 
-/// @brief Wraps value in range [low, high).
+/// @brief Restricts value to the interval [low, high) by wrapping it around.
 /// @param x the value to wrap
 /// @param low the lower boundary
 /// @param high the higher boundary
 /// @return the value wrapped around [low, high) or [high, low) if high < low
-float wrap(float x, float low, float high);
+float wrap(double x, double low, double high);
 
 }
 

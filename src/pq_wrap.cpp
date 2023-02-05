@@ -20,11 +20,11 @@
 
 namespace pq {
 
-float wrap(float x) {
+float wrap01(double x) {
     return wrap(x, 1.0f);
 }
 
-float wrap(float x, float high) {
+float wrap(double x, double high) {
   // If high is zero, return 0.
   if (high == 0 || high == -0)
     return 0;
@@ -36,7 +36,7 @@ float wrap(float x, float high) {
   // Compute wrapping.
   else {
     // Calculate modulo.
-    float mod = fmodf(x, high);
+    double mod = fmodf(x, high);
 
     // If x is positive, fmodf behaves similarly to integer modulo (%).
     if (x >= 0)
@@ -53,7 +53,7 @@ float wrap(float x, float high) {
 }
 
   
-float wrap(float x, float low, float high) {
+float wrap(double x, double low, double high) {
   return (low <= high) ? wrap(x-low, high-low) + low : wrap(x-high, low-high) + high;
 }
 
