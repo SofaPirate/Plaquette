@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Plaquette KEYWORD1
+Plaquette	KEYWORD1
 
 AnalogIn	KEYWORD1
 DigitalIn	KEYWORD1
