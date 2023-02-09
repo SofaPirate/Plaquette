@@ -33,11 +33,12 @@ float easeInSine(float t) {
 }
 
 float easeOutSine(float t) {
-	return 1 + fastSin( HALF_PI * (--t) );
+    t--;
+	return 1 + fastSin( HALF_PI * t );
 }
 
 float easeInOutSine(float t) {
-	return 0.5f * (1 + fastSin( PI * (t - 0.5) ) );
+	return 0.5f * (1 + fastSin( PI * (t - 0.5f) ) );
 }
 
 float easeInQuad(float t) {
@@ -49,7 +50,7 @@ float easeOutQuad(float t) {
 }
 
 float easeInOutQuad(float t) {
-    return t < 0.5 ? 2 * t * t : t * (4 - 2 * t) - 1;
+    return t < 0.5f ? 2 * t * t : t * (4 - 2 * t) - 1;
 }
 
 float easeInCubic(float t) {
@@ -57,11 +58,17 @@ float easeInCubic(float t) {
 }
 
 float easeOutCubic(float t) {
-    return 1 + (--t) * t * t;
+    t--;
+    return 1 + t * t * t;
 }
 
 float easeInOutCubic(float t) {
-    return t < 0.5f ? 4 * t * t * t : 1 + (--t) * (2 * (--t)) * (2 * t);
+    if (t < 0.5f)
+        return  4 * t * t * t;
+    else {
+        t = 2*(t - 1);
+        return 0.5f * t * t * t;
+    }
 }
 
 float easeInQuart(float t) {
@@ -70,16 +77,18 @@ float easeInQuart(float t) {
 }
 
 float easeOutQuart(float t) {
-    t = (--t) * t;
+    t--;
+    t *= t;
     return 1 - t * t;
 }
 
 float easeInOutQuart(float t) {
-    if( t < 0.5f ) {
+    if (t < 0.5f) {
         t *= t;
         return 8 * t * t;
     } else {
-        t = (--t) * t;
+        t--;
+        t *= t;
         return 1 - 8 * t * t;
     }
 }
@@ -90,17 +99,18 @@ float easeInQuint(float t) {
 }
 
 float easeOutQuint(float t) {
-    float t2 = (--t) * t;
+    t--;
+    float t2 = t * t;
     return 1 + t * t2 * t2;
 }
 
 float easeInOutQuint(float t) {
-    float t2;
-    if( t < 0.5f ) {
-        t2 = t * t;
+    if (t < 0.5f) {
+        float t2 = t * t;
         return 16 * t * t2 * t2;
     } else {
-        t2 = (--t) * t;
+        t--;
+        float t2 = t * t;
         return 1 + 16 * t * t2 * t2;
     }
 }
@@ -114,10 +124,10 @@ float easeOutExpo(float t) {
 }
 
 float easeInOutExpo(float t) {
-    if( t < 0.5 ) {
+    if( t < 0.5f ) {
         return (fastPow( 2, 16 * t ) - 1) / 510;
     } else {
-        return 1 - 0.5f * fastPow( 2, -16 * (t - 0.5) );
+        return 1 - 0.5f * fastPow( 2, -16 * (t - 0.5f) );
     }
 }
 
@@ -142,14 +152,16 @@ float easeInBack(float t) {
 }
 
 float easeOutBack(float t) {
-    return 1 + (--t) * t * (2.70158f * t + 1.70158f);
+    t--;
+    return 1 + t * t * (2.70158f * t + 1.70158f);
 }
 
 float easeInOutBack(float t) {
     if( t < 0.5f ) {
         return t * t * (7 * t - 2.5f) * 2;
     } else {
-        return 1 + (--t) * t * 2 * (7 * t + 2.5f);
+        t--;
+        return 1 + t * t * 2 * (7 * t + 2.5f);
     }
 }
 
@@ -159,19 +171,20 @@ float easeInElastic(float t) {
 }
 
 float easeOutElastic(float t) {
-    float t2 = (t - 1) * (t - 1);
+    float t2 = (t - 1);
+    t2 *= t2;
     return 1 - t2 * t2 * fastCos( t * PI * 4.5f );
 }
 
 float easeInOutElastic(float t) {
-    float t2;
     if( t < 0.45f ) {
-        t2 = t * t;
+        float t2 = t * t;
         return 8 * t2 * t2 * fastSin( t * PI * 9 );
     } else if( t < 0.55f ) {
         return 0.5f + 0.75f * fastSin( t * PI * 4 );
     } else {
-        t2 = (t - 1) * (t - 1);
+        float t2 = (t - 1);
+        t2 *= t2;
         return 1 - 8 * t2 * t2 * fastSin( t * PI * 9 );
     }
 }
