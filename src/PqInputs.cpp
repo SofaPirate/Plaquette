@@ -56,6 +56,9 @@ void Debounceable::_step() {
 
   _unsetStateFlag(CHANGED_STATE);
 
+  // No debouncing case.
+  if (_interval) {
+
   if (_debounceMode == DEBOUNCE_STABLE) {
     // Read the state of the switch in a temporary variable.
     bool currentState = _isOn();
@@ -78,8 +81,7 @@ void Debounceable::_step() {
   else if (_debounceMode == DEBOUNCE_LOCK_OUT) {
     // Ignore everything if we are locked out
     if (seconds() - _startTime >= _interval) {
-        bool currentState = _isOn();
-        if ( currentState != _getStateFlag(DEBOUNCED_STATE) ) {
+          if (_isOn() != _getStateFlag(DEBOUNCED_STATE) ) {
           _startTime = seconds();
           _changeState();
         }
@@ -108,6 +110,13 @@ void Debounceable::_step() {
       _toggleStateFlag(UNSTABLE_STATE);
     }
   }
+}
+
+  // No debouncing.
+  else if (_isOn() != _getStateFlag(DEBOUNCED_STATE)) {
+    _changeState();
+  }
+
 }
 
 bool Debounceable::_debounced() {
