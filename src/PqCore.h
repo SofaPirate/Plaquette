@@ -79,27 +79,7 @@ class Unit;
 class PlaquetteEnv {
   friend class Unit;
 
-private:
-  // Used to keep track of units.
-  Unit* _units[PLAQUETTE_MAX_UNITS];
-  uint8_t _nUnits;
 
-  // Snapshot of time in seconds from current step.
-  unsigned long _microSeconds;
-
-  // Sampling rate (ie. how many times per seconds step() is called).
-  float _sampleRate;
-
-  // Sampling period (ie. 1.0 / sampleRate()).
-  float _samplePeriod;
-
-  // Whether the auto sample rate mode is activated.
-  float _targetSampleRate;
-
-  // Number of steps accomplished.
-  unsigned long _nSteps;
-
-  bool _firstRun;
 
 public:
   PlaquetteEnv();
@@ -175,6 +155,26 @@ private:
 
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
+
+private:
+  // Used to keep track of units.
+  Unit* _units[PLAQUETTE_MAX_UNITS];
+  uint8_t _nUnits;
+
+  // Snapshot of time in seconds from current step.
+  unsigned long _microSeconds;
+
+  // Sampling rate (ie. how many times per seconds step() is called).
+  float _sampleRate;
+
+  // Sampling period (ie. 1.0 / sampleRate()).
+  float _samplePeriod;
+
+  // Whether the auto sample rate mode is activated.
+  float _targetSampleRate;
+
+  // Number of steps accomplished.
+  unsigned long _nSteps;
 };
 
 /// The Plaquette singleton.
