@@ -175,6 +175,12 @@ private:
 
   // Number of steps accomplished.
   unsigned long _nSteps;
+
+  // True when units' begin() has been called during preBegin().
+  bool _beginCompleted;
+
+  // True during first run.
+  bool _firstRun;
 };
 
 /// The Plaquette singleton.
@@ -329,9 +335,9 @@ public:
 };
 
 /**
- * An analog analog source that contains a value (typically in [0, 1]).
- * It is the responsibility of the subclass's programmer to make sure the value stays
- * within the [0, 1] range OR to update the mapTo() function accordingly.
+ * An analog analog source that contains a value constrained to a finite range 
+ * (typically in [0, 1]). It is the responsibility of the subclass's programmer to make 
+ * sure the value stays within range OR to update the mapTo() function accordingly.
  */
 class AnalogSource : public Node {
 public:

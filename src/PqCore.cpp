@@ -30,7 +30,7 @@ PlaquetteEnv Plaquette
 #endif
 ;
 
-PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _firstRun(true) {}
+PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {}
 
 void PlaquetteEnv::preBegin() {
   // Initialize serial.
@@ -49,6 +49,9 @@ void PlaquetteEnv::preBegin() {
   for (uint8_t i=0; i<_nUnits; i++) {
     _units[i]->begin();
   }
+
+  // Units have been initialized.
+  _beginCompleted = true;
 }
 
 void PlaquetteEnv::postBegin() {
@@ -71,9 +74,14 @@ void PlaquetteEnv::add(Unit* component) {
 			return; // do not add existing component
     }
 	}
+
   // Append component to list.
   if (_nUnits < PLAQUETTE_MAX_UNITS) {
     _units[_nUnits++] = component;
+
+    // Call begin if component has been added after call to preBegin().
+    if (_beginCompleted)
+      component->begin();
   }
 }
 
