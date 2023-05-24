@@ -59,58 +59,58 @@ void Debounceable::_step() {
   // No debouncing case.
   if (_interval) {
 
-  if (_debounceMode == DEBOUNCE_STABLE) {
-    // Read the state of the switch in a temporary variable.
-    bool currentState = _isOn();
+    if (_debounceMode == DEBOUNCE_STABLE) {
+      // Read the state of the switch in a temporary variable.
+      bool currentState = _isOn();
 
-    // If the reading is different from last reading, reset the debounce counter
-    if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
-      _startTime = seconds();
-      _toggleStateFlag(UNSTABLE_STATE);
+      // If the reading is different from last reading, reset the debounce counter
+      if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
+        _startTime = seconds();
+        _toggleStateFlag(UNSTABLE_STATE);
+      }
+
+      // We have passed the threshold time, so the input is now stable
+      // If it is different from last state, set the STATE_CHANGED flag
+      else if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
+              seconds() - _startTime >= _interval) {
+        _startTime = seconds();
+        _changeState();
+      }
     }
 
-    // We have passed the threshold time, so the input is now stable
-    // If it is different from last state, set the STATE_CHANGED flag
-    else if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
-             seconds() - _startTime >= _interval) {
-      _startTime = seconds();
-      _changeState();
-    }
-  }
-
-  else if (_debounceMode == DEBOUNCE_LOCK_OUT) {
-    // Ignore everything if we are locked out
-    if (seconds() - _startTime >= _interval) {
+    else if (_debounceMode == DEBOUNCE_LOCK_OUT) {
+      // Ignore everything if we are locked out
+      if (seconds() - _startTime >= _interval) {
           if (_isOn() != _getStateFlag(DEBOUNCED_STATE) ) {
-          _startTime = seconds();
-          _changeState();
-        }
+            _startTime = seconds();
+            _changeState();
+          }
+      }
+    }
+
+    // DEBOUNCE_PROMPT_DETECT
+    else  {
+      // Read the state of the switch port into a temporary variable.
+      bool currentState = _isOn();
+
+      if ( currentState != _getStateFlag(DEBOUNCED_STATE) &&
+          seconds() - _startTime >= _interval) {
+        // We have passed the time threshold, so a new change of state is allowed.
+        // set the STATE_CHANGED flag and the new DEBOUNCED_STATE.
+        // This will be prompt as long as there has been greater than interval_misllis ms since last change of input.
+        // Otherwise debounced state will not change again until bouncing is stable for the timeout period.
+        _changeState();
+      }
+
+      // If the currentState is different from previous currentState, reset the debounce timer - as input is still unstable
+      // and we want to prevent new button state changes until the previous one has remained stable for the timeout.
+      if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
+        _startTime = seconds();
+        // Update Unstable Bit to macth readState
+        _toggleStateFlag(UNSTABLE_STATE);
+      }
     }
   }
-
-  // DEBOUNCE_PROMPT_DETECT
-  else  {
-    // Read the state of the switch port into a temporary variable.
-    bool currentState = _isOn();
-
-    if ( currentState != _getStateFlag(DEBOUNCED_STATE) &&
-         seconds() - _startTime >= _interval) {
-      // We have passed the time threshold, so a new change of state is allowed.
-      // set the STATE_CHANGED flag and the new DEBOUNCED_STATE.
-      // This will be prompt as long as there has been greater than interval_misllis ms since last change of input.
-      // Otherwise debounced state will not change again until bouncing is stable for the timeout period.
-      _changeState();
-    }
-
-    // If the currentState is different from previous currentState, reset the debounce timer - as input is still unstable
-    // and we want to prevent new button state changes until the previous one has remained stable for the timeout.
-    if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
-      _startTime = seconds();
-      // Update Unstable Bit to macth readState
-      _toggleStateFlag(UNSTABLE_STATE);
-    }
-  }
-}
 
   // No debouncing.
   else if (_isOn() != _getStateFlag(DEBOUNCED_STATE)) {
@@ -149,7 +149,7 @@ float AnalogIn::_read() {
 }
 
 void AnalogIn::begin() {
-  _begin();
+  _begin(); 
 }
 
 void AnalogIn::step() {
@@ -183,10 +183,8 @@ void DigitalIn::begin() {
 void DigitalIn::step() {
   // Perform basic step.
   _step();
-  // Read state.
-	bool isOn = analogToDigital(_debounced());
   // Save state.
-  _setOn(isOn);
+  _setOn(_debounced());
 }
 
 } // namespace pq
