@@ -61,7 +61,7 @@ void PeakDetector::mode(uint8_t mode) {
   bool wasInverted = modeInverted();
 
   // Change mode.
-  _mode = constrain(mode, PEAK_RISING, PEAK_MIN);
+  _mode = constrain(mode, (uint8_t)PEAK_RISING, (uint8_t)PEAK_MIN);
 
   // If mode inversion was changed, adjust triggerThresholds.
   if (modeInverted() != wasInverted) {
