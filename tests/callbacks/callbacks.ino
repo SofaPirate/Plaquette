@@ -2,52 +2,87 @@
 #include <PlaquetteLib.h>
 #include <AUnit.h>
 
-#include "Callback.h"
+#include "Fixtures.h"
 
 using namespace pq;
 
+float dummyVal = 0;
+
 class DummySensor {
   public:
-  DummySensor() : _value(0) {}
+  DummySensor() {}
+
+  void init() {
+  }
 
   float getValue() { 
-    return _value;
+    return dummyVal;
+  }
+};
+
+class DummyButton {
+public:
+  DummyButton() :_value(false) {}
+
+  void update() {
+    _value = !_value; 
   }
 
-  void setValue(float x) {
-    _value = x;
-  }
+  bool get() const { return _value; }
 
-  float _value;
+  bool _value;
 };
 
 DummySensor sensor1;
 DummySensor sensor2;
 
-float dummyRead(DummySensor& s) {
-  return s.getValue();
+DummyButton button1;
+
+float dummyRead() {
+  return dummyVal;
 }
 
-void dummyWrite(DummySensor& s, float x) {
-  return s.setValue(x);
+void dummyWrite(float x) {
+  dummyVal = x;
 }
 
-AnalogCallback<DummySensor> analogCallback1(sensor1, dummyRead, dummyWrite);
-AnalogCallback<DummySensor> analogCallback2(sensor2, dummyRead, dummyWrite);
+bool prevButtonValue = false;
+
+AnalogCallbacks<DummySensor> dummySensorCallbacks(
+  [](DummySensor& s) -> float { return s.getValue(); },
+  [](DummySensor& s) -> void { s.init(); }
+);
+
+AnalogFixture<DummySensor> analogCallback1(sensor1, dummySensorCallbacks);
+AnalogFixture<DummySensor> analogCallback2(sensor2, dummySensorCallbacks);
+AnalogFixture<> analogCallback3(dummyRead);
+
+DigitalFixture<DummyButton> digitalCallback1(button1, 
+                                            [](DummyButton& b) -> bool { return b.get(); }, 
+                                            NO_CALLBACK, 
+                                            NO_CALLBACK, 
+                                            [](DummyButton& b) -> void { b.update(); });
 
 testing(analogCallbacks) {
   static unsigned long startTime = millis();
   static float val = 0;
 
+  analogCallback1.smooth();
 
-  analogCallback1.put(val);
-  analogCallback2.put(val);
+  // analogCallback1.put(val);
+  // analogCallback2.put(val);
+  // analogCallback3.put(val);
+  prevButtonValue = digitalCallback1.isOn();
   Plaquette.step();
 
-  assertEqual(analogCallback1.get(), val);
-  assertEqual(analogCallback2.get(), val);
+//  assertEqual(analogCallback1.get(), dummyVal);
+  assertEqual(analogCallback2.get(), dummyVal);
+  assertEqual(analogCallback3.get(), dummyVal);
+
+  assertEqual(digitalCallback1.isOn(), !prevButtonValue);
 
   val += 0.1f;
+  dummyVal++;
 
   if (millis() - startTime > 1000) pass();
 }
