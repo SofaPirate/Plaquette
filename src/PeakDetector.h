@@ -99,19 +99,19 @@ public:
   virtual bool isOn() { return _onValue; }
 
 protected:
-	// Threshold values.
+  // Threshold values.
   float _triggerThreshold;
-	float _reloadThreshold;
+  float _reloadThreshold;
   float _fallbackTolerance;
   float _peakValue;
 
-	// Thresholding mode.
+  // Thresholding mode.
   bool _onValue   : 1;
   uint8_t  _mode  : 2;
 
-	// Booleans used to keep track of signal value.
+  // Booleans used to keep track of signal value.
   bool _isHigh    : 1;
-	bool _wasLow    : 1;
+  bool _wasLow    : 1;
   bool _crossed   : 1;
 };
 

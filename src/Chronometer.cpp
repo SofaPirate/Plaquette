@@ -24,32 +24,32 @@
 namespace pq {
 
 Chronometer::Chronometer() : Unit() {
-	_begin();
+  _begin();
 }
 
 void Chronometer::start() {
-	// Start.
-	_startTime = seconds();
-	_offsetTime = _elapsedTime = 0;
-	_isStarted = true;
+  // Start.
+  _startTime = seconds();
+  _offsetTime = _elapsedTime = 0;
+  _isStarted = true;
 }
 
 void Chronometer::addTime(float time) {
-	_offsetTime += time;
+  _offsetTime += time;
 }
 
 void Chronometer::stop() {
-	if (_isStarted) {
-		_offsetTime = elapsed();
-		_isStarted = false;
-	}
+  if (_isStarted) {
+    _offsetTime = elapsed();
+    _isStarted = false;
+  }
 }
 
 void Chronometer::resume() {
-	if (!_isStarted) {
-		_startTime = seconds();
-		_isStarted = true;
-	}
+  if (!_isStarted) {
+    _startTime = seconds();
+    _isStarted = true;
+  }
 }
 
 bool Chronometer::hasPassed(float timeout) const
@@ -69,23 +69,23 @@ bool Chronometer::hasPassed(float timeout, bool restartIfPassed) {
 }
 
 void Chronometer::begin() {
-	_begin();
+  _begin();
 }
 
 void Chronometer::step() {
-	// Offset elapsed time.
-	_elapsedTime = _offsetTime;
+  // Offset elapsed time.
+  _elapsedTime = _offsetTime;
 
-	if (_isStarted) {
-		// Add difference to elapsed time.
-	 	_elapsedTime += (seconds() - _startTime);
-	}
+  if (_isStarted) {
+    // Add difference to elapsed time.
+     _elapsedTime += (seconds() - _startTime);
+  }
 }
 
 void Chronometer::_begin() {
-	// Basic reset.
-	_startTime = _offsetTime = _elapsedTime = 0;
-	_isStarted = false;
+  // Basic reset.
+  _startTime = _offsetTime = _elapsedTime = 0;
+  _isStarted = false;
 }
 
 }

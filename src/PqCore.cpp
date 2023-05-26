@@ -70,10 +70,10 @@ void PlaquetteEnv::end() {
 
 void PlaquetteEnv::add(Unit* component) {
   for (uint8_t i=0; i<_nUnits; i++) {
-		if (_units[i] == component) {
-			return; // do not add existing component
+    if (_units[i] == component) {
+      return; // do not add existing component
     }
-	}
+  }
 
   // Append component to list.
   if (_nUnits < PLAQUETTE_MAX_UNITS) {

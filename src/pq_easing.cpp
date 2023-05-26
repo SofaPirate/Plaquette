@@ -29,16 +29,16 @@ namespace pq {
 float easeNone(float t) { return t; }
 
 float easeInSine(float t) {
-	return fastSin( HALF_PI * t );
+  return fastSin( HALF_PI * t );
 }
 
 float easeOutSine(float t) {
     t--;
-	return 1 + fastSin( HALF_PI * t );
+  return 1 + fastSin( HALF_PI * t );
 }
 
 float easeInOutSine(float t) {
-	return 0.5f * (1 + fastSin( PI * (t - 0.5f) ) );
+  return 0.5f * (1 + fastSin( PI * (t - 0.5f) ) );
 }
 
 float easeInQuad(float t) {

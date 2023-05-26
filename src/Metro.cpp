@@ -28,7 +28,7 @@ Metro::Metro(float period_) : DigitalSource(), _phase(0) {
 }
 
 void Metro::begin() {
-	_phaseTime = float2phaseTime(_phase);
+  _phaseTime = float2phaseTime(_phase);
 }
 
 void Metro::step() {
@@ -37,19 +37,19 @@ void Metro::step() {
 }
 
 void Metro::period(float period) {
-	_period = max(period, FLT_MIN);
+  _period = max(period, FLT_MIN);
 }
 
 void Metro::frequency(float frequency) {
-	period( frequency == 0 ? FLT_MAX : 1/frequency );
+  period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 void Metro::phase(float phase) {
-	if (phase != _phase) {
-		// Need to readjust _phaseTime.
+  if (phase != _phase) {
+    // Need to readjust _phaseTime.
     _phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
-		_phase = phase;
-	}
+    _phase = phase;
+  }
 }
 
 }

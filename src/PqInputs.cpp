@@ -125,7 +125,7 @@ bool Debounceable::_debounced() {
 
 void Debounceable::_changeState() {
   _toggleStateFlag(DEBOUNCED_STATE);
-	_setStateFlag(CHANGED_STATE) ;
+  _setStateFlag(CHANGED_STATE) ;
 }
 
 

@@ -32,7 +32,7 @@ SineOsc::SineOsc(float period_) : Osc(period_) {}
 
   // Returns value in [0, 1].
 float SineOsc::_get(phase_time_t t) {
-	return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
+  return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
 }
 
 }

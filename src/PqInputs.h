@@ -72,7 +72,7 @@ protected:
   // Performs update based on value returned by read().
   virtual void _step();
 
-	// Returns smoothed value.
+  // Returns smoothed value.
   virtual float _smoothed() { return _avg.get(); }
 
   // The moving average.
@@ -121,7 +121,7 @@ protected:
   // Performs update based on value returned by read().
   virtual void _step();
 
-	// Returns debounced value.
+  // Returns debounced value.
   virtual bool _debounced();
 
   inline void _changeState();

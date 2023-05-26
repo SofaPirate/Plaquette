@@ -95,8 +95,8 @@ float PeakDetector::put(float value) {
   bool high = (value >= _triggerThreshold); // value is high if above triggerThreshold
   bool rising = (high && _wasLow);   // value is rising if just crossed triggerThreshold
 
-	// Reset.
-	if (rising) {
+  // Reset.
+  if (rising) {
     _wasLow  = false;
     _crossed = true;
   }

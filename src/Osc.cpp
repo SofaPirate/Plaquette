@@ -45,53 +45,53 @@ void Osc::step() {
   // Compute next value.
   _value = _getAmplified(_phaseTime);
 
-	// // Notice: this computation is not exact but manages naturally changes in the period without
-	// // inducing dephasings on Arduino boards.
-	// float relativeTime = seconds() - _startTime;
-	//
+  // // Notice: this computation is not exact but manages naturally changes in the period without
+  // // inducing dephasings on Arduino boards.
+  // float relativeTime = seconds() - _startTime;
+  //
   // // Check where we are.
-	// float progress = relativeTime / _period;
-	// if (progress >= 1) {
-	// 	_value = 0;
-	// 	_startTime = seconds();
-	// }
-	// else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-	// else                         _value = progress / _width;
-	//
-	// // Amplify.
+  // float progress = relativeTime / _period;
+  // if (progress >= 1) {
+  //   _value = 0;
+  //   _startTime = seconds();
+  // }
+  // else if (progress >= _width) _value = (1 - progress) / (1 - _width);
+  // else                         _value = progress / _width;
+  //
+  // // Amplify.
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 float Osc::_getAmplified(phase_time_t t) {
-	return mapFrom01(_get(t), (1 - _amplitude) / 2, (1 + _amplitude)/2);
+  return mapFrom01(_get(t), (1 - _amplitude) / 2, (1 + _amplitude)/2);
 }
 
 void Osc::period(float period) {
-	if (period != _period)
-		_period = max(period, 0.0f);
+  if (period != _period)
+    _period = max(period, 0.0f);
 }
 
 void Osc::frequency(float frequency) {
-	period( frequency == 0 ? FLT_MAX : 1/frequency );
+  period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
 void Osc::amplitude(float amplitude)  {
-	if (amplitude != _amplitude)
-  	_amplitude = constrain(amplitude, 0, 1);
+  if (amplitude != _amplitude)
+    _amplitude = constrain(amplitude, 0, 1);
 }
 
 void Osc::phase(float phase) {
-	if (phase != _phase) {
-		// Need to readjust _phaseTime.
-    	_phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
-		_phase = phase;
-	}
+  if (phase != _phase) {
+    // Need to readjust _phaseTime.
+      _phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
+    _phase = phase;
+  }
 }
 
 float Osc::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
 float Osc::shiftBy(float phase) {
-	return _getAmplified(phaseTimeAddPhase(_phaseTime, phase));
+  return _getAmplified(phaseTimeAddPhase(_phaseTime, phase));
 }
 
 }

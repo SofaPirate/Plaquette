@@ -44,7 +44,7 @@ Normalizer::Normalizer(float timeWindow)
 }
 
 Normalizer::Normalizer(float mean, float stdDev)
-	: MovingFilter(),
+  : MovingFilter(),
     MovingStats()
 {
   _value = mean;
@@ -54,7 +54,7 @@ Normalizer::Normalizer(float mean, float stdDev)
 }
 
 Normalizer::Normalizer(float mean, float stdDev, float timeWindow)
-	: MovingFilter(),
+  : MovingFilter(),
     MovingStats(timeWindow)
 {
   _value = mean;

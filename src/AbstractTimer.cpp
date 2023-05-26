@@ -23,31 +23,31 @@
 namespace pq {
 
 AbstractTimer::AbstractTimer(float duration_) : Chronometer() {
-	duration(duration_);
+  duration(duration_);
 }
 
 void AbstractTimer::start() {
-	Chronometer::start();
+  Chronometer::start();
 }
 
 void AbstractTimer::start(float duration_) {
-	duration(duration_);
-	start();
+  duration(duration_);
+  start();
 }
 
 void AbstractTimer::duration(float duration) {
-	// Set parameters.
-	_duration = max(duration, 0.f);
+  // Set parameters.
+  _duration = max(duration, 0.f);
 }
 
 float AbstractTimer::progress() const {
-	if (_duration <= 0)
-		return 1.0;
+  if (_duration <= 0)
+    return 1.0;
 
-	// Compute progress as % of duration.
-	float prog = elapsed() / _duration;
-	prog = constrain(prog, 0, 1);
-	return prog;
+  // Compute progress as % of duration.
+  float prog = elapsed() / _duration;
+  prog = constrain(prog, 0, 1);
+  return prog;
 }
 
 float AbstractTimer::mapTo(float toLow, float toHigh) {
