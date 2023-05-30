@@ -29,32 +29,33 @@ namespace pq {
 template<typename T=void>
 class AnalogCallbacks {
 public:
-  AnalogCallbacks(float(*readFunc) (T&),
-                  void (*writeFunc)(T&, float),
+  // Constructors.
+  AnalogCallbacks(float(*getFunc)  (T&),
+                  void (*putFunc)  (T&, float),
                   void (*beginFunc)(T&) = NO_CALLBACK,
                   void (*stepFunc) (T&) = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = writeFunc;
+    _getFunc  = getFunc;
+    _putFunc = putFunc;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  AnalogCallbacks(float(*readFunc) (T&),
+  AnalogCallbacks(float(*getFunc)  (T&),
                   void (*beginFunc)(T&) = NO_CALLBACK,
                   void (*stepFunc) (T&) = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = NO_CALLBACK;
+    _getFunc  = getFunc;
+    _putFunc = NO_CALLBACK;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  float read(T& object) {
-    return _readFunc(object); 
+  float get(T& object) {
+    return _getFunc(object); 
   }
 
-  void write(T& object, float value) {
-    if (_writeFunc)
-      _writeFunc(object, value);
+  void put(T& object, float value) {
+    if (_putFunc)
+      _putFunc(object, value);
   }
   
   void begin(T& object) { 
@@ -69,8 +70,8 @@ public:
 
   
 private:
-  float (*_readFunc) (T&);
-  void  (*_writeFunc)(T&, float);
+  float (*_getFunc) (T&);
+  void  (*_putFunc)(T&, float);
   void  (*_beginFunc)(T&);
   void  (*_stepFunc) (T&);
 };
@@ -78,32 +79,32 @@ private:
 template<>
 class AnalogCallbacks<void> {
 public:
-  AnalogCallbacks(float(*readFunc) (),
-                  void (*writeFunc)(float),
+  AnalogCallbacks(float(*getFunc)  (),
+                  void (*putFunc)  (float),
                   void (*beginFunc)() = NO_CALLBACK,
                   void (*stepFunc) () = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = writeFunc;
+    _getFunc  = getFunc;
+    _putFunc = putFunc;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  AnalogCallbacks(float(*readFunc) (),
+  AnalogCallbacks(float(*getFunc)  (),
                   void (*beginFunc)() = NO_CALLBACK,
                   void (*stepFunc) () = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = NO_CALLBACK;
+    _getFunc  = getFunc;
+    _putFunc = NO_CALLBACK;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  float read() {
-    return _readFunc(); 
+  float get() {
+    return _getFunc(); 
   }
 
-  void write(float value) {
-    if (_writeFunc)
-      _writeFunc(value);
+  void put(float value) {
+    if (_putFunc)
+      _putFunc(value);
   }
   
   void begin() { 
@@ -117,8 +118,8 @@ public:
   }
   
 private:
-  float (*_readFunc) ();
-  void  (*_writeFunc)(float);
+  float (*_getFunc) ();
+  void  (*_putFunc)(float);
   void  (*_beginFunc)();
   void  (*_stepFunc) ();
 };
@@ -131,17 +132,17 @@ public:
     : _object(&object), _callbacks(callbacks) {}
   
   AnalogFixture(T& object,
-                float(*readFunc) (T&),
+                float(*getFunc)  (T&),
                 void (*beginFunc)(T&) = NO_CALLBACK,
                 void (*stepFunc) (T&) = NO_CALLBACK)
-    : _object(&object), _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _object(&object), _callbacks(getFunc, beginFunc, stepFunc) {}
 
   AnalogFixture(T& object,
-                float(*readFunc) (T&),
-                void (*writeFunc)(T&, float),
+                float(*getFunc)  (T&),
+                void (*putFunc)  (T&, float),
                 void (*beginFunc)(T&) = NO_CALLBACK,
                 void (*stepFunc) (T&) = NO_CALLBACK)
-    : _object(&object), _callbacks(readFunc, writeFunc, beginFunc, stepFunc) {}
+    : _object(&object), _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 public:
   virtual float get() { return _smoothed(); }
@@ -159,12 +160,12 @@ protected:
   }
 
   virtual float put(float value) {
-    _callbacks.write(*_object, value);
+    _callbacks.put(*_object, value);
     return get();
   }
 
   virtual float _read() {
-    return _callbacks.read(*_object);
+    return _callbacks.get(*_object);
   }
 
   T* _object;
@@ -178,16 +179,16 @@ public:
   AnalogFixture(AnalogCallbacks<void> callbacks)
     : _callbacks(callbacks) {}
 
-  AnalogFixture(float(*readFunc)(),               
+  AnalogFixture(float(*getFunc)(),               
                 void (*beginFunc)() = NO_CALLBACK,
                 void (*stepFunc) () = NO_CALLBACK)
-    : _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _callbacks(getFunc, beginFunc, stepFunc) {}
 
-  AnalogFixture(float(*readFunc)(),               
-                void (*writeFunc)(float),
+  AnalogFixture(float(*getFunc)(),
+                void (*putFunc)(float),
                 void (*beginFunc)() = NO_CALLBACK,
                 void (*stepFunc) () = NO_CALLBACK)
-    : _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 public:
   virtual float get() { return _smoothed(); }
@@ -205,12 +206,12 @@ protected:
   }
 
   virtual float put(float value) {
-    _callbacks.write(value);
+    _callbacks.put(value);
     return get();
   }
 
   virtual float _read() {
-    return _callbacks.read();
+    return _callbacks.get();
   }
 
   AnalogCallbacks<void> _callbacks;
@@ -219,32 +220,32 @@ protected:
 template<typename T=void>
 class DigitalCallbacks {
 public:
-  DigitalCallbacks(bool(*readFunc) (T&),
-                   void(*writeFunc)(T&, bool),
+  DigitalCallbacks(bool(*getFunc)  (T&),
+                   void(*putFunc)  (T&, bool),
                    void(*beginFunc)(T&) = NO_CALLBACK,
                    void(*stepFunc) (T&) = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = writeFunc;
+    _getFunc  = getFunc;
+    _putFunc = putFunc;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  DigitalCallbacks(bool(*readFunc) (T&),
+  DigitalCallbacks(bool(*getFunc)  (T&),
                    void(*beginFunc)(T&) = NO_CALLBACK,
                    void(*stepFunc) (T&) = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = NO_CALLBACK;
+    _getFunc  = getFunc;
+    _putFunc = NO_CALLBACK;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  bool read(T& object) {
-    return _readFunc(object); 
+  bool get(T& object) {
+    return _getFunc(object); 
   }
 
-  void write(T& object, bool value) {
-    if (_writeFunc)
-      _writeFunc(object, value);
+  void put(T& object, bool value) {
+    if (_putFunc)
+      _putFunc(object, value);
   }
   
   void begin(T& object) { 
@@ -258,8 +259,8 @@ public:
   }
 
 private:
-  bool (*_readFunc) (T&);
-  void (*_writeFunc)(T&, bool);
+  bool (*_getFunc) (T&);
+  void (*_putFunc)(T&, bool);
   void (*_beginFunc)(T&);
   void (*_stepFunc) (T&);
 };
@@ -267,32 +268,32 @@ private:
 template<>
 class DigitalCallbacks<void> {
 public:
-  DigitalCallbacks(bool(*readFunc) (),
-                   void(*writeFunc)(bool),
+  DigitalCallbacks(bool(*getFunc) (),
+                   void(*putFunc)(bool),
                    void(*beginFunc)() = NO_CALLBACK,
                    void(*stepFunc) () = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = writeFunc;
+    _getFunc  = getFunc;
+    _putFunc = putFunc;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  DigitalCallbacks(bool(*readFunc) (),
+  DigitalCallbacks(bool(*getFunc) (),
                    void(*beginFunc)() = NO_CALLBACK,
                    void(*stepFunc) () = NO_CALLBACK) {
-    _readFunc  = readFunc;
-    _writeFunc = NO_CALLBACK;
+    _getFunc  = getFunc;
+    _putFunc = NO_CALLBACK;
     _beginFunc = beginFunc;
     _stepFunc = stepFunc;
   }
 
-  bool read() {
-    return _readFunc(); 
+  bool get() {
+    return _getFunc(); 
   }
 
-  void write(bool value) {
-    if (_writeFunc)
-      _writeFunc(value);
+  void put(bool value) {
+    if (_putFunc)
+      _putFunc(value);
   }
   
   void begin() { 
@@ -306,8 +307,8 @@ public:
   }
   
 private:
-  bool (*_readFunc) ();
-  void (*_writeFunc)(bool);
+  bool (*_getFunc) ();
+  void (*_putFunc)(bool);
   void (*_beginFunc)();
   void (*_stepFunc) ();
 };
@@ -320,17 +321,17 @@ public:
     : _object(&object), _callbacks(callbacks) {}
   
   DigitalFixture(T& object,
-                 bool(*readFunc) (T&),
+                 bool(*getFunc) (T&),
                  void(*beginFunc)(T&) = NO_CALLBACK,
                  void(*stepFunc) (T&) = NO_CALLBACK)
-    : _object(&object), _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _object(&object), _callbacks(getFunc, beginFunc, stepFunc) {}
 
   DigitalFixture(T& object,
-                 bool(*readFunc) (T&),
-                 void(*writeFunc)(T&, bool),
+                 bool(*getFunc) (T&),
+                 void(*putFunc)(T&, bool),
                  void(*beginFunc)(T&) = NO_CALLBACK,
                  void(*stepFunc) (T&) = NO_CALLBACK)
-    : _object(&object), _callbacks(readFunc, writeFunc, beginFunc, stepFunc) {}
+    : _object(&object), _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
   virtual void begin() {
@@ -347,12 +348,12 @@ protected:
   }
 
   virtual bool putOn(bool value) {
-    _callbacks.write(*_object, value);
+    _callbacks.put(*_object, value);
     return isOn();
   }
 
   virtual bool _isOn() {
-    return _callbacks.read(*_object);
+    return _callbacks.get(*_object);
   }
 
   T* _object;
@@ -366,16 +367,16 @@ public:
   DigitalFixture(DigitalCallbacks<void> callbacks)
     : _callbacks(callbacks) {}
 
-  DigitalFixture(bool(*readFunc)(),               
+  DigitalFixture(bool(*getFunc)(),               
                  void(*beginFunc)() = NO_CALLBACK,
                  void(*stepFunc) () = NO_CALLBACK)
-    : _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _callbacks(getFunc, beginFunc, stepFunc) {}
 
-  DigitalFixture(bool(*readFunc)(),               
-                 void(*writeFunc)(bool),
+  DigitalFixture(bool(*getFunc)(),               
+                 void(*putFunc)(bool),
                  void(*beginFunc)() = NO_CALLBACK,
                  void(*stepFunc) () = NO_CALLBACK)
-    : _callbacks(readFunc, beginFunc, stepFunc) {}
+    : _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
   virtual void begin() {
@@ -392,12 +393,12 @@ protected:
   }
 
   virtual bool putOn(bool value) {
-    _callbacks.write(value);
+    _callbacks.put(value);
     return isOn();
   }
 
   virtual bool _isOn() {
-    return _callbacks.read();
+    return _callbacks.get();
   }
 
   DigitalCallbacks<void> _callbacks;

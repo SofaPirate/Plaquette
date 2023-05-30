@@ -53,33 +53,30 @@ AnalogCallbacks<DummySensor> dummySensorCallbacks(
   [](DummySensor& s) -> void { s.init(); }
 );
 
-AnalogFixture<DummySensor> analogCallback1(sensor1, dummySensorCallbacks);
-AnalogFixture<DummySensor> analogCallback2(sensor2, dummySensorCallbacks);
-AnalogFixture<> analogCallback3(dummyRead);
+AnalogFixture<DummySensor> analogSensor1(sensor1, dummySensorCallbacks);
+AnalogFixture<DummySensor> analogSensor2(sensor2, dummySensorCallbacks);
+AnalogFixture<> analogSensor3(dummyRead);
 
-DigitalFixture<DummyButton> digitalCallback1(button1, 
+DigitalFixture<DummyButton> digitalSensor1(button1, 
                                             [](DummyButton& b) -> bool { return b.get(); }, 
                                             NO_CALLBACK, 
                                             NO_CALLBACK, 
                                             [](DummyButton& b) -> void { b.update(); });
 
-testing(analogCallbacks) {
+testing(analogSensors) {
   static unsigned long startTime = millis();
   static float val = 0;
 
-  analogCallback1.smooth();
+  analogSensor1.smooth();
 
-  // analogCallback1.put(val);
-  // analogCallback2.put(val);
-  // analogCallback3.put(val);
-  prevButtonValue = digitalCallback1.isOn();
+  prevButtonValue = digitalSensor1.isOn();
   Plaquette.step();
 
-//  assertEqual(analogCallback1.get(), dummyVal);
-  assertEqual(analogCallback2.get(), dummyVal);
-  assertEqual(analogCallback3.get(), dummyVal);
+//  assertEqualNear(analogSensor1.get(), dummyVal);
+  assertEqual(analogSensor2.get(), dummyVal);
+  assertEqual(analogSensor3.get(), dummyVal);
 
-  assertEqual(digitalCallback1.isOn(), !prevButtonValue);
+  assertEqual(digitalSensor1.isOn(), !prevButtonValue);
 
   val += 0.1f;
   dummyVal++;
