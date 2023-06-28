@@ -105,7 +105,7 @@ public:
   inline void postStep();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
-  inline void begin();
+  inline void begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
   inline void step();
@@ -574,7 +574,7 @@ void PlaquetteEnv::postStep() {
   }
 }
 
-void PlaquetteEnv::begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE) {
+void PlaquetteEnv::begin(unsigned long baudrate) {
   preBegin(baudrate);
 }
 
