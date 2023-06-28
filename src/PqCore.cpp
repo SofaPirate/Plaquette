@@ -32,10 +32,10 @@ PlaquetteEnv Plaquette
 
 PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {}
 
-void PlaquetteEnv::preBegin() {
+void PlaquetteEnv::preBegin(unsigned long baudrate) {
   // Initialize serial.
-//  Serial.begin(PLAQUETTE_SERIAL_BAUD_RATE);
-  beginSerial(PLAQUETTE_SERIAL_BAUD_RATE);
+  if (baudrate)
+    beginSerial(baudrate);
 
   // Initialize variables.
   _microSeconds = micros();

@@ -41,6 +41,8 @@
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
 
+#define NO_SERIAL 0
+
 #ifndef PLAQUETTE_DEFAULT_SMOOTH_WINDOW
 #define PLAQUETTE_DEFAULT_SMOOTH_WINDOW 0.1F
 #endif
@@ -73,6 +75,12 @@ enum {
   SINK = INVERTED
 };
 
+// /// @brief Range modes.
+// enum {
+//   RANGE_ZERO_ONE, // [0, 1]
+//   RANGE_ZERO_CENTERED // [-1, 1]
+// };
+
 class Unit;
 
 /// The main Plaquette static class containing all the units.
@@ -85,7 +93,7 @@ public:
   PlaquetteEnv();
 
   /// Initializes all components (calls begin() on all of them).
-  void preBegin();
+  void preBegin(unsigned long baudrate);
 
   /// Performs additional tasks after the class to begin().
   void postBegin();
@@ -219,10 +227,10 @@ class Unit {
 
 public:
   /// Converts analog (float) value to digital (bool) value.
-	static bool  analogToDigital(float f) { return (f >= 0.5); }
+  static bool  analogToDigital(float f) { return (f >= 0.5); }
 
-	/// Converts digital (bool) value to analog (float) value.
-	static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
+  /// Converts digital (bool) value to analog (float) value.
+  static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
   /** Class constructor.
@@ -269,8 +277,8 @@ protected:
 
 private:
   /// Operator that allows usage in conditional expressions.
-	// NOTE: This operator is defined as explicit so that boolean expression like
-	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
+  // NOTE: This operator is defined as explicit so that boolean expression like
+  // "if (obj)" use the bool() operator while other expressions can use the float() operator.
   virtual explicit operator bool() { return Unit::analogToDigital(get()); }
 
   // Prevents assignation operations by making them private.
@@ -405,7 +413,7 @@ inline Node& operator>>(float value, Node& unit) {
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Unit&)).
 inline Node& operator>>(Node& source, Node& sink) {
-	return pq::operator>>(source.get(), sink);
+  return pq::operator>>(source.get(), sink);
 }
 
 inline Node& operator>>(double value, Node& unit) {
@@ -413,47 +421,47 @@ inline Node& operator>>(double value, Node& unit) {
 }
 
 inline Node& operator>>(bool value, Node& unit) {
-	return pq::operator>>(Unit::digitalToAnalog(value), unit);
+  return pq::operator>>(Unit::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie and ARM chips.
 // Otherwise it causes an ambiguous operator error.
 #if defined(__arc__) || defined(__arm__)
 inline Node& operator>>(int value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 #endif
 
 inline Node& operator>>(int8_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint8_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int16_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint16_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int32_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint32_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int64_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint64_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 // Node to value operators ///////////////////////////////////////
@@ -566,8 +574,8 @@ void PlaquetteEnv::postStep() {
   }
 }
 
-void PlaquetteEnv::begin() {
-  preBegin();
+void PlaquetteEnv::begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE) {
+  preBegin(baudrate);
 }
 
 void PlaquetteEnv::step() {
