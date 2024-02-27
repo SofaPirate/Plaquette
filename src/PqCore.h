@@ -93,7 +93,7 @@ public:
   ~PlaquetteEnv();
 
   /// Initializes all components (calls begin() on all of them).
-  void preBegin(unsigned long baudrate);
+  void preBegin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
 
   /// Performs additional tasks after the class to begin().
   void postBegin();
