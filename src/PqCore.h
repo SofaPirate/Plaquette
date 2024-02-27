@@ -27,6 +27,7 @@
 #include <WProgram.h>
 #endif
 
+#include "ArrayList.h"
 #include "pq_map_real.h"
 
 #if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
@@ -87,10 +88,9 @@ class Unit;
 class PlaquetteEnv {
   friend class Unit;
 
-
-
 public:
   PlaquetteEnv();
+  ~PlaquetteEnv();
 
   /// Initializes all components (calls begin() on all of them).
   void preBegin(unsigned long baudrate);
@@ -117,7 +117,7 @@ public:
   inline void end();
 
   /// Returns the current number of units.
-  uint8_t nUnits() { return _nUnits; }
+  size_t nUnits() { return _units.size(); }
 
   /**
    * Returns time in seconds. Optional parameter allows to ask for reference time (default)
@@ -159,15 +159,17 @@ public:
 
 private:
   /// Adds a component to Plaquette.
-  void add(Unit * component);
+  void add(Unit* component);
+
+  /// Removes a component from Plaquette.
+  void remove(Unit* component);
 
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
 
 private:
   // Used to keep track of units.
-  Unit* _units[PLAQUETTE_MAX_UNITS];
-  uint8_t _nUnits;
+  ArrayList<Unit*> _units;
 
   // Snapshot of time in seconds from current step.
   unsigned long _microSeconds;
@@ -245,7 +247,7 @@ protected:
    * DigitalNode constructor below.
    */
   Unit();
-  virtual ~Unit() {}
+  virtual ~Unit();
 
 protected:
   virtual void begin() {}
@@ -291,7 +293,6 @@ private:
   Node& operator=(int);
   Node& operator=(float);
   Node& operator=(Node&);
-  Node(const Node&);
 };
 
 /// A generic class representing a simple source.
@@ -552,7 +553,7 @@ protected:
 
 void PlaquetteEnv::preStep() {
   // Update every component.
-  for (uint8_t i=0; i<_nUnits; i++)
+  for (size_t i=0; i<_units.size(); i++)
     _units[i]->step();
 }
 

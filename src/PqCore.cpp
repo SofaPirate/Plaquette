@@ -31,8 +31,11 @@ PlaquetteEnv _PlaquetteSingleton;
 PlaquetteEnv& Plaquette = _PlaquetteSingleton;
 #endif
 
+PlaquetteEnv::PlaquetteEnv() : _units(ArrayList<Unit*>::DYNAMIC, PLAQUETTE_MAX_UNITS), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
+}
 
-PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {}
+PlaquetteEnv::~PlaquetteEnv() {
+}
 
 void PlaquetteEnv::preBegin(unsigned long baudrate) {
   // Initialize serial.
@@ -48,7 +51,7 @@ void PlaquetteEnv::preBegin(unsigned long baudrate) {
   _setSampleRate(FLT_MAX);
 
   // Initialize all components.
-  for (uint8_t i=0; i<_nUnits; i++) {
+  for (size_t i=0; i<_units.size(); i++) {
     _units[i]->begin();
   }
 
@@ -71,20 +74,21 @@ void PlaquetteEnv::end() {
 }
 
 void PlaquetteEnv::add(Unit* component) {
-  for (uint8_t i=0; i<_nUnits; i++) {
+  for (size_t i=0; i<_units.size(); i++) {
     if (_units[i] == component) {
       return; // do not add existing component
     }
   }
 
   // Append component to list.
-  if (_nUnits < PLAQUETTE_MAX_UNITS) {
-    _units[_nUnits++] = component;
+  _units.add(component);
+  if (_beginCompleted)
+    component->begin();
+}
 
-    // Call begin if component has been added after call to preBegin().
-    if (_beginCompleted)
-      component->begin();
-  }
+void PlaquetteEnv::remove(Unit* component) {
+  // Remove component from list.
+  _units.removeItem(component);
 }
 
 bool PlaquetteEnv::autoSampleRate() { return (_targetSampleRate <= 0); }
@@ -126,7 +130,15 @@ Unit::Unit() {
 #else
   Plaquette
 #endif
-    .add(this);
+  .add(this);
 }
 
+Unit::~Unit() {
+#ifdef PLAQUETTE_USE_SINGLETON
+  PlaquetteEnv::singleton()
+#else
+  Plaquette
+#endif
+  .remove(this);
+}
 } // namespace pq
