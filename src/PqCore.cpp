@@ -24,11 +24,13 @@
 namespace pq {
 
 // Singleton.
-PlaquetteEnv Plaquette
 #ifdef PLAQUETTE_USE_SINGLETON
-   = PlaquetteEnv::singleton()
+PlaquetteEnv& Plaquette = PlaquetteEnv::singleton();
+#else
+PlaquetteEnv _PlaquetteSingleton;
+PlaquetteEnv& Plaquette = _PlaquetteSingleton;
 #endif
-;
+
 
 PlaquetteEnv::PlaquetteEnv() : _nUnits(0), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {}
 

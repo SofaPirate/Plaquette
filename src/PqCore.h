@@ -189,10 +189,15 @@ private:
 
   // True during first run.
   bool _firstRun;
+
+private:
+  // Prevent copy-construction and assignment.
+  PlaquetteEnv(const PlaquetteEnv&);
+  PlaquetteEnv& operator=(const PlaquetteEnv&);
 };
 
 /// The Plaquette singleton.
-extern PlaquetteEnv Plaquette;
+extern PlaquetteEnv& Plaquette;
 
 //float seconds(bool realTime=false);
 unsigned long nSteps();
