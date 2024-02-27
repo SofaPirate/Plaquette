@@ -464,58 +464,59 @@ inline Node& operator>>(uint64_t value, Node& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-// Node to value operators ///////////////////////////////////////
+// // Node to value operators ///////////////////////////////////////
+// THIS PART IS COMMENTED OUT BECAUSE IT CAUSES AMBIGUOUS OPERATOR ERRORS
 
-inline bool& operator>>(DigitalNode& unit, bool& value) {
-  return (value = unit.isOn());
-}
+// inline bool& operator>>(DigitalNode& unit, bool& value) {
+//   return (value = unit.isOn());
+// }
 
-// This code is needed on the Curie-based AVRs.
-#if defined(__arc__)
-inline int& operator>>(DigitalNode& unit, int& value) {
-  return (value = unit.getInt());
-}
-#endif
+// // This code is needed on the Curie-based AVRs.
+// #if defined(__arc__)
+// inline int& operator>>(DigitalNode& unit, int& value) {
+//   return (value = unit.getInt());
+// }
+// #endif
 
-inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
-  return (value = unit.getInt());
-}
+// inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
-  return (value = unit.getInt());
-}
+// inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
-  return (value = unit.getInt());
-}
+// inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
-  return (value = unit.getInt());
-}
+// inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline float& operator>>(Node& unit, float& value) {
-  return (value = unit.get());
-}
+// inline float& operator>>(Node& unit, float& value) {
+//   return (value = unit.get());
+// }
 
-inline double& operator>>(Node& unit, double& value) {
-  return (value = unit.get());
-}
+// inline double& operator>>(Node& unit, double& value) {
+//   return (value = unit.get());
+// }
 
 /// Superclass for pin-based components.
 class PinUnit {
