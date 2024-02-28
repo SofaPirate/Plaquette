@@ -23,7 +23,6 @@ test(properties) {
 
 testing(basic) {
   static unsigned long startTime = millis();
-  static uint16_t nPeaks = 0;
 
   Plaquette.step();
 
