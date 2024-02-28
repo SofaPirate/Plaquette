@@ -39,12 +39,12 @@ public:
      * The size type determines whether the size of the ArrayList is static or dynamic. The initial size specifies
      * the initial capacity of the ArrayList. The debug flag determines whether debug messages should be printed.
      *
+     * @param initialCapacity The initial capacity of the ArrayList.
      * @param type The size type of the ArrayList. This should be either DYNAMIC or STATIC.
-     * @param initialSize The initial capacity of the ArrayList.
      * @param debug A flag indicating whether debug messages should be printed.
     */
-    ArrayList(SizeType type = DYNAMIC, size_t initialSize = 8)
-        : sizeType(type), arrayCapacity(initialSize), count(0) {
+    ArrayList(size_t initialCapacity = 8, SizeType type = DYNAMIC)
+        : sizeType(type), arrayCapacity(initialCapacity), count(0) {
         array = new T[arrayCapacity];
     }
 
