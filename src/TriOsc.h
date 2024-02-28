@@ -44,6 +44,8 @@ public:
    * @return the unit itself
    */
   virtual void width(float width);
+
+  /// Returns the width of the wave.
   virtual float width() const { return phaseTime2float(_width); }
 
 protected:

@@ -41,7 +41,6 @@ public:
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
-   * @return the unit itself
    */
   virtual void period(float period);
   virtual float period() const { return _period; }
@@ -49,9 +48,10 @@ public:
   /**
    * Sets the frequency (in Hz).
    * @param frequency the frequency of oscillation (in Hz)
-   * @return the unit itself
    */
   virtual void frequency(float frequency);
+
+  /// Returns the frequency (in Hz).
   virtual float frequency() const { return (1/_period); }
 
   /**
@@ -59,22 +59,26 @@ public:
    * @param bpm the frequency of oscillation (in BPM)
    */
   virtual void bpm(float bpm);
+  
+  /// Returns the frequency (in BPM).
   virtual float bpm() const { return (60/_period); }
 
   /**
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
-   * @return the unit itself
    */
    virtual void amplitude(float amplitude);
+
+   /// Returns the amplitude of the wave.
    virtual float amplitude() const { return _amplitude; }
 
    /**
     * Sets the phase (ie. the offset, in % of period).
     * @param phase the phase (in % of period)
-    * @return the unit itself
     */
    virtual void phase(float phase);
+
+   /// Returns the phase (in % of period).
    virtual float phase() const { return _phase; }
 
    /**
