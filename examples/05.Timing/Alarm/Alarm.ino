@@ -26,7 +26,7 @@ float ledDuration;
 
 void begin() {
   // Initialize ledDuration to starting timer duration.
-  ledDuration = alarm.duration();
+  ledDuration = ledAlarm.duration();
 
   // Start timer.
   ledAlarm.start();
