@@ -55,7 +55,7 @@ public:
      * If the debug flag is set, it prints a message indicating that the ArrayList is being deleted.
     */
     ~ArrayList() {
-//      delete[] array;
+      delete[] array;
     }
    
    /**
