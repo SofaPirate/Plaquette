@@ -75,6 +75,10 @@ void Osc::frequency(float frequency) {
   period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
+void Osc::bpm(float bpm) {
+  period( bpm == 0 ? FLT_MAX : 60/bpm );
+}
+
 void Osc::amplitude(float amplitude)  {
   if (amplitude != _amplitude)
     _amplitude = constrain(amplitude, 0, 1);

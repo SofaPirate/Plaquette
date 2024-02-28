@@ -57,6 +57,13 @@ public:
   virtual float frequency() const { return (1/_period); }
 
   /**
+   * Sets the frequency in beats-per-minute.
+   * @param bpm the frequency of oscillation (in BPM)
+   */
+  virtual void bpm(float bpm);
+  virtual float bpm() const { return (60/_period); }
+
+  /**
    * Sets the phase (ie. the offset, in % of period).
    * @param phase the phase (in % of period)
    * @return the unit itself

@@ -44,6 +44,10 @@ void Metro::frequency(float frequency) {
   period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
+void Metro::bpm(float bpm) {
+  period( bpm == 0 ? FLT_MAX : 60/bpm );
+}
+
 void Metro::phase(float phase) {
   if (phase != _phase) {
     // Need to readjust _phaseTime.

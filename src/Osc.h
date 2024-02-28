@@ -55,6 +55,13 @@ public:
   virtual float frequency() const { return (1/_period); }
 
   /**
+   * Sets the frequency in beats-per-minute.
+   * @param bpm the frequency of oscillation (in BPM)
+   */
+  virtual void bpm(float bpm);
+  virtual float bpm() const { return (60/_period); }
+
+  /**
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    * @return the unit itself
