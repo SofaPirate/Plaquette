@@ -18,20 +18,20 @@
 DigitalOut led(LED_BUILTIN);
 
 // The timer.
-Alarm alarm(1.0); // period: 1 second
+Alarm toggleAlarm(1.0); // period: 1 second
 
 void begin() {
   // Start timer.
-  alarm.start();
+  toggleAlarm.start();
 }
 
 void step() {
   // Every time the metronome "fires": change LED state.
-  if (alarm) {
+  if (toggleAlarm) {
     // Flip LED state.
     led.toggle();
 
     // Restart timer.
-    alarm.start();
+    toggleAlarm.start();
   }
 }
