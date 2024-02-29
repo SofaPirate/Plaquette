@@ -27,7 +27,7 @@
 #include <WProgram.h>
 #endif
 
-#include "ArrayList.h"
+#include "HybridArrayList.h"
 #include "pq_map_real.h"
 
 #if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
@@ -169,7 +169,7 @@ private:
 
 private:
   // Used to keep track of units.
-  ArrayList<Unit*> _units;
+  HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
 
   // Snapshot of time in seconds from current step.
   unsigned long _microSeconds;

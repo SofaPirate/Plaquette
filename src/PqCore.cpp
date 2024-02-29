@@ -31,7 +31,7 @@ PlaquetteEnv _PlaquetteSingleton;
 PlaquetteEnv& Plaquette = _PlaquetteSingleton;
 #endif
 
-PlaquetteEnv::PlaquetteEnv() : _units(PLAQUETTE_MAX_UNITS), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
+PlaquetteEnv::PlaquetteEnv() : _units(), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
 }
 
 PlaquetteEnv::~PlaquetteEnv() {
