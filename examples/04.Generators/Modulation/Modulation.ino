@@ -25,6 +25,8 @@ void begin() {}
 
 void step() {
   // Modulate oscillator frequency between 1 to 20 Hz.
-  osc.frequency( mapFrom01(lfo, 1, 20) );
+  osc.frequency( lfo.mapTo(1, 20) );
+
+  // Send to serial output.
   osc >> out;
 }
