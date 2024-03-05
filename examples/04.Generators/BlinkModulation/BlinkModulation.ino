@@ -13,7 +13,7 @@
 #include <Plaquette.h>
 
 // The main oscillator.
-SineOsc osc;
+SquareOsc osc;
 
 // The LFO.
 SineOsc lfo(20.0); // 20 seconds period
