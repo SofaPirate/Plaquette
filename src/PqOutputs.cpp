@@ -34,8 +34,8 @@ float AnalogOut::put(float value) {
   value = _value * 255;
   value = round(value);
   // Write to analog output (inverting if needed).
-#if defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
-  dacWrite
+#if (defined(ESP32) or defined(ARDUINO_ARCH_ESP32)) and defined(SOC_DAC_SUPPORTED)
+  dacWrite // use dacWrite if available
 #else
   analogWrite
 #endif
