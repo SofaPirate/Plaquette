@@ -13,20 +13,20 @@
 #include <Plaquette.h>
 
 // The main oscillator.
-SineOsc osc;
+SquareOsc osc;
 
 // The LFO.
-SineOsc lfo(10.0); // 10 seconds period
+SineOsc lfo(20.0); // 20 seconds period
 
-// Serial output.
-StreamOut out;
+// The LED.
+DigitalOut led(LED_BUILTIN);
 
 void begin() {}
 
 void step() {
-  // Modulate oscillator frequency between 1 to 20 Hz.
-  osc.frequency( lfo.mapTo(1, 20) );
+  // Modulate oscillator BPM between 30 to 180.
+  osc.bpm( lfo.mapTo(30, 180) );
 
-  // Send to serial output.
-  osc >> out;
+  // Send to LED.
+  osc >> led;
 }

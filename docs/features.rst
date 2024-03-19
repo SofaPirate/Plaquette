@@ -126,7 +126,7 @@ Plaquette forbids the use of blocking functions such as Arduino's
 Rather, it invites programmers to adopt a frame-by-frame approach to coding similar
 to `Processing <https://processing.org/>`_.
 
-Compare this (albeit naive) attempt to make an `LED blink <https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink>`_
+Compare the following attempt to make an `LED blink <https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink>`_
 when pressing a button in Arduino, versus Plaquette's real-time approach:
 
 +------------------------------------------------+------------------------------------------------+
@@ -138,13 +138,13 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 |   int ledPin = 12;                             |     DigitalOut led(12);                        |
 |                                                |                                                |
 |   void setup() {                               |     // Square wave 1 second period.            |
-|     pinMode(buttonPin, INPUT_PULLUP);          |     SquareOsc oscillator(1.0);                 |
+|     pinMode(buttonPin, OUTPUT);                |     SquareOsc oscillator(1.0);                 |
 |     pinMode(ledPin, OUTPUT);                   |                                                |
 |   }                                            |     void begin() {}                            |
 |                                                |                                                |
 |   void loop() {                                |     void step() {                              |
 |     // Button is checked once per second.      |       // Button is checked at all time.        |
-|     if (digitalRead(buttonPin) == LOW) {       |       if (button)                              |
+|     if (digitalRead(buttonPin) == HIGH) {      |       if (button)                              |
 |       digitalWrite(ledPin, HIGH);              |         oscillator >> led;                     |
 |       delay(500); // do nothing for 500ms      |     }                                          |
 |       digitalWrite(ledPin, LOW);               |                                                |

@@ -40,7 +40,7 @@ float StreamOut::put(float value) {
 }
 
 void StreamOut::precision(uint8_t digits) {
-	_digits = digits;
+  _digits = digits;
 }
 
 }

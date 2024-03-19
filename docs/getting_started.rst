@@ -174,11 +174,12 @@ You can also try to add a second parameter to  the constructor to control
 the oscillator's `duty -ycle <https://en.wikipedia.org/wiki/Duty_cycle>`__. 
 
 
-For a fixed period, try changing the dutyCycle to different percentages between 0.0 and 1.0.
-Example:
- - ``SquareOsc myOsc(2.0, 0.5);`` for a duty-cycle of 50% (default)
- - ``SquareOsc myOsc(2.0, 0.25);`` for a duty-cycle of 25%
- - ``SquareOsc myOsc(2.0, 0.75);`` for a duty-cycle of 75%
+For a fixed period, try changing the duty cycle to different percentages between 0.0 and 1.0.
+Examples:
+
+- ``SquareOsc myOsc(2.0, 0.5);`` for a duty-cycle of 50% (default)
+- ``SquareOsc myOsc(2.0, 0.25);`` for a duty-cycle of 25%
+- ``SquareOsc myOsc(2.0, 0.75);`` for a duty-cycle of 75%
 
 Adding and multiplying
 ~~~~~~~~~~~~~~~~~~~~~~

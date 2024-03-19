@@ -48,9 +48,10 @@ public:
   /**
    * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
    * @param dutyCycle the duty-cycle as a value in [0, 1]
-   * @return the unit itself
    */
   virtual void dutyCycle(float dutyCycle);
+
+  /// Returns the duty-cycle (as a value in [0, 1]).
   virtual float dutyCycle() const { return phaseTime2float(_dutyCycle); }
 
 protected:

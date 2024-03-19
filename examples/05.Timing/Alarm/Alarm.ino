@@ -19,32 +19,32 @@
 DigitalOut led(LED_BUILTIN);
 
 // The alarm.
-Alarm alarm(1.0); // starting duration: 1 second
+Alarm ledAlarm(1.0); // starting duration: 1 second
 
 // Keeps track of increasing duration of LED.
 float ledDuration;
 
 void begin() {
   // Initialize ledDuration to starting timer duration.
-  ledDuration = alarm.duration();
+  ledDuration = ledAlarm.duration();
 
   // Start timer.
-  alarm.start();
+  ledAlarm.start();
 }
 
 void step() {
   // If timer has reached its duration, perform some actions.
-  if (alarm) {
+  if (ledAlarm) {
     // Switch LED.
     led.toggle();
 
     // If LED is "on" keep it on for a certain time.
     if (led) {
       ledDuration += 0.5;
-      alarm.start(ledDuration);
+      ledAlarm.start(ledDuration);
     }
     // Otherwise keep it off for half a second.
     else
-      alarm.start(0.5);
+      ledAlarm.start(0.5);
   }
 }

@@ -43,7 +43,7 @@ public:
   virtual float put(float value);
 
   /// Returns the pin this servomotor is attached to.
-	uint8_t pin() const { return _pin; }
+  uint8_t pin() const { return _pin; }
 
 protected:
   virtual void begin();
@@ -66,13 +66,13 @@ public:
    * @param angle the angle in degrees
    * @returns the current angle
    */
-	virtual float putAngle(float angle);
+  virtual float putAngle(float angle);
 
   /// Return the current angular angle in [0, 180].
-	virtual float getAngle();
+  virtual float getAngle();
 
   /// Re-centers the servo-motor.
-	virtual void center() { put(0.5); }
+  virtual void center() { put(0.5); }
 };
 
 /// Continuous servo-motor.
@@ -82,13 +82,13 @@ public:
    * Constructor for a continuous rotation servo-motor.
    * @param pin the pin number
    */
-	ContinuousServoOut(uint8_t pin=9);
+  ContinuousServoOut(uint8_t pin=9);
 
   /// Stops the servo-motor.
-	virtual void stop();
+  virtual void stop();
 
   /// Sends servo-motor in reverse mode.
-	virtual void reverse();
+  virtual void reverse();
 
 protected:
   virtual void begin();

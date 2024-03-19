@@ -22,9 +22,9 @@ DigitalOut led(LED_BUILTIN);
 AnalogIn pot(A0);
 
 // The metronome object.
-Metro metronome(1.0);
+Metro metronome; // default period: 1 second
 
-// An alarm object (to make sure the LED light stays visible for a short time).
+// An alarm object (to make sure the LED light stays visible for a short time of 5ms).
 Alarm ledOnAlarm(0.05);
 
 void begin() {
@@ -33,8 +33,8 @@ void begin() {
 }
 
 void step() {
-  // Adjust metronome period with potentiometer from 100ms to 2 seconds.
-  metronome.period(pot.mapTo(0.1, 2.0));
+  // Adjust metronome period with potentiometer from 40 to 200 bpm.
+  metronome.bpm(pot.mapTo(40, 200));
 
   // When the metronome "hits": switch LED on and start timer.
   if (metronome) {

@@ -27,6 +27,7 @@
 #include <WProgram.h>
 #endif
 
+#include "HybridArrayList.h"
 #include "pq_map_real.h"
 
 #if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
@@ -40,6 +41,8 @@
 #ifndef PLAQUETTE_SERIAL_BAUD_RATE
 #define PLAQUETTE_SERIAL_BAUD_RATE 9600
 #endif
+
+#define NO_SERIAL 0
 
 #ifndef PLAQUETTE_DEFAULT_SMOOTH_WINDOW
 #define PLAQUETTE_DEFAULT_SMOOTH_WINDOW 0.1F
@@ -73,39 +76,24 @@ enum {
   SINK = INVERTED
 };
 
+// /// @brief Range modes.
+// enum {
+//   RANGE_ZERO_ONE, // [0, 1]
+//   RANGE_ZERO_CENTERED // [-1, 1]
+// };
+
 class Unit;
 
 /// The main Plaquette static class containing all the units.
 class PlaquetteEnv {
   friend class Unit;
 
-private:
-  // Used to keep track of units.
-  Unit* _units[PLAQUETTE_MAX_UNITS];
-  uint8_t _nUnits;
-
-  // Snapshot of time in seconds from current step.
-  unsigned long _microSeconds;
-
-  // Sampling rate (ie. how many times per seconds step() is called).
-  float _sampleRate;
-
-  // Sampling period (ie. 1.0 / sampleRate()).
-  float _samplePeriod;
-
-  // Whether the auto sample rate mode is activated.
-  float _targetSampleRate;
-
-  // Number of steps accomplished.
-  unsigned long _nSteps;
-
-  bool _firstRun;
-
 public:
   PlaquetteEnv();
+  ~PlaquetteEnv();
 
   /// Initializes all components (calls begin() on all of them).
-  void preBegin();
+  void preBegin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
 
   /// Performs additional tasks after the class to begin().
   void postBegin();
@@ -117,7 +105,7 @@ public:
   inline void postStep();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
-  inline void begin();
+  inline void begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
   inline void step();
@@ -129,7 +117,7 @@ public:
   inline void end();
 
   /// Returns the current number of units.
-  uint8_t nUnits() { return _nUnits; }
+  size_t nUnits() { return _units.size(); }
 
   /**
    * Returns time in seconds. Optional parameter allows to ask for reference time (default)
@@ -171,14 +159,47 @@ public:
 
 private:
   /// Adds a component to Plaquette.
-  void add(Unit * component);
+  void add(Unit* component);
+
+  /// Removes a component from Plaquette.
+  void remove(Unit* component);
 
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
+
+private:
+  // Used to keep track of units.
+  HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
+
+  // Snapshot of time in seconds from current step.
+  unsigned long _microSeconds;
+
+  // Sampling rate (ie. how many times per seconds step() is called).
+  float _sampleRate;
+
+  // Sampling period (ie. 1.0 / sampleRate()).
+  float _samplePeriod;
+
+  // Whether the auto sample rate mode is activated.
+  float _targetSampleRate;
+
+  // Number of steps accomplished.
+  unsigned long _nSteps;
+
+  // True when units' begin() has been called during preBegin().
+  bool _beginCompleted;
+
+  // True during first run.
+  bool _firstRun;
+
+private:
+  // Prevent copy-construction and assignment.
+  PlaquetteEnv(const PlaquetteEnv&);
+  PlaquetteEnv& operator=(const PlaquetteEnv&);
 };
 
 /// The Plaquette singleton.
-extern PlaquetteEnv Plaquette;
+extern PlaquetteEnv& Plaquette;
 
 //float seconds(bool realTime=false);
 unsigned long nSteps();
@@ -213,10 +234,10 @@ class Unit {
 
 public:
   /// Converts analog (float) value to digital (bool) value.
-	static bool  analogToDigital(float f) { return (f >= 0.5); }
+  static bool  analogToDigital(float f) { return (f >= 0.5); }
 
-	/// Converts digital (bool) value to analog (float) value.
-	static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
+  /// Converts digital (bool) value to analog (float) value.
+  static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
   /** Class constructor.
@@ -226,7 +247,7 @@ protected:
    * DigitalNode constructor below.
    */
   Unit();
-  virtual ~Unit() {}
+  virtual ~Unit();
 
 protected:
   virtual void begin() {}
@@ -263,8 +284,8 @@ protected:
 
 private:
   /// Operator that allows usage in conditional expressions.
-	// NOTE: This operator is defined as explicit so that boolean expression like
-	// "if (obj)" use the bool() operator while other expressions can use the float() operator.
+  // NOTE: This operator is defined as explicit so that boolean expression like
+  // "if (obj)" use the bool() operator while other expressions can use the float() operator.
   virtual explicit operator bool() { return Unit::analogToDigital(get()); }
 
   // Prevents assignation operations by making them private.
@@ -272,7 +293,6 @@ private:
   Node& operator=(int);
   Node& operator=(float);
   Node& operator=(Node&);
-  Node(const Node&);
 };
 
 /// A generic class representing a simple source.
@@ -329,9 +349,9 @@ public:
 };
 
 /**
- * An analog analog source that contains a value (typically in [0, 1]).
- * It is the responsibility of the subclass's programmer to make sure the value stays
- * within the [0, 1] range OR to update the mapTo() function accordingly.
+ * An analog analog source that contains a value constrained to a finite range 
+ * (typically in [0, 1]). It is the responsibility of the subclass's programmer to make 
+ * sure the value stays within range OR to update the mapTo() function accordingly.
  */
 class AnalogSource : public Node {
 public:
@@ -399,7 +419,7 @@ inline Node& operator>>(float value, Node& unit) {
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Unit&)).
 inline Node& operator>>(Node& source, Node& sink) {
-	return pq::operator>>(source.get(), sink);
+  return pq::operator>>(source.get(), sink);
 }
 
 inline Node& operator>>(double value, Node& unit) {
@@ -407,101 +427,102 @@ inline Node& operator>>(double value, Node& unit) {
 }
 
 inline Node& operator>>(bool value, Node& unit) {
-	return pq::operator>>(Unit::digitalToAnalog(value), unit);
+  return pq::operator>>(Unit::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie and ARM chips.
 // Otherwise it causes an ambiguous operator error.
 #if defined(__arc__) || defined(__arm__)
 inline Node& operator>>(int value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 #endif
 
 inline Node& operator>>(int8_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint8_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int16_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint16_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int32_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint32_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(int64_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
 inline Node& operator>>(uint64_t value, Node& unit) {
-	return pq::operator>>((float)value, unit);
+  return pq::operator>>((float)value, unit);
 }
 
-// Node to value operators ///////////////////////////////////////
+// // Node to value operators ///////////////////////////////////////
+// THIS PART IS COMMENTED OUT BECAUSE IT CAUSES AMBIGUOUS OPERATOR ERRORS
 
-inline bool& operator>>(DigitalNode& unit, bool& value) {
-  return (value = unit.isOn());
-}
+// inline bool& operator>>(DigitalNode& unit, bool& value) {
+//   return (value = unit.isOn());
+// }
 
-// This code is needed on the Curie-based AVRs.
-#if defined(__arc__)
-inline int& operator>>(DigitalNode& unit, int& value) {
-  return (value = unit.getInt());
-}
-#endif
+// // This code is needed on the Curie-based AVRs.
+// #if defined(__arc__)
+// inline int& operator>>(DigitalNode& unit, int& value) {
+//   return (value = unit.getInt());
+// }
+// #endif
 
-inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
-  return (value = unit.getInt());
-}
+// inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
-  return (value = unit.getInt());
-}
+// inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
-  return (value = unit.getInt());
-}
+// inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
-  return (value = unit.getInt());
-}
+// inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
-  return (value = unit.getInt());
-}
+// inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
+//   return (value = unit.getInt());
+// }
 
-inline float& operator>>(Node& unit, float& value) {
-  return (value = unit.get());
-}
+// inline float& operator>>(Node& unit, float& value) {
+//   return (value = unit.get());
+// }
 
-inline double& operator>>(Node& unit, double& value) {
-  return (value = unit.get());
-}
+// inline double& operator>>(Node& unit, double& value) {
+//   return (value = unit.get());
+// }
 
 /// Superclass for pin-based components.
 class PinUnit {
@@ -532,7 +553,7 @@ protected:
 
 void PlaquetteEnv::preStep() {
   // Update every component.
-  for (uint8_t i=0; i<_nUnits; i++)
+  for (size_t i=0; i<_units.size(); i++)
     _units[i]->step();
 }
 
@@ -560,8 +581,8 @@ void PlaquetteEnv::postStep() {
   }
 }
 
-void PlaquetteEnv::begin() {
-  preBegin();
+void PlaquetteEnv::begin(unsigned long baudrate) {
+  preBegin(baudrate);
 }
 
 void PlaquetteEnv::step() {

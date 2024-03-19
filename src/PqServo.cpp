@@ -29,7 +29,7 @@ AbstractServoOut::~AbstractServoOut() { detach(); }
 
 float AbstractServoOut::put(float value)
 {
-	_value = constrain(value, 0, 1);
+  _value = constrain(value, 0, 1);
   value = _value * 180;
   Servo::write(round(value));
 
@@ -53,19 +53,19 @@ float ServoOut::getAngle() { return round(_value*180); }
 ContinuousServoOut::ContinuousServoOut(uint8_t pin) : AbstractServoOut(pin) {}
 
 void ContinuousServoOut::begin() {
-	AbstractServoOut::begin();
-	stop();
+  AbstractServoOut::begin();
+  stop();
 }
 
 void ContinuousServoOut::stop()
 {
-	_value = 0.5f;
-	Servo::write(90); // to be sure
+  _value = 0.5f;
+  Servo::write(90); // to be sure
 }
 
 void ContinuousServoOut::reverse()
 {
-	put( 1 - get() );
+  put( 1 - get() );
 }
 
 } // namespace pq
