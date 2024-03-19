@@ -8,5 +8,6 @@ Core structural functions and operators.
 
    begin
    step
+   array
    dot
    pipe
