@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>wrap() &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>wrap() &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,7 +74,12 @@
 <li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">wrap()</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq4wrapEddd"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq4wrapEdd"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq6wrap01Ed"><code class="docutils literal notranslate"><span class="pre">wrap01()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -91,9 +102,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="functions.html">Functions</a> &raquo;</li>
-      <li>wrap()</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Functions</a></li>
+      <li class="breadcrumb-item active">wrap()</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,13 +114,9 @@
            <div itemprop="articleBody">
              
   <section id="wrap">
-<h1>wrap()<a class="headerlink" href="#wrap" title="Permalink to this heading"></a></h1>
+<h1>wrap()<a class="headerlink" href="#wrap" title="Link to this heading"></a></h1>
 <p>Restricts a value to an interval [low, high) by wrapping it around.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 72%" />
-<col style="width: 28%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Code</p></th>
 <th class="head"><p>Result</p></th>
@@ -138,10 +145,6 @@
 </table>
 <p>Two alternative versions are provided:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 52%" />
-<col style="width: 48%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Version</p></th>
 <th class="head"><p>Equivalent to</p></th>
@@ -157,36 +160,36 @@
 </tbody>
 </table>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Ramp LED up and then back to zero once every 10 second:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="n">wrap</span><span class="p">(</span><span class="n">seconds</span><span class="p">(),</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">wrap</span><span class="p">(</span><span class="n">seconds</span><span class="p">(),</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq4wrapEddd">
-<span id="_CPPv3N2pq4wrapEddd"></span><span id="_CPPv2N2pq4wrapEddd"></span><span id="pq::wrap__double.double.double"></span><span class="target" id="pq__wrap_8cpp_1a6093df488aab02332664b7a49fecd358"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">low</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">high</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq4wrapEddd" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq4wrapEddd"></span><span id="_CPPv2N2pq4wrapEddd"></span><span id="pq::wrap__double.double.double"></span><span class="target" id="pq__wrap_8cpp_1a6093df488aab02332664b7a49fecd358"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">low</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">high</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq4wrapEddd" title="Link to this definition"></a><br /></dt>
 <dd><p>Restricts value to the interval [low, high) by wrapping it around. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> – the value to wrap </p></li>
 <li><p><strong>low</strong> – the lower boundary </p></li>
 <li><p><strong>high</strong> – the higher boundary </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the value wrapped around [low, high) or [high, low) if high &lt; low </p>
 </dd>
 </dl>
@@ -194,16 +197,16 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq4wrapEdd">
-<span id="_CPPv3N2pq4wrapEdd"></span><span id="_CPPv2N2pq4wrapEdd"></span><span id="pq::wrap__double.double"></span><span class="target" id="pq__wrap_8cpp_1a4e074ce82b44311cc8ee8fb01bb6662e"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">high</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq4wrapEdd" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq4wrapEdd"></span><span id="_CPPv2N2pq4wrapEdd"></span><span id="pq::wrap__double.double"></span><span class="target" id="pq__wrap_8cpp_1a4e074ce82b44311cc8ee8fb01bb6662e"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">high</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq4wrapEdd" title="Link to this definition"></a><br /></dt>
 <dd><p>Restricts value to the interval [0, high) by wrapping it around. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> – the value to wrap </p></li>
 <li><p><strong>high</strong> – the higher bound </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the value wrapped around [0, high) or [high, 0) if high is negative </p>
 </dd>
 </dl>
@@ -211,13 +214,13 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq6wrap01Ed">
-<span id="_CPPv3N2pq6wrap01Ed"></span><span id="_CPPv2N2pq6wrap01Ed"></span><span id="pq::wrap01__double"></span><span class="target" id="pq__wrap_8cpp_1a9c5e9c0285f1e3fa92b60c3ea2af0d3c"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq6wrap01Ed" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq6wrap01Ed"></span><span id="_CPPv2N2pq6wrap01Ed"></span><span id="pq::wrap01__double"></span><span class="target" id="pq__wrap_8cpp_1a9c5e9c0285f1e3fa92b60c3ea2af0d3c"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">wrap01</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq6wrap01Ed" title="Link to this definition"></a><br /></dt>
 <dd><p>Restricts value to the interval [0, 1) by wrapping it around. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>x</strong> – the value to wrap </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the value wrapped around [0, 1). </p>
 </dd>
 </dl>
@@ -225,7 +228,7 @@
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a></p></li>
 <li><p><a class="reference internal" href="mapTo01.html"><span class="doc">mapTo01()</span></a></p></li>

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>Ramp &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,7 +69,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Metro.html">Metro</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44Ramp"><code class="docutils literal notranslate"><span class="pre">Ramp</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -89,9 +98,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="timing.html">Timing</a> &raquo;</li>
-      <li>Ramp</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="timing.html">Timing</a></li>
+      <li class="breadcrumb-item active">Ramp</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,7 +110,7 @@
            <div itemprop="articleBody">
              
   <section id="ramp">
-<h1>Ramp<a class="headerlink" href="#ramp" title="Permalink to this heading"></a></h1>
+<h1>Ramp<a class="headerlink" href="#ramp" title="Link to this heading"></a></h1>
 <p>A source unit that generates a smooth transition between two values. The unit can be
 triggered to start transitioning to a target value for a certain duration.</p>
 <p>There are two ways to start the ramp.</p>
@@ -121,46 +130,46 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <p>Please refer to <a class="reference internal" href="easings.html"><span class="doc">this page</span></a> for a full list of available easing functions.</p>
 </div>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Sequentially ramps through different values.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">myRamp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// the ramp is initialized at zero (0)</span>
 
-<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
+<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Apply an easing function (optional).</span>
-<span class="w">  </span><span class="n">myRamp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeOutSine</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">myRamp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeOutSine</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myRamp</span><span class="p">.</span><span class="n">isFinished</span><span class="p">())</span><span class="w"></span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myRamp</span><span class="p">.</span><span class="n">isFinished</span><span class="p">())</span>
+<span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds</span>
-<span class="w">    </span><span class="n">myRamp</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mi">-10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">myRamp</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mi">-10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">myRamp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">myRamp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv44Ramp">
-<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Link to this definition"></a><br /></dt>
 <dd><p>Provides a ramping / tweening mechanism that allows smooth transitions between two values. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp4RampEf">
-<span id="_CPPv3N4Ramp4RampEf"></span><span id="_CPPv2N4Ramp4RampEf"></span><span id="Ramp::Ramp__float"></span><span class="target" id="classpq_1_1_ramp_1a248391ac817c304a719f056882517d7a"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp4RampEf"></span><span id="_CPPv2N4Ramp4RampEf"></span><span id="Ramp::Ramp__float"></span><span class="target" id="classpq_1_1_ramp_1a248391ac817c304a719f056882517d7a"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Basic constructor. </p>
 <p>Use one of the start(…) functions to launch ramps with specific parameters. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>from</strong> – the value the ramp starts with </p>
 </dd>
 </dl>
@@ -168,11 +177,11 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp4RampEfff15easing_function">
-<span id="_CPPv3N4Ramp4RampEfff15easing_function"></span><span id="_CPPv2N4Ramp4RampEfff15easing_function"></span><span id="Ramp::Ramp__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1a024d685c187086c34d72cfec081767e7"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easeNone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEfff15easing_function" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp4RampEfff15easing_function"></span><span id="_CPPv2N4Ramp4RampEfff15easing_function"></span><span id="Ramp::Ramp__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1a024d685c187086c34d72cfec081767e7"></span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easeNone</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4RampEfff15easing_function" title="Link to this definition"></a><br /></dt>
 <dd><p>Basic constructor. </p>
 <p>Use one of the start(…) functions to launch ramps with specific parameters. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>from</strong> – the initial value </p></li>
 <li><p><strong>to</strong> – the final value </p></li>
@@ -185,16 +194,16 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp3getEv">
-<span id="_CPPv3N4Ramp3getEv"></span><span id="_CPPv2N4Ramp3getEv"></span><span id="Ramp::get"></span><span class="target" id="classpq_1_1_ramp_1ac6a354b0667bce24ccf3d37096d7d9d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp3getEv"></span><span id="_CPPv2N4Ramp3getEv"></span><span id="Ramp::get"></span><span class="target" id="classpq_1_1_ramp_1ac6a354b0667bce24ccf3d37096d7d9d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value of ramp. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp6easingE15easing_function">
-<span id="_CPPv3N4Ramp6easingE15easing_function"></span><span id="_CPPv2N4Ramp6easingE15easing_function"></span><span id="Ramp::easing__easing_function"></span><span class="target" id="classpq_1_1_ramp_1abe926ae6541f6a57740c6d4902b05750"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">easing</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6easingE15easing_function" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp6easingE15easing_function"></span><span id="_CPPv2N4Ramp6easingE15easing_function"></span><span id="Ramp::easing__easing_function"></span><span class="target" id="classpq_1_1_ramp_1abe926ae6541f6a57740c6d4902b05750"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">easing</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6easingE15easing_function" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets easing function to apply to ramp. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>easing</strong> – the easing function </p>
 </dd>
 </dl>
@@ -202,16 +211,16 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp8noEasingEv">
-<span id="_CPPv3N4Ramp8noEasingEv"></span><span id="_CPPv2N4Ramp8noEasingEv"></span><span id="Ramp::noEasing"></span><span class="target" id="classpq_1_1_ramp_1a8b973e9f7e7318320fad41349e9902c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noEasing</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8noEasingEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp8noEasingEv"></span><span id="_CPPv2N4Ramp8noEasingEv"></span><span id="Ramp::noEasing"></span><span class="target" id="classpq_1_1_ramp_1a8b973e9f7e7318320fad41349e9902c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noEasing</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8noEasingEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Remove easing function (linear/no easing). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp2toEf">
-<span id="_CPPv3N4Ramp2toEf"></span><span id="_CPPv2N4Ramp2toEf"></span><span id="Ramp::to__float"></span><span class="target" id="classpq_1_1_ramp_1a6c471324e2620fb74127801040f4fdb2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">to</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp2toEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp2toEf"></span><span id="_CPPv2N4Ramp2toEf"></span><span id="Ramp::to__float"></span><span class="target" id="classpq_1_1_ramp_1a6c471324e2620fb74127801040f4fdb2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">to</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp2toEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Assign final value of the ramp starting from current value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>to</strong> – the final value </p>
 </dd>
 </dl>
@@ -219,10 +228,10 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp6fromToEff">
-<span id="_CPPv3N4Ramp6fromToEff"></span><span id="_CPPv2N4Ramp6fromToEff"></span><span id="Ramp::fromTo__float.float"></span><span class="target" id="classpq_1_1_ramp_1aeff4b5ee7cbd8bb857c54f90a478ffec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fromTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6fromToEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp6fromToEff"></span><span id="_CPPv2N4Ramp6fromToEff"></span><span id="Ramp::fromTo__float.float"></span><span class="target" id="classpq_1_1_ramp_1aeff4b5ee7cbd8bb857c54f90a478ffec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fromTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6fromToEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Assign initial and final values of the ramp. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>from</strong> – the initial value </p></li>
 <li><p><strong>to</strong> – the final value </p></li>
@@ -233,16 +242,16 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEv">
-<span id="_CPPv3N4Ramp5startEv"></span><span id="_CPPv2N4Ramp5startEv"></span><span id="Ramp::start"></span><span class="target" id="classpq_1_1_ramp_1aead9fb134ed0e30782a6704bf9606e4f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp5startEv"></span><span id="_CPPv2N4Ramp5startEv"></span><span id="Ramp::start"></span><span class="target" id="classpq_1_1_ramp_1aead9fb134ed0e30782a6704bf9606e4f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the ramp. Will repeat the last ramp. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEff15easing_function">
-<span id="_CPPv3N4Ramp5startEff15easing_function"></span><span id="_CPPv2N4Ramp5startEff15easing_function"></span><span id="Ramp::start__float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1aa8d300c8f26ebec4958ff66f1d4fa535"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEff15easing_function" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp5startEff15easing_function"></span><span id="_CPPv2N4Ramp5startEff15easing_function"></span><span id="Ramp::start__float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1aa8d300c8f26ebec4958ff66f1d4fa535"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEff15easing_function" title="Link to this definition"></a><br /></dt>
 <dd><p>Starts a new ramp, starting from current value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>to</strong> – the final value </p></li>
 <li><p><strong>duration</strong> – the duration of the ramp (in seconds) </p></li>
@@ -254,10 +263,10 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEfff15easing_function">
-<span id="_CPPv3N4Ramp5startEfff15easing_function"></span><span id="_CPPv2N4Ramp5startEfff15easing_function"></span><span id="Ramp::start__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1ac60bff38b0c9df062433f06d15d1f430"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEfff15easing_function" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp5startEfff15easing_function"></span><span id="_CPPv2N4Ramp5startEfff15easing_function"></span><span id="Ramp::start__float.float.float.easing_function"></span><span class="target" id="classpq_1_1_ramp_1ac60bff38b0c9df062433f06d15d1f430"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">from</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEfff15easing_function" title="Link to this definition"></a><br /></dt>
 <dd><p>Starts a new ramp. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>from</strong> – the initial value </p></li>
 <li><p><strong>to</strong> – the final value </p></li>
@@ -270,43 +279,43 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEf">
-<span id="_CPPv3N4Ramp5startEf"></span><span id="_CPPv2N4Ramp5startEf"></span><span id="Ramp::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp5startEf"></span><span id="_CPPv2N4Ramp5startEf"></span><span id="Ramp::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the chronometer with specific duration. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8progressEv">
-<span id="_CPPv3NK4Ramp8progressEv"></span><span id="_CPPv2NK4Ramp8progressEv"></span><span id="Ramp::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8progressEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp8progressEv"></span><span id="_CPPv2NK4Ramp8progressEv"></span><span id="Ramp::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8progressEv" title="Link to this definition"></a><br /></dt>
 <dd><p>The progress of the timer process (in %). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp10isFinishedEv">
-<span id="_CPPv3NK4Ramp10isFinishedEv"></span><span id="_CPPv2NK4Ramp10isFinishedEv"></span><span id="Ramp::isFinishedC"></span><span class="target" id="classpq_1_1_abstract_timer_1aace0be3e01259aba6629b9d19e0de1cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp10isFinishedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp10isFinishedEv"></span><span id="_CPPv2NK4Ramp10isFinishedEv"></span><span id="Ramp::isFinishedC"></span><span class="target" id="classpq_1_1_abstract_timer_1aace0be3e01259aba6629b9d19e0de1cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp10isFinishedEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer has completed its process. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp4stopEv">
-<span id="_CPPv3N4Ramp4stopEv"></span><span id="_CPPv2N4Ramp4stopEv"></span><span id="Ramp::stop"></span><span class="target" id="classpq_1_1_chronometer_1aaf7fc746e6a054e072f18b3ccd6aaff0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4stopEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp4stopEv"></span><span id="_CPPv2N4Ramp4stopEv"></span><span id="Ramp::stop"></span><span class="target" id="classpq_1_1_chronometer_1aaf7fc746e6a054e072f18b3ccd6aaff0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp4stopEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Interrupts the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp6resumeEv">
-<span id="_CPPv3N4Ramp6resumeEv"></span><span id="_CPPv2N4Ramp6resumeEv"></span><span id="Ramp::resume"></span><span class="target" id="classpq_1_1_chronometer_1a6ab079fc5c9a258894572134b79c3889"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6resumeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp6resumeEv"></span><span id="_CPPv2N4Ramp6resumeEv"></span><span id="Ramp::resume"></span><span class="target" id="classpq_1_1_chronometer_1a6ab079fc5c9a258894572134b79c3889"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp6resumeEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp7elapsedEv">
-<span id="_CPPv3NK4Ramp7elapsedEv"></span><span id="_CPPv2NK4Ramp7elapsedEv"></span><span id="Ramp::elapsedC"></span><span class="target" id="classpq_1_1_chronometer_1ade8f5f29ad44858a4b19486d70d1cb49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7elapsedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp7elapsedEv"></span><span id="_CPPv2NK4Ramp7elapsedEv"></span><span id="Ramp::elapsedC"></span><span class="target" id="classpq_1_1_chronometer_1ade8f5f29ad44858a4b19486d70d1cb49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7elapsedEv" title="Link to this definition"></a><br /></dt>
 <dd><p>The time currently elapsed by the chronometer (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp9isStartedEv">
-<span id="_CPPv3NK4Ramp9isStartedEv"></span><span id="_CPPv2NK4Ramp9isStartedEv"></span><span id="Ramp::isStartedC"></span><span class="target" id="classpq_1_1_chronometer_1af3aa1cc637d09fc787300bb45b73c92d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp9isStartedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK4Ramp9isStartedEv"></span><span id="_CPPv2NK4Ramp9isStartedEv"></span><span id="Ramp::isStartedC"></span><span class="target" id="classpq_1_1_chronometer_1af3aa1cc637d09fc787300bb45b73c92d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp9isStartedEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer is currently running. </p>
 </dd></dl>
 
@@ -315,7 +324,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
 <li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a></p></li>

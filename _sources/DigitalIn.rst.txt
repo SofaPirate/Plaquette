@@ -11,7 +11,8 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 - in ``DIRECT`` mode (default) the unit will be "on" when the voltage on the pin is high (Vref, typically 5V)
 - in ``INVERTED`` mode the unit will be "on" when the voltage on the pin is low (GND)
-- in ``INTERNAL_PULLUP`` mode the internal 20K pullup resistor is used, which simplifies the use of switches and buttons
+- in ``INTERNAL_PULLUP`` mode the internal `pullup resistor <https://en.wikipedia.org/wiki/Pull-up_resistor>`_ is used,
+  simplifying usage of switches and buttons
 
 Debouncing
 ----------
@@ -30,7 +31,8 @@ of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 ---------
 
 Turns on and off a light emitting diode (LED) connected to digital pin 13, when
-pressing a pushbutton attached to digital pin 2.
+pressing a pushbutton attached to digital pin 2. Pushbutton should be wired by connecting
+one side to pin 2 and the other to ground.
 
 .. code-block:: c++
 

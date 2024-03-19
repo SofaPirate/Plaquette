@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnalogOut &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>AnalogOut &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,7 +66,10 @@
 <li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">AnalogOut</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49AnalogOut"><code class="docutils literal notranslate"><span class="pre">AnalogOut</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -91,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="base_units.html">Base Units</a> &raquo;</li>
-      <li>AnalogOut</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="base_units.html">Base Units</a></li>
+      <li class="breadcrumb-item active">AnalogOut</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="analogout">
-<h1>AnalogOut<a class="headerlink" href="#analogout" title="Permalink to this heading"></a></h1>
+<h1>AnalogOut<a class="headerlink" href="#analogout" title="Link to this heading"></a></h1>
 <p>An analog (ie. continuous) output unit that converts a value between 0 and 1 (ie. 0% and 100%) into an analog
 voltage on one of the analog output pins.</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
@@ -113,35 +122,35 @@ voltage on one of the analog output pins.</p>
 <li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the source of current is external (Vcc)</p></li>
 </ul>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// The LED value is changed randomly by a tiny amount (random walk).</span>
 <span class="w">  </span><span class="c1">// Mutliplying by samplePeriod() makes sure the rate of change stays stable.</span>
-<span class="w">  </span><span class="p">(</span><span class="n">led</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samplePeriod</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">led</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samplePeriod</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49AnalogOut">
-<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><a class="headerlink" href="#_CPPv49AnalogOut" title="Link to this definition"></a><br /></dt>
 <dd><p>A generic class representing a simple PWM output. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t">
-<span id="_CPPv3N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_out_1a1901787e6425ff897f542db7e9060836"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="_CPPv2N9AnalogOut9AnalogOutE7uint8_t7uint8_t"></span><span id="AnalogOut::AnalogOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_out_1a1901787e6425ff897f542db7e9060836"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin number </p></li>
 <li><p><strong>mode</strong> – the mode (SOURCE or SINK) </p></li>
@@ -152,37 +161,37 @@ voltage on one of the analog output pins.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut3putEf">
-<span id="_CPPv3N9AnalogOut3putEf"></span><span id="_CPPv2N9AnalogOut3putEf"></span><span id="AnalogOut::put__float"></span><span class="target" id="classpq_1_1_analog_out_1a9f5d2f056bef08b373cc78604d8aa31b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut3putEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut3putEf"></span><span id="_CPPv2N9AnalogOut3putEf"></span><span id="AnalogOut::put__float"></span><span class="target" id="classpq_1_1_analog_out_1a9f5d2f056bef08b373cc78604d8aa31b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut3putEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Pushes value into the component and returns its (possibly filtered) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut6invertEv">
-<span id="_CPPv3N9AnalogOut6invertEv"></span><span id="_CPPv2N9AnalogOut6invertEv"></span><span id="AnalogOut::invert"></span><span class="target" id="classpq_1_1_analog_out_1a96398d0fd733795e23f700eee606d9ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">invert</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut6invertEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut6invertEv"></span><span id="_CPPv2N9AnalogOut6invertEv"></span><span id="AnalogOut::invert"></span><span class="target" id="classpq_1_1_analog_out_1a96398d0fd733795e23f700eee606d9ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">invert</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut6invertEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Inverts value by calling <code class="docutils literal notranslate"><span class="pre">put(1-</span><a class="reference internal" href="TriOsc.html#classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"><span class="std std-ref"><span class="pre">get()</span></span></a><span class="pre">)</span></code> (eg. 0.2 becomes 0.8). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut3getEv">
-<span id="_CPPv3N9AnalogOut3getEv"></span><span id="_CPPv2N9AnalogOut3getEv"></span><span id="AnalogOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut3getEv"></span><span id="_CPPv2N9AnalogOut3getEv"></span><span id="AnalogOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9AnalogOut3pinEv">
-<span id="_CPPv3NK9AnalogOut3pinEv"></span><span id="_CPPv2NK9AnalogOut3pinEv"></span><span id="AnalogOut::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9AnalogOut3pinEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK9AnalogOut3pinEv"></span><span id="_CPPv2NK9AnalogOut3pinEv"></span><span id="AnalogOut::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9AnalogOut3pinEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9AnalogOut4modeEv">
-<span id="_CPPv3NK9AnalogOut4modeEv"></span><span id="_CPPv2NK9AnalogOut4modeEv"></span><span id="AnalogOut::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9AnalogOut4modeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK9AnalogOut4modeEv"></span><span id="_CPPv2NK9AnalogOut4modeEv"></span><span id="AnalogOut::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9AnalogOut4modeEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut4modeE7uint8_t">
-<span id="_CPPv3N9AnalogOut4modeE7uint8_t"></span><span id="_CPPv2N9AnalogOut4modeE7uint8_t"></span><span id="AnalogOut::mode__uint8_t"></span><span class="target" id="classpq_1_1_pin_unit_1a75f6d84cc48e03b69c04f03bd42b1ea3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut4modeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N9AnalogOut4modeE7uint8_t"></span><span id="_CPPv2N9AnalogOut4modeE7uint8_t"></span><span id="AnalogOut::mode__uint8_t"></span><span class="target" id="classpq_1_1_pin_unit_1a75f6d84cc48e03b69c04f03bd42b1ea3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut4modeE7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the mode of the component. </p>
 </dd></dl>
 
@@ -208,7 +217,7 @@ converters, and act as true analog outputs.</p>
 </div>
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a></p></li>

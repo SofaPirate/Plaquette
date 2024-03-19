@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ServoOut &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>ServoOut &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -65,7 +71,10 @@
 <li class="toctree-l2"><a class="reference internal" href="easings.html">Easings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ContinuousServoOut.html">ContinuousServoOut</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ServoOut</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48ServoOut"><code class="docutils literal notranslate"><span class="pre">ServoOut</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -86,9 +95,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="extra.html">Extra</a> &raquo;</li>
-      <li>ServoOut</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="extra.html">Extra</a></li>
+      <li class="breadcrumb-item active">ServoOut</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -98,7 +107,7 @@
            <div itemprop="articleBody">
              
   <section id="servoout">
-<h1>ServoOut<a class="headerlink" href="#servoout" title="Permalink to this heading"></a></h1>
+<h1>ServoOut<a class="headerlink" href="#servoout" title="Link to this heading"></a></h1>
 <p>A source unit that controls a standard servo-motor.</p>
 <p>Servo motors have three wires: power, ground, and signal. The power wire is
 typically red, and should be connected to the 5V pin on the Arduino board.
@@ -110,40 +119,40 @@ probably need to power them from a separate supply (i.e. not the +5V pin on
 your Arduino). Be sure to connect the grounds of the Arduino and external power
 supply together.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Sweeps the shaft of a servo motor back and forth across 180 degrees.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span>
 
 <span class="c1">// The servo-motor output on pin 9.</span>
-<span class="n">ServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">ServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
 <span class="c1">// Oscillator to make the servo sweep.</span>
-<span class="n">SineOsc</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">SineOsc</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Position the servo in center.</span>
-<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">center</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">center</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Updates the value and send it back as output.</span>
-<span class="w">  </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">servo</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">servo</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv48ServoOut">
-<span id="_CPPv38ServoOut"></span><span id="_CPPv28ServoOut"></span><span id="ServoOut"></span><span class="target" id="classpq_1_1_servo_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ServoOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractServoOut</span></span><a class="headerlink" href="#_CPPv48ServoOut" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv38ServoOut"></span><span id="_CPPv28ServoOut"></span><span id="ServoOut"></span><span class="target" id="classpq_1_1_servo_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ServoOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractServoOut</span></span><a class="headerlink" href="#_CPPv48ServoOut" title="Link to this definition"></a><br /></dt>
 <dd><p>Standard servo-motor (angular). </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8ServoOutE7uint8_t">
-<span id="_CPPv3N8ServoOut8ServoOutE7uint8_t"></span><span id="_CPPv2N8ServoOut8ServoOutE7uint8_t"></span><span id="ServoOut::ServoOut__uint8_t"></span><span class="target" id="classpq_1_1_servo_out_1a1ca5513cc15b05642c096c9152c7267a"></span><span class="sig-name descname"><span class="n"><span class="pre">ServoOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">9</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8ServoOutE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut8ServoOutE7uint8_t"></span><span id="_CPPv2N8ServoOut8ServoOutE7uint8_t"></span><span id="ServoOut::ServoOut__uint8_t"></span><span class="target" id="classpq_1_1_servo_out_1a1ca5513cc15b05642c096c9152c7267a"></span><span class="sig-name descname"><span class="n"><span class="pre">ServoOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">9</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8ServoOutE7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor for a standard servo-motor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pin</strong> – the pin number </p>
 </dd>
 </dl>
@@ -151,13 +160,13 @@ supply together.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8putAngleEf">
-<span id="_CPPv3N8ServoOut8putAngleEf"></span><span id="_CPPv2N8ServoOut8putAngleEf"></span><span id="ServoOut::putAngle__float"></span><span class="target" id="classpq_1_1_servo_out_1a4043b2c2ba53b61a0ac28d5cd591e2be"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">putAngle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">angle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8putAngleEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut8putAngleEf"></span><span id="_CPPv2N8ServoOut8putAngleEf"></span><span id="ServoOut::putAngle__float"></span><span class="target" id="classpq_1_1_servo_out_1a4043b2c2ba53b61a0ac28d5cd591e2be"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">putAngle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">angle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8putAngleEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the servomotor position to a specific angle between 0 and 180 degrees. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>angle</strong> – the angle in degrees </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the current angle </p>
 </dd>
 </dl>
@@ -165,25 +174,25 @@ supply together.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8getAngleEv">
-<span id="_CPPv3N8ServoOut8getAngleEv"></span><span id="_CPPv2N8ServoOut8getAngleEv"></span><span id="ServoOut::getAngle"></span><span class="target" id="classpq_1_1_servo_out_1a4a06c1e4366c5757dd4529f88556f849"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAngle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8getAngleEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut8getAngleEv"></span><span id="_CPPv2N8ServoOut8getAngleEv"></span><span id="ServoOut::getAngle"></span><span class="target" id="classpq_1_1_servo_out_1a4a06c1e4366c5757dd4529f88556f849"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAngle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8getAngleEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Return the current angular angle in [0, 180]. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut6centerEv">
-<span id="_CPPv3N8ServoOut6centerEv"></span><span id="_CPPv2N8ServoOut6centerEv"></span><span id="ServoOut::center"></span><span class="target" id="classpq_1_1_servo_out_1a6630d4f43f2abb57595c5265b08c7776"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut6centerEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut6centerEv"></span><span id="_CPPv2N8ServoOut6centerEv"></span><span id="ServoOut::center"></span><span class="target" id="classpq_1_1_servo_out_1a6630d4f43f2abb57595c5265b08c7776"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut6centerEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Re-centers the servo-motor. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut3putEf">
-<span id="_CPPv3N8ServoOut3putEf"></span><span id="_CPPv2N8ServoOut3putEf"></span><span id="ServoOut::put__float"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a0697cd97c70230a0ef8f3f42bb21f857"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut3putEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut3putEf"></span><span id="_CPPv2N8ServoOut3putEf"></span><span id="ServoOut::put__float"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a0697cd97c70230a0ef8f3f42bb21f857"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut3putEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -191,13 +200,13 @@ supply together.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8ServoOut3pinEv">
-<span id="_CPPv3NK8ServoOut3pinEv"></span><span id="_CPPv2NK8ServoOut3pinEv"></span><span id="ServoOut::pinC"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a89692386faed8fb012ee6193c59f5f4c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8ServoOut3pinEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK8ServoOut3pinEv"></span><span id="_CPPv2NK8ServoOut3pinEv"></span><span id="ServoOut::pinC"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a89692386faed8fb012ee6193c59f5f4c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8ServoOut3pinEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the pin this servomotor is attached to. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut3getEv">
-<span id="_CPPv3N8ServoOut3getEv"></span><span id="_CPPv2N8ServoOut3getEv"></span><span id="ServoOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut3getEv"></span><span id="_CPPv2N8ServoOut3getEv"></span><span id="ServoOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
@@ -206,7 +215,7 @@ supply together.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="ContinuousServoOut.html"><span class="doc">ContinuousServoOut</span></a></p></li>

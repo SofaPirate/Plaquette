@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnalogIn &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>AnalogIn &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,7 +65,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="base_units.html">Base Units</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">AnalogIn</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48AnalogIn"><code class="docutils literal notranslate"><span class="pre">AnalogIn</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -91,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="base_units.html">Base Units</a> &raquo;</li>
-      <li>AnalogIn</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="base_units.html">Base Units</a></li>
+      <li class="breadcrumb-item active">AnalogIn</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="analogin">
-<h1>AnalogIn<a class="headerlink" href="#analogin" title="Permalink to this heading"></a></h1>
+<h1>AnalogIn<a class="headerlink" href="#analogin" title="Link to this heading"></a></h1>
 <p>An analog (ie. continuous) input unit that returns values between 0 and 1 (ie. 0% and 100%).</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
@@ -112,40 +121,40 @@
 <li><p>in <code class="docutils literal notranslate"><span class="pre">INVERTED</span></code> mode the value is inverted (ie. 0V corresponds to 100% while 2.5V corresponds to 50%).</p></li>
 </ul>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Control an LED using a potentiometer.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">potentiometer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">potentiometer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<span class="n">SineOsc</span><span class="w"> </span><span class="n">oscillator</span><span class="p">;</span><span class="w"></span>
+<span class="n">SineOsc</span><span class="w"> </span><span class="n">oscillator</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// The analog input controls the frequency of the LED&#39;s oscillation.</span>
-<span class="w">  </span><span class="n">oscillator</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">potentiometer</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">oscillator</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">potentiometer</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">));</span>
+<span class="w">  </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv48AnalogIn">
-<span id="_CPPv38AnalogIn"></span><span id="_CPPv28AnalogIn"></span><span id="AnalogIn"></span><span class="target" id="classpq_1_1_analog_in"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogIn</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Smoothable</span></span><a class="headerlink" href="#_CPPv48AnalogIn" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv38AnalogIn"></span><span id="_CPPv28AnalogIn"></span><span id="AnalogIn"></span><span class="target" id="classpq_1_1_analog_in"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogIn</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Smoothable</span></span><a class="headerlink" href="#_CPPv48AnalogIn" title="Link to this definition"></a><br /></dt>
 <dd><p>A generic class representing a simple analog input. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn8AnalogInE7uint8_t7uint8_t">
-<span id="_CPPv3N8AnalogIn8AnalogInE7uint8_t7uint8_t"></span><span id="_CPPv2N8AnalogIn8AnalogInE7uint8_t7uint8_t"></span><span id="AnalogIn::AnalogIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_in_1a3866257f1a3654676f9f7cf5f354d0ba"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn8AnalogInE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn8AnalogInE7uint8_t7uint8_t"></span><span id="_CPPv2N8AnalogIn8AnalogInE7uint8_t7uint8_t"></span><span id="AnalogIn::AnalogIn__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_analog_in_1a3866257f1a3654676f9f7cf5f354d0ba"></span><span class="sig-name descname"><span class="n"><span class="pre">AnalogIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn8AnalogInE7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin number </p></li>
 <li><p><strong>mode</strong> – the mode (DIRECT or INVERTED) </p></li>
@@ -156,55 +165,55 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn3getEv">
-<span id="_CPPv3N8AnalogIn3getEv"></span><span id="_CPPv2N8AnalogIn3getEv"></span><span id="AnalogIn::get"></span><span class="target" id="classpq_1_1_analog_in_1ad4d580d122fa1478390aaa79e04a51a2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn3getEv"></span><span id="_CPPv2N8AnalogIn3getEv"></span><span id="AnalogIn::get"></span><span class="target" id="classpq_1_1_analog_in_1ad4d580d122fa1478390aaa79e04a51a2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn5mapToEff">
-<span id="_CPPv3N8AnalogIn5mapToEff"></span><span id="_CPPv2N8AnalogIn5mapToEff"></span><span id="AnalogIn::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_in_1ab1bdaf6fe154b6fa7153d2e482565860"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn5mapToEff"></span><span id="_CPPv2N8AnalogIn5mapToEff"></span><span id="AnalogIn::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_in_1ab1bdaf6fe154b6fa7153d2e482565860"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn5mapToEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Maps value to new range. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn3pinEv">
-<span id="_CPPv3NK8AnalogIn3pinEv"></span><span id="_CPPv2NK8AnalogIn3pinEv"></span><span id="AnalogIn::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn3pinEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK8AnalogIn3pinEv"></span><span id="_CPPv2NK8AnalogIn3pinEv"></span><span id="AnalogIn::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn3pinEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn4modeEv">
-<span id="_CPPv3NK8AnalogIn4modeEv"></span><span id="_CPPv2NK8AnalogIn4modeEv"></span><span id="AnalogIn::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn4modeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK8AnalogIn4modeEv"></span><span id="_CPPv2NK8AnalogIn4modeEv"></span><span id="AnalogIn::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn4modeEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn4modeE7uint8_t">
-<span id="_CPPv3N8AnalogIn4modeE7uint8_t"></span><span id="_CPPv2N8AnalogIn4modeE7uint8_t"></span><span id="AnalogIn::mode__uint8_t"></span><span class="target" id="classpq_1_1_pin_unit_1a75f6d84cc48e03b69c04f03bd42b1ea3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn4modeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn4modeE7uint8_t"></span><span id="_CPPv2N8AnalogIn4modeE7uint8_t"></span><span id="AnalogIn::mode__uint8_t"></span><span class="target" id="classpq_1_1_pin_unit_1a75f6d84cc48e03b69c04f03bd42b1ea3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn4modeE7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the mode of the component. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn6smoothEf">
-<span id="_CPPv3N8AnalogIn6smoothEf"></span><span id="_CPPv2N8AnalogIn6smoothEf"></span><span id="AnalogIn::smooth__float"></span><span class="target" id="classpq_1_1_smoothable_1a0cacf6b4229157c5f184354936a1e7a6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">smooth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_DEFAULT_SMOOTH_WINDOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6smoothEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn6smoothEf"></span><span id="_CPPv2N8AnalogIn6smoothEf"></span><span id="AnalogIn::smooth__float"></span><span class="target" id="classpq_1_1_smoothable_1a0cacf6b4229157c5f184354936a1e7a6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">smooth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_DEFAULT_SMOOTH_WINDOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6smoothEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Apply smoothing to object. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn8noSmoothEv">
-<span id="_CPPv3N8AnalogIn8noSmoothEv"></span><span id="_CPPv2N8AnalogIn8noSmoothEv"></span><span id="AnalogIn::noSmooth"></span><span class="target" id="classpq_1_1_smoothable_1a3de9ee4afb0b3d1b31ae0efc18e6cffb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noSmooth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn8noSmoothEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn8noSmoothEv"></span><span id="_CPPv2N8AnalogIn8noSmoothEv"></span><span id="AnalogIn::noSmooth"></span><span class="target" id="classpq_1_1_smoothable_1a3de9ee4afb0b3d1b31ae0efc18e6cffb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noSmooth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn8noSmoothEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Remove smoothing. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn6cutoffEf">
-<span id="_CPPv3N8AnalogIn6cutoffEf"></span><span id="_CPPv2N8AnalogIn6cutoffEf"></span><span id="AnalogIn::cutoff__float"></span><span class="target" id="classpq_1_1_smoothable_1aa7f309d4ceeb9778d187befd67478b13"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8AnalogIn6cutoffEf"></span><span id="_CPPv2N8AnalogIn6cutoffEf"></span><span id="AnalogIn::cutoff__float"></span><span class="target" id="classpq_1_1_smoothable_1aa7f309d4ceeb9778d187befd67478b13"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6cutoffEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the smoothing window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn6cutoffEv">
-<span id="_CPPv3NK8AnalogIn6cutoffEv"></span><span id="_CPPv2NK8AnalogIn6cutoffEv"></span><span id="AnalogIn::cutoffC"></span><span class="target" id="classpq_1_1_smoothable_1acc0c7526c182c479ddb7710a759fd721"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK8AnalogIn6cutoffEv"></span><span id="_CPPv2NK8AnalogIn6cutoffEv"></span><span id="AnalogIn::cutoffC"></span><span class="target" id="classpq_1_1_smoothable_1acc0c7526c182c479ddb7710a759fd721"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn6cutoffEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the smoothing window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
@@ -217,7 +226,7 @@
 </div>
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></li>

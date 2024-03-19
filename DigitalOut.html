@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DigitalOut &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>DigitalOut &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -62,7 +68,10 @@
 <li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DigitalOut</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410DigitalOut"><code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -91,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="base_units.html">Base Units</a> &raquo;</li>
-      <li>DigitalOut</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="base_units.html">Base Units</a></li>
+      <li class="breadcrumb-item active">DigitalOut</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="digitalout">
-<h1>DigitalOut<a class="headerlink" href="#digitalout" title="Permalink to this heading"></a></h1>
+<h1>DigitalOut<a class="headerlink" href="#digitalout" title="Link to this heading"></a></h1>
 <p>A digital (ie. binary) output unit that can be switched “on” or “off”.</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
@@ -112,38 +121,38 @@
 <li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the source of current is external (Vcc) and the component is “on” when the pin is “low” (GND)</p></li>
 </ul>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Switches off an LED connected in “sink” mode after a timeout.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Switch the LED off after 5 seconds.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv410DigitalOut">
-<span id="_CPPv310DigitalOut"></span><span id="_CPPv210DigitalOut"></span><span id="DigitalOut"></span><span class="target" id="classpq_1_1_digital_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DigitalOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><a class="headerlink" href="#_CPPv410DigitalOut" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv310DigitalOut"></span><span id="_CPPv210DigitalOut"></span><span id="DigitalOut"></span><span class="target" id="classpq_1_1_digital_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DigitalOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinUnit</span></span><a class="headerlink" href="#_CPPv410DigitalOut" title="Link to this definition"></a><br /></dt>
 <dd><p>A generic class representing a simple digital output. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut10DigitalOutE7uint8_t7uint8_t">
-<span id="_CPPv3N10DigitalOut10DigitalOutE7uint8_t7uint8_t"></span><span id="_CPPv2N10DigitalOut10DigitalOutE7uint8_t7uint8_t"></span><span id="DigitalOut::DigitalOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_out_1abb4c2a056a627d6cdac5adbc554ad8cf"></span><span class="sig-name descname"><span class="n"><span class="pre">DigitalOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut10DigitalOutE7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut10DigitalOutE7uint8_t7uint8_t"></span><span id="_CPPv2N10DigitalOut10DigitalOutE7uint8_t7uint8_t"></span><span id="DigitalOut::DigitalOut__uint8_t.uint8_t"></span><span class="target" id="classpq_1_1_digital_out_1abb4c2a056a627d6cdac5adbc554ad8cf"></span><span class="sig-name descname"><span class="n"><span class="pre">DigitalOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DIRECT</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut10DigitalOutE7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin number </p></li>
 <li><p><strong>mode</strong> – the mode (SOURCE or SINK) </p></li>
@@ -154,61 +163,61 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut4modeE7uint8_t">
-<span id="_CPPv3N10DigitalOut4modeE7uint8_t"></span><span id="_CPPv2N10DigitalOut4modeE7uint8_t"></span><span id="DigitalOut::mode__uint8_t"></span><span class="target" id="classpq_1_1_digital_out_1aba51e2e5953912a7f8d6ad73c41a31ba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut4modeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut4modeE7uint8_t"></span><span id="_CPPv2N10DigitalOut4modeE7uint8_t"></span><span id="DigitalOut::mode__uint8_t"></span><span class="target" id="classpq_1_1_digital_out_1aba51e2e5953912a7f8d6ad73c41a31ba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut4modeE7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the mode of the component. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut4isOnEv">
-<span id="_CPPv3N10DigitalOut4isOnEv"></span><span id="_CPPv2N10DigitalOut4isOnEv"></span><span id="DigitalOut::isOn"></span><span class="target" id="classpq_1_1_digital_source_1aa894fe9be99d8d5b103d880392b6098e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut4isOnEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut4isOnEv"></span><span id="_CPPv2N10DigitalOut4isOnEv"></span><span id="DigitalOut::isOn"></span><span class="target" id="classpq_1_1_digital_source_1aa894fe9be99d8d5b103d880392b6098e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut4isOnEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true iff the input is “on”. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut6toggleEv">
-<span id="_CPPv3N10DigitalOut6toggleEv"></span><span id="_CPPv2N10DigitalOut6toggleEv"></span><span id="DigitalOut::toggle"></span><span class="target" id="classpq_1_1_digital_source_1a85eee8005e496b5fa4e7bda9273fa238"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut6toggleEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut6toggleEv"></span><span id="_CPPv2N10DigitalOut6toggleEv"></span><span id="DigitalOut::toggle"></span><span class="target" id="classpq_1_1_digital_source_1a85eee8005e496b5fa4e7bda9273fa238"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut6toggleEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Switches between on and off. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut5isOffEv">
-<span id="_CPPv3N10DigitalOut5isOffEv"></span><span id="_CPPv2N10DigitalOut5isOffEv"></span><span id="DigitalOut::isOff"></span><span class="target" id="classpq_1_1_digital_node_1a0a7e76e191047a68ad732cb2b7a0929d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut5isOffEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut5isOffEv"></span><span id="_CPPv2N10DigitalOut5isOffEv"></span><span id="DigitalOut::isOff"></span><span class="target" id="classpq_1_1_digital_node_1a0a7e76e191047a68ad732cb2b7a0929d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut5isOffEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true iff the input is “off”. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut6getIntEv">
-<span id="_CPPv3N10DigitalOut6getIntEv"></span><span id="_CPPv2N10DigitalOut6getIntEv"></span><span id="DigitalOut::getInt"></span><span class="target" id="classpq_1_1_digital_node_1a661b8fc93852267880411fe8cd9ba634"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut6getIntEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut6getIntEv"></span><span id="_CPPv2N10DigitalOut6getIntEv"></span><span id="DigitalOut::getInt"></span><span class="target" id="classpq_1_1_digital_node_1a661b8fc93852267880411fe8cd9ba634"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut6getIntEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value as integer (0 or 1). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut3getEv">
-<span id="_CPPv3N10DigitalOut3getEv"></span><span id="_CPPv2N10DigitalOut3getEv"></span><span id="DigitalOut::get"></span><span class="target" id="classpq_1_1_digital_node_1abf3f1a54e4d88b3369cb0811397e1a58"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut3getEv"></span><span id="_CPPv2N10DigitalOut3getEv"></span><span id="DigitalOut::get"></span><span class="target" id="classpq_1_1_digital_node_1abf3f1a54e4d88b3369cb0811397e1a58"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value as float (either 0.0 or 1.0). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut2onEv">
-<span id="_CPPv3N10DigitalOut2onEv"></span><span id="_CPPv2N10DigitalOut2onEv"></span><span id="DigitalOut::on"></span><span class="target" id="classpq_1_1_digital_node_1ad88df9b2108c3de800a8746d51955f10"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">on</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut2onEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut2onEv"></span><span id="_CPPv2N10DigitalOut2onEv"></span><span id="DigitalOut::on"></span><span class="target" id="classpq_1_1_digital_node_1ad88df9b2108c3de800a8746d51955f10"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">on</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut2onEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets output to “on” (ie. false, 0). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut3offEv">
-<span id="_CPPv3N10DigitalOut3offEv"></span><span id="_CPPv2N10DigitalOut3offEv"></span><span id="DigitalOut::off"></span><span class="target" id="classpq_1_1_digital_node_1a91abef491bde8e3cef4813f8f1323d67"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3offEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut3offEv"></span><span id="_CPPv2N10DigitalOut3offEv"></span><span id="DigitalOut::off"></span><span class="target" id="classpq_1_1_digital_node_1a91abef491bde8e3cef4813f8f1323d67"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3offEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets output to “off” (ie. true, 1). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10DigitalOut3putEf">
-<span id="_CPPv3N10DigitalOut3putEf"></span><span id="_CPPv2N10DigitalOut3putEf"></span><span id="DigitalOut::put__float"></span><span class="target" id="classpq_1_1_digital_node_1acb5240798e631589051059336bf7ca66"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3putEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N10DigitalOut3putEf"></span><span id="_CPPv2N10DigitalOut3putEf"></span><span id="DigitalOut::put__float"></span><span class="target" id="classpq_1_1_digital_node_1acb5240798e631589051059336bf7ca66"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10DigitalOut3putEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -216,13 +225,13 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10DigitalOut3pinEv">
-<span id="_CPPv3NK10DigitalOut3pinEv"></span><span id="_CPPv2NK10DigitalOut3pinEv"></span><span id="DigitalOut::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10DigitalOut3pinEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK10DigitalOut3pinEv"></span><span id="_CPPv2NK10DigitalOut3pinEv"></span><span id="DigitalOut::pinC"></span><span class="target" id="classpq_1_1_pin_unit_1a09707df7e36216bdd3a6b51dfe60fc59"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10DigitalOut3pinEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the pin this component is attached to. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10DigitalOut4modeEv">
-<span id="_CPPv3NK10DigitalOut4modeEv"></span><span id="_CPPv2NK10DigitalOut4modeEv"></span><span id="DigitalOut::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10DigitalOut4modeEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK10DigitalOut4modeEv"></span><span id="_CPPv2NK10DigitalOut4modeEv"></span><span id="DigitalOut::modeC"></span><span class="target" id="classpq_1_1_pin_unit_1aa0ab8e96843848cc8163592b3a50d7f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10DigitalOut4modeEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the mode of the component. </p>
 </dd></dl>
 
@@ -231,7 +240,7 @@
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></li>

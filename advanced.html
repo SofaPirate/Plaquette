@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>Advanced Usage &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -82,8 +88,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Advanced Usage</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced Usage</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -93,20 +99,20 @@
            <div itemprop="articleBody">
              
   <section id="advanced-usage">
-<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this heading"></a></h1>
+<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h1>
 <section id="avoiding-plaquette-style">
-<h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Permalink to this heading"></a></h2>
+<h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Link to this heading"></a></h2>
 <p>If you don’t want to use Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion
 of units to values (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>) in favor of a more
 typical object-oriented programming style, you can avoid using these features by
 simply using Plaquette units’ <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> methods.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns the current value of the unit:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">get</span><span class="p">()</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">get</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">put()</span></code> method sends a value to the unit and then returns the current value
 of the unit (the same that would be returned by <code class="docutils literal notranslate"><span class="pre">get()</span></code>):</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">put</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">put</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Additionally, digital input units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a>,
@@ -115,10 +121,10 @@ and <a class="reference internal" href="Timer.html"><span class="doc">Timer</spa
 have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code> method.</p>
 <p>Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Plaquette Style</p></th>
@@ -151,7 +157,7 @@ instead of the Plaquette style.</p>
 </table>
 </section>
 <section id="using-plaquette-as-an-external-library">
-<h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Permalink to this heading"></a></h2>
+<h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Link to this heading"></a></h2>
 <p>Seasoned Arduino coders might want to avoid rewriting their code using Plaquette’s
 builtin <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code> functions, or they may want to include Plaquette’s
 self-updating loop in a timer interrupt function. It is possible to do so by
@@ -160,22 +166,22 @@ including the file <code class="docutils literal notranslate"><span class="pre">
 <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function, and also to call <code class="docutils literal notranslate"><span class="pre">Plaquette.step()</span></code> at the beginning of the
 <code class="docutils literal notranslate"><span class="pre">loop()</span></code> function, or inside the interrupt.</p>
 <p>Here is an example of our blinking code rewritten by using this feature:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PlaquetteLib.h&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PlaquetteLib.h&gt;</span>
 
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">pq</span><span class="p">;</span><span class="w"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">pq</span><span class="p">;</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">step</span><span class="p">();</span>
+<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

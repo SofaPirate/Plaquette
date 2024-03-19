@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>randomFloat() &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>randomFloat() &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,7 +72,12 @@
 <li class="toctree-l2"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">randomFloat()</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq11randomFloatEv"><code class="docutils literal notranslate"><span class="pre">randomFloat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq11randomFloatEf"><code class="docutils literal notranslate"><span class="pre">randomFloat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2pq11randomFloatEff"><code class="docutils literal notranslate"><span class="pre">randomFloat()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -91,9 +102,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="functions.html">Functions</a> &raquo;</li>
-      <li>randomFloat()</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="functions.html">Functions</a></li>
+      <li class="breadcrumb-item active">randomFloat()</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,48 +114,48 @@
            <div itemprop="articleBody">
              
   <section id="randomfloat">
-<h1>randomFloat()<a class="headerlink" href="#randomfloat" title="Permalink to this heading"></a></h1>
+<h1>randomFloat()<a class="headerlink" href="#randomfloat" title="Link to this heading"></a></h1>
 <p>This function returns a random real-valued number.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// 2% probability to toggle the LED</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">randomFloat</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.02</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">randomFloat</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.02</span><span class="p">)</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq11randomFloatEv">
-<span id="_CPPv3N2pq11randomFloatEv"></span><span id="_CPPv2N2pq11randomFloatEv"></span><span id="pq::randomFloat"></span><span class="target" id="pq__random_8cpp_1a9fd847ffcc160738d46c6734c219e76b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq11randomFloatEv"></span><span id="_CPPv2N2pq11randomFloatEv"></span><span id="pq::randomFloat"></span><span class="target" id="pq__random_8cpp_1a9fd847ffcc160738d46c6734c219e76b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Generates a uniform random number in the interval [0,1). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq11randomFloatEf">
-<span id="_CPPv3N2pq11randomFloatEf"></span><span id="_CPPv2N2pq11randomFloatEf"></span><span id="pq::randomFloat__float"></span><span class="target" id="pq__random_8cpp_1adb7ca54e73815302ce3164f14be3c7d1"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq11randomFloatEf"></span><span id="_CPPv2N2pq11randomFloatEf"></span><span id="pq::randomFloat__float"></span><span class="target" id="pq__random_8cpp_1adb7ca54e73815302ce3164f14be3c7d1"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Generates a uniform random number in the interval [0,max). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2pq11randomFloatEff">
-<span id="_CPPv3N2pq11randomFloatEff"></span><span id="_CPPv2N2pq11randomFloatEff"></span><span id="pq::randomFloat__float.float"></span><span class="target" id="pq__random_8cpp_1a1ae9a09389087e114339b7a49edcd988"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">min</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N2pq11randomFloatEff"></span><span id="_CPPv2N2pq11randomFloatEff"></span><span id="pq::randomFloat__float.float"></span><span class="target" id="pq__random_8cpp_1a1ae9a09389087e114339b7a49edcd988"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">randomFloat</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">min</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2pq11randomFloatEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Generates a uniform random number in the interval [min,max) (b&gt;a). </p>
 </dd></dl>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/random-numbers/random/">random()</a></p></li>
 </ul>

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TriOsc &mdash; Plaquette 0.4.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <title>TriOsc &mdash; Plaquette 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.4.5
+                0.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -61,7 +67,10 @@
 <li class="toctree-l2"><a class="reference internal" href="SineOsc.html">SineOsc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SquareOsc.html">SquareOsc</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">TriOsc</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46TriOsc"><code class="docutils literal notranslate"><span class="pre">TriOsc</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -87,9 +96,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="generators.html">Generators</a> &raquo;</li>
-      <li>TriOsc</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="generators.html">Generators</a></li>
+      <li class="breadcrumb-item active">TriOsc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -99,7 +108,7 @@
            <div itemprop="articleBody">
              
   <section id="triosc">
-<h1>TriOsc<a class="headerlink" href="#triosc" title="Permalink to this heading"></a></h1>
+<h1>TriOsc<a class="headerlink" href="#triosc" title="Link to this heading"></a></h1>
 <p>A source unit that can generate a range of triangle-shaped signals such as the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_wave">triangle wave</a> and the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Sawtooth_wave">sawtooth wave</a>. The signal can be
@@ -113,46 +122,46 @@ an <em>inverted sawtooth</em> is created; anything in between generates differen
 of <em>triangle</em> waves.</p>
 <img alt="_images/Plaquette-TriOsc-Width.png" src="_images/Plaquette-TriOsc-Width.png" />
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Controls a set of traffic lights that go: red, yellow, green, red, yellow,
 green, and so on. It uses a sawtooth to iterate through these three states.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">green</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">yellow</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span><span class="w"></span>
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">red</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">green</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">yellow</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">red</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
 
-<span class="n">TriOsc</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">TriOsc</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">osc</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// sawtooth wave</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Shut down all lights.</span>
-<span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">yellow</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">green</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">yellow</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">green</span><span class="p">;</span>
 <span class="w">  </span><span class="c1">// Switch appropriate LED.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">osc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.4</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">green</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">osc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.6</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">yellow</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span><span class="n">red</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">osc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.4</span><span class="p">)</span>
+<span class="w">    </span><span class="n">green</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">osc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.6</span><span class="p">)</span>
+<span class="w">    </span><span class="n">yellow</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">red</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv46TriOsc">
-<span id="_CPPv36TriOsc"></span><span id="_CPPv26TriOsc"></span><span id="TriOsc"></span><span class="target" id="classpq_1_1_tri_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Osc</span></span><a class="headerlink" href="#_CPPv46TriOsc" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv36TriOsc"></span><span id="_CPPv26TriOsc"></span><span id="TriOsc"></span><span class="target" id="classpq_1_1_tri_osc"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Osc</span></span><a class="headerlink" href="#_CPPv46TriOsc" title="Link to this definition"></a><br /></dt>
 <dd><p>Triangle/sawtooth oscillator. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc6TriOscEff">
-<span id="_CPPv3N6TriOsc6TriOscEff"></span><span id="_CPPv2N6TriOsc6TriOscEff"></span><span id="TriOsc::TriOsc__float.float"></span><span class="target" id="classpq_1_1_tri_osc_1a1278f373769085764a68b80046a3f004"></span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.5f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6TriOscEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc6TriOscEff"></span><span id="_CPPv2N6TriOsc6TriOscEff"></span><span id="TriOsc::TriOsc__float.float"></span><span class="target" id="classpq_1_1_tri_osc_1a1278f373769085764a68b80046a3f004"></span><span class="sig-name descname"><span class="n"><span class="pre">TriOsc</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.5f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6TriOscEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
 <li><p><strong>width</strong> – a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </p></li>
@@ -163,78 +172,90 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc5widthEf">
-<span id="_CPPv3N6TriOsc5widthEf"></span><span id="_CPPv2N6TriOsc5widthEf"></span><span id="TriOsc::width__float"></span><span class="target" id="classpq_1_1_tri_osc_1a7dbac86000b819d0ff3b9960118882d8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5widthEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc5widthEf"></span><span id="_CPPv2N6TriOsc5widthEf"></span><span id="TriOsc::width__float"></span><span class="target" id="classpq_1_1_tri_osc_1a7dbac86000b819d0ff3b9960118882d8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5widthEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the width of the wave. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>width</strong> – a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the unit itself </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6TriOsc5widthEv">
+<span id="_CPPv3NK6TriOsc5widthEv"></span><span id="_CPPv2NK6TriOsc5widthEv"></span><span id="TriOsc::widthC"></span><span class="target" id="classpq_1_1_tri_osc_1aebd8107460fe1ef79498a6ee584708e9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6TriOsc5widthEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the width of the wave. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc6periodEf">
-<span id="_CPPv3N6TriOsc6periodEf"></span><span id="_CPPv2N6TriOsc6periodEf"></span><span id="TriOsc::period__float"></span><span class="target" id="classpq_1_1_osc_1a4a65499ad37b17daa84c555805216bd4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6periodEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc6periodEf"></span><span id="_CPPv2N6TriOsc6periodEf"></span><span id="TriOsc::period__float"></span><span class="target" id="classpq_1_1_osc_1a4a65499ad37b17daa84c555805216bd4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc6periodEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the period (in seconds). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc9frequencyEf">
-<span id="_CPPv3N6TriOsc9frequencyEf"></span><span id="_CPPv2N6TriOsc9frequencyEf"></span><span id="TriOsc::frequency__float"></span><span class="target" id="classpq_1_1_osc_1ac2706ea8b32df2f775a6db5c788bed58"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9frequencyEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc9frequencyEf"></span><span id="_CPPv2N6TriOsc9frequencyEf"></span><span id="TriOsc::frequency__float"></span><span class="target" id="classpq_1_1_osc_1ac2706ea8b32df2f775a6db5c788bed58"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9frequencyEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the frequency (in Hz). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6TriOsc9frequencyEv">
+<span id="_CPPv3NK6TriOsc9frequencyEv"></span><span id="_CPPv2NK6TriOsc9frequencyEv"></span><span id="TriOsc::frequencyC"></span><span class="target" id="classpq_1_1_osc_1a1449b5839250887e16bae1df147f84ad"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6TriOsc9frequencyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the frequency (in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc9amplitudeEf">
-<span id="_CPPv3N6TriOsc9amplitudeEf"></span><span id="_CPPv2N6TriOsc9amplitudeEf"></span><span id="TriOsc::amplitude__float"></span><span class="target" id="classpq_1_1_osc_1aa46680c55effeea8dce144b76fc13387"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9amplitudeEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc9amplitudeEf"></span><span id="_CPPv2N6TriOsc9amplitudeEf"></span><span id="TriOsc::amplitude__float"></span><span class="target" id="classpq_1_1_osc_1aa46680c55effeea8dce144b76fc13387"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">amplitude</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc9amplitudeEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the amplitude of the wave. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>amplitude</strong> – a value in [0, 1] that determines the amplitude of the wave (centered at 0.5). </p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6TriOsc9amplitudeEv">
+<span id="_CPPv3NK6TriOsc9amplitudeEv"></span><span id="_CPPv2NK6TriOsc9amplitudeEv"></span><span id="TriOsc::amplitudeC"></span><span class="target" id="classpq_1_1_osc_1adc6139c059e4ad3f9cece40795880f33"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">amplitude</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6TriOsc9amplitudeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the amplitude of the wave. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc5phaseEf">
-<span id="_CPPv3N6TriOsc5phaseEf"></span><span id="_CPPv2N6TriOsc5phaseEf"></span><span id="TriOsc::phase__float"></span><span class="target" id="classpq_1_1_osc_1a21b8a0167d2433e1c6d0e5ffdb0a7590"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5phaseEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc5phaseEf"></span><span id="_CPPv2N6TriOsc5phaseEf"></span><span id="TriOsc::phase__float"></span><span class="target" id="classpq_1_1_osc_1a21b8a0167d2433e1c6d0e5ffdb0a7590"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc5phaseEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets the phase (ie. </p>
 <p>the offset, in % of period). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>phase</strong> – the phase (in % of period) </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the unit itself </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6TriOsc5phaseEv">
+<span id="_CPPv3NK6TriOsc5phaseEv"></span><span id="_CPPv2NK6TriOsc5phaseEv"></span><span id="TriOsc::phaseC"></span><span class="target" id="classpq_1_1_osc_1ae069b851c1f83d56ad9002ae294efcb0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6TriOsc5phaseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the phase (in % of period). </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6TriOsc3getEv">
-<span id="_CPPv3N6TriOsc3getEv"></span><span id="_CPPv2N6TriOsc3getEv"></span><span id="TriOsc::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N6TriOsc3getEv"></span><span id="_CPPv2N6TriOsc3getEv"></span><span id="TriOsc::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6TriOsc3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
@@ -243,7 +264,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
 <li><p><a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a></p></li>
