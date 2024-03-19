@@ -1,6 +1,6 @@
 TOPTARGETS := all clean
 
-SUBDIRS := arrays castings filters fixtures functions generators normalizer operations timing
+SUBDIRS := arrays castings filters fixtures functions generators hybridarrays normalizer operations timing
 
 $(TOPTARGETS): $(SUBDIRS)
 
