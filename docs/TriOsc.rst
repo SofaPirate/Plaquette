@@ -53,7 +53,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.
 
 .. doxygenclass:: TriOsc
    :project: Plaquette
-   :members: TriOsc, period, frequency, phase, amplitude, width, get
+   :members: TriOsc, width, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
 
 |SeeAlso|
 ---------

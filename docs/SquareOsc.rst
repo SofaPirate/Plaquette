@@ -38,8 +38,8 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. doxygenclass:: SquareOsc
    :project: Plaquette
-   :members: SquareOsc, period, frequency, phase, amplitude, dutyCycle, getInt, get
-
+   :members: SquareOsc, dutyCycle, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   
 |SeeAlso|
 ---------
 - :doc:`SineOsc`

@@ -89,11 +89,12 @@ public:
   virtual float timeToPhase(float time) const;
 
    /**
-    * Sets value with a certain phase shift (in %).
+    * Returns oscillator's value with given phase shift (in %). Supports negative phase shifts.
+    * Eg. shiftBy(0.2) returns future value of oscillator after 20% of its period would have passed.
     * @param phase the phase shift (in % of period)
-    * @return the value
+    * @return the value of oscillator with given phase shift
     */
-   virtual float shiftBy(float phase);
+   virtual float shiftBy(float phaseShift);
 
 protected:
   // Core Plaquette methods.

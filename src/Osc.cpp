@@ -94,8 +94,8 @@ void Osc::phase(float phase) {
 
 float Osc::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
-float Osc::shiftBy(float phase) {
-  return _getAmplified(phaseTimeAddPhase(_phaseTime, phase));
+float Osc::shiftBy(float phaseShift) {
+  return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
 }
 
 }

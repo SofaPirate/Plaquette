@@ -32,7 +32,7 @@ Pulses an LED.
 
 .. doxygenclass:: SineOsc
    :project: Plaquette
-   :members: SineOsc, period, frequency, phase, amplitude, get
+   :members: SineOsc, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
 
 |SeeAlso|
 ---------
