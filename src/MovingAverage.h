@@ -76,11 +76,23 @@ public:
   /// Returns the number of samples processed since reset().
   unsigned int nSamples() const { return _nSamples; }
 
+  /// Performs an amendment of latest update (needs to be called with same #sampleRate# and #forceAlpha# parameters).
+  void amendUpdate(float previousValue, float newValue, float sampleRate=1, bool forceAlpha=false);
+
   /**
    * Applies a single update on #runningValue# with new sample #newValue# and mixing
    * factor #alpha#.
    */
-  static float applyUpdate(float& runningValue, float newValue, float alpha);
+  static void applyUpdate(float& runningValue, float newValue, float alpha);
+
+  /// Performs an amendment of latest update (needs to be called with same #alpha# parameter).
+  static void applyAmendUpdate(float& runningValue, float previousValue, float newValue, float alpha);
+
+  /**
+   * Computes a single update on #runningValue# with new sample #newValue# and mixing
+   * factor #alpha#.
+   */
+  static float computeUpdate(float runningValue, float newValue, float alpha);
 
   /// Returns the alpha value computed from given sample rate, time window, and number of samples.
   static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
@@ -93,7 +105,7 @@ protected:
   float _value;
 
   // Number of samples that have been processed thus far.
-  unsigned int _nSamples;
+  unsigned int _nSamples; // ATTENTION: in Plaquette this will always be equivalent to Plaquette.nSteps()...
 };
 
 } // namespace pq

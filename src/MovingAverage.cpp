@@ -70,33 +70,48 @@ float MovingAverage::alpha(float sampleRate) const {
 }
 
 void MovingAverage::reset() {
-  _nSamples = 1;
+  _nSamples = 0;
 }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
-
-  // Exponential moving average.
-  v = applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
     _nSamples++;
 
-  return v;
+  // Exponential moving average.
+  applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
+
+  return _value;
 }
 
-float MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
-  return (runningValue -= alpha * (runningValue - newValue));
+void MovingAverage::amendUpdate(float previousValue, float newValue, float sampleRate, bool forceAlpha) {
+  applyAmendUpdate(_value, previousValue, newValue, forceAlpha ? sampleRate : alpha(sampleRate));
+}
+
+void MovingAverage::applyAmendUpdate(float& runningValue, float previousValue, float newValue, float alpha) {
+  runningValue += alpha * (newValue - previousValue);
+}
+
+void MovingAverage::applyUpdate(float& runningValue, float newValue, float alpha) {
+  runningValue -= alpha * (runningValue - newValue);
+}
+
+float MovingAverage::computeUpdate(float runningValue, float newValue, float alpha) {
+  applyUpdate(runningValue, newValue, alpha);
+  return runningValue;
 }
 
 float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
   // Approximative number of samples in time window.
   float nSamplesTarget = (smoothTime >= 0 ? smoothTime * sampleRate : FLT_MAX);
 
+  // Make a smooth transition to nSamplesTarget as nSamples increases.
   nSamplesTarget = min((float)nSamples, nSamplesTarget);
 
   // In order to do a smooth transition and prevent first values to take too much weight compared to
   // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
+  // Formula used is an approximation of standard formula: 2 /(nSamplesTarget+1)
   return (nSamplesTarget > 1.0f ? 1.0f / nSamplesTarget : 1.0f);
 }
 
