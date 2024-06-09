@@ -143,7 +143,7 @@ protected:
   float _targetMean;
   float _targetStdDev;
 
-  // clamped standard deviation (if 0 = no clamp).
+  // Clamped standard deviation (if 0 = no clamp).
   float _clampStdDev;
 };
 
