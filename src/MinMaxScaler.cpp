@@ -72,11 +72,12 @@ float MinMaxScaler::put(float value)
       _maxValue = value;
     }
 
+    // Decay min. and max. values.
     if (!timeWindowIsInfinite()) {
       // Compute alpha mixing factor.
       float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
 
-      // Decay min. and max. values.
+      // Decay towards value.
       MovingAverage::applyUpdate(_minValue, value, alpha);
       MovingAverage::applyUpdate(_maxValue, value, alpha);
     }
