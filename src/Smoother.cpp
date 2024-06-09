@@ -23,13 +23,50 @@
 
 namespace pq {
 
-Smoother::Smoother(float smoothWindow)
+Smoother::Smoother(float timeWindow)
   : Node(),
-    MovingAverage(smoothWindow) {
+    MovingAverage(timeWindow),
+    _currentValueStep(0),
+    _nValuesStep(0)
+ {
 }
 
 float Smoother::put(float value) {
-  return MovingAverage::update(value, sampleRate());
+  // Increment n. values.
+  if (_nValuesStep < 255)
+    _nValuesStep++;
+
+  // First time put() is called this step.
+  if (_nValuesStep == 1) {
+    // Save current value.
+    _currentValueStep = value;
+
+    // Update moving average.
+    update(value, sampleRate());
+  }
+  // If put() is called more than one time in same step, readjust moving average.
+  else {
+    // Save previous value.
+    float prevValueStep = _currentValueStep;
+
+    // Update current step average value.
+    MovingAverage::applyUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
+
+    // Update moving average: replace previous value with new value averaged over step.
+    amendUpdate(prevValueStep, _currentValueStep, sampleRate());
+  }
+
+  // Return smoothed value.
+  return get();
+}
+
+void Smoother::step() {
+  // If no values were added during this step, update using previous value.
+  if (_nValuesStep == 0)
+    update(_currentValueStep, sampleRate()); // in other words: repeat update with previous value
+  // Otherwise: reset (but keep _currentValueStep).
+  else
+    _nValuesStep = 0;
 }
 
 }

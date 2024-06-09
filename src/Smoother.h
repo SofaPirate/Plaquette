@@ -32,7 +32,7 @@ public:
    * Constructor.
    * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
    */
-  Smoother(float smoothWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
+  Smoother(float timeWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
   virtual ~Smoother() {}
 
   /**
@@ -44,6 +44,13 @@ public:
 
   /// Returns smoothed value.
   virtual float get() { return MovingAverage::get(); }
+
+protected:
+  virtual void step();
+
+  // Variables used to compute current value average during a step (in case of multiple calls to put()).
+  float _currentValueStep;
+  uint8_t _nValuesStep;
 };
 
 }

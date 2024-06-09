@@ -12,6 +12,8 @@ Node* units[N_UNITS] = {
 
 MinMaxScaler basic;
 
+Smoother smoother(0.5);
+
 test(basic) {
   Plaquette.step();
 
@@ -92,6 +94,24 @@ testing(smoothing) {
     }
     if (t > 1) pass();
   }
+}
+
+test(smoother) {
+  smoother.reset();
+  1 >> smoother;
+  assertEqual(smoother.get(), 1.0f);
+  Plaquette.step();
+  assertEqual(smoother.get(), 1.0f);
+  1 >> smoother;
+  assertEqual(smoother.get(), 1.0f);
+  2 >> smoother;
+  assertEqual(smoother.get(), 1.25f);
+  Plaquette.step();
+  assertEqual(smoother.get(), 1.25f);
+  Plaquette.step();
+  assertNear(smoother.get(), 1.33f, 0.01f);
+  Plaquette.step();
+  assertNear(smoother.get(), 1.37f, 0.01f);
 }
 
 void setup() {
