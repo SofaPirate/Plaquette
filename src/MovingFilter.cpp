@@ -23,7 +23,8 @@ namespace pq {
 
 MovingFilter::MovingFilter()
   : AnalogSource(),
-    _isAdaptive(true)
+    _isAdaptive(true),
+    _nValuesStep(0)
 {
 }
 
@@ -35,10 +36,11 @@ void MovingFilter::cutoff(float hz) {
 }
 
 float MovingFilter::cutoff() const {
-  return (timeWindowIsInfinite() ? 0 : 1.0f/_timeWindow);
+  return (timeWindowIsInfinite() ? 0 : 1.0f/timeWindow());
 }
 
 void MovingFilter::reset() {
+  _nValuesStep = 0;
 }
 
 void MovingFilter::start() {

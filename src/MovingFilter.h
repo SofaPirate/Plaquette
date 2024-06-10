@@ -71,11 +71,9 @@ public:
   virtual bool isStarted() const;
 
 protected:
-  // The time window (in seconds).
-  float _timeWindow;
-
   // Start/stop calibration flag.
-  bool _isAdaptive;
+  bool    _isAdaptive  : 1;
+  uint8_t _nValuesStep : 7;
 };
 
 }

@@ -27,14 +27,16 @@
 namespace pq {
 
 MinMaxScaler::MinMaxScaler()
-  : MovingFilter()
+  : MovingFilter(),
+    _currentValueStep(0)
 {
   infiniteTimeWindow();
   reset();
 }
 
 MinMaxScaler::MinMaxScaler(float decayWindow)
-  : MovingFilter()
+  : MovingFilter(),
+    _currentValueStep(0)
 {
   timeWindow(decayWindow);
   reset();
@@ -55,13 +57,18 @@ bool MinMaxScaler::timeWindowIsInfinite() const {
 }
 
 void MinMaxScaler::reset() {
+  MovingFilter::reset();
   _minValue =  FLT_MAX;
   _maxValue = -FLT_MAX;
+  _value = 0.5f;
+  _currentValueStep = 0;
+  _nValuesStep = 0;
 }
 
 float MinMaxScaler::put(float value)
 {
   if (isStarted()) {
+
     // Update min. value.
     if (value < _minValue) {
       _minValue = value;
@@ -72,14 +79,17 @@ float MinMaxScaler::put(float value)
       _maxValue = value;
     }
 
-    // Decay min. and max. values.
-    if (!timeWindowIsInfinite()) {
-      // Compute alpha mixing factor.
-      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
+    // Increment n. values.
+    if (_nValuesStep < 128)
+      _nValuesStep++;
 
-      // Decay towards value.
-      MovingAverage::applyUpdate(_minValue, value, alpha);
-      MovingAverage::applyUpdate(_maxValue, value, alpha);
+    if (_nValuesStep == 1) {
+      // Save current value.
+      _currentValueStep = value;
+    }
+    else {
+      // Update current step average value.
+      MovingAverage::applyUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
     }
   }
 
@@ -87,6 +97,25 @@ float MinMaxScaler::put(float value)
   _value = mapTo01(value, _minValue, _maxValue, CONSTRAIN);
 
   return _value;
+}
+
+
+void MinMaxScaler::step() {
+  // If no values were added during this step, update using previous value.
+  if (_nValuesStep > 0 ||      // if at least one value was recorded this step ...
+      _minValue != FLT_MAX) {  // ... or at least one value was ever recorded since reset
+
+    // Reset (but keep _currentValueStep).
+    _nValuesStep = 0;
+
+    // Apply decay.
+    if (!timeWindowIsInfinite()) {
+      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
+      // Decay towards value.
+      MovingAverage::applyUpdate(_minValue, _currentValueStep, alpha);
+      MovingAverage::applyUpdate(_maxValue, _currentValueStep, alpha);
+    }
+  }
 }
 
 }

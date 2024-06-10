@@ -136,6 +136,9 @@ public:
   void noClamp();
 
 protected:
+  virtual void step();
+  virtual float update(float value, float sampleRate=1);
+  
   // Returns clamped value.
   float _clamp(float value) const;
 
@@ -145,6 +148,10 @@ protected:
 
   // Clamped standard deviation (if 0 = no clamp).
   float _clampStdDev;
+
+  // Variables used to compute current value average during a step (in case of multiple calls to put()).
+  float _currentMeanStep;
+  float _currentVarStep;
 };
 
 }

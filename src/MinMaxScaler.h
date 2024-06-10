@@ -64,11 +64,19 @@ public:
   virtual float put(float value);
 
 protected:
+  virtual void step();
+
+  // Time window (in seconds).
+  float _timeWindow;
+
   // Minimum value ever put.
   float _minValue;
 
   // Maximum value ever put.
   float _maxValue;
+
+  // Variables used to compute current value average during a step (in case of multiple calls to put()).
+  float _currentValueStep;
 };
 
 }
