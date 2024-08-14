@@ -26,7 +26,11 @@
 namespace pq {
 
 float _mapConvert(float value, float toLow, float toHigh, uint8_t mode) {
-  // Return and constrain.
+  // Convert -0.0f to 0.0f
+  if (value == 0.0f)
+    value = 0.0f;
+
+  // Apply mode and return.
   switch (mode) {
     case UNCONSTRAIN: return value;
     case CONSTRAIN:   return toLow <= toHigh ? constrain(value, toLow, toHigh) : constrain(value, toHigh, toLow);
