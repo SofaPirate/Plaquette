@@ -38,9 +38,9 @@ PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
   // Init peak value to -inf.
   _peakValue = -FLT_MAX;
 
-  // Set everything to false.
-  _onValue = _isHigh = _wasLow = _crossed = false;
-
+  // Init all flags.
+  _onValue = _isHigh = _crossed = false;
+  _wasLow = true;
 }
 
 void PeakDetector::triggerThreshold(float triggerThreshold) {
@@ -88,23 +88,31 @@ float PeakDetector::put(float value) {
   if (modeInverted())
     value = -value;
 
-  // Get peak value.
-  _peakValue = max(_peakValue, value);
-
   // Compute flags.
-  bool high = (value >= _triggerThreshold); // value is high if above triggerThreshold
-  bool rising = (high && _wasLow);   // value is rising if just crossed triggerThreshold
+  bool high     = (value >= _triggerThreshold); // value is high if above triggerThreshold
+  bool crossing = (high && _wasLow);            // value is crossing if just crossed triggerThreshold
+  bool isMax    = (value > _peakValue);         // value is new max if higher than current peak value
 
   // Reset.
-  if (rising) {
+  if (crossing) {
     _wasLow  = false;
     _crossed = true;
   }
 
-  // Fallback detected after crossing if either (1) falls below triggerThreshold or (2) drops by % tolerance.
-  bool fallingBack = (_crossed &&
+  // Set peak value.
+  if (isMax)
+    _peakValue = value;
+
+  // Fallback detected after crossing and falling below maximum and either:
+  // (1) falls below triggerThreshold (!high) OR
+  // (2) drops by % tolerance between peak and triggerThreshold
+  bool fallingBack = (_crossed && !isMax &&
                        (!high ||
-                        (mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance)));
+                        (mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance &&
+                         _peakValue != _triggerThreshold))); // deal with special case where mapTo01(...) would return 0.5 by default
+
+  // Assign value depending on mode.
+  _onValue = (modeCrossing() ? crossing : fallingBack);
 
   // Reset.
   if (fallingBack) {
@@ -112,12 +120,9 @@ float PeakDetector::put(float value) {
     _peakValue = -FLT_MAX;
   }
 
-  // Check if value is below reset triggerThreshold.
+  // Check if value is below reloadThreshold.
   if (value < _reloadThreshold)
     _wasLow = true;
-
-  // Assign value depending on mode.
-  _onValue = (modeCrossing() ? rising : fallingBack);
 
   return get();
 }

@@ -19,9 +19,15 @@ Node* generators[N_GENERATORS] = {
 #define N_DETECTOR_TYPES 4
 PeakDetector* detectors[N_DETECTOR_TYPES][N_GENERATORS];
 
+PeakDetector slowCrossingDetector(128, PEAK_MAX);
+PeakDetector justOverThresholdDetector(128, PEAK_MAX);
+
 testing(countingPeaks) {
   static unsigned long startTime = millis();
   static uint16_t nPeaks = 0;
+
+  static uint16_t nSlowCrossingPeaks = 0;
+  static uint16_t nJustOverThresholdPeaks = 0;
 
   Plaquette.step();
 
@@ -43,10 +49,28 @@ testing(countingPeaks) {
       }
     }
   }
- if (millis() - startTime > 5000) {
-   assertNear(nPeaks, (uint16_t)(5*N_GENERATORS*N_DETECTOR_TYPES), 1);
-   pass();
- }
+
+  // Generates oscillation between 0 and 255.
+  uint8_t slowCrossingSignal = (uint8_t)mapFloat(millis(), 0, 1000, 0, 255, WRAP);
+  slowCrossingSignal >> slowCrossingDetector;
+  if (slowCrossingDetector.isOn()) {
+    nSlowCrossingPeaks++;
+  }
+
+  // Generates oscillation between 127 and 128.
+  uint8_t justOverThresholdSignal = millis() % 1000 < 500 ? 128 : 127;
+
+  justOverThresholdSignal >> justOverThresholdDetector;
+  if (justOverThresholdDetector.isOn()) {
+    nJustOverThresholdPeaks++;
+  }
+
+  if (millis() - startTime > 5000) {
+    assertNear(nPeaks, (uint16_t)(5*N_GENERATORS*N_DETECTOR_TYPES), 15);
+    assertNear(nSlowCrossingPeaks, 5, 1);
+    assertNear(nJustOverThresholdPeaks, 5, 1);
+    pass();
+  }
 }
 
 void setup() {
