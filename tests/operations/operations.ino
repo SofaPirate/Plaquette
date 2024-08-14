@@ -10,6 +10,7 @@ DigitalOut dOut1(0);
 DigitalOut dOut2(1);
 AnalogOut aOut1(9);
 AnalogOut aOut2(10);
+AnalogOut aOut3(11);
 
 test(digital) {
   Plaquette.step();
@@ -71,6 +72,18 @@ test(analog) {
   assertEqual(dOut2*2.0f, 2.0f);
   assertEqual(aOut1*2, 0.0f);
   assertEqual(aOut2*2, 2.0f);
+
+  (aOut1+aOut2) >> aOut3;
+  assertEqual(aOut3, 1.0f);
+
+  (aOut2-aOut1) >> aOut3;
+  assertEqual(aOut3, 1.0f);
+
+  (aOut1*aOut2) >> aOut3;
+  assertEqual(aOut3, 0.0f);
+
+  (aOut2/aOut2) >> aOut3;
+  assertEqual(aOut3, 1.0f);
 }
 
 void setup() {
