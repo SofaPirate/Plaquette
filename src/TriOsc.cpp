@@ -29,7 +29,9 @@ TriOsc::TriOsc(float period_, float width_) : Osc(period_), _width(0) {
   // Returns value in [0, 1].
 float TriOsc::_get(phase_time_t t) {
   // Compute triangle depending on raising or falling step.
-  return (t <= _width) ? (t / (float)_width) : ((PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width));
+  return (t <= _width) ? 
+           t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
+           (PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width);
 }
 
 void TriOsc::width(float width) {
