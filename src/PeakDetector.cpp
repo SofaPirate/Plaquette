@@ -93,36 +93,43 @@ float PeakDetector::put(float value) {
   bool crossing = (high && _wasLow);            // value is crossing if just crossed triggerThreshold
   bool isMax    = (value > _peakValue);         // value is new max if higher than current peak value
 
-  // Reset.
+  // At the moment of crossing, reset flags.
   if (crossing) {
     _wasLow  = false;
     _crossed = true;
   }
 
-  // Set peak value.
-  if (isMax && _crossed)
-    _peakValue = value;
+  // Check if value is below reloadThreshold.
+  else if (value < _reloadThreshold)
+    _wasLow = true;
 
-  // Fallback detected after crossing and falling below maximum and either:
-  // (1) falls below triggerThreshold (!high) OR
-  // (2) drops by % tolerance between peak and triggerThreshold
-  bool fallingBack = (_crossed && !isMax &&
-                       (!high ||
-                        (mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance &&
-                         _peakValue != _triggerThreshold))); // deal with special case where mapTo01(...) would return 0.5 by default
+  // Perform fallback detection operations.
+  bool fallingBack = false;
+  if (_crossed) {
+    // Set peak value.
+    if (isMax) {
+      _peakValue = value;
+    }
+
+    // Check for fallback (only if value is below peak ie. !isMax).
+    // Fallback detected after crossing and falling below maximum and either:
+    // (1) drops by % tolerance between peak and triggerThreshold OR
+    // (2) falls below triggerThreshold (!high)
+    else if ((mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance &&
+                         _peakValue != _triggerThreshold) // deal with special case where mapTo01(...) would return 0.5 by default
+                || !high) {
+
+      // Fallback detected.
+      fallingBack = true;
+
+      // Reset.
+      _crossed = false;
+      _peakValue = -FLT_MAX;
+    }
+  }
 
   // Assign value depending on mode.
   _onValue = (modeCrossing() ? crossing : fallingBack);
-
-  // Reset.
-  if (fallingBack) {
-    _crossed = false;
-    _peakValue = -FLT_MAX;
-  }
-
-  // Check if value is below reloadThreshold.
-  if (value < _reloadThreshold)
-    _wasLow = true;
 
   return get();
 }
