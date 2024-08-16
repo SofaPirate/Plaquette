@@ -99,6 +99,9 @@ public:
   virtual bool isOn() { return _onValue; }
 
 protected:
+  // Resets peak detection flags.
+  void _reset();
+
   // Threshold values.
   float _triggerThreshold;
   float _reloadThreshold;

@@ -35,21 +35,27 @@ PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
   reloadThreshold(triggerThreshold_);
   fallbackTolerance(0.1f);
 
-  // Init peak value to -inf.
-  _peakValue = -FLT_MAX;
-
-  // Init all flags.
-  _onValue = _isHigh = _crossed = false;
-  _wasLow = true;
+  // Reset detector.
+  _reset();
 }
 
 void PeakDetector::triggerThreshold(float triggerThreshold) {
-  _triggerThreshold = modeInverted() ? -triggerThreshold : triggerThreshold;
+  triggerThreshold = modeInverted() ? -triggerThreshold : triggerThreshold;
+
+  if (_triggerThreshold != triggerThreshold) {
+    _triggerThreshold = triggerThreshold;
+    _reset();
+  }
 }
 
 void PeakDetector::reloadThreshold(float reloadThreshold) {
   if (modeInverted()) reloadThreshold = -reloadThreshold;
-  _reloadThreshold = min(reloadThreshold, _triggerThreshold);
+  reloadThreshold = min(reloadThreshold, _triggerThreshold);
+
+  if (_reloadThreshold != reloadThreshold) {
+    _reloadThreshold = reloadThreshold;
+    _reset();
+  }
 }
 
 void PeakDetector::fallbackTolerance(float fallbackTolerance) {
@@ -134,5 +140,13 @@ float PeakDetector::put(float value) {
   return get();
 }
 
+void PeakDetector::_reset() {
+  // Init peak value to -inf.
+  _peakValue = -FLT_MAX;
+
+  // Init all flags.
+  _onValue = _isHigh = _crossed = false;
+  _wasLow = true;
+}
 
 }
