@@ -8,11 +8,11 @@ using namespace pq;
 #define N_GENERATORS 5
 Node* generators[N_GENERATORS] = {
   new SquareOsc(1),
-  new TriOsc(1, 0.5),
   new TriOsc(1, 0),
   new TriOsc(1, 1),
   // new TriOsc(0),
   // new TriOsc(1),
+  new TriOsc(1, 0.5),
   new SineOsc(1)
 };
 
@@ -28,6 +28,9 @@ testing(countingPeaks) {
 
   static uint16_t nSlowCrossingPeaks = 0;
   static uint16_t nJustOverThresholdPeaks = 0;
+  static bool firstTime = true;
+
+  static float prevValues[N_GENERATORS];
 
   Plaquette.step();
 
@@ -44,10 +47,26 @@ testing(countingPeaks) {
 
       if (detector->isOn()) {
         nPeaks ++;
-        // print("crossing : "); println(value);
         assertNear(detector->get(), 1.0f, 0.1f);
+
+        if (!firstTime && j >= 3) { // More precise tests for smooth oscilators (triangle and sine).
+        switch (detector->mode()) {
+          case PEAK_MAX:
+            assertNear(prevValues[i], 1.0f, 0.1f); break;
+          case PEAK_MIN:
+            assertNear(prevValues[i], 0.0f, 0.1f); break;
+          case PEAK_RISING:
+            assertNear(value, 0.5f, 0.1f);
+            assertMoreOrEqual(value, detector->triggerThreshold()); break;
+          case PEAK_FALLING:
+            assertNear(value, 0.5f, 0.1f);
+            assertLessOrEqual(value, detector->triggerThreshold()); break;
+        }
+        }
       }
     }
+    firstTime = false;
+    prevValues[i] = value;
   }
 
   // Generates oscillation between 0 and 255.
@@ -80,6 +99,7 @@ void setup() {
   for (int i=0; i<N_DETECTOR_TYPES; i++)
     for (int j=0; j<N_GENERATORS; j++) {
       detectors[i][j] = new PeakDetector(0.5, (uint8_t)(i));
+      detectors[i][j]->fallbackTolerance(0.0000001f);
     }
 }
 
