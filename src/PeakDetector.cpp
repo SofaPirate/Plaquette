@@ -100,7 +100,7 @@ float PeakDetector::put(float value) {
   }
 
   // Set peak value.
-  if (isMax)
+  if (isMax && _crossed)
     _peakValue = value;
 
   // Fallback detected after crossing and falling below maximum and either:
