@@ -75,7 +75,7 @@ Here is an example of our blinking code rewritten by using this feature:
 
     DigitalOut myLed(13);
 
-    SquareOsc myOsc(2.0, 0.5);
+    SquareWave myWave(2.0, 0.5);
 
     void setup() {
       Plaquette.begin();
@@ -83,5 +83,5 @@ Here is an example of our blinking code rewritten by using this feature:
 
     void loop() {
       Plaquette.step();
-      myOsc >> myLed;
+      myWave >> myLed;
     }

@@ -1,5 +1,5 @@
 /*
- * SineOsc.cpp
+ * SineWave.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,21 +18,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SineOsc.h"
-#include "pq_map_real.h"
-#include "pq_time.h"
-#include "pq_wrap.h"
-#include "pq_trig8.h"
+#ifndef SINE_WAVE_H_
+#define SINE_WAVE_H_
+
+#include "AbstractWave.h"
 
 namespace pq {
 
-#define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
+/// Sine oscillator. Phase is expressed as % of period.
+class SineWave : public AbstractWave {
+public:
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   */
+  SineWave(float period=1.0f);
+  virtual ~SineWave() {}
 
-SineOsc::SineOsc(float period_) : Osc(period_) {}
-
+protected:
   // Returns value in [0, 1].
-float SineOsc::_get(phase_time_t t) {
-  return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
-}
+  virtual float _get(phase_time_t t);
+};
+
+[[deprecated("Use SineWave instead.")]]
+typedef SineWave SineOsc;
 
 }
+
+#endif

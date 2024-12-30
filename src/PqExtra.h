@@ -44,9 +44,9 @@
 #include "Timer.h"
 
 // Generators.
-#include "SineOsc.h"
-#include "SquareOsc.h"
-#include "TriOsc.h"
+#include "SineWave.h"
+#include "SquareWave.h"
+#include "TriangleWave.h"
 
 #include "PqServo.h"
 

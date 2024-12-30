@@ -38,5 +38,5 @@ A metronome digital source unit. Emits an "on" signal at a regular pace.
 |SeeAlso|
 ---------
 - :doc:`Ramp`
-- :doc:`SquareOsc`
+- :doc:`SquareWave`
 - :doc:`Timer`

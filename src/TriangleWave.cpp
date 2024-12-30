@@ -1,5 +1,5 @@
 /*
- * SineOsc.h
+ * TriangleWave.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,28 +18,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SINE_OSC_H_
-#define SINE_OSC_H_
-
-#include "Osc.h"
+#include "TriangleWave.h"
 
 namespace pq {
 
-/// Sine oscillator. Phase is expressed as % of period.
-class SineOsc : public Osc {
-public:
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   */
-  SineOsc(float period=1.0f);
-  virtual ~SineOsc() {}
-
-protected:
-  // Returns value in [0, 1].
-  virtual float _get(phase_time_t t);
-};
-
+TriangleWave::TriangleWave(float period_, float width_) : AbstractWave(period_), _width(0) {
+  width(width_);
 }
 
-#endif
+  // Returns value in [0, 1].
+float TriangleWave::_get(phase_time_t t) {
+  // Compute triangle depending on raising or falling step.
+  return (t <= _width) ? 
+           t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
+           (PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width);
+}
+
+void TriangleWave::width(float width) {
+  _width = float2phaseTime(constrain(width, 0, 1));
+}
+
+}

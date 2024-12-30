@@ -19,7 +19,7 @@
 AnalogOut led(9);
 
 // Sine oscillator.
-SineOsc oscillator(5.0); // period of 5 seconds
+SineWave oscillator(5.0); // period of 5 seconds
 
 void begin() {}
 

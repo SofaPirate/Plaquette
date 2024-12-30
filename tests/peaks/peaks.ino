@@ -7,13 +7,13 @@ using namespace pq;
 
 #define N_GENERATORS 5
 Node* generators[N_GENERATORS] = {
-  new SquareOsc(1),
-  new TriOsc(1, 0),
-  new TriOsc(1, 1),
-  // new TriOsc(0),
-  // new TriOsc(1),
-  new TriOsc(1, 0.5),
-  new SineOsc(1)
+  new SquareWave(1),
+  new TriangleWave(1, 0),
+  new TriangleWave(1, 1),
+  // new TriangleWave(0),
+  // new TriangleWave(1),
+  new TriangleWave(1, 0.5),
+  new SineWave(1)
 };
 
 #define N_DETECTOR_TYPES 4

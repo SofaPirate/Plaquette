@@ -1,18 +1,18 @@
 .. include:: defs.hrst
 
-SquareOsc
+SquareWave
 =========
 
 A source unit that generates a `square wave <https://en.wikipedia.org/wiki/Square_wave>`_
 signal. The signal can be tuned by changing the ``period`` and/or ``frequency``
 of the oscillation, as well as the ``duty cycle``.
 
-.. image:: images/Plaquette-SquareOsc.png
+.. image:: images/Plaquette-SquareWave.png
 
 The duty cycle represents the proportion of time (expressed as a percentage) in each
 cycle (period) during which the wave is "on".
 
-.. image:: images/Plaquette-SquareOsc-DutyCycle.png
+.. image:: images/Plaquette-SquareWave-DutyCycle.png
 
 |Example|
 ---------
@@ -26,7 +26,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
    DigitalOut led(13);
 
-   SquareOsc blinkOsc(4.0);
+   SquareWave blinkOsc(4.0);
 
    void begin() {
      blinkOsc.dutyCycle(0.25); // Sets the duty cycle to 25%
@@ -36,11 +36,11 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
      blinkOsc >> led;
    }
 
-.. doxygenclass:: SquareOsc
+.. doxygenclass:: SquareWave
    :project: Plaquette
-   :members: SquareOsc, dutyCycle, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   :members: SquareWave, dutyCycle, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
    
 |SeeAlso|
 ---------
-- :doc:`SineOsc`
-- :doc:`TriOsc`
+- :doc:`SineWave`
+- :doc:`TriangleWave`

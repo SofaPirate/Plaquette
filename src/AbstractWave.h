@@ -1,5 +1,5 @@
 /*
- * Osc.h
+ * AbstractWave.h
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -29,14 +29,14 @@ namespace pq {
 /**
  * Triangle/sawtooth oscillator.
  */
-class Osc : public AnalogSource {
+class AbstractWave : public AnalogSource {
 public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    */
-  Osc(float period=1.0f);
-  virtual ~Osc() {}
+  AbstractWave(float period=1.0f);
+  virtual ~AbstractWave() {}
 
   /**
    * Sets the period (in seconds).

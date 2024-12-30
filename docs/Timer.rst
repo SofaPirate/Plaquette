@@ -22,7 +22,7 @@ new random duration.
 
    DigitalOut led(13);
 
-   SquareOsc osc(3.0); // a square oscillator with a 3 seconds period
+   SquareWave osc(3.0); // a square oscillator with a 3 seconds period
 
    void begin() {
      myTimer.start(); // start timer
@@ -55,4 +55,4 @@ new random duration.
 - :doc:`Alarm`
 - :doc:`Metro`
 - :doc:`Ramp`
-- :doc:`TriOsc`
+- :doc:`TriangleWave`

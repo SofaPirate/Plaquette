@@ -27,7 +27,7 @@ DigitalOut led(LED_BUILTIN);
 AnalogIn pot(A0);
 
 // A square-wave (on/off) oscillator.
-SquareOsc oscillator;
+SquareWave oscillator;
 
 void begin() {}
 

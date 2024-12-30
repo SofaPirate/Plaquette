@@ -1,7 +1,7 @@
 /**
- * ArrayBlink
+ * UnitList
  *
- * Demonstrates the use of arrays to turn multiple LEDs on and off according
+ * Demonstrates the use of dynamic arrays UnitList to turn multiple LEDs on and off according
  * to different square oscillators.
  *
  * The circuit:
@@ -15,6 +15,7 @@
  */
 #include <Plaquette.h>
 
+#if 0
 // The LED.
 const int N_LEDS = 3;
 
@@ -22,20 +23,21 @@ const int N_LEDS = 3;
 // - The first LED will blink once per second.
 // - The second LED will blink once every two seconds with a duty-cycle of 80%.
 // - The third LED will blink once every three seconds.
-SquareWave oscillators[] = {
-  SquareWave(1.0), 
-  SquareWave(2.0, 0.8), 
-  3.0 // shorthand for SquareWave(3.0)
-};
+UnitList sources(N_LEDS);
 
 // The three LEDs.
-DigitalOut leds[] = { 4, 5, 6 }; // shorthand for DigitalOut leds[] = { DigitalOut(4), DigitalOut(5), DigitalOut(6) };
+AnalogOut leds[] = { 4, 5, 6 }; // shorthand for DigitalOut leds[] = { DigitalOut(4), DigitalOut(5), DigitalOut(6) };
 
-void begin() {}
+void begin() {
+  sources.add(new SquareWave(1.0));
+  sources.add(new SineWave(1.0));
+  sources.add(new AnalogIn(A0));
+}
 
 void step() {
   // Send oscillator value to corresponding LED.
   for (int i=0; i<N_LEDS; i++) {
-    oscillators[i] >> leds[i];
+    sources[i] >> leds[i];
   }
 }
+#endif

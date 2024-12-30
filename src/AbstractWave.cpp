@@ -1,5 +1,5 @@
 /*
- * Osc.cpp
+ * AbstractWave.cpp
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,19 +18,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Osc.h"
+#include "AbstractWave.h"
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
 
 namespace pq {
 
-Osc::Osc(float period_) : AnalogSource(), _period(0), _phase(0), _amplitude(1) {
+AbstractWave::AbstractWave(float period_) : AnalogSource(), _period(0), _phase(0), _amplitude(1) {
   period(period_);
   amplitude(1.0f);
 }
 
-void Osc::begin() {
+void AbstractWave::begin() {
   // Offset phaseTime to current phase.
   _phaseTime = float2phaseTime(_phase);
 
@@ -38,7 +38,7 @@ void Osc::begin() {
   _value = _getAmplified(_phaseTime);
 }
 
-void Osc::step() {
+void AbstractWave::step() {
   // Update phase time.
   phaseTimeUpdate(_phaseTime, _period, sampleRate());
 
@@ -62,29 +62,29 @@ void Osc::step() {
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
-float Osc::_getAmplified(phase_time_t t) {
+float AbstractWave::_getAmplified(phase_time_t t) {
   return mapFrom01(_get(t), (1 - _amplitude) / 2, (1 + _amplitude)/2);
 }
 
-void Osc::period(float period) {
+void AbstractWave::period(float period) {
   if (period != _period)
     _period = max(period, 0.0f);
 }
 
-void Osc::frequency(float frequency) {
+void AbstractWave::frequency(float frequency) {
   period( frequency == 0 ? FLT_MAX : 1/frequency );
 }
 
-void Osc::bpm(float bpm) {
+void AbstractWave::bpm(float bpm) {
   period( bpm == 0 ? FLT_MAX : 60/bpm );
 }
 
-void Osc::amplitude(float amplitude)  {
+void AbstractWave::amplitude(float amplitude)  {
   if (amplitude != _amplitude)
     _amplitude = constrain(amplitude, 0, 1);
 }
 
-void Osc::phase(float phase) {
+void AbstractWave::phase(float phase) {
   if (phase != _phase) {
     // Need to readjust _phaseTime.
       _phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
@@ -92,9 +92,9 @@ void Osc::phase(float phase) {
   }
 }
 
-float Osc::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
+float AbstractWave::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
-float Osc::shiftBy(float phaseShift) {
+float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
 }
 

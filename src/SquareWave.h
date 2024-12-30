@@ -18,23 +18,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SQUARE_OSC_H_
-#define SQUARE_OSC_H_
+#ifndef SQUARE_WAVE_H_
+#define SQUARE_WAVE_H_
 
-#include "Osc.h"
+#include "AbstractWave.h"
 
 namespace pq {
 
 /// Square oscillator. Duty cycle is expressed as % of period.
-class SquareOsc : public Osc {
+class SquareWave : public AbstractWave {
 public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param dutyCycle the duty-cycle as a value in [0, 1]
    */
-  SquareOsc(float period=1.0f, float dutyCycle=0.5f);
-  virtual ~SquareOsc() {}
+  SquareWave(float period=1.0f, float dutyCycle=0.5f);
+  virtual ~SquareWave() {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn();
@@ -61,6 +61,9 @@ protected:
   // Duty-cycle (in % of period).
   phase_time_t _dutyCycle;
 };
+
+[[deprecated("Use SquareWave instead.")]]
+typedef SquareWave SquareOsc;
 
 }
 

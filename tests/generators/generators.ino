@@ -5,13 +5,13 @@
 using namespace pq;
 
 #define N_GENERATORS 6
-Osc* generators[N_GENERATORS] = {
-  new SquareOsc(0.005),
-  new SquareOsc(1),
-  new TriOsc(0.005),
-  new TriOsc(1),
-  new SineOsc(0.005),
-  new SineOsc(1)
+AbstractWave* generators[N_GENERATORS] = {
+  new SquareWave(0.005),
+  new SquareWave(1),
+  new TriangleWave(0.005),
+  new TriangleWave(1),
+  new SineWave(0.005),
+  new SineWave(1)
 };
 
 #define PEAK_DETECTOR_THRESHOLD 0.6f
@@ -54,7 +54,7 @@ testing(valuesIn01) {
   }
   if (Plaquette.seconds() - startTime > RUNTIME) {
     for (int i=0; i<N_GENERATORS; i++) {
-      Osc* unit = generators[i];
+      AbstractWave* unit = generators[i];
       // Serial.println(unit->period());
       assertNear((float)nPeaks[i], RUNTIME / unit->period(), 1 / (unit->period() * unit->period()));
     }

@@ -20,13 +20,13 @@ DigitalIn button(2, INTERNAL_PULLUP);
 AnalogOut led(9);
 
 // Main sine oscillator (period of 1 sec).
-SineOsc oscillator(1.0);
+SineWave oscillator(1.0);
 
 // Sine oscillator with period of 10 sec used to modulate oscillator.
-SineOsc modulator(10.0);
+SineWave modulator(10.0);
 
 // Default square oscillator.
-SquareOsc baseOscillator(2.0);
+SquareWave baseOscillator(2.0);
 
 void begin() {}
 

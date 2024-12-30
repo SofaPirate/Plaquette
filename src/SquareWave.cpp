@@ -1,5 +1,5 @@
 /*
- * SquareOsc.cpp
+ * SquareWave.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,23 +18,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SquareOsc.h"
+#include "SquareWave.h"
 
 namespace pq {
 
-SquareOsc::SquareOsc(float period_, float dutyCycle_) : Osc(period_) {
+SquareWave::SquareWave(float period_, float dutyCycle_) : AbstractWave(period_) {
   dutyCycle(dutyCycle_);
 }
 
-bool SquareOsc::isOn() {
+bool SquareWave::isOn() {
   return analogToDigital(_value);
 }
 
-float SquareOsc::_get(phase_time_t t) {
+float SquareWave::_get(phase_time_t t) {
   return (t <= _dutyCycle ? 1.0f : 0.0f);
 }
 
-void SquareOsc::dutyCycle(float dutyCycle) {
+void SquareWave::dutyCycle(float dutyCycle) {
   _dutyCycle = float2phaseTime(constrain(dutyCycle, 0, 1));
 }
 

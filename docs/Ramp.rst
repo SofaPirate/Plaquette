@@ -69,4 +69,4 @@ Sequentially ramps through different values.
 - :doc:`easings`
 - :doc:`Metro`
 - :doc:`Timer`
-- :doc:`TriOsc`
+- :doc:`TriangleWave`

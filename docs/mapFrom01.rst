@@ -33,9 +33,9 @@ See :doc:`mapFloat` for more details.
 
    #include <Plaquette.h>
 
-   SineOsc modulator(10.0);
+   SineWave modulator(10.0);
 
-   SquareOsc oscillator(1.0);
+   SquareWave oscillator(1.0);
 
    DigitalOut led(13);
 

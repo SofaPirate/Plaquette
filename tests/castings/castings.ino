@@ -10,8 +10,8 @@ AnalogIn   analogIn(A0);
 AnalogOut  analogOut(9);
 DigitalIn  digitalIn(0);
 DigitalOut digitalOut(10);
-SquareOsc  square(0.5);
-TriOsc     tri(0.5);
+SquareWave  square(0.5);
+TriangleWave     tri(0.5);
 Metro      metro(0.5);
 
 #define N_UNITS 7

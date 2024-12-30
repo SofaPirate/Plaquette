@@ -1,5 +1,5 @@
 /*
- * TriOsc.cpp
+ * SineWave.cpp
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,24 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "TriOsc.h"
+#include "SineWave.h"
+#include "pq_map_real.h"
+#include "pq_time.h"
+#include "pq_wrap.h"
+#include "pq_trig8.h"
 
 namespace pq {
 
-TriOsc::TriOsc(float period_, float width_) : Osc(period_), _width(0) {
-  width(width_);
-}
+#define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
+
+SineWave::SineWave(float period_) : AbstractWave(period_) {}
 
   // Returns value in [0, 1].
-float TriOsc::_get(phase_time_t t) {
-  // Compute triangle depending on raising or falling step.
-  return (t <= _width) ? 
-           t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
-           (PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width);
-}
-
-void TriOsc::width(float width) {
-  _width = float2phaseTime(constrain(width, 0, 1));
+float SineWave::_get(phase_time_t t) {
+  return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
 }
 
 }

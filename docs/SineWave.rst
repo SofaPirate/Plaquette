@@ -1,13 +1,13 @@
 .. include:: defs.hrst
 
-SineOsc
+SineWave
 =======
 
 A source unit that can generate a sinusoid or `sine wave <https://en.wikipedia.org/wiki/Sine_wave>`_.
 The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as
 the traditional sine wave).
 
-.. image:: images/Plaquette-SineOsc.png
+.. image:: images/Plaquette-SineWave.png
 
 |Example|
 ---------
@@ -20,7 +20,7 @@ Pulses an LED.
 
    AnalogOut led(9);
 
-   SineOsc osc;
+   SineWave osc;
 
    void begin() {
      osc.frequency(5.0); // frequency of 5 Hz
@@ -30,11 +30,11 @@ Pulses an LED.
      osc >> led;
    }
 
-.. doxygenclass:: SineOsc
+.. doxygenclass:: SineWave
    :project: Plaquette
-   :members: SineOsc, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   :members: SineWave, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
 
 |SeeAlso|
 ---------
-- :doc:`SquareOsc`
-- :doc:`TriOsc`
+- :doc:`SquareWave`
+- :doc:`TriangleWave`

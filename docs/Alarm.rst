@@ -55,4 +55,4 @@ alarm at random periods of time.
 - :doc:`Metro`
 - :doc:`Ramp`
 - :doc:`Timer`
-- :doc:`SquareOsc`
+- :doc:`SquareWave`

@@ -20,7 +20,7 @@
 #include <PqServo.h>
 
 // Triangular wave source.
-TriOsc osc(5.0); // period = 5 seconds
+TriangleWave osc(5.0); // period = 5 seconds
 
 // Metronome.
 Metro metro(10.0); // Triggers every 10 seconds.

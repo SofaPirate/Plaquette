@@ -46,7 +46,7 @@ Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/function
 
    #include <Plaquette.h>
 
-   SquareOsc oscillator(1.0);
+   SquareWave oscillator(1.0);
 
    DigitalOut led(13);
 

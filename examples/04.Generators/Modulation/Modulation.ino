@@ -13,10 +13,10 @@
 #include <Plaquette.h>
 
 // The main oscillator.
-SineOsc osc;
+SineWave osc;
 
 // The LFO.
-SineOsc lfo(10.0); // 10 seconds period
+SineWave lfo(10.0); // 10 seconds period
 
 // Serial output.
 StreamOut out;

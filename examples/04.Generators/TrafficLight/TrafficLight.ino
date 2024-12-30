@@ -17,7 +17,7 @@ DigitalOut yellow(11);
 DigitalOut red(12);
 
 // The triangle oscillator.
-TriOsc osc(10.0); // 10 seconds period
+TriangleWave osc(10.0); // 10 seconds period
 
 void begin() {
   osc.width(1.0); // sawtooth wave

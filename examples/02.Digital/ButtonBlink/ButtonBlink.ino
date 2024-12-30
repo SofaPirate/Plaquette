@@ -22,7 +22,7 @@ DigitalOut led(LED_BUILTIN);
 DigitalIn button(2, INTERNAL_PULLUP);
 
 // A square-wave (on/off) oscillator.
-SquareOsc oscillator(0.1); // 100 ms period, 50% duty cycle (default)
+SquareWave oscillator(0.1); // 100 ms period, 50% duty cycle (default)
 
 void begin() {
   button.debounce(); // debounce button

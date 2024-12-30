@@ -16,9 +16,9 @@ DigitalOut	KEYWORD1
 StreamIn	KEYWORD1
 StreamOut	KEYWORD1
 
-SquareOsc	KEYWORD1
-TriOsc	KEYWORD1
-SineOsc	KEYWORD1
+SquareWave	KEYWORD1
+TriangleWave	KEYWORD1
+SineWave	KEYWORD1
 
 Alarm	KEYWORD1
 Metro	KEYWORD1

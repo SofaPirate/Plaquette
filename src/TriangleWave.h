@@ -1,5 +1,5 @@
 /*
- * TriOsc.h
+ * TriangleWave.h
  *
  * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,25 +18,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRI_OSC_H_
-#define TRI_OSC_H_
+#ifndef TRIANGLE_WAVE_H_
+#define TRIANGLE_WAVE_H_
 
-#include "Osc.h"
+#include "AbstractWave.h"
 
 namespace pq {
 
 /**
  * Triangle/sawtooth oscillator.
  */
-class TriOsc : public Osc {
+class TriangleWave : public AbstractWave {
 public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
    */
-  TriOsc(float period=1.0f, float width=0.5f);
-  virtual ~TriOsc() {}
+  TriangleWave(float period=1.0f, float width=0.5f);
+  virtual ~TriangleWave() {}
 
   /**
    * Sets the width of the wave.
@@ -55,6 +55,9 @@ protected:
   // Tipping-point (in % of period).
   phase_time_t _width;
 };
+
+[[deprecated("Use TriangleWave instead.")]]
+typedef TriangleWave TriOsc;
 
 }
 

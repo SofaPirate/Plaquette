@@ -11,10 +11,10 @@ Metro* metro[N_METRO] = {
   new Metro(0.1)
 };
 
-SquareOsc* osc[N_METRO] = {
-  new SquareOsc(0.01),
-  new SquareOsc(0.1),
-  new SquareOsc(0.1)
+SquareWave* osc[N_METRO] = {
+  new SquareWave(0.01),
+  new SquareWave(0.1),
+  new SquareWave(0.1)
 };
 
 #define TEST_RAMP_MAX 100.0f
@@ -37,7 +37,7 @@ testing(timing) {
 
   for (int i=0; i<N_METRO; i++) {
     Metro* unit = metro[i];
-    SquareOsc *unit2 = osc[i];
+    SquareWave *unit2 = osc[i];
     // if (i == 0) {
     //   print(Plaquette.seconds()-startTime); print(" "); print(unit->isOn()); print(" "); print(unit2->get());
     //   if (unit->isOn())
@@ -73,7 +73,7 @@ testing(timing) {
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
-    SquareOsc *unit2 = osc[i];
+    SquareWave *unit2 = osc[i];
     unit2->phase(-0.25f);
     unit2->dutyCycle(0.75f);
   }
