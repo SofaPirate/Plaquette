@@ -27,6 +27,12 @@
 
 namespace pq {
 
+/// @brief Ramp modes.
+enum {
+  RAMP_DURATION,
+  RAMP_SPEED
+};
+
 /**
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
@@ -34,21 +40,21 @@ namespace pq {
 class Ramp : public Node, public AbstractTimer {
 public:
   /**
-   * Basic constructor. Use one of the start(...) functions to launch ramps
+   * Basic constructor. Use one of the go(...) functions to launch ramps.
    * with specific parameters.
    * @param from the value the ramp starts with
    */
   Ramp(float from=0.0f);
 
-  /**
-   * Basic constructor. Use one of the start(...) functions to launch ramps
-   * with specific parameters.
-   * @param from the initial value
-   * @param to the final value
-   * @param duration the duration of the ramp (in seconds)
-   * @param easing the easing function to apply (default: no easing)
-   */
-  Ramp(float from, float to, float duration, easing_function easing=easeNone);
+  // /**
+  //  * Basic constructor. Use one of the go(...) functions to launch ramps.
+  //  * with specific parameters.
+  //  * @param from the initial value
+  //  * @param to the final value
+  //  * @param duration the duration of the ramp (in seconds)
+  //  * @param easing the easing function to apply (default: no easing)
+  //  */
+  // Ramp(float from, float to, float duration, easing_function easing=easeNone);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }
@@ -83,29 +89,68 @@ public:
    */
   virtual void fromTo(float from, float to);
 
+  /// Sets the duration of the chronometer.
+  virtual void duration(float duration);
+
+  /// Returns duration.
+  virtual float duration() const { return AbstractTimer::duration(); }
+
+  /// Sets the speed (rate of change) of the ramp in change-per-second.
+  virtual void speed(float speed);
+
+  /// Returns speed (rate of change) of the ramp in change-per-second.
+  virtual float speed() const;
+
   /// Starts/restarts the ramp. Will repeat the last ramp.
   virtual void start();
 
-  /**
-   * Starts a new ramp, starting from current value.
-   * @param to the final value
-   * @param duration the duration of the ramp (in seconds)
-   * @param easing the easing function (optional)
-   */
-  virtual void start(float to, float duration, easing_function easing=0);
-
+  // virtual void go(float from, float to, float durationOrSpeed, uint8_t mode, easing_function easing=0);
   /**
    * Starts a new ramp.
    * @param from the initial value
    * @param to the final value
-   * @param duration the duration of the ramp (in seconds)
+   * @param durationOrSpeed the duration of the ramp (in seconds) or speed (in change-per-second) depending on mode
    * @param easing the easing function (optional).
    */
-  virtual void start(float from, float to, float duration, easing_function easing=0);
+  virtual void go(float from, float to, float durationOrSpeed, easing_function easing=0);
+
+  /**
+   * Starts a new ramp, starting from current value.
+   * @param to the final value
+   * @param durationOrSpeed the duration of the ramp (in seconds) or speed (in change-per-second) depending on mode
+   * @param easing the easing function (optional)
+   */
+  virtual void go(float to, float durationOrSpeed, easing_function easing=0);
+
+  /**
+   * Starts a new ramp, starting from current value (keeping the same duration/speed).
+   * @param to the final value
+   * @param easing the easing function (optional)
+   */
+  virtual void go(float to, easing_function easing=0);
+
+  /// Changes the mode of the component (RAMP_DURATION or RAMP_SPEED).
+  virtual void mode(uint8_t mode);
+
+  /// Returns the mode of the component (RAMP_DURATION or RAMP_SPEED).
+  uint8_t mode() const { return _mode; }
+
+  // \deprecated Use go(float to, float durationOrSpeed, easing_function easing=0);
+  [[deprecated("Use go(float,easing_function) instead.")]]
+  virtual void start(float to, float durationOrSpeed, easing_function easing=0);
+
+  // \deprecated Use go(float from, float to, float durationOrSpeed, easing_function easing=0);
+  [[deprecated("Use go(float,float,easing_function) instead.")]]
+  virtual void start(float from, float to, float durationOrSpeed, easing_function easing=0);
 
 protected:
   // Overrides Node.step().
   virtual void step();
+
+  float _get();
+
+  void _durationOrSpeed(float durationOrSpeed);
+  float _durationOrSpeed() const;
 
   // The starting point.
   float _from;
@@ -118,6 +163,9 @@ protected:
 
   // Optional easing function.
   easing_function _easing;
+
+  // Mode (DURATION or SPEED).
+  uint8_t _mode;
 };
 
 }

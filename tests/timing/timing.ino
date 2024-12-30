@@ -17,11 +17,15 @@ SquareOsc* osc[N_METRO] = {
   new SquareOsc(0.1)
 };
 
-#define RAMP_TIME 5.0f
+#define TEST_RAMP_MAX 100.0f
+#define TEST_RAMP_DURATION 5.0f
+#define TEST_RAMP_SPEED (TEST_RAMP_MAX/TEST_RAMP_DURATION)
 
-Ramp testRamp;
+Ramp testRampDuration;
+Ramp testRampSpeed;
 
-testing(metro) {
+
+testing(timing) {
   static float startTime = Plaquette.seconds();
 
   static float nMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
@@ -49,6 +53,14 @@ testing(metro) {
     }
   }
 
+  if (Plaquette.seconds() <= TEST_RAMP_MAX) {
+    assertMoreOrEqual(testRampDuration.get(), 0.0f);
+    assertLessOrEqual(testRampDuration.get(), 100.0f);
+
+    assertNear(testRampDuration.get(), mapFrom01((Plaquette.seconds()-startTime)/TEST_RAMP_DURATION, 0, TEST_RAMP_MAX), 0.1f);
+    assertEqual(testRampDuration.get(), testRampSpeed.get());
+  }
+
   if (Plaquette.seconds() - startTime > TOTAL_DURATION) {
     for (int i=0; i<N_METRO; i++) {
       Metro* unit = metro[i];
@@ -58,20 +70,6 @@ testing(metro) {
   }
 }
 
-// testing(ramp) {
-//   static float startTime = Plaquette.seconds();
-
-//   assertMoreOrEqual(testRamp.get(), 0.0f);
-//   assertLessOrEqual(testRamp.get(), 100.0f);
-//   assertNear(testRamp.get(), mapFrom01((Plaquette.seconds()-startTime)/RAMP_TIME, 0, 100), 0.1f);
-  
-//   if (Plaquette.seconds() - startTime > RAMP_TIME) {
-//     pass();
-//   }
-
-// }
-
-
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
@@ -79,7 +77,11 @@ void setup() {
     unit2->phase(-0.25f);
     unit2->dutyCycle(0.75f);
   }
-  testRamp.start(0, 100, RAMP_TIME);
+
+  testRampDuration.go(0, TEST_RAMP_MAX, TEST_RAMP_DURATION);
+  testRampSpeed.mode(RAMP_SPEED);
+  testRampSpeed.go(0, TEST_RAMP_MAX, TEST_RAMP_SPEED);
+
   Plaquette.sampleRate(100000.0f);
 }
 

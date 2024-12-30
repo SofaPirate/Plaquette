@@ -25,24 +25,38 @@
 namespace pq {
 
 Ramp::Ramp(float from) :
-  AbstractTimer(0.0f),
-  _from(from), _to(from), _easing(easeNone)
+  AbstractTimer(1.0f),
+  _from(from), _to(from), _easing(easeNone), _mode(RAMP_DURATION)
 {
 }
 
-Ramp::Ramp(float from, float to, float duration, easing_function easing) :
-  AbstractTimer(duration),
-  _from(from), _to(to), _easing(easing)
-{
-}
+// Ramp::Ramp(float from, float to, float duration, easing_function easing) :
+//   AbstractTimer(duration),
+//   _from(from), _to(to), _easing(easing), _mode(DURATION)
+// {
+// }
 
 float Ramp::put(float value) {
-  stop();
-  return (_value = value);
+  if (_mode == RAMP_SPEED) {
+    fromTo(value, _to);
+  }
+  else {
+    float p = progress();
+    float projectedFrom = (value - p*_to) / (1 - p); ////// verify this
+    fromTo(projectedFrom, _to);
+  }
+
+  // Set to value.
+  _value = value;
+  return _value;
 }
 
 void Ramp::easing(easing_function easing) {
   _easing = easing;
+}
+
+void Ramp::mode(uint8_t mode) {
+  _mode = constrain(mode, (uint8_t)RAMP_DURATION, (uint8_t)RAMP_SPEED);
 }
 
 void Ramp::to(float to) {
@@ -50,8 +64,40 @@ void Ramp::to(float to) {
 }
 
 void Ramp::fromTo(float from, float to) {
-  _from = from;
-  _to   = to;
+  // If in speed mode, we need to adjust duration according to speed.
+  if (_mode == RAMP_SPEED) {
+    float currentSpeed = speed();
+    _from = from;
+    _to   = to;
+    speed(currentSpeed);
+  }
+  // In duration mode, no need to change duration.
+  else {
+    _from = from;
+    _to   = to;
+  }
+}
+
+void Ramp::duration(float duration) {
+  mode(RAMP_DURATION);
+  AbstractTimer::duration(duration);
+}
+
+void Ramp::speed(float speed) {
+  mode(RAMP_SPEED);
+  float diff = (_to - _from);
+  AbstractTimer::duration( abs(diff) / abs(speed) );
+}
+
+float Ramp::speed() const {
+  if (_duration > 0) {
+    float diff = (_to - _from);
+    return abs(diff) / _duration;
+  }
+  else if (_to == _from)
+    return 0;
+  else
+    return FLT_MAX;
 }
 
 void Ramp::start() {
@@ -59,10 +105,33 @@ void Ramp::start() {
 }
 
 void Ramp::start(float to, float duration, easing_function easing_) {
-  start(_value, to, duration, easing_);
+  go(to, duration, easing_);
 }
 
 void Ramp::start(float from, float to, float duration_, easing_function easing_) {
+  go(from, to, duration_, easing_);
+}
+
+// void Ramp::go(float from, float to, float durationOrSpeed, uint8_t mode_, easing_function easing_) {
+//   // Set from and to values.
+//   fromTo(from, to);
+
+//   // Change easing if specified.
+//   if (easing_)
+//     easing(easing_);
+
+//   // Set mode.
+//   mode(mode_);
+
+//   // Initialize mode and duration / speed.
+//   _durationOrSpeed(durationOrSpeed);
+
+//   // Start chronometer.
+//   start();
+
+// }
+
+void Ramp::go(float from, float to, float durationOrSpeed, easing_function easing_) {
   // Set from and to values.
   fromTo(from, to);
 
@@ -70,11 +139,27 @@ void Ramp::start(float from, float to, float duration_, easing_function easing_)
   if (easing_)
     easing(easing_);
 
-  // Initialize duration.
-  duration(duration_);
+  // Initialize mode and duration / speed.
+  _durationOrSpeed(durationOrSpeed);
 
   // Start chronometer.
   start();
+}
+
+// void Ramp::go(float from, float to, easing_function easing_) {
+//   go(from, to, _durationOrSpeed(), easing_);
+// }
+
+// void Ramp::go(float to, float durationOrSpeed, uint8_t mode_, easing_function easing_) {
+//   go(_value, to, durationOrSpeed, mode_, easing_);
+// }
+
+void Ramp::go(float to, float durationOrSpeed, easing_function easing_) {
+  go(_value, to, durationOrSpeed, easing_);
+}
+
+void Ramp::go(float to, easing_function easing_) {
+  go(to, _durationOrSpeed(), easing_);
 }
 
 void Ramp::step() {
@@ -82,8 +167,23 @@ void Ramp::step() {
 
   if (_isStarted) {
     // Compute value if running -- otherwise leave as is.
-    _value = mapFrom01(_easing(progress()), _from, _to);
+    _value = _get();
   }
+}
+
+float Ramp::_get() {
+  return mapFrom01(_easing(progress()), _from, _to);
+}
+
+void Ramp::_durationOrSpeed(float durationOrSpeed) {
+  if (_mode == RAMP_DURATION)
+    duration(durationOrSpeed);
+  else
+    speed(durationOrSpeed);
+}
+
+float Ramp::_durationOrSpeed() const {
+  return _mode == RAMP_DURATION ? duration() : speed();
 }
 
 }
