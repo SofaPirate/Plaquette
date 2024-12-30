@@ -23,7 +23,7 @@ void step() {
   if (zigZagRamp.isFinished())
   {
     // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
-    zigZagRamp.start(randomFloat(-10, 10), 2.0);
+    zigZagRamp.go(randomFloat(-10, 10), 2.0);
   }
 
   // Send ramp value to serial.
