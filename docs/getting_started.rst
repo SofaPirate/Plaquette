@@ -159,11 +159,11 @@ The ``SquareWave`` unit type provides two parameters to configure the oscillator
 
 .. code:: cpp
 
-    SquareWave myWave(period, dutyCycle);
+    SquareWave myWave(period, width);
 
 -  ``period`` can be any positive number representing the period of
    oscillation (in seconds)
--  ``dutyCycle`` can be any number between 0.0 (0%) and 1.0 (100%),
+-  ``width`` can be any number between 0.0 (0%) and 1.0 (100%),
    and represents the proportion of the period during which the signal
    is "high" (ie. "on duty") (default: 0.5)
 
@@ -189,7 +189,7 @@ their values and send the result to the LED.
 
 .. code:: cpp
 
-    SquareWave myWave2(period, dutyCycle);
+    SquareWave myWave2(period, width);
     // ...
     void step() {
       (myWave * myWave2) >> myLed;

@@ -44,8 +44,8 @@ See :doc:`mapFloat` for more details.
 
    void step() {
      // Change duty-cycle of oscillator in range [0.2, 0.8].
-     float dutyCycle = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
-     oscillator.dutyCycle(dutyCycle);
+     float width = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
+     oscillator.width(width);
 
      // Send to LED.
      oscillator >> led;

@@ -26,7 +26,7 @@ after each powerup or reset of the board.
 
    void begin() {
      oscillator.period(1.0);
-     oscillator.dutyCycle(0.75);
+     oscillator.width(0.75);
      input.smooth();
    }
 

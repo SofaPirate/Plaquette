@@ -22,8 +22,8 @@
 
 namespace pq {
 
-SquareWave::SquareWave(float period_, float dutyCycle_) : AbstractWave(period_) {
-  dutyCycle(dutyCycle_);
+SquareWave::SquareWave(float period_, float width_) : AbstractWave(period_) {
+  width(width_);
 }
 
 bool SquareWave::isOn() {
@@ -31,11 +31,11 @@ bool SquareWave::isOn() {
 }
 
 float SquareWave::_get(phase_time_t t) {
-  return (t <= _dutyCycle ? 1.0f : 0.0f);
+  return (t <= _width ? 1.0f : 0.0f);
 }
 
-void SquareWave::dutyCycle(float dutyCycle) {
-  _dutyCycle = float2phaseTime(constrain(dutyCycle, 0, 1));
+void SquareWave::width(float width_) {
+  _width = float2phaseTime(constrain(width_, 0, 1));
 }
 
 }

@@ -31,9 +31,9 @@ public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
-   * @param dutyCycle the duty-cycle as a value in [0, 1]
+   * @param width the duty-cycle as a value in [0, 1]
    */
-  SquareWave(float period=1.0f, float dutyCycle=0.5f);
+  SquareWave(float period=1.0f, float width=0.5f);
   virtual ~SquareWave() {}
 
   /// Returns true iff the input is "on".
@@ -46,20 +46,26 @@ public:
   virtual operator bool() { return isOn(); }
 
   /**
-   * Sets the duty-cycle (ie. the proportion of time during which the signal is on).
-   * @param dutyCycle the duty-cycle as a value in [0, 1]
+   * Sets the width (also called duty-cycle) (ie. the proportion of time during which the signal is on).
+   * @param width the width as a value in [0, 1]
    */
-  virtual void dutyCycle(float dutyCycle);
+  virtual void width(float width);
 
-  /// Returns the duty-cycle (as a value in [0, 1]).
-  virtual float dutyCycle() const { return phaseTime2float(_dutyCycle); }
+  /// Returns the width (also called duty-cycle) (as a value in [0, 1]).
+  virtual float width() const { return phaseTime2float(_width); }
 
+  [[deprecated("Use width(float) instead.")]]
+  virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
+
+  [[deprecated("Use width() instead.")]]
+  virtual float dutyCycle() const { return width(); }
+  
 protected:
   // Returns value in [0, 1].
   virtual float _get(phase_time_t t);
 
   // Duty-cycle (in % of period).
-  phase_time_t _dutyCycle;
+  phase_time_t _width;
 };
 
 [[deprecated("Use SquareWave instead.")]]

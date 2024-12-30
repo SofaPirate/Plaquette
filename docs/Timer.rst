@@ -30,7 +30,7 @@ new random duration.
 
    void step() {
      // Adjust oscillator's duty cycle according to current timer progress.
-     osc.dutyCycle(myTimer);
+     osc.width(myTimer);
 
      // Apply oscillator to LED state.
      osc >> led;

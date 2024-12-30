@@ -23,7 +23,7 @@ SquareWave oscillator(2.0); // 2 seconds period
 
 void begin() {
   // Set duty cycle of wave.
-  oscillator.dutyCycle(0.1); // 0.1 => 10% up, 90% down
+  oscillator.width(0.1); // 0.1 => 10% up, 90% down
 }
 
 void step() {

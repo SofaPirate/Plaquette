@@ -97,7 +97,6 @@ cutoff	KEYWORD2
 # Oscillators
 period  KEYWORD2
 frequency  KEYWORD2
-dutyCycle  KEYWORD2
 width  KEYWORD2
 phase  KEYWORD2
 amplitude  KEYWORD2

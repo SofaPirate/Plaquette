@@ -29,7 +29,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
    SquareWave blinkOsc(4.0);
 
    void begin() {
-     blinkOsc.dutyCycle(0.25); // Sets the duty cycle to 25%
+     blinkOsc.width(0.25); // Sets the duty cycle to 25%
    }
 
    void step() {
@@ -38,7 +38,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. doxygenclass:: SquareWave
    :project: Plaquette
-   :members: SquareWave, dutyCycle, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   :members: SquareWave, width, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
    
 |SeeAlso|
 ---------
