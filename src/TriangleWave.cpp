@@ -22,8 +22,7 @@
 
 namespace pq {
 
-TriangleWave::TriangleWave(float period_, float width_) : AbstractWave(period_), _width(0) {
-  width(width_);
+TriangleWave::TriangleWave(float period_, float width_) : AbstractWave(period_, width_) {
 }
 
   // Returns value in [0, 1].
@@ -32,10 +31,6 @@ float TriangleWave::_get(phase_time_t t) {
   return (t <= _width) ? 
            t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
            (PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width);
-}
-
-void TriangleWave::width(float width) {
-  _width = float2phaseTime(constrain(width, 0, 1));
 }
 
 }

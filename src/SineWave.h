@@ -35,21 +35,9 @@ public:
   SineWave(float period=1.0f, float width=0.5f);
   virtual ~SineWave() {}
 
-  /**
-   * Sets the width (also called duty-cycle) (ie. the proportion of time during which the signal is on).
-   * @param width the width as a value in [0, 1]
-   */
-  virtual void width(float width);
-
-  /// Returns the width (also called duty-cycle) (as a value in [0, 1]).
-  virtual float width() const { return phaseTime2float(_width); }
-
 protected:
   // Returns value in [0, 1].
   virtual float _get(phase_time_t t);
-
-  // Tipping-point (in % of period).
-  phase_time_t _width;
 };
 
 [[deprecated("Use SineWave instead.")]]

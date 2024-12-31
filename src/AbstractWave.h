@@ -35,7 +35,7 @@ public:
    * Constructor.
    * @param period the period of oscillation (in seconds)
    */
-  AbstractWave(float period=1.0f);
+  AbstractWave(float period=1.0f, float width=0.5f);
   virtual ~AbstractWave() {}
 
   /**
@@ -62,6 +62,15 @@ public:
   
   /// Returns the frequency (in BPM).
   virtual float bpm() const { return (60/_period); }
+
+  /**
+   * Sets the width of the signal as a % of period.
+   * @param width the width as a value in [0, 1]
+   */
+  virtual void width(float width);
+
+  /// Returns the width of the signal.
+  virtual float width() const { return phaseTime2float(_width); }
 
   /**
    * Sets the amplitude of the wave.
@@ -115,6 +124,9 @@ protected:
 
   // Amplitude (in %).
   float _amplitude;
+
+  // Width of the signal.
+  phase_time_t _width;
 
   // Internal use.
   phase_time_t _phaseTime;

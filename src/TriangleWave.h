@@ -38,22 +38,9 @@ public:
   TriangleWave(float period=1.0f, float width=0.5f);
   virtual ~TriangleWave() {}
 
-  /**
-   * Sets the width of the wave.
-   * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
-   * @return the unit itself
-   */
-  virtual void width(float width);
-
-  /// Returns the width of the wave.
-  virtual float width() const { return phaseTime2float(_width); }
-
 protected:
   // Returns value in [0, 1].
   virtual float _get(phase_time_t t);
-
-  // Tipping-point (in % of period).
-  phase_time_t _width;
 };
 
 [[deprecated("Use TriangleWave instead.")]]

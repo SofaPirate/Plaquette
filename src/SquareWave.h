@@ -45,15 +45,6 @@ public:
   /// Operator that allows usage in conditional expressions.
   virtual operator bool() { return isOn(); }
 
-  /**
-   * Sets the width (also called duty-cycle) (ie. the proportion of time during which the signal is on).
-   * @param width the width as a value in [0, 1]
-   */
-  virtual void width(float width);
-
-  /// Returns the width (also called duty-cycle) (as a value in [0, 1]).
-  virtual float width() const { return phaseTime2float(_width); }
-
   [[deprecated("Use width(float) instead.")]]
   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
 
@@ -63,9 +54,6 @@ public:
 protected:
   // Returns value in [0, 1].
   virtual float _get(phase_time_t t);
-
-  // Duty-cycle (in % of period).
-  phase_time_t _width;
 };
 
 [[deprecated("Use SquareWave instead.")]]

@@ -28,8 +28,7 @@ namespace pq {
 
 #define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
 
-SineWave::SineWave(float period_, float width_) : AbstractWave(period_), _width(0) {
-  width(width_);
+SineWave::SineWave(float period_, float width_) : AbstractWave(period_, width_) {
 }
 
   // Returns value in [0, 1].
@@ -55,10 +54,6 @@ float SineWave::_get(phase_time_t t) {
     }
     return 0.5f + sin16(remappedPhaseTime16) / 65534.0f;
   }
-}
-
-void SineWave::width(float width) {
-  _width = float2phaseTime(constrain(width, 0, 1));
 }
 
 }

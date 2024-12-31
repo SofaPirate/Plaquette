@@ -25,8 +25,9 @@
 
 namespace pq {
 
-AbstractWave::AbstractWave(float period_) : AnalogSource(), _period(0), _phase(0), _amplitude(1) {
+AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _width(0), _phase(0), _amplitude(1) {
   period(period_);
+  width(width_);
   amplitude(1.0f);
 }
 
@@ -77,6 +78,10 @@ void AbstractWave::frequency(float frequency) {
 
 void AbstractWave::bpm(float bpm) {
   period( bpm == 0 ? FLT_MAX : 60/bpm );
+}
+
+void AbstractWave::width(float width) {
+  _width = float2phaseTime(constrain(width, 0, 1));
 }
 
 void AbstractWave::amplitude(float amplitude)  {
