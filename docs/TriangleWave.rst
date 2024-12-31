@@ -53,7 +53,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.
 
 .. doxygenclass:: TriangleWave
    :project: Plaquette
-   :members: TriangleWave, width, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   :members: SquareWave, get, period, frequency, width, phase, amplitude, bpm, mapTo, shiftBy
 
 |SeeAlso|
 ---------
