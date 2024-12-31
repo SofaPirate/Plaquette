@@ -32,7 +32,7 @@ Pulses an LED.
 
 .. doxygenclass:: SineWave
    :project: Plaquette
-   :members: SineWave, get, period, frequency, phase, amplitude, bpm, mapTo, shiftBy
+   :members: SquareWave, get, period, frequency, width, phase, amplitude, bpm, mapTo, shiftBy
 
 |SeeAlso|
 ---------

@@ -28,11 +28,37 @@ namespace pq {
 
 #define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
 
-SineWave::SineWave(float period_) : AbstractWave(period_) {}
+SineWave::SineWave(float period_, float width_) : AbstractWave(period_), _width(0) {
+  width(width_);
+}
 
   // Returns value in [0, 1].
 float SineWave::_get(phase_time_t t) {
-  return 0.5f - sin16((uint16_t)(t >> 16)) / 65534.0f;
+  // Compute sine wave depending on width.
+
+  // Special case: width == 0.5 (default and most common). More efficient.
+  if (_width == HALF_PHASE_TIME_MAX) {
+    return 0.5f + sin16((uint16_t)(t >> 16)) / 65534.0f;
+  }
+  // General case.
+  else {
+    // Remapped phase time (16 bits).
+    uint16_t remappedPhaseTime16;
+    // Rising part of sine wave.
+    if (t <= _width) {
+      remappedPhaseTime16 = (uint16_t) ((float)t / (_width + FLT_MIN) * 32767.0f);
+    }
+    // Falling part of sine wave
+    else {
+      phase_time_t widthMinusOne = _width - 1;
+      remappedPhaseTime16 = (uint16_t) ((float)(t - widthMinusOne) / (PHASE_TIME_MAX - widthMinusOne) * 32767.0f) + 32768;
+    }
+    return 0.5f + sin16(remappedPhaseTime16) / 65534.0f;
+  }
+}
+
+void SineWave::width(float width) {
+  _width = float2phaseTime(constrain(width, 0, 1));
 }
 
 }
