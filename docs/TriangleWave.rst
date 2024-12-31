@@ -1,7 +1,7 @@
 .. include:: defs.hrst
 
 TriangleWave
-======
+============
 
 A source unit that can generate a range of triangle-shaped signals such as the
 `triangle wave <https://en.wikipedia.org/wiki/Triangle_wave>`_ and the

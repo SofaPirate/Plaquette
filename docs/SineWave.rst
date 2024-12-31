@@ -1,7 +1,7 @@
 .. include:: defs.hrst
 
 SineWave
-=======
+========
 
 A source unit that can generate a sinusoid or `sine wave <https://en.wikipedia.org/wiki/Sine_wave>`_.
 The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as

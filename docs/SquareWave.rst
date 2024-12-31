@@ -1,18 +1,18 @@
 .. include:: defs.hrst
 
 SquareWave
-=========
+==========
 
 A source unit that generates a `square wave <https://en.wikipedia.org/wiki/Square_wave>`_
 signal. The signal can be tuned by changing the ``period`` and/or ``frequency``
-of the oscillation, as well as the ``duty cycle``.
+of the oscillation, as well as the ``width``.
 
 .. image:: images/Plaquette-SquareWave.png
 
-The duty cycle represents the proportion of time (expressed as a percentage) in each
+The width represents the proportion of time (expressed as a percentage) in each
 cycle (period) during which the wave is "on".
 
-.. image:: images/Plaquette-SquareWave-DutyCycle.png
+.. image:: images/Plaquette-SquareWave-Width.png
 
 |Example|
 ---------
