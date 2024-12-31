@@ -33,6 +33,7 @@ namespace pq {
 
 #define PHASE_TIME_MAX UINT32_MAX
 typedef uint32_t phase_time_t;
+const phase_time_t HALF_PHASE_TIME_MAX = 0.5f * PHASE_TIME_MAX;
 
 /// Converts floating point to phase_time_t.
 inline phase_time_t float2phaseTime(float x) { return wrap01(x) * PHASE_TIME_MAX; }
