@@ -41,7 +41,6 @@
 #include "Alarm.h"
 #include "Metro.h"
 #include "Ramp.h"
-#include "Timer.h"
 
 // Generators.
 #include "SineWave.h"

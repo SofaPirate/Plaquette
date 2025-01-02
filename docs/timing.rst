@@ -9,4 +9,3 @@ Time-management source units.
    Alarm
    Metro
    Ramp
-   Timer

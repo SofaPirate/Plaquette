@@ -50,6 +50,7 @@ public:
   virtual bool isFinished() const { return progress() >= 1.0; }
 
   /// @deprecated
+  [[deprecated("Use isFinished() instead.")]]
   virtual bool isComplete() const { return isFinished(); }
 
   /// Maps value to new range.

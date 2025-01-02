@@ -1,48 +1,54 @@
 /**
  * Metronome
  *
- * Uses the Metro class and the Timer class to simulate a metronome.
+ * Uses the Metro class and the Ramp class to simulate a metronome.
  *
- * The circuit:
+ * Potentiometer:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
  *   to the analog pin: one side pin (either one) to ground the other side pin to +5V
- * - LED anode (long leg) attached to digital output 13
+ * 
+ * LED:
  * - LED cathode (short leg) attached to ground
+ * - LED anode (long leg) attached to 220-330 Ohm resistor
+ * - resistor attached to analog (PWM) output 9
  *
- * Created in 2018 by Sofian Audry
- *
+ * Created in 2025 by Sofian Audry
+ * 
  * This example code is in the public domain.
  */
 #include <Plaquette.h>
 
 // The LED.
-DigitalOut led(LED_BUILTIN);
+AnalogOut led(9);
 
 // The analog input.
 AnalogIn pot(A0);
 
 // The metronome object.
-Metro metronome; // default period: 1 second
+Metro metronome;
 
 // An alarm object (to make sure the LED light stays visible for a short time of 5ms).
-Alarm ledOnAlarm(0.05);
+Ramp ledRamp;
 
 void begin() {
-  // Start with LED off.
-  led.off();
+  // Ramp from 100% to 0% in 200ms.
+  ledRamp.fromTo(1.0f, 0.0f);
+  ledRamp.duration(0.2f);
+
+  // Set initial value of ledRamp and LED to zero/off.
+  0 >> ledRamp >> led;
 }
 
 void step() {
-  // Adjust metronome period with potentiometer from 40 to 200 bpm.
-  metronome.bpm(pot.mapTo(40, 200));
+  // Adjust metronome period with potentiometer from 30 to 120 bpm.
+  metronome.bpm(pot.mapTo(30, 120));
 
-  // When the metronome "hits": switch LED on and start timer.
+  // When the metronome "hits": start Ramp.
   if (metronome) {
-    led.on();
-    ledOnAlarm.start();
+    // Restart ramp.
+    ledRamp.start();
   }
 
-  // Switch off LED when timer has completed.
-  if (ledOnAlarm)
-    led.off();
+  // Send value of ramp to LED.
+  ledRamp >> led;
 }
