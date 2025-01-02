@@ -25,7 +25,7 @@
 
 namespace pq {
 
-AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _width(0), _phase(0), _amplitude(1) {
+AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _phase(0), _amplitude(1), _width(0) {
   period(period_);
   width(width_);
   amplitude(1.0f);
