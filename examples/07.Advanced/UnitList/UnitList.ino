@@ -40,4 +40,7 @@ void step() {
     sources[i] >> leds[i];
   }
 }
+#else
+void begin() {}
+void step() {}
 #endif
