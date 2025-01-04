@@ -34,6 +34,7 @@ public:
   Alarm(float duration);
 
 protected:
+  virtual void begin();
   virtual void step();
 
   // Returns current absolute time (in seconds).

@@ -22,8 +22,8 @@
 
 namespace pq {
 
-AbstractChronometer::AbstractChronometer() {
-  stop();
+AbstractChronometer::AbstractChronometer()
+  : _elapsedTime(0), _offsetTime(0), _startTime(0), _isRunning(false) {
 }
 
 void AbstractChronometer::start() {

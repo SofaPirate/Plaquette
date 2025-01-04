@@ -144,7 +144,7 @@ public:
   virtual void start(float from, float to, float durationOrSpeed, easing_function easing=0);
 
 protected:
-  // Overrides Unit.step().
+  virtual void begin();
   virtual void step();
 
   // Returns current absolute time (in seconds).

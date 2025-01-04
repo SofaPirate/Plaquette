@@ -25,6 +25,7 @@
 namespace pq {
 
 Ramp::Ramp(float from) :
+  Unit(),
   AbstractTimer(1.0f),
   _from(from), _to(from), _easing(easeNone), _mode(RAMP_DURATION)
 {
@@ -162,8 +163,13 @@ void Ramp::go(float to, easing_function easing_) {
   go(to, _durationOrSpeed(), easing_);
 }
 
+void Ramp::begin() {
+  set(0);
+}
+
 void Ramp::step() {
-  AbstractTimer::update();
+  // Call parent update.
+  update();
 
   if (_isRunning) {
     // Compute value if running -- otherwise leave as is.

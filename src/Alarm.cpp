@@ -24,8 +24,18 @@ namespace pq {
 
 Alarm::Alarm(float duration_) : DigitalSource(), AbstractTimer(duration_) {}
 
+void Alarm::begin() {
+  set(0);
+}
+
 void Alarm::step() {
-  _setOn(isFinished());
+  // Call parent update.
+  update();
+
+  if (_isRunning) {
+    // Compute value if running -- otherwise leave as is.
+    _setOn(isFinished());
+  }
 }
 
 float Alarm::clock() const {
