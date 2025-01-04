@@ -23,7 +23,7 @@ namespace pq {
 
 MovingFilter::MovingFilter()
   : AnalogSource(),
-    _isAdaptive(true),
+    _isAdapting(true),
     _nValuesStep(0)
 {
 }
@@ -43,16 +43,16 @@ void MovingFilter::reset() {
   _nValuesStep = 0;
 }
 
-void MovingFilter::start() {
-  _isAdaptive = true;
+void MovingFilter::adapting() {
+  _isAdapting = true;
 }
 
-void MovingFilter::stop() {
-  _isAdaptive = false;
+void MovingFilter::noAdapting() {
+  _isAdapting = false;
 }
 
-bool MovingFilter::isRunning() const {
-  return _isAdaptive;
+bool MovingFilter::isAdapting() const {
+  return _isAdapting;
 }
 
 }

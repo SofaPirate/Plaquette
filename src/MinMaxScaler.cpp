@@ -67,7 +67,7 @@ void MinMaxScaler::reset() {
 
 float MinMaxScaler::put(float value)
 {
-  if (isRunning()) {
+  if (isAdapting()) {
 
     // Update min. value.
     if (value < _minValue) {

@@ -56,23 +56,23 @@ public:
   virtual void reset();
 
   /**
-   * Starts calibration. When calibration is started, calls to put(value)
-   * will return normalized value AND update the normalization statistics.
+   * Switches to adapting mode (default). Calls to put(value) will return filtered 
+   * value AND update the normalization statistics.
    */
-  virtual void start();
+  virtual void adapting();
 
   /**
-   * Stops calibration. When calibration is stopped, calls to put(value)
-   * will return normalized value without updating the normalization statistics.
+   * Switches to non-adapting mode: calls to put(value) will return filtered value 
+   * without updating the normalization statistics.
    */
-  virtual void stop();
+  virtual void noAdapting();
 
-  /// Returns true iff the statistics have already been started.
-  virtual bool isRunning() const;
+  /// Returns true iff the moving filter is in adapting mode.
+  virtual bool isAdapting() const;
 
 protected:
   // Start/stop calibration flag.
-  bool    _isAdaptive  : 1;
+  bool    _isAdapting  : 1;
   uint8_t _nValuesStep : 7;
 };
 
