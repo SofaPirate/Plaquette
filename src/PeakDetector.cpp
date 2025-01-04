@@ -23,7 +23,11 @@
 namespace pq {
 
 PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
-  : DigitalUnit()
+  : DigitalUnit(),
+    _triggerThreshold(triggerThreshold_),
+    _reloadThreshold(triggerThreshold_),
+    _fallbackTolerance(0.1f),
+    _mode(PEAK_RISING) // will be reset properly when calling mode(mode_)
 {
   // Assign mode.
   mode(mode_);
