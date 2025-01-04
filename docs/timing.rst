@@ -7,5 +7,6 @@ Time-management source units.
    :maxdepth: 1
 
    Alarm
+   Chronometer
    Metronome
    Ramp

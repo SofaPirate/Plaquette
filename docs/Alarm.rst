@@ -52,7 +52,7 @@ alarm at random periods of time.
 
 |SeeAlso|
 ---------
+- :doc:`Chronometer`
 - :doc:`Metronome`
 - :doc:`Ramp`
-- :doc:`Timer`
 - :doc:`SquareWave`

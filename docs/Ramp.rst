@@ -66,7 +66,7 @@ Sequentially ramps through different values.
 |SeeAlso|
 ---------
 - :doc:`Alarm`
+- :doc:`Chronometer`
 - :doc:`easings`
 - :doc:`Metronome`
-- :doc:`Timer`
 - :doc:`TriangleWave`

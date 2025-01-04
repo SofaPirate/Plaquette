@@ -24,10 +24,10 @@ of the unit (the same that would be returned by ``get()``):
 
   float put(float value)
 
-Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metronome`,
-and :doc:`Timer`, have a ``boolean isOn()`` method that works for boolean
-``true/false`` values, while digital output units such as :doc:`DigitalOut` 
-have a ``boolean putOn(boolean value)`` method.
+Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metronome` 
+have a ``boolean isOn()`` method that works for boolean ``true/false`` values,
+while digital output units such as :doc:`DigitalOut` have a ``boolean putOn(boolean value)`` 
+method.
 
 Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.
