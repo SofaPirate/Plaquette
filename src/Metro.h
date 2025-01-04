@@ -29,13 +29,16 @@ namespace pq {
 /**
  * Chronometer digital unit which emits 1/true/"on" for one frame, at a regular pace.
  */
-class Metro : public DigitalSource {
+class Metro : public DigitalNode {
 public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    */
   Metro(float period=1.0f);
+
+  /// Returns true iff the metronome fires.
+  virtual bool isOn() { return _onValue; }
 
   /// The progress of the timer process (in %).
   virtual float progress() const { return phaseTime2float(_phaseTime); }
@@ -88,6 +91,9 @@ protected:
 
   // Internal use.
   phase_time_t _phaseTime;
+
+  // Value.
+  bool _onValue;
 };
 
 }

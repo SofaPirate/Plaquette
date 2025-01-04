@@ -23,17 +23,18 @@
 
 namespace pq {
 
-Metro::Metro(float period_) : DigitalSource(), _phase(0) {
+Metro::Metro(float period_) : DigitalNode(), _phase(0), _onValue(0) {
   period(period_);
 }
 
 void Metro::begin() {
   _phaseTime = float2phaseTime(_phase);
+  _onValue = 0;
 }
 
 void Metro::step() {
   // Adjust phase time.
-  _setOn(phaseTimeUpdate(_phaseTime, _period, sampleRate()));
+  _onValue = phaseTimeUpdate(_phaseTime, _period, sampleRate());
 }
 
 void Metro::period(float period) {
