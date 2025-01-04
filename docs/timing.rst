@@ -7,5 +7,5 @@ Time-management source units.
    :maxdepth: 1
 
    Alarm
-   Metro
+   Metronome
    Ramp

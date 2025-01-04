@@ -1,7 +1,7 @@
 /**
  * Metronome
  *
- * Uses the Metro class and the Ramp class to simulate a metronome.
+ * Uses the Metronome class and the Ramp class to simulate a metronome.
  *
  * Potentiometer:
  * - Potentiometer attached to analog input 0 center pin of the potentiometer
@@ -25,7 +25,7 @@ AnalogOut led(9);
 AnalogIn pot(A0);
 
 // The metronome object.
-Metro metronome;
+Metronome metronome;
 
 // An alarm object (to make sure the LED light stays visible for a short time of 5ms).
 Ramp ledRamp;

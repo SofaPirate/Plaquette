@@ -23,7 +23,7 @@
 TriangleWave osc(5.0); // period = 5 seconds
 
 // Metronome.
-Metro metro(10.0); // Triggers every 10 seconds.
+Metronome metro(10.0); // Triggers every 10 seconds.
 
 // The servo-motor output on pin 9.
 ServoOut servo(9);

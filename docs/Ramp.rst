@@ -67,6 +67,6 @@ Sequentially ramps through different values.
 ---------
 - :doc:`Alarm`
 - :doc:`easings`
-- :doc:`Metro`
+- :doc:`Metronome`
 - :doc:`Timer`
 - :doc:`TriangleWave`

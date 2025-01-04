@@ -1,6 +1,6 @@
 .. include:: defs.hrst
 
-Metro
+Metronome
 =====
 
 A metronome digital source unit. Emits an "on" signal at a regular pace.
@@ -12,7 +12,7 @@ A metronome digital source unit. Emits an "on" signal at a regular pace.
 
    #include <Plaquette.h>
 
-   Metro myMetro(0.5); // a metronome with a half-second duration
+   Metronome myMetro(0.5); // a metronome with a half-second duration
 
    DigitalOut led(13);
 
@@ -31,9 +31,9 @@ A metronome digital source unit. Emits an "on" signal at a regular pace.
 |Reference|
 -----------
 
-.. doxygenclass:: Metro
+.. doxygenclass:: Metronome
    :project: Plaquette
-   :members: Metro, isOn, isOff, getInt, get, rose, fell, changed, changeState, period, frequency, bpm, phase
+   :members: Metronome, isOn, isOff, getInt, get, rose, fell, changed, changeState, period, frequency, bpm, phase
 
 |SeeAlso|
 ---------

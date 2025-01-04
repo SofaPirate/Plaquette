@@ -1,7 +1,7 @@
 /**
  * BlinkMetro
  *
- * Turns on and off a light emitting diode (LED) using a Metro unit.
+ * Turns on and off a light emitting diode (LED) using a Metronome unit.
  *
  * The circuit:
  * - LED attached from pin 13 to ground.
@@ -18,7 +18,7 @@
 DigitalOut led(LED_BUILTIN);
 
 // The timer.
-Metro metro(1.0); // period: 1 second
+Metronome metro(1.0); // period: 1 second
 
 void begin() {}
 

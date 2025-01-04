@@ -1,5 +1,5 @@
 /*
- * Metro.h
+ * Metronome.h
  *
  * (c) 2018 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -29,13 +29,13 @@ namespace pq {
 /**
  * Chronometer digital unit which emits 1/true/"on" for one frame, at a regular pace.
  */
-class Metro : public DigitalUnit {
+class Metronome : public DigitalUnit {
 public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    */
-  Metro(float period=1.0f);
+  Metronome(float period=1.0f);
 
   /// Returns true iff the metronome fires.
   virtual bool isOn() { return _onValue; }
@@ -95,6 +95,9 @@ protected:
   // Value.
   bool _onValue;
 };
+
+[[deprecated("Use Metronome instead.")]]
+typedef Metronome Metro;
 
 }
 

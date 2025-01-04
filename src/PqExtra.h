@@ -40,7 +40,7 @@
 // Timing.
 #include "Alarm.h"
 #include "Chronometer.h"
-#include "Metro.h"
+#include "Metronome.h"
 #include "Ramp.h"
 
 // Generators.
