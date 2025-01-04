@@ -28,7 +28,6 @@ AbstractChronometer::AbstractChronometer() {
 
 void AbstractChronometer::start() {
   // Start.
-  _startTime = clock();
   set(0);
   _isRunning = true;
 }
@@ -43,7 +42,6 @@ void AbstractChronometer::pause() {
 
 void AbstractChronometer::stop() {
   // Stop.
-  _startTime = 0;
   set(0);
   _isRunning = false;
 }
@@ -73,6 +71,7 @@ bool AbstractChronometer::hasPassed(float timeout, bool restartIfPassed) {
 
 void AbstractChronometer::set(float time) {
   _elapsedTime = _offsetTime = time;
+  _startTime = clock();
 }
 
 void AbstractChronometer::addTime(float time) {
