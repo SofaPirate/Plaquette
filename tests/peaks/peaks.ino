@@ -6,7 +6,7 @@
 using namespace pq;
 
 #define N_GENERATORS 5
-Node* generators[N_GENERATORS] = {
+Unit* generators[N_GENERATORS] = {
   new SquareWave(1),
   new TriangleWave(1, 0),
   new TriangleWave(1, 1),
@@ -35,7 +35,7 @@ testing(countingPeaks) {
   Plaquette.step();
 
   for (int i=0; i<N_GENERATORS; i++) {
-    Node* unit = generators[i];
+    Unit* unit = generators[i];
     float value = unit->get();
 
     for (int j=0; j<N_DETECTOR_TYPES; j++) {

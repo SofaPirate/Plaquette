@@ -23,7 +23,7 @@
 
 namespace pq {
 
-Metro::Metro(float period_) : DigitalNode(), _phase(0), _onValue(0) {
+Metro::Metro(float period_) : DigitalUnit(), _phase(0), _onValue(0) {
   period(period_);
 }
 

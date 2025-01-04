@@ -225,12 +225,15 @@ float samplePeriod();
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
 void beginSerial(unsigned long baudRate);
 
+
 /**
+ * A generic class representing a unit in the system.
  * Main class for components to be added to Plaquette.
- * Components can be transducers (sensors, actuators) or special integrated circuits.
+ * Each such unit can be read using function get(). Values
+ * can also be sent to a unit using put().
  */
 class Unit {
-  friend class PlaquetteEnv;
+    friend class PlaquetteEnv;
 
 public:
   /// Converts analog (float) value to digital (bool) value.
@@ -240,27 +243,9 @@ public:
   static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
-  /** Class constructor.
-   * The parameter addUnit specifies whether we should add the unit to the
-   * Plaquette environment. Important to use with multiple inheritance to avoid
-   * adding the same instance twice. See how it is used for example in the
-   * DigitalNode constructor below.
-   */
-  Unit();
-  virtual ~Unit();
-
-protected:
   virtual void begin() {}
   virtual void step() {}
-};
 
-
-/**
- * A generic class representing a node in the system.
- * Each such node can be read using function get(). Values
- * can also be sent to a node using put().
- */
-class Node : public Unit {
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() = 0;
@@ -275,12 +260,13 @@ public:
    */
   virtual float put(float value) { return get(); } // do nothing by default (read-only)
 
-  /// Maps value to new range. If the node's values are unbounded, simply returns get().
+  /// Maps value to new range. If the unit's values are unbounded, simply returns get().
   virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
 
 protected:
   /// Constructor.
-  Node() : Unit() {}
+  Unit();
+  virtual ~Unit();
 
 private:
   /// Operator that allows usage in conditional expressions.
@@ -289,17 +275,17 @@ private:
   virtual explicit operator bool() { return Unit::analogToDigital(get()); }
 
   // Prevents assignation operations by making them private.
-  Node& operator=(bool);
-  Node& operator=(int);
-  Node& operator=(float);
-  Node& operator=(Node&);
+  Unit& operator=(bool);
+  Unit& operator=(int);
+  Unit& operator=(float);
+  Unit& operator=(Unit&);
 };
 
-/// A generic class representing a simple source.
-class DigitalNode : public Node {
+/// A generic class representing a simple digital (true/false)unit.
+class DigitalUnit : public Unit {
 public:
   /// Constructor.
-  DigitalNode() : Node() {}
+  DigitalUnit() : Unit() {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
@@ -345,7 +331,7 @@ public:
   // virtual operator int() { return getInt(); }
 
   // IMPORTANT: This operator is redefined as explicit to make default return a bool.
-  virtual explicit operator float() { return Node::operator float(); }
+  virtual explicit operator float() { return Unit::operator float(); }
 };
 
 /**
@@ -353,10 +339,10 @@ public:
  * (typically in [0, 1]). It is the responsibility of the subclass's programmer to make 
  * sure the value stays within range OR to update the mapTo() function accordingly.
  */
-class AnalogSource : public Node {
+class AnalogSource : public Unit {
 public:
   /// Constructor.
-  AnalogSource(float init=0.0f) : Node() { _value = constrain(init, 0, 1); }
+  AnalogSource(float init=0.0f) : Unit() { _value = constrain(init, 0, 1); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
@@ -370,10 +356,10 @@ protected:
 };
 
 /// A digital source that contains a true/false value.
-class DigitalSource : public DigitalNode {
+class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(bool init=false) : DigitalNode(), _onValue(init), _changeState(0) {}
+  DigitalSource(bool init=false) : DigitalUnit(), _onValue(init), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
@@ -403,124 +389,124 @@ protected:
     _onValue = newOnValue;
   }
 
-  // The value contained in the node.
+  // The value contained in the unit.
   bool    _onValue     : 1;
   int8_t  _changeState : 2;
   uint8_t _data        : 5; // unused extra space
 };
 
-// Value to node operators ///////////////////////////////////////
+// Value to unit operators ///////////////////////////////////////
 
-// Base value to node operator.
-inline Node& operator>>(float value, Node& unit) {
+// Base value to unit operator.
+inline Unit& operator>>(float value, Unit& unit) {
   unit.put(value);
   return unit;
 }
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Unit&)).
-inline Node& operator>>(Node& source, Node& sink) {
+inline Unit& operator>>(Unit& source, Unit& sink) {
   return pq::operator>>(source.get(), sink);
 }
 
-inline Node& operator>>(double value, Node& unit) {
+inline Unit& operator>>(double value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(bool value, Node& unit) {
+inline Unit& operator>>(bool value, Unit& unit) {
   return pq::operator>>(Unit::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie and ARM chips.
 // Otherwise it causes an ambiguous operator error.
 #if defined(__arc__) || defined(__arm__)
-inline Node& operator>>(int value, Node& unit) {
+inline Unit& operator>>(int value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 #endif
 
-inline Node& operator>>(int8_t value, Node& unit) {
+inline Unit& operator>>(int8_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(uint8_t value, Node& unit) {
+inline Unit& operator>>(uint8_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(int16_t value, Node& unit) {
+inline Unit& operator>>(int16_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(uint16_t value, Node& unit) {
+inline Unit& operator>>(uint16_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(int32_t value, Node& unit) {
+inline Unit& operator>>(int32_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(uint32_t value, Node& unit) {
+inline Unit& operator>>(uint32_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(int64_t value, Node& unit) {
+inline Unit& operator>>(int64_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Node& operator>>(uint64_t value, Node& unit) {
+inline Unit& operator>>(uint64_t value, Unit& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-// // Node to value operators ///////////////////////////////////////
+// // Unit to value operators ///////////////////////////////////////
 // THIS PART IS COMMENTED OUT BECAUSE IT CAUSES AMBIGUOUS OPERATOR ERRORS
 
-// inline bool& operator>>(DigitalNode& unit, bool& value) {
+// inline bool& operator>>(DigitalUnit& unit, bool& value) {
 //   return (value = unit.isOn());
 // }
 
 // // This code is needed on the Curie-based AVRs.
 // #if defined(__arc__)
-// inline int& operator>>(DigitalNode& unit, int& value) {
+// inline int& operator>>(DigitalUnit& unit, int& value) {
 //   return (value = unit.getInt());
 // }
 // #endif
 
-// inline int8_t& operator>>(DigitalNode& unit, int8_t& value) {
+// inline int8_t& operator>>(DigitalUnit& unit, int8_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline uint8_t& operator>>(DigitalNode& unit, uint8_t& value) {
+// inline uint8_t& operator>>(DigitalUnit& unit, uint8_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline int16_t& operator>>(DigitalNode& unit, int16_t& value) {
+// inline int16_t& operator>>(DigitalUnit& unit, int16_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline uint16_t& operator>>(DigitalNode& unit, uint16_t& value) {
+// inline uint16_t& operator>>(DigitalUnit& unit, uint16_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline int32_t& operator>>(DigitalNode& unit, int32_t& value) {
+// inline int32_t& operator>>(DigitalUnit& unit, int32_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline uint32_t& operator>>(DigitalNode& unit, uint32_t& value) {
+// inline uint32_t& operator>>(DigitalUnit& unit, uint32_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline int64_t& operator>>(DigitalNode& unit, int64_t& value) {
+// inline int64_t& operator>>(DigitalUnit& unit, int64_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline uint64_t& operator>>(DigitalNode& unit, uint64_t& value) {
+// inline uint64_t& operator>>(DigitalUnit& unit, uint64_t& value) {
 //   return (value = unit.getInt());
 // }
 
-// inline float& operator>>(Node& unit, float& value) {
+// inline float& operator>>(Unit& unit, float& value) {
 //   return (value = unit.get());
 // }
 
-// inline double& operator>>(Node& unit, double& value) {
+// inline double& operator>>(Unit& unit, double& value) {
 //   return (value = unit.get());
 // }
 

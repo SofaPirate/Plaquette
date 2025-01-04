@@ -130,7 +130,7 @@ void Debounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : Node(), PinUnit(pin, mode), Smoothable()
+  : Unit(), PinUnit(pin, mode), Smoothable()
 {}
 
 #ifdef ESP8266

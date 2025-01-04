@@ -29,7 +29,7 @@ namespace pq {
 /**
  * Chronometer digital unit which emits 1/true/"on" for one frame, at a regular pace.
  */
-class Metro : public DigitalNode {
+class Metro : public DigitalUnit {
 public:
   /**
    * Constructor.

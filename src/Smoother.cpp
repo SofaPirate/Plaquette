@@ -24,7 +24,7 @@
 namespace pq {
 
 Smoother::Smoother(float timeWindow)
-  : Node(),
+  : Unit(),
     MovingAverage(timeWindow),
     _currentValueStep(0),
     _nValuesStep(0)

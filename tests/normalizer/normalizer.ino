@@ -24,7 +24,7 @@ float randomNormal(float mean=0, float stdv=1) {
 }
 
 #define N_UNITS 3
-Node* units[N_UNITS] = {
+Unit* units[N_UNITS] = {
   new Normalizer(0, 1),
   new Normalizer(0, 1, 0.5f),
   new Normalizer(0, 1, 1.0f)

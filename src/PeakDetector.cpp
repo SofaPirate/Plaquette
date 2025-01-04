@@ -23,7 +23,7 @@
 namespace pq {
 
 PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
-  : DigitalNode()
+  : DigitalUnit()
 {
   // Assign mode.
   mode(mode_);

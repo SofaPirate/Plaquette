@@ -35,7 +35,7 @@ namespace pq {
 /**
  * Emits a signals when a signal peaks.
  */
-class PeakDetector : public DigitalNode {
+class PeakDetector : public DigitalUnit {
 public:
   /**
    * Constructor. Possible modes are:
@@ -116,6 +116,9 @@ protected:
   bool _isHigh    : 1;
   bool _wasLow    : 1;
   bool _crossed   : 1;
+
+  // Unused extra space.
+  uint8_t _data   : 2;
 };
 
 }

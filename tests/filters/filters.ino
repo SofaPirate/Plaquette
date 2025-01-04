@@ -5,7 +5,7 @@
 using namespace pq;
 
 #define N_UNITS 2
-Node* units[N_UNITS] = {
+Unit* units[N_UNITS] = {
   new MinMaxScaler(),
   new MinMaxScaler(1.0f)
 };

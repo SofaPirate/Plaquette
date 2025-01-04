@@ -28,4 +28,8 @@ void Alarm::step() {
   _setOn(isFinished());
 }
 
+float Alarm::clock() const {
+  return Plaquette.seconds();
+}
+
 }

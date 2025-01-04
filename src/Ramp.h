@@ -37,7 +37,7 @@ enum {
  * Provides a ramping / tweening mechanism that allows smooth transitions between
  * two values.
  */
-class Ramp : public Node, public AbstractTimer {
+class Ramp : public Unit, public AbstractTimer {
 public:
   /**
    * Basic constructor. Use one of the go(...) functions to launch ramps.
@@ -144,8 +144,11 @@ public:
   virtual void start(float from, float to, float durationOrSpeed, easing_function easing=0);
 
 protected:
-  // Overrides Node.step().
+  // Overrides Unit.step().
   virtual void step();
+
+  // Returns current absolute time (in seconds).
+  virtual float clock() const;
 
   float _get();
 

@@ -39,6 +39,7 @@
 
 // Timing.
 #include "Alarm.h"
+#include "Chronometer.h"
 #include "Metro.h"
 #include "Ramp.h"
 

@@ -138,7 +138,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public Node, public PinUnit, public Smoothable {
+class AnalogIn : public Unit, public PinUnit, public Smoothable {
 public:
   /**
    * Constructor.

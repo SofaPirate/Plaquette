@@ -36,7 +36,7 @@ testing(valuesIn01) {
   Plaquette.step();
 
   for (int i=0; i<N_GENERATORS; i++) {
-    Node* unit = generators[i];
+    Unit* unit = generators[i];
     float value = unit->get();
     value >> *detectors[i];
     assertMoreOrEqual(value, 0.0f);

@@ -35,6 +35,9 @@ public:
 
 protected:
   virtual void step();
+
+  // Returns current absolute time (in seconds).
+  virtual float clock() const;
 };
 
 }

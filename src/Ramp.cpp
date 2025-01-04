@@ -163,12 +163,16 @@ void Ramp::go(float to, easing_function easing_) {
 }
 
 void Ramp::step() {
-  AbstractTimer::step();
+  AbstractTimer::update();
 
   if (_isRunning) {
     // Compute value if running -- otherwise leave as is.
     _value = _get();
   }
+}
+
+float Ramp::clock() const {
+  return Plaquette.seconds();
 }
 
 float Ramp::_get() {

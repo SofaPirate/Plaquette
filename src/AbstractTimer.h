@@ -26,9 +26,10 @@
 
 namespace pq {
 
-class AbstractTimer : public Chronometer {
+class AbstractTimer : public AbstractChronometer {
 protected:
   AbstractTimer(float duration);
+  virtual ~AbstractTimer() {}
 
 public:
   /// Starts/restarts the chronometer.
@@ -46,7 +47,7 @@ public:
   /// The progress of the timer process (in %).
   virtual float progress() const;
 
-  /// Returns true iff the chronometer has completed its process.
+  /// Returns true iff the chronometer has finished its process.
   virtual bool isFinished() const { return progress() >= 1.0; }
 
   /// @deprecated

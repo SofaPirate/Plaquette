@@ -46,10 +46,8 @@ testing(timing) {
     // }
     if (unit->isOn()) {
       nMetro[i]++;
-      // assertEqual(unit2->get(), 1.0f);
-    }
-    if (unit->rose() && i != 2) {
-      assertEqual(unit2->get(), 1.0f);
+      if (i != 2)
+        assertEqual(unit2->get(), 1.0f);
     }
   }
 

@@ -15,11 +15,11 @@ TriangleWave     tri(0.5);
 Metro      metro(0.5);
 
 #define N_UNITS 7
-Node* units[N_UNITS] = {
-  (Node*)&analogIn,  (Node*)&analogOut,
-  (Node*)&digitalIn,  (Node*)&digitalOut,
-  (Node*)&tri,  (Node*)&square,
-  (Node*)&metro
+Unit* units[N_UNITS] = {
+  (Unit*)&analogIn,  (Unit*)&analogOut,
+  (Unit*)&digitalIn,  (Unit*)&digitalOut,
+  (Unit*)&tri,  (Unit*)&square,
+  (Unit*)&metro
 };
 
 testing(valuesIn01) {
@@ -27,7 +27,7 @@ testing(valuesIn01) {
   Plaquette.step();
 
   for (int i=0; i<N_UNITS; i++) {
-    Node* unit = units[i];
+    Unit* unit = units[i];
     float value = unit->get();
     assertMoreOrEqual(value, 0.0f);
     assertLessOrEqual(value, 1.0f);
@@ -46,13 +46,13 @@ class TestPiping: public TestAgain {
       TestAgain::teardown();
     }
 
-    void testPiping(Node& source, Node& sink) {
+    void testPiping(Unit& source, Unit& sink) {
       source >> sink;
       assertEqual(source.get(),    sink.get());
       assertEqual((float)source,   (float)sink);
     }
 
-    void testDigitalPiping(DigitalNode& source, DigitalNode& sink) {
+    void testDigitalPiping(DigitalUnit& source, DigitalUnit& sink) {
       source >> sink;
       testPiping(source, sink);
       assertEqual(source.isOn(),    sink.isOn());
@@ -61,19 +61,19 @@ class TestPiping: public TestAgain {
       assertEqual((int)source,   (int)sink);
     }
 
-    void testValuePipingTo(Node& node) {
+    void testValuePipingTo(Unit& node) {
       float value = randomUniform();
       value >> node;
       assertEqual(value, node.get());
     }
 
-    // void testValuePipingFrom(Node& node) {
+    // void testValuePipingFrom(Unit& node) {
     //   float value;
     //   node >> value;
     //   assertEqual(value, node.get());
     // }
 
-    void testValueDigitalPipingTo(DigitalNode& node) {
+    void testValueDigitalPipingTo(DigitalUnit& node) {
       1.0f >> node;
       assertEqual(1.0f, node.get());
       assertEqual(true, node.isOn());
@@ -90,7 +90,7 @@ class TestPiping: public TestAgain {
       assertEqual(0, node.getInt());
     }
 
-    // void testValueDigitalPipingFrom(DigitalNode& node) {
+    // void testValueDigitalPipingFrom(DigitalUnit& node) {
     //   float value;
     //   int valueInt;
     //   bool valueBool;
