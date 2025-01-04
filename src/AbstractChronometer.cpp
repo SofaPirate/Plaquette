@@ -74,7 +74,7 @@ void AbstractChronometer::set(float time) {
   _startTime = clock();
 }
 
-void AbstractChronometer::addTime(float time) {
+void AbstractChronometer::add(float time) {
   _offsetTime += time;
 }
 

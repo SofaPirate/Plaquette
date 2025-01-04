@@ -60,7 +60,10 @@ public:
   virtual bool hasPassed(float timeout, bool restartIfPassed);
 
   /// Adds/subtracts time to the chronometer.
-  virtual void addTime(float time);
+  virtual void add(float time);
+  
+  [[deprecated("Use add(float) instead.")]]
+  virtual void addTime(float time) { add(time); }
 
   /// Returns true iff the chronometer is currently running.
   bool isRunning() const { return _isRunning; }
