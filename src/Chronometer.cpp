@@ -24,31 +24,35 @@
 namespace pq {
 
 Chronometer::Chronometer() : Unit() {
-  _begin();
+  stop();
 }
 
 void Chronometer::start() {
   // Start.
-  _startTime = seconds();
-  _offsetTime = _elapsedTime = 0;
-  _isStarted = true;
+  _startTime = clock();
+  set(0);
+  _isRunning = true;
 }
 
-void Chronometer::addTime(float time) {
-  _offsetTime += time;
-}
 
-void Chronometer::stop() {
-  if (_isStarted) {
-    _offsetTime = elapsed();
-    _isStarted = false;
+void Chronometer::pause() {
+  if (_isRunning) {
+    _offsetTime = elapsed(); // save current offset
+    _isRunning = false;
   }
 }
 
+void Chronometer::stop() {
+  // Stop.
+  _startTime = 0;
+  set(0);
+  _isRunning = false;
+}
+
 void Chronometer::resume() {
-  if (!_isStarted) {
-    _startTime = seconds();
-    _isStarted = true;
+  if (!_isRunning) {
+    _startTime = clock();
+    _isRunning = true;
   }
 }
 
@@ -68,6 +72,14 @@ bool Chronometer::hasPassed(float timeout, bool restartIfPassed) {
   }
 }
 
+void Chronometer::set(float time) {
+  _elapsedTime = _offsetTime = time;
+}
+
+void Chronometer::addTime(float time) {
+  _offsetTime += time;
+}
+
 void Chronometer::begin() {
   _begin();
 }
@@ -76,16 +88,10 @@ void Chronometer::step() {
   // Offset elapsed time.
   _elapsedTime = _offsetTime;
 
-  if (_isStarted) {
+  if (_isRunning) {
     // Add difference to elapsed time.
-     _elapsedTime += (seconds() - _startTime);
+     _elapsedTime += (clock() - _startTime);
   }
-}
-
-void Chronometer::_begin() {
-  // Basic reset.
-  _startTime = _offsetTime = _elapsedTime = 0;
-  _isStarted = false;
 }
 
 }

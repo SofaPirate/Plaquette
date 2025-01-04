@@ -103,7 +103,7 @@ public:
   virtual void reset();
 
   /**
-   * Pushes value into the unit. If isStarted() is false the filter will not be
+   * Pushes value into the unit. If isRunning() is false the filter will not be
    * updated but will just return the filtered value.
    * @param value the value sent to the unit
    * @return the new value of the unit

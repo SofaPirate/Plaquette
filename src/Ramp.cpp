@@ -165,7 +165,7 @@ void Ramp::go(float to, easing_function easing_) {
 void Ramp::step() {
   AbstractTimer::step();
 
-  if (_isStarted) {
+  if (_isRunning) {
     // Compute value if running -- otherwise leave as is.
     _value = _get();
   }

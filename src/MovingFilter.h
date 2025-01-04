@@ -68,7 +68,7 @@ public:
   virtual void stop();
 
   /// Returns true iff the statistics have already been started.
-  virtual bool isStarted() const;
+  virtual bool isRunning() const;
 
 protected:
   // Start/stop calibration flag.

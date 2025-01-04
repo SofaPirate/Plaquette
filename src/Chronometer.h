@@ -33,10 +33,10 @@ public:
   /// Starts/restarts the chronometer.
   virtual void start();
 
-  /// Adds/subtracts time to the chronometer.
-  virtual void addTime(float time);
-
   /// Interrupts the chronometer.
+  virtual void pause();
+
+  /// Interrupts the chronometer and resets to zero.
   virtual void stop();
 
   /// Resumes process.
@@ -48,21 +48,31 @@ public:
   /// Returns true iff elapsed time has passed given timeout.
   virtual bool hasPassed(float timeout) const;
 
+  /// Forces current time (in seconds).
+  virtual void set(float time);
+
   /**
    * Returns true iff elapsed time has passed given timeout (optional argument to
    * automatically restart if true).
    */
+  [[deprecated("Use hasPassed(float) followed by start() instead.")]]
   virtual bool hasPassed(float timeout, bool restartIfPassed);
 
+  /// Adds/subtracts time to the chronometer.
+  virtual void addTime(float time);
+
   /// Returns true iff the chronometer is currently running.
-  bool isStarted() const { return _isStarted; }
+  bool isRunning() const { return _isRunning; }
+
+  [[deprecated("Use isRunning() instead.")]]
+  bool isStarted() const { return isRunning(); }
 
 protected:
   virtual void begin();
   virtual void step();
 
-  void _begin();
-
+  virtual float clock() const = 0;
+  
   // The starting time (in seconds).
   float _startTime;
 
@@ -73,7 +83,7 @@ protected:
   float _elapsedTime;
 
   // Is the chrono currently started.
-  bool _isStarted;
+  bool _isRunning;
 };
 
 }

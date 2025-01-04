@@ -51,7 +51,7 @@ void MovingFilter::stop() {
   _isAdaptive = false;
 }
 
-bool MovingFilter::isStarted() const {
+bool MovingFilter::isRunning() const {
   return _isAdaptive;
 }
 

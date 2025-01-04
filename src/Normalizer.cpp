@@ -96,7 +96,7 @@ float Normalizer::put(float value) {
     _nValuesStep++;
 
   // First time put() is called this step.
-  if (isStarted()) {
+  if (isRunning()) {
 
     if (_nValuesStep == 1) {
       // Update moving average.
