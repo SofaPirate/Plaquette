@@ -19,79 +19,28 @@
  */
 
 #include "Chronometer.h"
-#include "pq_time.h"
 
 namespace pq {
 
-Chronometer::Chronometer() : Unit() {
+Chronometer::Chronometer() : Unit(), AbstractChronometer() {
+}
+
+float Chronometer::put(float value) {
+  set(value);
+  return get();
+}
+  
+void Chronometer::begin() {
   stop();
 }
 
-void Chronometer::start() {
-  // Start.
-  _startTime = clock();
-  set(0);
-  _isRunning = true;
-}
-
-
-void Chronometer::pause() {
-  if (_isRunning) {
-    _offsetTime = elapsed(); // save current offset
-    _isRunning = false;
-  }
-}
-
-void Chronometer::stop() {
-  // Stop.
-  _startTime = 0;
-  set(0);
-  _isRunning = false;
-}
-
-void Chronometer::resume() {
-  if (!_isRunning) {
-    _startTime = clock();
-    _isRunning = true;
-  }
-}
-
-bool Chronometer::hasPassed(float timeout) const
-{
-  return (elapsed() >= timeout);
-}
-
-bool Chronometer::hasPassed(float timeout, bool restartIfPassed) {
-  if (hasPassed(timeout)) {
-    if (restartIfPassed)
-      start();
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-void Chronometer::set(float time) {
-  _elapsedTime = _offsetTime = time;
-}
-
-void Chronometer::addTime(float time) {
-  _offsetTime += time;
-}
-
-void Chronometer::begin() {
-  _begin();
-}
-
 void Chronometer::step() {
-  // Offset elapsed time.
-  _elapsedTime = _offsetTime;
-
-  if (_isRunning) {
-    // Add difference to elapsed time.
-     _elapsedTime += (clock() - _startTime);
-  }
+  update();
 }
+
+float Chronometer::clock() const {
+  return Plaquette.seconds();
+}
+
 
 }

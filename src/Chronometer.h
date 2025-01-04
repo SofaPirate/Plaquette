@@ -21,69 +21,27 @@
 #ifndef PQ_CHRONOMETER_H_
 #define PQ_CHRONOMETER_H_
 
-#include "PqCore.h"
+#include "AbstractChronometer.h"
 
 namespace pq {
 
-class Chronometer : public Unit {
+class Chronometer : public Unit, public AbstractChronometer {
 public:
   /// Constructor.
   Chronometer();
 
-  /// Starts/restarts the chronometer.
-  virtual void start();
+  /// Returns elapsed time since start (in seconds).
+  virtual float get() { return elapsed(); }
 
-  /// Interrupts the chronometer.
-  virtual void pause();
-
-  /// Interrupts the chronometer and resets to zero.
-  virtual void stop();
-
-  /// Resumes process.
-  virtual void resume();
-
-  /// The time currently elapsed by the chronometer (in seconds).
-  virtual float elapsed() const { return _elapsedTime; }
-
-  /// Returns true iff elapsed time has passed given timeout.
-  virtual bool hasPassed(float timeout) const;
-
-  /// Forces current time (in seconds).
-  virtual void set(float time);
-
-  /**
-   * Returns true iff elapsed time has passed given timeout (optional argument to
-   * automatically restart if true).
-   */
-  [[deprecated("Use hasPassed(float) followed by start() instead.")]]
-  virtual bool hasPassed(float timeout, bool restartIfPassed);
-
-  /// Adds/subtracts time to the chronometer.
-  virtual void addTime(float time);
-
-  /// Returns true iff the chronometer is currently running.
-  bool isRunning() const { return _isRunning; }
-
-  [[deprecated("Use isRunning() instead.")]]
-  bool isStarted() const { return isRunning(); }
-
+  /// Sets current time in seconds and returns it.
+  virtual float put(float value);
+  
 protected:
   virtual void begin();
   virtual void step();
 
-  virtual float clock() const = 0;
-  
-  // The starting time (in seconds).
-  float _startTime;
-
-  // The offset time
-  float _offsetTime;
-
-  // The current elapsed time.
-  float _elapsedTime;
-
-  // Is the chrono currently started.
-  bool _isRunning;
+  // Returns current absolute time (in seconds).
+  virtual float clock() const;
 };
 
 }
