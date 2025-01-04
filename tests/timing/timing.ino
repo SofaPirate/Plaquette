@@ -5,10 +5,10 @@
 using namespace pq;
 
 #define N_METRO 3
-Metro* metro[N_METRO] = {
-  new Metro(0.01),
-  new Metro(0.1),
-  new Metro(0.1)
+Metronome* metro[N_METRO] = {
+  new Metronome(0.01),
+  new Metronome(0.1),
+  new Metronome(0.1)
 };
 
 SquareWave* osc[N_METRO] = {
@@ -36,7 +36,7 @@ testing(timing) {
   Plaquette.step();
 
   for (int i=0; i<N_METRO; i++) {
-    Metro* unit = metro[i];
+    Metronome* unit = metro[i];
     SquareWave *unit2 = osc[i];
     // if (i == 0) {
     //   print(Plaquette.seconds()-startTime); print(" "); print(unit->isOn()); print(" "); print(unit2->get());
@@ -61,7 +61,7 @@ testing(timing) {
 
   if (Plaquette.seconds() - startTime > TOTAL_DURATION) {
     for (int i=0; i<N_METRO; i++) {
-      Metro* unit = metro[i];
+      Metronome* unit = metro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
       pass();
     }
