@@ -29,12 +29,12 @@ namespace pq {
 /**
  * Chronometer class which becomes "on" after a given duration.
  */
-class Alarm : public DigitalNode, public AbstractTimer {
+class Alarm : public DigitalSource, public AbstractTimer {
 public:
   Alarm(float duration);
 
-  /// True when time is up.
-  virtual bool isOn();
+protected:
+  virtual void step();
 };
 
 }
