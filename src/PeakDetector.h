@@ -109,16 +109,17 @@ protected:
   float _peakValue;
 
   // Thresholding mode.
-  bool _onValue   : 1;
-  uint8_t  _mode  : 2;
+  bool _onValue  : 1;
+  uint8_t  _mode : 2;
 
   // Booleans used to keep track of signal value.
-  bool _isHigh    : 1;
-  bool _wasLow    : 1;
-  bool _crossed   : 1;
+  bool _isHigh   : 1;
+  bool _wasLow   : 1;
+  bool _crossed  : 1;
+  bool _firstRun : 1;
 
   // Unused extra space.
-  uint8_t _data   : 2;
+  uint8_t _data  : 1;
 };
 
 }

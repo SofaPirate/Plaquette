@@ -97,49 +97,60 @@ float PeakDetector::put(float value) {
   // Flip value.
   if (modeInverted())
     value = -value;
-
-  // Compute flags.
+  
+  // Check if value is above triggerThreshold ("high" flag).
   bool high     = (value >= _triggerThreshold); // value is high if above triggerThreshold
-  bool crossing = (high && _wasLow);            // value is crossing if just crossed triggerThreshold
-  bool isMax    = (value > _peakValue);         // value is new max if higher than current peak value
 
-  // At the moment of crossing, reset flags.
-  if (crossing) {
-    _wasLow  = false;
-    _crossed = true;
+  // Initialize _wasLow on first run.
+  if (_firstRun) {
+    _wasLow = !high;
+    _firstRun = false;
   }
+  
+  else {
 
-  // Check if value is below reloadThreshold.
-  else if (value < _reloadThreshold)
-    _wasLow = true;
+    bool crossing = (high && _wasLow);            // value is crossing if just crossed triggerThreshold
+    bool isMax    = (value > _peakValue);         // value is new max if higher than current peak value
 
-  // Perform fallback detection operations.
-  bool fallingBack = false;
-  if (_crossed) {
-    // Set peak value.
-    if (isMax) {
-      _peakValue = value;
+    // At the moment of crossing, reset flags.
+    if (crossing) {
+      _wasLow  = false;
+      _crossed = true;
     }
 
-    // Check for fallback (only if value is below peak ie. !isMax).
-    // Fallback detected after crossing and falling below maximum and either:
-    // (1) drops by % tolerance between peak and triggerThreshold OR
-    // (2) falls below triggerThreshold (!high)
-    else if ((mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance &&
-                         _peakValue != _triggerThreshold) // deal with special case where mapTo01(...) would return 0.5 by default
-                || !high) {
+    // Check if value is below reloadThreshold.
+    else if (value <= _reloadThreshold)
+      _wasLow = true;
 
-      // Fallback detected.
-      fallingBack = true;
+    // Perform fallback detection operations.
+    bool fallingBack = false;
+    if (_crossed) {
+      // Set peak value.
+      if (isMax) {
+        _peakValue = value;
+      }
 
-      // Reset.
-      _crossed = false;
-      _peakValue = -FLT_MAX;
+
+      // Check for fallback (only if value is below peak ie. !isMax).
+      // Fallback detected after crossing and falling below maximum and either:
+      // (1) drops by % tolerance between peak and triggerThreshold OR
+      // (2) falls below triggerThreshold (!high)
+      else if ((mapTo01(value, _peakValue, _triggerThreshold) >= _fallbackTolerance &&
+                          _peakValue != _triggerThreshold) // deal with special case where mapTo01(...) would return 0.5 by default
+                  || !high) {
+
+        // Fallback detected.
+        fallingBack = true;
+
+        // Reset.
+        _crossed = false;
+        _peakValue = -FLT_MAX;
+      }
     }
-  }
 
-  // Assign value depending on mode.
-  _onValue = (modeCrossing() ? crossing : fallingBack);
+    // Assign value depending on mode.
+    _onValue = (modeCrossing() ? crossing : fallingBack);
+  }
 
   return get();
 }
@@ -151,6 +162,9 @@ void PeakDetector::_reset() {
   // Init all flags.
   _onValue = _isHigh = _crossed = false;
   _wasLow = true;
+
+  // Set first run flag.
+  _firstRun = true;
 }
 
 }
