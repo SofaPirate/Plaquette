@@ -1,7 +1,7 @@
 /**
- * Events
+ * EventsTiming
  *
- * Demonstrates the use of events.
+ * Demonstrates the use of events for timing.
  * 
  * This example is best viewed using the Arduino Serial Plotter.
  *
