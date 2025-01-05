@@ -37,7 +37,7 @@ float SineWave::_get(phase_time_t t) {
 
   // Special case: width == 0.5 (default and most common). More efficient.
   if (_width == HALF_PHASE_TIME_MAX) {
-    return 0.5f + sin16((uint16_t)(t >> 16)) / 65534.0f;
+    return (32767 + sin16((uint16_t)(t >> 16))) / 65534.0f;
   }
   // General case.
   else {
@@ -52,7 +52,7 @@ float SineWave::_get(phase_time_t t) {
       phase_time_t widthMinusOne = _width - 1;
       remappedPhaseTime16 = (uint16_t) ((float)(t - widthMinusOne) / (PHASE_TIME_MAX - widthMinusOne) * 32767.0f) + 32768;
     }
-    return 0.5f + sin16(remappedPhaseTime16) / 65534.0f;
+    return (32767 + sin16(remappedPhaseTime16)) / 65534.0f;
   }
 }
 
