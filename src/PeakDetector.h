@@ -98,8 +98,8 @@ public:
   /// Returns true iff the triggerThreshold is crossed.
   virtual bool isOn() { return _onValue; }
 
-  /// Register event callback on peak detection.
-  virtual void onPeak(EventCallback callback);
+  /// Registers event callback on peak detection.
+  virtual void onBang(EventCallback callback);
 
 protected:
   // Resets peak detection flags.

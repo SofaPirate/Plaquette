@@ -155,7 +155,7 @@ float PeakDetector::put(float value) {
   return get();
 }
 
-void PeakDetector::onPeak(EventCallback callback) {
+void PeakDetector::onBang(EventCallback callback) {
   onEvent(callback, EVENT_BANG);
 }
 

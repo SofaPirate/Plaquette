@@ -396,8 +396,13 @@ public:
   /// Difference between current and previous value of the unit.
   virtual int8_t changeState() { return _changeState; }
 
+  /// Registers event callback on rise event.
   virtual void onRise(EventCallback callback)   { onEvent(callback, EVENT_RISE); }
+
+  /// Registers event callback on fall event.
   virtual void onFall(EventCallback callback)   { onEvent(callback, EVENT_FALL); }
+
+  /// Registers event callback on change event.
   virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
 
 protected:
@@ -414,9 +419,9 @@ protected:
   virtual bool eventTriggered(EventType eventType) {
     switch (eventType) {
       case EVENT_CHANGE: return changed();
-      case EVENT_RISE:    return rose();
-      case EVENT_FALL:    return fell();
-      default:            return DigitalUnit::eventTriggered(eventType);
+      case EVENT_RISE:   return rose();
+      case EVENT_FALL:   return fell();
+      default:           return DigitalUnit::eventTriggered(eventType);
     }
   }
 
