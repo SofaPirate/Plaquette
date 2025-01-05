@@ -21,9 +21,8 @@ TriangleWave	KEYWORD1
 SineWave	KEYWORD1
 
 Alarm	KEYWORD1
-Metro	KEYWORD1
+Metronome	KEYWORD1
 Ramp	KEYWORD1
-Timer	KEYWORD1
 
 MinMaxScaler	KEYWORD1
 Normalizer	KEYWORD1
@@ -93,6 +92,9 @@ debounceMode  KEYWORD2
 infiniteTimeWindow	KEYWORD2
 timeWindow	KEYWORD2
 cutoff	KEYWORD2
+pauseCalibrating  KEYWORD2
+resumeCalibrating KEYWORD2
+isCalibrating KEYWORD2
 
 # Oscillators
 period  KEYWORD2
@@ -102,6 +104,7 @@ phase  KEYWORD2
 amplitude  KEYWORD2
 shiftBy  KEYWORD2
 timeToPhase  KEYWORD2
+setTime KEYWORD2
 
 # Ramp
 duration  KEYWORD2
@@ -128,15 +131,19 @@ clamp    KEYWORD2
 noClamp    KEYWORD2
 isClamped    KEYWORD2
 
-# AbstractTimer
+# AbstractChronometer
 start  KEYWORD2
 stop	KEYWORD2
+pause	KEYWORD2
 resume	KEYWORD2
 elapsed KEYWORD2
-progress	KEYWORD2
-isStarted  KEYWORD2
-isComplete	KEYWORD2
+add	KEYWORD2
+isRunning KEYWORD2
 hasPassed	KEYWORD2
+
+# AbstractTimer
+isFinished	KEYWORD2
+progress	KEYWORD2
 
 # Stream
 precision  KEYWORD2
