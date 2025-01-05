@@ -103,7 +103,25 @@ public:
     * @param phase the phase shift (in % of period)
     * @return the value of oscillator with given phase shift
     */
-   virtual float shiftBy(float phaseShift);
+  virtual float shiftBy(float phaseShift);
+
+  /// Starts/restarts the wave.
+  virtual void start();
+
+  /// Interrupts the wave.
+  virtual void pause();
+
+  /// Interrupts the wave and resets to beginning.
+  virtual void stop();
+
+  /// Resumes process.
+  virtual void resume();
+
+  /// Forces current time (in seconds).
+  virtual void setTime(float time);
+
+  /// Returns true iff the wave is currently running.
+  bool isRunning() const { return _isRunning; }
 
 protected:
   // Core Plaquette methods.
@@ -128,8 +146,11 @@ protected:
   // Width of the signal.
   phase_time_t _width;
 
-  // Internal use.
+  // Internal use: holds current phase time.
   phase_time_t _phaseTime;
+
+  // Is the wave currently running?
+  bool _isRunning;
 };
 
 }

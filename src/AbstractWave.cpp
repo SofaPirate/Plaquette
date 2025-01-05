@@ -25,23 +25,20 @@
 
 namespace pq {
 
-AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _phase(0), _amplitude(1), _width(0) {
+AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false) {
   period(period_);
   width(width_);
   amplitude(1.0f);
 }
 
 void AbstractWave::begin() {
-  // Offset phaseTime to current phase.
-  _phaseTime = float2phaseTime(_phase);
-
-  // Compute initial value.
-  _value = _getAmplified(_phaseTime);
+  start();
 }
 
 void AbstractWave::step() {
   // Update phase time.
-  phaseTimeUpdate(_phaseTime, _period, sampleRate());
+  if (isRunning())
+    phaseTimeUpdate(_phaseTime, _period, sampleRate());
 
   // Compute next value.
   _value = _getAmplified(_phaseTime);
@@ -101,6 +98,40 @@ float AbstractWave::timeToPhase(float time) const { return pq::timeToPhase(_peri
 
 float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
+}
+
+
+void AbstractWave::start() {
+  // Start.
+  setTime(0);
+  _isRunning = true;
+}
+
+
+void AbstractWave::pause() {
+  _isRunning = false;
+}
+
+void AbstractWave::stop() {
+  // Stop.
+  setTime(0);
+  _isRunning = false;
+}
+
+void AbstractWave::resume() {
+  _isRunning = true;
+}
+
+void AbstractWave::setTime(float time) {
+  // Set current phase time.
+  _phaseTime = float2phaseTime(_phase);
+
+  // Perform calculation iff time needs to be added.
+  if (time != 0)
+    _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
+
+  // Compute value.
+  _value = _getAmplified(_phaseTime);
 }
 
 }
