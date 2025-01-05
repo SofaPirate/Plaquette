@@ -37,6 +37,9 @@ public:
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
+  /// Returns true iff value was changed.
+  virtual bool changed() const { return _valueChanged; }
+
 protected:
   // Core Plaquette methods.
   virtual void begin();
@@ -45,9 +48,10 @@ protected:
   // Internal use: keep track of next incoming value in a non-blocking way.
   float _nextValue;
   float _nextFraction;
-  bool _nextIsValid : 1;
+  bool _nextIsValid    : 1;
   bool _nextIsNegative : 1;
   bool _nextIsFraction : 1;
+  bool _valueChanged   : 1;
 
   // The stream.
   Stream* _stream;
