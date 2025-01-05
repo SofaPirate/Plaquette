@@ -187,6 +187,13 @@ easeInBounce	KEYWORD2
 easeOutBounce	KEYWORD2
 easeInOutBounce	KEYWORD2
 
+# Events
+onBang	KEYWORD2
+onRise	KEYWORD2
+onFall	KEYWORD2
+onChange	KEYWORD2
+clearEvents	KEYWORD2
+
 #######################################
 # Instances (KEYWORD2)
 #######################################
