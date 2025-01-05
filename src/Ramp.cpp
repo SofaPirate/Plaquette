@@ -24,18 +24,19 @@
 
 namespace pq {
 
+Ramp::Ramp() :
+  Unit(),
+  AbstractTimer(1.0f),
+  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION)
+{
+}
+
 Ramp::Ramp(float from) :
   Unit(),
   AbstractTimer(1.0f),
   _from(from), _to(from), _easing(easeNone), _mode(RAMP_DURATION)
 {
 }
-
-// Ramp::Ramp(float from, float to, float duration, easing_function easing) :
-//   AbstractTimer(duration),
-//   _from(from), _to(to), _easing(easing), _mode(DURATION)
-// {
-// }
 
 float Ramp::put(float value) {
   if (_mode == RAMP_SPEED) {

@@ -40,21 +40,16 @@ enum {
 class Ramp : public Unit, public AbstractTimer {
 public:
   /**
-   * Basic constructor. Use one of the go(...) functions to launch ramps.
-   * with specific parameters.
-   * @param from the value the ramp starts with
+   * Default constructor. Ramps from 0 to 1 in one second.
    */
-  Ramp(float from=0.0f);
+  Ramp();
 
-  // /**
-  //  * Basic constructor. Use one of the go(...) functions to launch ramps.
-  //  * with specific parameters.
-  //  * @param from the initial value
-  //  * @param to the final value
-  //  * @param duration the duration of the ramp (in seconds)
-  //  * @param easing the easing function to apply (default: no easing)
-  //  */
-  // Ramp(float from, float to, float duration, easing_function easing=easeNone);
+  /**
+   * Constructor allowing to set initial value. Use one of the go(...) functions to 
+   * launch ramps with specific parameters.
+   * @param from the initial value
+   */
+  Ramp(float from);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }
