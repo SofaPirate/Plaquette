@@ -31,10 +31,10 @@ Ramp::Ramp() :
 {
 }
 
-Ramp::Ramp(float from) :
+Ramp::Ramp(float duration) :
   Unit(),
-  AbstractTimer(1.0f),
-  _from(from), _to(from), _easing(easeNone), _mode(RAMP_DURATION)
+  AbstractTimer(duration),
+  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION)
 {
 }
 
