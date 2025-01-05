@@ -98,9 +98,15 @@ public:
   /// Returns true iff the triggerThreshold is crossed.
   virtual bool isOn() { return _onValue; }
 
+  /// Register event callback on peak detection.
+  virtual void onPeak(EventCallback callback);
+
 protected:
   // Resets peak detection flags.
   void _reset();
+
+  // Returns true if event is triggered.
+  virtual bool eventTriggered(EventType eventType);
 
   // Threshold values.
   float _triggerThreshold;

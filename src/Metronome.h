@@ -79,9 +79,15 @@ public:
   /// Returns the phase (in % of period).
   virtual float phase() const { return _phase; }
 
+  /// Register event callback on bang event.
+  virtual void onBang(EventCallback callback);
+
 protected:
   virtual void begin();
   virtual void step();
+
+  // Returns true if event is triggered.
+  virtual bool eventTriggered(EventType eventType);
 
   // Phase (in % of period).
   float _period;

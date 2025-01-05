@@ -57,4 +57,13 @@ void Metronome::phase(float phase) {
   }
 }
 
+void Metronome::onBang(EventCallback callback) {
+  onEvent(callback, EVENT_BANG);
+}
+
+bool Metronome::eventTriggered(EventType eventType) {
+  if (eventType == EVENT_BANG) return _onValue;
+  else return DigitalUnit::eventTriggered(eventType);
+}
+
 }

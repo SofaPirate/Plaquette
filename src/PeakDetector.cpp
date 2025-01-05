@@ -155,6 +155,15 @@ float PeakDetector::put(float value) {
   return get();
 }
 
+void PeakDetector::onPeak(EventCallback callback) {
+  onEvent(callback, EVENT_BANG);
+}
+
+bool PeakDetector::eventTriggered(EventType eventType) {
+  if (eventType == EVENT_BANG) return _onValue;
+  else return DigitalUnit::eventTriggered(eventType);
+}
+
 void PeakDetector::_reset() {
   // Init peak value to -inf.
   _peakValue = -FLT_MAX;

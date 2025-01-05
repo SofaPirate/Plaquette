@@ -28,6 +28,7 @@
 #endif
 
 #include "HybridArrayList.h"
+#include "PqEventManager.h"
 #include "pq_map_real.h"
 
 #if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
@@ -192,6 +193,9 @@ private:
   // True during first run.
   bool _firstRun;
 
+  // Used to keep track of events.
+  EventManager _eventManager;
+
 private:
   // Prevent copy-construction and assignment.
   PlaquetteEnv(const PlaquetteEnv&);
@@ -233,7 +237,8 @@ void beginSerial(unsigned long baudRate);
  * can also be sent to a unit using put().
  */
 class Unit {
-    friend class PlaquetteEnv;
+  friend class PlaquetteEnv;
+  friend class EventManager;
 
 public:
   /// Converts analog (float) value to digital (bool) value.
@@ -263,10 +268,22 @@ public:
   /// Maps value to new range. If the unit's values are unbounded, simply returns get().
   virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
 
+  // Clears all event listeners.
+  virtual void clearEvents() {
+    Plaquette._eventManager.clearListeners(this);
+  }
+
 protected:
   /// Constructor.
   Unit();
   virtual ~Unit();
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) { return false; }
+
+  virtual void onEvent(EventCallback callback, EventType eventType) {
+    Plaquette._eventManager.addListener(this, callback, eventType);
+  }
 
 private:
   /// Operator that allows usage in conditional expressions.
@@ -379,6 +396,10 @@ public:
   /// Difference between current and previous value of the unit.
   virtual int8_t changeState() { return _changeState; }
 
+  virtual void onRise(EventCallback callback)   { onEvent(callback, EVENT_RISE); }
+  virtual void onFall(EventCallback callback)   { onEvent(callback, EVENT_FALL); }
+  virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
+
 protected:
   // Helper function. Sets both _onValue and _changeState.
   void _setOn(bool newOnValue) {
@@ -387,6 +408,16 @@ protected:
 
     // Register new value.
     _onValue = newOnValue;
+  }
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_CHANGE: return changed();
+      case EVENT_RISE:    return rose();
+      case EVENT_FALL:    return fell();
+      default:            return DigitalUnit::eventTriggered(eventType);
+    }
   }
 
   // The value contained in the unit.
@@ -541,6 +572,9 @@ void PlaquetteEnv::preStep() {
   // Update every component.
   for (size_t i=0; i<_units.size(); i++)
     _units[i]->step();
+
+  // Look for events.
+  _eventManager.step();
 }
 
 void PlaquetteEnv::postStep() {
