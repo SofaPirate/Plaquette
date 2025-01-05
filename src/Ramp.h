@@ -45,11 +45,10 @@ public:
   Ramp();
 
   /**
-   * Constructor allowing to set initial value. Use one of the go(...) functions to 
-   * launch ramps with specific parameters.
-   * @param from the initial value
+   * Constructor with duration.
+   * @param duration duration of the ramp
    */
-  Ramp(float from);
+  Ramp(float duration);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }

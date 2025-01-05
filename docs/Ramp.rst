@@ -36,20 +36,22 @@ Sequentially ramps through different values.
 
    #include <Plaquette.h>
 
-   Ramp myRamp(0.0); // the ramp is initialized at zero (0)
+   Ramp myRamp(3.0); // initial duration: 3 seconds
 
    StreamOut serialOut(Serial);
 
    void begin() {
      // Apply an easing function (optional).
      myRamp.easing(easeOutSine);
+     // Launch ramp: ramp from -10 to 10.
+     myRamp.go(-10, 10);
    }
 
    void step() {
      if (myRamp.isFinished())
      {
-       // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
-       myRamp.go(randomFloat(-10, 10), 2.0);
+       // Launch ramp from current value to half, increasing duration by one second.
+       myRamp.go(myRamp / 2, myRamp.duration() + 1);
      }
 
      myRamp >> serialOut;

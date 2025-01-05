@@ -11,19 +11,21 @@
 #include <Plaquette.h>
 
 // The ramp object.
-Ramp zigZagRamp(0.0); // the ramp is initialized at 0
+Ramp zigZagRamp(2.0); // ramp duration: 2 seconds (initial value is zero)
 
 // Serial output.
 StreamOut serialOut(Serial);
 
-void begin() {}
+void begin() {
+  zigZagRamp.go(-10, 10); // first ramp from -10 to 10
+}
 
 void step() {
   // When ramp is complete, re-launch it.
   if (zigZagRamp.isFinished())
   {
-    // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
-    zigZagRamp.go(randomFloat(-10, 10), 2.0);
+    // Restarts the ramp going from current value to a random value in [-10, +10] (keeping the same duration).
+    zigZagRamp.go( randomFloat(-10, 10) );
   }
 
   // Send ramp value to serial.
