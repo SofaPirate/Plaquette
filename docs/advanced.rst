@@ -3,13 +3,12 @@
 Advanced Usage
 ==============
 
-Avoiding Plaquette Style
-------------------------
+Vanilla Coding Style
+--------------------
 
-If you don't want to use Plaquette's :doc:`>> <pipe>` operator or auto-conversion 
-of units to values (eg., ``if (input)``, ``input >> output``) in favor of a more
-typical object-oriented programming style, you can avoid using these features by 
-simply using Plaquette units' ``get()`` and ``put()`` methods.
+You can avoid Plaquette's :doc:`>> <pipe>` operator or auto-conversion of units to values 
+(eg., ``if (input)``, ``input >> output``) in favor of a more conventional programming style
+by simply using the ``get()`` and ``put()`` functions of Plaquette units.
 
 The ``get()`` method returns the current value of the unit:
 
