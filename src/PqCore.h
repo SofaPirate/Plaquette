@@ -359,7 +359,7 @@ public:
 class AnalogSource : public Unit {
 public:
   /// Constructor.
-  AnalogSource(float init=0.0f) : Unit() { _value = constrain(init, 0, 1); }
+  AnalogSource(float initialValue=0.0f) : Unit() { _value = constrain(initialValue, 0, 1); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
@@ -376,7 +376,7 @@ protected:
 class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(bool init=false) : DigitalUnit(), _onValue(init), _changeState(0) {}
+  DigitalSource(bool initialValue=false) : DigitalUnit(), _onValue(initialValue), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
