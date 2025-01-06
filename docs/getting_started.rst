@@ -128,7 +128,7 @@ Upload sketch
 ~~~~~~~~~~~~~
 
 Upload your sketch to the Arduino board. You should see the LED on the
-board blinking once every two seconds at a regular pace.
+board **blinking once every two seconds at a regular pace**.
 
 Et voilà!
 
@@ -152,10 +152,13 @@ Full code
 Step 3 : Experiment!
 --------------------
 
-Period and duty cycle
-~~~~~~~~~~~~~~~~~~~~~
+So far so good. Let's see if we can push this a bit further.
 
-The ``SquareWave`` unit type provides two parameters to configure the oscillator's behavior:
+Change initial parameters of a unit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``SquareWave`` unit type provides two parameters when it is created that allows
+you to configure the oscillator's behavior.
 
 .. code:: cpp
 
@@ -167,64 +170,167 @@ The ``SquareWave`` unit type provides two parameters to configure the oscillator
    and represents the proportion of the period during which the signal
    is "high" (ie. "on duty") (default: 0.5)
 
-Try changing the first parameter in the square oscillator unit to change 
-the period of oscillation. What happens?
+.. note::
+   We call this step the **construction** or **instantiation** of the object ``myWave``.
 
-You can also try to add a second parameter to  the constructor to control 
-the oscillator's `duty -ycle <https://en.wikipedia.org/wiki/Duty_cycle>`__. 
+Try changing the first parameter (period) in the square oscillator unit to change 
+the period of oscillation.
 
+- ``SquareWave myWave(1.0);`` for a period of one second
+- ``SquareWave myWave(2.5);`` for a period of 2.5 seconds
+- ``SquareWave myWave(10.0);`` for a period of 10 seconds
+- ``SquareWave myWave(0.5);`` for a period of half a second (500 milliseconds)
 
-For a fixed period, try changing the duty cycle to different percentages between 0.0 and 1.0.
-Examples:
+.. warning::
+   Don't forget to re-upload the sketch after each change.
+
+Now try adding a second parameter (width) to control the oscillator's
+`width <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing 
+the duty cycle to different percentages between 0.0 and 1.0.
 
 - ``SquareWave myWave(2.0, 0.5);`` for a duty-cycle of 50% (default)
 - ``SquareWave myWave(2.0, 0.25);`` for a duty-cycle of 25%
 - ``SquareWave myWave(2.0, 0.75);`` for a duty-cycle of 75%
+- ``SquareWave myWave(2.0, 0.9);`` for a duty-cycle of 90%
 
-Adding and multiplying
-~~~~~~~~~~~~~~~~~~~~~~
+Change parameters of a unit during runtime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add another oscillator with a different period and duty cycle: multiply
-their values and send the result to the LED.
+What if we wanted to change the parameters of the oscillator during runtime rather than
+just at the beginning? The ``SquareWave`` unit type allows real-time modification of
+its parameters using function calls using the :doc:`dot` operator.
+
+For example, to change the period, simply call the following inside the step() function:
 
 .. code:: cpp
 
-    SquareWave myWave2(period, width);
-    // ...
     void step() {
-      (myWave * myWave2) >> myLed;
+      myWave.period(newPeriod);
+      myWave >> myLed;
     }
 
-Try adding their values instead: what do you see?
+Of course, to accomplish our goal, we need a way to *change* the value ``newPeriod`` 
+during runtime. We can accomplish this in many different ways, but let's try something 
+simple: we will use another wave to *modulate* our wave's period.
 
-Use a conditional
-~~~~~~~~~~~~~~~~~
+For this, we will be using another kind of source called a ``SineWave`` and will use its
+outputs to change the period of ``myWave``.
 
-Add a third oscillator that will "switch" between the two oscillators
-every 5 seconds using an
+.. code:: cpp
+    
+    SineWave myModulator(20.0);
+
+This wave will oscillate smoothly from 0 to 1 every 20 seconds.
+
+.. code:: cpp
+    
+    void step() {
+      myWave.period(myModulator);
+      myWave >> myLed;
+    }
+
+Upload the sketch and you should see the LED blinking as before, with the difference that
+the blinking speed will now change from blinking very fast (in fast, infinitely fast, with 
+a period of zero seconds!) to very slow (period of 20 seconds).
+
+.. note::
+
+   If you want to visualize the values of both waves on your computer, you can print them 
+   on the serial port one after the other, separated by a space. Add the following code to
+   your ``step()`` function:
+
+   .. code:: cpp
+
+     print(myWave); print(" "); println(myModulator);
+
+   Then, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
+   by selecting in in **Tools > Serial Plotter**.
+
+Now try modulating the width of ``myWave`` instead of its period:
+
+.. code:: cpp
+    
+    myWave.width(myModulator);
+
+Use a button
+~~~~~~~~~~~~
+
+Now let's try to do some very simple interactivity by using a simple switch or button. For this
+we will be using the internal pull-up resistor available on Arduino boards for a very simple circuit.
+One leg of the button should be connected to ground (GND) while the other should be connected to 
+digital pin 2.
+
+.. note::
+   
+   If you do not have a button or switch, you can just use two electric wires: one connected to 
+   ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch 
+   the wires together to close the circuit.
+
+Declare the button unit with the other units at the top of your sketch:
+
+.. code:: cpp
+
+   DigitalIn myButton(2, INTERNAL_PULLUP);
+
+You will notice that the type of this unit (:doc:`DigitalIn`) resembles that of our LED-controlling
+unit (:doc:`DigitalOut`). This is because both units have something in common: they have only two states:
+either on or off, high or low, true or false, one or zero, hence the adjective ``Digital``. However,
+while the LED is considered an output or actuator (``Out``) our button is rather an input or sensor
+(``In``).
+
+.. note::
+
+   If you are curious, you might also want to know that there is an :doc:`AnalogIn` and an :doc:`AnalogOut`
+   types which support sensors and actuators that work with continuous values between 0 and 1 (0% to 100%).
+
+Now, let's use this button as a way to control whether the LED blinks or not. For this, we will need to use 
+the value of the button as part of a **condition** for an
 `if...else <https://www.arduino.cc/reference/en/language/structure/control-structure/if/>`__
 statement.
 
 .. code:: cpp
 
-    // TIP: omitting the duty-cycle parameter results in default value (0.5)
-    SquareWave mySwitcher(5.0);
-    // ...
     void step() {
-      if (mySwitcher)
+      if (myButton)
         myWave >> myLed;
       else
-        myWave2 >> myLed;
+        0 >> myLed;
     }
 
-**ADVANCED**: You can rewrite this expression in a more compact way
-using the `? : conditional
-operator <https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm>`__:
+.. note::
+   You can rewrite this expression in a more compact way using the 
+   `conditional operator (?) <https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm>`__:
+
+   .. code:: cpp
+
+      void step() {
+        (myButton ? myWave : 0) >> myLed;
+      }
+
+Full code
+~~~~~~~~~
 
 .. code:: cpp
 
+    #include <Plaquette.h>
+
+    DigitalOut myLed(13);
+
+    SquareWave myWave(2.0);
+
+    SineWave myModulator(20.0);
+
+    DigitalIn myButton(2, INTERNAL_PULLUP);
+
+    void begin() {}
+
     void step() {
-      (mySwitcher ? myWave : myWave2) >> myLed;
+      myWave.period(myModulator);
+
+      if (myButton)
+        myWave >> myLed;
+      else
+        0 >> myLed;
     }
 
 More examples
@@ -232,10 +338,10 @@ More examples
 
 You will find more examples in **File > Examples > Plaquette** including:
 
-- Using a button
 - Using an analog input such as a photocell or potentiometer
 - Using an analog output
 - Basic filtering (smoothing, re-scaling)
 - Serial input and output
+- Event management
 
 We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
