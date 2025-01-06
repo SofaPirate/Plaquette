@@ -154,8 +154,6 @@ public:
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh);
 
-  virtual operator float() { return get(); }
-
 protected:
   virtual void begin();
   virtual void step();

@@ -43,7 +43,7 @@ public:
   virtual bool isOff() { return !isOn(); }
 
   /// Operator that allows usage in conditional expressions.
-  virtual operator bool() { return isOn(); }
+  explicit operator bool() { return isOn(); }
 
   [[deprecated("Use width(float) instead.")]]
   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }

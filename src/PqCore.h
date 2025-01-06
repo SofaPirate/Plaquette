@@ -256,7 +256,7 @@ public:
   virtual float get() = 0;
 
   /// Object can be used directly to access its value.
-  virtual operator float() { return get(); }
+  operator float() { return get(); }
 
   /**
    * Pushes value into the unit.
@@ -289,7 +289,7 @@ private:
   /// Operator that allows usage in conditional expressions.
   // NOTE: This operator is defined as explicit so that boolean expression like
   // "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  virtual explicit operator bool() { return Unit::analogToDigital(get()); }
+  explicit operator bool() { return Unit::analogToDigital(get()); }
 
   // Prevents assignation operations by making them private.
   Unit& operator=(bool);
@@ -342,13 +342,13 @@ public:
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
   /// Operator that allows usage in conditional expressions.
-  virtual operator bool() { return isOn(); }
+  operator bool() { return isOn(); }
 
   // IMPORTANT: LEAVE COMMENTED
   // virtual operator int() { return getInt(); }
 
   // IMPORTANT: This operator is redefined as explicit to make default return a bool.
-  virtual explicit operator float() { return Unit::operator float(); }
+  explicit operator float() { return Unit::operator float(); }
 };
 
 /**
