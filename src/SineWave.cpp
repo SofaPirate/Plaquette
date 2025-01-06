@@ -33,11 +33,10 @@ SineWave::SineWave(float period_, float width_) : AbstractWave(period_, width_) 
 
   // Returns value in [0, 1].
 float SineWave::_get(phase_time_t t) {
-  // Compute sine wave depending on width.
-
+  int16_t sineWave16;
   // Special case: width == 0.5 (default and most common). More efficient.
   if (_width == HALF_PHASE_TIME_MAX) {
-    return (32767 + sin16((uint16_t)(t >> 16))) / 65534.0f;
+    sineWave16 = sin16((uint16_t)(t >> 16));
   }
   // General case.
   else {
@@ -52,8 +51,10 @@ float SineWave::_get(phase_time_t t) {
       phase_time_t widthMinusOne = _width - 1;
       remappedPhaseTime16 = (uint16_t) ((float)(t - widthMinusOne) / (PHASE_TIME_MAX - widthMinusOne) * 32767.0f) + 32768;
     }
-    return (32767 + sin16(remappedPhaseTime16)) / 65534.0f;
+    sineWave16 = sin16(remappedPhaseTime16);
   }
+  
+  return (uint16_t(32767) + sineWave16) / 65534.0f;
 }
 
 }
