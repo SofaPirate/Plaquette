@@ -28,7 +28,7 @@
 #endif
 
 #include "HybridArrayList.h"
-#include "PqEventManager.h"
+#include "PqEvents.h"
 #include "pq_map_real.h"
 
 #if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))

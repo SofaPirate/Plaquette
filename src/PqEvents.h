@@ -1,5 +1,5 @@
 /*
- * PqEventManager.h
+ * PqEvents.h
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  *
