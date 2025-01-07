@@ -107,19 +107,22 @@ void AbstractWave::start() {
   _isRunning = true;
 }
 
-
-void AbstractWave::pause() {
-  _isRunning = false;
-}
-
 void AbstractWave::stop() {
   // Stop.
   setTime(0);
   _isRunning = false;
 }
 
+void AbstractWave::pause() {
+  _isRunning = false;
+}
+
 void AbstractWave::resume() {
   _isRunning = true;
+}
+
+void AbstractWave::togglePause() {
+  _isRunning = !_isRunning;
 }
 
 void AbstractWave::setTime(float time) {

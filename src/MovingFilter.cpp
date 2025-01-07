@@ -51,6 +51,10 @@ void MovingFilter::pauseCalibrating() {
   _isCalibrating = false;
 }
 
+void MovingFilter::toggleCalibrating() {
+  _isCalibrating = !_isCalibrating;
+}
+
 bool MovingFilter::isCalibrating() const {
   return _isCalibrating;
 }

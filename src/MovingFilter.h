@@ -67,6 +67,9 @@ public:
    */
   virtual void pauseCalibrating();
 
+  /// Toggles calibration mode.
+  virtual void toggleCalibrating();
+
   /// Returns true iff the moving filter is in calibration mode.
   virtual bool isCalibrating() const;
 

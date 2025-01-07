@@ -34,14 +34,17 @@ public:
   /// Starts/restarts the chronometer.
   virtual void start();
 
-  /// Interrupts the chronometer.
-  virtual void pause();
-
   /// Interrupts the chronometer and resets to zero.
   virtual void stop();
 
+  /// Interrupts the chronometer.
+  virtual void pause();
+
   /// Resumes process.
   virtual void resume();
+
+  /// Toggles pause/unpause.
+  virtual void togglePause();
 
   /// The time currently elapsed by the chronometer (in seconds).
   virtual float elapsed() const { return _elapsedTime; }

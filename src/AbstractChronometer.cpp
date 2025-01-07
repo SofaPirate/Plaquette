@@ -32,6 +32,11 @@ void AbstractChronometer::start() {
   _isRunning = true;
 }
 
+void AbstractChronometer::stop() {
+  // Stop.
+  set(0);
+  _isRunning = false;
+}
 
 void AbstractChronometer::pause() {
   if (_isRunning) {
@@ -40,17 +45,16 @@ void AbstractChronometer::pause() {
   }
 }
 
-void AbstractChronometer::stop() {
-  // Stop.
-  set(0);
-  _isRunning = false;
-}
-
 void AbstractChronometer::resume() {
   if (!_isRunning) {
     _startTime = clock();
     _isRunning = true;
   }
+}
+
+void AbstractChronometer::togglePause() {
+  if (_isRunning) pause();
+  else resume();
 }
 
 bool AbstractChronometer::hasPassed(float timeout) const

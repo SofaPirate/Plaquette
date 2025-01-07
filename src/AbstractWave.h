@@ -108,14 +108,17 @@ public:
   /// Starts/restarts the wave.
   virtual void start();
 
-  /// Interrupts the wave.
-  virtual void pause();
-
   /// Interrupts the wave and resets to beginning.
   virtual void stop();
 
+  /// Interrupts the wave.
+  virtual void pause();
+
   /// Resumes process.
   virtual void resume();
+
+  /// Toggles pause/unpause.
+  virtual void togglePause();
 
   /// Forces current time (in seconds).
   virtual void setTime(float time);
