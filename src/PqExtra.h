@@ -48,6 +48,7 @@
 #include "SquareWave.h"
 #include "TriangleWave.h"
 
+// Servo-motors.
 #include "PqServo.h"
 
 #endif
