@@ -126,7 +126,7 @@ private:
 
 
 template <typename T=void>
-class AnalogFixture : public Node, public Smoothable {
+class AnalogFixture : public Unit, public Smoothable {
 public:
   AnalogFixture(T& object, AnalogCallbacks<T> callbacks)
     : _object(&object), _callbacks(callbacks) {}
@@ -146,7 +146,7 @@ public:
 
 public:
   virtual float get() { return _smoothed(); }
-  virtual operator float() { return get(); }
+  operator float() { return get(); }
 
 protected:
   virtual void begin() {
@@ -174,7 +174,7 @@ protected:
 
 
 template <>
-class AnalogFixture<void> : public Node, public Smoothable {
+class AnalogFixture<void> : public Unit, public Smoothable {
 public:
   AnalogFixture(AnalogCallbacks<void> callbacks)
     : _callbacks(callbacks) {}
