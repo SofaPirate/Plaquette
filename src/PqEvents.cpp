@@ -30,7 +30,7 @@ void EventManager::addListener(Unit* unit, EventCallback callback, EventType eve
 // }
 
 void EventManager::clearListeners(Unit* unit) {
-  for (int i=_listeners.size()-1; i>=0; i--) {
+  for (int i=(int)_listeners.size()-1; i>=0; i--) {
     if (_listeners[i].unit == unit) {
       _listeners.remove(i);
     }
@@ -38,7 +38,7 @@ void EventManager::clearListeners(Unit* unit) {
 }
 
 void EventManager::step() {
-  for (int i=0; i<_listeners.size(); i++) {
+  for (int i=0; i<(int)_listeners.size(); i++) {
     Listener& listener = _listeners[i];
     if (listener.unit->eventTriggered(listener.eventType)) {
       listener.callback();

@@ -127,15 +127,15 @@ public:
      */
     int indexOf(const T& item) {
         // Search in static array.
-        for (int i = 0; i < STATIC_CAPACITY && i < _size; ++i) {
+        for (size_t i = 0; i < STATIC_CAPACITY && i < _size; ++i) {
             if (_staticArray[i] == item) {
-                return i;
+                return (int)i;
             }
         }
         // Search in dynamic array.
-        for (int i = 0; i < _size - STATIC_CAPACITY; ++i) {
+        for (size_t i = 0; i < _size - STATIC_CAPACITY; ++i) {
             if (_dynamicArray[i] == item) {
-                return i + STATIC_CAPACITY;
+                return (int)(i + STATIC_CAPACITY);
             }
         }
         // Not found.
