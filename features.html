@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Features &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -59,7 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#signal-centric">Signal-centric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#signal-filtering">Signal Filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#real-time">Real-time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#arduino-compatible">Arduino compatible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arduino-compatible">Arduino Compatible</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
@@ -165,7 +160,7 @@ base units by following <a class="reference internal" href="base_units.html"><sp
 <p>Plaquette helps designers manipulate real-time signals from inputs to outputs.
 In Plaquette, signals are represented either as <code class="docutils literal notranslate"><span class="pre">true/false</span></code> conditions (in the
 case of digital binary signals such as those coming from a button or switch), or as
-floating-point numbers in the [0.0-0.1] range (ie. 0% to 100%) (in the case
+floating-point numbers in the [0, 1] range (ie. 0% to 100%) (in the case
 of analog signals such as those emitted by a light sensor, microphone, or
 potentiometer.) Because of this, there is no more need for users to perform counter-intuitive
 conversions on integer values.</p>
@@ -269,7 +264,7 @@ when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
 
 <span class="c1">// Square wave 1 second period.</span>
-<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -286,14 +281,61 @@ when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
 </table>
 </section>
 <section id="arduino-compatible">
-<span id="compatible-with-arduino"></span><h2>Arduino compatible<a class="headerlink" href="#arduino-compatible" title="Link to this heading"></a></h2>
+<span id="compatible-with-arduino"></span><h2>Arduino Compatible<a class="headerlink" href="#arduino-compatible" title="Link to this heading"></a></h2>
 <p>Plaquette is installed as an Arduino library and provides a replacement for the
 core Arduino functionalities while remaining fully compatible with Arduino code.
 Seasoned Arduino users should consult the <a class="reference internal" href="advanced.html"><span class="doc">Advanced Usage</span></a> section for some tips
 on how to integrate Plaquette into their existing code.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;T&#39;</span><span class="p">)</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<p>The following example uses Arduino’s <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/math/constrain/">constrain()</a>
+function and <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/communication/serial/">Serial</a> object
+to control a blinking LED that slows down with each button push. keeping the oscillation
+period within a certain range.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span>
+
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">countButtonPushes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;R&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">countButtonPushes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// true when value rises (ie. button is pushed)</span>
+<span class="w">     </span><span class="n">countButtonPushes</span><span class="o">++</span><span class="p">;</span>
+<span class="w">     </span><span class="n">oscillator</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">constrain</span><span class="p">(</span><span class="n">countButtonPushes</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Plaquette needs the main processing loop to run continuously without interruption
+to work correctly. Users should thus <strong>avoid using blocking processes</strong> such as Arduino’s
+<a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delay/">delay()</a> and
+<a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delayMicroseconds/">delayMicroseconds()</a> and
+functions in their code when using Plaquette.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many of the core Arduino functions work with integer types such as <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="docutils literal notranslate"><span class="pre">long</span></code>
+rather than floating-point types such as <code class="docutils literal notranslate"><span class="pre">float</span></code>. Plaquette provides alternative
+<a class="reference internal" href="functions.html"><span class="doc">functions</span></a> which should be used instead.</p>
+<p>In particular, please use:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> instead of <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/math/map/">map()</a></p></li>
+<li><p><a class="reference internal" href="randomFloat.html"><span class="doc">randomFloat()</span></a> instead of <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/random-numbers/random/">random()</a></p></li>
+<li><p><a class="reference internal" href="seconds.html"><span class="doc">seconds()</span></a> instead of <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/millis/">millis()</a></p></li>
+</ul>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -315,7 +357,7 @@ a bug in our <a class="reference external" href="https://github.com/SofaPirate/P
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -33,9 +33,9 @@ See :doc:`mapFloat` for more details.
 
    #include <Plaquette.h>
 
-   SineOsc modulator(10.0);
+   SineWave modulator(10.0);
 
-   SquareOsc oscillator(1.0);
+   SquareWave oscillator(1.0);
 
    DigitalOut led(13);
 
@@ -44,8 +44,8 @@ See :doc:`mapFloat` for more details.
 
    void step() {
      // Change duty-cycle of oscillator in range [0.2, 0.8].
-     float dutyCycle = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
-     oscillator.dutyCycle(dutyCycle);
+     float width = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
+     oscillator.width(width);
 
      // Send to LED.
      oscillator >> led;

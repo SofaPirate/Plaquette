@@ -25,7 +25,7 @@ Control an LED using a potentiometer.
 
    AnalogOut led(9);
 
-   SineOsc oscillator;
+   SineWave oscillator;
 
    void begin() {}
 

@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why Plaquette? &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Why Plaquette? &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -54,7 +49,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Why Plaquette?</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#rationale">Rationale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-new-standard">A new standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-new-standard">A New Standard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
@@ -102,37 +97,42 @@
 <h1>Why Plaquette?<a class="headerlink" href="#why-plaquette" title="Link to this heading"></a></h1>
 <section id="rationale">
 <h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading"></a></h2>
-<p>Media creators such as artists, interactive designers, and electronic musicians
-work with real-time sensory signals all the time. However, few of them (especially beginners) really
-“know their signals” and how to extract high-level information from them
-(such as debouncing, smoothing, normalizing, detecting peaks and regularities).</p>
-<p>Consider the following case of learning how to work with a simple photoresistor
-sensor plugged into an Arduino board on analog pin 0. The code reads as follows:</p>
+<p>Media creators such as media artists, interactive designers, digital luthiers,
+and electronic musicians work with real-time signals all the time. However, when
+working with tangible computing systems such as embedded sensors, robotics, connected
+objects, and electronic music instruments, available tools are often very low-level and
+lack expressivity. Creative practitionners thus struggle to design interesting works
+directly using such platforms.</p>
+<p>Consider the following case of learning how to work with a simple lignt sensor
+(eg. photoresistor) connected to an Arduino board on analog pin 0. The code reads
+as follows:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The value that is read is a raw 10-bit value returned by the Arduino board’s
-Analog to Digital Converter (ADC), an integer between 0 and
-1023. But how is this value intuitively useful for an artist who wants to use this value
-creatively?</p>
+Analog to Digital Converter (ADC), an integer between 0 and 1023. But how is this value
+intuitively useful for an artist who wants to use this value creatively?</p>
 <p>For example, what if one wants to react to a flash of light? Well, one solution
-would be to look at the kind of value we get and set a threshold.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">716</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">// do something</span>
+would be to look at the value and compare it to a threshold:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">716</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Nice. But there are two problems with this approach. Firstly, while it might work under
-certain light conditions, it will likely stop working if these conditions change,
-forcing us to make adjustments to the threshold value by hand.</p>
+<p>There are two problems with this approach.</p>
+<p>Firstly, while it might work under certain lighting conditions, it will likely stop
+working if these conditions change, forcing us to make adjustments to the threshold
+value by hand.</p>
 <p>Secondly, and perhaps more importantly, this piece of code does not really
 <em>express</em> what we are after. As creative practitioners, we don’t care whether
 the light signal is above 716 or 456 or whatnot: what we really want to know
-is whether the light signal is <em>significantly high compared to ambient light</em>.</p>
+to detect a flash of light is whether the light signal is <em>significantly high compared
+to ambient light</em>.</p>
 <p>What this example shows is that the way we are teaching and learning about sensor
 data is inefficient for creative applications. In other words: <strong>raw digital data
 lacks expressiveness</strong>.</p>
 <p>Continuing with our example, consider how one would take the input value and
-directly reroute it to an analog (PWM) output on pin <code class="docutils literal notranslate"><span class="pre">9</span></code>:</p>
+directly reroute it to an analog (PWM) output on pin 9:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">analogWrite</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -140,10 +140,10 @@ directly reroute it to an analog (PWM) output on pin <code class="docutils liter
 us 10-bit values (1024 possibilities), the PWM only supports 8 bits (256 possibilities)
 forcing us to divide the incoming value by 4 (2 bits). But again, why is this detail
 important to know for an artist, designer, or musician? And what exactly does it
-have to do with our (expressive) intention?</p>
+have to do with our expressive intention?</p>
 </section>
 <section id="a-new-standard">
-<h2>A new standard<a class="headerlink" href="#a-new-standard" title="Link to this heading"></a></h2>
+<h2>A New Standard<a class="headerlink" href="#a-new-standard" title="Link to this heading"></a></h2>
 <p>As a way to address these issues, we propose to create a general-purpose standard
 interface for simple, real-time signal processing for media artists.
 The objectives are as follow:</p>
@@ -188,7 +188,7 @@ fully compatible with Arduino.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

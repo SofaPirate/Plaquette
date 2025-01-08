@@ -29,7 +29,7 @@ Sweeps the shaft of a servo motor back and forth across 180 degrees.
   ServoOut servo(9);
 
   // Oscillator to make the servo sweep.
-  SineOsc oscillator(2.0);
+  SineWave oscillator(2.0);
 
   void begin() {
     // Position the servo in center.

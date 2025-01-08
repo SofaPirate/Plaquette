@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[] (arrays) &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>[] (arrays) &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -110,7 +105,7 @@
 <p>An array is a collection of variables or objects that are accessed with an index number.
 Arrays can be complicated, but using simple arrays is relatively straightforward.</p>
 <p>For a general description of arrays, please refer to <a class="reference external" href="https://www.arduino.cc/reference/en/language/variables/data-types/array/">this page</a>.</p>
-<p>Arrays of Plaquette units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>. <a class="reference internal" href="SineOsc.html"><span class="doc">SineOsc</span></a>, and <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> can be easily created using the following syntax:</p>
+<p>Arrays of Plaquette units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>. <a class="reference internal" href="SineWave.html"><span class="doc">SineWave</span></a>, and <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> can be easily created using the following syntax:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">UnitType</span><span class="w"> </span><span class="n">array</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">UnitType</span><span class="p">(...),</span><span class="w"> </span><span class="n">UnitType</span><span class="p">(...),</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 </pre></div>
 </div>
@@ -124,13 +119,13 @@ be rewritten as:</p>
 </pre></div>
 </div>
 <p>When more than a single parameter is used, however, it needs to be called explicitely with the unit name:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="n">oscillators</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">SquareOsc</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SquareWave</span><span class="w"> </span><span class="n">oscillators</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">SquareWave</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Units in array need to be all of the same type. In other words, it is not currently possible to mix different types of objects such as
-DigitalIn and SquareOsc in the same array.</p>
+DigitalIn and SquareWave in the same array.</p>
 </div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
@@ -139,7 +134,7 @@ DigitalIn and SquareOsc in the same array.</p>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="n">leds</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="p">};</span>
 
 <span class="c1">// Creates three triangle oscillators with a 2 seconds period, with different width.</span>
-<span class="n">TriOsc</span><span class="w"> </span><span class="n">oscillators</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TriOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">),</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">TriOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="n">oscillators</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">TriangleWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">),</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">TriangleWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -165,7 +160,7 @@ DigitalIn and SquareOsc in the same array.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

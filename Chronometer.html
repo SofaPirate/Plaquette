@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chronometer &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Metronome" href="Metronome.html" />
+    <link rel="prev" title="Alarm" href="Alarm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chronometer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411Chronometer"><code class="docutils literal notranslate"><span class="pre">Chronometer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Metronome.html">Metronome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="timing.html">Timing</a></li>
+      <li class="breadcrumb-item active">Chronometer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chronometer">
+<h1>Chronometer<a class="headerlink" href="#chronometer" title="Link to this heading"></a></h1>
+<p>An analog unit that counts time in seconds. It can be started, stopped, paused, and
+resumed.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>Uses a chronometer to change the frequency a blinking LED. Restarts after 10 seconds.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">Chronometer</span><span class="w"> </span><span class="n">chrono</span><span class="p">;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// a square oscillator</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">chrono</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// start chrono</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Adjust oscillator&#39;s duty cycle according to current timer progress.</span>
+<span class="w">  </span><span class="n">osc</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">chrono</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Apply oscillator to LED state.</span>
+<span class="w">  </span><span class="n">osc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// If the chronometer reaches 10 seconds: restart it.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">chrono</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Restarts the chronometer.</span>
+<span class="w">    </span><span class="n">chrono</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411Chronometer">
+<span id="_CPPv311Chronometer"></span><span id="_CPPv211Chronometer"></span><span id="Chronometer"></span><span class="target" id="classpq_1_1_chronometer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Chronometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractChronometer</span></span><a class="headerlink" href="#_CPPv411Chronometer" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer11ChronometerEv">
+<span id="_CPPv3N11Chronometer11ChronometerEv"></span><span id="_CPPv2N11Chronometer11ChronometerEv"></span><span id="Chronometer::Chronometer"></span><span class="target" id="classpq_1_1_chronometer_1afdfaae56550805de3eaa0b4569e63edc"></span><span class="sig-name descname"><span class="n"><span class="pre">Chronometer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer11ChronometerEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer3getEv">
+<span id="_CPPv3N11Chronometer3getEv"></span><span id="_CPPv2N11Chronometer3getEv"></span><span id="Chronometer::get"></span><span class="target" id="classpq_1_1_chronometer_1af5a171939fe7c7c8395dec43b94007cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer3getEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns elapsed time since start (in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer5startEv">
+<span id="_CPPv3N11Chronometer5startEv"></span><span id="_CPPv2N11Chronometer5startEv"></span><span id="Chronometer::start"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a403575aebbba8fcbacbb71bfd9db2eee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer5startEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Starts/restarts the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer4stopEv">
+<span id="_CPPv3N11Chronometer4stopEv"></span><span id="_CPPv2N11Chronometer4stopEv"></span><span id="Chronometer::stop"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a962a1d064595e838fae0e6427668e4b2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer4stopEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Interrupts the chronometer and resets to zero. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer5pauseEv">
+<span id="_CPPv3N11Chronometer5pauseEv"></span><span id="_CPPv2N11Chronometer5pauseEv"></span><span id="Chronometer::pause"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a28dcf317e5cb96744505352681553013"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer5pauseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Interrupts the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer6resumeEv">
+<span id="_CPPv3N11Chronometer6resumeEv"></span><span id="_CPPv2N11Chronometer6resumeEv"></span><span id="Chronometer::resume"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ab5bda873743cfcc0d3dcbcb3548d925d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer6resumeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Resumes process. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK11Chronometer7elapsedEv">
+<span id="_CPPv3NK11Chronometer7elapsedEv"></span><span id="_CPPv2NK11Chronometer7elapsedEv"></span><span id="Chronometer::elapsedC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ae9012477635738450725b724749060e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11Chronometer7elapsedEv" title="Link to this definition"></a><br /></dt>
+<dd><p>The time currently elapsed by the chronometer (in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer3setEf">
+<span id="_CPPv3N11Chronometer3setEf"></span><span id="_CPPv2N11Chronometer3setEf"></span><span id="Chronometer::set__float"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a158aa0525dc7b43b9e0f680f8b6bb936"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer3setEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Forces current time (in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11Chronometer3addEf">
+<span id="_CPPv3N11Chronometer3addEf"></span><span id="_CPPv2N11Chronometer3addEf"></span><span id="Chronometer::add__float"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a2df769a6bc6a95db867150e3de1ed5b6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">add</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11Chronometer3addEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Adds/subtracts time to the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK11Chronometer9isRunningEv">
+<span id="_CPPv3NK11Chronometer9isRunningEv"></span><span id="_CPPv2NK11Chronometer9isRunningEv"></span><span id="Chronometer::isRunningC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a02def4d157d903e2f9d724d01a57c8b0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRunning</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11Chronometer9isRunningEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns true iff the chronometer is currently running. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
+<li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a></p></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Alarm.html" class="btn btn-neutral float-left" title="Alarm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Metronome.html" class="btn btn-neutral float-right" title="Metronome" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

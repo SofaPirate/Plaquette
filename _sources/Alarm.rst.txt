@@ -48,11 +48,11 @@ alarm at random periods of time.
 
 .. doxygenclass:: Alarm
    :project: Plaquette
-   :members: Alarm, isOn, isOff, getInt, get, start, stop, resume, elapsed, progress, isStarted
+   :members: Alarm, isOn, isOff, getInt, get, start, stop, pause, resume, elapsed, progress, isRunning, add, set, onRise, onFall, onChange, clearEvents
 
 |SeeAlso|
 ---------
-- :doc:`Metro`
+- :doc:`Chronometer`
+- :doc:`Metronome`
 - :doc:`Ramp`
-- :doc:`Timer`
-- :doc:`SquareOsc`
+- :doc:`SquareWave`

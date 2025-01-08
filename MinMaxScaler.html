@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinMaxScaler &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>MinMaxScaler &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -204,7 +199,7 @@ automatically adapt to incoming sensor values.</p>
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler3putEf">
 <span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
-<p>If <a class="reference internal" href="Normalizer.html#classpq_1_1_moving_filter_1a23edee5744e257f605783acd560776f5"><span class="std std-ref">isStarted()</span></a> is false the filter will not be updated but will just return the filtered value. </p>
+<p>If isRunning() is false the filter will not be updated but will just return the filtered value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
@@ -216,23 +211,22 @@ automatically adapt to incoming sensor values.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5startEv">
-<span id="_CPPv3N12MinMaxScaler5startEv"></span><span id="_CPPv2N12MinMaxScaler5startEv"></span><span id="MinMaxScaler::start"></span><span class="target" id="classpq_1_1_moving_filter_1a1d4e8fd14afa65c94ec2b9733ed6ee3c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5startEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Starts calibration. </p>
-<p>When calibration is started, calls to put(value) will return normalized value AND update the normalization statistics. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler17resumeCalibratingEv">
+<span id="_CPPv3N12MinMaxScaler17resumeCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler17resumeCalibratingEv"></span><span id="MinMaxScaler::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler17resumeCalibratingEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Switches to calibration mode (default). </p>
+<p>Calls to put(value) will return filtered value AND update the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler4stopEv">
-<span id="_CPPv3N12MinMaxScaler4stopEv"></span><span id="_CPPv2N12MinMaxScaler4stopEv"></span><span id="MinMaxScaler::stop"></span><span class="target" id="classpq_1_1_moving_filter_1af685c351a34171c73304a5c6e43e661f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler4stopEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Stops calibration. </p>
-<p>When calibration is stopped, calls to put(value) will return normalized value without updating the normalization statistics. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler16pauseCalibratingEv">
+<span id="_CPPv3N12MinMaxScaler16pauseCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler16pauseCalibratingEv"></span><span id="MinMaxScaler::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler16pauseCalibratingEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Switches to non-calibration mode: calls to put(value) will return filtered value without updating the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler9isStartedEv">
-<span id="_CPPv3NK12MinMaxScaler9isStartedEv"></span><span id="_CPPv2NK12MinMaxScaler9isStartedEv"></span><span id="MinMaxScaler::isStartedC"></span><span class="target" id="classpq_1_1_moving_filter_1a23edee5744e257f605783acd560776f5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler9isStartedEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns true iff the statistics have already been started. </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler13isCalibratingEv">
+<span id="_CPPv3NK12MinMaxScaler13isCalibratingEv"></span><span id="_CPPv2NK12MinMaxScaler13isCalibratingEv"></span><span id="MinMaxScaler::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler13isCalibratingEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns true iff the moving filter is in calibration mode. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -265,7 +259,7 @@ automatically adapt to incoming sensor values.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Getting started &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -68,9 +63,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#step-3-experiment">Step 3 : Experiment!</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#period-and-duty-cycle">Period and duty cycle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-and-multiplying">Adding and multiplying</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#use-a-conditional">Use a conditional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-initial-parameters-of-a-unit">Change initial parameters of a unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-parameters-of-a-unit-during-runtime">Change parameters of a unit during runtime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-a-button">Use a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Full code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#more-examples">More examples</a></li>
 </ul>
 </li>
@@ -119,7 +115,8 @@
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
 <p>This short introduction will guide you through the first steps of using Plaquette.</p>
 <p>We also recommend watching our introductory <a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">video tutorial series</a>.</p>
-<a class="reference external image-reference" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip"><img alt="Introduction to Plaquette video tutorial series" src="https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg" /></a>
+<a class="reference external image-reference" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip"><img alt="Introduction to Plaquette video tutorial series" src="https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg" />
+</a>
 <section id="step-1-install-plaquette">
 <h2>Step 1: Install Plaquette<a class="headerlink" href="#step-1-install-plaquette" title="Link to this heading"></a></h2>
 <p>If you do not have Arduino installed on your machine you need to
@@ -176,10 +173,10 @@ the number of the pin to which the on-board LED is connected.</p>
 <h3>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Link to this heading"></a></h3>
 <p>We will now create another unit that will generate a signal which will
 be sent to the LED to make it blink. To this effect, we will use the
-<code class="docutils literal notranslate"><span class="pre">SquareOsc</span></code> unit type which generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
+<code class="docutils literal notranslate"><span class="pre">SquareWave</span></code> unit type which generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
 wave</a> oscillating between
 “on/high/one” and “off/low/zero” at a regular period of 2.0 seconds:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareWave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -203,21 +200,21 @@ empty:</p>
 the course of the program (like the
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/loop/">loop()</a>
 function in Arduino).</p>
-<p>Here, we will send the signal generated by the <code class="docutils literal notranslate"><span class="pre">myOsc</span></code> input unit
+<p>Here, we will send the signal generated by the <code class="docutils literal notranslate"><span class="pre">myWave</span></code> input unit
 to the <code class="docutils literal notranslate"><span class="pre">myLed</span></code> output unit. We will do this by using Plaquette’s special
 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In plain English, the statement <code class="docutils literal notranslate"><span class="pre">myOsc</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: “Take the
-value generated by <code class="docutils literal notranslate"><span class="pre">myOsc</span></code> and put it in <code class="docutils literal notranslate"><span class="pre">myLed</span></code>.”</p>
+<p>In plain English, the statement <code class="docutils literal notranslate"><span class="pre">myWave</span> <span class="pre">&gt;&gt;</span> <span class="pre">myLed</span></code> reads as: “Take the
+value generated by <code class="docutils literal notranslate"><span class="pre">myWave</span></code> and put it in <code class="docutils literal notranslate"><span class="pre">myLed</span></code>.”</p>
 </section>
 <section id="upload-sketch">
 <h3>Upload sketch<a class="headerlink" href="#upload-sketch" title="Link to this heading"></a></h3>
 <p>Upload your sketch to the Arduino board. You should see the LED on the
-board blinking once every two seconds at a regular pace.</p>
+board <strong>blinking once every two seconds at a regular pace</strong>.</p>
 <p>Et voilà!</p>
 </section>
 <section id="full-code">
@@ -226,12 +223,12 @@ board blinking once every two seconds at a regular pace.</p>
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -239,66 +236,163 @@ board blinking once every two seconds at a regular pace.</p>
 </section>
 <section id="step-3-experiment">
 <h2>Step 3 : Experiment!<a class="headerlink" href="#step-3-experiment" title="Link to this heading"></a></h2>
-<section id="period-and-duty-cycle">
-<h3>Period and duty cycle<a class="headerlink" href="#period-and-duty-cycle" title="Link to this heading"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">SquareOsc</span></code> unit type provides two parameters to configure the oscillator’s behavior:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">dutyCycle</span><span class="p">);</span>
+<p>So far so good. Let’s see if we can push this a bit further.</p>
+<section id="change-initial-parameters-of-a-unit">
+<h3>Change initial parameters of a unit<a class="headerlink" href="#change-initial-parameters-of-a-unit" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">SquareWave</span></code> unit type provides two parameters when it is created that allows
+you to configure the oscillator’s behavior.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareWave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">period</span></code> can be any positive number representing the period of
 oscillation (in seconds)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dutyCycle</span></code> can be any number between 0.0 (0%) and 1.0 (100%),
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code> can be any number between 0.0 (0%) and 1.0 (100%),
 and represents the proportion of the period during which the signal
 is “high” (ie. “on duty”) (default: 0.5)</p></li>
 </ul>
-<p>Try changing the first parameter in the square oscillator unit to change
-the period of oscillation. What happens?</p>
-<p>You can also try to add a second parameter to  the constructor to control
-the oscillator’s <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">duty -ycle</a>.</p>
-<p>For a fixed period, try changing the duty cycle to different percentages between 0.0 and 1.0.
-Examples:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We call this step the <strong>construction</strong> or <strong>instantiation</strong> of the object <code class="docutils literal notranslate"><span class="pre">myWave</span></code>.</p>
+</div>
+<p>Try changing the first parameter (period) in the square oscillator unit to change
+the period of oscillation.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">SquareOsc</span> <span class="pre">myOsc(2.0,</span> <span class="pre">0.5);</span></code> for a duty-cycle of 50% (default)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SquareOsc</span> <span class="pre">myOsc(2.0,</span> <span class="pre">0.25);</span></code> for a duty-cycle of 25%</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SquareOsc</span> <span class="pre">myOsc(2.0,</span> <span class="pre">0.75);</span></code> for a duty-cycle of 75%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(1.0);</span></code> for a period of one second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(2.5);</span></code> for a period of 2.5 seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(10.0);</span></code> for a period of 10 seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(0.5);</span></code> for a period of half a second (500 milliseconds)</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t forget to re-upload the sketch after each change.</p>
+</div>
+<p>Now try adding a second parameter (width) to control the oscillator’s
+<a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">width</a>. For a fixed period, try changing
+the duty cycle to different percentages between 0.0 and 1.0.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(2.0,</span> <span class="pre">0.5);</span></code> for a duty-cycle of 50% (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(2.0,</span> <span class="pre">0.25);</span></code> for a duty-cycle of 25%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(2.0,</span> <span class="pre">0.75);</span></code> for a duty-cycle of 75%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(2.0,</span> <span class="pre">0.9);</span></code> for a duty-cycle of 90%</p></li>
 </ul>
 </section>
-<section id="adding-and-multiplying">
-<h3>Adding and multiplying<a class="headerlink" href="#adding-and-multiplying" title="Link to this heading"></a></h3>
-<p>Add another oscillator with a different period and duty cycle: multiply
-their values and send the result to the LED.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc2</span><span class="p">(</span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">dutyCycle</span><span class="p">);</span>
-<span class="c1">// ...</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">(</span><span class="n">myOsc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">myOsc2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<section id="change-parameters-of-a-unit-during-runtime">
+<h3>Change parameters of a unit during runtime<a class="headerlink" href="#change-parameters-of-a-unit-during-runtime" title="Link to this heading"></a></h3>
+<p>What if we wanted to change the parameters of the oscillator during runtime rather than
+just at the beginning? The <code class="docutils literal notranslate"><span class="pre">SquareWave</span></code> unit type allows real-time modification of
+its parameters using function calls using the <a class="reference internal" href="dot.html"><span class="doc">. (dot)</span></a> operator.</p>
+<p>For example, to change the period, simply call the following inside the step() function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">myWave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">newPeriod</span><span class="p">);</span>
+<span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Try adding their values instead: what do you see?</p>
+<p>Of course, to accomplish our goal, we need a way to <em>change</em> the value <code class="docutils literal notranslate"><span class="pre">newPeriod</span></code>
+during runtime. We can accomplish this in many different ways, but let’s try something
+simple: we will use another wave to <em>modulate</em> our wave’s period.</p>
+<p>For this, we will be using another kind of source called a <code class="docutils literal notranslate"><span class="pre">SineWave</span></code> and will use its
+outputs to change the period of <code class="docutils literal notranslate"><span class="pre">myWave</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">SineWave</span><span class="w"> </span><span class="nf">myModulator</span><span class="p">(</span><span class="mf">20.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This wave will oscillate smoothly from 0 to 1 every 20 seconds.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">myWave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
+<span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Upload the sketch and you should see the LED blinking as before, with the difference that
+the blinking speed will now change from blinking very fast (in fast, infinitely fast, with
+a period of zero seconds!) to very slow (period of 20 seconds).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to visualize the values of both waves on your computer, you can print them
+on the serial port one after the other, separated by a space. Add the following code to
+your <code class="docutils literal notranslate"><span class="pre">step()</span></code> function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="n">myWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then, launch the Arduino <a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/">Serial Plotter</a>
+by selecting in in <strong>Tools &gt; Serial Plotter</strong>.</p>
+</div>
+<p>Now try modulating the width of <code class="docutils literal notranslate"><span class="pre">myWave</span></code> instead of its period:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">myWave</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
-<section id="use-a-conditional">
-<h3>Use a conditional<a class="headerlink" href="#use-a-conditional" title="Link to this heading"></a></h3>
-<p>Add a third oscillator that will “switch” between the two oscillators
-every 5 seconds using an
+<section id="use-a-button">
+<h3>Use a button<a class="headerlink" href="#use-a-button" title="Link to this heading"></a></h3>
+<p>Now let’s try to do some very simple interactivity by using a simple switch or button. For this
+we will be using the internal pull-up resistor available on Arduino boards for a very simple circuit.
+One leg of the button should be connected to ground (GND) while the other should be connected to
+digital pin 2.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not have a button or switch, you can just use two electric wires: one connected to
+ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch
+the wires together to close the circuit.</p>
+</div>
+<p>Declare the button unit with the other units at the top of your sketch:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span><span class="w"> </span><span class="nf">myButton</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You will notice that the type of this unit (<a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>) resembles that of our LED-controlling
+unit (<a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>). This is because both units have something in common: they have only two states:
+either on or off, high or low, true or false, one or zero, hence the adjective <code class="docutils literal notranslate"><span class="pre">Digital</span></code>. However,
+while the LED is considered an output or actuator (<code class="docutils literal notranslate"><span class="pre">Out</span></code>) our button is rather an input or sensor
+(<code class="docutils literal notranslate"><span class="pre">In</span></code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are curious, you might also want to know that there is an <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> and an <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a>
+types which support sensors and actuators that work with continuous values between 0 and 1 (0% to 100%).</p>
+</div>
+<p>Now, let’s use this button as a way to control whether the LED blinks or not. For this, we will need to use
+the value of the button as part of a <strong>condition</strong> for an
 <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/control-structure/if/">if…else</a>
 statement.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// TIP: omitting the duty-cycle parameter results in default value (0.5)</span>
-<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">mySwitcher</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
-<span class="c1">// ...</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mySwitcher</span><span class="p">)</span>
-<span class="w">    </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myButton</span><span class="p">)</span>
+<span class="w">    </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="w">  </span><span class="k">else</span>
-<span class="w">    </span><span class="n">myOsc2</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>ADVANCED</strong>: You can rewrite this expression in a more compact way
-using the <a class="reference external" href="https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm">? : conditional
-operator</a>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can rewrite this expression in a more compact way using the
+<a class="reference external" href="https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm">conditional operator (?)</a>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">(</span><span class="n">mySwitcher</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">myOsc</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">myOsc2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="n">myButton</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">myWave</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Full code<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span>
+
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">myModulator</span><span class="p">(</span><span class="mf">20.0</span><span class="p">);</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">myButton</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">myWave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myButton</span><span class="p">)</span>
+<span class="w">    </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -307,11 +401,11 @@ operator</a>:</p>
 <h3>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h3>
 <p>You will find more examples in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
 <ul class="simple">
-<li><p>Using a button</p></li>
 <li><p>Using an analog input such as a photocell or potentiometer</p></li>
 <li><p>Using an analog output</p></li>
 <li><p>Basic filtering (smoothing, re-scaling)</p></li>
 <li><p>Serial input and output</p></li>
+<li><p>Event management</p></li>
 </ul>
 <p>We also recommend watching our introductory <a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">video tutorial series</a>.</p>
 </section>
@@ -329,7 +423,7 @@ operator</a>:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

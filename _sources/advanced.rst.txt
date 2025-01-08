@@ -3,13 +3,12 @@
 Advanced Usage
 ==============
 
-Avoiding Plaquette Style
-------------------------
+Vanilla Coding Style
+--------------------
 
-If you don't want to use Plaquette's :doc:`>> <pipe>` operator or auto-conversion 
-of units to values (eg., ``if (input)``, ``input >> output``) in favor of a more
-typical object-oriented programming style, you can avoid using these features by 
-simply using Plaquette units' ``get()`` and ``put()`` methods.
+You can avoid Plaquette's :doc:`>> <pipe>` operator or auto-conversion of units to values 
+(eg., ``if (input)``, ``input >> output``) in favor of a more conventional programming style
+by simply using the ``get()`` and ``put()`` functions of Plaquette units.
 
 The ``get()`` method returns the current value of the unit:
 
@@ -24,10 +23,10 @@ of the unit (the same that would be returned by ``get()``):
 
   float put(float value)
 
-Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metro`,
-and :doc:`Timer`, have a ``boolean isOn()`` method that works for boolean
-``true/false`` values, while digital output units such as :doc:`DigitalOut` 
-have a ``boolean putOn(boolean value)`` method.
+Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metronome` 
+have a ``boolean isOn()`` method that works for boolean ``true/false`` values,
+while digital output units such as :doc:`DigitalOut` have a ``boolean putOn(boolean value)`` 
+method.
 
 Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.
@@ -75,7 +74,7 @@ Here is an example of our blinking code rewritten by using this feature:
 
     DigitalOut myLed(13);
 
-    SquareOsc myOsc(2.0, 0.5);
+    SquareWave myWave(2.0, 0.5);
 
     void setup() {
       Plaquette.begin();
@@ -83,5 +82,5 @@ Here is an example of our blinking code rewritten by using this feature:
 
     void loop() {
       Plaquette.step();
-      myOsc >> myLed;
+      myWave >> myLed;
     }

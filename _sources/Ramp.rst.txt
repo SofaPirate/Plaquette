@@ -8,21 +8,21 @@ triggered to start transitioning to a target value for a certain duration.
 
 There are two ways to start the ramp.
 
-By calling ``start(from, to, duration)`` the ramp will transition from value ``from`` to
+By calling ``go(from, to, duration)`` the ramp will transition from value ``from`` to
 value ``to`` in ``duration`` seconds.
 
-Alternatively, calling ``start(to, duration)`` will start a transition from the ramp's
+Alternatively, calling ``go(to, duration)`` will start a transition from the ramp's
 current value to ``to`` in ``duration`` seconds.
 
-The following diagram shows what happens to the ramp signal if ``start(5.0, 1.0, 2.0)`` is
-called, followed later by ``start(3.0, 1.0)``:
+The following diagram shows what happens to the ramp signal if ``go(5.0, 1.0, 2.0)`` is
+called, followed later by ``go(3.0, 1.0)``:
 
 .. image:: images/Plaquette-Ramp.png
 
 .. note::
   Ramps also support the use of `easing functions <http://easings.net>`_ in order to
   create different kinds of expressive effects with signals. An easing function can
-  optionally be specified at the end of a ``start()`` command or by calling the
+  optionally be specified at the end of a ``go()`` command or by calling the
   ``easing()`` function.
 
   Please refer to :doc:`this page <easings>` for a full list of available easing functions.
@@ -36,20 +36,22 @@ Sequentially ramps through different values.
 
    #include <Plaquette.h>
 
-   Ramp myRamp(0.0); // the ramp is initialized at zero (0)
+   Ramp myRamp(3.0); // initial duration: 3 seconds
 
    StreamOut serialOut(Serial);
 
    void begin() {
      // Apply an easing function (optional).
      myRamp.easing(easeOutSine);
+     // Launch ramp: ramp from -10 to 10.
+     myRamp.go(-10, 10);
    }
 
    void step() {
      if (myRamp.isFinished())
      {
-       // Restarts the ramp going from current value to a random value in [-10, +10] in 2 seconds
-       myRamp.start(randomFloat(-10, 10), 2.0);
+       // Launch ramp from current value to half, increasing duration by one second.
+       myRamp.go(myRamp / 2, myRamp.duration() + 1);
      }
 
      myRamp >> serialOut;
@@ -61,12 +63,12 @@ Sequentially ramps through different values.
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: Ramp, get, start, stop, resume, elapsed, progress, isStarted, isFinished, easing, noEasing, to, fromTo
+   :members: Ramp, get, start, stop, pause, resume, elapsed, progress, isRunning, add, set, isFinished, easing, noEasing, to, fromTo
 
 |SeeAlso|
 ---------
 - :doc:`Alarm`
+- :doc:`Chronometer`
 - :doc:`easings`
-- :doc:`Metro`
-- :doc:`Timer`
-- :doc:`TriOsc`
+- :doc:`Metronome`
+- :doc:`TriangleWave`

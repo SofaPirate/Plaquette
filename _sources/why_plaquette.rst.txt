@@ -4,46 +4,52 @@ Why Plaquette?
 Rationale
 ---------
 
-Media creators such as artists, interactive designers, and electronic musicians
-work with real-time sensory signals all the time. However, few of them (especially beginners) really
-"know their signals" and how to extract high-level information from them
-(such as debouncing, smoothing, normalizing, detecting peaks and regularities).
+Media creators such as media artists, interactive designers, digital luthiers, 
+and electronic musicians work with real-time signals all the time. However, when
+working with tangible computing systems such as embedded sensors, robotics, connected
+objects, and electronic music instruments, available tools are often very low-level and 
+lack expressivity. Creative practitionners thus struggle to design interesting works
+directly using such platforms.
 
-Consider the following case of learning how to work with a simple photoresistor
-sensor plugged into an Arduino board on analog pin 0. The code reads as follows:
+Consider the following case of learning how to work with a simple lignt sensor 
+(eg. photoresistor) connected to an Arduino board on analog pin 0. The code reads 
+as follows:
 
 .. code-block:: c++
 
    int value = analogRead(A0);
 
 The value that is read is a raw 10-bit value returned by the Arduino board's
-Analog to Digital Converter (ADC), an integer between 0 and
-1023. But how is this value intuitively useful for an artist who wants to use this value
-creatively?
+Analog to Digital Converter (ADC), an integer between 0 and 1023. But how is this value 
+intuitively useful for an artist who wants to use this value creatively?
 
 For example, what if one wants to react to a flash of light? Well, one solution
-would be to look at the kind of value we get and set a threshold.
+would be to look at the value and compare it to a threshold:
 
 .. code-block:: c++
 
-  if (value > 716)
-    // do something
+  if (value > 716) {
+    ...
+  }
 
-Nice. But there are two problems with this approach. Firstly, while it might work under
-certain light conditions, it will likely stop working if these conditions change,
-forcing us to make adjustments to the threshold value by hand.
+There are two problems with this approach.
+
+Firstly, while it might work under certain lighting conditions, it will likely stop 
+working if these conditions change, forcing us to make adjustments to the threshold 
+value by hand.
 
 Secondly, and perhaps more importantly, this piece of code does not really
 *express* what we are after. As creative practitioners, we don't care whether
 the light signal is above 716 or 456 or whatnot: what we really want to know
-is whether the light signal is *significantly high compared to ambient light*.
+to detect a flash of light is whether the light signal is *significantly high compared 
+to ambient light*.
 
 What this example shows is that the way we are teaching and learning about sensor
 data is inefficient for creative applications. In other words: **raw digital data
 lacks expressiveness**.
 
 Continuing with our example, consider how one would take the input value and
-directly reroute it to an analog (PWM) output on pin ``9``:
+directly reroute it to an analog (PWM) output on pin 9:
 
 .. code-block:: c++
 
@@ -53,9 +59,9 @@ Why do we need to perform that division by 4? That's because while the ADC gives
 us 10-bit values (1024 possibilities), the PWM only supports 8 bits (256 possibilities)
 forcing us to divide the incoming value by 4 (2 bits). But again, why is this detail
 important to know for an artist, designer, or musician? And what exactly does it
-have to do with our (expressive) intention?
+have to do with our expressive intention?
 
-A new standard
+A New Standard
 --------------
 
 As a way to address these issues, we propose to create a general-purpose standard

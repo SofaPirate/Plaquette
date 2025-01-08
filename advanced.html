@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.5.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <title>Advanced Usage &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=1dd76d02"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,9 +37,6 @@
             Plaquette
               <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.5.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -57,7 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#avoiding-plaquette-style">Avoiding Plaquette Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vanilla-coding-style">Vanilla Coding Style</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-plaquette-as-an-external-library">Using Plaquette as an External Library</a></li>
 </ul>
 </li>
@@ -100,12 +95,11 @@
              
   <section id="advanced-usage">
 <h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h1>
-<section id="avoiding-plaquette-style">
-<h2>Avoiding Plaquette Style<a class="headerlink" href="#avoiding-plaquette-style" title="Link to this heading"></a></h2>
-<p>If you don’t want to use Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion
-of units to values (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>) in favor of a more
-typical object-oriented programming style, you can avoid using these features by
-simply using Plaquette units’ <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> methods.</p>
+<section id="vanilla-coding-style">
+<h2>Vanilla Coding Style<a class="headerlink" href="#vanilla-coding-style" title="Link to this heading"></a></h2>
+<p>You can avoid Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion of units to values
+(eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>) in favor of a more conventional programming style
+by simply using the <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> functions of Plaquette units.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns the current value of the unit:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">get</span><span class="p">()</span>
 </pre></div>
@@ -115,10 +109,10 @@ of the unit (the same that would be returned by <code class="docutils literal no
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">put</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Additionally, digital input units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="Metro.html"><span class="doc">Metro</span></a>,
-and <a class="reference internal" href="Timer.html"><span class="doc">Timer</span></a>, have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isOn()</span></code> method that works for boolean
-<code class="docutils literal notranslate"><span class="pre">true/false</span></code> values, while digital output units such as <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>
-have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code> method.</p>
+<p>Additionally, digital input units such as <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a>
+have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">isOn()</span></code> method that works for boolean <code class="docutils literal notranslate"><span class="pre">true/false</span></code> values,
+while digital output units such as <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> have a <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">putOn(boolean</span> <span class="pre">value)</span></code>
+method.</p>
 <p>Here are some examples of how to adopt a classic object-oriented functions style
 instead of the Plaquette style.</p>
 <table class="docutils align-default">
@@ -172,7 +166,7 @@ including the file <code class="docutils literal notranslate"><span class="pre">
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">myLed</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="n">SquareOsc</span><span class="w"> </span><span class="nf">myOsc</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
@@ -180,7 +174,7 @@ including the file <code class="docutils literal notranslate"><span class="pre">
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Plaquette</span><span class="p">.</span><span class="n">step</span><span class="p">();</span>
-<span class="w">  </span><span class="n">myOsc</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
+<span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -198,7 +192,7 @@ including the file <code class="docutils literal notranslate"><span class="pre">
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Plaquette.</p>
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
