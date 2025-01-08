@@ -11,6 +11,7 @@ Contributors:
 - Logo: Ian Donnelly • `Website <https://ijdonnelly.com/>`__
 - Code: Matthew Loewen • `Website <https://www.mloewen.com/>`__ • `GitHub <https://github.com/mattdoescode>`__
 - Code: Samuel Favreau • `Website <https://samuelfavreau.com//>`__
+- Testing: Luana Belinsky • `Website <https://www.instagram.com/cadavre_xquis_>`__
 - Documentation Editing: Erin Gee • `Website <https://www.eringee.net/>`__ • `GitHub <https://github.com/eringee>`__
 
 Plaquette's base source code was produced as part of a research project
