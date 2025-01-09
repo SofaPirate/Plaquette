@@ -66,7 +66,7 @@ The word ``myLed`` is a **name** for the object we are creating.
 
 Finally, ``13`` is a **parameter** of the object ``myLed`` that specifies the hardware
 *pin* that it corresponds to on the board. In English, the statement would thus read 
-as: "Create a unit named``myLed`` of type ``DigitalOut`` on pin ``13``."
+as: "Create a unit named ``myLed`` of type ``DigitalOut`` on pin ``13``."
 
 .. note::
   Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on 
@@ -164,14 +164,14 @@ you to configure the oscillator's behavior.
 
     SquareWave myWave(period, width);
 
--  ``period`` can be any positive number representing the period of
-   oscillation (in seconds)
--  ``width`` can be any number between 0.0 (0%) and 1.0 (100%),
-   and represents the proportion of the period during which the signal
-   is "high" (ie. "on duty") (default: 0.5)
+- ``period`` can be any positive number representing the period of oscillation (in seconds)
+- ``width`` can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion 
+  of the period during which the signal is "high" (ie. "on duty") (default: 0.5)
 
 .. note::
    We call this step the **construction** or **instantiation** of the object ``myWave``.
+
+.. image:: images/Plaquette-SquareWave.png
 
 Try changing the first parameter (period) in the square oscillator unit to change 
 the period of oscillation.
@@ -188,19 +188,21 @@ Now try adding a second parameter (width) to control the oscillator's
 `width <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing 
 the duty cycle to different percentages between 0.0 and 1.0.
 
-- ``SquareWave myWave(2.0, 0.5);`` for a duty-cycle of 50% (default)
-- ``SquareWave myWave(2.0, 0.25);`` for a duty-cycle of 25%
-- ``SquareWave myWave(2.0, 0.75);`` for a duty-cycle of 75%
-- ``SquareWave myWave(2.0, 0.9);`` for a duty-cycle of 90%
+- ``SquareWave myWave(2.0, 0.5);`` for a width of 50% (default)
+- ``SquareWave myWave(2.0, 0.25);`` for a width of 25%
+- ``SquareWave myWave(2.0, 0.75);`` for a width of 75%
+- ``SquareWave myWave(2.0, 0.9);`` for a width of 90%
+
+.. image:: images/Plaquette-SquareWave-Width.png
 
 Change parameters of a unit during runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What if we wanted to change the parameters of the oscillator during runtime rather than
 just at the beginning? The ``SquareWave`` unit type allows real-time modification of
-its parameters using function calls using the :doc:`dot` operator.
+its parameters by calling one of its functions using the :doc:`dot` operator.
 
-For example, to change the period, simply call the following inside the step() function:
+For example, to change the period, simply call the following inside the ``step()`` function:
 
 .. code:: cpp
 
@@ -222,6 +224,8 @@ outputs to change the period of ``myWave``.
 
 This wave will oscillate smoothly from 0 to 1 every 20 seconds.
 
+.. image:: images/Plaquette-SineWave.png
+
 .. code:: cpp
     
     void step() {
@@ -230,7 +234,7 @@ This wave will oscillate smoothly from 0 to 1 every 20 seconds.
     }
 
 Upload the sketch and you should see the LED blinking as before, with the difference that
-the blinking speed will now change from blinking very fast (in fast, infinitely fast, with 
+the blinking speed will now change from blinking very fast (in fact, infinitely fast, with 
 a period of zero seconds!) to very slow (period of 20 seconds).
 
 .. note::
