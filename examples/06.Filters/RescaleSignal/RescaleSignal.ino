@@ -38,7 +38,7 @@ void begin() {}
 void step() {
   // After 30 seconds, stop calibration. The scaler will still rescale
   // values but will stop updating its min. and max. values.
-  if (scaler.isRunning() && seconds() >= 30.0f)
+  if (scaler.isCalibrating() && seconds() >= 30.0f)
     scaler.pauseCalibrating(); // stop calibration
 
 	// Analog input is rescaled then sent as LED value.
