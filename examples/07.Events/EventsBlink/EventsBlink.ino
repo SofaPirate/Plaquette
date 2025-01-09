@@ -19,7 +19,7 @@
 DigitalOut led(LED_BUILTIN);
 
 // A metronome.
-Metronome metronome(0.5); // 1 second period
+Metronome metronome(1.0); // 1 second period
 
 void begin() {
   metronome.onBang(toggleLed);
