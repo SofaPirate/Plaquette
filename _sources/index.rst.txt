@@ -11,6 +11,7 @@ Table of Contents
    features
    getting_started
    inputs_outputs
+   waves
    regularizing
    advanced
    credits

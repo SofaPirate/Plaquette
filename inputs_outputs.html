@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regularizing Signals" href="regularizing.html" />
+    <link rel="next" title="Using Waves" href="waves.html" />
     <link rel="prev" title="Getting started" href="getting_started.html" /> 
 </head>
 
@@ -52,7 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Inputs and Outputs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#digital-vs-analog">Digital vs. Analog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-vs-analog">Digital vs Analog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#digital-inputs-and-outputs">Digital Inputs and Outputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#digital-outputs"><strong>Digital Outputs</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#digital-inputs"><strong>Digital Inputs</strong></a></li>
@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Using Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -134,7 +135,7 @@ how to clean noisy data, shows how to make decisions based on input values, and 
 different configuration modes of input and output units.</p>
 <p>Let’s explore these ideas step by step.</p>
 <section id="digital-vs-analog">
-<h2>Digital vs. Analog<a class="headerlink" href="#digital-vs-analog" title="Link to this heading"></a></h2>
+<h2>Digital vs Analog<a class="headerlink" href="#digital-vs-analog" title="Link to this heading"></a></h2>
 <p>Before diving into code, let’s first clarify the difference between <strong>digital</strong> and <strong>analog</strong>
 signals.</p>
 <ul class="simple">
@@ -515,28 +516,26 @@ logic.</p>
 <ul>
 <li><p><strong>SOURCE</strong> (default): The pin provides current when ON, suitable for devices like LEDs connected
 between the pin and ground.</p>
-<p><strong>Example</strong>: LED in source mode:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">);</span>
-<span class="n">SquareWave</span><span class="w"> </span><span class="nf">blinkWave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<p><strong>Example</strong>: LED in source mode. Connect the LED anode (long leg) to pin 9 and the cathode
+(short leg) to ground, with a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> in series.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">);</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">blinkWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Circuit Note</strong>: Connect the LED anode (long leg) to the pin and the cathode (short leg) to
-ground, with a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> in series.</p>
 </li>
 <li><p><strong>SINK</strong>: The pin sinks current when ON, suitable for LEDs connected between a positive
 voltage and the pin.</p>
-<p><strong>Example</strong>: LED in sink mode:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span>
+<p><strong>Example</strong>: LED in sink mode. Connect the LED anode to +5V (Vcc) and the cathode to pin 9, with a
+330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor in series.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Circuit Note</strong>: Connect the LED anode to +5V (Vcc) and the cathode to the pin, with a
-330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor in series.</p>
 </li>
 </ul>
 </section>
@@ -555,7 +554,7 @@ timing and signal generation features to add even more complexity and creativity
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="regularizing.html" class="btn btn-neutral float-right" title="Regularizing Signals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="waves.html" class="btn btn-neutral float-right" title="Using Waves" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
