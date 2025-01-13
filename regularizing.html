@@ -180,6 +180,7 @@ while in full daylight, it might range between 70% and 95%.</p>
 We can do so using a filtering unit such as a <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a>. This unit automatically
 keeps track of the minimum and maximum values of the incoming signal over time
 (for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).</p>
+<img alt="_images/Plaquette-MinMaxScaler.png" src="_images/Plaquette-MinMaxScaler.png" />
 <p>To use this approach, create the unit:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MinMaxScaler</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
 </pre></div>
@@ -332,6 +333,7 @@ for a peak to be detected. In this mode, the signal will need to (1) cross a <em
 (<code class="docutils literal notranslate"><span class="pre">triggerThreshold</span></code>); (2) reach its <em>apex</em> (max); and (3) <em>fall back</em> by a certain
 proportion (%) between the threshold and the apex (controlled by the <code class="docutils literal notranslate"><span class="pre">fallbackTolerance</span></code>
 parameter).</p>
+<img alt="_images/Plaquette-PeakDetector.png" src="_images/Plaquette-PeakDetector.png" />
 <p>Building on the previous section for outlier detection, we will assign the PeakDetector’s
 <code class="docutils literal notranslate"><span class="pre">triggerThreshold</span></code> to the value above which a value is considered to be a high outlier,
 which can be obtained by calling the Normalizer’s function <code class="docutils literal notranslate"><span class="pre">highOutlierThreshold()</span></code>:</p>

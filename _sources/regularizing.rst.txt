@@ -100,6 +100,8 @@ We can do so using a filtering unit such as a :doc:`MinMaxScaler`. This unit aut
 keeps track of the minimum and maximum values of the incoming signal over time
 (for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).
 
+.. image:: images/Plaquette-MinMaxScaler.png
+
 To use this approach, create the unit:
 
 .. code-block:: c++
@@ -273,6 +275,8 @@ for a peak to be detected. In this mode, the signal will need to (1) cross a *tr
 (``triggerThreshold``); (2) reach its *apex* (max); and (3) *fall back* by a certain
 proportion (%) between the threshold and the apex (controlled by the ``fallbackTolerance``
 parameter).
+
+.. image:: images/Plaquette-PeakDetector.png
 
 Building on the previous section for outlier detection, we will assign the PeakDetector's
 ``triggerThreshold`` to the value above which a value is considered to be a high outlier,
