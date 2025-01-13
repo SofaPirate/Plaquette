@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inputs and Outputs &mdash; Plaquette 0.6.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8fa8b3e9"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regularizing Signals" href="regularizing.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inputs and Outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#digital-vs-analog">Digital vs. Analog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-inputs-and-outputs">Digital Inputs and Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#digital-outputs"><strong>Digital Outputs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digital-inputs"><strong>Digital Inputs</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analog-outputs-and-inputs">Analog Outputs and Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#analog-outputs"><strong>Analog Outputs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analog-inputs"><strong>Analog Inputs</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-units-as-their-own-values">Using Units as Their Own Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-piping-operator">The Piping Operator (&gt;&gt;)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dealing-with-noisy-signals-debouncing-and-smoothing">Dealing with Noisy Signals: Debouncing and Smoothing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debouncing">Debouncing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smoothing">Smoothing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-values-to-different-ranges">Mapping Values to Different Ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-decisions-with-conditions">Making Decisions with Conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#digital-conditions">Digital Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analog-conditions">Analog Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modes-for-inputs-and-outputs">Modes for Inputs and Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#digitalin-modes-direct-inverted-and-internal-pullup"><strong>DigitalIn Modes: DIRECT, INVERTED, and INTERNAL_PULLUP</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analogin-modes-direct-and-inverted"><strong>AnalogIn Modes: DIRECT and INVERTED</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digitalout-and-analogout-modes-source-and-sink"><strong>DigitalOut and AnalogOut Modes: SOURCE and SINK</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Inputs and Outputs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inputs-and-outputs">
+<h1>Inputs and Outputs<a class="headerlink" href="#inputs-and-outputs" title="Link to this heading"></a></h1>
+<p>When working with Plaquette, <strong>inputs</strong> and <strong>outputs</strong> allow you to interact with the physical
+world. Whether you are reading a sensor’s value or controlling an actuator, Plaquette makes this
+process intuitive and efficient. This section introduces the basic concepts of digital and analog
+inputs and outputs, presents Plaquette’s unique syntax for efficient and expressive code, explains
+how to clean noisy data, shows how to make decisions based on input values, and describes the
+different configuration modes of input and output units.</p>
+<p>Let’s explore these ideas step by step.</p>
+<section id="digital-vs-analog">
+<h2>Digital vs. Analog<a class="headerlink" href="#digital-vs-analog" title="Link to this heading"></a></h2>
+<p>Before diving into code, let’s first clarify the difference between <strong>digital</strong> and <strong>analog</strong>
+signals.</p>
+<ul class="simple">
+<li><p><strong>Digital</strong> signals represent binary states: ON or OFF, HIGH or LOW, 1 or 0. Examples of digital
+inputs include buttons and presence sensors, while digital outputs might control LEDs or relays.</p></li>
+<li><p><strong>Analog</strong> signals represent a continuous range of values. Think of a dimmer switch (potentiometer)
+or a light sensor that measures brightness levels. Analog outputs control devices such as LEDs with
+variable brightness and DC motors where the speed can vary.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On many microcontrollers, analog outputs are generated using <strong>Pulse Width Modulation (PWM)</strong> rather
+than a true <strong>Digital-to-Analog Converter (DAC)</strong>. PWM rapidly switches the output pin between HIGH
+and LOW, creating the illusion of a continuous analog voltage when averaged over time. While this
+works for controlling brightness in LEDs or speed in motors, it may not be suitable for applications
+requiring a steady, smooth signal.</p>
+<p>For more information, visit the official Arduino documentation on
+<a class="reference external" href="https://www.arduino.cc/en/Tutorial/Foundations/PWM">Pulse Width Modulation</a>.</p>
+</div>
+</section>
+<section id="digital-inputs-and-outputs">
+<h2>Digital Inputs and Outputs<a class="headerlink" href="#digital-inputs-and-outputs" title="Link to this heading"></a></h2>
+<p>Let’s look at the basics of digital signals by working with LEDs and buttons.</p>
+<section id="digital-outputs">
+<h3><strong>Digital Outputs</strong><a class="headerlink" href="#digital-outputs" title="Link to this heading"></a></h3>
+<p>A <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> unit controls devices that can be turned ON or OFF, such as LEDs or relays.
+Here’s an example of how to control an LED:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to pin 13</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"> </span><span class="c1">// Turn the LED on initially</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w"> </span><span class="c1">// Turn the LED off after 10 seconds</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="digital-inputs">
+<h3><strong>Digital Inputs</strong><a class="headerlink" href="#digital-inputs" title="Link to this heading"></a></h3>
+<p>A <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a> unit reads binary states from devices like buttons or switches. The easiest way
+to connect a button or switch is to use the <strong>internal pull-up</strong> resistor on Arduino boards. One
+leg of the  button should be connected to ground (GND) while the other should be connected to a digital pin.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w">                    </span><span class="c1">// LED connected to pin 13</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">isOn</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Check if the button is pressed</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="analog-outputs-and-inputs">
+<h2>Analog Outputs and Inputs<a class="headerlink" href="#analog-outputs-and-inputs" title="Link to this heading"></a></h2>
+<p>Next, we will explore analog signals, which allow for finer control and more detailed readings.</p>
+<section id="analog-outputs">
+<h3><strong>Analog Outputs</strong><a class="headerlink" href="#analog-outputs" title="Link to this heading"></a></h3>
+<p>An <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> unit controls devices like LEDs or motors with continuous values. Here’s an
+example of dimming an LED. The cathode (short leg) of the LED should be connected to ground, while
+the anode (long leg) should be connected to a 300 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor, which in turn should be
+connected to an analog / PWM pin (eg. pin 9).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to pin 9</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set LED brightness to 0%</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="w"> </span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Will reach 100% after 10 seconds</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="analog-inputs">
+<h3><strong>Analog Inputs</strong><a class="headerlink" href="#analog-inputs" title="Link to this heading"></a></h3>
+<p>An <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> unit reads continuous values from sensors, such as potentiometers, light,
+or temperature sensors.</p>
+<p>Let’s use a potentiometer to control an LED’s brightness. For this circuit, the center pin
+of the potentiometer should be connected to analog input pin (<cite>A0`</cite>), the left pin to ground
+(GND) and the right pin to +5V (Vcc).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Potentiometer on analog pin A0</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">    </span><span class="c1">// LED on pin 9</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">dimmer</span><span class="p">.</span><span class="n">get</span><span class="p">());</span><span class="w"> </span><span class="c1">// Map the potentiometer value directly to LED brightness</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-units-as-their-own-values">
+<h2>Using Units as Their Own Values<a class="headerlink" href="#using-units-as-their-own-values" title="Link to this heading"></a></h2>
+<p>Plaquette offers an elegant shortcut: you don’t need to explicitly call <code class="docutils literal notranslate"><span class="pre">isOn()</span></code> or <code class="docutils literal notranslate"><span class="pre">get()</span></code> for
+digital or analog inputs. Instead, you can use the input or output unit itself as its value. This
+makes your code cleaner and easier to read.</p>
+<p>Here’s the same LED and button example, rewritten with this feature:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// No need for button.isOn(), just use button as its own value</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For analog inputs, this works similarly. Instead of calling <code class="docutils literal notranslate"><span class="pre">dimmer.get()</span></code>, you can use the
+<code class="docutils literal notranslate"><span class="pre">dimmer</span></code> object directly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">dimmer</span><span class="p">);</span><span class="w"> </span><span class="c1">// No need for dimmer.get(), just use dimmer</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These simplifications make your code more expressive and emphasize the logic over the syntax.</p>
+</section>
+<section id="the-piping-operator">
+<h2>The Piping Operator (&gt;&gt;)<a class="headerlink" href="#the-piping-operator" title="Link to this heading"></a></h2>
+<p>In Plaquette, the <cite>&gt;&gt;</cite> operator allows you to directly send or “pipe” the value of one unit to
+another. This makes it incredibly simple to map inputs to outputs without extra variables or
+function calls.</p>
+<p>Let’s revisit the potentiometer and LED example using the piping operator:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dimmer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Directly pipe the potentiometer value to the LED</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This operator improves code readability and emphasizes the relationship between inputs and outputs.</p>
+</section>
+<section id="dealing-with-noisy-signals-debouncing-and-smoothing">
+<h2>Dealing with Noisy Signals: Debouncing and Smoothing<a class="headerlink" href="#dealing-with-noisy-signals-debouncing-and-smoothing" title="Link to this heading"></a></h2>
+<p>In real-world applications, signals can be messy. Buttons can produce electrical noise when pressed,
+and analog sensors might give fluctuating readings. Plaquette provides tools to handle these issues:
+<strong>debouncing</strong> for digital signals and <strong>smoothing</strong> for analog ones.</p>
+<section id="debouncing">
+<h3>Debouncing<a class="headerlink" href="#debouncing" title="Link to this heading"></a></h3>
+<p>Debouncing ensures that a button press is recorded cleanly, ignoring any noise. Here’s how to
+debounce a button:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button with pull-up resistor</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w">                   </span><span class="c1">// LED on pin 13</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce the button</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Detect a clean press</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w">       </span><span class="c1">// Toggle the LED state</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="smoothing">
+<h3>Smoothing<a class="headerlink" href="#smoothing" title="Link to this heading"></a></h3>
+<p>For analog signals, smoothing helps stabilize noisy data.</p>
+<p>Here’s how you can smooth a light sensor (photoresistor). For this circuit, you will need to
+create a simple <a class="reference external" href="https://learn.sparkfun.com/tutorials/voltage-dividers">voltage divider circuit</a>.
+Connect the photoresistor between the ground (GND) and the analog input pin (<cite>A0`</cite>). Then connect
+a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
+For example, for a 1k <span class="math notranslate nohighlight">\(\Omega\)</span> - 10k <span class="math notranslate nohighlight">\(\Omega\)</span> photoresistor you could use a fixed
+resistor of about 5.5k <span class="math notranslate nohighlight">\(\Omega\)</span>).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">lightSensor</span><span class="p">.</span><span class="n">smooth</span><span class="p">();</span><span class="w"> </span><span class="c1">// Apply default smoothing</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">lightSensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can adjust the level of smoothing and deboucing by indicating a parameter representing the
+time window (in seconds) over which the value is averaged. Experiment with different smoothing values
+to see the result:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lightSensor.smooth()</span></code> : Default smoothing window (100ms)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lightSensor.smooth(1.0)</span></code> : Smooth over one second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lightSensor.smooth(10.0)</span></code> : Smooth over 10 seconds</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lightSensor.smooth(0.01)</span></code> : Smooth over 10ms</p></li>
+</ul>
+</section>
+</section>
+<section id="mapping-values-to-different-ranges">
+<h2>Mapping Values to Different Ranges<a class="headerlink" href="#mapping-values-to-different-ranges" title="Link to this heading"></a></h2>
+<p>Sometimes, the output of a sensor doesn’t match the range needed for an actuator. Plaquette
+provides a simple <strong>mapping function</strong> <code class="docutils literal notranslate"><span class="pre">mapTo(low,</span> <span class="pre">high)</span></code> which maps the analog input value
+to a specified range which is very useful for scaling sensor readings.</p>
+<p><strong>Example</strong>: Controlling the blinking frequency of an LED based on the value of a light sensor.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Map sensor value to frequency in range 1-10 Hz</span>
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="w"> </span><span class="n">lightSensor</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Control LED with wave.</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="making-decisions-with-conditions">
+<h2>Making Decisions with Conditions<a class="headerlink" href="#making-decisions-with-conditions" title="Link to this heading"></a></h2>
+<p>Interactive systems often need to respond to changes in input. Plaquette provides convenient
+methods like <code class="docutils literal notranslate"><span class="pre">rose()</span></code>, <code class="docutils literal notranslate"><span class="pre">fell()</span></code>, and <code class="docutils literal notranslate"><span class="pre">changed()</span></code> for detecting transitions in digital signals.</p>
+<section id="digital-conditions">
+<h3>Digital Conditions<a class="headerlink" href="#digital-conditions" title="Link to this heading"></a></h3>
+<p>Here’s an example of toggling an LED when a button is pressed:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Detect the moment the button is pressed</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w">      </span><span class="c1">// Toggle the LED state</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="analog-conditions">
+<h3>Analog Conditions<a class="headerlink" href="#analog-conditions" title="Link to this heading"></a></h3>
+<p>Analog conditions are useful when you want to trigger actions based on a threshold. For instance,
+turning on an LED when the light level drops below 30% (0.3):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lightSensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w">  </span><span class="c1">// Turn on LED in low light</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w"> </span><span class="c1">// Turn off LED in bright light</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modes-for-inputs-and-outputs">
+<h2>Modes for Inputs and Outputs<a class="headerlink" href="#modes-for-inputs-and-outputs" title="Link to this heading"></a></h2>
+<p>All input and output units in Plaquette support different modes, which allow you to adapt to various
+circuit configurations. You may already be familiar with the <code class="docutils literal notranslate"><span class="pre">INTERNAL_PULLUP</span></code> mode from
+<a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, which provides a simple way to connect a button input. Let’s explore how modes affect
+<a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a>, <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>, and <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> units.</p>
+<p>Understanding these modes helps you design stable and efficient circuits, whether you’re reading
+inputs or driving outputs. Choose the mode that best fits your hardware setup and application
+requirements.</p>
+<section id="digitalin-modes-direct-inverted-and-internal-pullup">
+<h3><strong>DigitalIn Modes: DIRECT, INVERTED, and INTERNAL_PULLUP</strong><a class="headerlink" href="#digitalin-modes-direct-inverted-and-internal-pullup" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a> unit supports three primary modes:</p>
+<ul>
+<li><p><strong>DIRECT</strong> (default): The unit is ON when the input pin is HIGH (e.g., 5V). This mode is used for buttons
+with pull-down resistors, which keep the pin LOW (OFF) when the button is not pressed and allow it
+to go HIGH (ON) when the button is pressed. Pull-down resistors typically have values around
+10k <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p><strong>Example</strong>: Button connected between pin 2 and 5V with a pull-down resistor to ground:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">DIRECT</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>INVERTED</strong>: The unit is ON when the input pin is LOW (e.g., GND). This is useful for buttons
+with pull-up resistors, which keep the pin HIGH when the button is not pressed and allow it to go
+LOW when the button is pressed. The <code class="docutils literal notranslate"><span class="pre">INTERNAL_PULLUP</span></code> mode activates an internal pull-up resistor,
+simplifying the circuit.</p>
+<p><strong>Example</strong>: Button connected between pin 2 and ground with a pull-down resistor to +5V (Vcc):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INVERTED</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>INTERNAL_PULLUP</strong>: As in mode <code class="docutils literal notranslate"><span class="pre">INVERTED</span></code> the unit is ON when the input pin is LOW (e.g., GND).
+Makes use of the internal pull-up resistor on the board, therefore removing the need to add a pull-up
+resistor.</p>
+<p><strong>Example</strong>: Button connected between pin 2 and ground (no need for an extra pull-up resistor):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="analogin-modes-direct-and-inverted">
+<h3><strong>AnalogIn Modes: DIRECT and INVERTED</strong><a class="headerlink" href="#analogin-modes-direct-and-inverted" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> unit also supports <code class="docutils literal notranslate"><span class="pre">DIRECT</span></code> and <code class="docutils literal notranslate"><span class="pre">INVERTED</span></code> modes, which determine how the sensor’s
+voltage is interpreted:</p>
+<ul>
+<li><p><strong>DIRECT</strong> (default): Reads the raw analog value, normalized to a range of [0.0, 1.0]. This mode is
+suitable for sensors like photoresistors, where increasing light decreases resistance, resulting
+in higher voltage and a higher normalized value.</p>
+<p><strong>Example</strong>: Using a photoresistor in direct mode:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="w"> </span><span class="n">DIRECT</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">lightSensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>INVERTED</strong>: Flips the normalized value, so high input voltage results in a low output value and
+vice versa. This is useful when you want the sensor to behave oppositely without changing your
+logic.</p>
+<p><strong>Example</strong>: Inverted photoresistor reading:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="w"> </span><span class="n">INVERTED</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="digitalout-and-analogout-modes-source-and-sink">
+<h3><strong>DigitalOut and AnalogOut Modes: SOURCE and SINK</strong><a class="headerlink" href="#digitalout-and-analogout-modes-source-and-sink" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> and <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> units control the flow of current and can operate in two modes:</p>
+<ul>
+<li><p><strong>SOURCE</strong> (default): The pin provides current when ON, suitable for devices like LEDs connected
+between the pin and ground.</p>
+<p><strong>Example</strong>: LED in source mode:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">blinkWave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">blinkWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Circuit Note</strong>: Connect the LED anode (long leg) to the pin and the cathode (short leg) to
+ground, with a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> in series.</p>
+</li>
+<li><p><strong>SINK</strong>: The pin sinks current when ON, suitable for LEDs connected between a positive
+voltage and the pin.</p>
+<p><strong>Example</strong>: LED in sink mode:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Circuit Note</strong>: Connect the LED anode to +5V (Vcc) and the cathode to the pin, with a
+330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor in series.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>Understanding inputs and outputs is crucial for building interactive projects. With Plaquette’s
+simplified syntax, tools for handling noisy signals, and powerful mapping and conditional features,
+you can quickly create dynamic and engaging systems. Next, we’ll explore how to use Plaquette’s
+timing and signal generation features to add even more complexity and creativity to your projects.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="regularizing.html" class="btn btn-neutral float-right" title="Regularizing Signals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
