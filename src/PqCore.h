@@ -316,10 +316,10 @@ public:
   /// Returns value as float (either 0.0 or 1.0).
   virtual float get() { return getInt(); }
 
-  /// Sets output to "on" (ie. false, 0).
+  /// Sets output to "on" (ie. true, 1).
   virtual bool on() { return putOn(true); }
 
-  /// Sets output to "off" (ie. true, 1).
+  /// Sets output to "off" (ie. false, 0).
   virtual bool off() { return putOn(false); }
 
   /**
