@@ -10,6 +10,7 @@ Table of Contents
    why_plaquette
    features
    getting_started
+   inputs_outputs
    regularizing
    advanced
    credits
