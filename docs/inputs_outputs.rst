@@ -11,8 +11,8 @@ different configuration modes of input and output units.
 
 Let's explore these ideas step by step.
 
-Digital vs. Analog
-------------------
+Digital vs Analog
+-----------------
 
 Before diving into code, let's first clarify the difference between **digital** and **analog**
 signals.
@@ -435,34 +435,29 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
 - **SOURCE** (default): The pin provides current when ON, suitable for devices like LEDs connected
   between the pin and ground.
 
-  **Example**: LED in source mode:
+  **Example**: LED in source mode. Connect the LED anode (long leg) to pin 9 and the cathode 
+  (short leg) to ground, with a 330 :math:`\Omega` in series.
 
   .. code-block:: cpp
 
-      DigitalOut led(13, SOURCE);
-      SquareWave blinkWave(1.0);
+      AnalogOut led(9, SOURCE);
+      SineWave wave(1.0);
 
       void begin() {}
 
       void step() {
-        blinkWave >> led;
+        wave >> led;
       }
-
-  **Circuit Note**: Connect the LED anode (long leg) to the pin and the cathode (short leg) to
-  ground, with a 330 :math:`\Omega` in series.
 
 - **SINK**: The pin sinks current when ON, suitable for LEDs connected between a positive
   voltage and the pin.
 
-  **Example**: LED in sink mode:
+  **Example**: LED in sink mode. Connect the LED anode to +5V (Vcc) and the cathode to pin 9, with a 
+  330 :math:`\Omega` resistor in series.
 
   .. code-block:: cpp
 
-      DigitalOut led(13, SINK);
-
-  **Circuit Note**: Connect the LED anode to +5V (Vcc) and the cathode to the pin, with a 
-  330 :math:`\Omega` resistor in series.
-
+      AnalogOut led(9, SINK);
 
 Conclusion
 ----------
