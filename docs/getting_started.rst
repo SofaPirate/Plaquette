@@ -301,16 +301,6 @@ statement.
         0 >> myLed;
     }
 
-.. note::
-   You can rewrite this expression in a more compact way using the 
-   `conditional operator (?) <https://www.tutorialspoint.com/arduino/arduino_conditional_operator.htm>`__:
-
-   .. code:: cpp
-
-      void step() {
-        (myButton ? myWave : 0) >> myLed;
-      }
-
 Full code
 ~~~~~~~~~
 
