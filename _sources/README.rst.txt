@@ -24,6 +24,7 @@ Plaquette allows you to:
     - :doc:`Get started <getting_started>`
   * - `Watch video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_
     - :doc:`Filter your signals <regularizing>`
-
+  * - `GitHub repository <https://github.com/SofaPirate/Plaquette/>`_
+    - `PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>`_
 
 .. image:: images/Plaquette-LogoTextAnim.*
