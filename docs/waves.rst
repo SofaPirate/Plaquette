@@ -22,6 +22,9 @@ you to send data to the serial, which is invaluable for debugging and visualizin
 provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect 
 the output.
 
+Single Waveform
+~~~~~~~~~~~~~~~
+
 To visualize the data, open the **Serial Plotter** in the Arduino IDE. The Serial Plotter can 
 graphically display waveforms by interpreting each printed value as a separate line on the graph.
 
@@ -38,6 +41,9 @@ graphically display waveforms by interpreting each printed value as a separate l
     void step() {
       println(pot); // Print the potentiometer value and ends the line
     }
+
+Multiple Waveforms
+~~~~~~~~~~~~~~~~~~
 
 For multiple waveforms, print their values separated by spaces in a single line, followed by a 
 newline using ``println()``.
@@ -63,7 +69,7 @@ newline using ``println()``.
 Types of Waves
 --------------
 
-Plaquette provides 3 types of oscillators:
+Plaquette provides 3 types of waves:
 
 - :doc:`SquareWave`: Alternates between two levels with sharp transitions. Useful for creating rhythmic
   on-off patterns such as blinking LEDs or simple tone generators for buzzers. Possesses some properties
@@ -76,7 +82,7 @@ Plaquette provides 3 types of oscillators:
 - :doc:`SineWave`: Produces a sinusoidal waveform for smoother modulation. Commonly used for
   creating natural, flowing transitions, such as smooth dimming or speed control.
 
-You can visualize these waves on the Serial Plotter by streaming their values:
+You can visualize these waves on the Serial Plotter by streaming their values.
 
 **Example**: Display different waves for comparison:
 
@@ -97,7 +103,7 @@ You can visualize these waves on the Serial Plotter by streaming their values:
       println(sine);
     }
 
-Core Properties
+Wave Properties
 ---------------
 
 Oscillators are defined by their **phase**, **period**, **frequency**, **amplitude**, and **width**. 
@@ -117,6 +123,9 @@ Let us explore these properties and their corresponding functions:
 
 There properties can be assigned at the beginning of the program or during runtime.
 
+Initializing Properties
+~~~~~~~~~~~~~~~~~~~~~~~
+
 **Example**: Assign some properties of a wave at program startup:
 
 .. code-block:: cpp
@@ -135,6 +144,9 @@ There properties can be assigned at the beginning of the program or during runti
     void step() {
       println(wave); // Print wave value
     }
+
+Changing Properties During Runtime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Example**: Control the width of the waves using the potentiometer:
 
@@ -198,7 +210,10 @@ Accessors and Mutators
 All properties in wave units have two variants:
 
 - A **mutator** variant allowing to change the value of the property. Example: ``wave.period(3.0);``.
-- An **accessor** read-only variant that returns the current value of the property. Example: ``float value = wave.period();``
+- An **accessor** read-only variant that returns the current value of the property. Example: ``float x = wave.period();``
+
+.. note::
+  This naming convention is a standard in Plaquette and you will find it in other units as well.
 
 **Example**: Increase the wave's period by one second each time the button is pressed:
 
@@ -214,7 +229,7 @@ All properties in wave units have two variants:
 
     void step() {
       if (button.rose()) {
-        wave.period( wave.period() + 1 ); // Set period to period plus one
+        wave.period( wave.period() + 1 ); // Set period to current period plus one
       }
       println(wave); // Print wave value
     }
@@ -224,8 +239,8 @@ Wave Addition
 
 Adding waves together allows for the creation of complex and dynamic waveforms. By superimposing 
 multiple signals, you can simulate natural phenomena, generate rhythmic patterns, or create rich 
-textures for artistic applications. In Plaquette, wave addition is as simple as summing the values 
-of different waves, with the result automatically normalized to stay within the range [0, 1].
+textures for artistic applications. In Plaquette, wave addition is as simple as computing the average
+value of different waves.
 
 One compelling example of wave addition is simulating a **heartbeat**. A heartbeat typically has 
 two peaks: a stronger primary beat followed by a softer secondary beat. This can be achieved by adding 
@@ -255,9 +270,13 @@ per minute.
       println(heartBeat);  // Stream the combined wave for visualization
     }
 
-In this simulation, the `primaryBeat` provides the dominant rhythm, while the `secondaryBeat` introduces a softer, complementary pulse. The resulting waveform mimics the double-thump pattern of a human heartbeat.
+In this simulation, the ``primary`` sine wave provides the dominant rhythm, while the ``secondary`` 
+sine wave introduces a softer, complementary pulse. The resulting waveform mimics the double-thump 
+pattern of a human heartbeat.
 
-Try experimenting with different wave types, amplitudes, and frequencies to see how the combined waveform changes. Wave addition opens up endless possibilities for creating expressive and engaging outputs.
+Try experimenting with different wave types, amplitudes, and frequencies to see how the combined waveform 
+changes. Try adding a third wave, making sure you divide the result by 3 intead of 2. 
+Wave addition opens up endless possibilities for creating expressive and engaging outputs.
 
 
 Modulation
@@ -273,9 +292,9 @@ modulate the frequency, phase, period, amplitude, or width of a faster wave.
 
     #include <Plaquette.h>
 
-    TriangleWave modulator(10.0);
-    SineWave sine;
-    AnalogOut led(9);
+    TriangleWave modulator(10.0); // LFO (10 seconds period)
+    SineWave sine; // Main wave
+    AnalogOut led(9); // LED output
 
     void begin() {}
 
@@ -286,14 +305,18 @@ modulate the frequency, phase, period, amplitude, or width of a faster wave.
     }
 
 
-Make Some Noise
----------------
+Adding Noise with randomFloat()
+-------------------------------
 
 While oscillators are incredibly useful for generating regular and predictable waveforms, there are 
 times when you may want to introduce randomness to add a sense of natural variation or lifelike behavior. 
-Plaquette provides the `randomFloat()` function, which is a powerful tool for generating random values.
+Plaquette provides the ``randomFloat()`` function, which is a powerful tool for generating random values.
 
-The `randomFloat()` function can be used in several ways:
+.. warning::
+  Avoid using Arduino's `random() <https://docs.arduino.cc/language-reference/en/functions/random-numbers/random/>`__
+  function as it returns integer numbers instead of floating-point numbers.
+  
+The ``randomFloat()`` function can be used in several ways:
 
 - ``randomFloat()`` generates a random float between 0.0 and 1.0.
 - ``randomFloat(max)`` generates a random float between 0.0 and ``max``.
@@ -371,7 +394,7 @@ Serial Plotter. Try to simulate a natural phenomena like a flickering flame or a
 Timing Functions
 ----------------
 
-Oscillators come with various timing functions to control their behavior:
+Oscillators offer various timing functions to control their behavior:
 
 - **start()**: Starts/restarts the oscillator.
 - **stop()**: Stops it and resets it.
@@ -434,5 +457,5 @@ Conclusion
 Oscillators are powerful tools for creating dynamic, expressive systems. By combining their
 waveforms, timing functions, and phase-shifting capabilities, you can achieve intricate and
 synchronized behaviors. Modulation and randomness add another layer of complexity, enabling you 
-to create engaging and responsive media systems. Explore these features and see how oscillators 
-can bring your projects to life.
+to create engaging and responsive media systems. Explore these features in Plaquette and see how 
+waves can bring your projects to life.
