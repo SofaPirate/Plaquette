@@ -22,8 +22,8 @@ you to send data to the serial, which is invaluable for debugging and visualizin
 provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect 
 the output.
 
-Single Waveform
-~~~~~~~~~~~~~~~
+Single Signal
+~~~~~~~~~~~~~
 
 To visualize the data, open the **Serial Plotter** in the Arduino IDE. The Serial Plotter can 
 graphically display waveforms by interpreting each printed value as a separate line on the graph.
@@ -42,8 +42,8 @@ graphically display waveforms by interpreting each printed value as a separate l
       println(pot); // Print the potentiometer value and ends the line
     }
 
-Multiple Waveforms
-~~~~~~~~~~~~~~~~~~
+Multiple Signals
+~~~~~~~~~~~~~~~~
 
 For multiple waveforms, print their values separated by spaces in a single line, followed by a 
 newline using ``println()``.
@@ -121,10 +121,10 @@ Let us explore these properties and their corresponding functions:
     - For :doc:`TriangleWave`, it determines whether the wave skews towards a sawtooth (width = 0) or inverted sawtooth (width = 1).
     - For :doc:`SineWave`, it shifts the inflection points of the wave, altering its symmetry.
 
-There properties can be assigned at the beginning of the program or during runtime.
-
 Initializing Properties
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+There properties can be initialized in the ``begin()`` to build a specific waveform.
 
 **Example**: Assign some properties of a wave at program startup:
 
@@ -147,6 +147,9 @@ Initializing Properties
 
 Changing Properties During Runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Properties can also be changed in real-time in the ``step()`` function to create interactive or
+evolutive effects.
 
 **Example**: Control the width of the waves using the potentiometer:
 
@@ -201,7 +204,7 @@ potentiometer value to appropriate ranges.
       println(sine);
     }
 
-Try using the potentiometer to control the different different properties and visualize the 
+Try using the potentiometer to control different wave properties and visualize the 
 result using the Serial Plotter.
 
 Accessors and Mutators
