@@ -51,8 +51,6 @@
 // Servo-motors.
 #if __has_include("Servo.h")
 #include "PqServo.h"
-#else
-#warning "Servo.h not found, skipping inclusion of PqServo.h"
 #endif
 
 #endif
