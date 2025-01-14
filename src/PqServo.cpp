@@ -20,6 +20,7 @@
 #include "PqServo.h"
 
 #if defined(ARDUINO_ARCH_AVR) or defined(ARDUINO_ARCH_SAM) or defined(ARDUINO_ARCH_SAMD) or defined(ARDUINO_ARCH_STM32F4) or defined(ARDUINO_ARCH_NRF52)
+#include <Servo.h>
 #include "pq_map_real.h"
 
 namespace pq {
