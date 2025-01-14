@@ -48,9 +48,4 @@
 #include "SquareWave.h"
 #include "TriangleWave.h"
 
-// Servo-motors.
-#if __has_include("Servo.h")
-#include "PqServo.h"
-#endif
-
 #endif

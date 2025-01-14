@@ -23,6 +23,7 @@
  * https://www.arduino.cc/en/Tutorial/Sweep
  */
 #include <Plaquette.h>
+#include <PqServo.h>
 
 // The metronome will launch a new ramp every 5 seconds.
 Metronome metro(5.0);

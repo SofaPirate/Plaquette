@@ -19,7 +19,6 @@
 
 #include "PqServo.h"
 
-#if __has_include("Servo.h")
 #include "pq_map_real.h"
 
 namespace pq {
@@ -72,5 +71,3 @@ void ContinuousServoOut::reverse()
 }
 
 } // namespace pq
-
-#endif

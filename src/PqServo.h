@@ -20,7 +20,6 @@
 #ifndef PQ_SERVO_H_
 #define PQ_SERVO_H_
 
-#if __has_include("Servo.h")
 #include "PqCore.h"
 #include <Servo.h>
 
@@ -94,7 +93,5 @@ protected:
 };
 
 } // namespace pq
-
-#endif
 
 #endif
