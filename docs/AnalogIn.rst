@@ -12,6 +12,12 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 - in ``DIRECT`` mode (default) the value is expressed as a percentage of the reference voltage (Vref, typically 5V)
 - in ``INVERTED`` mode the value is inverted (ie. 0V corresponds to 100% while 2.5V corresponds to 50%).
 
+.. warning::
+
+   If the analog input pin is not connected to anything, the value returned by ``get()`` will fluctuate 
+   based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to 
+   the board, etc.).
+
 |Example|
 ---------
 
@@ -42,10 +48,6 @@ Control an LED using a potentiometer.
 .. doxygenclass:: AnalogIn
    :project: Plaquette
    :members: AnalogIn, get, mapTo, smooth, noSmooth, cutoff, pin, mode
-
-.. warning::
-
-   If the analog input pin is not connected to anything, the value returned by ``get()`` will fluctuate based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to the board, etc.).
 
 |SeeAlso|
 ---------
