@@ -4,12 +4,11 @@ Why Plaquette?
 Rationale
 ---------
 
-Media creators such as media artists, interactive designers, digital luthiers, 
-and electronic musicians work with real-time signals all the time. However, when
-working with tangible computing systems such as embedded sensors, robotics, connected
-objects, and electronic music instruments, available tools are often very low-level and 
-lack expressivity. Creative practitionners thus struggle to design interesting works
-directly using such platforms.
+Media artists, interactive designers, digital luthiers, and electronic musicians constantly 
+engage with real-time signals. However, when working with tangible computing systems such 
+as embedded sensors, robotics, connected objects, and electronic music instruments, available 
+tools such as Arduino are often very low-level and lack expressivity. Creative practitionners 
+thus struggle to design interesting works directly using such platforms.
 
 Consider the following case of learning how to work with a simple lignt sensor 
 (eg. photoresistor) connected to an Arduino board on analog pin 0. The code reads 
@@ -68,7 +67,7 @@ As a way to address these issues, we propose to create a general-purpose standar
 interface for simple, real-time signal processing for media artists.
 The objectives are as follow:
 
- #. **Allow creators to concentrate on the creative dimensions of their work** rather
+ #. **Allow creators to focus on the creative dimensions of their work** rather
     than on irrelevant numerical questions, hence also facilitating their learning.
  #. **Provide creative practitioners with accessible tools** that grasp high-level
     concepts such as "normalizing" and "detecting peaks" (rather than specific,
