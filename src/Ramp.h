@@ -80,7 +80,7 @@ public:
    * Assign initial value of the ramp.
    * @param from the initial value
    */
-  virtual void from(float to);
+  virtual void from(float from);
 
   /**
    * Assign initial and final values of the ramp.
