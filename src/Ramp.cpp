@@ -65,6 +65,10 @@ void Ramp::to(float to) {
   fromTo(_value, to);
 }
 
+void Ramp::from(float from) {
+  fromTo(from, _to);
+}
+
 void Ramp::fromTo(float from, float to) {
   // If in speed mode, we need to adjust duration according to speed.
   if (_mode == RAMP_SPEED) {
