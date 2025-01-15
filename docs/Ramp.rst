@@ -63,7 +63,7 @@ Sequentially ramps through different values.
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: Ramp, get, start, stop, pause, resume, elapsed, progress, isRunning, add, set, isFinished, easing, noEasing, to, fromTo
+   :members: Ramp, get, start, stop, pause, resume, elapsed, progress, isRunning, add, set, isFinished, go, easing, noEasing, to, from, fromTo, mode
 
 |SeeAlso|
 ---------
