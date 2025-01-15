@@ -40,15 +40,10 @@ enum {
 class Ramp : public Unit, public AbstractTimer {
 public:
   /**
-   * Default constructor. Ramps from 0 to 1 in one second.
-   */
-  Ramp();
-
-  /**
    * Constructor with duration.
    * @param duration duration of the ramp
    */
-  Ramp(float duration);
+  Ramp(float duration=1.0f);
 
   /// Returns value of ramp.
   virtual float get() { return _value; }

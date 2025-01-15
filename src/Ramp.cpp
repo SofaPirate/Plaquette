@@ -24,13 +24,6 @@
 
 namespace pq {
 
-Ramp::Ramp() :
-  Unit(),
-  AbstractTimer(1.0f),
-  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION)
-{
-}
-
 Ramp::Ramp(float duration) :
   Unit(),
   AbstractTimer(duration),

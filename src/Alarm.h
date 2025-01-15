@@ -31,7 +31,7 @@ namespace pq {
  */
 class Alarm : public DigitalSource, public AbstractTimer {
 public:
-  Alarm(float duration);
+  Alarm(float duration=1.0f);
 
 protected:
   virtual void begin();
