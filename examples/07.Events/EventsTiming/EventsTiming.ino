@@ -3,6 +3,11 @@
  *
  * Demonstrates the use of events for timing.
  * 
+ * In this scenario, two metronomes are used to trigger the activation
+ * of two ramps at different periods. The first metronome is also used to 
+ * toggle the LED. A pushbutton allows to toggle the events from the first
+ * metronome by clearing them and re-adding them.
+ * 
  * This example is best viewed using the Arduino Serial Plotter.
  *
  * The circuit:
@@ -54,7 +59,7 @@ void step() {
   printRamps();
 }
 
-// Callback functions.
+// Callback functions /////////////////////////////////////////////////
 void toggleLed() {
   led.toggle();
 }
