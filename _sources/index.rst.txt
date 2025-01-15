@@ -12,6 +12,7 @@ Table of Contents
    getting_started
    inputs_outputs
    waves
+   timing_basics
    regularizing
    advanced
    credits

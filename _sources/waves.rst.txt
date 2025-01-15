@@ -4,14 +4,16 @@ Using Waves
 
 In this section, we will explore waves (also called oscillators), essential tools for creating dynamic 
 and expressive media. Oscillators generate repeating waveforms, which can control various outputs such 
-as LEDs or motors. We will also learn how to visualize and manipulate oscillators using Plaquette's features.
-The concept of modulation will be introduced, allowing one wave to influence another.
+as LEDs or motors. We will also learn how to visualize signals and shape different kinds of waveforms.
+We will then introduce combining different waves together, either by adding them or through modulation.
+Finally, we will look at how to use randomness to generate noisy waveforms that feel more natural.
 
-To follow along with the examples, set up a simple circuit:
+.. note::
+  To follow along with the examples, set up a simple circuit:
 
-- A **potentiometer** connected to ``A0`` to control proprties dynamically.
-- A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
-- An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
+  - A **potentiometer** connected to ``A0`` to control proprties dynamically.
+  - A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
+  - An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
 
 Visualizing Waves with the Serial Plotter
 -----------------------------------------
@@ -22,11 +24,13 @@ you to send data to the serial, which is invaluable for debugging and visualizin
 provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect 
 the output.
 
-Single Waveform
-~~~~~~~~~~~~~~~
+Single Signal
+~~~~~~~~~~~~~
 
-To visualize the data, open the **Serial Plotter** in the Arduino IDE. The Serial Plotter can 
-graphically display waveforms by interpreting each printed value as a separate line on the graph.
+To visualize the data, open the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__ 
+in the Arduino IDE. The Serial Plotter can graphically display waveforms by interpreting each printed 
+value as a separate line on the graph, making it an invaluable tool to visualize signals such as
+sensor values and waveforms.
 
 **Example**: Print the value of the potentiometer:
 
@@ -42,8 +46,8 @@ graphically display waveforms by interpreting each printed value as a separate l
       println(pot); // Print the potentiometer value and ends the line
     }
 
-Multiple Waveforms
-~~~~~~~~~~~~~~~~~~
+Multiple Signals
+~~~~~~~~~~~~~~~~
 
 For multiple waveforms, print their values separated by spaces in a single line, followed by a 
 newline using ``println()``.
@@ -54,7 +58,7 @@ newline using ``println()``.
 
     #include <Plaquette.h>
 
-    AnalogIn pot(A0);   // The potentiometer
+    AnalogIn pot(A0);   // Potentiometer input
     SineWave wave(2.0); // Sine wave with period of 2 seconds
 
     void begin() {}
@@ -90,6 +94,7 @@ You can visualize these waves on the Serial Plotter by streaming their values.
 
     #include <Plaquette.h>
 
+    // Three wave types.
     SquareWave square(1.0);
     TriangleWave triangle(1.0);
     SineWave sine(1.0);
@@ -121,10 +126,10 @@ Let us explore these properties and their corresponding functions:
     - For :doc:`TriangleWave`, it determines whether the wave skews towards a sawtooth (width = 0) or inverted sawtooth (width = 1).
     - For :doc:`SineWave`, it shifts the inflection points of the wave, altering its symmetry.
 
-There properties can be assigned at the beginning of the program or during runtime.
-
 Initializing Properties
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+There properties can be initialized in the ``begin()`` to build a specific waveform.
 
 **Example**: Assign some properties of a wave at program startup:
 
@@ -148,13 +153,16 @@ Initializing Properties
 Changing Properties During Runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Properties can also be changed in real-time in the ``step()`` function to create interactive or
+evolutive effects.
+
 **Example**: Control the width of the waves using the potentiometer:
 
 .. code-block:: cpp
 
     #include <Plaquette.h>
 
-    AnalogIn pot(A0);   // The potentiometer
+    AnalogIn pot(A0); // Potentiometer input
 
     SquareWave square(1.0);
     TriangleWave triangle(1.0);
@@ -180,7 +188,7 @@ potentiometer value to appropriate ranges.
 
     #include <Plaquette.h>
 
-    AnalogIn pot(A0);   // The potentiometer
+    AnalogIn pot(A0); // Potentiometer input
 
     SquareWave square(1.0);
     TriangleWave triangle(1.0);
@@ -201,7 +209,7 @@ potentiometer value to appropriate ranges.
       println(sine);
     }
 
-Try using the potentiometer to control the different different properties and visualize the 
+Try using the potentiometer to control different wave properties and visualize the 
 result using the Serial Plotter.
 
 Accessors and Mutators
@@ -221,9 +229,9 @@ All properties in wave units have two variants:
 
     #include <Plaquette.h>
 
-    DigitalIn button(2, INTERNAL_PULLUP);
+    DigitalIn button(2, INTERNAL_PULLUP); // Button input
 
-    TriangleWave wave(1.0);
+    TriangleWave wave(1.0); // Wave with initial 1 second period
 
     void begin() {}
 
@@ -293,7 +301,7 @@ modulate the frequency, phase, period, amplitude, or width of a faster wave.
     #include <Plaquette.h>
 
     TriangleWave modulator(10.0); // LFO (10 seconds period)
-    SineWave sine; // Main wave
+    SineWave sine;    // Main wave
     AnalogOut led(9); // LED output
 
     void begin() {}
@@ -330,8 +338,8 @@ These random values can be used to add noise directly to a signal.
 
     #include <Plaquette.h>
 
-    SineWave wave(1.0);
-    AnalogOut led(9);
+    SineWave wave(1.0); // Base waveform
+    AnalogOut led(9);   // LED output
 
     void begin() {}
 
@@ -352,15 +360,15 @@ the amount of noise.
 
     #include <Plaquette.h>
 
-    AnalogIn pot(A0);
-    SineWave wave(1.0);
-    AnalogOut led(9);
+    AnalogIn pot(A0);   // Potentiometer input
+    SineWave wave(1.0); // Wave with initial period of 1 second
+    AnalogOut led(9);   // LED output
 
     void begin() {}
 
     void step() {
       float noise = randomFloat(-pot, pot); // Generate noise according to potentiometer value
-      wave.period( wave.period() + noise );
+      wave.period( wave.period() + noise ); // Add noise to period
       wave >> led;   // Drive LED with noisy sine wave
       println(wave); // Stream the sine wave
     }
@@ -372,11 +380,12 @@ each push of the button.
 
     #include <Plaquette.h>
 
-    DigitalIn button(2, INTERNAL_PULLUP);
-    TriangleWave wave(1.0);
-    AnalogOut led(9);
+    DigitalIn button(2, INTERNAL_PULLUP); // Button input
+    TriangleWave wave; // Wave with default properties
+    AnalogOut led(9);  // LED output
 
     void begin() {
+      button.debounce(); // Debounce button
       wave.frequency(5.0); // Start at 5 Hz
     }
 
@@ -384,7 +393,7 @@ each push of the button.
       if (button.rose()) {
         wave.frequency(randomFloat(4.0, 6.0)); // Random frequency between 4 and 6 Hz
       }
-      println(wave); // Stream the wave
+      println(wave); // Stream the wave for visualization
     }
 
 Randomness can also be combined with modulation to create highly dynamic and expressive behaviors. 
@@ -410,12 +419,12 @@ Oscillators offer various timing functions to control their behavior:
 
     #include <Plaquette.h>
 
-    DigitalIn button(2, INTERNAL_PULLUP);
-    SineWave sine;
-    AnalogOut led(9);
+    DigitalIn button(2, INTERNAL_PULLUP); // Button input
+    SineWave sine;    // Wave with default properties
+    AnalogOut led(9); // LED output
 
     void begin() {
-      sine.frequency(2.0); // 2 Hz
+      sine.frequency(2.0); // Initialize frequency to 2 Hz
     }
 
     void step() {
@@ -439,7 +448,7 @@ patterns.
 
     #include <Plaquette.h>
 
-    SineWave wave(1.0);
+    SineWave wave(5.0); // Sine wave with 5 seconds period
 
     void begin() {}
 

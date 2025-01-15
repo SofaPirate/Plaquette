@@ -1,6 +1,6 @@
-=================
+==================
 Inputs and Outputs
-=================
+==================
 
 When working with Plaquette, **inputs** and **outputs** allow you to interact with the physical
 world. Whether you are reading a sensor's value or controlling an actuator, Plaquette makes this

@@ -22,7 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Regularizing Signals" href="regularizing.html" />
+    <link rel="next" title="Working with Time" href="timing_basics.html" />
     <link rel="prev" title="Inputs and Outputs" href="inputs_outputs.html" /> 
 </head>
 
@@ -54,8 +54,8 @@
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Using Waves</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#visualizing-waves-with-the-serial-plotter">Visualizing Waves with the Serial Plotter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#single-waveform">Single Waveform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multiple-waveforms">Multiple Waveforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-signal">Single Signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-signals">Multiple Signals</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#types-of-waves">Types of Waves</a></li>
@@ -73,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -116,14 +117,18 @@
 <h1>Using Waves<a class="headerlink" href="#using-waves" title="Link to this heading"></a></h1>
 <p>In this section, we will explore waves (also called oscillators), essential tools for creating dynamic
 and expressive media. Oscillators generate repeating waveforms, which can control various outputs such
-as LEDs or motors. We will also learn how to visualize and manipulate oscillators using Plaquette’s features.
-The concept of modulation will be introduced, allowing one wave to influence another.</p>
+as LEDs or motors. We will also learn how to visualize signals and shape different kinds of waveforms.
+We will then introduce combining different waves together, either by adding them or through modulation.
+Finally, we will look at how to use randomness to generate noisy waveforms that feel more natural.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>To follow along with the examples, set up a simple circuit:</p>
 <ul class="simple">
 <li><p>A <strong>potentiometer</strong> connected to <code class="docutils literal notranslate"><span class="pre">A0</span></code> to control proprties dynamically.</p></li>
 <li><p>A <strong>button</strong> connected to pin <code class="docutils literal notranslate"><span class="pre">2</span></code> with an internal pull-up resistor to trigger actions.</p></li>
 <li><p>An <strong>LED</strong> connected to pin <code class="docutils literal notranslate"><span class="pre">9</span></code> (PWM capable) through a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor.</p></li>
 </ul>
+</div>
 <section id="visualizing-waves-with-the-serial-plotter">
 <h2>Visualizing Waves with the Serial Plotter<a class="headerlink" href="#visualizing-waves-with-the-serial-plotter" title="Link to this heading"></a></h2>
 <p>In this section, we will use <strong>serial communication</strong> to send data from our Arduino board to our
@@ -131,10 +136,12 @@ PC so as to visualize the waves in real time. The <code class="docutils literal 
 you to send data to the serial, which is invaluable for debugging and visualizing data. They will
 provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect
 the output.</p>
-<section id="single-waveform">
-<h3>Single Waveform<a class="headerlink" href="#single-waveform" title="Link to this heading"></a></h3>
-<p>To visualize the data, open the <strong>Serial Plotter</strong> in the Arduino IDE. The Serial Plotter can
-graphically display waveforms by interpreting each printed value as a separate line on the graph.</p>
+<section id="single-signal">
+<h3>Single Signal<a class="headerlink" href="#single-signal" title="Link to this heading"></a></h3>
+<p>To visualize the data, open the <a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/">Serial Plotter</a>
+in the Arduino IDE. The Serial Plotter can graphically display waveforms by interpreting each printed
+value as a separate line on the graph, making it an invaluable tool to visualize signals such as
+sensor values and waveforms.</p>
 <p><strong>Example</strong>: Print the value of the potentiometer:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
@@ -148,14 +155,14 @@ graphically display waveforms by interpreting each printed value as a separate l
 </pre></div>
 </div>
 </section>
-<section id="multiple-waveforms">
-<h3>Multiple Waveforms<a class="headerlink" href="#multiple-waveforms" title="Link to this heading"></a></h3>
+<section id="multiple-signals">
+<h3>Multiple Signals<a class="headerlink" href="#multiple-signals" title="Link to this heading"></a></h3>
 <p>For multiple waveforms, print their values separated by spaces in a single line, followed by a
 newline using <code class="docutils literal notranslate"><span class="pre">println()</span></code>.</p>
 <p><strong>Example</strong>: Print the value of the potentiometer and a sine wave:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// The potentiometer</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Potentiometer input</span>
 <span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sine wave with period of 2 seconds</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
@@ -186,6 +193,7 @@ creating natural, flowing transitions, such as smooth dimming or speed control.<
 <p><strong>Example</strong>: Display different waves for comparison:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
+<span class="c1">// Three wave types.</span>
 <span class="n">SquareWave</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 <span class="n">TriangleWave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 <span class="n">SineWave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
@@ -222,9 +230,9 @@ For each wave type, this property has a specific effect:</p>
 </div></blockquote>
 </li>
 </ul>
-<p>There properties can be assigned at the beginning of the program or during runtime.</p>
 <section id="initializing-properties">
 <h3>Initializing Properties<a class="headerlink" href="#initializing-properties" title="Link to this heading"></a></h3>
+<p>There properties can be initialized in the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> to build a specific waveform.</p>
 <p><strong>Example</strong>: Assign some properties of a wave at program startup:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
@@ -245,10 +253,12 @@ For each wave type, this property has a specific effect:</p>
 </section>
 <section id="changing-properties-during-runtime">
 <h3>Changing Properties During Runtime<a class="headerlink" href="#changing-properties-during-runtime" title="Link to this heading"></a></h3>
+<p>Properties can also be changed in real-time in the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function to create interactive or
+evolutive effects.</p>
 <p><strong>Example</strong>: Control the width of the waves using the potentiometer:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// The potentiometer</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Potentiometer input</span>
 
 <span class="n">SquareWave</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 <span class="n">TriangleWave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
@@ -272,7 +282,7 @@ For each wave type, this property has a specific effect:</p>
 potentiometer value to appropriate ranges.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// The potentiometer</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Potentiometer input</span>
 
 <span class="n">SquareWave</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 <span class="n">TriangleWave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
@@ -294,7 +304,7 @@ potentiometer value to appropriate ranges.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Try using the potentiometer to control the different different properties and visualize the
+<p>Try using the potentiometer to control different wave properties and visualize the
 result using the Serial Plotter.</p>
 </section>
 <section id="accessors-and-mutators">
@@ -311,9 +321,9 @@ result using the Serial Plotter.</p>
 <p><strong>Example</strong>: Increase the wave’s period by one second each time the button is pressed:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
 
-<span class="n">TriangleWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave with initial 1 second period</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -374,7 +384,7 @@ modulate the frequency, phase, period, amplitude, or width of a faster wave.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
 <span class="n">TriangleWave</span><span class="w"> </span><span class="nf">modulator</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// LFO (10 seconds period)</span>
-<span class="n">SineWave</span><span class="w"> </span><span class="n">sine</span><span class="p">;</span><span class="w"> </span><span class="c1">// Main wave</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="n">sine</span><span class="p">;</span><span class="w">    </span><span class="c1">// Main wave</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
@@ -407,8 +417,8 @@ function as it returns integer numbers instead of floating-point numbers.</p>
 <p><strong>Example</strong>: Add noise to a sine wave.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Base waveform</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">   </span><span class="c1">// LED output</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -426,15 +436,15 @@ width, or phase.</p>
 the amount of noise.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
-<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Potentiometer input</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave with initial period of 1 second</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">   </span><span class="c1">// LED output</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="o">-</span><span class="n">pot</span><span class="p">,</span><span class="w"> </span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Generate noise according to potentiometer value</span>
-<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Add noise to period</span>
 <span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Drive LED with noisy sine wave</span>
 <span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the sine wave</span>
 <span class="p">}</span>
@@ -444,11 +454,12 @@ the amount of noise.</p>
 each push of the button.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
-<span class="n">TriangleWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"> </span><span class="c1">// Wave with default properties</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED output</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Start at 5 Hz</span>
 <span class="p">}</span>
 
@@ -456,7 +467,7 @@ each push of the button.</p>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Random frequency between 4 and 6 Hz</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the wave</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the wave for visualization</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -479,12 +490,12 @@ Serial Plotter. Try to simulate a natural phenomena like a flickering flame or a
 <p><strong>Example</strong>: Use the button to start and stop the wave:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
-<span class="n">SineWave</span><span class="w"> </span><span class="n">sine</span><span class="p">;</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="n">sine</span><span class="p">;</span><span class="w">    </span><span class="c1">// Wave with default properties</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2 Hz</span>
+<span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Initialize frequency to 2 Hz</span>
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -505,7 +516,7 @@ patterns.</p>
 <p><strong>Example</strong>: Shift the phase of a sine wave:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sine wave with 5 seconds period</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
@@ -534,7 +545,7 @@ waves can bring your projects to life.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="inputs_outputs.html" class="btn btn-neutral float-left" title="Inputs and Outputs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="regularizing.html" class="btn btn-neutral float-right" title="Regularizing Signals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="timing_basics.html" class="btn btn-neutral float-right" title="Working with Time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

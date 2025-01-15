@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Working with Time &mdash; Plaquette 0.6.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2bd037f0"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regularizing Signals" href="regularizing.html" />
+    <link rel="prev" title="Using Waves" href="waves.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Using Waves</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#measuring-absolute-time-with-seconds">Measuring Absolute Time with seconds()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing-units">Timing Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keeping-track-of-time-with-chronometer">Keeping Track of Time with Chronometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delayed-switching-with-alarm">Delayed Switching with Alarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#triggering-periodic-events-with-metronome">Triggering Periodic Events with Metronome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-smooth-transitions-with-ramp">Creating Smooth Transitions with Ramp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-ranges">Flexible Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-control-with-go">Dynamic Control with go()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-expressive-effects-with-easing-functions">Generating Expressive Effects with Easing Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operational-modes-duration-vs-speed">Operational Modes: Duration vs Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#combining-timing-units">Combining Timing Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Working with Time</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="working-with-time">
+<h1>Working with Time<a class="headerlink" href="#working-with-time" title="Link to this heading"></a></h1>
+<p>In interactive systems, <strong>timing</strong> plays a crucial role in controlling the flow of events. Whether
+you’re creating delays, triggering events, or generating periodic signals, Plaquette provides
+powerful tools to manage time effectively. In this section, we will explore timing functions and
+units, such as <code class="docutils literal notranslate"><span class="pre">seconds</span></code>, <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a>, <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a>, <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a>, and <a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a>.</p>
+<p>Timing is the backbone of interactive systems. By understanding and leveraging the timing tools
+Plaquette provides, you can create precise, dynamic, and creative projects that respond in real-time
+to various inputs and conditions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To follow along with the examples, set up a simple circuit:</p>
+<ul class="simple">
+<li><p>A <strong>potentiometer</strong> connected to <code class="docutils literal notranslate"><span class="pre">A0</span></code> to control proprties dynamically.</p></li>
+<li><p>A <strong>button</strong> connected to pin <code class="docutils literal notranslate"><span class="pre">2</span></code> with an internal pull-up resistor to trigger actions.</p></li>
+<li><p>An <strong>LED</strong> connected to pin <code class="docutils literal notranslate"><span class="pre">9</span></code> (PWM capable) through a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor.</p></li>
+</ul>
+<p>It is strongly advised to use the <a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/">Serial Plotter</a>
+to visualize the ramps.</p>
+</div>
+<section id="measuring-absolute-time-with-seconds">
+<h2>Measuring Absolute Time with seconds()<a class="headerlink" href="#measuring-absolute-time-with-seconds" title="Link to this heading"></a></h2>
+<p>The most fundamental timing functionality in Plaquette is the <code class="docutils literal notranslate"><span class="pre">seconds()</span></code> function. It simply returns
+the elapsed time in seconds <cite>since the program started running</cite>. This is very useful for measuring
+durations or triggering time-based events.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The value returned by <code class="docutils literal notranslate"><span class="pre">seconds()</span></code> is an approximation and should not be used as a substitute for
+a real-time clock in applications requiring high precision.</p>
+</div>
+<p><strong>Example</strong>: Turn LED off after 3 seconds, then on again after 10 seconds.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// After 3 seconds: turn LED off</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seconds</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// After 10 seconds: turn LED on</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While <code class="docutils literal notranslate"><span class="pre">seconds()</span></code> provides a simple and effective way to measure time, it is a global function
+that cannot differentiate between multiple events: it simply tells you the time since the program was
+started. Like time itself, it always increases and never resets. For more precise control and
+event-specific timing, we will need to use more specialized timing functionalities.</p>
+</section>
+<section id="timing-units">
+<h2>Timing Units<a class="headerlink" href="#timing-units" title="Link to this heading"></a></h2>
+<p>Plaquette offers a core set of specialized units to simplify common timing tasks:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a>: Measures elapsed time between events</p></li>
+<li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a>: Activates after a specific duration</p></li>
+<li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a>: Generates periodic pulses</p></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a>: Creates a smooth transition</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Timing units deal with time and events without interrupting the main processing loop.
+Users should avoid blocking processes such as
+<a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delay/">delay()</a> and
+<a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delayMicroseconds/">delayMicroseconds()</a> and
+when using Plaquette.</p>
+</div>
+<p>Let us dive into the first of these units, the <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a>, which is perfect for measuring
+durations.</p>
+</section>
+<section id="keeping-track-of-time-with-chronometer">
+<h2>Keeping Track of Time with Chronometer<a class="headerlink" href="#keeping-track-of-time-with-chronometer" title="Link to this heading"></a></h2>
+<p>While <code class="docutils literal notranslate"><span class="pre">seconds()</span></code> can only give you the time since the start of the program, the <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a> unit
+allows you to measure the time elapsed since it was started, like a real-life chronometer. It is your basicbuilding block for creating responsive systems where timing matters.</p>
+<p>Chronometers are particularly useful for scenarios where the duration of an action determines its
+outcome. For instance, measuring how long a button is pressed can enable a system to interpret
+short and long presses differently.</p>
+<p><strong>Example</strong>: Changes LED intensity depending on how long button was pressed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Chronometer</span><span class="w"> </span><span class="n">chrono</span><span class="p">;</span><span class="w"> </span><span class="c1">// Chronometer measuring button press duration</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">chrono</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Start the timer when button is pressed</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">fell</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Converts chronometer time to LED intensity over a range of 10 seconds</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">ledValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapTo01</span><span class="p">(</span><span class="n">chrono</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// Maps from 0-10 seconds to [0, 1] range</span>
+<span class="w">    </span><span class="n">ledValue</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="w">    </span><span class="n">chrono</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"> </span><span class="c1">// Stops/resets the timer when button is released</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">chrono</span><span class="p">);</span><span class="w"> </span><span class="c1">// Prints value of chrono for visualization.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a> is great for tracking durations and reacting to them, but sometimes you want
+an easy way to know whether you waited for a certain amount of time.</p>
+</section>
+<section id="delayed-switching-with-alarm">
+<h2>Delayed Switching with Alarm<a class="headerlink" href="#delayed-switching-with-alarm" title="Link to this heading"></a></h2>
+<p>The <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> unit starts “buzzing” after a specified delay. It is a <strong>digital unit</strong> initialized
+with a certain duration. As a real-world alarm clock, it outputs 0/false until it reaches its timeout;
+then, it starts to “buzz” and outputs 1/true.</p>
+<p>Once triggered, it can be reset by calling its <code class="docutils literal notranslate"><span class="pre">start()</span></code> function. This makes it ideal for implementing
+delayed responses or timed sequences.</p>
+<p>Alarms can help manage actions that require specific timing, such as turning off a light after a
+certain duration or triggering an animation. Their flexibility makes them a powerful tool in time-
+based designs.</p>
+<p><strong>Example</strong>: Blinks an LED when alarm is buzzing. Button allows to restart alarm, increasing its
+duration by 50% each time.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave to blink LED when alarm is buzzing</span>
+
+<span class="n">Alarm</span><span class="w"> </span><span class="nf">alarm</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Alarm with 2s duration</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Button: restart.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Button pressed event</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w">          </span><span class="c1">// Turn off LED</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="w"> </span><span class="n">alarm</span><span class="p">.</span><span class="n">duration</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Increase duration by 50%.</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w">      </span><span class="c1">// Start alarm</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Alarm buzzing: blink LED.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">alarm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// Check if alarm is buzzing</span>
+<span class="w">    </span><span class="n">blink</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Blink LED</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">alarm</span><span class="p">.</span><span class="n">progress</span><span class="p">());</span><span class="w"> </span><span class="c1">// % progress of the alarm (for visualization)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="triggering-periodic-events-with-metronome">
+<h2>Triggering Periodic Events with Metronome<a class="headerlink" href="#triggering-periodic-events-with-metronome" title="Link to this heading"></a></h2>
+<p>While the <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> unit is great for dealing with one-time events, there are many cases
+where events need to be triggered periodically. For such use cases, Plaquette provides the
+<a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> unit which sends a periodic pulse or “bang”. In other words, it acts like an
+<a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> that gets restarted as soon as it starts buzzing. It also bears some resemblance
+with <a class="reference internal" href="waves.html"><span class="doc">Using Waves</span></a>.</p>
+<p>Periodic actions are at the core of interactive systems, whether you are blinking an LED or
+synchronizing motor movements. The <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> provides a straightforward way to create these
+kinds of repetitions.</p>
+<p><strong>Example</strong>: Blink an LED using a Metronome:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome with period of 1 second</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="c1">// Toggle LED on each pulse</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Metronome units can be used as a way to trigger different actions in parallel.</p>
+<p><strong>Example</strong>: Use multiple <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> units to control different actions. One metronome
+toggles LED visibility, while another slower metronome accelerates blinking speed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave to blink the LED</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metroToggle</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome to toggle visibility</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metroAccelerate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome to accelerate blink</span>
+
+<span class="n">boolean</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Flag to keep track of visibility</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Toggle visibility.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metroToggle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">visible</span><span class="p">;</span><span class="w"> </span><span class="c1">// Invert boolean value</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Accelerate blink.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metroAccelerate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">blink</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="w"> </span><span class="n">blink</span><span class="p">.</span><span class="n">frequency</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Double frequency</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Activate LED depending on visibility status.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span>
+<span class="w">    </span><span class="n">blink</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-smooth-transitions-with-ramp">
+<h2>Creating Smooth Transitions with Ramp<a class="headerlink" href="#creating-smooth-transitions-with-ramp" title="Link to this heading"></a></h2>
+<p>Ramps are a cornerstone of creative expression. Unlike oscillators, which generate periodic signals,
+ramps interpolate from one value to another over a specific duration or at a specific speed. The
+<a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> unit in Plaquette provides a flexible, powerful way to animate visual elements such as
+LEDs or physical components such as motors in a natural or lifelike manner, allowing the creation
+of rich, dynamic, evolving experiences.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We strongly recommend to use the Serial Plotter to visualize the ramp value in the following examples.</p>
+</div>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h3>
+<p>Like <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> units, ramps are restarted by calling their <code class="docutils literal notranslate"><span class="pre">start()</span></code> function. By default, they
+will ramp between 0 and 1.</p>
+<p><strong>Example</strong>: Gradually increases an LED brightness over 5 seconds every time a button is pressed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Ramp with 5 seconds duration</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Restart ramp</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use ramp value to control LED brightness</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Try changing the behavior of the ramp to rather go from 1 to 0 by calling the <code class="docutils literal notranslate"><span class="pre">fromTo()</span></code> function
+and see how that changes the behavior of the ramp:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">fromTo</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp from one to zero</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="flexible-ranges">
+<h3>Flexible Ranges<a class="headerlink" href="#flexible-ranges" title="Link to this heading"></a></h3>
+<p>Ramps are not restricted to the range [0, 1]. You can define any starting and ending values,
+making them useful for various applications such as changing properties of waves, controlling the
+angle of a servo motor, adjusting the color of a RGB LED, etc.</p>
+<p><strong>Example</strong>: Gradually increases an LED brightness over 5 seconds every time a button is pressed.
+The potentiometer sets the maximum LED value to attain.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Potentiometer input</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 5 seconds duration</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set ramp goal to value of potentiometer</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Restart ramp</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use ramp value to control LED brightness</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice how we are using function <code class="docutils literal notranslate"><span class="pre">to()</span></code> to set the goal of the ramp. The starting value is left
+unchanged at zero (default value). To change the starting value while preserving the goal value, use
+function <code class="docutils literal notranslate"><span class="pre">from()</span></code> instead. See what happens if you change the call <code class="docutils literal notranslate"><span class="pre">ramp.to(pot)</span></code> to use <code class="docutils literal notranslate"><span class="pre">from()</span></code>
+intead:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ramp</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set ramp goal to value of potentiometer</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-control-with-go">
+<h3>Dynamic Control with go()<a class="headerlink" href="#dynamic-control-with-go" title="Link to this heading"></a></h3>
+<p>A common scenario in creative applications is to respond to events by changing a value such as the
+position of a servomotor, the color of a RGB LED, or the volume of a sound. Ramps are often used in
+these cases to create smooth transitions instead of abrupt changes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">go()</span></code> function provides a simple way to launch a ramp towards a new goal, starting from the
+current value of the ramp.</p>
+<p><strong>Example</strong>: Control blinking frequency using a button. Each time the button is pushed, a new frequency
+is chosen randomly and the ramp smoothly goes to the new frequency.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 5 seconds duration</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"> </span><span class="c1">// Oscillating wave</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Sawtooth wave</span>
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">     </span><span class="c1">// Initial BPM</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Set target BPM to random value</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">targetBpm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="n">targetBpm</span><span class="p">);</span><span class="w"> </span><span class="c1">// Launch ramp</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Use ramp value to adjust BPM of wave</span>
+
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Oscillate LED</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ramps provide multiple ways to call <code class="docutils literal notranslate"><span class="pre">go()</span></code> depending on the desired behavior, including specifying
+starting value and duration on the spot. For more details, please consult the <a class="reference internal" href="Ramp.html"><span class="doc">Ramp unit’s reference</span></a>.</p>
+</div>
+</section>
+<section id="generating-expressive-effects-with-easing-functions">
+<h3>Generating Expressive Effects with Easing Functions<a class="headerlink" href="#generating-expressive-effects-with-easing-functions" title="Link to this heading"></a></h3>
+<p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> supports <a class="reference internal" href="easings.html"><span class="doc">easing function</span></a>, providing many different ways to generate expressive
+effects. Easing functions add acceleration or deceleration effects to ramp transitions, making
+them feel more natural and lifelike.</p>
+<p><strong>Example</strong>: Use easing to create a smooth LED fade repeatedly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 3 seconds duration</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeInOutQuad</span><span class="p">);</span><span class="w"> </span><span class="c1">// Apply an easing function</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ramp</span><span class="p">.</span><span class="n">isFinished</span><span class="p">())</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Restart the ramp with the easing effect</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Use the ramp&#39;s value to control the LED brightness</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Easing functions allow you to add personality to your projects, making transitions feel more
+engaging and natural. Plaquette provides a variety of easing functions (source: <a class="reference external" href="http://easings.net">http://easings.net</a>):</p>
+<img alt="_images/easings.png" src="_images/easings.png" />
+<p>Try experimenting with different easing functions and observe the results on the LED and using the
+Serial Plotter. Easing can transform mechanical transitions into expressive animations, giving your
+projects character.</p>
+</section>
+<section id="operational-modes-duration-vs-speed">
+<h3>Operational Modes: Duration vs Speed<a class="headerlink" href="#operational-modes-duration-vs-speed" title="Link to this heading"></a></h3>
+<p>By default, ramps transition between two values over a definite duration. However, there are
+many scenarios where this is not the suitable behavior. For example, one might want to move
+a servomotor at a specific angular speed: a 30 degrees ramp should thus run 3 times a 90
+degrees transition.</p>
+<p>Ramps accomodate different use scenarios by providing two modes of operation:</p>
+<ul class="simple">
+<li><p><strong>By duration</strong>: The ramp transitions between values over a fixed time.</p></li>
+<li><p><strong>By speed</strong>: The ramp moves at a constant rate, defined in value change per second.</p></li>
+</ul>
+<p><strong>Example</strong>: Compare duration and speed modes. Ramp values can be visualized using the
+Serial Plotter.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="n">rampDuration</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ramp operating in duration mode</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="n">rampSpeed</span><span class="p">;</span><span class="w">    </span><span class="c1">// Ramp operating in speed mode</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">rampDuration</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Duration: 5 seconds</span>
+<span class="w">  </span><span class="n">rampSpeed</span><span class="p">.</span><span class="n">speed</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Rate of change: 5 per second</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Both ramps go to random target value.</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">targetValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mi">-20</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rampDuration</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="n">targetValue</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rampSpeed</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="n">targetValue</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Visualize and compare ramps with the Serial Plotter</span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">rampWithDuration</span><span class="p">);</span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">rampWithSpeed</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="combining-timing-units">
+<h2>Combining Timing Units<a class="headerlink" href="#combining-timing-units" title="Link to this heading"></a></h2>
+<p>Plaquette allows you to combine timing units for more complex behaviors. For instance, you can use a
+<a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> to repeatedly trigger a <a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> or synchronize multiple timing units.</p>
+<p><strong>Example</strong>: Use a Metronome to trigger a Ramp at regular intervals:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Trigger every 10 seconds</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Ramp with 3 seconds duration</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Start the ramp each time the metronome triggers</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use the ramp&#39;s value to control the LED brightness</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the ramp&#39;s value for visualization</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Combining timing units unlocks an even greater range of creative possibilities. Use these tools to
+design intricate behaviors, smooth transitions, and expressive animations in your projects.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>Timing is an essential aspect of creating interactive and dynamic systems, and Plaquette provides an
+intuitive set of tools to make this process seamless. From measuring durations with the <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a>,
+to triggering events with the <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a>, generating rhythmic patterns with the <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a>,
+and creating smooth transitions with the <a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a>, each timing unit offers unique possibilities.</p>
+<p>The flexibility of these tools allows for countless creative applications, whether you are developing
+reactive systems, synchronizing events, or designing natural and expressive transitions. By combining
+these units, you can build intricate behaviors that bring your projects to life.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="waves.html" class="btn btn-neutral float-left" title="Using Waves" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="regularizing.html" class="btn btn-neutral float-right" title="Regularizing Signals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
