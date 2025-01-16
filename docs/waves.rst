@@ -1,6 +1,6 @@
-============
-Using Waves
-============
+================
+Generating Waves
+================
 
 In this section, we will explore waves (also called oscillators), essential tools for creating dynamic 
 and expressive media. Oscillators generate repeating waveforms, which can control various outputs such 
