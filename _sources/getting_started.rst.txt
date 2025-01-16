@@ -327,8 +327,8 @@ Full code
         0 >> myLed;
     }
 
-More examples
-~~~~~~~~~~~~~
+Built-in Examples
+~~~~~~~~~~~~~~~~~
 
 You will find more examples in **File > Examples > Plaquette** including:
 
@@ -338,4 +338,40 @@ You will find more examples in **File > Examples > Plaquette** including:
 - Serial input and output
 - Event management
 
-We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
+The Plaquette Reference
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The online reference can be accessed from the sidebar of this website. It provides detailed technical
+documentation for every available unit and function in Plaquette. This reference serves as a go-to 
+resource for understanding the specifics of each component, including their parameters, methods, and 
+behavior.
+
+Below are the key sections of the reference:
+
+- :doc:`base_units`: Introduces foundational units like :doc:`DigitalIn`, :doc:`DigitalOut`, 
+  :doc:`AnalogIn`, and :doc:`AnalogOut`. These are the building blocks for interfacing with hardware pins.
+- :doc:`generators`: Covers the signal generators :doc:`SquareWave`, :doc:`TriangleWave`, and :doc:`SineWave`. These 
+  are used to create various oscillating or periodic signals.
+- :doc:`timing`: Focuses on units related to time management, like :doc:`Metronome` for periodic events, 
+  :doc:`Alarm` for duration-based functionality, and :doc:`Ramp` for smooth transitions.
+- :doc:`filters`: Discusses tools for :doc:`smoothing <Smoother>`, :doc:`scaling <MinMaxScaler>`, or 
+  :doc:`normalizing <Normalizer>` signals, as well as :doc:`detecting peaks <PeakDetector>`.
+- :doc:`functions`: Explains helper functions for tasks like value mapping, signal transformations, 
+  and conversions.
+- :doc:`structure`: Describes core structural functions and operators.
+- :doc:`extra`: Contains miscellaneous units and features.
+
+What's Next?
+~~~~~~~~~~~~
+
+With the basics covered, you are now ready to dive deeper into Plaquette's capabilities. Explore the
+rest of the guide to learn about specific features and advanced techniques:
+
+- :doc:`inputs_outputs`: Learn how to use Plaquette to handle a variety of inputs and outputs, 
+  including analog, digital, and specialized sensors or actuators.
+- :doc:`waves`: Understand the different types of wave generators available and how they can be 
+  used for oscillatory or periodic behavior.
+- :doc:`timing_basics`: Delve into Plaquette's timing management units to handle scheduling and 
+  time-based logic in your projects.
+- :doc:`regularizing`: Discover methods for automatically scaling and normalizing signals amd respond
+  to peaks.

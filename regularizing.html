@@ -18,6 +18,7 @@
       <script src="_static/documentation_options.js?v=2bd037f0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -45,26 +46,29 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Using Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Regularizing Signals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-direct-input-to-output">Step 1 : Direct Input-to-Output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-getting-the-full-range-of-the-signal">Step 2 : Getting the Full Range of the Signal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-3-reacting-to-signal-changes">Step 3 : Reacting to Signal Changes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-4-adapting-to-changing-conditions">Step 4 : Adapting to Changing Conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-5-detecting-outliers">Step 5 : Detecting Outliers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-6-detecting-peaks">Step 6 : Detecting Peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#direct-input-to-output">Direct Input-to-Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-the-full-range-of-a-signal">Getting the Full Range of a Signal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reacting-to-signal-changes">Reacting to Signal Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapting-to-changing-conditions">Adapting to Changing Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#normalizing-signals-to-spot-extreme-values">Normalizing Signals to Spot Extreme Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detecting-peaks">Detecting Peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -75,6 +79,14 @@
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         </div>
@@ -105,8 +117,20 @@
 <p>Plaquette provides expressive, automated, and robust ways to deal with signals
 for interactive design using <strong>regularization filters</strong> such as smoothing,
 min-max scaling, and normalization.</p>
-<p>Here is a simple Arduino code that allows one to change the value of an output
-LED using an input photocell:</p>
+<section id="direct-input-to-output">
+<h2>Direct Input-to-Output<a class="headerlink" href="#direct-input-to-output" title="Link to this heading"></a></h2>
+<p>Let’s review briefly how to handle raw <a class="reference internal" href="inputs_outputs.html"><span class="doc">input and output</span></a> signals in Plaquette.
+We will be using an analog sensor such as a photoresistor for this example.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to build this circuit, you will need to create a simple
+<a class="reference external" href="https://learn.sparkfun.com/tutorials/voltage-dividers">voltage divider circuit</a>.
+Connect the photoresistor between the ground (GND) and the analog input pin (<cite>A0`</cite>). Then connect
+a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
+For example, for a 1k <span class="math notranslate nohighlight">\(\Omega\)</span> - 10k <span class="math notranslate nohighlight">\(\Omega\)</span> photoresistor you could use a fixed
+resistor of about 5.5k <span class="math notranslate nohighlight">\(\Omega\)</span>).</p>
+</div>
+<p>Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// The photocell analog pin.</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">photoCellPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span>
 
@@ -134,9 +158,7 @@ of raw number values (1023, 255, …) Furthermore, this code fails to adapt to c
 conditions such as the range of the ambient light.</p>
 <p>Let’s see how Plaquette can help us to create more expressive code by using inputs and
 outputs signals rather than meaningless raw numbers.</p>
-<section id="step-1-direct-input-to-output">
-<h2>Step 1 : Direct Input-to-Output<a class="headerlink" href="#step-1-direct-input-to-output" title="Link to this heading"></a></h2>
-<p>To begin, we will re-implement the example above, by using a more “expressive” code.</p>
+<p>To begin, we will re-implement the example above using Plaquette units.</p>
 <p>First, let’s define our input photocell on pin <code class="docutils literal notranslate"><span class="pre">A0</span></code> using an <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> unit:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 </pre></div>
@@ -160,9 +182,7 @@ easiest way to do so is by using the <a class="reference internal" href="pipe.ht
 <span class="c1">// Create output unit for LED.</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
 
-<span class="c1">// Initialize everything.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="c1">// Define frame-by-frame operations.</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -172,8 +192,8 @@ easiest way to do so is by using the <a class="reference internal" href="pipe.ht
 </pre></div>
 </div>
 </section>
-<section id="step-2-getting-the-full-range-of-the-signal">
-<h2>Step 2 : Getting the Full Range of the Signal<a class="headerlink" href="#step-2-getting-the-full-range-of-the-signal" title="Link to this heading"></a></h2>
+<section id="getting-the-full-range-of-a-signal">
+<h2>Getting the Full Range of a Signal<a class="headerlink" href="#getting-the-full-range-of-a-signal" title="Link to this heading"></a></h2>
 <p>If we run this program, we will likely notice that the LED brightness will not
 span the full range from 0% to 100%. That’s because depending on ambient lighting
 conditions, the photocell’s values will not move across the full spectrum of
@@ -204,8 +224,8 @@ the output LED:</p>
 </ol>
 </div></blockquote>
 </section>
-<section id="step-3-reacting-to-signal-changes">
-<h2>Step 3 : Reacting to Signal Changes<a class="headerlink" href="#step-3-reacting-to-signal-changes" title="Link to this heading"></a></h2>
+<section id="reacting-to-signal-changes">
+<h2>Reacting to Signal Changes<a class="headerlink" href="#reacting-to-signal-changes" title="Link to this heading"></a></h2>
 <p>Remember our example from <a class="reference internal" href="why_plaquette.html"><span class="doc">ealier</span></a>, where we were trying to detect high-valued
 signals using arbitrary numbers?</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">716</span><span class="p">)</span>
@@ -238,8 +258,8 @@ expression <code class="docutils literal notranslate"><span class="pre">(regular
 </pre></div>
 </div>
 </section>
-<section id="step-4-adapting-to-changing-conditions">
-<h2>Step 4 : Adapting to Changing Conditions<a class="headerlink" href="#step-4-adapting-to-changing-conditions" title="Link to this heading"></a></h2>
+<section id="adapting-to-changing-conditions">
+<h2>Adapting to Changing Conditions<a class="headerlink" href="#adapting-to-changing-conditions" title="Link to this heading"></a></h2>
 <p>So far so good. The number 0.7 is still a bit of an arbitrary, hand-picked number, but it makes
 more sense than 716 because it refers to a more human-understandable concept
 (70% instead of 716 / 1023). However, this approach will still be sensitive to changes in
@@ -259,8 +279,8 @@ the <code class="docutils literal notranslate"><span class="pre">begin()</span><
 </pre></div>
 </div>
 </section>
-<section id="step-5-detecting-outliers">
-<h2>Step 5 : Detecting Outliers<a class="headerlink" href="#step-5-detecting-outliers" title="Link to this heading"></a></h2>
+<section id="normalizing-signals-to-spot-extreme-values">
+<h2>Normalizing Signals to Spot Extreme Values<a class="headerlink" href="#normalizing-signals-to-spot-extreme-values" title="Link to this heading"></a></h2>
 <p>The MinMaxScaler is a very useful unit for making sure signals stay within a
 [0, 1] range. However, it is not always the best for signal detection since it
 only accounts for extreme values (minimum and maximum), which makes it sensitive
@@ -323,8 +343,8 @@ our 0.7 number from earlier.</p>
 </pre></div>
 </div>
 </section>
-<section id="step-6-detecting-peaks">
-<h2>Step 6 : Detecting Peaks<a class="headerlink" href="#step-6-detecting-peaks" title="Link to this heading"></a></h2>
+<section id="detecting-peaks">
+<h2>Detecting Peaks<a class="headerlink" href="#detecting-peaks" title="Link to this heading"></a></h2>
 <p>The outlier detection method is useful to find extreme values. However, it also
 comes with an important limitation. The <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> and <code class="docutils literal notranslate"><span class="pre">isOutlierLow()</span></code>
 methods return <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>as long as</em> the received value is considered to be an
@@ -365,6 +385,15 @@ that only when a <strong>peak</strong> is detected will the LED change state:</p
 </div>
 <p>The PeakDetector unit offers many options to fine-tune the peak detection process.
 Please read the <a class="reference internal" href="PeakDetector.html"><span class="doc">full documentation of the unit</span></a> for details.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The Plaquette library simplifies signal processing for interactive design by abstracting low-level
+details and offering intuitive regularization tools like <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> and <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a>.
+Combined with <a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a> opens the way to deploy precise event-driven behaviors.</p>
+<p>Plaquette’s ability to adapt to changing conditions ensures dynamic, robust systems while keeping code
+concise and expressive. By leveraging its modular architecture, users can streamline signal
+handling, improve scalability, and focus on innovation in signal-driven creative applications.</p>
 </section>
 </section>
 

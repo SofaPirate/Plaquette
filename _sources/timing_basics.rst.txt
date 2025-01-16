@@ -75,14 +75,13 @@ Plaquette offers a core set of specialized units to simplify common timing tasks
   `delayMicroseconds() <https://docs.arduino.cc/language-reference/en/functions/time/delayMicroseconds/>`__ and
   when using Plaquette.
 
-Let us dive into the first of these units, the :doc:`Chronometer`, which is perfect for measuring
-durations.
+Let us dive into these units and see what each one of them has to offer.
 
 Keeping Track of Time with Chronometer
 --------------------------------------
 
 While ``seconds()`` can only give you the time since the start of the program, the :doc:`Chronometer` unit 
-allows you to measure the time elapsed since it was started, like a real-life chronometer. It is your basic\
+allows you to measure the time elapsed since it was started, like a real-life chronometer. It is your basic
 building block for creating responsive systems where timing matters.
 
 Chronometers are particularly useful for scenarios where the duration of an action determines its
@@ -125,9 +124,9 @@ an easy way to know whether you waited for a certain amount of time.
 Delayed Switching with Alarm
 ----------------------------
 
-The :doc:`Alarm` unit starts "buzzing" after a specified delay. It is a **digital unit** initialized 
-with a certain duration. As a real-world alarm clock, it outputs 0/false until it reaches its timeout; 
-then, it starts to "buzz" and outputs 1/true.
+Like a real-world alarm the :doc:`Alarm` unit starts "buzzing" after a predefined time. It is a 
+**digital unit** initialized with a certain duration. It outputs 0/false until it reaches its timeout; 
+then, it starts ringing and outputs 1/true until it is stopped or restarted.
 
 Once triggered, it can be reset by calling its ``start()`` function. This makes it ideal for implementing 
 delayed responses or timed sequences.
@@ -136,8 +135,8 @@ Alarms can help manage actions that require specific timing, such as turning off
 certain duration or triggering an animation. Their flexibility makes them a powerful tool in time-
 based designs.
 
-**Example**: Blinks an LED when alarm is buzzing. Button allows to restart alarm, increasing its
-duration by 50% each time.
+**Example**: Starts blinking an LED when we reach the alarm's timeout. Pushing the button restarts 
+the alarm, increasing its duration by 50% each time.
 
 .. code-block:: cpp
 
@@ -177,7 +176,7 @@ While the :doc:`Alarm` unit is great for dealing with one-time events, there are
 where events need to be triggered periodically. For such use cases, Plaquette provides the 
 :doc:`Metronome` unit which sends a periodic pulse or "bang". In other words, it acts like an 
 :doc:`Alarm` that gets restarted as soon as it starts buzzing. It also bears some resemblance
-with :doc:`waves`.
+with :doc:`wave units <waves>`.
 
 Periodic actions are at the core of interactive systems, whether you are blinking an LED or
 synchronizing motor movements. The :doc:`Metronome` provides a straightforward way to create these
@@ -195,7 +194,7 @@ kinds of repetitions.
     void begin() {}
 
     void step() {
-      if (metro) {
+      if (metro) { // The unit will be true for a single frame every time it triggers
         led.toggle(); // Toggle LED on each pulse
       }
     }
@@ -236,17 +235,23 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
         led.off();
     }
 
+.. note::
+  To switch between modes, it is recommended to simply call the ``duration(value)`` or ``speed(value)`` 
+  functions with a target duration or speed. Alternatively, you can change mode by calling ``mode(RAMP_DURATION)``
+  or ``mode(RAMP_SPEED)``, in which case the duration or speed will be computed based on the ramp's
+  current properties (ie. duration/speed, starting, and target values).
+
 Creating Smooth Transitions with Ramp
 -------------------------------------
 
 Ramps are a cornerstone of creative expression. Unlike oscillators, which generate periodic signals, 
 ramps interpolate from one value to another over a specific duration or at a specific speed. The
-:doc:`Ramp` unit in Plaquette provides a flexible, powerful way to animate visual elements such as 
-LEDs or physical components such as motors in a natural or lifelike manner, allowing the creation 
-of rich, dynamic, evolving experiences.
+:doc:`Ramp` unit in Plaquette provides a flexible and powerful way to animate visual elements such as 
+LEDs or physical components such as motors in a natural manner, allowing the creation of rich, dynamic, 
+evolving experiences.
 
 .. note::
-  We strongly recommend to use the Serial Plotter to visualize the ramp value in the following examples.
+  We strongly recommend to use the Serial Plotter to visualize the ramp values in the following examples.
 
 Basic Usage
 ~~~~~~~~~~~
@@ -321,6 +326,8 @@ The potentiometer sets the maximum LED value to attain.
       println(ramp); // Visualize ramp value with the Serial Plotter
     }
 
+Try adjusting the potentiometer to different positions to see the effect.
+
 Notice how we are using function ``to()`` to set the goal of the ramp. The starting value is left
 unchanged at zero (default value). To change the starting value while preserving the goal value, use
 function ``from()`` instead. See what happens if you change the call ``ramp.to(pot)`` to use ``from()``
@@ -348,9 +355,9 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
     #include <Plaquette.h>
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
-    AnalogOut led(9); // LED output
-    Ramp ramp(5.0); // Ramp with 5 seconds duration
-    TriangleWave wave; // Oscillating wave
+    AnalogOut led(9);  // LED output
+    Ramp ramp(5.0);    // Ramp with 5 seconds duration
+    TriangleWave wave; // Oscillator
 
     void begin() {
       wave.width(1.0);   // Sawtooth wave
@@ -382,6 +389,8 @@ Generating Expressive Effects with Easing Functions
 effects. Easing functions add acceleration or deceleration effects to ramp transitions, making
 them feel more natural and lifelike.
 
+.. image:: images/easings.png
+
 **Example**: Use easing to create a smooth LED fade repeatedly:
 
 .. code-block:: cpp
@@ -405,11 +414,6 @@ them feel more natural and lifelike.
       println(ramp); // Visualize ramp value with the Serial Plotter
     }
 
-Easing functions allow you to add personality to your projects, making transitions feel more 
-engaging and natural. Plaquette provides a variety of easing functions (source: http://easings.net):
-
-.. image:: images/easings.png
-
 Try experimenting with different easing functions and observe the results on the LED and using the 
 Serial Plotter. Easing can transform mechanical transitions into expressive animations, giving your 
 projects character.
@@ -418,14 +422,14 @@ Operational Modes: Duration vs Speed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, ramps transition between two values over a definite duration. However, there are
-many scenarios where this is not the suitable behavior. For example, one might want to move
-a servomotor at a specific angular speed: a 30 degrees ramp should thus run 3 times a 90 
-degrees transition.
+many scenarios where this is not the appropriate behavior. For example, one might want to move
+a servomotor at a specific angular speed: ramping over 10 degrees should take much less time than 
+a 90 degrees transition.
 
-Ramps accomodate different use scenarios by providing two modes of operation:
+Ramps accomodate these different use cases by providing two modes of operation:
 
-- **By duration**: The ramp transitions between values over a fixed time.
-- **By speed**: The ramp moves at a constant rate, defined in value change per second.
+- In **duration mode** (default) the ramp transitions between values over a fixed number of seconds.
+- In **speed mode** the ramp moves at a constant rate, defined in value change per second.
 
 **Example**: Compare duration and speed modes. Ramp values can be visualized using the
 Serial Plotter.

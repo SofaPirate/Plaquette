@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Regularizing Signals" href="regularizing.html" />
-    <link rel="prev" title="Using Waves" href="waves.html" /> 
+    <link rel="prev" title="Generating Waves" href="waves.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,13 +46,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Using Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Time</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#measuring-absolute-time-with-seconds">Measuring Absolute Time with seconds()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#timing-units">Timing Units</a></li>
@@ -73,8 +77,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -85,6 +87,14 @@
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         </div>
@@ -180,13 +190,13 @@ Users should avoid blocking processes such as
 <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delayMicroseconds/">delayMicroseconds()</a> and
 when using Plaquette.</p>
 </div>
-<p>Let us dive into the first of these units, the <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a>, which is perfect for measuring
-durations.</p>
+<p>Let us dive into these units and see what each one of them has to offer.</p>
 </section>
 <section id="keeping-track-of-time-with-chronometer">
 <h2>Keeping Track of Time with Chronometer<a class="headerlink" href="#keeping-track-of-time-with-chronometer" title="Link to this heading"></a></h2>
 <p>While <code class="docutils literal notranslate"><span class="pre">seconds()</span></code> can only give you the time since the start of the program, the <a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a> unit
-allows you to measure the time elapsed since it was started, like a real-life chronometer. It is your basicbuilding block for creating responsive systems where timing matters.</p>
+allows you to measure the time elapsed since it was started, like a real-life chronometer. It is your basic
+building block for creating responsive systems where timing matters.</p>
 <p>Chronometers are particularly useful for scenarios where the duration of an action determines its
 outcome. For instance, measuring how long a button is pressed can enable a system to interpret
 short and long presses differently.</p>
@@ -223,16 +233,16 @@ an easy way to know whether you waited for a certain amount of time.</p>
 </section>
 <section id="delayed-switching-with-alarm">
 <h2>Delayed Switching with Alarm<a class="headerlink" href="#delayed-switching-with-alarm" title="Link to this heading"></a></h2>
-<p>The <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> unit starts “buzzing” after a specified delay. It is a <strong>digital unit</strong> initialized
-with a certain duration. As a real-world alarm clock, it outputs 0/false until it reaches its timeout;
-then, it starts to “buzz” and outputs 1/true.</p>
+<p>Like a real-world alarm the <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> unit starts “buzzing” after a predefined time. It is a
+<strong>digital unit</strong> initialized with a certain duration. It outputs 0/false until it reaches its timeout;
+then, it starts ringing and outputs 1/true until it is stopped or restarted.</p>
 <p>Once triggered, it can be reset by calling its <code class="docutils literal notranslate"><span class="pre">start()</span></code> function. This makes it ideal for implementing
 delayed responses or timed sequences.</p>
 <p>Alarms can help manage actions that require specific timing, such as turning off a light after a
 certain duration or triggering an animation. Their flexibility makes them a powerful tool in time-
 based designs.</p>
-<p><strong>Example</strong>: Blinks an LED when alarm is buzzing. Button allows to restart alarm, increasing its
-duration by 50% each time.</p>
+<p><strong>Example</strong>: Starts blinking an LED when we reach the alarm’s timeout. Pushing the button restarts
+the alarm, increasing its duration by 50% each time.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
@@ -270,7 +280,7 @@ duration by 50% each time.</p>
 where events need to be triggered periodically. For such use cases, Plaquette provides the
 <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> unit which sends a periodic pulse or “bang”. In other words, it acts like an
 <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> that gets restarted as soon as it starts buzzing. It also bears some resemblance
-with <a class="reference internal" href="waves.html"><span class="doc">Using Waves</span></a>.</p>
+with <a class="reference internal" href="waves.html"><span class="doc">wave units</span></a>.</p>
 <p>Periodic actions are at the core of interactive systems, whether you are blinking an LED or
 synchronizing motor movements. The <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> provides a straightforward way to create these
 kinds of repetitions.</p>
@@ -283,7 +293,7 @@ kinds of repetitions.</p>
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// The unit will be true for a single frame every time it triggers</span>
 <span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="c1">// Toggle LED on each pulse</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -322,17 +332,24 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To switch between modes, it is recommended to simply call the <code class="docutils literal notranslate"><span class="pre">duration(value)</span></code> or <code class="docutils literal notranslate"><span class="pre">speed(value)</span></code>
+functions with a target duration or speed. Alternatively, you can change mode by calling <code class="docutils literal notranslate"><span class="pre">mode(RAMP_DURATION)</span></code>
+or <code class="docutils literal notranslate"><span class="pre">mode(RAMP_SPEED)</span></code>, in which case the duration or speed will be computed based on the ramp’s
+current properties (ie. duration/speed, starting, and target values).</p>
+</div>
 </section>
 <section id="creating-smooth-transitions-with-ramp">
 <h2>Creating Smooth Transitions with Ramp<a class="headerlink" href="#creating-smooth-transitions-with-ramp" title="Link to this heading"></a></h2>
 <p>Ramps are a cornerstone of creative expression. Unlike oscillators, which generate periodic signals,
 ramps interpolate from one value to another over a specific duration or at a specific speed. The
-<a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> unit in Plaquette provides a flexible, powerful way to animate visual elements such as
-LEDs or physical components such as motors in a natural or lifelike manner, allowing the creation
-of rich, dynamic, evolving experiences.</p>
+<a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> unit in Plaquette provides a flexible and powerful way to animate visual elements such as
+LEDs or physical components such as motors in a natural manner, allowing the creation of rich, dynamic,
+evolving experiences.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We strongly recommend to use the Serial Plotter to visualize the ramp value in the following examples.</p>
+<p>We strongly recommend to use the Serial Plotter to visualize the ramp values in the following examples.</p>
 </div>
 <section id="basic-usage">
 <h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h3>
@@ -398,6 +415,7 @@ The potentiometer sets the maximum LED value to attain.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Try adjusting the potentiometer to different positions to see the effect.</p>
 <p>Notice how we are using function <code class="docutils literal notranslate"><span class="pre">to()</span></code> to set the goal of the ramp. The starting value is left
 unchanged at zero (default value). To change the starting value while preserving the goal value, use
 function <code class="docutils literal notranslate"><span class="pre">from()</span></code> instead. See what happens if you change the call <code class="docutils literal notranslate"><span class="pre">ramp.to(pot)</span></code> to use <code class="docutils literal notranslate"><span class="pre">from()</span></code>
@@ -418,9 +436,9 @@ is chosen randomly and the ramp smoothly goes to the new frequency.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
-<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 5 seconds duration</span>
-<span class="n">TriangleWave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"> </span><span class="c1">// Oscillating wave</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED output</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w">    </span><span class="c1">// Ramp with 5 seconds duration</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"> </span><span class="c1">// Oscillator</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Sawtooth wave</span>
@@ -453,6 +471,7 @@ starting value and duration on the spot. For more details, please consult the <a
 <p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> supports <a class="reference internal" href="easings.html"><span class="doc">easing function</span></a>, providing many different ways to generate expressive
 effects. Easing functions add acceleration or deceleration effects to ramp transitions, making
 them feel more natural and lifelike.</p>
+<img alt="_images/easings.png" src="_images/easings.png" />
 <p><strong>Example</strong>: Use easing to create a smooth LED fade repeatedly:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
@@ -474,9 +493,6 @@ them feel more natural and lifelike.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Easing functions allow you to add personality to your projects, making transitions feel more
-engaging and natural. Plaquette provides a variety of easing functions (source: <a class="reference external" href="http://easings.net">http://easings.net</a>):</p>
-<img alt="_images/easings.png" src="_images/easings.png" />
 <p>Try experimenting with different easing functions and observe the results on the LED and using the
 Serial Plotter. Easing can transform mechanical transitions into expressive animations, giving your
 projects character.</p>
@@ -484,13 +500,13 @@ projects character.</p>
 <section id="operational-modes-duration-vs-speed">
 <h3>Operational Modes: Duration vs Speed<a class="headerlink" href="#operational-modes-duration-vs-speed" title="Link to this heading"></a></h3>
 <p>By default, ramps transition between two values over a definite duration. However, there are
-many scenarios where this is not the suitable behavior. For example, one might want to move
-a servomotor at a specific angular speed: a 30 degrees ramp should thus run 3 times a 90
-degrees transition.</p>
-<p>Ramps accomodate different use scenarios by providing two modes of operation:</p>
+many scenarios where this is not the appropriate behavior. For example, one might want to move
+a servomotor at a specific angular speed: ramping over 10 degrees should take much less time than
+a 90 degrees transition.</p>
+<p>Ramps accomodate these different use cases by providing two modes of operation:</p>
 <ul class="simple">
-<li><p><strong>By duration</strong>: The ramp transitions between values over a fixed time.</p></li>
-<li><p><strong>By speed</strong>: The ramp moves at a constant rate, defined in value change per second.</p></li>
+<li><p>In <strong>duration mode</strong> (default) the ramp transitions between values over a fixed number of seconds.</p></li>
+<li><p>In <strong>speed mode</strong> the ramp moves at a constant rate, defined in value change per second.</p></li>
 </ul>
 <p><strong>Example</strong>: Compare duration and speed modes. Ramp values can be visualized using the
 Serial Plotter.</p>
@@ -565,7 +581,7 @@ these units, you can build intricate behaviors that bring your projects to life.
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="waves.html" class="btn btn-neutral float-left" title="Using Waves" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="waves.html" class="btn btn-neutral float-left" title="Generating Waves" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="regularizing.html" class="btn btn-neutral float-right" title="Regularizing Signals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Easings &mdash; Plaquette 0.6.1 documentation</title>
+  <title>Reference &mdash; Plaquette 0.6.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="ContinuousServoOut" href="ContinuousServoOut.html" />
-    <link rel="prev" title="Extra" href="extra.html" /> 
+    <link rel="next" title="Base Units" href="base_units.html" />
+    <link rel="prev" title="Features" href="features.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,22 +49,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Reference</a><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Structure</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="extra.html">Extra</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Easings</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#seealso">See Also</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ContinuousServoOut.html">ContinuousServoOut</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ServoOut.html">ServoOut</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 </li>
 </ul>
@@ -78,22 +70,14 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="extra.html">Extra</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Easings</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ContinuousServoOut.html">ContinuousServoOut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ServoOut.html">ServoOut</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -118,9 +102,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="reference.html">Reference</a></li>
-          <li class="breadcrumb-item"><a href="extra.html">Extra</a></li>
-      <li class="breadcrumb-item active">Easings</li>
+      <li class="breadcrumb-item active">Reference</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -129,32 +111,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="easings">
-<h1>Easings<a class="headerlink" href="#easings" title="Link to this heading"></a></h1>
-<p>Easing functions apply non-linear effects to changing values, in order to create
-expressive real-time outputs. Plaquette provides users with a wide range of such
-functions, typically used with a Ramp unit.</p>
-<p>All easing functions have the same signature:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">easeFunction</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Value <code class="docutils literal notranslate"><span class="pre">x</span></code> should be between 0.0 and 1.0, the returned value is also between 0.0 and 1.0.</p>
-<p>This is the list of all easing functions (source: <a class="reference external" href="http://easings.net">http://easings.net</a>):</p>
-<img alt="_images/easings.png" src="_images/easings.png" />
-<section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
+  <section id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
-</section>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SineWave.html">SineWave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SquareWave.html">SquareWave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TriangleWave.html">TriangleWave</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Chronometer.html">Chronometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Metronome.html">Metronome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapFrom01.html">mapFrom01()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wrap.html">wrap()</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array.html">[] (arrays)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="easings.html">Easings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ContinuousServoOut.html">ContinuousServoOut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ServoOut.html">ServoOut</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="extra.html" class="btn btn-neutral float-left" title="Extra" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ContinuousServoOut.html" class="btn btn-neutral float-right" title="ContinuousServoOut" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="features.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="base_units.html" class="btn btn-neutral float-right" title="Base Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Inputs and Outputs" href="inputs_outputs.html" />
-    <link rel="prev" title="Features" href="features.html" /> 
+    <link rel="prev" title="ServoOut" href="ServoOut.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +45,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
-<ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#step-1-install-plaquette">Step 1: Install Plaquette</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-2-your-first-plaquette-program">Step 2: Your first Plaquette program</a><ul>
@@ -67,18 +71,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#change-parameters-of-a-unit-during-runtime">Change parameters of a unit during runtime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#use-a-button">Use a button</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Full code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#more-examples">More examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-examples">Built-in Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-plaquette-reference">The Plaquette Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Using Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -89,6 +93,14 @@
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         </div>
@@ -391,8 +403,8 @@ statement.</p>
 </pre></div>
 </div>
 </section>
-<section id="more-examples">
-<h3>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h3>
+<section id="built-in-examples">
+<h3>Built-in Examples<a class="headerlink" href="#built-in-examples" title="Link to this heading"></a></h3>
 <p>You will find more examples in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
 <ul class="simple">
 <li><p>Using an analog input such as a photocell or potentiometer</p></li>
@@ -401,7 +413,43 @@ statement.</p>
 <li><p>Serial input and output</p></li>
 <li><p>Event management</p></li>
 </ul>
-<p>We also recommend watching our introductory <a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">video tutorial series</a>.</p>
+</section>
+<section id="the-plaquette-reference">
+<h3>The Plaquette Reference<a class="headerlink" href="#the-plaquette-reference" title="Link to this heading"></a></h3>
+<p>The online reference can be accessed from the sidebar of this website. It provides detailed technical
+documentation for every available unit and function in Plaquette. This reference serves as a go-to
+resource for understanding the specifics of each component, including their parameters, methods, and
+behavior.</p>
+<p>Below are the key sections of the reference:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base_units.html"><span class="doc">Base Units</span></a>: Introduces foundational units like <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>,
+<a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a>, and <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a>. These are the building blocks for interfacing with hardware pins.</p></li>
+<li><p><a class="reference internal" href="generators.html"><span class="doc">Generators</span></a>: Covers the signal generators <a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a>, <a class="reference internal" href="TriangleWave.html"><span class="doc">TriangleWave</span></a>, and <a class="reference internal" href="SineWave.html"><span class="doc">SineWave</span></a>. These
+are used to create various oscillating or periodic signals.</p></li>
+<li><p><a class="reference internal" href="timing.html"><span class="doc">Timing</span></a>: Focuses on units related to time management, like <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> for periodic events,
+<a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> for duration-based functionality, and <a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> for smooth transitions.</p></li>
+<li><p><a class="reference internal" href="filters.html"><span class="doc">Filters</span></a>: Discusses tools for <a class="reference internal" href="Smoother.html"><span class="doc">smoothing</span></a>, <a class="reference internal" href="MinMaxScaler.html"><span class="doc">scaling</span></a>, or
+<a class="reference internal" href="Normalizer.html"><span class="doc">normalizing</span></a> signals, as well as <a class="reference internal" href="PeakDetector.html"><span class="doc">detecting peaks</span></a>.</p></li>
+<li><p><a class="reference internal" href="functions.html"><span class="doc">Functions</span></a>: Explains helper functions for tasks like value mapping, signal transformations,
+and conversions.</p></li>
+<li><p><a class="reference internal" href="structure.html"><span class="doc">Structure</span></a>: Describes core structural functions and operators.</p></li>
+<li><p><a class="reference internal" href="extra.html"><span class="doc">Extra</span></a>: Contains miscellaneous units and features.</p></li>
+</ul>
+</section>
+<section id="what-s-next">
+<h3>What’s Next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h3>
+<p>With the basics covered, you are now ready to dive deeper into Plaquette’s capabilities. Explore the
+rest of the guide to learn about specific features and advanced techniques:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="inputs_outputs.html"><span class="doc">Inputs and Outputs</span></a>: Learn how to use Plaquette to handle a variety of inputs and outputs,
+including analog, digital, and specialized sensors or actuators.</p></li>
+<li><p><a class="reference internal" href="waves.html"><span class="doc">Generating Waves</span></a>: Understand the different types of wave generators available and how they can be
+used for oscillatory or periodic behavior.</p></li>
+<li><p><a class="reference internal" href="timing_basics.html"><span class="doc">Working with Time</span></a>: Delve into Plaquette’s timing management units to handle scheduling and
+time-based logic in your projects.</p></li>
+<li><p><a class="reference internal" href="regularizing.html"><span class="doc">Regularizing Signals</span></a>: Discover methods for automatically scaling and normalizing signals amd respond
+to peaks.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -410,7 +458,7 @@ statement.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="features.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ServoOut.html" class="btn btn-neutral float-left" title="ServoOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="inputs_outputs.html" class="btn btn-neutral float-right" title="Inputs and Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
