@@ -4,19 +4,23 @@ Table of Contents
 =================
 
 .. toctree::
-   :caption: Guide
-   :maxdepth: 2
+   :caption: Essentials
+   :maxdepth: 1
 
    why_plaquette
    features
+   reference
+
+.. toctree::
+   :caption: Guide
+   :maxdepth: 2
+
    getting_started
    inputs_outputs
    waves
    timing_basics
    regularizing
    advanced
-   credits
-   license
 
 .. toctree::
    :caption: Reference
@@ -29,3 +33,13 @@ Table of Contents
    functions
    structure
    extra
+
+.. toctree::
+   :caption: Related Info
+   :maxdepth: 1
+
+   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
+   Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
+   GitHub repository <https://github.com/SofaPirate/Plaquette/>
+   credits
+   license
