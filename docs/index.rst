@@ -13,7 +13,7 @@ Table of Contents
 
 .. toctree::
    :caption: Guide
-   :maxdepth: 2
+   :maxdepth: 1
 
    getting_started
    inputs_outputs
@@ -24,7 +24,7 @@ Table of Contents
 
 .. toctree::
    :caption: Reference
-   :maxdepth: 2
+   :maxdepth: 1
 
    base_units
    generators
