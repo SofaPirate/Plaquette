@@ -5,8 +5,21 @@ Plaquette provides expressive, automated, and robust ways to deal with signals
 for interactive design using **regularization filters** such as smoothing,
 min-max scaling, and normalization.
 
-Here is a simple Arduino code that allows one to change the value of an output
-LED using an input photocell:
+Direct Input-to-Output
+----------------------
+
+Let's review briefly how to handle raw :doc:`input and output <inputs_outputs>` signals in Plaquette.
+We will be using an analog sensor such as a photoresistor for this example.
+
+.. note::
+  In order to build this circuit, you will need to create a simple 
+  `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
+  Connect the photoresistor between the ground (GND) and the analog input pin (`A0``). Then connect
+  a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
+  For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
+  resistor of about 5.5k :math:`\Omega`).
+
+Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:
 
 .. code-block:: c++
 
@@ -38,11 +51,7 @@ conditions such as the range of the ambient light.
 Let's see how Plaquette can help us to create more expressive code by using inputs and
 outputs signals rather than meaningless raw numbers.
 
-
-Step 1 : Direct Input-to-Output
--------------------------------
-
-To begin, we will re-implement the example above, by using a more "expressive" code.
+To begin, we will re-implement the example above using Plaquette units. 
 
 First, let's define our input photocell on pin ``A0`` using an :doc:`AnalogIn` unit:
 
@@ -76,9 +85,7 @@ The complete Plaquette code will look like this:
    // Create output unit for LED.
    AnalogOut led(9);
 
-   // Initialize everything.
-   void begin() {
-   }
+   void begin() {}
 
    // Define frame-by-frame operations.
    void step() {
@@ -86,8 +93,8 @@ The complete Plaquette code will look like this:
      photoCell >> led;
    }
 
-Step 2 : Getting the Full Range of the Signal
----------------------------------------------
+Getting the Full Range of a Signal
+----------------------------------
 
 If we run this program, we will likely notice that the LED brightness will not
 span the full range from 0% to 100%. That's because depending on ambient lighting
@@ -123,8 +130,8 @@ The above expression will do the following, in order:
  #. The ``regularizer`` then remaps the raw photocell value to the full range of [0, 1] and sends it to the ``led`` unit.
  #. The ``led`` unit takes the input value in [0, 1] and applies it to the intensity of the LED.
 
-Step 3 : Reacting to Signal Changes
------------------------------------
+Reacting to Signal Changes
+--------------------------
 
 Remember our example from :doc:`ealier <why_plaquette>`, where we were trying to detect high-valued
 signals using arbitrary numbers?
@@ -164,8 +171,8 @@ expression ``(regularizer > 0.7)`` to the output LED:
       (regularizer > 0.7) >> led;
     }
 
-Step 4 : Adapting to Changing Conditions
-----------------------------------------
+Adapting to Changing Conditions
+-------------------------------
 
 So far so good. The number 0.7 is still a bit of an arbitrary, hand-picked number, but it makes
 more sense than 716 because it refers to a more human-understandable concept
@@ -189,8 +196,8 @@ the ``begin()`` function:
      regularizer.timeWindow(3600.0f);
    }
 
-Step 5 : Detecting Outliers
----------------------------
+Normalizing Signals to Spot Extreme Values
+------------------------------------------
 
 The MinMaxScaler is a very useful unit for making sure signals stay within a
 [0, 1] range. However, it is not always the best for signal detection since it
@@ -260,8 +267,8 @@ Here is a complete version of the code:
      regularizer.isHighOutlier(photoCell) >> led;
    }
 
-Step 6 : Detecting Peaks
-------------------------
+Detecting Peaks
+---------------
 
 The outlier detection method is useful to find extreme values. However, it also
 comes with an important limitation. The ``isHighOutlier()`` and ``isOutlierLow()``
@@ -308,6 +315,16 @@ that only when a **peak** is detected will the LED change state:
         led.toggle();
     }
 
-
 The PeakDetector unit offers many options to fine-tune the peak detection process.
 Please read the :doc:`full documentation of the unit <PeakDetector>` for details.
+
+Conclusion
+----------
+
+The Plaquette library simplifies signal processing for interactive design by abstracting low-level 
+details and offering intuitive regularization tools like :doc:`MinMaxScaler` and :doc:`Normalizer`.
+Combined with :doc:`PeakDetector` opens the way to deploy precise event-driven behaviors.
+
+Plaquette's ability to adapt to changing conditions ensures dynamic, robust systems while keeping code 
+concise and expressive. By leveraging its modular architecture, users can streamline signal 
+handling, improve scalability, and focus on innovation in signal-driven creative applications.
