@@ -3,6 +3,43 @@
 Advanced Usage
 ==============
 
+Smoothing Arbitrary Signals
+---------------------------
+
+While the :doc:`AnalogIn` unit in Plaquette provide a convenient built-in ``smooth()`` function for removing 
+noise, there are many cases where you may need to smooth signals coming from other sources such as specialized
+sensors. The :doc:`Smoother` unit provides a highly flexible smoothing solution for such use cases, allowing 
+seamless integration into any signal pipeline. It works using an exponential moving average, acting as a 
+low-pass filter to stabilize fast variations.
+
+Here is an example of using the :doc:`Smoother` to smoothen a DHT 22 temperature and humidity sensor using the
+external `DHT sensor library <https://docs.arduino.cc/libraries/dht-sensor-library/>`__:
+
+.. code-block:: c++
+
+    #include <Plaquette.h>
+    #include <DHT.h> // External specialized library
+
+    DHT dht(2, DHT22); // DHT 22 sensor connected to pin 2
+
+    // Create a Smoother with a 10-second time window.
+    Smoother temperatureSmoother(10.0);
+
+    // Stream out for debugging (e.g., to Serial Monitor).
+    StreamOut serialOut(Serial);
+
+    void begin() {
+      dht.begin();  // Initialize the DHT sensor
+    }
+
+    void step() {
+      // Read temperature in Celsius.
+      float rawTemperature = dht.readTemperature();
+
+      // Smooth the temperature and send it to the Serial.
+      rawTemperature >> temperatureSmoother >> serialOut;
+    }
+
 Vanilla Coding Style
 --------------------
 
