@@ -19,7 +19,7 @@ called, followed later by ``go(3.0, 1.0)``:
 
 .. image:: images/Plaquette-Ramp.png
 
-.. note::
+.. important::
   Ramps also support the use of `easing functions <http://easings.net>`_ in order to
   create different kinds of expressive effects with signals. An easing function can
   optionally be specified at the end of a ``go()`` command or by calling the

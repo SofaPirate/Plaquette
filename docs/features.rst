@@ -196,7 +196,7 @@ period within a certain range.
       oscillator >> led;
    }
 
-.. warning::
+.. danger::
    Plaquette needs the main processing loop to run continuously without interruption 
    to work correctly. Users should thus **avoid using blocking processes** such as Arduino's 
    `delay() <https://docs.arduino.cc/language-reference/en/functions/time/delay/>`__ and

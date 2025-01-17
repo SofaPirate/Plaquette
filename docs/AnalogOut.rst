@@ -30,7 +30,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
      (led + randomFloat(-0.1, 0.1) * samplePeriod()) >> led;
    }
 
-.. note::
+.. important::
 
     On most Arduino boards analog outputs rely on `Pulse Width Modulation (PWM) <https://www.arduino.cc/en/Tutorial/PWM>`_.
     After a call to ``put(value)``, the pin will generate a steady square wave of the

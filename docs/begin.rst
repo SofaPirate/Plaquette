@@ -7,7 +7,7 @@ The ``begin()`` function is called when a sketch starts. Use it to initialize
 units, start using libraries, etc. The ``begin()`` function will only run once,
 after each powerup or reset of the board.
 
-.. note::
+.. hint::
   Function ``begin()`` is the Plaquette equivalent of Arduino's
   `setup() <https://www.arduino.cc/reference/en/language/functions/setup/>`_.
   However, Plaquette takes care of many of the initialization calls that need to
