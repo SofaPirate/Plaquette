@@ -85,8 +85,8 @@ can be assigned to many events.
 
    void step() {} // Nothing to do here
 
-Coordinating Multiple Events
-----------------------------
+Coordinating Parallel Events with Metronomes
+--------------------------------------------
 
 There are many applications for which things happen concurrently at different pace, making
 one wish there could be multiple ``step()`` functions being called in paralle. Plaquette makes 
@@ -127,7 +127,7 @@ interval. A ramp is used to fade the analog LED.
      ramp >> led2; // Ramp second LED from 100% to 0%.
    }
 
-Using Inline Functions
+Using Inline Callbacks
 ----------------------
 
 For simple, localized actions, you can define callback functions directly inline using the 
