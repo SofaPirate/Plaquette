@@ -32,12 +32,12 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
    mapFloat(x, 10.0, 50.0, 100.0, -100.0, WRAP);
 
 .. note::
-   Note that the "lower bounds" (``fromLow`` and ``toLow``) of either range may be larger or smaller than 
-   the "upper bounds" (``fromHigh`` and ``toHigh``) so the ``mapFloat()`` function may be used to reverse a
-   range of numbers, for example
+   The "lower bounds" (``fromLow`` and ``toLow``) of either range may be larger or smaller than the 
+   "upper bounds" (``fromHigh`` and ``toHigh``) so the ``mapFloat()`` function may be used to reverse a
+   range of numbers.
 
-Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/functions/math/map/>`_ function,
-``mapFloat()`` uses floating-point math and *will* generate fractions.
+   Unlike the Arduino `map() <https://www.arduino.cc/reference/en/language/functions/math/map/>`_ function,
+   ``mapFloat()`` uses floating-point math and *will* generate fractions.
 
 |Example|
 ---------
