@@ -20,6 +20,7 @@ Table of Contents
    waves
    timing_basics
    regularizing
+   events
    advanced
 
 .. toctree::
