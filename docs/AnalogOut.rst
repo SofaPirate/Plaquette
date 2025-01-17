@@ -30,14 +30,6 @@ The ``mode`` specifies the behavior of the component attached to the pin:
      (led + randomFloat(-0.1, 0.1) * samplePeriod()) >> led;
    }
 
-|Reference|
------------
-
-.. doxygenclass:: AnalogOut
-   :project: Plaquette
-   :members: AnalogOut, get, put, invert, pin, mode
-
-
 .. note::
 
     On most Arduino boards analog outputs rely on `Pulse Width Modulation (PWM) <https://www.arduino.cc/en/Tutorial/PWM>`_.
@@ -53,6 +45,13 @@ The ``mode`` specifies the behavior of the component attached to the pin:
     on pins 9, 10, and 11. The Arduino DUE supports analog output on pins 2 through 13,
     plus pins DAC0 and DAC1. Unlike the PWM pins, DAC0 and DAC1 are Digital to Analog
     converters, and act as true analog outputs.
+
+|Reference|
+-----------
+
+.. doxygenclass:: AnalogOut
+   :project: Plaquette
+   :members: AnalogOut, get, put, invert, pin, mode
 
 |SeeAlso|
 ---------
