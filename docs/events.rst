@@ -19,13 +19,81 @@ This approach offers several advantages:
 
 Let us explore how this works with practical examples.
 
+Currently Supported Events
+--------------------------
+
+.. list-table::
+  :header-rows: 1
+
+  * - Event
+    - Activation
+    - :doc:`DigitalIn`
+    - :doc:`Metronome`
+    - :doc:`PeakDetector`
+  * - ``onRise()``
+    - Value rises
+    - ✔
+    - 
+    - 
+  * - ``onFall()``
+    - Value falls
+    - ✔
+    - 
+    - 
+  * - ``onChange()``
+    - Value flips
+    - ✔
+    - 
+    - 
+  * - ``onBang()``
+    - Unit fires
+    - 
+    - ✔
+    - ✔
+
 Reacting to an Event
 --------------------
 
-:doc:`DigitalIn` allows performing actions when events such as button presses or releases using 
-callbacks. In this example, we register a function callback with the ``onRise()`` event which will 
-trigger at the instant the button is pressed, resulting in the rise of its value (ie. goes from "off" 
-to "on").
+Let us take an example where we want to react to the push of a button by switching an LED on and off.
+
+First, let us create the units we will be working with:
+
+.. code-block:: cpp
+
+   #include <Plaquette.h>
+
+   DigitalOut led(LED_BUILTIN);  // LED connected to built-in pin
+   DigitalIn button(2, INTERNAL_PULLUP);  // Button connected to pin 2
+
+In order to react to an event, we first need to create a callback function which will be called when
+the event will happen:
+
+.. code-block:: cpp
+
+   // Callback function to toggle the LED.
+   void toggleLed() {
+     led.toggle();
+   }
+
+Then, we need to register our callback to an event. In this case, we will register our function ``toggleLed()``
+to the ``onRise()`` event of our button unit, which will trigger at the instant the button is pressed.
+
+.. code-block:: cpp
+
+   void begin() {
+     button.debounce();  // Enable debouncing to avoid multiple events
+
+     // Register callbacks for button events.
+     button.onRise(toggleLed); // Toggle the LED on button press
+   }
+
+In this case, the ``step()`` function can be left empty because the callback will take care of all the logic.
+
+.. code-block:: cpp
+
+   void step() {} // Nothing to do here
+
+Here is the final code for this example:
 
 .. code-block:: cpp
 
@@ -48,12 +116,16 @@ to "on").
 
    void step() {} // Nothing to do here
 
+Now, try changing ``onRise()`` to ``onFall()`` or to ``onChange()``. How does that affect the interaction
+between the button and the LED?
+
 Managing Multiple Events
 ------------------------
 
-On top of the ``onRise()`` event the :doc:`DigitalIn` unit supports the ``onFall()`` and the
-``onChange()`` events. It is possible to register multiple callbacks with the same event, and one callback
-can be assigned to many events.
+It is possible to register multiple callbacks with the same event, and one callback can be assigned to many events.
+
+Example: Launch both ``toggleLed()`` and ``printButton()`` on button press, registering ``printButton()`` to both
+press and release events.
 
 .. code-block:: cpp
 
