@@ -194,8 +194,8 @@ onBang	KEYWORD2
 onRise	KEYWORD2
 onFall	KEYWORD2
 onChange	KEYWORD2
+onFinish	KEYWORD2
 clearEvents	KEYWORD2
-onChange	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
