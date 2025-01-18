@@ -68,7 +68,7 @@ Plaquette offers a core set of specialized units to simplify common timing tasks
 - :doc:`Metronome`: Generates periodic pulses
 - :doc:`Ramp`: Creates a smooth transition
 
-.. warning::
+.. danger::
   Timing units deal with time and events without interrupting the main processing loop.
   Users should avoid blocking processes such as
   `delay() <https://docs.arduino.cc/language-reference/en/functions/time/delay/>`__ and
@@ -235,9 +235,9 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
         led.off();
     }
 
-.. note::
-  To switch between modes, it is recommended to simply call the ``duration(value)`` or ``speed(value)`` 
-  functions with a target duration or speed. Alternatively, you can change mode by calling ``mode(RAMP_DURATION)``
+.. tip::
+  To switch between modes, you can simply call the ``duration(value)`` or ``speed(value)`` 
+  functions with a target duration or speed (recommended). Alternatively, you can change mode by calling ``mode(RAMP_DURATION)``
   or ``mode(RAMP_SPEED)``, in which case the duration or speed will be computed based on the ramp's
   current properties (ie. duration/speed, starting, and target values).
 
@@ -250,7 +250,7 @@ ramps interpolate from one value to another over a specific duration or at a spe
 LEDs or physical components such as motors in a natural manner, allowing the creation of rich, dynamic, 
 evolving experiences.
 
-.. note::
+.. tip::
   We strongly recommend to use the Serial Plotter to visualize the ramp values in the following examples.
 
 Basic Usage

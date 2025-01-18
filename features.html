@@ -48,15 +48,7 @@
               <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#object-oriented">Object-oriented</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#user-friendly">User-friendly</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#signal-centric">Signal-centric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#signal-filtering">Signal Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#real-time">Real-time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#arduino-compatible">Arduino Compatible</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
@@ -66,6 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -330,8 +323,8 @@ period within a certain range.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <p>Plaquette needs the main processing loop to run continuously without interruption
 to work correctly. Users should thus <strong>avoid using blocking processes</strong> such as Arduino’s
 <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delay/">delay()</a> and

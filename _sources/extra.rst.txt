@@ -9,3 +9,5 @@ Extra units and functions.
    easings
    ContinuousServoOut
    ServoOut
+   StreamIn
+   StreamOut

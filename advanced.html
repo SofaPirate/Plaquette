@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Credits" href="credits.html" />
-    <link rel="prev" title="Regularizing Signals" href="regularizing.html" /> 
+    <link rel="next" title="Base Units" href="base_units.html" />
+    <link rel="prev" title="Working with Events" href="events.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,7 +58,9 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smoothing-arbitrary-signals">Smoothing Arbitrary Signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vanilla-coding-style">Vanilla Coding Style</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-plaquette-as-an-external-library">Using Plaquette as an External Library</a></li>
 </ul>
@@ -108,6 +110,40 @@
              
   <section id="advanced-usage">
 <h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h1>
+<section id="smoothing-arbitrary-signals">
+<h2>Smoothing Arbitrary Signals<a class="headerlink" href="#smoothing-arbitrary-signals" title="Link to this heading"></a></h2>
+<p>While the <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> unit in Plaquette provide a convenient built-in <code class="docutils literal notranslate"><span class="pre">smooth()</span></code> function for removing
+noise, there are many cases where you may need to smooth signals coming from other sources such as specialized
+sensors. The <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> unit provides a highly flexible smoothing solution for such use cases, allowing
+seamless integration into any signal pipeline. It works using an exponential moving average, acting as a
+low-pass filter to stabilize fast variations.</p>
+<p>Here is an example of using the <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> to smoothen a DHT 22 temperature and humidity sensor using the
+external <a class="reference external" href="https://docs.arduino.cc/libraries/dht-sensor-library/">DHT sensor library</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;DHT.h&gt;</span><span class="c1"> // External specialized library</span>
+
+<span class="n">DHT</span><span class="w"> </span><span class="nf">dht</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">DHT22</span><span class="p">);</span><span class="w"> </span><span class="c1">// DHT 22 sensor connected to pin 2</span>
+
+<span class="c1">// Create a Smoother with a 10-second time window.</span>
+<span class="n">Smoother</span><span class="w"> </span><span class="nf">temperatureSmoother</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
+
+<span class="c1">// Stream out for debugging (e.g., to Serial Monitor).</span>
+<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dht</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w">  </span><span class="c1">// Initialize the DHT sensor</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Read temperature in Celsius.</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">rawTemperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht</span><span class="p">.</span><span class="n">readTemperature</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Smooth the temperature and send it to the Serial.</span>
+<span class="w">  </span><span class="n">rawTemperature</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">temperatureSmoother</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="vanilla-coding-style">
 <h2>Vanilla Coding Style<a class="headerlink" href="#vanilla-coding-style" title="Link to this heading"></a></h2>
 <p>You can avoid Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion of units to values
@@ -198,8 +234,8 @@ including the file <code class="docutils literal notranslate"><span class="pre">
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="regularizing.html" class="btn btn-neutral float-left" title="Regularizing Signals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="credits.html" class="btn btn-neutral float-right" title="Credits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="events.html" class="btn btn-neutral float-left" title="Working with Events" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="base_units.html" class="btn btn-neutral float-right" title="Base Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

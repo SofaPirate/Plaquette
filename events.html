@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Working with Events &mdash; Plaquette 0.6.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+
+  
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2bd037f0"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Usage" href="advanced.html" />
+    <link rel="prev" title="Regularizing Signals" href="regularizing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#currently-supported-events">Currently Supported Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reacting-to-an-event">Reacting to an Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#managing-multiple-events">Managing Multiple Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinating-parallel-events-with-metronomes">Coordinating Parallel Events with Metronomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-inline-callbacks">Using Inline Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Working with Events</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="working-with-events">
+<h1>Working with Events<a class="headerlink" href="#working-with-events" title="Link to this heading"></a></h1>
+<p>Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
+an event occurs instead of constantly checking for changes with an <strong>if</strong> statement. In Plaquette, this
+is achieved by <strong>events</strong> and <strong>function callbacks</strong>.</p>
+<p>A <strong>callback</strong> is a function that you write and then register with an event source, like a the rising
+of a button or the tick of a metronome. When the event is triggered, the registered function is called
+automatically.</p>
+<p>This approach offers several advantages:</p>
+<ul class="simple">
+<li><p><strong>Modularity</strong>: Encapsulates behavior in reusable functions.</p></li>
+<li><p><strong>Expressiveness</strong>: Focuses on declaring “what happens when”.</p></li>
+<li><p><strong>Efficiency</strong>: Reacts to changes without continuous polling.</p></li>
+<li><p><strong>Scalability</strong>: Makes it easy to manage complex systems with multiple events.</p></li>
+</ul>
+<p>Let us explore how this works with practical examples.</p>
+<section id="currently-supported-events">
+<h2>Currently Supported Events<a class="headerlink" href="#currently-supported-events" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Event</p></th>
+<th class="head"><p>Activation</p></th>
+<th class="head"><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a></p></th>
+<th class="head"><p><a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onRise()</span></code></p></td>
+<td><p>Value rises</p></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onFall()</span></code></p></td>
+<td><p>Value falls</p></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onChange()</span></code></p></td>
+<td><p>Value flips</p></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onBang()</span></code></p></td>
+<td><p>Unit fires</p></td>
+<td></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reacting-to-an-event">
+<h2>Reacting to an Event<a class="headerlink" href="#reacting-to-an-event" title="Link to this heading"></a></h2>
+<p>Let us take an example where we want to react to the push of a button by switching an LED on and off.</p>
+<p>First, let us create the units we will be working with:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+</pre></div>
+</div>
+<p>In order to react to an event, we first need to create a callback function which will be called when
+the event will happen:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Callback function to toggle the LED.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then, we need to register our callback to an event. In this case, we will register our function <code class="docutils literal notranslate"><span class="pre">toggleLed()</span></code>
+to the <code class="docutils literal notranslate"><span class="pre">onRise()</span></code> event of our button unit, which will trigger at the instant the button is pressed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+
+<span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function can be left empty because the callback will take care of all the logic.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
+</pre></div>
+</div>
+<p>Here is the final code for this example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+
+<span class="c1">// Callback function to toggle the LED.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+
+<span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
+</pre></div>
+</div>
+<p>Now, try changing <code class="docutils literal notranslate"><span class="pre">onRise()</span></code> to <code class="docutils literal notranslate"><span class="pre">onFall()</span></code> or to <code class="docutils literal notranslate"><span class="pre">onChange()</span></code>. How does that affect the interaction
+between the button and the LED?</p>
+</section>
+<section id="managing-multiple-events">
+<h2>Managing Multiple Events<a class="headerlink" href="#managing-multiple-events" title="Link to this heading"></a></h2>
+<p>It is possible to register multiple callbacks with the same event, and one callback can be assigned to many events.</p>
+<p>Example: Launch both <code class="docutils literal notranslate"><span class="pre">toggleLed()</span></code> and <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> on button press, registering <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> to both
+press and release events.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+
+<span class="c1">// Callback function to toggle the LED.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Callback function to print button state.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">printButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Button &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">button</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;pressed&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;released&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+
+<span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
+
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print button state</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onFall</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Same here</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
+</pre></div>
+</div>
+</section>
+<section id="coordinating-parallel-events-with-metronomes">
+<h2>Coordinating Parallel Events with Metronomes<a class="headerlink" href="#coordinating-parallel-events-with-metronomes" title="Link to this heading"></a></h2>
+<p>There are many applications for which things happen concurrently at different pace, making
+one wish there could be multiple <code class="docutils literal notranslate"><span class="pre">step()</span></code> functions being called in paralle. Plaquette makes
+it easy to manage multiple time-based events using <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> units and event-driven
+programming. Metronomes generate periodic “bang” events, allowing you to coordinate different actions
+running in parallel.</p>
+<p>In this example, two metronomes control two LEDs, one digital and one analog, each at a different
+interval. A ramp is used to fade the analog LED.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led1</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// First LED (digital) connected to built-in pin</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// Second LED (PWM) connected to pin 9</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Metronome with a one second period</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Metronome with a 2 second period</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">rampLed</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Short ramp to control LED 2</span>
+
+<span class="c1">// Function to toggle the first LED.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Function to start the ramp on second LED.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Register callbacks for the metronomes.</span>
+<span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Toggle LED 1 every second.</span>
+<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed2</span><span class="p">);</span><span class="w">  </span><span class="c1">// Fade in LED 2 every 2 seconds.</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ramp second LED from 100% to 0%.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="using-inline-callbacks">
+<h2>Using Inline Callbacks<a class="headerlink" href="#using-inline-callbacks" title="Link to this heading"></a></h2>
+<p>For simple, localized actions, you can define callback functions directly inline using the
+<code class="docutils literal notranslate"><span class="pre">[]()</span> <span class="pre">{</span> <span class="pre">}</span></code> syntax. This is called a <strong>lambda function</strong>. It allows you to write concise code
+without defining separate named functions and are thus especially useful for short, self-contained
+actions, keeping the code clean and readable.</p>
+<p>For example, we could rewrite the callback registration from the example above in a shorter
+way, like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Register callbacks for the metronomes.</span>
+<span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Toggle LED1 every second.</span>
+<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// Light up and fade out LED2 every 2 seconds.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling
+actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event
+sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at
+different rhythms.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="regularizing.html" class="btn btn-neutral float-left" title="Regularizing Signals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

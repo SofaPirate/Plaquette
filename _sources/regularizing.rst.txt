@@ -226,7 +226,7 @@ than usual:
       regularizer.isHighOutlier(photoCell) >> led;
     }
 
-.. note::
+.. tip::
   By default, the ``isHighOutlier()`` function detects values that are more than
   1.5 deviations from the mean. The function can be made more or less sensitive by
   adjusting the number of deviations (typically between 1.0 and 3.0). For example,
@@ -293,7 +293,7 @@ which can be obtained by calling the Normalizer's function ``highOutlierThreshol
 
     PeakDetector detector(normalizer.highOutlierThreshold());
 
-.. note::
+.. tip::
 
   As for the ``isHighOutlier()`` function, the ``highOutlierThreshold()`` function
   is set to return, by default, a threshold that is 1.5 standard deviations from the mean. The

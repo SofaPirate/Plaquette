@@ -10,5 +10,3 @@ Basic input-output units.
    AnalogOut
    DigitalIn
    DigitalOut
-   StreamIn
-   StreamOut

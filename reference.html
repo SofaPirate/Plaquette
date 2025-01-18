@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Base Units" href="base_units.html" />
+    <link rel="next" title="Getting started" href="getting_started.html" />
     <link rel="prev" title="Features" href="features.html" /> 
 </head>
 
@@ -49,16 +49,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="base_units.html">Base Units</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generators.html">Generators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="timing.html">Timing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="structure.html">Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extra.html">Extra</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -67,6 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -113,63 +105,72 @@
              
   <section id="reference">
 <h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="AnalogIn.html">AnalogIn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="AnalogOut.html">AnalogOut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DigitalIn.html">DigitalIn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DigitalOut.html">DigitalOut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
+<section id="base-units">
+<h2>Base Units<a class="headerlink" href="#base-units" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> Reads analog input values between 0 and 1. Typically used for sensors that output a range of values, such as potentiometers or light sensors.</p></li>
+<li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> Writes analog output values between 0 and 1. Useful for controlling devices like dimmable LEDs or motor controllers.</p></li>
+<li><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a> Reads digital input values as boolean true/false. Commonly used with buttons, switches, or other on/off signals.</p></li>
+<li><p><a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> Writes digital output values as boolean true/false. Often used to control relays, LEDs, or other binary devices.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SineWave.html">SineWave</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SquareWave.html">SquareWave</a></li>
-<li class="toctree-l2"><a class="reference internal" href="TriangleWave.html">TriangleWave</a></li>
+</section>
+<section id="generators">
+<h2>Generators<a class="headerlink" href="#generators" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="SineWave.html"><span class="doc">SineWave</span></a> Generates a smooth, periodic sine wave signal. Commonly used for oscillatory motion or smooth transitions.</p></li>
+<li><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a> Generates a periodic square wave signal, alternating between high and low states. Ideal for toggling signals like blinking LEDs.</p></li>
+<li><p><a class="reference internal" href="TriangleWave.html"><span class="doc">TriangleWave</span></a> Produces a periodic triangle wave signal with a linear rise and fall. Useful for generating smoother oscillatory patterns than square waves.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Chronometer.html">Chronometer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Metronome.html">Metronome</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
+</section>
+<section id="timing">
+<h2>Timing<a class="headerlink" href="#timing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> Triggers an event after a specified time duration. Can be used to schedule delays or time-based actions.</p></li>
+<li><p><a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a> Measures elapsed time since the start or reset. Useful for timing events or profiling system performance.</p></li>
+<li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> Produces a periodic tick at specified intervals. Often used in rhythmic applications such as sound or light pulses.</p></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+</section>
+<section id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> Scales signals to fit within a specified minimum and maximum range. Essential for normalizing input signals from diverse sources.</p></li>
+<li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a> Adjusts signals to have a zero mean and unit variance. Useful in signal processing pipelines where consistent scaling is required.</p></li>
+<li><p><a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a> Detects peaks (local maxima) in input signals, allowing for event-based processing such as edge detection.</p></li>
+<li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mapFloat.html">mapFloat()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapFrom01.html">mapFrom01()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mapTo01.html">mapTo01()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="randomFloat.html">randomFloat()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="seconds.html">seconds()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wrap.html">wrap()</a></li>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> Maps a float value from one range to another. Useful for adapting input ranges to the desired output domain.</p></li>
+<li><p><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a> Maps a float value from the normalized [0,1] range to a custom range, such as [-10, 10].</p></li>
+<li><p><a class="reference internal" href="mapTo01.html"><span class="doc">mapTo01()</span></a> Maps a float value from a custom range to the normalized [0,1] range, simplifying calculations for normalized operations.</p></li>
+<li><p><a class="reference internal" href="randomFloat.html"><span class="doc">randomFloat()</span></a> Generates a random float between 0 and 1, ideal for simulations or procedural generation.</p></li>
+<li><p><a class="reference internal" href="seconds.html"><span class="doc">seconds()</span></a> Returns the current time in seconds since the program started, enabling precise time tracking.</p></li>
+<li><p><a class="reference internal" href="wrap.html"><span class="doc">wrap()</span></a> Wraps a value within a specified range, making it cyclic. Commonly used for angles or periodic parameters.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array.html">[] (arrays)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+</section>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a> Initializes the system, similar to Arduino’s <cite>setup()</cite> function. Sets up necessary configurations and prepares units for operation.</p></li>
+<li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a> Repeatedly called during the program’s execution, akin to Arduino’s <cite>loop()</cite> function. Drives the execution of the main logic.</p></li>
+<li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a> Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.</p></li>
+<li><p><a class="reference internal" href="dot.html"><span class="doc">. (dot)</span></a> Provides access to an object’s methods and data, enabling intuitive object-oriented programming with Plaquette units.</p></li>
+<li><p><a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt; (pipe)</span></a> Sends data across units from left to right, creating a streamlined and intuitive flow of information between connected units.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="easings.html">Easings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ContinuousServoOut.html">ContinuousServoOut</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ServoOut.html">ServoOut</a></li>
+</section>
+<section id="extra">
+<h2>Extra<a class="headerlink" href="#extra" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a> Provides easing functions for smooth and natural transitions between values. Commonly used in animations and motion design.</p></li>
+<li><p><a class="reference internal" href="ContinuousServoOut.html"><span class="doc">ContinuousServoOut</span></a> Controls a continuous rotation servo motor by setting its speed and direction. Ideal for robotics or mechanical motion control.</p></li>
+<li><p><a class="reference internal" href="ServoOut.html"><span class="doc">ServoOut</span></a> Controls a standard servo motor by setting its angle. Useful for applications like robotic arms or pan-tilt systems.</p></li>
+<li><p><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a> Streams input data continuously, allowing real-time signal processing from external devices.</p></li>
+<li><p><a class="reference internal" href="StreamOut.html"><span class="doc">StreamOut</span></a> Streams output data continuously, enabling real-time control of external actuators or visualizations.</p></li>
 </ul>
-</li>
-</ul>
-</div>
+</section>
 </section>
 
 
@@ -177,7 +178,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="features.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="base_units.html" class="btn btn-neutral float-right" title="Base Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

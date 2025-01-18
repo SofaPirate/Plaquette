@@ -220,7 +220,7 @@ All properties in wave units have two variants:
 - A **mutator** variant allowing to change the value of the property. Example: ``wave.period(3.0);``.
 - An **accessor** read-only variant that returns the current value of the property. Example: ``float x = wave.period();``
 
-.. note::
+.. tip::
   This naming convention is a standard in Plaquette and you will find it in other units as well.
 
 **Example**: Increase the wave's period by one second each time the button is pressed:

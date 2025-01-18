@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Inputs and Outputs" href="inputs_outputs.html" />
-    <link rel="prev" title="ServoOut" href="ServoOut.html" /> 
+    <link rel="prev" title="Reference" href="reference.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -82,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -177,8 +178,8 @@ states: (“on/off”, “high/low”, “1/0”).</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">13</span></code> is a <strong>parameter</strong> of the object <code class="docutils literal notranslate"><span class="pre">myLed</span></code> that specifies the hardware
 <em>pin</em> that it corresponds to on the board. In English, the statement would thus read
 as: “Create a unit named <code class="docutils literal notranslate"><span class="pre">myLed</span></code> of type <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal notranslate"><span class="pre">13</span></code>.”</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on
 most boards, this LED is connected to digital pin <code class="docutils literal notranslate"><span class="pre">13</span></code>. The constant <code class="docutils literal notranslate"><span class="pre">LED_BUILTIN</span></code> is
 the number of the pin to which the on-board LED is connected.</p>
@@ -277,8 +278,8 @@ the period of oscillation.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(10.0);</span></code> for a period of 10 seconds</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SquareWave</span> <span class="pre">myWave(0.5);</span></code> for a period of half a second (500 milliseconds)</p></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>Don’t forget to re-upload the sketch after each change.</p>
 </div>
 <p>Now try adding a second parameter (width) to control the oscillator’s
@@ -323,8 +324,8 @@ outputs to change the period of <code class="docutils literal notranslate"><span
 <p>Upload the sketch and you should see the LED blinking as before, with the difference that
 the blinking speed will now change from blinking very fast (in fact, infinitely fast, with
 a period of zero seconds!) to very slow (period of 20 seconds).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>If you want to visualize the values of both waves on your computer, you can print them
 on the serial port one after the other, separated by a space. Add the following code to
 your <code class="docutils literal notranslate"><span class="pre">step()</span></code> function:</p>
@@ -345,8 +346,8 @@ by selecting in in <strong>Tools &gt; Serial Plotter</strong>.</p>
 we will be using the internal pull-up resistor available on Arduino boards for a very simple circuit.
 One leg of the button should be connected to ground (GND) while the other should be connected to
 digital pin 2.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>If you do not have a button or switch, you can just use two electric wires: one connected to
 ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch
 the wires together to close the circuit.</p>
@@ -458,7 +459,7 @@ to peaks.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ServoOut.html" class="btn btn-neutral float-left" title="ServoOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reference.html" class="btn btn-neutral float-left" title="Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="inputs_outputs.html" class="btn btn-neutral float-right" title="Inputs and Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

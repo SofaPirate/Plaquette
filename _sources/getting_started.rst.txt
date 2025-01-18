@@ -68,7 +68,7 @@ Finally, ``13`` is a **parameter** of the object ``myLed`` that specifies the ha
 *pin* that it corresponds to on the board. In English, the statement would thus read 
 as: "Create a unit named ``myLed`` of type ``DigitalOut`` on pin ``13``."
 
-.. note::
+.. tip::
   Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on 
   most boards, this LED is connected to digital pin ``13``. The constant ``LED_BUILTIN`` is 
   the number of the pin to which the on-board LED is connected.
@@ -181,7 +181,7 @@ the period of oscillation.
 - ``SquareWave myWave(10.0);`` for a period of 10 seconds
 - ``SquareWave myWave(0.5);`` for a period of half a second (500 milliseconds)
 
-.. warning::
+.. important::
    Don't forget to re-upload the sketch after each change.
 
 Now try adding a second parameter (width) to control the oscillator's
@@ -237,7 +237,7 @@ Upload the sketch and you should see the LED blinking as before, with the differ
 the blinking speed will now change from blinking very fast (in fact, infinitely fast, with 
 a period of zero seconds!) to very slow (period of 20 seconds).
 
-.. note::
+.. tip::
 
    If you want to visualize the values of both waves on your computer, you can print them 
    on the serial port one after the other, separated by a space. Add the following code to
@@ -264,7 +264,7 @@ we will be using the internal pull-up resistor available on Arduino boards for a
 One leg of the button should be connected to ground (GND) while the other should be connected to 
 digital pin 2.
 
-.. note::
+.. tip::
    
    If you do not have a button or switch, you can just use two electric wires: one connected to 
    ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch 

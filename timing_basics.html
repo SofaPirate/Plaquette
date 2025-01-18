@@ -76,6 +76,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -182,8 +183,8 @@ event-specific timing, we will need to use more specialized timing functionaliti
 <li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a>: Generates periodic pulses</p></li>
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a>: Creates a smooth transition</p></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <p>Timing units deal with time and events without interrupting the main processing loop.
 Users should avoid blocking processes such as
 <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/time/delay/">delay()</a> and
@@ -332,10 +333,10 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To switch between modes, it is recommended to simply call the <code class="docutils literal notranslate"><span class="pre">duration(value)</span></code> or <code class="docutils literal notranslate"><span class="pre">speed(value)</span></code>
-functions with a target duration or speed. Alternatively, you can change mode by calling <code class="docutils literal notranslate"><span class="pre">mode(RAMP_DURATION)</span></code>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To switch between modes, you can simply call the <code class="docutils literal notranslate"><span class="pre">duration(value)</span></code> or <code class="docutils literal notranslate"><span class="pre">speed(value)</span></code>
+functions with a target duration or speed (recommended). Alternatively, you can change mode by calling <code class="docutils literal notranslate"><span class="pre">mode(RAMP_DURATION)</span></code>
 or <code class="docutils literal notranslate"><span class="pre">mode(RAMP_SPEED)</span></code>, in which case the duration or speed will be computed based on the ramp’s
 current properties (ie. duration/speed, starting, and target values).</p>
 </div>
@@ -347,8 +348,8 @@ ramps interpolate from one value to another over a specific duration or at a spe
 <a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> unit in Plaquette provides a flexible and powerful way to animate visual elements such as
 LEDs or physical components such as motors in a natural manner, allowing the creation of rich, dynamic,
 evolving experiences.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>We strongly recommend to use the Serial Plotter to visualize the ramp values in the following examples.</p>
 </div>
 <section id="basic-usage">

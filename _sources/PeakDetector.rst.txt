@@ -24,7 +24,7 @@ In summary, the four different modes available are:
  - ``PEAK_MAX``     : peak detected after ``value >= triggerThreshold`` and then *falls back* after peaking; then waits until ``value < reloadThreshold``
  - ``PEAK_MIN``     : peak detected after ``value <= triggerThreshold`` and then *falls back* after peaking; then waits until ``value > reloadThreshold``
 
-.. note::
+.. important::
    Before sending a signal to a PeakDetector unit, it is recommended to normalize
    signals, preferably using the :doc:`Normalizer` unit. Furthermore, to avoid a
    noisy signal to generate false peaks, it is recommended to smooth the signal
