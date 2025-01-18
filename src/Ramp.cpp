@@ -27,7 +27,7 @@ namespace pq {
 Ramp::Ramp(float duration) :
   Unit(),
   AbstractTimer(duration),
-  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION)
+  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED)
 {
 }
 
@@ -101,6 +101,7 @@ float Ramp::speed() const {
 
 void Ramp::start() {
   AbstractTimer::start();
+  _finishedState = NOT_FINISHED;
 }
 
 void Ramp::start(float to, float duration, easing_function easing_) {
@@ -163,6 +164,7 @@ void Ramp::go(float to, easing_function easing_) {
 
 void Ramp::begin() {
   set(0);
+  _finishedState = NOT_FINISHED;
 }
 
 void Ramp::step() {
@@ -172,6 +174,21 @@ void Ramp::step() {
   if (_isRunning) {
     // Compute value if running -- otherwise leave as is.
     _value = _get();
+  }
+
+  // Check if finished this turn.
+  if (_finishedState == NOT_FINISHED) {
+    if (isFinished()) {
+      _finishedState = JUST_FINISHED;
+    }
+  }
+  else if (_finishedState == JUST_FINISHED) {
+    if (isFinished()) {
+      _finishedState = POST_FINISHED;
+    }
+    else {
+      _finishedState = NOT_FINISHED;
+    }
   }
 }
 

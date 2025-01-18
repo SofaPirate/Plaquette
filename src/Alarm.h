@@ -33,9 +33,19 @@ class Alarm : public DigitalSource, public AbstractTimer {
 public:
   Alarm(float duration=1.0f);
 
+  virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
+
 protected:
   virtual void begin();
   virtual void step();
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_FINISH: return rose();
+      default:           return DigitalSource::eventTriggered(eventType);
+    }
+  }
 
   // Returns current absolute time (in seconds).
   virtual float clock() const;

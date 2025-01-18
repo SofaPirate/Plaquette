@@ -35,6 +35,7 @@ enum EventType {
   EVENT_RISE,
   EVENT_FALL,
   EVENT_BANG,
+  EVENT_FINISH,
 };
 
 /// Manages event listeners for Plaquette units.

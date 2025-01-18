@@ -130,6 +130,9 @@ public:
   /// Returns the mode of the component (RAMP_DURATION or RAMP_SPEED).
   uint8_t mode() const { return _mode; }
 
+  /// Registers event callback on rise event.
+  virtual void onFinish(EventCallback callback)   { onEvent(callback, EVENT_FINISH); }
+
   // \deprecated Use go(float to, float durationOrSpeed, easing_function easing=0);
   [[deprecated("Use go(float,easing_function) instead.")]]
   virtual void start(float to, float durationOrSpeed, easing_function easing=0);
@@ -138,12 +141,28 @@ public:
   [[deprecated("Use go(float,float,easing_function) instead.")]]
   virtual void start(float from, float to, float durationOrSpeed, easing_function easing=0);
 
+private:
+  // Finished states.
+  enum {
+    NOT_FINISHED,  // before finished
+    JUST_FINISHED, // just finished this step
+    POST_FINISHED  // after finished triggered
+  };
+
 protected:
   virtual void begin();
   virtual void step();
 
   // Returns current absolute time (in seconds).
   virtual float clock() const;
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_FINISH: return _finishedState == JUST_FINISHED;
+      default:           return Unit::eventTriggered(eventType);
+    }
+  }
 
   float _get();
 
@@ -163,7 +182,11 @@ protected:
   easing_function _easing;
 
   // Mode (DURATION or SPEED).
-  uint8_t _mode;
+  uint8_t _mode  : 1;
+
+  // Finished flag.
+  uint8_t _finishedState : 2;
+  uint8_t data   : 5;
 };
 
 }
