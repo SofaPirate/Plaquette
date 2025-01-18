@@ -4,11 +4,13 @@ Working with Events
 
 Plaquette supports event-driven programming, allowing you to execute specific actions automatically when 
 an event occurs instead of constantly checking for changes with an **if** statement. In Plaquette, this 
-is achieved by **events** and **function callbacks**.
+is achieved by **events** and function **callbacks**.
 
-A **callback** is a function that you write and then register with an event source, like a the rising
-of a button or the tick of a metronome. When the event is triggered, the registered function is called 
-automatically.
+An **event** is an instantaneous situation that is triggered by a unit under specific conditions, such as
+the push of a button, the tick of a metronome, the end of a timer, or a peak detection. 
+
+A **callback** is a custom function that is registered with a source event: when the event is triggered, 
+the registered callback is automatically called.
 
 This approach offers several advantages:
 
@@ -19,36 +21,53 @@ This approach offers several advantages:
 
 Let us explore how this works with practical examples.
 
-Currently Supported Events
---------------------------
+Supported Events
+----------------
 
 .. list-table::
-  :header-rows: 1
+  :header-rows: 0
 
-  * - Event
-    - Activation
-    - :doc:`DigitalIn`
-    - :doc:`Metronome`
-    - :doc:`PeakDetector`
-  * - ``onRise()``
+  * - **Event:**
+    - ``onRise()``
+    - ``onFall()``
+    - ``onChange()``
+    - ``onBang()``
+    - ``onFinish()``
+  * - **Activation:**
     - Value rises
-    - ✔
-    - 
-    - 
-  * - ``onFall()``
     - Value falls
-    - ✔
-    - 
-    - 
-  * - ``onChange()``
-    - Value flips
-    - ✔
-    - 
-    - 
-  * - ``onBang()``
+    - Value changes
     - Unit fires
+    - Time out
+  * - :doc:`Alarm`
+    - ✔
+    - ✔
+    - ✔
     - 
     - ✔
+  * - :doc:`DigitalIn`
+    - ✔
+    - ✔
+    - ✔
+    - 
+    - 
+  * - :doc:`Metronome`
+    - 
+    - 
+    - 
+    - ✔
+    - 
+  * - :doc:`PeakDetector`
+    - 
+    - 
+    - 
+    - ✔
+    - 
+  * - :doc:`Ramp`
+    - 
+    - 
+    - 
+    - 
     - ✔
 
 Reacting to an Event

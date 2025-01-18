@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinMaxScaler &mdash; Plaquette 0.6.1 documentation</title>
+  <title>MinMaxScaler &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=2bd037f0"></script>
+      <script src="_static/documentation_options.js?v=1c28bd9a"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -129,8 +129,8 @@ is mapped to 1.</p>
 “decay time window” to control the rate of decay of the minimum and maximum boundaries. The
 principle is similar to the how the <a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> and the <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a> make use of
 <a class="reference external" href="https://www.investopedia.com/terms/e/ema.asp">exponential moving average</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
 <p>This filtering unit works well as long as there are no “outliers” in the signal (ie. extreme values)
 that appear in rare conditions. Such values will replace the minimum or maximum value and greatly
 restrict the spread of the filtered values.</p>

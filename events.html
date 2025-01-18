@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working with Events &mdash; Plaquette 0.6.1 documentation</title>
+  <title>Working with Events &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=2bd037f0"></script>
+      <script src="_static/documentation_options.js?v=1c28bd9a"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -59,7 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Events</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#currently-supported-events">Currently Supported Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-events">Supported Events</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reacting-to-an-event">Reacting to an Event</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#managing-multiple-events">Managing Multiple Events</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#coordinating-parallel-events-with-metronomes">Coordinating Parallel Events with Metronomes</a></li>
@@ -115,10 +115,11 @@
 <h1>Working with Events<a class="headerlink" href="#working-with-events" title="Link to this heading"></a></h1>
 <p>Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
 an event occurs instead of constantly checking for changes with an <strong>if</strong> statement. In Plaquette, this
-is achieved by <strong>events</strong> and <strong>function callbacks</strong>.</p>
-<p>A <strong>callback</strong> is a function that you write and then register with an event source, like a the rising
-of a button or the tick of a metronome. When the event is triggered, the registered function is called
-automatically.</p>
+is achieved by <strong>events</strong> and function <strong>callbacks</strong>.</p>
+<p>An <strong>event</strong> is an instantaneous situation that is triggered by a unit under specific conditions, such as
+the push of a button, the tick of a metronome, the end of a timer, or a peak detection.</p>
+<p>A <strong>callback</strong> is a custom function that is registered with a source event: when the event is triggered,
+the registered callback is automatically called.</p>
 <p>This approach offers several advantages:</p>
 <ul class="simple">
 <li><p><strong>Modularity</strong>: Encapsulates behavior in reusable functions.</p></li>
@@ -127,40 +128,57 @@ automatically.</p>
 <li><p><strong>Scalability</strong>: Makes it easy to manage complex systems with multiple events.</p></li>
 </ul>
 <p>Let us explore how this works with practical examples.</p>
-<section id="currently-supported-events">
-<h2>Currently Supported Events<a class="headerlink" href="#currently-supported-events" title="Link to this heading"></a></h2>
+<section id="supported-events">
+<h2>Supported Events<a class="headerlink" href="#supported-events" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Event</p></th>
-<th class="head"><p>Activation</p></th>
-<th class="head"><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></th>
-<th class="head"><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a></p></th>
-<th class="head"><p><a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a></p></th>
-</tr>
-</thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onRise()</span></code></p></td>
+<tr class="row-odd"><td><p><strong>Event:</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onRise()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onFall()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onChange()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onBang()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onFinish()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Activation:</strong></p></td>
 <td><p>Value rises</p></td>
-<td><p>✔</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onFall()</span></code></p></td>
 <td><p>Value falls</p></td>
-<td><p>✔</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onChange()</span></code></p></td>
-<td><p>Value flips</p></td>
-<td><p>✔</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onBang()</span></code></p></td>
+<td><p>Value changes</p></td>
 <td><p>Unit fires</p></td>
+<td><p>Time out</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 <td></td>
 <td><p>✔</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✔</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✔</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td><p>✔</p></td>
 </tr>
 </tbody>

@@ -15,7 +15,7 @@ In order to accommodate signals that might be changing through time, the user ca
 principle is similar to the how the :doc:`Smoother` and the :doc:`Normalizer` make use of
 `exponential moving average <https://www.investopedia.com/terms/e/ema.asp>`_.
 
-.. warning::
+.. caution::
 
    This filtering unit works well as long as there are no "outliers" in the signal (ie. extreme values)
    that appear in rare conditions. Such values will replace the minimum or maximum value and greatly
