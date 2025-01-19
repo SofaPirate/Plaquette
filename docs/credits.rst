@@ -3,14 +3,14 @@ Credits
 
 Core Developers:
 
-- Sofian Audry • `Website <http://sofianaudry.com>`__ • `GitHub <https://github.com/sofian>`__
-- Thomas Ouellet Fredericks • `Website <http://www.t-o-f.info>`__ • `GitHub <https://github.com/thomasfredericks>`__
+- Sofian Audry (main code, system architecture & design, documentation) • `Website <http://sofianaudry.com>`__ • `GitHub <https://github.com/sofian>`__
+- Thomas Ouellet Fredericks (original concept, system architecture & design) • `Website <http://www.t-o-f.info>`__ • `GitHub <https://github.com/thomasfredericks>`__
 
 Contributors:
 
-- Logo: Ian Donnelly • `Website <https://ijdonnelly.com/>`__
 - Code: Matthew Loewen • `Website <https://www.mloewen.com/>`__ • `GitHub <https://github.com/mattdoescode>`__
 - Code: Samuel Favreau • `Website <https://samuelfavreau.com//>`__
+- Logo: Ian Donnelly • `Website <https://ijdonnelly.com/>`__
 - Testing: Luana Belinsky • `Website <https://www.instagram.com/cadavre_xquis_>`__
 - Documentation Editing: Erin Gee • `Website <https://www.eringee.net/>`__ • `GitHub <https://github.com/eringee>`__
 
