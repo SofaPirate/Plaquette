@@ -1,8 +1,14 @@
 Why Plaquette?
 ==============
 
-Rationale
----------
+Plaquette is a groundbreaking creative coding framework designed to empower media artists, designers, 
+musicians, and creative technologists by simplifying the way they interact with real-time signals 
+in tangible computing applications. By bridging the gap between low-level electronics and high-level 
+creative expression, Plaquette enables creators to focus on what matters most: bringing their artistic 
+visions to life.
+
+The Need for a New Standard
+---------------------------
 
 Media artists, interactive designers, digital luthiers, and electronic musicians constantly 
 engage with real-time signals. However, when working with tangible computing systems such 
@@ -60,10 +66,10 @@ forcing us to divide the incoming value by 4 (2 bits). But again, why is this de
 important to know for an artist, designer, or musician? And what exactly does it
 have to do with our expressive intention?
 
-A New Standard
+Meet Plaquette
 --------------
 
-As a way to address these issues, we propose to create a general-purpose standard
+As a way to address these issues, Plaquette offers a general-purpose standard
 interface for simple, real-time signal processing for media artists.
 The objectives are as follow:
 
