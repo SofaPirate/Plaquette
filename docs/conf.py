@@ -63,6 +63,11 @@ todo_include_todos = False
 html_static_path = ['_static']
 htmlhelp_basename = 'Plaquettedoc'
 latex_elements = {
+    'preamble': r'''
+        \addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
+         \setcounter{tocdepth}{2}     % Include subsubsections in the Table of Contents
+        \setcounter{secnumdepth}{2}  % Number subsubsections
+    ''',
 }
 latex_documents = [
   (master_doc, 'Plaquette.tex', u'Plaquette Documentation',

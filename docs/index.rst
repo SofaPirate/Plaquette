@@ -1,7 +1,7 @@
 .. include:: README.rst
 
-Table of Contents
-=================
+Essentials
+==========
 
 .. toctree::
    :caption: Essentials
@@ -10,6 +10,9 @@ Table of Contents
    why_plaquette
    features
    reference
+
+Guide
+=====
 
 .. toctree::
    :caption: Guide
@@ -23,6 +26,9 @@ Table of Contents
    events
    advanced
 
+Reference
+=========
+
 .. toctree::
    :caption: Reference
    :maxdepth: 1
@@ -34,6 +40,9 @@ Table of Contents
    functions
    structure
    extra
+
+Related Info
+============
 
 .. toctree::
    :caption: Related Info
