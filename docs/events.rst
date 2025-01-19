@@ -1,6 +1,6 @@
-===================
-Working with Events
-===================
+===============
+Managing Events
+===============
 
 Plaquette supports event-driven programming, allowing you to execute specific actions automatically when 
 an event occurs instead of constantly checking for changes with an **if** statement. In Plaquette, this 
@@ -11,6 +11,12 @@ the push of a button, the tick of a metronome, the end of a timer, or a peak det
 
 A **callback** is a custom function that is registered with a source event: when the event is triggered, 
 the registered callback is automatically called.
+
+.. note::
+  In programming, a **callback function** is like giving someone instructions on what to do when a 
+  specific event happens. For example, imagine you are baking cookies and you set a timer. Instead of 
+  constantly watching the oven, you set the timer to "call you back" (in other words, alert you) when 
+  time is up, so you can take the cookies out.
 
 This approach offers several advantages:
 
@@ -180,10 +186,10 @@ Coordinating Parallel Events with Metronomes
 --------------------------------------------
 
 There are many applications for which things happen concurrently at different pace, making
-one wish there could be multiple ``step()`` functions being called in paralle. Plaquette makes 
-it easy to manage multiple time-based events using :doc:`Metronome` units and event-driven
-programming. Metronomes generate periodic "bang" events, allowing you to coordinate different actions 
-running in parallel.
+one wish there could be multiple looping functions like ``step()`` running in parallel at different
+rhythm. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
+period, generating "bang" events which can trigger callbacks by registering them to metronome's 
+``onBang()`` event.
 
 In this example, two metronomes control two LEDs, one digital and one analog, each at a different
 interval. A ramp is used to fade the analog LED.
@@ -218,8 +224,8 @@ interval. A ramp is used to fade the analog LED.
      ramp >> led2; // Ramp second LED from 100% to 0%.
    }
 
-Using Inline Callbacks
-----------------------
+Creating On-the-fly Callbacks
+-----------------------------
 
 For simple, localized actions, you can define callback functions directly inline using the 
 ``[]() { }`` syntax. This is called a **lambda function**. It allows you to write concise code 
@@ -233,9 +239,8 @@ way, like this:
 
    void begin() {
      // Register callbacks for the metronomes.
-     metro1.onBang([]() { led1.toggle(); }); // Toggle LED1 every second.
-     metro2.onBang([]() { ramp.start(); });  // Light up and fade out LED2 every 2 seconds.
-   }
+     metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second.
+     metro2.onBang([]() { ramp.start(); });  // Fade in LED 2 every 2 seconds.
 
 Conclusion
 ----------
