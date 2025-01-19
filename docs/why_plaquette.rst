@@ -1,11 +1,19 @@
 Why Plaquette?
 ==============
 
-Plaquette is a groundbreaking creative coding framework designed to empower media artists, designers, 
-musicians, and creative technologists by simplifying the way they interact with real-time signals 
-in tangible computing applications. By bridging the gap between low-level electronics and high-level 
-creative expression, Plaquette enables creators to focus on what matters most: bringing their artistic 
-visions to life.
+Plaquette is a groundbreaking creative coding framework designed to empower creative practitioners 
+by simplifying the way they work with real-time signals in tangible computing applications. By 
+bridging the gap between low-level electronics and high-level creative expression, Plaquette enables 
+creators to focus on what matters most: bringing their visions to life.
+
+.. note::
+  Plaquette is a French noun pronounced `pla-kett <https://www.youtube.com/watch?v=wG5xK352dfE>`__
+  which refers to prototyping plates or boards ("plaquette de prototypage") commonly used in designing electronic projects.
+
+  .. list-table:: 
+
+    * - .. image:: images/Prototyping-Board.png
+      - .. image:: images/Breadboard.png
 
 The Need for a New Standard
 ---------------------------
@@ -13,8 +21,8 @@ The Need for a New Standard
 Media artists, interactive designers, digital luthiers, and electronic musicians constantly 
 engage with real-time signals. However, when working with tangible computing systems such 
 as embedded sensors, robotics, connected objects, and electronic music instruments, available 
-tools such as Arduino are often very low-level and lack expressivity. Creative practitionners 
-thus struggle to design interesting works directly using such platforms.
+tools such as `Arduino <https://www.arduino.cc/>`_ are often very low-level and lack expressivity. 
+Creative practitioners thus struggle to implement their vision directly using such platforms.
 
 Consider the following case of learning how to work with a simple lignt sensor 
 (eg. photoresistor) connected to an Arduino board on analog pin 0. The code reads 

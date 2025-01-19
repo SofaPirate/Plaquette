@@ -10,6 +10,7 @@ Essentials
    why_plaquette
    features
    reference
+   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
 
 Guide
 =====
@@ -48,7 +49,6 @@ Related Info
    :caption: Related Info
    :titlesonly:
 
-   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
    Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    credits
