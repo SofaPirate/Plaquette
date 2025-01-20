@@ -212,25 +212,34 @@ interval. A ramp is used to fade the analog LED.
    // Function to start the ramp on second LED.
    void pingLed2() {
      ramp.start();
+     println("Ramp started");
    }
 
    void begin() {
      // Register callbacks for the metronomes.
-     metro1.onBang(pingLed1);  // Toggle LED 1 every second.
-     metro2.onBang(pingLed2);  // Fade in LED 2 every 2 seconds.
+     metro1.onBang(pingLed1);  // Toggle LED 1 every second
+     metro2.onBang(pingLed2);  // Fade in LED 2 every 2 seconds
    }
 
    void step() {
-     ramp >> led2; // Ramp second LED from 100% to 0%.
+     ramp >> led2; // Ramp second LED from 100% to 0%
    }
 
 Creating On-the-fly Callbacks
 -----------------------------
 
-For simple, localized actions, you can define callback functions directly inline using the 
-``[]() { }`` syntax. This is called a **lambda function**. It allows you to write concise code 
-without defining separate named functions and are thus especially useful for short, self-contained 
-actions, keeping the code clean and readable.
+For simple, localized actions, you can define callback functions directly inline using
+an **anonymous function** (also called **lambda function**) which can be created with
+the following syntax:
+
+.. code-block:: cpp
+
+  []() {
+    // Function content goes here.
+  }
+
+It allows you to write concise code without defining separate named functions and is 
+thus especially useful for short, self-contained actions, keeping the code clean and readable.
 
 For example, we could rewrite the callback registration from the example above in a shorter
 way, like this:
@@ -239,8 +248,11 @@ way, like this:
 
    void begin() {
      // Register callbacks for the metronomes.
-     metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second.
-     metro2.onBang([]() { ramp.start(); });  // Fade in LED 2 every 2 seconds.
+     metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second
+     metro2.onBang([]() { // Fade in LED 2 every 2 seconds
+      ramp.start(); 
+      println("Ramp started");
+    });
 
 Conclusion
 ----------
