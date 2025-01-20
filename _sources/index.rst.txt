@@ -1,7 +1,7 @@
 .. include:: README.rst
 
-Table of Contents
-=================
+Essentials
+==========
 
 .. toctree::
    :caption: Essentials
@@ -10,6 +10,10 @@ Table of Contents
    why_plaquette
    features
    reference
+   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
+
+Guide
+=====
 
 .. toctree::
    :caption: Guide
@@ -23,6 +27,9 @@ Table of Contents
    events
    advanced
 
+Reference
+=========
+
 .. toctree::
    :caption: Reference
    :maxdepth: 1
@@ -35,11 +42,13 @@ Table of Contents
    structure
    extra
 
+Related Info
+============
+
 .. toctree::
    :caption: Related Info
    :titlesonly:
 
-   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
    Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    credits

@@ -9,7 +9,7 @@
   <title>Getting started &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul class="current">
@@ -71,6 +72,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#change-parameters-of-a-unit-during-runtime">Change parameters of a unit during runtime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#use-a-button">Use a button</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Full code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-more">Learning More</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#built-in-examples">Built-in Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-plaquette-reference">The Plaquette Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-next">What’s Next?</a></li>
@@ -82,7 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -97,7 +101,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -329,7 +332,9 @@ a period of zero seconds!) to very slow (period of 20 seconds).</p>
 <p>If you want to visualize the values of both waves on your computer, you can print them
 on the serial port one after the other, separated by a space. Add the following code to
 your <code class="docutils literal notranslate"><span class="pre">step()</span></code> function:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="n">myWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="n">myWave</span><span class="p">);</span>
+<span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="n">println</span><span class="p">(</span><span class="n">myModulator</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Then, launch the Arduino <a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/">Serial Plotter</a>
@@ -404,24 +409,33 @@ statement.</p>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="learning-more">
+<h2>Learning More<a class="headerlink" href="#learning-more" title="Link to this heading"></a></h2>
 <section id="built-in-examples">
 <h3>Built-in Examples<a class="headerlink" href="#built-in-examples" title="Link to this heading"></a></h3>
-<p>You will find more examples in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
+<p>You will find more examples <a class="reference external" href="https://github.com/SofaPirate/Plaquette/tree/master/examples">here</a> or directly
+from the Arduino software in <strong>File &gt; Examples &gt; Plaquette</strong> including:</p>
 <ul class="simple">
-<li><p>Using an analog input such as a photocell or potentiometer</p></li>
-<li><p>Using an analog output</p></li>
-<li><p>Basic filtering (smoothing, re-scaling)</p></li>
+<li><p>Using analog inputs such as a photocells or potentiometers</p></li>
+<li><p>Using analog outputs</p></li>
 <li><p>Serial input and output</p></li>
-<li><p>Event management</p></li>
+<li><p>Using wave generators</p></li>
+<li><p>Time management</p></li>
+<li><p>Ramps</p></li>
+<li><p>Basic filtering (smoothing, re-scaling)</p></li>
+<li><p>Peak detection</p></li>
+<li><p>Event-driven programming</p></li>
+<li><p>Controlling servomotors</p></li>
 </ul>
 </section>
 <section id="the-plaquette-reference">
 <h3>The Plaquette Reference<a class="headerlink" href="#the-plaquette-reference" title="Link to this heading"></a></h3>
-<p>The online reference can be accessed from the sidebar of this website. It provides detailed technical
-documentation for every available unit and function in Plaquette. This reference serves as a go-to
-resource for understanding the specifics of each component, including their parameters, methods, and
-behavior.</p>
-<p>Below are the key sections of the reference:</p>
+<p>The online reference can be accessed <a class="reference internal" href="reference.html"><span class="doc">here</span></a> or directly from the sidebar of the <a class="reference external" href="http://sofapirate.github.io/Plaquette">Plaquette website</a>.
+It provides detailed technical documentation for every available unit and function in Plaquette. This reference
+serves as a go-to resource for understanding the specifics of each component, including their parameters, methods,
+and behavior.</p>
+<p>Here are the key sections of the reference:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="base_units.html"><span class="doc">Base Units</span></a>: Introduces foundational units like <a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a>, <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a>,
 <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a>, and <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a>. These are the building blocks for interfacing with hardware pins.</p></li>

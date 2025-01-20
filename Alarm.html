@@ -9,7 +9,7 @@
   <title>Alarm &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -58,7 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -87,7 +88,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -218,9 +218,27 @@ alarm at random periods of time.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm8durationEf">
+<span id="_CPPv3N5Alarm8durationEf"></span><span id="_CPPv2N5Alarm8durationEf"></span><span id="Alarm::duration__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a1278f2208903d72d7b4414657b564d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8durationEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the duration of the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm8durationEv">
+<span id="_CPPv3NK5Alarm8durationEv"></span><span id="_CPPv2NK5Alarm8durationEv"></span><span id="Alarm::durationC"></span><span class="target" id="classpq_1_1_abstract_timer_1adc25c02b7a2606cd74be8b7b8c6ca3e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8durationEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns duration. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm8progressEv">
 <span id="_CPPv3NK5Alarm8progressEv"></span><span id="_CPPv2NK5Alarm8progressEv"></span><span id="Alarm::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8progressEv" title="Link to this definition"></a><br /></dt>
 <dd><p>The progress of the timer process (in %). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm10isFinishedEv">
+<span id="_CPPv3NK5Alarm10isFinishedEv"></span><span id="_CPPv2NK5Alarm10isFinishedEv"></span><span id="Alarm::isFinishedC"></span><span class="target" id="classpq_1_1_abstract_timer_1aace0be3e01259aba6629b9d19e0de1cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm10isFinishedEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns true iff the chronometer has finished its process. </p>
 </dd></dl>
 
 <dl class="cpp function">

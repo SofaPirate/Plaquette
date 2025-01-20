@@ -43,3 +43,7 @@
 {
   background: #00ACFC;
 }
+
+.rst-content .document .caption {
+  display: none;
+}

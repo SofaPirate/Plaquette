@@ -9,7 +9,7 @@
   <title>Ramp &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -58,7 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -87,7 +88,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -245,6 +245,30 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp8durationEf">
+<span id="_CPPv3N4Ramp8durationEf"></span><span id="_CPPv2N4Ramp8durationEf"></span><span id="Ramp::duration__float"></span><span class="target" id="classpq_1_1_ramp_1a7f9da111f5c0a0a4c3102ad572341b46"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8durationEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the duration of the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8durationEv">
+<span id="_CPPv3NK4Ramp8durationEv"></span><span id="_CPPv2NK4Ramp8durationEv"></span><span id="Ramp::durationC"></span><span class="target" id="classpq_1_1_ramp_1ae9aad4d3abffad065836e6c831f8a600"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8durationEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns duration. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5speedEf">
+<span id="_CPPv3N4Ramp5speedEf"></span><span id="_CPPv2N4Ramp5speedEf"></span><span id="Ramp::speed__float"></span><span class="target" id="classpq_1_1_ramp_1a56e80f09cedac29392c7e79912edff90"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">speed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">speed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5speedEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the speed (rate of change) of the ramp in change-per-second. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp5speedEv">
+<span id="_CPPv3NK4Ramp5speedEv"></span><span id="_CPPv2NK4Ramp5speedEv"></span><span id="Ramp::speedC"></span><span class="target" id="classpq_1_1_ramp_1a5f8affc32f8f6096edfb0b0db5e967e4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">speed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp5speedEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns speed (rate of change) of the ramp in change-per-second. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEv">
 <span id="_CPPv3N4Ramp5startEv"></span><span id="_CPPv2N4Ramp5startEv"></span><span id="Ramp::start"></span><span class="target" id="classpq_1_1_ramp_1aead9fb134ed0e30782a6704bf9606e4f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the ramp. Will repeat the last ramp. </p>
@@ -305,6 +329,12 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp4modeEv">
 <span id="_CPPv3NK4Ramp4modeEv"></span><span id="_CPPv2NK4Ramp4modeEv"></span><span id="Ramp::modeC"></span><span class="target" id="classpq_1_1_ramp_1a9580f8739942396a3332e8a5c1117064"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp4modeEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the mode of the component (RAMP_DURATION or RAMP_SPEED). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp8onFinishE13EventCallback">
+<span id="_CPPv3N4Ramp8onFinishE13EventCallback"></span><span id="_CPPv2N4Ramp8onFinishE13EventCallback"></span><span id="Ramp::onFinish__EventCallback"></span><span class="target" id="classpq_1_1_ramp_1a0bb78b45722a3a3bfa5c07d0ab2ee98a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFinish</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8onFinishE13EventCallback" title="Link to this definition"></a><br /></dt>
+<dd><p>Registers event callback on rise event. </p>
 </dd></dl>
 
 <dl class="cpp function">

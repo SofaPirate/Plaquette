@@ -9,7 +9,7 @@
   <title>Why Plaquette? &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
@@ -50,6 +50,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -58,7 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -73,7 +74,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -105,13 +105,31 @@
              
   <section id="why-plaquette">
 <h1>Why Plaquette?<a class="headerlink" href="#why-plaquette" title="Link to this heading"></a></h1>
-<section id="rationale">
-<h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading"></a></h2>
+<p>Plaquette is a groundbreaking creative coding framework designed to empower creative practitioners
+by simplifying the way they work with real-time signals in tangible computing applications. By
+bridging the gap between low-level electronics and high-level creative expression, Plaquette enables
+creators to focus on what matters most: bringing their visions to life.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plaquette is a French noun pronounced <a class="reference external" href="https://www.youtube.com/watch?v=wG5xK352dfE">pla-kett</a>
+which refers to prototyping plates or boards (“plaquette de prototypage”) commonly used in designing electronic projects.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><img alt="_images/Prototyping-Board.png" src="_images/Prototyping-Board.png" />
+</td>
+<td><img alt="_images/Breadboard.png" src="_images/Breadboard.png" />
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="the-need-for-a-new-standard">
+<h2>The Need for a New Standard<a class="headerlink" href="#the-need-for-a-new-standard" title="Link to this heading"></a></h2>
 <p>Media artists, interactive designers, digital luthiers, and electronic musicians constantly
 engage with real-time signals. However, when working with tangible computing systems such
 as embedded sensors, robotics, connected objects, and electronic music instruments, available
-tools such as Arduino are often very low-level and lack expressivity. Creative practitionners
-thus struggle to design interesting works directly using such platforms.</p>
+tools such as <a class="reference external" href="https://www.arduino.cc/">Arduino</a> are often very low-level and lack expressivity.
+Creative practitioners thus struggle to implement their vision directly using such platforms.</p>
 <p>Consider the following case of learning how to work with a simple lignt sensor
 (eg. photoresistor) connected to an Arduino board on analog pin 0. The code reads
 as follows:</p>
@@ -151,9 +169,9 @@ forcing us to divide the incoming value by 4 (2 bits). But again, why is this de
 important to know for an artist, designer, or musician? And what exactly does it
 have to do with our expressive intention?</p>
 </section>
-<section id="a-new-standard">
-<h2>A New Standard<a class="headerlink" href="#a-new-standard" title="Link to this heading"></a></h2>
-<p>As a way to address these issues, we propose to create a general-purpose standard
+<section id="meet-plaquette">
+<h2>Meet Plaquette<a class="headerlink" href="#meet-plaquette" title="Link to this heading"></a></h2>
+<p>As a way to address these issues, Plaquette offers a general-purpose standard
 interface for simple, real-time signal processing for media artists.
 The objectives are as follow:</p>
 <blockquote>

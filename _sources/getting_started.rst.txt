@@ -245,7 +245,9 @@ a period of zero seconds!) to very slow (period of 20 seconds).
 
    .. code:: cpp
 
-     print(myWave); print(" "); println(myModulator);
+     print(myWave);
+     print(" ");
+     println(myModulator);
 
    Then, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
    by selecting in in **Tools > Serial Plotter**.
@@ -327,26 +329,35 @@ Full code
         0 >> myLed;
     }
 
+Learning More
+-------------
+
 Built-in Examples
 ~~~~~~~~~~~~~~~~~
 
-You will find more examples in **File > Examples > Plaquette** including:
+You will find more examples `here <https://github.com/SofaPirate/Plaquette/tree/master/examples>`__ or directly
+from the Arduino software in **File > Examples > Plaquette** including:
 
-- Using an analog input such as a photocell or potentiometer
-- Using an analog output
-- Basic filtering (smoothing, re-scaling)
+- Using analog inputs such as a photocells or potentiometers
+- Using analog outputs
 - Serial input and output
-- Event management
+- Using wave generators
+- Time management
+- Ramps
+- Basic filtering (smoothing, re-scaling)
+- Peak detection
+- Event-driven programming
+- Controlling servomotors
 
 The Plaquette Reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The online reference can be accessed from the sidebar of this website. It provides detailed technical
-documentation for every available unit and function in Plaquette. This reference serves as a go-to 
-resource for understanding the specifics of each component, including their parameters, methods, and 
-behavior.
+The online reference can be accessed :doc:`here <reference>` or directly from the sidebar of the `Plaquette website <http://sofapirate.github.io/Plaquette>`__. 
+It provides detailed technical documentation for every available unit and function in Plaquette. This reference 
+serves as a go-to resource for understanding the specifics of each component, including their parameters, methods, 
+and behavior.
 
-Below are the key sections of the reference:
+Here are the key sections of the reference:
 
 - :doc:`base_units`: Introduces foundational units like :doc:`DigitalIn`, :doc:`DigitalOut`, 
   :doc:`AnalogIn`, and :doc:`AnalogOut`. These are the building blocks for interfacing with hardware pins.

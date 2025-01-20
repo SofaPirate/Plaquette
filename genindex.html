@@ -8,7 +8,7 @@
   <title>Index &mdash; Plaquette 0.6.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bc01728b" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -55,7 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Working with Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
@@ -70,7 +71,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
@@ -122,11 +122,15 @@
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm3addEf">Alarm::add (C++ function)</a>
 </li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm8durationEf">Alarm::duration (C++ function)</a>, <a href="Alarm.html#_CPPv4NK5Alarm8durationEv">[1]</a>
+</li>
       <li><a href="Alarm.html#_CPPv4NK5Alarm7elapsedEv">Alarm::elapsed (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm3getEv">Alarm::get (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm6getIntEv">Alarm::getInt (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm10isFinishedEv">Alarm::isFinished (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm5isOffEv">Alarm::isOff (C++ function)</a>
 </li>
@@ -148,10 +152,10 @@
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm3setEf">Alarm::set (C++ function)</a>
 </li>
-      <li><a href="Alarm.html#_CPPv4N5Alarm5startEf">Alarm::start (C++ function)</a>, <a href="Alarm.html#_CPPv4N5Alarm5startEv">[1]</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Alarm.html#_CPPv4N5Alarm5startEf">Alarm::start (C++ function)</a>, <a href="Alarm.html#_CPPv4N5Alarm5startEv">[1]</a>
+</li>
       <li><a href="Alarm.html#_CPPv4N5Alarm4stopEv">Alarm::stop (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv48AnalogIn">AnalogIn (C++ class)</a>
@@ -470,6 +474,8 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp3addEf">Ramp::add (C++ function)</a>
 </li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[1]</a>
+</li>
       <li><a href="Ramp.html#_CPPv4N4Ramp6easingE15easing_function">Ramp::easing (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp7elapsedEv">Ramp::elapsed (C++ function)</a>
@@ -492,6 +498,8 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8noEasingEv">Ramp::noEasing (C++ function)</a>
 </li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp8onFinishE13EventCallback">Ramp::onFinish (C++ function)</a>
+</li>
       <li><a href="Ramp.html#_CPPv4N4Ramp5pauseEv">Ramp::pause (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp8progressEv">Ramp::progress (C++ function)</a>
@@ -501,6 +509,8 @@
       <li><a href="Ramp.html#_CPPv4N4Ramp6resumeEv">Ramp::resume (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp3setEf">Ramp::set (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp5speedEf">Ramp::speed (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp5speedEv">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp5startEf">Ramp::start (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEv">[1]</a>
 </li>
