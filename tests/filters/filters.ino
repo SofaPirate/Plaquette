@@ -79,8 +79,6 @@ testing(smoothing) {
     for (int i=0; i<N_UNITS; i++) {
       MinMaxScaler* unit =(MinMaxScaler*) units[i];
 
-      float value = unit->put(0);
-
       assertMoreOrEqual(unit->minValue(), -100.0f);
       assertLessOrEqual(unit->maxValue(),  100.0f);
 
