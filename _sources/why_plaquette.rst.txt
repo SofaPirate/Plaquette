@@ -77,28 +77,29 @@ have to do with our expressive intention?
 Meet Plaquette
 --------------
 
-As a way to address these issues, Plaquette offers a general-purpose standard
-interface for simple, real-time signal processing for media artists.
-The objectives are as follow:
+As a way to address these issues, Plaquette offers a general-purpose, standard interface for simple, 
+real-time signal processing tailored for media artists.
 
- #. **Allow creators to focus on the creative dimensions of their work** rather
-    than on irrelevant numerical questions, hence also facilitating their learning.
- #. **Provide creative practitioners with accessible tools** that grasp high-level
-    concepts such as "normalizing" and "detecting peaks" (rather than specific,
-    arcane techniques on "how" to extract this information such as "FFT", "zero-crossing" or "Chebyshev filtering").
- #. **Facilitate teamwork and interoperability** between applications by favouring
-    an easily understandable, cross-platform way of thinking about real-time signals
-    (for example, by keeping all signals "in check" between 0 and 1).
+Plaquette's key objectives are:
 
-Plaquette responds to these challenges by adopting the following characteristics:
+1. **Empowering creators to focus on the creative aspects of their work**, rather than getting lost 
+   in irrelevant numerical details, which supports a smoother learning process.
+2. **Providing accessible tools for creative practitioners** that capture high-level concepts such as 
+   *"normalizing"* and *"detecting peaks"*, without requiring deep technical knowledge of complex 
+   techniques like Fast Fourier Transforms or Chebyshev filtering.
+3. **Facilitating teamwork and interoperability** by promoting an intuitive, cross-platform approach 
+   to real-time signals, such as by keeping all signals consistently scaled between ``0`` and ``1`` for 
+   easier integration across different applications.
 
- - **Easy to learn** by provide carefully-chosen functionalities that respond to
-   common problems faced by creators ie. limited to only a few core functionalities
-   that will solve 95% of your problems.
- - **Real-time** by allowing responsive interaction without interruptions.
- - **Focused on signals** rather than on numerical values such as 255, 1024, 716, etc.)
- - **Robust** by tolerating changes in the sensory context without breaking
-   down, because interactive works are often presented in environments that are difficult
-   to fully control.
- - **Interoperable and extensible** by adopting an object-oriented architecture
-   fully compatible with Arduino.
+Plaquette achieves these goals by embracing the following core principles:
+
+- **Ease of use:** Offering a carefully selected set of functionalities that address the most common 
+  challenges faced by creators—keeping things simple while solving 95% of typical use cases.
+- **Real-time performance:** Enabling smooth, uninterrupted interactions to ensure responsiveness in 
+  dynamic environments.
+- **Signal-oriented approach:** Focusing on meaningful signal manipulation rather than dealing with 
+  arbitrary numerical values such as ``255``, ``1024``, or ``716``.
+- **Robustness:** Adapting to changes in the sensory context without breaking down, ensuring reliability 
+  in unpredictable and evolving environments such as art installations, live performances, and public art.
+- **Interoperability and extensibility:** Leveraging an object-oriented architecture that seamlessly 
+  integrates with the Arduino ecosystem, ensuring compatibility and future scalability.
