@@ -75,12 +75,12 @@ void MovingAverage::reset() {
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
 
+  // Exponential moving average.
+  applyUpdate(_value, v,forceAlpha ? sampleRate : alpha(sampleRate));
+
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
     _nSamples++;
-
-  // Exponential moving average.
-  applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate));
 
   return _value;
 }
@@ -102,17 +102,28 @@ float MovingAverage::computeUpdate(float runningValue, float newValue, float alp
   return runningValue;
 }
 
+
 float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
-  // Approximative number of samples in time window.
-  float nSamplesTarget = (smoothTime >= 0 ? smoothTime * sampleRate : FLT_MAX);
+    if (smoothTime < 0) // INIFINITE_WINDOW
+    return 1.0f / ((float)nSamples+1);
+  else {
+    // Approximative number of samples in time window.
+    float nSamplesTarget = smoothTime * sampleRate;
 
-  // Make a smooth transition to nSamplesTarget as nSamples increases.
-  nSamplesTarget = min((float)nSamples, nSamplesTarget);
+    if (nSamples < nSamplesTarget-1) {
+      return 1.0f / ((float)nSamples+1);
+    }
+    else {
+      // In order to do a smooth transition and prevent first values to take too much weight compared to
+      // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
+      // Formula used is standard formula: 2 /(nSamplesTarget+1) -- while setting maximum alpha to 1
+      return (nSamplesTarget > 1.0f ?
+                2.0f / (nSamplesTarget + 1) : 
+                1.0f);
 
-  // In order to do a smooth transition and prevent first values to take too much weight compared to
-  // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
-  // Formula used is an approximation of standard formula: 2 /(nSamplesTarget+1)
-  return (nSamplesTarget > 1.0f ? 1.0f / nSamplesTarget : 1.0f);
+    }
+  }
 }
+
 
 } // namespace pq
