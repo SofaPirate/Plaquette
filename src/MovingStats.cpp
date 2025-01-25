@@ -29,8 +29,8 @@
 
 namespace pq {
 
-MovingStats::MovingStats() : _avg(), _var(0) { }
-MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _var(0) { }
+MovingStats::MovingStats() : _avg(), _mean2(0) { }
+MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _mean2(0) { }
 
 void MovingStats::timeWindow(float seconds) {
   _avg.timeWindow(seconds);
@@ -42,7 +42,7 @@ void MovingStats::cutoff(float hz) {
 
 void MovingStats::reset() {
   _avg.reset();
-  _var = 0;
+  _mean2 = 0;
 }
 
 float MovingStats::update(float value, float sampleRate)
@@ -53,9 +53,8 @@ float MovingStats::update(float value, float sampleRate)
   // Update average.
   _avg.update(value, alpha, true); // force alpha
 
-  // Update variance.
-  float diff = value - _avg.get();
-  MovingAverage::applyUpdate(_var, sq(diff), alpha);
+  // Update mean of squares.
+  MovingAverage::applyUpdate(_mean2, sq(value), alpha);
 
   return normalize(value);
 }

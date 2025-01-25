@@ -33,7 +33,7 @@ public:
   MovingAverage _avg;
 
   // Moving average of variance.
-  float _var;
+  float _mean2;
 
   /// Default constructor (infinite time window).
   MovingStats();
@@ -71,7 +71,7 @@ public:
   virtual float mean() const { return _avg.constGet(); }
 
   /// Returns an exponential moving variance of the samples.
-  virtual float var() const { return _var; }
+  virtual float var() const { return (_mean2 - sq(mean())); }
 
   /// Returns the standard deviation of the samples.
   virtual float stdDev() const;
