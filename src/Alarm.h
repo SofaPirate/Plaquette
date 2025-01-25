@@ -33,6 +33,10 @@ class Alarm : public DigitalSource, public AbstractTimer {
 public:
   Alarm(float duration=1.0f);
 
+  /// Returns true iff the alarm just finished its process this step.
+  virtual bool finished() { return rose(); }
+
+  /// Registers event callback on finish event.
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
 protected:
@@ -42,7 +46,7 @@ protected:
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {
     switch (eventType) {
-      case EVENT_FINISH: return rose();
+      case EVENT_FINISH: return finished();
       default:           return DigitalSource::eventTriggered(eventType);
     }
   }

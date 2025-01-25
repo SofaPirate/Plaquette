@@ -130,8 +130,11 @@ public:
   /// Returns the mode of the component (RAMP_DURATION or RAMP_SPEED).
   uint8_t mode() const { return _mode; }
 
-  /// Registers event callback on rise event.
-  virtual void onFinish(EventCallback callback)   { onEvent(callback, EVENT_FINISH); }
+  /// Returns true iff the ramp just finished its process this step.
+  virtual bool finished() { return (_finishedState == JUST_FINISHED); }
+
+  /// Registers event callback on finish event.
+  virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
   // \deprecated Use go(float to, float durationOrSpeed, easing_function easing=0);
   [[deprecated("Use go(float,easing_function) instead.")]]
@@ -159,7 +162,7 @@ protected:
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {
     switch (eventType) {
-      case EVENT_FINISH: return _finishedState == JUST_FINISHED;
+      case EVENT_FINISH: return finished();
       default:           return Unit::eventTriggered(eventType);
     }
   }
