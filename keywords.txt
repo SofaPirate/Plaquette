@@ -13,14 +13,12 @@ DigitalIn	KEYWORD1
 AnalogOut	KEYWORD1
 DigitalOut	KEYWORD1
 
-StreamIn	KEYWORD1
-StreamOut	KEYWORD1
-
+SineWave	KEYWORD1
 SquareWave	KEYWORD1
 TriangleWave	KEYWORD1
-SineWave	KEYWORD1
 
 Alarm	KEYWORD1
+Chronometer KEYWORD1
 Metronome	KEYWORD1
 Ramp	KEYWORD1
 
@@ -31,6 +29,10 @@ Smoother	KEYWORD1
 
 ServoOut	KEYWORD1
 ContinuousServoOut	KEYWORD1
+
+StreamIn	KEYWORD1
+StreamOut	KEYWORD1
+
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -144,6 +146,7 @@ isRunning KEYWORD2
 hasPassed	KEYWORD2
 
 # AbstractTimer
+finished	KEYWORD2
 isFinished	KEYWORD2
 progress	KEYWORD2
 
