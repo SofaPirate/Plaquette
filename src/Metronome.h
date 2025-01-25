@@ -79,7 +79,7 @@ public:
   /// Returns the phase (in % of period).
   virtual float phase() const { return _phase; }
 
-  /// Registers event callback on metronome tick event.
+  /// Registers event callback on metronome tick ("bang") event.
   virtual void onBang(EventCallback callback);
 
 protected:
