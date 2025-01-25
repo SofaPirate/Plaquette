@@ -88,7 +88,7 @@ Plaquette's key objectives are:
    *"normalizing"* and *"detecting peaks"*, without requiring deep technical knowledge of complex 
    techniques like Fast Fourier Transforms or Chebyshev filtering.
 3. **Facilitating teamwork and interoperability** by promoting an intuitive, cross-platform approach 
-   to real-time signals, such as by keeping all signals consistently scaled between ``0`` and ``1`` for 
+   to real-time signals, such as by keeping all signals consistently scaled between 0 and 1 for 
    easier integration across different applications.
 
 Plaquette achieves these goals by embracing the following core principles:
@@ -98,7 +98,7 @@ Plaquette achieves these goals by embracing the following core principles:
 - **Real-time performance:** Enabling smooth, uninterrupted interactions to ensure responsiveness in 
   dynamic environments.
 - **Signal-oriented approach:** Focusing on meaningful signal manipulation rather than dealing with 
-  arbitrary numerical values such as ``255``, ``1024``, or ``716``.
+  arbitrary numerical values such as 255, 1024, 716, or 42.
 - **Robustness:** Adapting to changes in the sensory context without breaking down, ensuring reliability 
   in unpredictable and evolving environments such as art installations, live performances, and public art.
 - **Interoperability and extensibility:** Leveraging an object-oriented architecture that seamlessly 
