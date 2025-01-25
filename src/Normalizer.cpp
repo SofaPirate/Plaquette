@@ -27,7 +27,7 @@ Normalizer::Normalizer()
 : MovingFilter(),
   MovingStats(),
   _currentMeanStep(NORMALIZER_DEFAULT_MEAN),
-  _currentVarStep(NORMALIZER_DEFAULT_STDDEV)
+  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
 {
   _value = NORMALIZER_DEFAULT_MEAN;
   targetMean(NORMALIZER_DEFAULT_MEAN);
@@ -39,7 +39,7 @@ Normalizer::Normalizer(float timeWindow)
 : MovingFilter(),
   MovingStats(timeWindow),
   _currentMeanStep(NORMALIZER_DEFAULT_MEAN),
-  _currentVarStep(NORMALIZER_DEFAULT_STDDEV)
+  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
 {
   _value = NORMALIZER_DEFAULT_MEAN;
   targetMean(NORMALIZER_DEFAULT_MEAN);
@@ -51,7 +51,7 @@ Normalizer::Normalizer(float mean, float stdDev)
 : MovingFilter(),
   MovingStats(),
   _currentMeanStep(mean),
-  _currentVarStep(stdDev)
+  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
 {
   _value = mean;
   targetMean(mean);
@@ -63,7 +63,7 @@ Normalizer::Normalizer(float mean, float stdDev, float timeWindow)
 : MovingFilter(),
   MovingStats(timeWindow),
   _currentMeanStep(mean),
-  _currentVarStep(stdDev)
+  _currentMean2Step(sq(stdDev)-sq(mean))
 {
   _value = mean;
   targetMean(mean);
@@ -106,17 +106,17 @@ float Normalizer::put(float value) {
     else {
       // Save previous value.
       float prevValueStep = _currentMeanStep;
-      float prevVarStep = _currentVarStep;
+      float prevValue2Step = _currentMean2Step;
 
       // Update current step average value.
       float stepValuesAlpha = 1.0f/_nValuesStep;
       MovingAverage::applyUpdate(_currentMeanStep, value, stepValuesAlpha);
-      MovingAverage::applyUpdate(_currentVarStep, sq(value - _currentMeanStep), stepValuesAlpha);
+      MovingAverage::applyUpdate(_currentMean2Step, sq(value), stepValuesAlpha);
 
       // Update moving average: replace previous value with new value averaged over step.
       float alpha = _avg.alpha(sampleRate());
       _avg.amendUpdate(prevValueStep, _currentMeanStep, alpha, true);
-      MovingAverage::applyAmendUpdate(_var, prevVarStep, _currentVarStep, alpha);
+      MovingAverage::applyAmendUpdate(_mean2, prevValue2Step, _currentMean2Step, alpha);
 
       _value = normalize(value);
     }
@@ -141,7 +141,7 @@ void Normalizer::step() {
   if (_nValuesStep == 0) {
     float alpha = _avg.alpha(sampleRate());
     _avg.update(_currentMeanStep, alpha, true); 
-    MovingAverage::applyUpdate(_var, _currentVarStep, alpha);
+    MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
   }
   // Otherwise: reset (but keep _currentMeanStep).
   else
@@ -158,9 +158,8 @@ float Normalizer::update(float value, float sampleRate)
   _currentMeanStep = value;
 
   // Update variance.
-  float diff = value - _avg.get();
-  _currentVarStep = sq(diff);
-  MovingAverage::applyUpdate(_var, _currentVarStep, alpha);
+  _currentMean2Step = sq(value);
+  MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
 
   return normalize(value);
 }
