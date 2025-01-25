@@ -38,7 +38,7 @@ void Chronometer::step() {
   update();
 }
 
-float Chronometer::clock() const {
+float Chronometer::_time() const {
   return Plaquette.seconds();
 }
 

@@ -192,7 +192,7 @@ void Ramp::step() {
   }
 }
 
-float Ramp::clock() const {
+float Ramp::_time() const {
   return Plaquette.seconds();
 }
 

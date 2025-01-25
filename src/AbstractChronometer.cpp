@@ -47,7 +47,7 @@ void AbstractChronometer::pause() {
 
 void AbstractChronometer::resume() {
   if (!_isRunning) {
-    _startTime = clock();
+    _startTime = _time();
     _isRunning = true;
   }
 }
@@ -75,7 +75,7 @@ bool AbstractChronometer::hasPassed(float timeout, bool restartIfPassed) {
 
 void AbstractChronometer::set(float time) {
   _elapsedTime = _offsetTime = time;
-  _startTime = clock();
+  _startTime = _time();
 }
 
 void AbstractChronometer::add(float time) {
@@ -88,7 +88,7 @@ void AbstractChronometer::update() {
 
   if (_isRunning) {
     // Add difference to elapsed time.
-     _elapsedTime += (clock() - _startTime);
+     _elapsedTime += (_time() - _startTime);
   }
 }
 

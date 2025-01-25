@@ -52,7 +52,7 @@ protected:
   }
 
   // Returns current absolute time (in seconds).
-  virtual float clock() const;
+  virtual float _time() const;
 };
 
 }

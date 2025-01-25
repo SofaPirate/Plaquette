@@ -78,7 +78,7 @@ protected:
   virtual void update();
 
   // Returns current absolute time (in seconds).
-  virtual float clock() const = 0;
+  virtual float _time() const = 0;
   
   // The starting time (in seconds).
   float _startTime;

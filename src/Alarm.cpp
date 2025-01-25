@@ -38,7 +38,7 @@ void Alarm::step() {
   }
 }
 
-float Alarm::clock() const {
+float Alarm::_time() const {
   return Plaquette.seconds();
 }
 

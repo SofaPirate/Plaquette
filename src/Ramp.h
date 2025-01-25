@@ -157,7 +157,7 @@ protected:
   virtual void step();
 
   // Returns current absolute time (in seconds).
-  virtual float clock() const;
+  virtual float _time() const;
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {
