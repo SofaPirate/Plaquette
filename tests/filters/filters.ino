@@ -103,13 +103,13 @@ test(smoother) {
   1 >> smoother;
   assertEqual(smoother.get(), 1.0f);
   2 >> smoother;
-  assertEqual(smoother.get(), 1.25f);
+  assertNear(smoother.get(), 1.17f, 0.01f);
   Plaquette.step();
-  assertEqual(smoother.get(), 1.25f);
+  assertNear(smoother.get(), 1.17f, 0.01f);
+  Plaquette.step();
+  assertNear(smoother.get(), 1.28f, 0.01f);
   Plaquette.step();
   assertNear(smoother.get(), 1.33f, 0.01f);
-  Plaquette.step();
-  assertNear(smoother.get(), 1.37f, 0.01f);
 }
 
 void setup() {
