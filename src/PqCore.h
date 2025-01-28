@@ -365,12 +365,6 @@ public:
   /// Returns value in [0, 1].
   virtual float get() { return _value; }
 
-  /// Sets output to "on" (ie. 1.0 or 100%).
-  virtual bool on() { return (bool)put(1); }
-
-  /// Sets output to "off" (ie. 0.0 or 0%).
-  virtual bool off() { return (bool)put(0); }
-
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
