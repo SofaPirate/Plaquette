@@ -136,6 +136,9 @@ public:
   /// Remove clamping.
   void noClamp();
 
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
+
 protected:
   virtual void step();
   virtual float update(float value, float sampleRate=1);

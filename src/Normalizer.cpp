@@ -189,4 +189,11 @@ float Normalizer::_clamp(float value) const {
   return constrain(value, _targetMean - absStdDevOutlier, _targetMean + absStdDevOutlier);
 }
 
+float Normalizer::mapTo(float toLow, float toHigh) {
+  float absStdDevOutlier = _targetStdDev *
+    (_clampStdDev == NORMALIZER_NO_CLAMP ? NORMALIZER_DEFAULT_CLAMP_STDDEV : _clampStdDev);
+  
+  return mapFloat(get() - _targetMean, -absStdDevOutlier, absStdDevOutlier, toLow, toHigh);
+}
+
 }
