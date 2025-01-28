@@ -48,7 +48,7 @@ public:
   virtual float progress() const;
 
   /// Returns true iff the chronometer has finished its process.
-  virtual bool isFinished() const { return progress() >= 1.0; }
+  virtual bool isFinished() const { return _elapsedTime >= _duration; }
 
   /// @deprecated
   [[deprecated("Use isFinished() instead.")]]
