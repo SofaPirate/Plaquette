@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.6.2 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.6.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=1c28bd9a"></script>
+      <script src="_static/documentation_options.js?v=b8503983"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -332,9 +332,21 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp8finishedEv">
+<span id="_CPPv3N4Ramp8finishedEv"></span><span id="_CPPv2N4Ramp8finishedEv"></span><span id="Ramp::finished"></span><span class="target" id="classpq_1_1_ramp_1afba6dec6e361994a193a7d49553647c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">finished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8finishedEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns true iff the ramp just finished its process this step. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp8onFinishE13EventCallback">
 <span id="_CPPv3N4Ramp8onFinishE13EventCallback"></span><span id="_CPPv2N4Ramp8onFinishE13EventCallback"></span><span id="Ramp::onFinish__EventCallback"></span><span class="target" id="classpq_1_1_ramp_1a0bb78b45722a3a3bfa5c07d0ab2ee98a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFinish</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8onFinishE13EventCallback" title="Link to this definition"></a><br /></dt>
-<dd><p>Registers event callback on rise event. </p>
+<dd><p>Registers event callback on finish event. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp3setEf">
+<span id="_CPPv3N4Ramp3setEf"></span><span id="_CPPv2N4Ramp3setEf"></span><span id="Ramp::set__float"></span><span class="target" id="classpq_1_1_ramp_1afc25470e50a7323cc917c08dd3245acb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3setEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Forces current time (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -377,12 +389,6 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp7elapsedEv">
 <span id="_CPPv3NK4Ramp7elapsedEv"></span><span id="_CPPv2NK4Ramp7elapsedEv"></span><span id="Ramp::elapsedC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ae9012477635738450725b724749060e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7elapsedEv" title="Link to this definition"></a><br /></dt>
 <dd><p>The time currently elapsed by the chronometer (in seconds). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Ramp3setEf">
-<span id="_CPPv3N4Ramp3setEf"></span><span id="_CPPv2N4Ramp3setEf"></span><span id="Ramp::set__float"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a158aa0525dc7b43b9e0f680f8b6bb936"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp3setEf" title="Link to this definition"></a><br /></dt>
-<dd><p>Forces current time (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
