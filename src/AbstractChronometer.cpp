@@ -79,7 +79,7 @@ void AbstractChronometer::set(float time) {
 }
 
 void AbstractChronometer::add(float time) {
-  _offsetTime += time;
+  set(_elapsedTime + time);
 }
 
 void AbstractChronometer::update() {

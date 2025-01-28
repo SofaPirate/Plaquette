@@ -55,6 +55,9 @@ public:
   /// Forces current time (in seconds).
   virtual void set(float time);
 
+  /// Adds/subtracts time to the chronometer.
+  virtual void add(float time);
+
   /**
    * Returns true iff elapsed time has passed given timeout (optional argument to
    * automatically restart if true).
@@ -62,9 +65,6 @@ public:
   [[deprecated("Use hasPassed(float) followed by start() instead.")]]
   virtual bool hasPassed(float timeout, bool restartIfPassed);
 
-  /// Adds/subtracts time to the chronometer.
-  virtual void add(float time);
-  
   [[deprecated("Use add(float) instead.")]]
   virtual void addTime(float time) { add(time); }
 
