@@ -136,6 +136,9 @@ public:
   /// Registers event callback on finish event.
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
+  /// Forces current time (in seconds).
+  virtual void set(float time);
+
   // \deprecated Use go(float to, float durationOrSpeed, easing_function easing=0);
   [[deprecated("Use go(float,easing_function) instead.")]]
   virtual void start(float to, float durationOrSpeed, easing_function easing=0);

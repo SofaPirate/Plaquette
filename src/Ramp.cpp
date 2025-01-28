@@ -211,4 +211,9 @@ float Ramp::_durationOrSpeed() const {
   return _mode == RAMP_DURATION ? duration() : speed();
 }
 
+void Ramp::set(float time) {
+  AbstractTimer::set(time);
+  _value = _get();
+}
+
 }

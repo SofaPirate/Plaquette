@@ -38,6 +38,12 @@ void Alarm::step() {
   }
 }
 
+
+void Alarm::set(float time) {
+  AbstractTimer::set(time);
+  _setOn(isFinished());
+}
+
 float Alarm::_time() const {
   return Plaquette.seconds();
 }

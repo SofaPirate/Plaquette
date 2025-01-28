@@ -39,6 +39,8 @@ public:
   /// Registers event callback on finish event.
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
+  virtual void set(float time);
+
 protected:
   virtual void begin();
   virtual void step();
