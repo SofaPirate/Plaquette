@@ -29,9 +29,12 @@ namespace pq {
 
 #define NORMALIZER_DEFAULT_MEAN   0.5f
 #define NORMALIZER_DEFAULT_STDDEV 0.15f
-const float NORMALIZER_DEFAULT_MEAN2 = sq(NORMALIZER_DEFAULT_STDDEV) - sq(NORMALIZER_DEFAULT_MEAN);
 
-const float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f / NORMALIZER_DEFAULT_STDDEV - FLT_MIN; // this is so that the basic normalizer will stay within range [0, 1].
+// sum_i x_i^2 = stddev^2 + (sum_i x_i)^2
+const float NORMALIZER_DEFAULT_MEAN2 = (NORMALIZER_DEFAULT_STDDEV*NORMALIZER_DEFAULT_STDDEV) + (NORMALIZER_DEFAULT_MEAN*NORMALIZER_DEFAULT_MEAN);
+
+// This is so that the basic normalizer will stay within range [0, 1].
+const float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f / NORMALIZER_DEFAULT_STDDEV - FLT_MIN;
 
 #define NORMALIZER_NO_CLAMP 0
 
