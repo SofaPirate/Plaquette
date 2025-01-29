@@ -31,9 +31,6 @@
 #include "PqEvents.h"
 #include "pq_map_real.h"
 
-#if (defined(EPOXY_DUINO) || defined(CORE_TEENSY))
-#define PLAQUETTE_USE_SINGLETON
-#endif
 #ifndef PLAQUETTE_MAX_UNITS
 /// Max. components that can be added. Can be pre-defined.
 #define PLAQUETTE_MAX_UNITS 32
@@ -150,13 +147,8 @@ public:
   /// Returns sample period.
   float samplePeriod() const { return _samplePeriod; }
 
-  // Returns singleton.
-#ifdef PLAQUETTE_USE_SINGLETON
-  static PlaquetteEnv& singleton() {
-    static PlaquetteEnv inst;
-    return inst;
-  }
-#endif
+  /// Returns the singleton instance of Plaquette.
+  static PlaquetteEnv& singleton();
 
 private:
   /// Adds a component to Plaquette.

@@ -23,18 +23,17 @@
 
 namespace pq {
 
-// Singleton.
-#ifdef PLAQUETTE_USE_SINGLETON
 PlaquetteEnv& Plaquette = PlaquetteEnv::singleton();
-#else
-PlaquetteEnv _PlaquetteSingleton;
-PlaquetteEnv& Plaquette = _PlaquetteSingleton;
-#endif
 
 PlaquetteEnv::PlaquetteEnv() : _units(), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
 }
 
 PlaquetteEnv::~PlaquetteEnv() {
+}
+
+PlaquetteEnv& PlaquetteEnv::singleton() {
+  static PlaquetteEnv instance;
+  return instance;
 }
 
 void PlaquetteEnv::preBegin(unsigned long baudrate) {
@@ -125,20 +124,10 @@ void beginSerial(unsigned long baudRate) {
 }
 
 Unit::Unit() {
-#ifdef PLAQUETTE_USE_SINGLETON
-  PlaquetteEnv::singleton()
-#else
-  Plaquette
-#endif
-  .add(this);
+  PlaquetteEnv::singleton().add(this);
 }
 
 Unit::~Unit() {
-#ifdef PLAQUETTE_USE_SINGLETON
-  PlaquetteEnv::singleton()
-#else
-  Plaquette
-#endif
-  .remove(this);
+  PlaquetteEnv::singleton().remove(this);
 }
 } // namespace pq
