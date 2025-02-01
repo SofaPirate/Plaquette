@@ -41,7 +41,7 @@ public:
   virtual bool isOn() { return _onValue; }
 
   /// The progress of the timer process (in %).
-  virtual float progress() const { return phaseTime2float(_phaseTime); }
+  virtual float progress() const { return phaseTimeToFloat(_phaseTime); }
 
   /**
    * Sets the period (in seconds).
