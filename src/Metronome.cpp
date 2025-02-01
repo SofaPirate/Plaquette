@@ -28,7 +28,7 @@ Metronome::Metronome(float period_) : DigitalUnit(), _phase(0), _onValue(0) {
 }
 
 void Metronome::begin() {
-  _phaseTime = float2phaseTime(_phase);
+  _phaseTime = floatToPhaseTime(_phase);
   _onValue = 0;
 }
 

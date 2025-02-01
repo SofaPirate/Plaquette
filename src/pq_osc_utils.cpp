@@ -22,7 +22,7 @@ namespace pq {
 
 /// Returns phase time value with offset.
 phase_time_t phaseTimeAddPhase(phase_time_t phaseTime, float phase) {
-  return phaseTime + float2phaseTime(phase);
+  return phaseTime + floatToPhaseTime(phase);
 }
 
 /// Returns phase time value with offset.
@@ -42,7 +42,7 @@ bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate) {
   // Normal case.
   else {
     // Increment to add to phaseTime.
-    phase_time_t increment = float2phaseTime(1.0f / period);
+    phase_time_t increment = floatToPhaseTime(1.0f / period);
     // Check if increment will overflow.
     bool overflow = (increment > PHASE_TIME_MAX - phaseTime);
     // Add increment (will overflow when reaching max).

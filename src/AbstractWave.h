@@ -70,7 +70,7 @@ public:
   virtual void width(float width);
 
   /// Returns the width of the signal.
-  virtual float width() const { return phaseTime2float(_width); }
+  virtual float width() const { return phaseTimeToFloat(_width); }
 
   /**
    * Sets the amplitude of the wave.

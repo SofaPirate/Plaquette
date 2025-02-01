@@ -36,10 +36,17 @@ typedef uint32_t phase_time_t;
 const phase_time_t HALF_PHASE_TIME_MAX = 0.5f * PHASE_TIME_MAX;
 
 /// Converts floating point to phase_time_t.
-inline phase_time_t float2phaseTime(float x) { return wrap01(x) * PHASE_TIME_MAX; }
+inline phase_time_t floatToPhaseTime(float x) { return wrap01(x) * PHASE_TIME_MAX; }
+
+/// Converts floating point in [0, 1] to phase_time_t.
+inline phase_time_t float01ToPhaseTime(float x) {
+  if      (x <= 0) return 0;
+  else if (x >= 1) return PHASE_TIME_MAX;
+  else             return x * PHASE_TIME_MAX;
+}
 
 /// Converts phase_time_t to floating point.
-inline float phaseTime2float(phase_time_t x) { return float(x) / PHASE_TIME_MAX; }
+inline float phaseTimeToFloat(phase_time_t x) { return float(x) / PHASE_TIME_MAX; }
 
 /// Converts time in seconds to phase in %.
 inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }

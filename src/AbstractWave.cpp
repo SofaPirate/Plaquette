@@ -78,7 +78,7 @@ void AbstractWave::bpm(float bpm) {
 }
 
 void AbstractWave::width(float width) {
-  _width = float2phaseTime(constrain(width, 0, 1));
+  _width = float01ToPhaseTime(width);
 }
 
 void AbstractWave::amplitude(float amplitude)  {
@@ -127,7 +127,7 @@ void AbstractWave::togglePause() {
 
 void AbstractWave::setTime(float time) {
   // Set current phase time.
-  _phaseTime = float2phaseTime(_phase);
+  _phaseTime = floatToPhaseTime(_phase);
 
   // Perform calculation iff time needs to be added.
   if (time != 0)
