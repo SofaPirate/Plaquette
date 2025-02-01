@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OSC_H_
-#define OSC_H_
+#ifndef ABSTRACT_WAVE_H_
+#define ABSTRACT_WAVE_H_
 
 #include "PqCore.h"
 #include "pq_osc_utils.h"
