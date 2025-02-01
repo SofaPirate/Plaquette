@@ -105,7 +105,7 @@ protected:
   float _value;
 
   // Number of samples that have been processed thus far.
-  unsigned int _nSamples; // ATTENTION: in Plaquette this will always be equivalent to Plaquette.nSteps()...
+  unsigned int _nSamples;
 };
 
 } // namespace pq
