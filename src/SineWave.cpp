@@ -31,36 +31,35 @@ namespace pq {
 SineWave::SineWave(float period_, float width_) : AbstractWave(period_, width_) {
 }
 
-  // Returns value in [0, 1].
+// Improved version of SineWave::_get with optimizations and typo fixes.
+
 float SineWave::_get(phase_time_t t) {
-  int16_t sineWave16;
+  // Precompiled constant for faster operation.
+  constexpr float INV_65534 = 1.0f / 65534.0f;
+  constexpr float SAFE_PHASE_TIME_MAX = PHASE_TIME_MAX + FLT_MIN; // this is to avoid division by zero when width = 1.0
+
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  uint16_t phaseTime16;
+
   // Special case: width == 0.5 (default and most common). More efficient.
   if (_width == HALF_PHASE_TIME_MAX) {
-    sineWave16 = cos16((uint16_t)(t >> 16));
+    phaseTime16 = static_cast<uint16_t>(t >> 16);
   }
-
-  // General case.
-  else {
-    // Remapped phase time (16 bits).
-    uint16_t remappedPhaseTime16;
-    // Special case (falling sine wave / equivalent of inverted sawtooth).
-    if (_width == 0) {
-      remappedPhaseTime16 = (uint16_t) ((float)(t) / PHASE_TIME_MAX * 32767.0f) + 32768;
-    }
-    // Rising part of sine wave.
-    else if (t <= _width) {
-      remappedPhaseTime16 = (uint16_t) ((float)t / _width * 32767.0f);
-    }
-    // Falling part of sine wave.
-    else {
-      phase_time_t widthMinusOne = _width - 1;
-      remappedPhaseTime16 = (uint16_t) ((float)(t - widthMinusOne) / (PHASE_TIME_MAX - widthMinusOne) * 32767.0f) + 32768;
-    }
-    sineWave16 = cos16(remappedPhaseTime16);
+  // Rising part of sine wave.
+  else if (t < _width) {
+    phaseTime16 = static_cast<uint16_t>( (static_cast<uint64_t>(t) << 15) / _width);
+  }
+  // Falling part of sine wave.
+  else if (t > _width) {
+    phaseTime16 = static_cast<uint16_t> ((static_cast<uint64_t>(t - _width) << 15) / (PHASE_TIME_MAX - _width)) + 32768;
+  }
+  // Peak of sine wave.
+  else { // t == _width
+    phaseTime16 = 32768;
   }
   
   // Convert to [0, 1] with wave shape similar to triangle wave.
-  return (uint16_t(32767) - sineWave16) / 65534.0f; // = ( 32767 - cos16(remappedPhaseTime16) ) / 65534
+  return (static_cast<uint16_t>(32767) - cos16(phaseTime16)) * INV_65534; // = ( 32767 - cos16(phaseTime16) ) / 65534
 }
 
 }
