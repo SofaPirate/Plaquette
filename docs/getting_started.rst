@@ -158,7 +158,8 @@ Change initial parameters of a unit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``SquareWave`` unit type provides two parameters when it is created that allows
-you to configure the oscillator's behavior.
+you to configure the oscillator's behavior. Both are optional: if not specified, they will
+take default values.
 
 .. code:: cpp
 
