@@ -25,7 +25,7 @@ namespace pq {
 
 PlaquetteEnv& Plaquette = PlaquetteEnv::singleton();
 
-PlaquetteEnv::PlaquetteEnv() : _units(), _microSeconds(0), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
+PlaquetteEnv::PlaquetteEnv() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
 }
 
 PlaquetteEnv::~PlaquetteEnv() {
@@ -42,7 +42,7 @@ void PlaquetteEnv::preBegin(unsigned long baudrate) {
     beginSerial(baudrate);
 
   // Initialize variables.
-  _microSeconds = micros();
+  _microSeconds.micros64 = microSeconds(false);
   _targetSampleRate = 0;
   _nSteps = 0;
   _firstRun = true;
@@ -60,7 +60,7 @@ void PlaquetteEnv::preBegin(unsigned long baudrate) {
 
 void PlaquetteEnv::postBegin() {
   // Start timer.
-  _microSeconds = micros();
+  _microSeconds.micros64 = microSeconds(false);
 }
 
 void PlaquetteEnv::end() {
@@ -88,6 +88,23 @@ void PlaquetteEnv::add(Unit* component) {
 void PlaquetteEnv::remove(Unit* component) {
   // Remove component from list.
   _units.removeItem(component);
+}
+
+micro_seconds_t PlaquetteEnv::_totalGlobalMicroSeconds = { 0 };
+
+micro_seconds_t PlaquetteEnv::_updateGlobalMicroSeconds() {
+  // Get current global time.
+  uint32_t us = micros();
+  uint32_t prevUs = _totalGlobalMicroSeconds.micros32.base;
+
+  // Detect overflow.
+  if (us < prevUs)
+    _totalGlobalMicroSeconds.micros32.overflows++;
+  
+  // Update previous time.
+  _totalGlobalMicroSeconds.micros32.base = us;
+
+  return _totalGlobalMicroSeconds;
 }
 
 bool PlaquetteEnv::autoSampleRate() { return (_targetSampleRate <= 0); }
@@ -130,4 +147,5 @@ Unit::Unit() {
 Unit::~Unit() {
   PlaquetteEnv::singleton().remove(this);
 }
+
 } // namespace pq

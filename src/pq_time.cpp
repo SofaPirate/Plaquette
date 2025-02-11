@@ -18,13 +18,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "pq_time.h"
+
+#include "PqCore.h"
 
 namespace pq {
 
-float seconds(bool referenceTime) {
-  return Plaquette.seconds(referenceTime);
-}
+uint64_t microSeconds(bool referenceTime) { return Plaquette.microSeconds(referenceTime); }
+
+uint32_t milliSeconds(bool referenceTime) { return Plaquette.milliSeconds(referenceTime); }
+
+float seconds(bool referenceTime) { return Plaquette.seconds(referenceTime); }
 
 } // namespace pq

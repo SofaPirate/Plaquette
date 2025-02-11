@@ -27,8 +27,12 @@
 #include <WProgram.h>
 #endif
 
+#include <stdint.h>
+#include <float.h>
+
 #include "HybridArrayList.h"
 #include "PqEvents.h"
+#include "pq_time.h"
 #include "pq_map_real.h"
 
 #ifndef PLAQUETTE_MAX_UNITS
@@ -115,12 +119,30 @@ public:
 
   /**
    * Returns time in seconds. Optional parameter allows to ask for reference time (default)
-   * which will yield the same value through one iteration of step(), or "real" time which Will
+   * which will yield the same value through one iteration of step(), or "real" time which will
    * return the current total running time.
    * @param referenceTime determines whether the function returns the reference time or the real time
    * @return the time in seconds
    */
-  inline float seconds(bool referenceTime=true);
+  float seconds(bool referenceTime=true);
+
+  /**
+   * Returns time in milliseconds. Optional parameter allows to ask for reference time (default)
+   * which will yield the same value through one iteration of step(), or "real" time which will
+   * return the current total running time.
+   * @param referenceTime determines whether the function returns the reference time or the real time
+   * @return the time in milliseconds
+   */
+  uint32_t milliSeconds(bool referenceTime=true);
+
+  /**
+   * Returns time in microseconds. Optional parameter allows to ask for reference time (default)
+   * which will yield the same value through one iteration of step(), or "real" time which will
+   * return the current total running time.
+   * @param referenceTime determines whether the function returns the reference time or the real time
+   * @return the time in microseconds
+   */
+  uint64_t microSeconds(bool referenceTime=true);
 
   /// Returns number of steps.
   unsigned long nSteps() { return _nSteps; }
@@ -156,12 +178,15 @@ private:
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
 
+  static micro_seconds_t _updateGlobalMicroSeconds();
+
 private:
   // Used to keep track of units.
   HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
 
   // Snapshot of time in seconds from current step.
-  unsigned long _microSeconds;
+  micro_seconds_t _microSeconds;
+  // uint32_t _previousMicroSeconds; // This is the 32 first bits of microseconds used for inter-step calculations.
 
   // Sampling rate (ie. how many times per seconds step() is called).
   float _sampleRate;
@@ -183,6 +208,8 @@ private:
 
   // Used to keep track of events.
   EventManager _eventManager;
+
+  static micro_seconds_t _totalGlobalMicroSeconds;
 
 private:
   // Prevent copy-construction and assignment.
@@ -559,8 +586,6 @@ protected:
 
 // Inline methods.
 
-#include <float.h>
-
 void PlaquetteEnv::preStep() {
   // Update every component.
   for (size_t i=0; i<_units.size(); i++)
@@ -575,22 +600,33 @@ void PlaquetteEnv::postStep() {
   _nSteps++;
 
   // Calculate true sample rate.
-  unsigned long newTime = micros();
-  unsigned long diffTime = newTime - _microSeconds;
-  float trueSampleRate = (diffTime > 0 ? 1e6f / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
+  _updateGlobalMicroSeconds();
+  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
+  float trueSampleRate = (diffTime ? MICROS_PER_SECOND / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
+
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
   if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
     _setSampleRate(trueSampleRate);
-    _microSeconds = newTime;
+    _microSeconds = _totalGlobalMicroSeconds;
   }
 
   // Otherwise: Wait in order to synchronize seconds with real time.
   else {
-    unsigned long targetTime = _microSeconds + (unsigned long)(1e6f/_targetSampleRate + 0.5f);
-    while (micros() < targetTime); // wait
+    uint32_t startTime  = _microSeconds.micros32.base;
+    micro_seconds_t targetTime = _microSeconds;
+    targetTime.micros32.base += (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
+
+    if (targetTime.micros32.base < startTime) { // overflow
+      targetTime.micros32.overflows++;
+      while (_updateGlobalMicroSeconds().micros64 < targetTime.micros64); // wait
+      _microSeconds = targetTime;
+    }
+    else {
+      while (_updateGlobalMicroSeconds().micros32.base < targetTime.micros32.base); // wait
+      _microSeconds.micros32.base = targetTime.micros32.base; // not the exact "true" time but more accurate for computations
+    }
     _setSampleRate(_targetSampleRate);
-    _microSeconds = targetTime; // not the exact "true" time but more accurate for computations
   }
 }
 
@@ -616,9 +652,16 @@ void PlaquetteEnv::_setSampleRate(float sampleRate) {
 }
 
 float PlaquetteEnv::seconds(bool referenceTime) {
-  return (referenceTime ? _microSeconds : micros()) / 1e6f;
+  return microSeconds(referenceTime) * SECONDS_TO_MICROS;
 }
 
+uint32_t PlaquetteEnv::milliSeconds(bool referenceTime) {
+  return static_cast<uint32_t>(microSeconds(referenceTime) * MILLIS_TO_MICROS);
+}
+
+uint64_t PlaquetteEnv::microSeconds(bool referenceTime) {
+  return (referenceTime ? _microSeconds.micros64 : _updateGlobalMicroSeconds().micros64);
+}
 
 } // namespace pq
 
