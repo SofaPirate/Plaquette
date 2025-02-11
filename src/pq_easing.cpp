@@ -22,7 +22,6 @@
 
 #include "pq_easing.h"
 #include "pq_fastmath.h"
-#include "pq_trig8.h"
 
 namespace pq {
 
