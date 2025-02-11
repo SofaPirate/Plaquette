@@ -25,12 +25,17 @@ namespace pq {
 TriangleWave::TriangleWave(float period_, float width_) : AbstractWave(period_, width_) {
 }
 
-  // Returns value in [0, 1].
-float TriangleWave::_get(phase_time_t t) {
-  // Compute triangle depending on raising or falling step.
+fixed_t TriangleWave::_getFixed(fixed_t t) {
   return (t <= _width) ? 
-           t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
-           (PHASE_TIME_MAX - t) / (float)(PHASE_TIME_MAX - _width);
+        fixedDivide(t, _width) :
+        fixedDivide(FIXED_MAX - t, FIXED_MAX - _width);
 }
+
+// float TriangleWave::_get(fixed_t t) {
+//   // Compute triangle depending on raising or falling step.
+//   return (t <= _width) ? 
+//            t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
+//            (FIXED_MAX - t) / (float)(FIXED_MAX - _width);
+// }
 
 }

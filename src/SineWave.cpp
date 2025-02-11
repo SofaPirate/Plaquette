@@ -22,27 +22,45 @@
 #include "pq_map_real.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
-#include "pq_trig8.h"
+#include "pq_fixed_trig.h"
 
 namespace pq {
-
-#define PQ_SINE_OSC_AMPLITUDE_DIVIDER (-32767.0f)
 
 SineWave::SineWave(float period_, float width_) : AbstractWave(period_, width_) {
 }
 
 // Improved version of SineWave::_get with optimizations and typo fixes.
+fixed_t SineWave::_getFixed(fixed_t t) {
+#if defined(PQ_ARCH_32BITS)
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  uint32_t phaseTime;
 
-float SineWave::_get(phase_time_t t) {
-  // Precompiled constant for faster operation.
-  constexpr float INV_65534 = 1.0f / 65534.0f;
-  constexpr float SAFE_PHASE_TIME_MAX = PHASE_TIME_MAX + FLT_MIN; // this is to avoid division by zero when width = 1.0
+  // Special case: width == 0.5 (default and most common). More efficient.
+  if (_width == HALF_FIXED_MAX) {
+    phaseTime = t;
+  }
+  // Rising part of sine wave.
+  else if (t < _width) {
+    phaseTime = fixedDivide(t, _width) / 2;
+  }
+  // Falling part of sine wave.
+  else {
+    phaseTime = fixedDivide(t - _width, FIXED_MAX - _width) / 2 + HALF_FIXED_MAX;
+  }
+  // Serial.print(t); Serial.print(" ");
+  // Serial.println(phaseTime);
+  // // Peak of sine wave.
+  // else { // t == _width
+  //   phaseTime = FIXED_MAX / 2;
+  // }
 
+  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
+#else
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint16_t phaseTime16;
 
   // Special case: width == 0.5 (default and most common). More efficient.
-  if (_width == HALF_PHASE_TIME_MAX) {
+  if (_width == HALF_FIXED_MAX) {
     phaseTime16 = static_cast<uint16_t>(t >> 16);
   }
   // Rising part of sine wave.
@@ -51,7 +69,7 @@ float SineWave::_get(phase_time_t t) {
   }
   // Falling part of sine wave.
   else if (t > _width) {
-    phaseTime16 = static_cast<uint16_t> ((static_cast<uint64_t>(t - _width) << 15) / (PHASE_TIME_MAX - _width)) + 32768;
+    phaseTime16 = static_cast<uint16_t> ((static_cast<uint64_t>(t - _width) << 15) / (FIXED_MAX - _width)) + 32768;
   }
   // Peak of sine wave.
   else { // t == _width
@@ -59,7 +77,8 @@ float SineWave::_get(phase_time_t t) {
   }
   
   // Convert to [0, 1] with wave shape similar to triangle wave.
-  return (static_cast<uint16_t>(32767) - cos16(phaseTime16)) * INV_65534; // = ( 32767 - cos16(phaseTime16) ) / 65534
+  return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phaseTime16)) << 16;
+#endif
 }
 
 }

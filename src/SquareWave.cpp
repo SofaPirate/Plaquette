@@ -29,8 +29,12 @@ bool SquareWave::isOn() {
   return analogToDigital(_value);
 }
 
-float SquareWave::_get(phase_time_t t) {
-  return (t <= _width ? 1.0f : 0.0f);
+fixed_t SquareWave::_getFixed(fixed_t t) {
+  return (t <= _width ? FIXED_MAX : 0);
 }
+
+// float SquareWave::_get(fixed_t t) {
+//   return (t <= _width ? 1.0f : 0.0f);
+// }
 
 }

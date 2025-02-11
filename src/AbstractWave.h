@@ -70,7 +70,7 @@ public:
   virtual void width(float width);
 
   /// Returns the width of the signal.
-  virtual float width() const { return phaseTimeToFloat(_width); }
+  virtual float width() const { return fixedToFloat(_width); }
 
   /**
    * Sets the amplitude of the wave.
@@ -79,7 +79,7 @@ public:
    virtual void amplitude(float amplitude);
 
    /// Returns the amplitude of the wave.
-   virtual float amplitude() const { return _amplitude; }
+   virtual float amplitude() const { return fixedToFloat(_amplitude); }
 
    /**
     * Sets the phase (ie. the offset, in % of period).
@@ -131,11 +131,11 @@ protected:
   virtual void begin();
   virtual void step();
 
-  // Returns value in [0, 1] (to be defined by subclasses).
-  virtual float _get(phase_time_t t) = 0;
+  // Returns value in [0, 1] as fixed-point value (to be defined by subclasses).
+  virtual fixed_t _getFixed(fixed_t t) = 0;
 
   // Returns amplified version of _get(t).
-  virtual float _getAmplified(phase_time_t t);
+  virtual float _getAmplified(fixed_t t);
 
   // Period (seconds).
   float _period;
@@ -144,13 +144,14 @@ protected:
   float _phase;
 
   // Amplitude (in %).
-  float _amplitude;
+//  float _amplitude;
+  uint32_t _amplitude;
 
   // Width of the signal.
-  phase_time_t _width;
+  fixed_t _width;
 
   // Internal use: holds current phase time.
-  phase_time_t _phaseTime;
+  fixed_t _phaseTime;
 
   // Is the wave currently running?
   bool _isRunning;

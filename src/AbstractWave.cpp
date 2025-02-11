@@ -60,8 +60,8 @@ void AbstractWave::step() {
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
-float AbstractWave::_getAmplified(phase_time_t t) {
-  return mapFrom01(_get(t), (1 - _amplitude) / 2, (1 + _amplitude)/2);
+float AbstractWave::_getAmplified(fixed_t t) {
+  return fixedToFloat( amplifyFixed(_getFixed(t), _amplitude) );
 }
 
 void AbstractWave::period(float period) {
@@ -78,12 +78,11 @@ void AbstractWave::bpm(float bpm) {
 }
 
 void AbstractWave::width(float width) {
-  _width = float01ToPhaseTime(width);
+  _width = floatTofixed(width);
 }
 
 void AbstractWave::amplitude(float amplitude)  {
-  if (amplitude != _amplitude)
-    _amplitude = constrain(amplitude, 0, 1);
+  _amplitude = floatTofixed(amplitude);
 }
 
 void AbstractWave::phase(float phase) {

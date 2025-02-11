@@ -1,6 +1,8 @@
 /*
  * pq_osc_utils.h
  *
+ * Utility functions for phase quantization oscillators.
+ *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,40 +27,82 @@
 #include <WProgram.h>
 #endif
 
-#include <stdint.h>
-
+#include "pq_globals.h"
+#include "pq_fixed_math.h"
 #include "pq_wrap.h"
+
+#include <stdint.h>
+#include <float.h>
 
 namespace pq {
 
-#define PHASE_TIME_MAX UINT32_MAX
-typedef uint32_t phase_time_t;
-const phase_time_t HALF_PHASE_TIME_MAX = 0.5f * PHASE_TIME_MAX;
+typedef uint32_t fixed_t;
 
-/// Converts floating point to phase_time_t.
-inline phase_time_t floatToPhaseTime(float x) { return wrap01(x) * PHASE_TIME_MAX; }
+#define FIXED_MAX static_cast<fixed_t>(0xFFFFFFFF)
+#define HALF_FIXED_MAX static_cast<fixed_t>(0x80000000)
+//constexpr fixed_t HALF_FIXED_MAX = 0.5f * FIXED_MAX;
+constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
 
-/// Converts floating point in [0, 1] to phase_time_t.
-inline phase_time_t float01ToPhaseTime(float x) {
-  if      (x <= 0) return 0;
-  else if (x >= 1) return PHASE_TIME_MAX;
-  else             return x * PHASE_TIME_MAX;
+/// Applies amplitude scaling to 32-bit fixed-point value interpreted as a signal centered at UINT32_MAX/2.
+inline fixed_t amplifyFixed(fixed_t x, fixed_t amplitude) {
+  // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).
+  int32_t centered = (int32_t)(x ^ 0x80000000);
+
+  // Apply amplitude scaling (keeping within 32-bit range).
+  centered = ((int64_t)centered * amplitude) >> 32;
+
+  // Convert back to unsigned range.
+  return (fixed_t)(centered ^ 0x80000000);
 }
 
-/// Converts phase_time_t to floating point.
-inline float phaseTimeToFloat(phase_time_t x) { return float(x) / PHASE_TIME_MAX; }
+/// Converts 32-bit fixed-point value to floating point.
+inline float fixedToFloat(uint32_t x) {
+  return (x * INV_FIXED_MAX);
+}
+
+/// Converts floating point in range [0, 1] to 32-bit fixed-point value.
+inline fixed_t floatTofixed(float x) {
+  // The x >= 1 instruction prevents overflow issues when x is close to 1.
+  if      (x <= 0) return 0;
+  else if (x >= 1) return FIXED_MAX;
+  else             return static_cast<fixed_t>(x * FIXED_MAX);
+}
+
+inline float constrain01(float x) {
+#if defined(IEEE_754_SUPPORTED)
+    union {
+        float f;
+        uint32_t i;
+    } u;
+
+    u.f = x;
+    u.i &= 0x7FFFFFFF;               // Force non-negative
+    if (u.i > 0x3F800000)            // Clamp to 1.0
+        u.i = 0x3F800000;
+
+    return u.f;
+#else
+  return constrain(x, 0, 1);
+#endif
+}
+
+/// Converts floating point to fixed_t.
+inline fixed_t floatToPhaseTime(float x) { return wrap01(x) * FIXED_MAX; }
+
+/// Phase-time division.
+inline fixed_t fixedDivide(fixed_t x, fixed_t y) { return divide_32div32(x, y); }
 
 /// Converts time in seconds to phase in %.
 inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }
 
 /// Returns phase time value with offset.
-phase_time_t phaseTimeAddPhase(phase_time_t phaseTime, float phase);
+fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
 
 /// Returns phase time value with time offset.
-phase_time_t phaseTimeAddTime(phase_time_t phaseTime, float period, float time);
+fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time);
 
 /// Computes new phase time for oscillators and returns true when phase time overflows.
-bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate);
+bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate);
 
 }
 

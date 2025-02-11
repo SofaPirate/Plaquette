@@ -37,7 +37,8 @@ public:
 
 protected:
   // Returns value in [0, 1].
-  virtual float _get(phase_time_t t);
+//  virtual float _get(fixed_t t);
+  virtual fixed_t _getFixed(fixed_t t);
 };
 
 [[deprecated("Use SineWave instead.")]]

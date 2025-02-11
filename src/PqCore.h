@@ -57,10 +57,6 @@
 
 #define PLAQUETTE_MAX_SAMPLE_RATE FLT_MAX
 
-// This constant is used in the oscillators to prevent phaseTime from increasing
-// too fast (which would be useless).
-#define PLAQUETTE_OSC_MIN_SAMPLE_PERIOD_MULTIPLIER 2.000001 // = almost 2
-
 namespace pq {
 
 /// @brief Input/output modes.

@@ -21,17 +21,17 @@
 namespace pq {
 
 /// Returns phase time value with offset.
-phase_time_t phaseTimeAddPhase(phase_time_t phaseTime, float phase) {
+fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase) {
   return phaseTime + floatToPhaseTime(phase);
 }
 
 /// Returns phase time value with offset.
-phase_time_t phaseTimeAddTime(phase_time_t phaseTime, float period, float time) {
+fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time) {
   return phaseTimeAddPhase(phaseTime, timeToPhase(period, time));
 }
 
 /// Computes new phase time for oscillators and returns when phase time overflows.
-bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate) {
+bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate) {
   // Premultiply period.
   period *= sampleRate;
 
@@ -42,9 +42,9 @@ bool phaseTimeUpdate(phase_time_t& phaseTime, float period, float sampleRate) {
   // Normal case.
   else {
     // Increment to add to phaseTime.
-    phase_time_t increment = floatToPhaseTime(1.0f / period);
+    fixed_t increment = floatToPhaseTime(1.0f / period);
     // Check if increment will overflow.
-    bool overflow = (increment > PHASE_TIME_MAX - phaseTime);
+    bool overflow = (increment > FIXED_MAX - phaseTime);
     // Add increment (will overflow when reaching max).
     phaseTime += increment;
     return overflow;

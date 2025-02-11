@@ -22,9 +22,11 @@
 #ifndef PQ_FAST_MATH_H_
 #define PQ_FAST_MATH_H_
 
-#include <stdint.h>
-#include "pq_trig8.h"
+#include "pq_globals.h"
+#include "pq_fixed_trig.h"
 #include "pq_wrap.h"
+
+#include <stdint.h>
 
 namespace pq {
 
@@ -34,17 +36,21 @@ inline float fastSqrt(const float& n)
 {
     static union {int32_t i; float f;} u;
     u.i = 0x2035AD0C + (*(int32_t*)&n >> 1);
-   return n / u.f + u.f * 0.25f;
-}
-
-inline float fastCos(float x) {
-    x = wrap01(x/TWO_PI) * 65535;
-    return cos16( (uint16_t)x ) / 32767.0f;
+    return n / u.f + u.f * 0.25f;
 }
 
 inline float fastSin(float x) {
+#if defined(PQ_ARCH_32BITS)
+    x = wrap01(x/TWO_PI) * 4294967295ULL;
+    return sin32( (uint32_t)x ) / 2147483532.0f;
+#else
     x = wrap01(x/TWO_PI) * 65535;
     return sin16( (uint16_t)x ) / 32767.0f;
+#endif
+}
+
+inline float fastCos(float x) {
+    return fastSin(HALF_PI - x);
 }
 
 //Source: https://martin.ankerl.com/2007/10/04/optimized-pow-approximation-for-java-and-c-c/
