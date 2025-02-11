@@ -70,11 +70,11 @@ void AbstractWave::period(float period) {
 }
 
 void AbstractWave::frequency(float frequency) {
-  period( frequency == 0 ? FLT_MAX : 1/frequency );
+  period( frequency == 0 ? FLT_MAX : 1.0f/frequency );
 }
 
 void AbstractWave::bpm(float bpm) {
-  period( bpm == 0 ? FLT_MAX : 60/bpm );
+  period( bpm == 0 ? FLT_MAX : 60.0f/bpm );
 }
 
 void AbstractWave::width(float width) {

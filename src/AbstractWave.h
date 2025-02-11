@@ -52,7 +52,7 @@ public:
   virtual void frequency(float frequency);
 
   /// Returns the frequency (in Hz).
-  virtual float frequency() const { return (1/_period); }
+  virtual float frequency() const { return (_period == 0 ? FLT_MAX : 1.0f/_period); }
 
   /**
    * Sets the frequency in beats-per-minute.
@@ -61,7 +61,7 @@ public:
   virtual void bpm(float bpm);
   
   /// Returns the frequency (in BPM).
-  virtual float bpm() const { return (60/_period); }
+  virtual float bpm() const { return (_period == 0 ? FLT_MAX : 60.0f/_period); }
 
   /**
    * Sets the width of the signal as a % of period.
