@@ -34,14 +34,17 @@ float AnalogOut::put(float value) {
   value = _value * 255;
   value = round(value);
   // Write to analog output (inverting if needed).
+
+  return _value;
+}
+
+void AnalogOut::step() {
 #if (defined(ESP32) or defined(ARDUINO_ARCH_ESP32)) and defined(SOC_DAC_SUPPORTED)
   dacWrite // use dacWrite if available
 #else
   analogWrite
 #endif
-    (_pin, (_mode == SOURCE ? value : 255 - value));
-
-  return _value;
+    (_pin, (_mode == SOURCE ? _value : 255 - _value));
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
@@ -57,12 +60,11 @@ void DigitalOut::begin() {
   pinMode(_pin, OUTPUT);
 }
 
-bool DigitalOut::putOn(bool isOn) {
-  // Save value.
-  _setOn(isOn);
+void DigitalOut::step() {
+  // Update change state.
+  _updateChangeState();
   // Write to output.
-  digitalWrite(_pin, isOn ^ (_mode == SOURCE) ? LOW : HIGH);
-  return isOn;
+  digitalWrite(_pin, _onValue ^ (_mode == SOURCE) ? LOW : HIGH);
 }
 
 } // namespace pq

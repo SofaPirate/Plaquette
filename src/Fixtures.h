@@ -344,7 +344,9 @@ protected:
     // Perform basic step.
     _step();
     // Save state.
-    _setOn(_debounced());
+    _onValue = _debounced();
+    // Update change state.
+    _updateChangeState();
   }
 
   virtual bool putOn(bool value) {
@@ -389,7 +391,9 @@ protected:
     // Perform basic step.
     _step();
     // Save state.
-    _setOn(_debounced());
+    _onValue = _debounced();
+    // Update change state.
+    _updateChangeState();
   }
 
   virtual bool putOn(bool value) {

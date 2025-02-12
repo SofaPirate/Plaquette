@@ -41,6 +41,9 @@ public:
 
   /// Inverts value by calling ``put(1-get())`` (eg. 0.2 becomes 0.8).
   virtual void invert() { put(1-get()); }
+
+protected:
+  virtual void step();
 };
 
 /// A generic class representing a simple digital output.
@@ -55,18 +58,12 @@ public:
 
   virtual ~DigitalOut() {}
 
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual bool putOn(bool isOn);
-
   /// Changes the mode of the component.
   virtual void mode(uint8_t mode);
 
 protected:
   virtual void begin();
+  virtual void step();
 };
 
 } // namespace pq

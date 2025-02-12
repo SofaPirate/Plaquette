@@ -34,14 +34,16 @@ void Alarm::step() {
 
   if (_isRunning) {
     // Compute value if running -- otherwise leave as is.
-    _setOn(isFinished());
+    _onValue = isFinished();
   }
-}
 
+  // Update change state.
+  _updateChangeState();
+}
 
 void Alarm::set(float time) {
   AbstractTimer::set(time);
-  _setOn(isFinished());
+  _onValue = isFinished();
 }
 
 float Alarm::_time() const {

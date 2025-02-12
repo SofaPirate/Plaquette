@@ -391,10 +391,17 @@ protected:
 class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(bool initialValue=false) : DigitalUnit(), _onValue(initialValue), _changeState(0) {}
+  DigitalSource(bool initialValue=false) : DigitalUnit(), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual bool putOn(bool value) { return (_onValue = value); } // do nothing by default (read-only)
 
   /// Returns true if the value rose.
   virtual bool rose() { return changeState() > 0; }
@@ -421,13 +428,9 @@ public:
   virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
 
 protected:
-  // Helper function. Sets both _onValue and _changeState.
-  void _setOn(bool newOnValue) {
-    // Register difference between previous and new state.
-    _changeState = (int8_t)newOnValue - (int8_t)_onValue;
-
-    // Register new value.
-    _onValue = newOnValue;
+  void _updateChangeState() {
+    _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;
+    _prevOnValue = _onValue;
   }
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -442,8 +445,14 @@ protected:
 
   // The value contained in the unit.
   bool    _onValue     : 1;
+
+  // Previous value, used to compute change state.
+  bool    _prevOnValue : 1; 
+
+  // The change state contained in the unit.
   int8_t  _changeState : 2;
-  uint8_t _data        : 5; // unused extra space
+
+  uint8_t _data        : 4; // unused extra space
 };
 
 // Value to unit operators ///////////////////////////////////////

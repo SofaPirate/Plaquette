@@ -181,10 +181,12 @@ void DigitalIn::begin() {
 }
 
 void DigitalIn::step() {
-  // Perform basic step.
+   // Perform basic step.
   _step();
-  // Save state.
-  _setOn(_debounced());
+  // Save value.
+  _onValue = _debounced();
+  // Compute change state.
+  _updateChangeState();
 }
 
 } // namespace pq

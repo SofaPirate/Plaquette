@@ -39,6 +39,7 @@ public:
   /// Registers event callback on finish event.
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
+  /// Set alarm at specific time.
   virtual void set(float time);
 
 protected:
