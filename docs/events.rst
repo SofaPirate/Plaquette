@@ -3,8 +3,8 @@ Managing Events
 ===============
 
 Plaquette supports event-driven programming, allowing you to execute specific actions automatically when 
-an event occurs instead of constantly checking for changes with an **if** statement. In Plaquette, this 
-is achieved by **events** and function **callbacks**.
+an event occurs instead of constantly checking for changes with conditional statements such as ``if (button.changed())``.
+In Plaquette, this is achieved by **events** and function **callbacks**.
 
 An **event** is an instantaneous situation that is triggered by a unit under specific conditions, such as
 the push of a button, the tick of a metronome, the end of a timer, or a peak detection. 
@@ -161,7 +161,8 @@ between the button and the LED?
 Managing Multiple Events
 ------------------------
 
-It is possible to register multiple callbacks with the same event, and one callback can be assigned to many events.
+It is possible to register multiple callbacks with the same event. Likewise, a single callback can be registered
+with many events.
 
 Example: Launch both ``toggleLed()`` and ``printButton()`` on button press, registering ``printButton()`` to both
 press and release events.
@@ -200,10 +201,9 @@ Coordinating Parallel Events with Metronomes
 --------------------------------------------
 
 There are many applications for which things happen concurrently at different pace, making
-one wish there could be multiple looping functions like ``step()`` running in parallel at different
-rhythm. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
-period, generating "bang" events which can trigger callbacks by registering them to metronome's 
-``onBang()`` event.
+one wish there could be multiple looping functions similar to ``step()`` running in parallel at different
+rates. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
+period, generating "bang" events which can trigger callbacks by registering them to the ``onBang()`` event.
 
 In this example, two metronomes control two LEDs, one digital and one analog, each at a different
 interval. A ramp is used to fade the analog LED.
@@ -226,7 +226,6 @@ interval. A ramp is used to fade the analog LED.
    // Function to start the ramp on second LED.
    void pingLed2() {
      ramp.start();
-     println("Ramp started");
    }
 
    void begin() {
@@ -260,13 +259,11 @@ way, like this:
 
 .. code-block:: cpp
 
-   void begin() {
-     // Register callbacks for the metronomes.
-     metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second
-     metro2.onBang([]() { // Fade in LED 2 every 2 seconds
-      ramp.start(); 
-      println("Ramp started");
-    });
+  void begin() {
+    // Register callbacks for the metronomes.
+    metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second
+    metro2.onBang([]() { ramp.start(); });  // Fade in LED 2 every 2 seconds
+  }
 
 Conclusion
 ----------
@@ -274,4 +271,4 @@ Conclusion
 Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling 
 actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event 
 sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at 
-different rhythms.
+different rates.

@@ -387,3 +387,4 @@ rest of the guide to learn about specific features and advanced techniques:
   time-based logic in your projects.
 - :doc:`regularizing`: Discover methods for automatically scaling and normalizing signals amd respond
   to peaks.
+- :doc:`events`: Trigger actions, schedule events and manage parallel loops using event-driven programming.
