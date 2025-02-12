@@ -39,7 +39,7 @@ To run this example:
 
 .. doxygenclass:: StreamIn
    :project: Plaquette
-   :members: StreamIn, get
+   :members: StreamIn, get, mapTo, updated, onUpdate
 
 |SeeAlso|
 ---------
