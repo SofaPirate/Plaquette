@@ -651,18 +651,6 @@ void PlaquetteEnv::_setSampleRate(float sampleRate) {
   _samplePeriod = 1.0f / _sampleRate;
 }
 
-float PlaquetteEnv::seconds(bool referenceTime) {
-  return microSeconds(referenceTime) * SECONDS_TO_MICROS;
-}
-
-uint32_t PlaquetteEnv::milliSeconds(bool referenceTime) {
-  return static_cast<uint32_t>(microSeconds(referenceTime) * MILLIS_TO_MICROS);
-}
-
-uint64_t PlaquetteEnv::microSeconds(bool referenceTime) {
-  return (referenceTime ? _microSeconds.micros64 : _updateGlobalMicroSeconds().micros64);
-}
-
 } // namespace pq
 
 #endif
