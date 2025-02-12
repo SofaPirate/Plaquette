@@ -39,22 +39,26 @@ Supported Events
     - ``onChange()``
     - ``onBang()``
     - ``onFinish()``
+    - ``onUpdate()``
   * - **Activation:**
     - Value rises
     - Value falls
     - Value changes
     - Unit fires
     - Time out
+    - New value
   * - :doc:`Alarm`
     - ✔
     - ✔
     - ✔
     - 
     - ✔
+    - 
   * - :doc:`DigitalIn`
     - ✔
     - ✔
     - ✔
+    - 
     - 
     - 
   * - :doc:`Metronome`
@@ -63,13 +67,23 @@ Supported Events
     - 
     - ✔
     - 
+    - 
   * - :doc:`PeakDetector`
     - 
     - 
     - 
     - ✔
     - 
+    - 
   * - :doc:`Ramp`
+    - 
+    - 
+    - 
+    - 
+    - ✔
+    - 
+  * - :doc:`StreamIn`
+    - 
     - 
     - 
     - 

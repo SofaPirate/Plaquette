@@ -38,12 +38,23 @@ public:
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
 
   /// Returns true iff value was changed.
-  virtual bool changed() const { return _valueChanged; }
+  virtual bool updated() { return _valueUpdated; }
+
+  /// Registers event callback on finish event.
+  virtual void onUpdate(EventCallback callback) { onEvent(callback, EVENT_UPDATE); }
 
 protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_UPDATE: return updated();
+      default:           return AnalogSource::eventTriggered(eventType);
+    }
+  }
 
   // Internal use: keep track of next incoming value in a non-blocking way.
   float _nextValue;
@@ -51,7 +62,7 @@ protected:
   bool _nextIsValid    : 1;
   bool _nextIsNegative : 1;
   bool _nextIsFraction : 1;
-  bool _valueChanged   : 1;
+  bool _valueUpdated   : 1;
 
   // The stream.
   Stream* _stream;

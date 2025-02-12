@@ -29,7 +29,7 @@ StreamIn::StreamIn(Stream& stream) :
   _nextIsValid(false),
   _nextIsNegative(false),
   _nextIsFraction(false),
-  _valueChanged(false),
+  _valueUpdated(false),
   _stream(&stream)
 {}
 
@@ -38,13 +38,13 @@ void StreamIn::begin() {
   _nextIsValid = false;
   _nextIsNegative = false;
   _nextIsFraction = false;
-  _valueChanged = false;
+  _valueUpdated = false;
   _nextFraction = 1;
 }
 
 void StreamIn::step() {
   // Reset value changed flag.
-  _valueChanged = false;
+  _valueUpdated = false;
 
   // Read stream.
   while (_stream->available()) {
@@ -76,7 +76,7 @@ void StreamIn::step() {
           // Save value.
           _value = _nextValue;
           // Mark as new.
-          _valueChanged = true;
+          _valueUpdated = true;
         }
       }
 
