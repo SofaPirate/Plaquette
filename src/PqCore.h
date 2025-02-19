@@ -70,8 +70,8 @@ enum {
   INTERNAL_PULLUP,
   // PULLDOWN = DIRECT,
   // PULLUP = INVERTED,
-  SOURCE = DIRECT,
-  SINK = INVERTED
+  SOURCE = DIRECT, // deprecated
+  SINK = INVERTED  // deprecated
 };
 
 // /// @brief Range modes.

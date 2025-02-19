@@ -428,11 +428,11 @@ voltage is interpreted:
 
       AnalogIn lightSensor(A0, INVERTED);
 
-**DigitalOut and AnalogOut Modes: SOURCE and SINK**
+**DigitalOut and AnalogOut Modes: DIRECT and INVERTED**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and can operate in two modes:
 
-- **SOURCE** (default): The pin provides current when ON, suitable for devices like LEDs connected
+- **DIRECT** (default): The pin provides current when ON, suitable for devices like LEDs connected
   between the pin and ground.
 
   **Example**: LED in source mode. Connect the LED anode (long leg) to pin 9 and the cathode 
@@ -440,7 +440,7 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
 
   .. code-block:: cpp
 
-      AnalogOut led(9, SOURCE);
+      AnalogOut led(9, DIRECT);
       SineWave wave(1.0);
 
       void begin() {}
@@ -449,7 +449,7 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
         wave >> led;
       }
 
-- **SINK**: The pin sinks current when ON, suitable for LEDs connected between a positive
+- **INVERTED**: The pin sinks current when ON, suitable for LEDs connected between a positive
   voltage and the pin.
 
   **Example**: LED in sink mode. Connect the LED anode to +5V (Vcc) and the cathode to pin 9, with a 
@@ -457,7 +457,7 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
 
   .. code-block:: cpp
 
-      AnalogOut led(9, SINK);
+      AnalogOut led(9, INVERTED);
 
 Conclusion
 ----------
