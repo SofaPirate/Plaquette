@@ -160,4 +160,12 @@ Unit::~Unit() {
   PlaquetteEnv::singleton().remove(this);
 }
 
+void Unit::clearEvents() {
+  Plaquette._eventManager.clearListeners(this);
+}
+
+void Unit::onEvent(EventCallback callback, EventType eventType) {
+  Plaquette._eventManager.addListener(this, callback, eventType);
+}
+
 } // namespace pq

@@ -284,9 +284,7 @@ public:
   virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
 
   // Clears all event listeners.
-  virtual void clearEvents() {
-    Plaquette._eventManager.clearListeners(this);
-  }
+  virtual void clearEvents();
 
 protected:
   /// Constructor.
@@ -296,9 +294,8 @@ protected:
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) { return false; }
 
-  virtual void onEvent(EventCallback callback, EventType eventType) {
-    Plaquette._eventManager.addListener(this, callback, eventType);
-  }
+  /// Registers event callback.
+  virtual void onEvent(EventCallback callback, EventType eventType);
 
 private:
   /// Operator that allows usage in conditional expressions.
@@ -452,7 +449,8 @@ protected:
   // The change state contained in the unit.
   int8_t  _changeState : 2;
 
-  uint8_t _data        : 4; // unused extra space
+  // Unused extra space.
+  uint8_t _data        : 4;
 };
 
 // Value to unit operators ///////////////////////////////////////
