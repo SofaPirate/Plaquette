@@ -29,6 +29,9 @@ test(digital) {
   assertEqual(!dOut1 && dOut2, true);
   assertEqual(dOut1 || !dOut2, false);
 
+  assertEqual(dOut1 * dOut2, 0);
+  assertEqual(dOut1 / dOut2, 0);
+
   Plaquette.step();
   dOut1.toggle();
   dOut2.toggle();
