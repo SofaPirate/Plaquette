@@ -21,13 +21,7 @@ DigitalOut led(LED_BUILTIN);
 // The alarm.
 Alarm ledAlarm(1.0); // starting duration: 1 second
 
-// Keeps track of increasing duration of LED.
-float ledDuration;
-
 void begin() {
-  // Initialize ledDuration to starting timer duration.
-  ledDuration = ledAlarm.duration();
-
   // Start timer.
   ledAlarm.start();
 }
@@ -40,8 +34,9 @@ void step() {
 
     // If LED is "on" keep it on for a certain time.
     if (led) {
-      ledDuration += 0.5;
-      ledAlarm.start(ledDuration);
+      // Increate alarm duration by half a second and restart.
+      ledAlarm.duration( ledAlarm.duration() + 0.5 );
+      ledAlarm.start();
     }
     // Otherwise keep it off for half a second.
     else
