@@ -3,6 +3,8 @@
 Plaquette
 =========
 
+.. image:: images/Plaquette-LogoTextAnim.*
+
 Plaquette is an object-oriented, user-friendly, signal-centric programming
 framework for **creative physical computing**. It promotes **expressiveness** over
 technical details while remaining fully compatible with `Arduino <https://www.arduino.cc/>`_,
@@ -27,4 +29,3 @@ Plaquette allows you to:
   * - `GitHub repository <https://github.com/SofaPirate/Plaquette/>`_
     - `PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>`_
 
-.. image:: images/Plaquette-LogoTextAnim.*
