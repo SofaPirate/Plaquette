@@ -45,6 +45,41 @@ public:
   /// Operator that allows usage in conditional expressions.
   explicit operator bool() { return isOn(); }
 
+  /// Returns true if the value rose.
+  virtual bool rose() { return changeState() > 0; }
+
+  /// Returns true if the value fell.
+  virtual bool fell() { return changeState() < 0; }
+
+  /// Returns true if the value changed.
+  virtual bool changed() { return changeState() != 0; }
+
+  /// Difference between current and previous value of the unit.
+  virtual int8_t changeState() { return _changeState; }
+
+  /// Registers event callback on rise event.
+  virtual void onRise(EventCallback callback)   { onEvent(callback, EVENT_RISE); }
+
+  /// Registers event callback on fall event.
+  virtual void onFall(EventCallback callback)   { onEvent(callback, EVENT_FALL); }
+
+  /// Registers event callback on change event.
+  virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
+
+protected:
+  // Core Plaquette methods.
+  virtual void step();
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_CHANGE: return changed();
+      case EVENT_RISE:   return rose();
+      case EVENT_FALL:   return fell();
+      default:           return AbstractWave::eventTriggered(eventType);
+    }
+  }
+
   [[deprecated("Use width(float) instead.")]]
   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
 

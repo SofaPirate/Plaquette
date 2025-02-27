@@ -154,7 +154,21 @@ protected:
   fixed_t _phaseTime;
 
   // Is the wave currently running?
-  bool _isRunning;
+
+  // The value contained in the unit.
+  bool _isRunning : 1;
+
+  // These variables are only used by the SquareWave.
+  bool _onValue : 1;
+
+  // Previous value, used to compute change state.
+  bool _prevOnValue : 1; 
+
+  // The change state contained in the unit.
+  int8_t _changeState : 2;
+
+  // Unused extra space.
+  uint8_t _data : 3;
 };
 
 }

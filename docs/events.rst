@@ -82,6 +82,13 @@ Supported Events
     - 
     - ✔
     - 
+  * - :doc:`SquareWave`
+    - ✔
+    - ✔
+    - ✔
+    - 
+    - 
+    - 
   * - :doc:`StreamIn`
     - 
     - 

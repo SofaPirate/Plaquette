@@ -26,15 +26,19 @@ SquareWave::SquareWave(float period_, float width_) : AbstractWave(period_, widt
 }
 
 bool SquareWave::isOn() {
-  return analogToDigital(_value);
+  return _onValue;
+}
+
+void SquareWave::step() {
+  AbstractWave::step();
+
+  // Update change state.
+  _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;
+  _prevOnValue = _onValue;
 }
 
 fixed_t SquareWave::_getFixed(fixed_t t) {
-  return (t <= _width ? FIXED_MAX : 0);
+  return ((_onValue = (t <= _width)) ? FIXED_MAX : 0); // XXX small trick here: we set _onValue at the same time to deal with state changes
 }
-
-// float SquareWave::_get(fixed_t t) {
-//   return (t <= _width ? 1.0f : 0.0f);
-// }
 
 }
