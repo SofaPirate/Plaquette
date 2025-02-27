@@ -20,18 +20,18 @@ you can create precise, dynamic, creative projects that respond in real-time to 
   It is strongly advised to use the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__ 
   to visualize the signals.
 
+.. warning::
+
+    The value returned by timing units and functions are approximations. They are good enough for most creative applications. They should,
+    however, not be used as a substitute for a real-time clock in applications requiring high precision, especially over long 
+    periods of time. For example, on an Arduino Uno, a drift may be experienced of up to 10 seconds per hour, or 5 minutes per day.
+
 Measuring Absolute Time with seconds()
 --------------------------------------
 
 The most fundamental timing functionality in Plaquette is the :doc:`seconds` function. As its name suggests,
 it simply returns the elapsed time in seconds `since the program started running`. This is very useful for measuring 
 durations or triggering time-based events.
-
-.. warning::
-
-    The value returned by :doc:`seconds` is an approximation that is good enough for most creative applications. It should,
-    however, not be used as a substitute for a real-time clock in applications requiring high precision, especially over long 
-    periods of time. For example, on an Arduino Uno, a drift of about 10 seconds per hour, or 5 minutes per day, may be experienced.
 
 **Example**: Turn LED off after 3 seconds, then on again after 10 seconds.
 
@@ -53,7 +53,7 @@ durations or triggering time-based events.
       }
     }
 
-While :doc:`seconds()` provides a simple and effective way to measure time, it is inherently limited in scope. It measures only 
+While :doc:`seconds` provides a simple and effective way to measure time, it is inherently limited in scope. It measures only 
 the elapsed time since the program started, functioning as a continuously increasing global counter that cannot be reset or adapted 
 for specific events. This makes it inflexible when we need to measure time between arbitrary points or manage multiple independent 
 timing events. For precise control and event-specific timing operations such as starting, stopping, resetting, or tracking multiple 
