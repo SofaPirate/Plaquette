@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnalogOut &mdash; Plaquette 0.6.4 documentation</title>
+  <title>AnalogOut &mdash; Plaquette 0.6.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=73d9a94e"></script>
+      <script src="_static/documentation_options.js?v=d7a12d57"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -56,7 +56,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
@@ -125,8 +125,8 @@ voltage on one of the analog output pins.</p>
 <p>The unit is assigned to a specific <code class="docutils literal notranslate"><span class="pre">pin</span></code> on the board.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> specifies the behavior of the component attached to the pin:</p>
 <ul class="simple">
-<li><p>in <code class="docutils literal notranslate"><span class="pre">SOURCE</span></code> mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)</p></li>
-<li><p>in <code class="docutils literal notranslate"><span class="pre">SINK</span></code> mode the source of current is external (Vcc)</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">DIRECT</span></code> mode (default) the pin acts as the source of current and the value is expressed as a percentage of the maximum voltage (Vcc, typically 5V)</p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">INVERTED</span></code> mode the source of current is external (Vcc)</p></li>
 </ul>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
@@ -177,7 +177,7 @@ converters, and act as true analog outputs.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pin</strong> – the pin number </p></li>
-<li><p><strong>mode</strong> – the mode (SOURCE or SINK) </p></li>
+<li><p><strong>mode</strong> – the mode (DIRECT or INVERTED) </p></li>
 </ul>
 </dd>
 </dl>
@@ -193,6 +193,12 @@ converters, and act as true analog outputs.</p>
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut6invertEv">
 <span id="_CPPv3N9AnalogOut6invertEv"></span><span id="_CPPv2N9AnalogOut6invertEv"></span><span id="AnalogOut::invert"></span><span class="target" id="classpq_1_1_analog_out_1a96398d0fd733795e23f700eee606d9ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">invert</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut6invertEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Inverts value by calling <code class="docutils literal notranslate"><span class="pre">put(1-</span><a class="reference internal" href="TriangleWave.html#classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"><span class="std std-ref"><span class="pre">get()</span></span></a><span class="pre">)</span></code> (eg. 0.2 becomes 0.8). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut8rawWriteEi">
+<span id="_CPPv3N9AnalogOut8rawWriteEi"></span><span id="_CPPv2N9AnalogOut8rawWriteEi"></span><span id="AnalogOut::rawWrite__i"></span><span class="target" id="classpq_1_1_analog_out_1a3512037cabf405f8cfa742cd693c9dc6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rawWrite</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut8rawWriteEi" title="Link to this definition"></a><br /></dt>
+<dd><p>Writes raw value to the pin. </p>
 </dd></dl>
 
 <dl class="cpp function">

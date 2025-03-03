@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Managing Events &mdash; Plaquette 0.6.4 documentation</title>
+  <title>Managing Events &mdash; Plaquette 0.6.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=73d9a94e"></script>
+      <script src="_static/documentation_options.js?v=d7a12d57"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -56,7 +56,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Events</a><ul>
@@ -114,8 +114,8 @@
   <section id="managing-events">
 <h1>Managing Events<a class="headerlink" href="#managing-events" title="Link to this heading"></a></h1>
 <p>Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
-an event occurs instead of constantly checking for changes with an <strong>if</strong> statement. In Plaquette, this
-is achieved by <strong>events</strong> and function <strong>callbacks</strong>.</p>
+an event occurs instead of constantly checking for changes with conditional statements such as <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(button.changed())</span></code>.
+In Plaquette, this is achieved by <strong>events</strong> and function <strong>callbacks</strong>.</p>
 <p>An <strong>event</strong> is an instantaneous situation that is triggered by a unit under specific conditions, such as
 the push of a button, the tick of a metronome, the end of a timer, or a peak detection.</p>
 <p>A <strong>callback</strong> is a custom function that is registered with a source event: when the event is triggered,
@@ -145,6 +145,7 @@ time is up, so you can take the cookies out.</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">onChange()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">onBang()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">onFinish()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">onUpdate()</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Activation:</strong></p></td>
 <td><p>Value rises</p></td>
@@ -152,6 +153,7 @@ time is up, so you can take the cookies out.</p>
 <td><p>Value changes</p></td>
 <td><p>Unit fires</p></td>
 <td><p>Time out</p></td>
+<td><p>New value</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></td>
 <td><p>✔</p></td>
@@ -159,11 +161,13 @@ time is up, so you can take the cookies out.</p>
 <td><p>✔</p></td>
 <td></td>
 <td><p>✔</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -173,6 +177,7 @@ time is up, so you can take the cookies out.</p>
 <td></td>
 <td><p>✔</p></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a></p></td>
 <td></td>
@@ -180,8 +185,26 @@ time is up, so you can take the cookies out.</p>
 <td></td>
 <td><p>✔</p></td>
 <td></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✔</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a></p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a></p></td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -249,7 +272,8 @@ between the button and the LED?</p>
 </section>
 <section id="managing-multiple-events">
 <h2>Managing Multiple Events<a class="headerlink" href="#managing-multiple-events" title="Link to this heading"></a></h2>
-<p>It is possible to register multiple callbacks with the same event, and one callback can be assigned to many events.</p>
+<p>It is possible to register multiple callbacks with the same event. Likewise, a single callback can be registered
+with many events.</p>
 <p>Example: Launch both <code class="docutils literal notranslate"><span class="pre">toggleLed()</span></code> and <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> on button press, registering <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> to both
 press and release events.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
@@ -285,10 +309,9 @@ press and release events.</p>
 <section id="coordinating-parallel-events-with-metronomes">
 <h2>Coordinating Parallel Events with Metronomes<a class="headerlink" href="#coordinating-parallel-events-with-metronomes" title="Link to this heading"></a></h2>
 <p>There are many applications for which things happen concurrently at different pace, making
-one wish there could be multiple looping functions like <code class="docutils literal notranslate"><span class="pre">step()</span></code> running in parallel at different
-rhythm. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
-period, generating “bang” events which can trigger callbacks by registering them to metronome’s
-<code class="docutils literal notranslate"><span class="pre">onBang()</span></code> event.</p>
+one wish there could be multiple looping functions similar to <code class="docutils literal notranslate"><span class="pre">step()</span></code> running in parallel at different
+rates. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
+period, generating “bang” events which can trigger callbacks by registering them to the <code class="docutils literal notranslate"><span class="pre">onBang()</span></code> event.</p>
 <p>In this example, two metronomes control two LEDs, one digital and one analog, each at a different
 interval. A ramp is used to fade the analog LED.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
@@ -307,7 +330,6 @@ interval. A ramp is used to fade the analog LED.</p>
 <span class="c1">// Function to start the ramp on second LED.</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">pingLed2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ramp started&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -339,10 +361,8 @@ way, like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Register callbacks for the metronomes.</span>
 <span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Toggle LED 1 every second</span>
-<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Fade in LED 2 every 2 seconds</span>
-<span class="w">   </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-<span class="w">   </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Ramp started&quot;</span><span class="p">);</span>
-<span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// Fade in LED 2 every 2 seconds</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -351,7 +371,7 @@ way, like this:</p>
 <p>Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling
 actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event
 sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at
-different rhythms.</p>
+different rates.</p>
 </section>
 </section>
 

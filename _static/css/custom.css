@@ -47,3 +47,10 @@
 .rst-content .document .caption {
   display: none;
 }
+
+/* Expand main content area */
+@media (min-width: 1200px) {
+  .wy-nav-content {
+      max-width: 1000px;
+  }
+}

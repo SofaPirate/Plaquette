@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generating Waves &mdash; Plaquette 0.6.4 documentation</title>
+  <title>Generating Waveforms &mdash; Plaquette 0.6.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=73d9a94e"></script>
+      <script src="_static/documentation_options.js?v=d7a12d57"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -57,7 +57,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating Waves</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating Waveforms</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#visualizing-waves-with-the-serial-plotter">Visualizing Waves with the Serial Plotter</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#single-signal">Single Signal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multiple-signals">Multiple Signals</a></li>
@@ -115,7 +115,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Generating Waves</li>
+      <li class="breadcrumb-item active">Generating Waveforms</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -124,8 +124,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="generating-waves">
-<h1>Generating Waves<a class="headerlink" href="#generating-waves" title="Link to this heading"></a></h1>
+  <section id="generating-waveforms">
+<h1>Generating Waveforms<a class="headerlink" href="#generating-waveforms" title="Link to this heading"></a></h1>
 <p>In this section, we will explore waves (also called oscillators), essential tools for creating dynamic
 and expressive media. Oscillators generate repeating waveforms, which can control various outputs such
 as LEDs or motors. We will also learn how to visualize signals and shape different kinds of waveforms.
@@ -168,7 +168,7 @@ sensor values and waveforms.</p>
 </section>
 <section id="multiple-signals">
 <h3>Multiple Signals<a class="headerlink" href="#multiple-signals" title="Link to this heading"></a></h3>
-<p>For multiple waveforms, print their values separated by spaces in a single line, followed by a
+<p>For multiple signals, print their values separated by spaces in a single line, followed by a
 newline using <code class="docutils literal notranslate"><span class="pre">println()</span></code>.</p>
 <p><strong>Example</strong>: Print the value of the potentiometer and a sine wave:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
@@ -190,15 +190,24 @@ newline using <code class="docutils literal notranslate"><span class="pre">print
 <section id="types-of-waves">
 <h2>Types of Waves<a class="headerlink" href="#types-of-waves" title="Link to this heading"></a></h2>
 <p>Plaquette provides 3 types of waves:</p>
-<ul class="simple">
+<ul>
 <li><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a>: Alternates between two levels with sharp transitions. Useful for creating rhythmic
 on-off patterns such as blinking LEDs or simple tone generators for buzzers. Possesses some properties
-of digital units.</p></li>
+of digital units.</p>
+<a class="reference internal image-reference" href="_images/Plaquette-SquareWave.png"><img alt="_images/Plaquette-SquareWave.png" class="align-center" src="_images/Plaquette-SquareWave.png" style="width: 50%;" />
+</a>
+</li>
 <li><p><a class="reference internal" href="TriangleWave.html"><span class="doc">TriangleWave</span></a>: Smoothly transitions between two levels in a linear fashion. By varying the
 width of the wave, you can create a <strong>sawtooth wave</strong> (width = 0) or an <strong>inverted sawtooth wave</strong>
-(width = 1). This is ideal for simulating ramping motions or gradual changes in brightness.</p></li>
+(width = 1). This is ideal for simulating ramping motions or gradual changes in brightness.</p>
+<a class="reference internal image-reference" href="_images/Plaquette-TriangleWave.png"><img alt="_images/Plaquette-TriangleWave.png" class="align-center" src="_images/Plaquette-TriangleWave.png" style="width: 50%;" />
+</a>
+</li>
 <li><p><a class="reference internal" href="SineWave.html"><span class="doc">SineWave</span></a>: Produces a sinusoidal waveform for smoother modulation. Commonly used for
-creating natural, flowing transitions, such as smooth dimming or speed control.</p></li>
+creating natural, flowing transitions, such as smooth dimming or speed control.</p>
+<a class="reference internal image-reference" href="_images/Plaquette-SineWave.png"><img alt="_images/Plaquette-SineWave.png" class="align-center" src="_images/Plaquette-SineWave.png" style="width: 50%;" />
+</a>
+</li>
 </ul>
 <p>You can visualize these waves on the Serial Plotter by streaming their values.</p>
 <p><strong>Example</strong>: Display different waves for comparison:</p>
@@ -222,14 +231,10 @@ creating natural, flowing transitions, such as smooth dimming or speed control.<
 </section>
 <section id="wave-properties">
 <h2>Wave Properties<a class="headerlink" href="#wave-properties" title="Link to this heading"></a></h2>
-<p>Oscillators are defined by their <strong>phase</strong>, <strong>period</strong>, <strong>frequency</strong>, <strong>amplitude</strong>, and <strong>width</strong>.
+<p>Oscillators are defined by their <strong>period</strong>, <strong>width</strong>, <strong>frequency</strong>, <strong>amplitude</strong>, and <strong>phase</strong>.
 Let us explore these properties and their corresponding functions:</p>
 <ul>
-<li><p><strong>phase()</strong>: Sets the initial point in the wave cycle (in range [0, 1]).</p></li>
 <li><p><strong>period()</strong>: Sets the duration of one cycle in seconds.</p></li>
-<li><p><strong>frequency()</strong>: Inverse of period; sets the cycles per second (Hz).</p></li>
-<li><p><strong>bpm()</strong>: Alternative way to set the frequency using beats per minute (BPM).</p></li>
-<li><p><strong>amplitude()</strong>: Sets the peak level of the wave (as % of max) (in range [0, 1]);</p></li>
 <li><p><strong>width()</strong>: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
 For each wave type, this property has a specific effect:</p>
 <blockquote>
@@ -240,10 +245,24 @@ For each wave type, this property has a specific effect:</p>
 </ul>
 </div></blockquote>
 </li>
+<li><p><strong>frequency()</strong>: Inverse of period; sets the cycles per second (Hz).</p></li>
+<li><p><strong>bpm()</strong>: Alternative way to set the frequency using beats per minute (BPM).</p></li>
+<li><p><strong>phase()</strong>: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).</p></li>
+<li><p><strong>amplitude()</strong>: Sets the peak level of the wave (as % of max) (in range [0, 1]);</p></li>
 </ul>
 <section id="initializing-properties">
 <h3>Initializing Properties<a class="headerlink" href="#initializing-properties" title="Link to this heading"></a></h3>
-<p>There properties can be initialized in the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> to build a specific waveform.</p>
+<p>The period and width of a waveform can be initialized when the unit is created.</p>
+<p><strong>Example</strong>: Assign period and width when creating the unit:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="n">TriangleWave</span><span class="w"> </span><span class="n">wave1</span><span class="p">;</span><span class="w">           </span><span class="c1">// period = 1 sec (default), width = 0.5 (default)</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="nf">wave2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w">      </span><span class="c1">// period = 2 sec, width = 0.5 (default)</span>
+<span class="n">TriangleWave</span><span class="w"> </span><span class="nf">wave3</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c1">// period = 3 sec, width = 0.1</span>
+</pre></div>
+</div>
+<p>Other properties are typically initialized in the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> to build a specific waveform.
+It is also common to initialize period and width in the same way for more expressive code.</p>
 <p><strong>Example</strong>: Assign some properties of a wave at program startup:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 

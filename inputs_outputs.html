@@ -6,23 +6,23 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inputs and Outputs &mdash; Plaquette 0.6.4 documentation</title>
+  <title>Inputs and Outputs &mdash; Plaquette 0.6.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=433f9493" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
 
   
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=73d9a94e"></script>
+      <script src="_static/documentation_options.js?v=d7a12d57"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Generating Waves" href="waves.html" />
+    <link rel="next" title="Generating Waveforms" href="waves.html" />
     <link rel="prev" title="Getting started" href="getting_started.html" /> 
 </head>
 
@@ -84,13 +84,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#modes-for-inputs-and-outputs">Modes for Inputs and Outputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#digitalin-modes-direct-inverted-and-internal-pullup"><strong>DigitalIn Modes: DIRECT, INVERTED, and INTERNAL_PULLUP</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#analogin-modes-direct-and-inverted"><strong>AnalogIn Modes: DIRECT and INVERTED</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#digitalout-and-analogout-modes-source-and-sink"><strong>DigitalOut and AnalogOut Modes: SOURCE and SINK</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digitalout-and-analogout-modes-direct-and-inverted"><strong>DigitalOut and AnalogOut Modes: DIRECT and INVERTED</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
@@ -151,7 +151,7 @@ different configuration modes of input and output units.</p>
 <p>Before diving into code, let’s first clarify the difference between <strong>digital</strong> and <strong>analog</strong>
 signals.</p>
 <ul class="simple">
-<li><p><strong>Digital</strong> signals represent binary states: ON or OFF, HIGH or LOW, 1 or 0. Examples of digital
+<li><p><strong>Digital</strong> signals represent binary states: ON vs OFF, HIGH vs LOW, 1 vs 0, true vs false. Examples of digital
 inputs include buttons and presence sensors, while digital outputs might control LEDs or relays.</p></li>
 <li><p><strong>Analog</strong> signals represent a continuous range of values. Think of a dimmer switch (potentiometer)
 or a light sensor that measures brightness levels. Analog outputs control devices such as LEDs with
@@ -346,7 +346,7 @@ debounce a button:</p>
 <p>For analog signals, smoothing helps stabilize noisy data.</p>
 <p>Here’s how you can smooth a light sensor (photoresistor). For this circuit, you will need to
 create a simple <a class="reference external" href="https://learn.sparkfun.com/tutorials/voltage-dividers">voltage divider circuit</a>.
-Connect the photoresistor between the ground (GND) and the analog input pin (<cite>A0`</cite>). Then connect
+Connect the photoresistor between the ground (GND) and the analog input pin (<code class="docutils literal notranslate"><span class="pre">A0</span></code>). Then connect
 a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
 For example, for a 1k <span class="math notranslate nohighlight">\(\Omega\)</span> - 10k <span class="math notranslate nohighlight">\(\Omega\)</span> photoresistor you could use a fixed
 resistor of about 5.5k <span class="math notranslate nohighlight">\(\Omega\)</span>).</p>
@@ -522,15 +522,15 @@ logic.</p>
 </li>
 </ul>
 </section>
-<section id="digitalout-and-analogout-modes-source-and-sink">
-<h3><strong>DigitalOut and AnalogOut Modes: SOURCE and SINK</strong><a class="headerlink" href="#digitalout-and-analogout-modes-source-and-sink" title="Link to this heading"></a></h3>
+<section id="digitalout-and-analogout-modes-direct-and-inverted">
+<h3><strong>DigitalOut and AnalogOut Modes: DIRECT and INVERTED</strong><a class="headerlink" href="#digitalout-and-analogout-modes-direct-and-inverted" title="Link to this heading"></a></h3>
 <p>The <a class="reference internal" href="DigitalOut.html"><span class="doc">DigitalOut</span></a> and <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> units control the flow of current and can operate in two modes:</p>
 <ul>
-<li><p><strong>SOURCE</strong> (default): The pin provides current when ON, suitable for devices like LEDs connected
+<li><p><strong>DIRECT</strong> (default): The pin provides current when ON, suitable for devices like LEDs connected
 between the pin and ground.</p>
-<p><strong>Example</strong>: LED in source mode. Connect the LED anode (long leg) to pin 9 and the cathode
+<p><strong>Example</strong>: LED in direct mode. Connect the LED anode (long leg) to pin 9 and the cathode
 (short leg) to ground, with a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> in series.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">SOURCE</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">DIRECT</span><span class="p">);</span>
 <span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
@@ -541,11 +541,11 @@ between the pin and ground.</p>
 </pre></div>
 </div>
 </li>
-<li><p><strong>SINK</strong>: The pin sinks current when ON, suitable for LEDs connected between a positive
-voltage and the pin.</p>
-<p><strong>Example</strong>: LED in sink mode. Connect the LED anode to +5V (Vcc) and the cathode to pin 9, with a
+<li><p><strong>INVERTED</strong>: The pin emits zero volts (GND) when ON so the current “sinks” to the pin. Suitable for digital outputs
+connected between a positive voltage and the pin.</p>
+<p><strong>Example</strong>: LED in inverted mode. Connect the LED anode (long leg) to +5V (Vcc) and the cathode to pin 9, with a
 330 <span class="math notranslate nohighlight">\(\Omega\)</span> resistor in series.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">SINK</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">INVERTED</span><span class="p">);</span>
 </pre></div>
 </div>
 </li>
@@ -566,7 +566,7 @@ timing and signal generation features to add even more complexity and creativity
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="waves.html" class="btn btn-neutral float-right" title="Generating Waves" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="waves.html" class="btn btn-neutral float-right" title="Generating Waveforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -17,7 +17,7 @@ Digital vs Analog
 Before diving into code, let's first clarify the difference between **digital** and **analog**
 signals.
 
-- **Digital** signals represent binary states: ON or OFF, HIGH or LOW, 1 or 0. Examples of digital
+- **Digital** signals represent binary states: ON vs OFF, HIGH vs LOW, 1 vs 0, true vs false. Examples of digital
   inputs include buttons and presence sensors, while digital outputs might control LEDs or relays.
 - **Analog** signals represent a continuous range of values. Think of a dimmer switch (potentiometer)
   or a light sensor that measures brightness levels. Analog outputs control devices such as LEDs with 
@@ -235,7 +235,7 @@ For analog signals, smoothing helps stabilize noisy data.
 
 Here's how you can smooth a light sensor (photoresistor). For this circuit, you will need to
 create a simple `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
-Connect the photoresistor between the ground (GND) and the analog input pin (`A0``). Then connect
+Connect the photoresistor between the ground (GND) and the analog input pin (``A0``). Then connect
 a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
 For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
 resistor of about 5.5k :math:`\Omega`).
@@ -428,19 +428,19 @@ voltage is interpreted:
 
       AnalogIn lightSensor(A0, INVERTED);
 
-**DigitalOut and AnalogOut Modes: SOURCE and SINK**
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**DigitalOut and AnalogOut Modes: DIRECT and INVERTED**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and can operate in two modes:
 
-- **SOURCE** (default): The pin provides current when ON, suitable for devices like LEDs connected
+- **DIRECT** (default): The pin provides current when ON, suitable for devices like LEDs connected
   between the pin and ground.
 
-  **Example**: LED in source mode. Connect the LED anode (long leg) to pin 9 and the cathode 
+  **Example**: LED in direct mode. Connect the LED anode (long leg) to pin 9 and the cathode 
   (short leg) to ground, with a 330 :math:`\Omega` in series.
 
   .. code-block:: cpp
 
-      AnalogOut led(9, SOURCE);
+      AnalogOut led(9, DIRECT);
       SineWave wave(1.0);
 
       void begin() {}
@@ -449,15 +449,15 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
         wave >> led;
       }
 
-- **SINK**: The pin sinks current when ON, suitable for LEDs connected between a positive
-  voltage and the pin.
+- **INVERTED**: The pin emits zero volts (GND) when ON so the current "sinks" to the pin. Suitable for digital outputs 
+  connected between a positive voltage and the pin.
 
-  **Example**: LED in sink mode. Connect the LED anode to +5V (Vcc) and the cathode to pin 9, with a 
+  **Example**: LED in inverted mode. Connect the LED anode (long leg) to +5V (Vcc) and the cathode to pin 9, with a 
   330 :math:`\Omega` resistor in series.
 
   .. code-block:: cpp
 
-      AnalogOut led(9, SINK);
+      AnalogOut led(9, INVERTED);
 
 Conclusion
 ----------

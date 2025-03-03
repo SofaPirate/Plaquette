@@ -1,6 +1,6 @@
-================
-Generating Waves
-================
+====================
+Generating Waveforms
+====================
 
 In this section, we will explore waves (also called oscillators), essential tools for creating dynamic 
 and expressive media. Oscillators generate repeating waveforms, which can control various outputs such 
@@ -49,7 +49,7 @@ sensor values and waveforms.
 Multiple Signals
 ~~~~~~~~~~~~~~~~
 
-For multiple waveforms, print their values separated by spaces in a single line, followed by a 
+For multiple signals, print their values separated by spaces in a single line, followed by a 
 newline using ``println()``.
 
 **Example**: Print the value of the potentiometer and a sine wave:
@@ -79,12 +79,25 @@ Plaquette provides 3 types of waves:
   on-off patterns such as blinking LEDs or simple tone generators for buzzers. Possesses some properties
   of digital units.
 
+  .. image:: images/Plaquette-SquareWave.png
+    :width: 50%
+    :align: center
+
 - :doc:`TriangleWave`: Smoothly transitions between two levels in a linear fashion. By varying the
   width of the wave, you can create a **sawtooth wave** (width = 0) or an **inverted sawtooth wave**
   (width = 1). This is ideal for simulating ramping motions or gradual changes in brightness.
 
+  .. image:: images/Plaquette-TriangleWave.png
+    :width: 50%
+    :align: center
+
 - :doc:`SineWave`: Produces a sinusoidal waveform for smoother modulation. Commonly used for
   creating natural, flowing transitions, such as smooth dimming or speed control.
+
+  .. image:: images/Plaquette-SineWave.png
+    :width: 50%
+    :align: center
+
 
 You can visualize these waves on the Serial Plotter by streaming their values.
 
@@ -111,25 +124,38 @@ You can visualize these waves on the Serial Plotter by streaming their values.
 Wave Properties
 ---------------
 
-Oscillators are defined by their **phase**, **period**, **frequency**, **amplitude**, and **width**. 
+Oscillators are defined by their **period**, **width**, **frequency**, **amplitude**, and **phase**. 
 Let us explore these properties and their corresponding functions:
 
-- **phase()**: Sets the initial point in the wave cycle (in range [0, 1]).
 - **period()**: Sets the duration of one cycle in seconds.
-- **frequency()**: Inverse of period; sets the cycles per second (Hz).
-- **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
-- **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]);
 - **width()**: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
   For each wave type, this property has a specific effect:
 
     - For :doc:`SquareWave`, it adjusts the duty cycle (the ratio of ON to OFF time).
     - For :doc:`TriangleWave`, it determines whether the wave skews towards a sawtooth (width = 0) or inverted sawtooth (width = 1).
     - For :doc:`SineWave`, it shifts the inflection points of the wave, altering its symmetry.
+- **frequency()**: Inverse of period; sets the cycles per second (Hz).
+- **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
+- **phase()**: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).
+- **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]);
 
 Initializing Properties
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-There properties can be initialized in the ``begin()`` to build a specific waveform.
+The period and width of a waveform can be initialized when the unit is created.
+
+**Example**: Assign period and width when creating the unit:
+
+.. code-block:: cpp
+
+    #include <Plaquette.h>
+
+    TriangleWave wave1;           // period = 1 sec (default), width = 0.5 (default)
+    TriangleWave wave2(2.0);      // period = 2 sec, width = 0.5 (default)
+    TriangleWave wave3(3.0, 0.1); // period = 3 sec, width = 0.1
+
+Other properties are typically initialized in the ``begin()`` to build a specific waveform.
+It is also common to initialize period and width in the same way for more expressive code.
 
 **Example**: Assign some properties of a wave at program startup:
 

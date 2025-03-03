@@ -13,7 +13,7 @@ This function returns the number of seconds since the program started.
 
    #include <Plaquette.h>
 
-   DigitalOut led(13, SOURCE);
+   DigitalOut led(13, DIRECT);
 
    void begin() {
      led.off();
