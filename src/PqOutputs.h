@@ -31,7 +31,7 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (SOURCE or SINK)
+   * @param mode the mode (DIRECT or INVERTED)
    */
   AnalogOut(uint8_t pin, uint8_t mode=DIRECT);
   virtual ~AnalogOut() {}
@@ -41,6 +41,9 @@ public:
 
   /// Inverts value by calling ``put(1-get())`` (eg. 0.2 becomes 0.8).
   virtual void invert() { put(1-get()); }
+
+  /// Writes raw value to the pin.
+  void rawWrite(int value);
 
 protected:
   virtual void step();
@@ -52,7 +55,7 @@ public:
   /**
    * Constructor.
    * @param pin the pin number
-   * @param mode the mode (SOURCE or SINK)
+   * @param mode the mode (DIRECT or INVERTED)
    */
   DigitalOut(uint8_t pin, uint8_t mode=DIRECT);
 
@@ -60,6 +63,9 @@ public:
 
   /// Changes the mode of the component.
   virtual void mode(uint8_t mode);
+  
+  /// Write HIGH or LOW value to the pin.
+  void rawWrite(int value);
 
 protected:
   virtual void begin();

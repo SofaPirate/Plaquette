@@ -19,6 +19,7 @@
  */
 
 #include "PqInputs.h"
+#include "pq_globals.h"
 #include "pq_time.h"
 #include "pq_map_real.h"
 
@@ -133,13 +134,6 @@ AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
   : Unit(), PinUnit(pin, mode), Smoothable()
 {}
 
-#ifdef ESP8266
-#define ANALOG_READ_MAX_VALUE 1024
-#elif defined(ESP32) or defined(ARDUINO_ARCH_ESP32)
-#define ANALOG_READ_MAX_VALUE 4095 // applies only to default resolution of 12 bits
-#else
-#define ANALOG_READ_MAX_VALUE 1023
-#endif
 float AnalogIn::_read() {
   // Convert
   int rawValue = analogRead(_pin);
@@ -160,6 +154,10 @@ float AnalogIn::mapTo(float toLow, float toHigh) {
   return mapFrom01(get(), toLow, toHigh);
 }
 
+int AnalogIn::rawRead() const {
+  return analogRead(_pin);
+}
+
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
   : DigitalSource(), PinUnit(pin, mode), Debounceable()
 {}
@@ -174,6 +172,10 @@ bool DigitalIn::_isOn() {
 void DigitalIn::mode(uint8_t mode) {
   _mode = mode;
   begin();
+}
+
+int DigitalIn::rawRead() const {
+  return digitalRead(_pin);
 }
 
 void DigitalIn::begin() {

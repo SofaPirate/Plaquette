@@ -154,6 +154,9 @@ public:
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh);
 
+  /// Reads raw value from the pin.
+  int rawRead() const;
+
 protected:
   virtual void begin();
   virtual void step();
@@ -173,6 +176,9 @@ public:
 
   /// Changes the mode of the component.
   virtual void mode(uint8_t mode);
+
+  /// Reads raw value from the pin as HIGH or LOW.
+  int rawRead() const;
 
 protected:
   virtual bool _isOn();

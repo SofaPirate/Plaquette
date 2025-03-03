@@ -32,6 +32,7 @@
 
 #include "HybridArrayList.h"
 #include "PqEvents.h"
+#include "pq_globals.h"
 #include "pq_time.h"
 #include "pq_map_real.h"
 

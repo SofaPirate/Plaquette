@@ -19,6 +19,7 @@
  */
 
 #include "PqOutputs.h"
+#include "pq_globals.h"
 
 namespace pq {
 
@@ -30,21 +31,28 @@ float AnalogOut::put(float value) {
   // Make sure value is in [0, 1].
   _value = constrain(value, 0, 1);
 
-  // Remap to [0, 255].
-  value = _value * 255;
+  // Remap to [0, ANALOG_WRITE_MAX_VALUE].
+  value = _value * ANALOG_WRITE_MAX_VALUE;
   value = round(value);
   // Write to analog output (inverting if needed).
 
   return _value;
 }
 
-void AnalogOut::step() {
 #if (defined(ESP32) or defined(ARDUINO_ARCH_ESP32)) and defined(SOC_DAC_SUPPORTED)
-  dacWrite // use dacWrite if available
+#define analogWriteFunction dacWrite // use dacWrite if available
 #else
-  analogWrite
+#define analogWriteFunction analogWrite
 #endif
-    (_pin, (_mode == SOURCE ? _value : 255 - _value));
+
+void AnalogOut::rawWrite(int value) {
+  value = constrain(value, 0, ANALOG_WRITE_MAX_VALUE);
+  _value = (_mode == DIRECT ? value : ANALOG_WRITE_MAX_VALUE - value) / (float)ANALOG_WRITE_MAX_VALUE;
+  analogWriteFunction(_pin, value);
+}
+
+void AnalogOut::step() {
+  analogWriteFunction(_pin, (_mode == SOURCE ? _value : ANALOG_WRITE_MAX_VALUE - _value));
 }
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
@@ -56,6 +64,11 @@ void DigitalOut::mode(uint8_t mode) {
   begin();
 }
 
+void DigitalOut::rawWrite(int value) {
+  putOn(_mode == DIRECT ? value == HIGH : value == LOW);
+  digitalWrite(_pin, value);
+}
+
 void DigitalOut::begin() {
   pinMode(_pin, OUTPUT);
 }
@@ -64,7 +77,7 @@ void DigitalOut::step() {
   // Update change state.
   _updateChangeState();
   // Write to output.
-  digitalWrite(_pin, _onValue ^ (_mode == SOURCE) ? LOW : HIGH);
+  digitalWrite(_pin, _onValue ^ (_mode == DIRECT) ? LOW : HIGH);
 }
 
 } // namespace pq

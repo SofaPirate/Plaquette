@@ -39,4 +39,42 @@
   #define IEEE_754_SUPPORTED
 #endif
 
+
+#if defined(ARDUINO_ARCH_AVR)
+    // Arduino Uno, Nano, Mega (8-bit PWM, 10-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 255
+    #define ANALOG_READ_MAX_VALUE 1023
+
+#elif defined(ARDUINO_ARCH_SAMD)
+    // Arduino Zero, MKR series (12-bit PWM, 12-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 4095
+    #define ANALOG_READ_MAX_VALUE 4095
+
+#elif defined(ARDUINO_ARCH_ESP8266)
+    // ESP8266 (10-bit PWM, 10-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 1023
+    #define ANALOG_READ_MAX_VALUE 1024 // this is specific to ESP8266, the max is 1024 NOT 1023
+
+#elif defined(ARDUINO_ARCH_ESP32)
+    // ESP32 (8-bit default PWM, 12-bit default ADC, configurable)
+    #define ANALOG_WRITE_MAX_VALUE 255   // Can be configured up to 16-bit
+    #define ANALOG_READ_MAX_VALUE 4095   // Default 12-bit, configurable to 13-bit (8191)
+
+#elif defined(ARDUINO_ARCH_SAM)
+    // Arduino Due (12-bit PWM, 12-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 4095
+    #define ANALOG_READ_MAX_VALUE 4095
+
+#elif defined(ARDUINO_ARCH_STM32)
+    // STM32 boards (12-bit PWM, 12-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 4095
+    #define ANALOG_READ_MAX_VALUE 4095
+
+#else
+    // Fallback if architecture is unknown (assume standard 8-bit PWM, 10-bit ADC)
+    #define ANALOG_WRITE_MAX_VALUE 255
+    #define ANALOG_READ_MAX_VALUE 1023
+#endif
+
+
 #endif
