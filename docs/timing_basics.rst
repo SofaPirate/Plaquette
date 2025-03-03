@@ -81,7 +81,7 @@ Let us dive into these units and see what each one of them has to offer.
 Keeping Track of Time with Chronometer
 --------------------------------------
 
-While :doc:`seconds()` can only give you the time since the start of the program, the :doc:`Chronometer` unit 
+While :doc:`seconds` can only give you the time since the start of the program, the :doc:`Chronometer` unit 
 allows you to measure the time elapsed since it was started, like a real-life stopwatch. It is your basic
 building block for creating responsive systems where timing matters.
 
