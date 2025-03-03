@@ -90,6 +90,10 @@ debounce  KEYWORD2
 noDebounce  KEYWORD2
 debounceMode  KEYWORD2
 
+# In/Out
+rawRead  KEYWORD2
+rawWrite  KEYWORD2
+
 # Window-based
 infiniteTimeWindow	KEYWORD2
 timeWindow	KEYWORD2
