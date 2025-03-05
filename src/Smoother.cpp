@@ -60,7 +60,7 @@ float Smoother::put(float value) {
   return get();
 }
 
-void Smoother::step() {
+void Smoother::step(Engine& engine) {
   // If no values were added during this step, update using previous value.
   if (_nValuesStep == 0)
     update(_currentValueStep, sampleRate()); // in other words: repeat update with previous value

@@ -37,7 +37,7 @@ float AbstractServoOut::put(float value)
   return _value;
 }
 
-void AbstractServoOut::begin() {
+void AbstractServoOut::begin(Engine& engine) {
   attach(_pin);
 }
 
@@ -56,8 +56,8 @@ float ServoOut::getAngle() {
 
 ContinuousServoOut::ContinuousServoOut(uint8_t pin) : AbstractServoOut(pin) {}
 
-void ContinuousServoOut::begin() {
-  AbstractServoOut::begin();
+void ContinuousServoOut::begin(Engine& engine) {
+  AbstractServoOut::begin(Engine& engine);
   stop();
 }
 

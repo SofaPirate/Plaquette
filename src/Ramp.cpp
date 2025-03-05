@@ -162,12 +162,12 @@ void Ramp::go(float to, easing_function easing_) {
   go(to, _durationOrSpeed(), easing_);
 }
 
-void Ramp::begin() {
+void Ramp::begin(Engine& engine) {
   set(0);
   _finishedState = NOT_FINISHED;
 }
 
-void Ramp::step() {
+void Ramp::step(Engine& engine) {
   // Call parent update.
   update();
 

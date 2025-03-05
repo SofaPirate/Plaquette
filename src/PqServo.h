@@ -45,7 +45,7 @@ public:
   uint8_t pin() const { return _pin; }
 
 protected:
-  virtual void begin();
+  virtual void begin(Engine& engine);
 
   // Servo pin (must be PWM).
   uint8_t _pin;
@@ -90,7 +90,7 @@ public:
   virtual void reverse();
 
 protected:
-  virtual void begin();
+  virtual void begin(Engine& engine);
 };
 
 } // namespace pq

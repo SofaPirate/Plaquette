@@ -143,7 +143,7 @@ public:
   virtual float mapTo(float toLow, float toHigh);
 
 protected:
-  virtual void step();
+  virtual void step(Engine& engine);
   virtual float update(float value, float sampleRate=1);
   
   // Returns clamped value.

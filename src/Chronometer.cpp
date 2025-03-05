@@ -30,11 +30,11 @@ float Chronometer::put(float value) {
   return get();
 }
   
-void Chronometer::begin() {
+void Chronometer::begin(Engine& engine) {
   stop();
 }
 
-void Chronometer::step() {
+void Chronometer::step(Engine& engine) {
   update();
 }
 

@@ -33,7 +33,7 @@ StreamIn::StreamIn(Stream& stream) :
   _stream(&stream)
 {}
 
-void StreamIn::begin() {
+void StreamIn::begin(Engine& engine) {
   _nextValue = 0;
   _nextIsValid = false;
   _nextIsNegative = false;
@@ -42,7 +42,7 @@ void StreamIn::begin() {
   _nextFraction = 1;
 }
 
-void StreamIn::step() {
+void StreamIn::step(Engine& engine) {
   // Reset value changed flag.
   _valueUpdated = false;
 

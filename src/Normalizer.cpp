@@ -135,7 +135,7 @@ float Normalizer::put(float value) {
   return _value;
 }
 
-void Normalizer::step() {
+void Normalizer::step(Engine& engine) {
   // If no values were added during this step, update using previous value.
   // In other words: repeat update with previous value.
   if (_nValuesStep == 0) {

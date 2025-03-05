@@ -83,8 +83,8 @@ public:
   virtual void onBang(EventCallback callback);
 
 protected:
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
 
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);

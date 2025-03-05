@@ -142,11 +142,11 @@ float AnalogIn::_read() {
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
-void AnalogIn::begin() {
+void AnalogIn::begin(Engine& engine) {
   _begin(); 
 }
 
-void AnalogIn::step() {
+void AnalogIn::step(Engine& engine) {
   _step();
 }
 
@@ -169,20 +169,24 @@ bool DigitalIn::_isOn() {
   return isHigh;
 }
 
+void DigitalIn::_init() {
+  pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
+}
+
 void DigitalIn::mode(uint8_t mode) {
   _mode = mode;
-  begin();
+  _init();
 }
 
 int DigitalIn::rawRead() const {
   return digitalRead(_pin);
 }
 
-void DigitalIn::begin() {
-  pinMode(_pin, _mode == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
+void DigitalIn::begin(Engine& engine) {
+  _init();
 }
 
-void DigitalIn::step() {
+void DigitalIn::step(Engine& engine) {
    // Perform basic step.
   _step();
   // Save value.

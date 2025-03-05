@@ -45,8 +45,8 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {

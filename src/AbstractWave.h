@@ -128,8 +128,8 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
 
   // Returns value in [0, 1] as fixed-point value (to be defined by subclasses).
   virtual fixed_t _getFixed(fixed_t t) = 0;

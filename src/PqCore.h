@@ -214,6 +214,8 @@ private:
   // Used to keep track of events.
   EventManager _eventManager;
 
+  Engine& thisRef;
+
   static micro_seconds_t _totalGlobalMicroSeconds;
 
 private:
@@ -268,8 +270,8 @@ public:
   static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
-  virtual void begin() {}
-  virtual void step() {}
+  virtual void begin(Engine& engine) {}
+  virtual void step(Engine& engine) {}
 
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
@@ -601,7 +603,7 @@ protected:
 void Engine::preStep() {
   // Update every component.
   for (size_t i=0; i<_units.size(); i++)
-    _units[i]->step();
+    _units[i]->step(thisRef);
 
   // Look for events.
   _eventManager.step();

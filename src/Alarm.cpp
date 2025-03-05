@@ -24,11 +24,11 @@ namespace pq {
 
 Alarm::Alarm(float duration_) : DigitalSource(), AbstractTimer(duration_) {}
 
-void Alarm::begin() {
+void Alarm::begin(Engine& engine) {
   set(0);
 }
 
-void Alarm::step() {
+void Alarm::step(Engine& engine) {
   // Call parent update.
   update();
 

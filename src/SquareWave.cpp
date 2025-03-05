@@ -29,8 +29,8 @@ bool SquareWave::isOn() {
   return _onValue;
 }
 
-void SquareWave::step() {
-  AbstractWave::step();
+void SquareWave::step(Engine& engine) {
+  AbstractWave::step(engine);
 
   // Update change state.
   _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;

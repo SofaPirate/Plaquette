@@ -46,7 +46,7 @@ public:
   virtual float get() { return MovingAverage::get(); }
 
 protected:
-  virtual void step();
+  virtual void step(Engine& engine);
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentValueStep;

@@ -46,7 +46,7 @@ public:
   void rawWrite(int value);
 
 protected:
-  virtual void step();
+  virtual void step(Engine& engine);
 };
 
 /// A generic class representing a simple digital output.
@@ -68,8 +68,10 @@ public:
   void rawWrite(int value);
 
 protected:
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
+
+  virtual void _init();
 };
 
 } // namespace pq

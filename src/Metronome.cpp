@@ -27,12 +27,12 @@ Metronome::Metronome(float period_) : DigitalUnit(), _phase(0), _onValue(0) {
   period(period_);
 }
 
-void Metronome::begin() {
+void Metronome::begin(Engine& engine) {
   _phaseTime = floatToPhaseTime(_phase);
   _onValue = 0;
 }
 
-void Metronome::step() {
+void Metronome::step(Engine& engine) {
   // Adjust phase time.
   _onValue = phaseTimeUpdate(_phaseTime, _period, sampleRate());
 }

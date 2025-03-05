@@ -32,11 +32,11 @@ AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _perio
   amplitude(1.0f);
 }
 
-void AbstractWave::begin() {
+void AbstractWave::begin(Engine& engine) {
   start();
 }
 
-void AbstractWave::step() {
+void AbstractWave::step(Engine& engine) {
   // Update phase time.
   if (isRunning())
     phaseTimeUpdate(_phaseTime, _period, sampleRate());

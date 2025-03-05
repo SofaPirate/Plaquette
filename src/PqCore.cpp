@@ -25,9 +25,7 @@ namespace pq {
 
 Engine& Plaquette = Engine::singleton();
 
-Engine::Engine() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
-}
-
+Engine::Engine() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true), thisRef(*this) {}
 Engine::~Engine() {
 }
 
@@ -51,7 +49,7 @@ void Engine::preBegin(unsigned long baudrate) {
 
   // Initialize all components.
   for (size_t i=0; i<_units.size(); i++) {
-    _units[i]->begin();
+    _units[i]->begin(thisRef);
   }
 
   // Units have been initialized.
@@ -94,7 +92,7 @@ void Engine::add(Unit* component) {
   // Append component to list.
   _units.add(component);
   if (_beginCompleted)
-    component->begin();
+    component->begin(thisRef);
 }
 
 void Engine::remove(Unit* component) {

@@ -158,8 +158,8 @@ public:
   int rawRead() const;
 
 protected:
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
   virtual float _read();
 };
 
@@ -182,9 +182,10 @@ public:
 
 protected:
   virtual bool _isOn();
+  virtual void _init();
 
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
 };
 
 } // namespace pq

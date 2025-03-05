@@ -156,8 +156,8 @@ private:
   };
 
 protected:
-  virtual void begin();
-  virtual void step();
+  virtual void begin(Engine& engine);
+  virtual void step(Engine& engine);
 
   // Returns current absolute time (in seconds).
   virtual float _time() const;

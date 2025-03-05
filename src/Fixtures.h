@@ -149,12 +149,12 @@ public:
   operator float() { return get(); }
 
 protected:
-  virtual void begin() {
+  virtual void begin(Engine& engine) {
     _callbacks.begin(*_object);
     _begin(); 
   }
 
-  virtual void step() {
+  virtual void step(Engine& engine) {
     _callbacks.step(*_object);
     _step(); 
   }
@@ -195,12 +195,12 @@ public:
   virtual operator float() { return get(); }
 
 protected:
-  virtual void begin() {
+  virtual void begin(Engine& engine) {
     _callbacks.begin();
     _begin(); 
   }
 
-  virtual void step() {
+  virtual void step(Engine& engine) {
     _callbacks.step();
     _step(); 
   }
@@ -334,12 +334,12 @@ public:
     : _object(&object), _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
-  virtual void begin() {
+  virtual void begin(Engine& engine) {
     _callbacks.begin(*_object);
     _begin();
   }
 
-  virtual void step() {
+  virtual void step(Engine& engine) {
     _callbacks.step(*_object);
     // Perform basic step.
     _step();
@@ -381,12 +381,12 @@ public:
     : _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
-  virtual void begin() {
+  virtual void begin(Engine& engine) {
     _callbacks.begin();
     _begin();
   }
 
-  virtual void step() {
+  virtual void step(Engine& engine) {
     _callbacks.step();
     // Perform basic step.
     _step();
