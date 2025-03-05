@@ -23,20 +23,20 @@
 
 namespace pq {
 
-PlaquetteEnv& Plaquette = PlaquetteEnv::singleton();
+Engine& Plaquette = Engine::singleton();
 
-PlaquetteEnv::PlaquetteEnv() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
+Engine::Engine() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {
 }
 
-PlaquetteEnv::~PlaquetteEnv() {
+Engine::~Engine() {
 }
 
-PlaquetteEnv& PlaquetteEnv::singleton() {
-  static PlaquetteEnv instance;
+Engine& Engine::singleton() {
+  static Engine instance;
   return instance;
 }
 
-void PlaquetteEnv::preBegin(unsigned long baudrate) {
+void Engine::preBegin(unsigned long baudrate) {
   // Initialize serial.
   if (baudrate)
     beginSerial(baudrate);
@@ -58,12 +58,12 @@ void PlaquetteEnv::preBegin(unsigned long baudrate) {
   _beginCompleted = true;
 }
 
-void PlaquetteEnv::postBegin() {
+void Engine::postBegin() {
   // Start timer.
   _microSeconds.micros64 = microSeconds(false);
 }
 
-void PlaquetteEnv::end() {
+void Engine::end() {
   if (_firstRun) {
     postBegin();
     _firstRun = false;
@@ -72,19 +72,19 @@ void PlaquetteEnv::end() {
     postStep();
 }
 
-float PlaquetteEnv::seconds(bool referenceTime) {
+float Engine::seconds(bool referenceTime) {
   return microSeconds(referenceTime) * SECONDS_TO_MICROS;
 }
 
-uint32_t PlaquetteEnv::milliSeconds(bool referenceTime) {
+uint32_t Engine::milliSeconds(bool referenceTime) {
   return static_cast<uint32_t>(microSeconds(referenceTime) * MILLIS_TO_MICROS);
 }
 
-uint64_t PlaquetteEnv::microSeconds(bool referenceTime) {
+uint64_t Engine::microSeconds(bool referenceTime) {
   return (referenceTime ? _microSeconds.micros64 : _updateGlobalMicroSeconds().micros64);
 }
 
-void PlaquetteEnv::add(Unit* component) {
+void Engine::add(Unit* component) {
   for (size_t i=0; i<_units.size(); i++) {
     if (_units[i] == component) {
       return; // do not add existing component
@@ -97,14 +97,14 @@ void PlaquetteEnv::add(Unit* component) {
     component->begin();
 }
 
-void PlaquetteEnv::remove(Unit* component) {
+void Engine::remove(Unit* component) {
   // Remove component from list.
   _units.removeItem(component);
 }
 
-micro_seconds_t PlaquetteEnv::_totalGlobalMicroSeconds = { 0 };
+micro_seconds_t Engine::_totalGlobalMicroSeconds = { 0 };
 
-micro_seconds_t PlaquetteEnv::_updateGlobalMicroSeconds() {
+micro_seconds_t Engine::_updateGlobalMicroSeconds() {
   // Get current global time.
   uint32_t us = micros();
   uint32_t prevUs = _totalGlobalMicroSeconds.micros32.base;
@@ -119,24 +119,24 @@ micro_seconds_t PlaquetteEnv::_updateGlobalMicroSeconds() {
   return _totalGlobalMicroSeconds;
 }
 
-bool PlaquetteEnv::autoSampleRate() { return (_targetSampleRate <= 0); }
+bool Engine::autoSampleRate() { return (_targetSampleRate <= 0); }
 
-void PlaquetteEnv::enableAutoSampleRate() {
+void Engine::enableAutoSampleRate() {
   _targetSampleRate = 0;
 }
 
-void PlaquetteEnv::sampleRate(float sampleRate) {
+void Engine::sampleRate(float sampleRate) {
   _targetSampleRate = max(sampleRate, FLT_MIN);
 }
 
-void PlaquetteEnv::samplePeriod(float samplePeriod) {
+void Engine::samplePeriod(float samplePeriod) {
   if (samplePeriod > 0)
     sampleRate(1.0f / samplePeriod);
   else
     autoSampleRate();
 }
 
-//float seconds(bool realTime) { return PlaquetteEnv::seconds(); }
+//float seconds(bool realTime) { return Engine::seconds(); }
 unsigned long nSteps() { return Plaquette.nSteps(); }
 void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
 void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
@@ -153,11 +153,11 @@ void beginSerial(unsigned long baudRate) {
 }
 
 Unit::Unit() {
-  PlaquetteEnv::singleton().add(this);
+  Engine::singleton().add(this);
 }
 
 Unit::~Unit() {
-  PlaquetteEnv::singleton().remove(this);
+  Engine::singleton().remove(this);
 }
 
 void Unit::clearEvents() {

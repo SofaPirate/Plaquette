@@ -84,12 +84,12 @@ enum {
 class Unit;
 
 /// The main Plaquette static class containing all the units.
-class PlaquetteEnv {
+class Engine {
   friend class Unit;
 
 public:
-  PlaquetteEnv();
-  ~PlaquetteEnv();
+  Engine();
+  ~Engine();
 
   /// Initializes all components (calls begin() on all of them).
   void preBegin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
@@ -149,15 +149,19 @@ public:
   unsigned long nSteps() { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
+  [[deprecated("Function sampleRate(float) is deprecated so autoSampleRate() should always be true.")]]
   bool autoSampleRate();
 
   /// Enables auto sample rate mode (default).
+  [[deprecated("Function sampleRate(float) is deprecated so enableAutoSampleRate() should not have to be called.")]]
   void enableAutoSampleRate();
 
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
+  [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void sampleRate(float sampleRate);
 
   /// Sets sample period to a fixed value, thus disabling auto sampling rate.
+  [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void samplePeriod(float samplePeriod);
 
   /// Returns sample rate.
@@ -167,7 +171,7 @@ public:
   float samplePeriod() const { return _samplePeriod; }
 
   /// Returns the singleton instance of Plaquette.
-  static PlaquetteEnv& singleton();
+  static Engine& singleton();
 
 private:
   /// Adds a component to Plaquette.
@@ -214,12 +218,12 @@ private:
 
 private:
   // Prevent copy-construction and assignment.
-  PlaquetteEnv(const PlaquetteEnv&);
-  PlaquetteEnv& operator=(const PlaquetteEnv&);
+  Engine(const Engine&);
+  Engine& operator=(const Engine&);
 };
 
 /// The Plaquette singleton.
-extern PlaquetteEnv& Plaquette;
+extern Engine& Plaquette;
 
 //float seconds(bool realTime=false);
 unsigned long nSteps();
@@ -253,7 +257,7 @@ void beginSerial(unsigned long baudRate);
  * can also be sent to a unit using put().
  */
 class Unit {
-  friend class PlaquetteEnv;
+  friend class Engine;
   friend class EventManager;
 
 public:
@@ -594,7 +598,7 @@ protected:
 
 // Inline methods.
 
-void PlaquetteEnv::preStep() {
+void Engine::preStep() {
   // Update every component.
   for (size_t i=0; i<_units.size(); i++)
     _units[i]->step();
@@ -603,7 +607,7 @@ void PlaquetteEnv::preStep() {
   _eventManager.step();
 }
 
-void PlaquetteEnv::postStep() {
+void Engine::postStep() {
   // Increment step.
   _nSteps++;
 
@@ -638,11 +642,11 @@ void PlaquetteEnv::postStep() {
   }
 }
 
-void PlaquetteEnv::begin(unsigned long baudrate) {
+void Engine::begin(unsigned long baudrate) {
   preBegin(baudrate);
 }
 
-void PlaquetteEnv::step() {
+void Engine::step() {
   if (_firstRun) {
     postBegin();
     _firstRun = false;
@@ -654,7 +658,7 @@ void PlaquetteEnv::step() {
   preStep();
 }
 
-void PlaquetteEnv::_setSampleRate(float sampleRate) {
+void Engine::_setSampleRate(float sampleRate) {
   _sampleRate = max(sampleRate, FLT_MIN); // cannot be zero
   _samplePeriod = 1.0f / _sampleRate;
 }
