@@ -108,10 +108,9 @@ void MinMaxScaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-
     // Apply decay on min and max values.
     if (!timeWindowIsInfinite()) {
+      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
       MovingAverage::applyUpdate(_minValue, _currentValueStep, alpha);
       MovingAverage::applyUpdate(_maxValue, _currentValueStep, alpha);
     }
