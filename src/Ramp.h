@@ -40,10 +40,17 @@ enum {
 class Ramp : public Unit, public AbstractTimer {
 public:
   /**
+   * Constructor.
+   * @param engine the engine running this unit
+   */
+  Ramp(Engine& engine = Engine::singleton());
+
+    /**
    * Constructor with duration.
    * @param duration duration of the ramp
+   * @param engine the engine running this unit
    */
-  Ramp(float duration=1.0f);
+  Ramp(float duration, Engine& engine = Engine::singleton());
 
   /// Returns value of ramp.
   virtual float get() { return _value; }
@@ -156,11 +163,8 @@ private:
   };
 
 protected:
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
-
-  // Returns current absolute time (in seconds).
-  virtual float _time() const;
+  virtual void begin();
+  virtual void step();
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {
@@ -175,6 +179,12 @@ protected:
   void _durationOrSpeed(float durationOrSpeed);
   float _durationOrSpeed() const;
 
+  // Returns current absolute time (in seconds).
+  virtual float _time() const;
+
+  // Parent engine (needed to access engine time).
+  Engine& _engine;
+  
   // The starting point.
   float _from;
 

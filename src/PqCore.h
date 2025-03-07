@@ -125,7 +125,7 @@ public:
    * @param referenceTime determines whether the function returns the reference time or the real time
    * @return the time in seconds
    */
-  float seconds(bool referenceTime=true);
+  float seconds(bool referenceTime=true) const;
 
   /**
    * Returns time in milliseconds. Optional parameter allows to ask for reference time (default)
@@ -134,7 +134,7 @@ public:
    * @param referenceTime determines whether the function returns the reference time or the real time
    * @return the time in milliseconds
    */
-  uint32_t milliSeconds(bool referenceTime=true);
+  uint32_t milliSeconds(bool referenceTime=true) const;
 
   /**
    * Returns time in microseconds. Optional parameter allows to ask for reference time (default)
@@ -143,10 +143,10 @@ public:
    * @param referenceTime determines whether the function returns the reference time or the real time
    * @return the time in microseconds
    */
-  uint64_t microSeconds(bool referenceTime=true);
+  uint64_t microSeconds(bool referenceTime=true) const;
 
   /// Returns number of steps.
-  unsigned long nSteps() { return _nSteps; }
+  unsigned long nSteps() const { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
   [[deprecated("Function sampleRate(float) is deprecated so autoSampleRate() should always be true.")]]
@@ -172,6 +172,9 @@ public:
 
   /// Returns the singleton instance of Plaquette.
   static Engine& singleton();
+
+  /// Returns true if this Engine is the singleton.
+  bool isSingleton() const { return this == &singleton(); }
 
 private:
   /// Adds a component to Plaquette.
@@ -214,8 +217,6 @@ private:
   // Used to keep track of events.
   EventManager _eventManager;
 
-  Engine& thisRef;
-
   static micro_seconds_t _totalGlobalMicroSeconds;
 
 private:
@@ -227,20 +228,20 @@ private:
 /// The Plaquette singleton.
 extern Engine& Plaquette;
 
-//float seconds(bool realTime=false);
+/// Returns number of steps of main engine.
 unsigned long nSteps();
 
-/// Returns true iff the auto sample rate mode is enabled (default).
-bool autoSampleRate();
+// /// Returns true iff the auto sample rate mode is enabled (default).
+// bool autoSampleRate();
 
-/// Enables auto sample rate mode (default).
-void enableAutoSampleRate();
+// /// Enables auto sample rate mode (default).
+// void enableAutoSampleRate();
 
-/// Sets sample rate to a fixed value, thus disabling auto sampling rate.
-void sampleRate(float sampleRate);
+// /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
+// void sampleRate(float sampleRate);
 
-/// Sets sample period to a fixed value, thus disabling auto sampling rate.
-void samplePeriod(float samplePeriod);
+// /// Sets sample period to a fixed value, thus disabling auto sampling rate.
+// void samplePeriod(float samplePeriod);
 
 /// Returns sample rate.
 float sampleRate();
@@ -250,7 +251,6 @@ float samplePeriod();
 
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
 void beginSerial(unsigned long baudRate);
-
 
 /**
  * A generic class representing a unit in the system.
@@ -270,8 +270,8 @@ public:
   static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
 
 protected:
-  virtual void begin(Engine& engine) {}
-  virtual void step(Engine& engine) {}
+  virtual void begin() {}
+  virtual void step() {}
 
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
@@ -293,9 +293,27 @@ public:
   // Clears all event listeners.
   virtual void clearEvents();
 
+  /// Returns engine time in seconds.
+  float seconds() const { return engine->seconds(); }
+
+  /// Returns engine time in milliseconds.
+  uint32_t milliSeconds() const { return engine->milliSeconds(); }
+
+  /// Returns engine time in microseconds.
+  uint64_t microSeconds() const { return engine->microSeconds(); }
+
+  /// Returns number of engine steps.
+  unsigned long nSteps() const { return engine->nSteps(); }
+
+  /// Returns engine sample rate.
+  float sampleRate() const { return engine->sampleRate(); }
+
+  /// Returns enginesample period.
+  float samplePeriod() const { return engine->samplePeriod(); }
+  
 protected:
   /// Constructor.
-  Unit();
+  Unit(Engine& engine = Engine::singleton());
   virtual ~Unit();
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -315,13 +333,17 @@ private:
   Unit& operator=(int);
   Unit& operator=(float);
   Unit& operator=(Unit&);
+
+protected:
+  // The engine that owns this unit.
+  Engine* engine;
 };
 
 /// A generic class representing a simple digital (true/false)unit.
 class DigitalUnit : public Unit {
 public:
   /// Constructor.
-  DigitalUnit() : Unit() {}
+  DigitalUnit(Engine& engine = Engine::singleton()) : Unit(engine) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
@@ -378,7 +400,8 @@ public:
 class AnalogSource : public Unit {
 public:
   /// Constructor.
-  AnalogSource(float initialValue=0.0f) : Unit() { _value = constrain(initialValue, 0, 1); }
+  AnalogSource(Engine& engine = Engine::singleton()) : AnalogSource(0, engine) {}
+  AnalogSource(float initialValue, Engine& engine = Engine::singleton()) : Unit(engine) { _value = constrain(initialValue, 0, 1); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
@@ -395,7 +418,8 @@ protected:
 class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(bool initialValue=false) : DigitalUnit(), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
+  DigitalSource(Engine& engine = Engine::singleton()) : DigitalSource(false, engine) {}
+  DigitalSource(bool initialValue, Engine& engine = Engine::singleton()) : DigitalUnit(engine), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }
@@ -603,7 +627,7 @@ protected:
 void Engine::preStep() {
   // Update every component.
   for (size_t i=0; i<_units.size(); i++)
-    _units[i]->step(thisRef);
+    _units[i]->step();
 
   // Look for events.
   _eventManager.step();

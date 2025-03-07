@@ -33,9 +33,25 @@ class AbstractWave : public AnalogSource {
 public:
   /**
    * Constructor.
-   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
    */
-  AbstractWave(float period=1.0f, float width=0.5f);
+  AbstractWave(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  AbstractWave(float period, Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param width the duty-cycle as a value in [0, 1]
+   * @param engine the engine running this unit
+   */
+  AbstractWave(float period, float width, Engine& engine = Engine::singleton());
+
   virtual ~AbstractWave() {}
 
   /**
@@ -128,8 +144,8 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
 
   // Returns value in [0, 1] as fixed-point value (to be defined by subclasses).
   virtual fixed_t _getFixed(fixed_t t) = 0;
@@ -158,7 +174,7 @@ protected:
   // The value contained in the unit.
   bool _isRunning : 1;
 
-  // These variables are only used by the SquareWave.
+  // These variables are only used by the AbstractWave.
   bool _onValue : 1;
 
   // Previous value, used to compute change state.

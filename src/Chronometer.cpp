@@ -22,7 +22,7 @@
 
 namespace pq {
 
-Chronometer::Chronometer() : Unit(), AbstractChronometer() {
+Chronometer::Chronometer(Engine& engine) : Unit(engine), AbstractChronometer(), _engine(engine) {
 }
 
 float Chronometer::put(float value) {
@@ -30,17 +30,16 @@ float Chronometer::put(float value) {
   return get();
 }
   
-void Chronometer::begin(Engine& engine) {
+void Chronometer::begin() {
   stop();
 }
 
-void Chronometer::step(Engine& engine) {
+void Chronometer::step() {
   update();
 }
 
 float Chronometer::_time() const {
-  return Plaquette.seconds();
+  return _engine.seconds();
 }
-
 
 }

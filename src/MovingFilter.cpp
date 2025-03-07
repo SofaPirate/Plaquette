@@ -21,8 +21,8 @@
 
 namespace pq {
 
-MovingFilter::MovingFilter()
-  : AnalogSource(),
+MovingFilter::MovingFilter(Engine& engine)
+  : AnalogSource(engine),
     _isCalibrating(true),
     _nValuesStep(0)
 {

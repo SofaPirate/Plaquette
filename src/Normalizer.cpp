@@ -23,52 +23,28 @@
 
 namespace pq {
 
-Normalizer::Normalizer()
-: MovingFilter(),
-  MovingStats(),
-  _currentMeanStep(NORMALIZER_DEFAULT_MEAN),
-  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
+Normalizer::Normalizer(Engine& engine)
+  : MovingFilter(engine), MovingStats()
 {
-  _value = NORMALIZER_DEFAULT_MEAN;
-  targetMean(NORMALIZER_DEFAULT_MEAN);
-  targetStdDev(NORMALIZER_DEFAULT_STDDEV);
-  clamp();
+  _init(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV);
 }
 
-Normalizer::Normalizer(float timeWindow)
-: MovingFilter(),
-  MovingStats(timeWindow),
-  _currentMeanStep(NORMALIZER_DEFAULT_MEAN),
-  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
+Normalizer::Normalizer(float timeWindow, Engine& engine)
+  : MovingFilter(engine), MovingStats(timeWindow)
 {
-  _value = NORMALIZER_DEFAULT_MEAN;
-  targetMean(NORMALIZER_DEFAULT_MEAN);
-  targetStdDev(NORMALIZER_DEFAULT_STDDEV);
-  clamp();
+  _init(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV);
 }
 
-Normalizer::Normalizer(float mean, float stdDev)
-: MovingFilter(),
-  MovingStats(),
-  _currentMeanStep(mean),
-  _currentMean2Step(NORMALIZER_DEFAULT_MEAN2)
+Normalizer::Normalizer(float mean, float stdDev, Engine& engine)
+  : MovingFilter(engine), MovingStats()
 {
-  _value = mean;
-  targetMean(mean);
-  targetStdDev(stdDev);
-  clamp();
+  _init(mean, stdDev);
 }
 
-Normalizer::Normalizer(float mean, float stdDev, float timeWindow)
-: MovingFilter(),
-  MovingStats(timeWindow),
-  _currentMeanStep(mean),
-  _currentMean2Step(sq(stdDev)-sq(mean))
+Normalizer::Normalizer(float mean, float stdDev, float timeWindow, Engine& engine)
+  : MovingFilter(engine), MovingStats(timeWindow)
 {
-  _value = mean;
-  targetMean(mean);
-  targetStdDev(stdDev);
-  clamp();
+  _init(mean, stdDev);
 }
 
 void Normalizer::infiniteTimeWindow() {
@@ -135,7 +111,7 @@ float Normalizer::put(float value) {
   return _value;
 }
 
-void Normalizer::step(Engine& engine) {
+void Normalizer::step() {
   // If no values were added during this step, update using previous value.
   // In other words: repeat update with previous value.
   if (_nValuesStep == 0) {
@@ -182,6 +158,18 @@ void Normalizer::clamp(float nStdDev) {
 
 void Normalizer::noClamp() {
   _clampStdDev = NORMALIZER_NO_CLAMP;
+}
+
+void Normalizer::_init(float mean, float stdDev) {
+  _value = mean;
+
+  _currentMeanStep = mean;
+  _currentMean2Step = sq(stdDev) - sq(mean);
+
+  targetMean(mean);
+  targetStdDev(stdDev);
+
+  clamp();
 }
 
 float Normalizer::_clamp(float value) const {

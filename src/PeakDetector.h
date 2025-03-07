@@ -38,6 +38,13 @@ namespace pq {
 class PeakDetector : public DigitalUnit {
 public:
   /**
+   * Constructor with default mode (PEAK_MAX).
+   * @param triggerThreshold value that triggers peak detection
+   * @param engine the engine running this unit
+   */
+  PeakDetector(float triggerThreshold, Engine& engine = Engine::singleton());
+
+  /**
    * Constructor. Possible modes are:
    * - PEAK_RISING  : peak detected when value becomes >= triggerThreshold, then wait until it becomes < reloadThreshold (*)
    * - PEAK_FALLING : peak detected when value becomes <= triggerThreshold, then wait until it becomes > reloadThreshold (*)
@@ -45,8 +52,9 @@ public:
    * - PEAK_MIN     : peak detected after value becomes <= triggerThreshold and then rises back after peaking; then waits until it becomes > reloadThreshold (*)
    * @param triggerThreshold value that triggers peak detection
    * @param mode peak detection mode
+   * @param engine the engine running this unit
    */
-  PeakDetector(float triggerThreshold, uint8_t mode=PEAK_MAX);
+  PeakDetector(float triggerThreshold, uint8_t mode, Engine& engine = Engine::singleton());
   virtual ~PeakDetector() {}
 
   /// Sets triggerThreshold.

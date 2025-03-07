@@ -29,10 +29,17 @@ namespace pq {
 class StreamIn : public AnalogSource {
 public:
   /**
+   * Default constructor.
+   * @param engine the engine running this unit
+   */
+  StreamIn(Engine& engine = Engine::singleton());
+
+  /**
    * Constructor.
    * @param stream a reference to a Stream object
+   * @param engine the engine running this unit
    */
-  StreamIn(Stream& stream=Serial);
+  StreamIn(Stream& stream, Engine& engine = Engine::singleton());
 
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
@@ -45,8 +52,8 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {

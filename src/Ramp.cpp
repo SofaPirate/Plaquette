@@ -24,10 +24,13 @@
 
 namespace pq {
 
-Ramp::Ramp(float duration) :
-  Unit(),
+
+Ramp::Ramp(Engine& engine) : Ramp(1.0f, engine) {}
+
+Ramp::Ramp(float duration, Engine& engine) :
+  Unit(engine),
   AbstractTimer(duration),
-  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED)
+  _engine(engine), _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED)
 {
 }
 
@@ -162,12 +165,12 @@ void Ramp::go(float to, easing_function easing_) {
   go(to, _durationOrSpeed(), easing_);
 }
 
-void Ramp::begin(Engine& engine) {
+void Ramp::begin() {
   set(0);
   _finishedState = NOT_FINISHED;
 }
 
-void Ramp::step(Engine& engine) {
+void Ramp::step() {
   // Call parent update.
   update();
 
@@ -192,10 +195,6 @@ void Ramp::step(Engine& engine) {
   }
 }
 
-float Ramp::_time() const {
-  return Plaquette.seconds();
-}
-
 float Ramp::_get() {
   return mapFrom01(_easing(progress()), _from, _to);
 }
@@ -215,5 +214,10 @@ void Ramp::set(float time) {
   AbstractTimer::set(time);
   _value = _get();
 }
+
+float Ramp::_time() const {
+  return seconds();
+}
+
 
 }

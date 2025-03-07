@@ -22,9 +22,10 @@
 
 namespace pq {
 
-TriangleWave::TriangleWave(float period_, float width_) : AbstractWave(period_, width_) {
-}
-
+TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine) {}
+TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine) {}
+TriangleWave::TriangleWave(float period, float width, Engine& engine) : AbstractWave(period, width, engine) {}
+  
 fixed_t TriangleWave::_getFixed(fixed_t t) {
   return (t <= _width) ? 
         fixedDivide(t, _width) :

@@ -25,29 +25,27 @@
 
 namespace pq {
 
-Smoothable::Smoothable(float smoothTime) : _avg(smoothTime) {}
+Smoothable::Smoothable() : _avg(PLAQUETTE_NO_SMOOTH_WINDOW) {}
 
 void Smoothable::_begin() {
   _avg.reset();
 }
 
 void Smoothable::_step() {
-  _avg.update( _read(), _avg.alpha(sampleRate()), true );
+  _avg.update( _read(), _avg.alpha( _sampleRate() ), true );
 }
-
-
 
 #define DEBOUNCED_STATE 0x01
 #define UNSTABLE_STATE  0x02
 #define CHANGED_STATE   0x04
 
-Debounceable::Debounceable(float debounceTime, uint8_t mode) : _interval(0), _startTime(0), _state(0) {
-   timeWindow(debounceTime);
-   debounceMode(mode);
+Debounceable::Debounceable() : _interval(0), _startTime(0), _state(0) {
+   timeWindow(PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW);
+   debounceMode(DEBOUNCE_STABLE);
  }
 
 void Debounceable::_begin() {
-  _startTime = seconds();
+  _startTime = _time();
   if (_isOn()) {
     _setStateFlag(DEBOUNCED_STATE | UNSTABLE_STATE);
   }
@@ -57,45 +55,44 @@ void Debounceable::_step() {
 
   _unsetStateFlag(CHANGED_STATE);
 
+  bool currentState = _isOn();
+
   // No debouncing case.
   if (_interval) {
 
+    float currentTime = _time();
+
     if (_debounceMode == DEBOUNCE_STABLE) {
       // Read the state of the switch in a temporary variable.
-      bool currentState = _isOn();
 
       // If the reading is different from last reading, reset the debounce counter
-      if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
-        _startTime = seconds();
+      if (currentState != _getStateFlag(UNSTABLE_STATE) ) {
+        _startTime = currentTime;
         _toggleStateFlag(UNSTABLE_STATE);
       }
 
       // We have passed the threshold time, so the input is now stable
       // If it is different from last state, set the STATE_CHANGED flag
       else if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
-              seconds() - _startTime >= _interval) {
-        _startTime = seconds();
+               currentTime - _startTime >= _interval) {
+        _startTime = currentTime;
         _changeState();
       }
     }
 
     else if (_debounceMode == DEBOUNCE_LOCK_OUT) {
       // Ignore everything if we are locked out
-      if (seconds() - _startTime >= _interval) {
-          if (_isOn() != _getStateFlag(DEBOUNCED_STATE) ) {
-            _startTime = seconds();
-            _changeState();
-          }
+      if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
+           currentTime - _startTime >= _interval) {
+        _startTime = currentTime;
+         _changeState();
       }
     }
 
     // DEBOUNCE_PROMPT_DETECT
     else  {
-      // Read the state of the switch port into a temporary variable.
-      bool currentState = _isOn();
-
-      if ( currentState != _getStateFlag(DEBOUNCED_STATE) &&
-          seconds() - _startTime >= _interval) {
+      if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
+          currentTime - _startTime >= _interval) {
         // We have passed the time threshold, so a new change of state is allowed.
         // set the STATE_CHANGED flag and the new DEBOUNCED_STATE.
         // This will be prompt as long as there has been greater than interval_misllis ms since last change of input.
@@ -105,8 +102,8 @@ void Debounceable::_step() {
 
       // If the currentState is different from previous currentState, reset the debounce timer - as input is still unstable
       // and we want to prevent new button state changes until the previous one has remained stable for the timeout.
-      if ( currentState != _getStateFlag(UNSTABLE_STATE) ) {
-        _startTime = seconds();
+      if (currentState != _getStateFlag(UNSTABLE_STATE)) {
+        _startTime = currentTime;
         // Update Unstable Bit to macth readState
         _toggleStateFlag(UNSTABLE_STATE);
       }
@@ -114,7 +111,7 @@ void Debounceable::_step() {
   }
 
   // No debouncing.
-  else if (_isOn() != _getStateFlag(DEBOUNCED_STATE)) {
+  else if (currentState != _getStateFlag(DEBOUNCED_STATE)) {
     _changeState();
   }
 
@@ -130,8 +127,12 @@ void Debounceable::_changeState() {
 }
 
 
-AnalogIn::AnalogIn(uint8_t pin, uint8_t mode)
-  : Unit(), PinUnit(pin, mode), Smoothable()
+AnalogIn::AnalogIn(uint8_t pin, Engine& engine)
+  : Unit(engine), PinUnit(pin, DIRECT)
+{}
+
+AnalogIn::AnalogIn(uint8_t pin, uint8_t mode, Engine& engine)
+  : Unit(engine), PinUnit(pin, mode)
 {}
 
 float AnalogIn::_read() {
@@ -142,11 +143,11 @@ float AnalogIn::_read() {
   return rawValue / float(ANALOG_READ_MAX_VALUE);
 }
 
-void AnalogIn::begin(Engine& engine) {
+void AnalogIn::begin() {
   _begin(); 
 }
 
-void AnalogIn::step(Engine& engine) {
+void AnalogIn::step() {
   _step();
 }
 
@@ -158,8 +159,12 @@ int AnalogIn::rawRead() const {
   return analogRead(_pin);
 }
 
-DigitalIn::DigitalIn(uint8_t pin, uint8_t mode)
-  : DigitalSource(), PinUnit(pin, mode), Debounceable()
+DigitalIn::DigitalIn(uint8_t pin, Engine& engine)
+  : DigitalSource(engine), PinUnit(pin, DIRECT)
+{}
+
+DigitalIn::DigitalIn(uint8_t pin, uint8_t mode, Engine& engine)
+  : DigitalSource(engine), PinUnit(pin, mode)
 {}
 
 bool DigitalIn::_isOn() {
@@ -182,11 +187,11 @@ int DigitalIn::rawRead() const {
   return digitalRead(_pin);
 }
 
-void DigitalIn::begin(Engine& engine) {
+void DigitalIn::begin() {
   _init();
 }
 
-void DigitalIn::step(Engine& engine) {
+void DigitalIn::step() {
    // Perform basic step.
   _step();
   // Save value.

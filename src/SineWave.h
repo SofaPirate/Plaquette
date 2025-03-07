@@ -30,9 +30,25 @@ class SineWave : public AbstractWave {
 public:
   /**
    * Constructor.
-   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
    */
-  SineWave(float period=1.0f, float width=0.5f);
+  SineWave(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  SineWave(float period, Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param width the duty-cycle as a value in [0, 1]
+   * @param engine the engine running this unit
+   */
+  SineWave(float period, float width, Engine& engine = Engine::singleton());
+
   virtual ~SineWave() {}
 
 protected:

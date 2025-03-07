@@ -130,7 +130,7 @@ class AnalogFixture : public Unit, public Smoothable {
 public:
   AnalogFixture(T& object, AnalogCallbacks<T> callbacks)
     : _object(&object), _callbacks(callbacks) {}
-  
+
   AnalogFixture(T& object,
                 float(*getFunc)  (T&),
                 void (*beginFunc)(T&) = NO_CALLBACK,
@@ -149,12 +149,12 @@ public:
   operator float() { return get(); }
 
 protected:
-  virtual void begin(Engine& engine) {
+  virtual void begin() {
     _callbacks.begin(*_object);
     _begin(); 
   }
 
-  virtual void step(Engine& engine) {
+  virtual void step() {
     _callbacks.step(*_object);
     _step(); 
   }
@@ -167,6 +167,8 @@ protected:
   virtual float _read() {
     return _callbacks.get(*_object);
   }
+
+  virtual float _sampleRate() const { return sampleRate(); }
 
   T* _object;
   AnalogCallbacks<T> _callbacks;
@@ -195,12 +197,12 @@ public:
   virtual operator float() { return get(); }
 
 protected:
-  virtual void begin(Engine& engine) {
+  virtual void begin() {
     _callbacks.begin();
     _begin(); 
   }
 
-  virtual void step(Engine& engine) {
+  virtual void step() {
     _callbacks.step();
     _step(); 
   }
@@ -213,6 +215,8 @@ protected:
   virtual float _read() {
     return _callbacks.get();
   }
+
+  virtual float _sampleRate() const { return sampleRate(); }
 
   AnalogCallbacks<void> _callbacks;
 };
@@ -334,12 +338,12 @@ public:
     : _object(&object), _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
-  virtual void begin(Engine& engine) {
+  virtual void begin() {
     _callbacks.begin(*_object);
     _begin();
   }
 
-  virtual void step(Engine& engine) {
+  virtual void step() {
     _callbacks.step(*_object);
     // Perform basic step.
     _step();
@@ -357,6 +361,8 @@ protected:
   virtual bool _isOn() {
     return _callbacks.get(*_object);
   }
+
+  virtual float _time() const { return seconds(); }
 
   T* _object;
   DigitalCallbacks<T> _callbacks;
@@ -381,12 +387,12 @@ public:
     : _callbacks(getFunc, putFunc, beginFunc, stepFunc) {}
 
 protected:
-  virtual void begin(Engine& engine) {
+  virtual void begin() {
     _callbacks.begin();
     _begin();
   }
 
-  virtual void step(Engine& engine) {
+  virtual void step() {
     _callbacks.step();
     // Perform basic step.
     _step();
@@ -404,6 +410,8 @@ protected:
   virtual bool _isOn() {
     return _callbacks.get();
   }
+
+  virtual float _time() const { return seconds(); }
 
   DigitalCallbacks<void> _callbacks;
 };

@@ -29,9 +29,19 @@ namespace pq {
 /// Regularizes signal into [0,1] by rescaling it using the min and max values.
 class MinMaxScaler : public MovingFilter {
 public:
-  /// Constructor.
-  MinMaxScaler();
-  MinMaxScaler(float decayWindow);
+  /**
+   * Default constructor. Assigns infinite time window.
+   * @param engine the engine running this unit
+   */
+  MinMaxScaler(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor with time window.
+   * @param timeWindow the time window (in seconds)
+   * @param engine the engine running this unit
+   */
+  MinMaxScaler(float timeWindow, Engine& engine = Engine::singleton());
+
   virtual ~MinMaxScaler() {}
 
   /// Returns the current min. value.
@@ -69,10 +79,10 @@ protected:
   // Time window (in seconds).
   float _timeWindow;
 
-  // Minimum value ever put.
+  // Minimum value ever put (decays over time if time window is finite).
   float _minValue;
 
-  // Maximum value ever put.
+  // Maximum value ever put (decays over time if time window is finite).
   float _maxValue;
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).

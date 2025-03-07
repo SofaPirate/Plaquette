@@ -26,19 +26,19 @@
 
 namespace pq {
 
-MinMaxScaler::MinMaxScaler()
-  : MovingFilter(),
+MinMaxScaler::MinMaxScaler(Engine& engine)
+  : MovingFilter(engine),
     _currentValueStep(0)
 {
   infiniteTimeWindow();
   reset();
 }
 
-MinMaxScaler::MinMaxScaler(float decayWindow)
-  : MovingFilter(),
+MinMaxScaler::MinMaxScaler(float timeWindow_, Engine& engine)
+  : MovingFilter(engine),
     _currentValueStep(0)
 {
-  timeWindow(decayWindow);
+  timeWindow(timeWindow_);
   reset();
 }
 
@@ -108,10 +108,10 @@ void MinMaxScaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
-    // Apply decay.
+    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+
+    // Apply decay on min and max values.
     if (!timeWindowIsInfinite()) {
-      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
-      // Decay towards value.
       MovingAverage::applyUpdate(_minValue, _currentValueStep, alpha);
       MovingAverage::applyUpdate(_maxValue, _currentValueStep, alpha);
     }

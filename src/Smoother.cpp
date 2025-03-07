@@ -23,8 +23,10 @@
 
 namespace pq {
 
-Smoother::Smoother(float timeWindow)
-  : Unit(),
+Smoother::Smoother(Engine& engine) : Smoother(PLAQUETTE_DEFAULT_SMOOTH_WINDOW, engine) {}
+
+Smoother::Smoother(float timeWindow, Engine& engine)
+  : Unit(engine),
     MovingAverage(timeWindow),
     _currentValueStep(0),
     _nValuesStep(0)
@@ -60,7 +62,7 @@ float Smoother::put(float value) {
   return get();
 }
 
-void Smoother::step(Engine& engine) {
+void Smoother::step() {
   // If no values were added during this step, update using previous value.
   if (_nValuesStep == 0)
     update(_currentValueStep, sampleRate()); // in other words: repeat update with previous value

@@ -32,10 +32,25 @@ class TriangleWave : public AbstractWave {
 public:
   /**
    * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param width a value in [0, 1] that determines the point at which the wave reaches its maximum point (expressed as a fraction of the period)
+   * @param engine the engine running this unit
    */
-  TriangleWave(float period=1.0f, float width=0.5f);
+  TriangleWave(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  TriangleWave(float period, Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param width the duty-cycle as a value in [0, 1]
+   * @param engine the engine running this unit
+   */
+  TriangleWave(float period, float width, Engine& engine = Engine::singleton());
+  
   virtual ~TriangleWave() {}
 
 protected:

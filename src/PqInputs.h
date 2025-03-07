@@ -42,7 +42,7 @@ enum {
 /// Superclass for components that can be smoothed.
 class Smoothable {
 public:
-  Smoothable(float smoothTime=PLAQUETTE_NO_SMOOTH_WINDOW);
+  Smoothable();
 
   /// Apply smoothing to object.
   virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { timeWindow(smoothTime); }
@@ -66,6 +66,9 @@ protected:
   // Raw read function.
   virtual float _read() = 0;
 
+  // Returns current sample rate in seconds.
+  virtual float _sampleRate() const = 0;
+
   // Resets smoothing.
   virtual void _begin();
 
@@ -82,7 +85,7 @@ protected:
 /// Superclass for components that can be debounced.
 class Debounceable {
 public:
-  Debounceable(float debounceTime=PLAQUETTE_NO_DEBOUNCE_WINDOW, uint8_t mode=DEBOUNCE_STABLE);
+  Debounceable();
 
   /// Apply smoothing to object.
   virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { timeWindow(debounceTime); }
@@ -115,6 +118,9 @@ protected:
   // Raw read function.
   virtual bool _isOn() = 0;
 
+  // Returns current time in seconds.
+  virtual float _time() const = 0;
+
   // Resets debouncing.
   virtual void _begin();
 
@@ -145,7 +151,8 @@ public:
    * @param pin the pin number
    * @param mode the mode (DIRECT or INVERTED)
    */
-  AnalogIn(uint8_t pin, uint8_t mode=DIRECT);
+  AnalogIn(uint8_t pin, Engine& engine = Engine::singleton());
+  AnalogIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::singleton());
   virtual ~AnalogIn() {}
 
   /// Returns value in [0, 1].
@@ -158,9 +165,11 @@ public:
   int rawRead() const;
 
 protected:
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
+
   virtual float _read();
+  virtual float _sampleRate() const { return sampleRate(); }
 };
 
 /// A generic class representing a simple digital input.
@@ -171,7 +180,8 @@ public:
    * @param pin the pin number
    * @param mode the mode (DIRECT, INVERTED, or INTERNAL_PULLUP)
    */
-  DigitalIn(uint8_t pin, uint8_t mode=DIRECT);
+  DigitalIn(uint8_t pin, Engine& engine = Engine::singleton());
+  DigitalIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::singleton());
   virtual ~DigitalIn() {}
 
   /// Changes the mode of the component.
@@ -182,10 +192,12 @@ public:
 
 protected:
   virtual bool _isOn();
+  virtual float _time() const { return seconds(); }
+
   virtual void _init();
 
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
 };
 
 } // namespace pq

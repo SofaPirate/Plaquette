@@ -23,16 +23,17 @@
 
 namespace pq {
 
-Metronome::Metronome(float period_) : DigitalUnit(), _phase(0), _onValue(0) {
+Metronome::Metronome(Engine& engine) : Metronome(1.0f, engine) {}
+Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), _phase(0), _onValue(0) {
   period(period_);
 }
 
-void Metronome::begin(Engine& engine) {
+void Metronome::begin() {
   _phaseTime = floatToPhaseTime(_phase);
   _onValue = 0;
 }
 
-void Metronome::step(Engine& engine) {
+void Metronome::step() {
   // Adjust phase time.
   _onValue = phaseTimeUpdate(_phaseTime, _period, sampleRate());
 }

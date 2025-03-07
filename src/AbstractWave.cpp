@@ -25,18 +25,21 @@
 
 namespace pq {
 
-AbstractWave::AbstractWave(float period_, float width_) : AnalogSource(), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), 
-                                                         _onValue(0), _prevOnValue(0), _changeState(0), _data(0) { // This is just for SquareWave.
+AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
+AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
+AbstractWave::AbstractWave(float period_, float width_, Engine& engine) 
+: AnalogSource(engine), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), 
+                        _onValue(0), _prevOnValue(0), _changeState(0), _data(0) { // This is just for AbstractWave.
   period(period_);
   width(width_);
   amplitude(1.0f);
 }
 
-void AbstractWave::begin(Engine& engine) {
+void AbstractWave::begin() {
   start();
 }
 
-void AbstractWave::step(Engine& engine) {
+void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
     phaseTimeUpdate(_phaseTime, _period, sampleRate());

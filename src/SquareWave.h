@@ -30,10 +30,25 @@ class SquareWave : public AbstractWave {
 public:
   /**
    * Constructor.
+   * @param engine the engine running this unit
+   */
+  SquareWave(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  SquareWave(float period, Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param width the duty-cycle as a value in [0, 1]
+   * @param engine the engine running this unit
    */
-  SquareWave(float period=1.0f, float width=0.5f);
+  SquareWave(float period, float width, Engine& engine = Engine::singleton());
+
   virtual ~SquareWave() {}
 
   /// Returns true iff the input is "on".
@@ -68,7 +83,7 @@ public:
 
 protected:
   // Core Plaquette methods.
-  virtual void step(Engine& engine);
+  virtual void step();
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {

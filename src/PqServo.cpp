@@ -25,7 +25,7 @@
 
 namespace pq {
 
-AbstractServoOut::AbstractServoOut(uint8_t pin) : AnalogSource(), _pin(pin) {}
+AbstractServoOut::AbstractServoOut(uint8_t pin, Engine& engine) : AnalogSource(engine), _pin(pin) {}
 AbstractServoOut::~AbstractServoOut() { detach(); }
 
 float AbstractServoOut::put(float value)
@@ -37,11 +37,11 @@ float AbstractServoOut::put(float value)
   return _value;
 }
 
-void AbstractServoOut::begin(Engine& engine) {
+void AbstractServoOut::begin() {
   attach(_pin);
 }
 
-ServoOut::ServoOut(uint8_t pin) : AbstractServoOut(pin) {}
+ServoOut::ServoOut(uint8_t pin, Engine& engine) : AbstractServoOut(pin, engine) {}
 
 float ServoOut::putAngle(float angle)
 {
@@ -54,10 +54,10 @@ float ServoOut::getAngle() {
   return round(value);
 }
 
-ContinuousServoOut::ContinuousServoOut(uint8_t pin) : AbstractServoOut(pin) {}
+ContinuousServoOut::ContinuousServoOut(uint8_t pin, Engine& engine) : AbstractServoOut(pin, engine) {}
 
-void ContinuousServoOut::begin(Engine& engine) {
-  AbstractServoOut::begin(Engine& engine);
+void ContinuousServoOut::begin() {
+  AbstractServoOut::begin();
   stop();
 }
 

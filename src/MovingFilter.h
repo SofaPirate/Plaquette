@@ -28,9 +28,12 @@ namespace pq {
 
 class MovingFilter : public AnalogSource {
 protected:
-  /// Constructor.
-  MovingFilter();
-  MovingFilter(float timeWindow);
+  /**
+   * Constructor.
+   * @param engine the engine running this unit
+   */
+  MovingFilter(Engine& engine = Engine::singleton());
+
   virtual ~MovingFilter() {}
 
 public:

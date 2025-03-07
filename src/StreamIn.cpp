@@ -22,7 +22,9 @@
 
 namespace pq {
 
-StreamIn::StreamIn(Stream& stream) :
+StreamIn::StreamIn(Engine& engine) : StreamIn(Serial, engine) {}
+
+StreamIn::StreamIn(Stream& stream, Engine& engine) :
    AnalogSource(),
   _nextValue(0),
   _nextFraction(1),
@@ -33,7 +35,7 @@ StreamIn::StreamIn(Stream& stream) :
   _stream(&stream)
 {}
 
-void StreamIn::begin(Engine& engine) {
+void StreamIn::begin() {
   _nextValue = 0;
   _nextIsValid = false;
   _nextIsNegative = false;
@@ -42,7 +44,7 @@ void StreamIn::begin(Engine& engine) {
   _nextFraction = 1;
 }
 
-void StreamIn::step(Engine& engine) {
+void StreamIn::step() {
   // Reset value changed flag.
   _valueUpdated = false;
 

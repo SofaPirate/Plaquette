@@ -31,7 +31,18 @@ namespace pq {
  */
 class Alarm : public DigitalSource, public AbstractTimer {
 public:
-  Alarm(float duration=1.0f);
+  /**
+   * Constructor.
+   * @param engine the engine running this unit
+   */
+  Alarm(Engine& engine = Engine::singleton());
+
+    /**
+   * Constructor with duration.
+   * @param duration duration of the alarm
+   * @param engine the engine running this unit
+   */
+  Alarm(float duration, Engine& engine = Engine::singleton());
 
   /// Returns true iff the alarm just finished its process this step.
   virtual bool finished() { return rose(); }
@@ -43,8 +54,8 @@ public:
   virtual void set(float time);
 
 protected:
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
 
   /// Returns true iff an event of a certain type has been triggered.
   virtual bool eventTriggered(EventType eventType) {
@@ -56,6 +67,9 @@ protected:
 
   // Returns current absolute time (in seconds).
   virtual float _time() const;
+
+  // Parent engine (needed to access engine time).
+  Engine& _engine;
 };
 
 }

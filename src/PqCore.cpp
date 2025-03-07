@@ -25,7 +25,7 @@ namespace pq {
 
 Engine& Plaquette = Engine::singleton();
 
-Engine::Engine() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true), thisRef(*this) {}
+Engine::Engine() : _units(), _microSeconds({0}), _sampleRate(0), _targetSampleRate(0), _nSteps(0), _beginCompleted(false), _firstRun(true) {}
 Engine::~Engine() {
 }
 
@@ -36,7 +36,7 @@ Engine& Engine::singleton() {
 
 void Engine::preBegin(unsigned long baudrate) {
   // Initialize serial.
-  if (baudrate)
+  if (isSingleton() && baudrate)
     beginSerial(baudrate);
 
   // Initialize variables.
@@ -49,7 +49,7 @@ void Engine::preBegin(unsigned long baudrate) {
 
   // Initialize all components.
   for (size_t i=0; i<_units.size(); i++) {
-    _units[i]->begin(thisRef);
+    _units[i]->begin();
   }
 
   // Units have been initialized.
@@ -70,29 +70,34 @@ void Engine::end() {
     postStep();
 }
 
-float Engine::seconds(bool referenceTime) {
+float Engine::seconds(bool referenceTime) const {
   return microSeconds(referenceTime) * SECONDS_TO_MICROS;
 }
 
-uint32_t Engine::milliSeconds(bool referenceTime) {
+uint32_t Engine::milliSeconds(bool referenceTime) const {
   return static_cast<uint32_t>(microSeconds(referenceTime) * MILLIS_TO_MICROS);
 }
 
-uint64_t Engine::microSeconds(bool referenceTime) {
+uint64_t Engine::microSeconds(bool referenceTime) const {
   return (referenceTime ? _microSeconds.micros64 : _updateGlobalMicroSeconds().micros64);
 }
 
 void Engine::add(Unit* component) {
-  for (size_t i=0; i<_units.size(); i++) {
-    if (_units[i] == component) {
-      return; // do not add existing component
-    }
+
+  if (component->engine != this) {
+    // Remove component from old engine.
+    if (component->engine)
+      component->engine->remove(component);
+
+    // Append component to new engine.
+    _units.add(component);
+    // Assign new engine.
+    component->engine = this;
   }
 
-  // Append component to list.
-  _units.add(component);
+  // Initialize component if needed.
   if (_beginCompleted)
-    component->begin(thisRef);
+    component->begin();
 }
 
 void Engine::remove(Unit* component) {
@@ -136,8 +141,8 @@ void Engine::samplePeriod(float samplePeriod) {
 
 //float seconds(bool realTime) { return Engine::seconds(); }
 unsigned long nSteps() { return Plaquette.nSteps(); }
-void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
-void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
+// void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
+// void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 
@@ -150,12 +155,11 @@ void beginSerial(unsigned long baudRate) {
   while (Serial.available()) Serial.read();
 }
 
-Unit::Unit() {
-  Engine::singleton().add(this);
+Unit::Unit(Engine& engineRef) : engine(0) {
+  engineRef.add(this);
 }
 
 Unit::~Unit() {
-  Engine::singleton().remove(this);
 }
 
 void Unit::clearEvents() {

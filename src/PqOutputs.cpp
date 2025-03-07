@@ -51,7 +51,7 @@ void AnalogOut::rawWrite(int value) {
   analogWriteFunction(_pin, value);
 }
 
-void AnalogOut::step(Engine& engine) {
+void AnalogOut::step() {
   analogWriteFunction(_pin, (_mode == SOURCE ? _value : ANALOG_WRITE_MAX_VALUE - _value));
 }
 
@@ -73,11 +73,11 @@ void DigitalOut::rawWrite(int value) {
   digitalWrite(_pin, value);
 }
 
-void DigitalOut::begin(Engine& engine) {
+void DigitalOut::begin() {
   _init();
 }
 
-void DigitalOut::step(Engine& engine) {
+void DigitalOut::step() {
   // Update change state.
   _updateChangeState();
   // Write to output.

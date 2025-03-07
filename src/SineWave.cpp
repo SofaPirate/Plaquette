@@ -26,9 +26,10 @@
 
 namespace pq {
 
-SineWave::SineWave(float period_, float width_) : AbstractWave(period_, width_) {
-}
-
+SineWave::SineWave(Engine& engine) : AbstractWave(engine) {}
+SineWave::SineWave(float period, Engine& engine) : AbstractWave(period, engine) {}
+SineWave::SineWave(float period, float width, Engine& engine) : AbstractWave(period, width, engine) {}
+  
 // Improved version of SineWave::_get with optimizations and typo fixes.
 fixed_t SineWave::_getFixed(fixed_t t) {
 #if defined(PQ_ARCH_32BITS)

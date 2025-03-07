@@ -33,9 +33,16 @@ class Metronome : public DigitalUnit {
 public:
   /**
    * Constructor.
-   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
    */
-  Metronome(float period=1.0f);
+  Metronome(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  Metronome(float period, Engine& engine = Engine::singleton());
 
   /// Returns true iff the metronome fires.
   virtual bool isOn() { return _onValue; }
@@ -83,8 +90,8 @@ public:
   virtual void onBang(EventCallback callback);
 
 protected:
-  virtual void begin(Engine& engine);
-  virtual void step(Engine& engine);
+  virtual void begin();
+  virtual void step();
 
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);

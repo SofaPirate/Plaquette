@@ -22,13 +22,21 @@
 
 namespace pq {
 
-Alarm::Alarm(float duration_) : DigitalSource(), AbstractTimer(duration_) {}
 
-void Alarm::begin(Engine& engine) {
+Alarm::Alarm(Engine& engine) : Alarm(1.0f, engine) {}
+
+Alarm::Alarm(float duration, Engine& engine) :
+    DigitalSource(engine),
+    AbstractTimer(duration),
+    _engine(engine)
+  {
+  }
+  
+void Alarm::begin() {
   set(0);
 }
 
-void Alarm::step(Engine& engine) {
+void Alarm::step() {
   // Call parent update.
   update();
 
@@ -47,7 +55,7 @@ void Alarm::set(float time) {
 }
 
 float Alarm::_time() const {
-  return Plaquette.seconds();
+  return Unit::seconds();
 }
 
 }

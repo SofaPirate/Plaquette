@@ -45,31 +45,34 @@ constexpr float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f / NORMALIZER_DEFAULT_STDD
 class Normalizer : public MovingFilter, public MovingStats {
 public:
   /**
-   * Default constructor. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
+   * Default constructor. Assigns infinite time window.
+   * Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
+   * @param engine the engine running this unit
    */
-  Normalizer();
+  Normalizer(Engine& engine = Engine::singleton());
 
   /**
+   * Constructor with time window.
    * Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
-   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
+   * @param timeWindow the time window over which the normalization applies (in seconds)
+   * @param engine the engine running this unit
    */
-  Normalizer(float timeWindow);
+  Normalizer(float timeWindow, Engine& engine = Engine::singleton());
 
   /**
    * Constructor with infinite time window.
    * @param mean the target mean
    * @param stdDev the target standard deviation
-   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
    */
-  Normalizer(float mean, float stdDev);
+  Normalizer(float mean, float stdDev, Engine& engine = Engine::singleton());
 
   /**
-   * Constructor.
+   * Constructor with time window.
    * @param mean the target mean
    * @param stdDev the target standard deviation
-   * @param smoothWindow specifies the approximate "time window" over which the normalization applies(in seconds)
+   * @param timeWindow the time window over which the normalization applies (in seconds)
    */
-  Normalizer(float mean, float stdDev, float timeWindow);
+  Normalizer(float mean, float stdDev, float timeWindow, Engine& engine = Engine::singleton());
 
   virtual ~Normalizer() {}
 
@@ -143,9 +146,12 @@ public:
   virtual float mapTo(float toLow, float toHigh);
 
 protected:
-  virtual void step(Engine& engine);
+  virtual void step();
   virtual float update(float value, float sampleRate=1);
   
+  // Helper function for constructors.
+  void _init(float mean, float stdDev);
+
   // Returns clamped value.
   float _clamp(float value) const;
 

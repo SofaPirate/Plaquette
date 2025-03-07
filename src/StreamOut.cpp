@@ -22,8 +22,10 @@
 
 namespace pq {
 
-StreamOut::StreamOut(Stream& stream) :
-  AnalogSource(),
+StreamOut::StreamOut(Engine& engine) : StreamOut(Serial, engine) {}
+
+StreamOut::StreamOut(Stream& stream, Engine& engine) :
+  AnalogSource(engine),
   _digits(4),
   _stream(&stream)
 {}

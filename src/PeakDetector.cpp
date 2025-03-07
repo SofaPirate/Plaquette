@@ -22,7 +22,10 @@
 
 namespace pq {
 
-PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_)
+PeakDetector::PeakDetector(float triggerThreshold_, Engine& engine)
+  : PeakDetector(triggerThreshold_, PEAK_MAX, engine) {}
+
+PeakDetector::PeakDetector(float triggerThreshold_, uint8_t mode_, Engine& engine)
   : DigitalUnit(),
     _triggerThreshold(triggerThreshold_),
     _reloadThreshold(triggerThreshold_),

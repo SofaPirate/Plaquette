@@ -29,10 +29,17 @@ namespace pq {
 class Smoother : public Unit, public MovingAverage {
 public:
   /**
-   * Constructor.
-   * @param factor a parameter in [0, 1] representing the importance of new values as opposed to old values (ie. lower smoothing factor means *more* smoothing)
+   * Constructor with default smoothing.
+   * @param engine the engine running this unit
    */
-  Smoother(float timeWindow=PLAQUETTE_DEFAULT_SMOOTH_WINDOW);
+  Smoother(Engine& engine = Engine::singleton());
+
+  /**
+   * Constructor with smoothing window.
+   * @param smoothingWindow the time window over which the smoothing applies (in seconds)
+   * @param engine the engine running this unit
+   */
+  Smoother(float smoothingWindow, Engine& engine = Engine::singleton());
   virtual ~Smoother() {}
 
   /**
@@ -46,7 +53,7 @@ public:
   virtual float get() { return MovingAverage::get(); }
 
 protected:
-  virtual void step(Engine& engine);
+  virtual void step();
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentValueStep;
