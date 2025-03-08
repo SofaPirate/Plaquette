@@ -37,7 +37,9 @@
 #include "pq_map_real.h"
 
 #ifndef PLAQUETTE_MAX_UNITS
-/// Max. components that can be added. Can be pre-defined.
+// Max. components that can be added. Can be pre-defined. Notice that the use of a
+// hybrid array list requires a fixed size at compile time but the size will automatically be
+// adjusted at runtime if necessary using dynamically-allocated memory. 
 #define PLAQUETTE_MAX_UNITS 32
 #endif
 
