@@ -118,7 +118,7 @@ public:
   inline void end();
 
   /// Returns the current number of units.
-  size_t nUnits() { return _units.size(); }
+  size_t nUnits() { return _unitsEndIndex - _unitsBeginIndex; }
 
   /**
    * Returns time in seconds. Optional parameter allows to ask for reference time (default)
@@ -192,7 +192,11 @@ private:
 
 private:
   // Used to keep track of units.
-  HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
+  static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
+
+  // Range of this engine's units within the _units array list.
+  size_t _unitsBeginIndex; // begin index
+  size_t _unitsEndIndex;   // end index (= _unitsBeginIndex + nUnits())
 
   // Snapshot of time in seconds from current step.
   micro_seconds_t _microSeconds;
@@ -628,8 +632,9 @@ protected:
 
 void Engine::preStep() {
   // Update every component.
-  for (size_t i=0; i<_units.size(); i++)
+  for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++) {
     _units[i]->step();
+  }
 
   // Look for events.
   _eventManager.step();
@@ -641,7 +646,7 @@ void Engine::postStep() {
 
   // Calculate true sample rate.
   _updateGlobalMicroSeconds();
-  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
+  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;\
   float trueSampleRate = (diffTime ? MICROS_PER_SECOND / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
 
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
