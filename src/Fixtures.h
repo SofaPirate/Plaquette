@@ -130,7 +130,7 @@ class AnalogFixture : public Unit, public Smoothable {
 public:
   AnalogFixture(T& object, AnalogCallbacks<T> callbacks)
     : _object(&object), _callbacks(callbacks) {}
-
+  
   AnalogFixture(T& object,
                 float(*getFunc)  (T&),
                 void (*beginFunc)(T&) = NO_CALLBACK,
@@ -344,8 +344,8 @@ protected:
   }
 
   virtual void step() {
-    _callbacks.step(*_object);
     // Perform basic step.
+    _callbacks.step(*_object);
     _step();
     // Save state.
     _onValue = _debounced();
@@ -393,8 +393,8 @@ protected:
   }
 
   virtual void step() {
-    _callbacks.step();
     // Perform basic step.
+    _callbacks.step();
     _step();
     // Save state.
     _onValue = _debounced();
