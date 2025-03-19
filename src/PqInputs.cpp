@@ -40,7 +40,6 @@ void Smoothable::_step() {
 #define CHANGED_STATE   0x04
 
 Debounceable::Debounceable() : _interval(0), _startTime(0), _state(0) {
-   timeWindow(PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW);
    debounceMode(DEBOUNCE_STABLE);
  }
 
