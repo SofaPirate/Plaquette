@@ -192,7 +192,9 @@ private:
 
 private:
   // Used to keep track of units.
-  static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
+  // WARNING!!! It is crucial to declare this as an *inline static* variable to ensure
+  // that the constructor is called before the singleton is created.
+  static inline HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
 
   // Range of this engine's units within the _units array list.
   size_t _unitsBeginIndex; // begin index

@@ -25,8 +25,6 @@ namespace pq {
 
 Engine& Plaquette = Engine::singleton();
 
-HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> Engine::_units;
-
 Engine::Engine() 
 : _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0), 
  _nSteps(0), _beginCompleted(false), _firstRun(true) 
@@ -53,8 +51,9 @@ void Engine::preBegin(unsigned long baudrate) {
   _setSampleRate(FLT_MAX);
 
   // Initialize all components.
-  for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++)
+  for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++) {
     _units[i]->begin();
+  }
 
   // Units have been initialized.
   _beginCompleted = true;
@@ -87,8 +86,9 @@ uint64_t Engine::microSeconds(bool referenceTime) const {
 }
 
 void Engine::add(Unit* component) {
-  if (component->engine)
-    return; // does not support moving components between engines
+  if (component->engine) {
+    return; // XXX does not support moving components between engines
+  }
   
   // Find the right place to insert the component.
 
@@ -96,14 +96,17 @@ void Engine::add(Unit* component) {
   // adds units in the first part of the array list for efficency.
   if (nUnits() > 0 || isSingleton()) {
     // Insert component.
-    // if (_unitsEndIndex == _units.size())
-    //   _units.add(component);
-    // else
+    if (_unitsEndIndex == _units.size()) {
+      _units.add(component);
+      _unitsEndIndex++;
+    }
+    else {
       _units.insert(_unitsEndIndex++, component);
-    // Shift indices of next engines.
-    for (size_t i=_unitsEndIndex; i<_units.size(); ) {
-      _units[i]->engine->_unitsBeginIndex++;
-      i = _units[i]->engine->_unitsEndIndex++;
+      // Shift indices of next engines in the array.
+      for (size_t i=_unitsEndIndex; i<_units.size(); ) {
+        _units[i]->engine->_unitsBeginIndex++;
+        i = _units[i]->engine->_unitsEndIndex++;
+      }
     }
   }
 
@@ -113,6 +116,9 @@ void Engine::add(Unit* component) {
     _unitsBeginIndex = _units.size()-1;
     _unitsEndIndex = _unitsBeginIndex+1;
   }
+
+  // Serial.println("Adding unit");
+  // Serial.println(_units.size());
 
   // Assign parent engine.
   component->engine = this;
