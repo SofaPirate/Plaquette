@@ -30,6 +30,10 @@ bool SquareWave::isOn() {
   return _onValue;
 }
 
+bool SquareWave::shiftByIsOn(float phaseShift) {
+  return (phaseTimeAddPhase(_phaseTime, phaseShift) <= _width);
+}
+
 void SquareWave::step() {
   AbstractWave::step();
 

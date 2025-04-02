@@ -81,6 +81,13 @@ public:
   /// Registers event callback on change event.
   virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
 
+     /**
+    * Returns oscillator's on/off with given phase shift (in %). Supports negative phase shifts.
+    * @param phase the phase shift (in % of period)
+    * @return the boolean value of oscillator with given phase shift
+    */
+   virtual bool shiftByIsOn(float phaseShift);
+
 protected:
   // Core Plaquette methods.
   virtual void step();
