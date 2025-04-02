@@ -69,8 +69,7 @@ float AbstractWave::_getAmplified(fixed_t t) {
 }
 
 void AbstractWave::period(float period) {
-  if (period != _period)
-    _period = max(period, 0.0f);
+  _period = period;
 }
 
 void AbstractWave::frequency(float frequency) {
@@ -138,6 +137,18 @@ void AbstractWave::setTime(float time) {
 
   // Compute value.
   _value = _getAmplified(_phaseTime);
+}
+
+void AbstractWave::forward() {
+  period(abs(_period));
+}
+
+void AbstractWave::reverse() {
+  period(-abs(_period));
+}
+
+void AbstractWave::toggleReverse() {
+  period(-_period);
 }
 
 }

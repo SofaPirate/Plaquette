@@ -35,12 +35,8 @@ bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate) {
   // Premultiply period.
   period *= sampleRate;
 
-  // Extreme case: infinite increment.
-  if (period == 0)
-    return true;
-
-  // Normal case.
-  else {
+  // Forward case.
+  if (period > 0) {
     // Increment to add to phaseTime.
     fixed_t increment = floatToPhaseTime(1.0f / period);
     // Check if increment will overflow.
@@ -49,6 +45,20 @@ bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate) {
     phaseTime += increment;
     return overflow;
   }
+  // Backwards case.
+  else if (period < 0) {
+    // Increment to add to phaseTime.
+    fixed_t increment = floatToPhaseTime(1.0f / -period);
+    // Check if increment will underflow.
+    bool underflow = (increment > phaseTime);
+    // Add increment (will overflow when reaching max).
+    phaseTime -= increment;
+    return underflow;
+  }
+
+  // Extreme case: infinite increment.
+  else // period == 0
+    return true;
 }
 
 }

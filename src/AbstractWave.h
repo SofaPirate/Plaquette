@@ -139,6 +139,18 @@ public:
   /// Forces current time (in seconds).
   virtual void setTime(float time);
 
+  /// Sets the direction of oscillation to move forward in time.
+  virtual void forward();
+
+  /// Sets the direction of oscillation to move backward in time.
+  virtual void reverse();
+
+  /// Toggles the direction of oscillation.
+  virtual void toggleReverse();
+
+  /// Returns true iff the wave is moving forward in time.
+  virtual bool isForward() const { return (_period >= 0); }
+
   /// Returns true iff the wave is currently running.
   bool isRunning() const { return _isRunning; }
 
@@ -153,7 +165,7 @@ protected:
   // Returns amplified version of _get(t).
   virtual float _getAmplified(fixed_t t);
 
-  // Period (seconds).
+  // Period (seconds). Negative period indicates time reversal (going backwards).
   float _period;
 
   // Phase (in % of period).
