@@ -8,7 +8,7 @@
  *
  * This example code is in the public domain.
  */
- #include <Plaquette.h>
+#include <Plaquette.h>
 
 // Analog input.
 AnalogIn in(A0);
