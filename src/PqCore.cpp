@@ -110,8 +110,9 @@ void Engine::add(Unit* component) {
       allUnits.insert(_unitsEndIndex++, component);
       // Shift indices of next engines in the array.
       for (size_t i=_unitsEndIndex; i<allUnits.size(); ) {
-        allUnits[i]->engine->_unitsBeginIndex++;
-        i = allUnits[i]->engine->_unitsEndIndex++;
+        Engine* engine = allUnits[i]->engine;
+        ++engine->_unitsBeginIndex;
+        i = ++engine->_unitsEndIndex;
       }
     }
   }
