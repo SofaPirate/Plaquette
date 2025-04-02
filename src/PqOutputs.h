@@ -29,11 +29,18 @@ namespace pq {
 class AnalogOut : public AnalogSource, public PinUnit {
 public:
   /**
+   * Constructor with default mode DIRECT.
+   * @param pin the pin number
+   */
+  AnalogOut(uint8_t pin, Engine& engine = Engine::primary());
+
+  /**
    * Constructor.
    * @param pin the pin number
    * @param mode the mode (DIRECT or INVERTED)
    */
-  AnalogOut(uint8_t pin, uint8_t mode=DIRECT);
+  AnalogOut(uint8_t pin, uint8_t mode, Engine& engine = Engine::primary());
+  
   virtual ~AnalogOut() {}
 
   /// Pushes value into the component and returns its (possibly filtered) value.
@@ -53,11 +60,17 @@ protected:
 class DigitalOut : public DigitalSource, public PinUnit {
 public:
   /**
+   * Constructor with default mode DIRECT.
+   * @param pin the pin number
+   */
+  DigitalOut(uint8_t pin, Engine& engine = Engine::primary());
+
+  /**
    * Constructor.
    * @param pin the pin number
    * @param mode the mode (DIRECT or INVERTED)
    */
-  DigitalOut(uint8_t pin, uint8_t mode=DIRECT);
+  DigitalOut(uint8_t pin, uint8_t mode, Engine& engine = Engine::primary());
 
   virtual ~DigitalOut() {}
 

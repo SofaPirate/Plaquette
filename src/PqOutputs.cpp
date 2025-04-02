@@ -23,8 +23,12 @@
 
 namespace pq {
 
-AnalogOut::AnalogOut(uint8_t pin, uint8_t mode)
-  : AnalogSource(), PinUnit(pin, mode)
+AnalogOut::AnalogOut(uint8_t pin, Engine& engine)
+  : AnalogSource(engine), PinUnit(pin, DIRECT)
+{}
+
+AnalogOut::AnalogOut(uint8_t pin, uint8_t mode, Engine& engine)
+  : AnalogSource(engine), PinUnit(pin, mode)
 {}
 
 float AnalogOut::put(float value) {
@@ -55,9 +59,14 @@ void AnalogOut::step() {
   analogWriteFunction(_pin, (_mode == SOURCE ? _value : ANALOG_WRITE_MAX_VALUE - _value));
 }
 
-DigitalOut::DigitalOut(uint8_t pin, uint8_t mode)
-  : DigitalSource(), PinUnit(pin, mode)
+DigitalOut::DigitalOut(uint8_t pin, Engine& engine)
+  : DigitalSource(engine), PinUnit(pin, DIRECT)
 {}
+
+DigitalOut::DigitalOut(uint8_t pin, uint8_t mode, Engine& engine)
+  : DigitalSource(engine), PinUnit(pin, mode)
+{}
+
 
 void DigitalOut::mode(uint8_t mode) {
   _mode = mode;
