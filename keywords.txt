@@ -112,6 +112,10 @@ amplitude  KEYWORD2
 shiftBy  KEYWORD2
 timeToPhase  KEYWORD2
 setTime KEYWORD2
+shiftByIsOn  KEYWORD2
+forward  KEYWORD2
+reverse  KEYWORD2
+toggleReverse  KEYWORD2
 
 # Ramp
 duration  KEYWORD2
