@@ -7,6 +7,7 @@
 #######################################
 
 Plaquette	KEYWORD1
+Engine	KEYWORD1
 
 AnalogIn	KEYWORD1
 DigitalIn	KEYWORD1
