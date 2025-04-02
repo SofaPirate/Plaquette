@@ -163,10 +163,9 @@ private:
   static micro_seconds_t _updateGlobalMicroSeconds();
 
 private:
-  // Used to keep track of units.
-  // WARNING!!! It is crucial to declare this as an *inline static* variable to ensure
-  // that the constructor is called before the singleton is created.
-  static inline HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> _units;
+  // Shared static container containing all units. Static because it is shared between all engines.
+  // Units from main engine are always located at the begnning, then units from other engines.
+  static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& units();
 
   // Range of this engine's units within the _units array list.
   size_t _unitsBeginIndex; // begin index
@@ -607,7 +606,7 @@ protected:
 void Engine::preStep() {
   // Update every component.
   for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++) {
-    _units[i]->step();
+    units()[i]->step();
   }
 
   // Look for events.

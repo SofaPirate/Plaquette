@@ -23,6 +23,16 @@
 
 namespace pq {
 
+HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& Engine::units() {
+  static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> instance;
+  return instance;
+}
+  
+Engine& Engine::singleton() {
+  static Engine instance;
+  return instance;
+}
+  
 Engine& Plaquette = Engine::singleton();
 
 Engine::Engine() 
@@ -30,11 +40,6 @@ Engine::Engine()
  _nSteps(0), _beginCompleted(false), _firstRun(true) 
  {}
 Engine::~Engine() {
-}
-
-Engine& Engine::singleton() {
-  static Engine instance;
-  return instance;
 }
 
 void Engine::preBegin(unsigned long baudrate) {
@@ -52,7 +57,7 @@ void Engine::preBegin(unsigned long baudrate) {
 
   // Initialize all components.
   for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++) {
-    _units[i]->begin();
+    units()[i]->begin();
   }
 
   // Units have been initialized.
@@ -86,6 +91,7 @@ uint64_t Engine::microSeconds(bool referenceTime) const {
 }
 
 void Engine::add(Unit* component) {
+  HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& allUnits = units();
   if (component->engine) {
     return; // XXX does not support moving components between engines
   }
@@ -96,24 +102,24 @@ void Engine::add(Unit* component) {
   // adds units in the first part of the array list for efficency.
   if (nUnits() > 0 || isSingleton()) {
     // Insert component.
-    if (_unitsEndIndex == _units.size()) {
-      _units.add(component);
+    if (_unitsEndIndex == allUnits.size()) {
+      allUnits.add(component);
       _unitsEndIndex++;
     }
     else {
-      _units.insert(_unitsEndIndex++, component);
+      allUnits.insert(_unitsEndIndex++, component);
       // Shift indices of next engines in the array.
-      for (size_t i=_unitsEndIndex; i<_units.size(); ) {
-        _units[i]->engine->_unitsBeginIndex++;
-        i = _units[i]->engine->_unitsEndIndex++;
+      for (size_t i=_unitsEndIndex; i<allUnits.size(); ) {
+        allUnits[i]->engine->_unitsBeginIndex++;
+        i = allUnits[i]->engine->_unitsEndIndex++;
       }
     }
   }
 
   // If there are no units yet, insert it at the end.
   else {
-    _units.add(component);
-    _unitsBeginIndex = _units.size()-1;
+    allUnits.add(component);
+    _unitsBeginIndex = allUnits.size()-1;
     _unitsEndIndex = _unitsBeginIndex+1;
   }
 
@@ -145,7 +151,7 @@ void Engine::add(Unit* component) {
 
 void Engine::remove(Unit* component) {
   // Remove component from list.
-  _units.removeItem(component);
+  units().removeItem(component);
 }
 
 micro_seconds_t Engine::_totalGlobalMicroSeconds = { 0 };
