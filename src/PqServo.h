@@ -29,7 +29,7 @@ namespace pq {
 /// Servo-motor absract object.
 class AbstractServoOut : public AnalogSource, public Servo {
 protected:
-  AbstractServoOut(uint8_t pin, Engine& engine = Engine::singleton());
+  AbstractServoOut(uint8_t pin, Engine& engine = Engine::primary());
 
 public:
   virtual ~AbstractServoOut();
@@ -58,7 +58,7 @@ public:
    * Constructor for a standard servo-motor.
    * @param pin the pin number
    */
-  ServoOut(uint8_t pin, Engine& engine = Engine::singleton());
+  ServoOut(uint8_t pin, Engine& engine = Engine::primary());
 
   /**
    * Sets the servomotor position to a specific angle between 0 and 180 degrees.
@@ -81,7 +81,7 @@ public:
    * Constructor for a continuous rotation servo-motor.
    * @param pin the pin number
    */
-  ContinuousServoOut(uint8_t pin, Engine& engine = Engine::singleton());
+  ContinuousServoOut(uint8_t pin, Engine& engine = Engine::primary());
 
   /// Stops the servo-motor.
   virtual void stop();

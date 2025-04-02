@@ -32,14 +32,14 @@ public:
    * Constructor with default smoothing.
    * @param engine the engine running this unit
    */
-  Smoother(Engine& engine = Engine::singleton());
+  Smoother(Engine& engine = Engine::primary());
 
   /**
    * Constructor with smoothing window.
    * @param smoothingWindow the time window over which the smoothing applies (in seconds)
    * @param engine the engine running this unit
    */
-  Smoother(float smoothingWindow, Engine& engine = Engine::singleton());
+  Smoother(float smoothingWindow, Engine& engine = Engine::primary());
   virtual ~Smoother() {}
 
   /**

@@ -35,14 +35,14 @@ public:
    * Constructor.
    * @param engine the engine running this unit
    */
-  Alarm(Engine& engine = Engine::singleton());
+  Alarm(Engine& engine = Engine::primary());
 
     /**
    * Constructor with duration.
    * @param duration duration of the alarm
    * @param engine the engine running this unit
    */
-  Alarm(float duration, Engine& engine = Engine::singleton());
+  Alarm(float duration, Engine& engine = Engine::primary());
 
   /// Returns true iff the alarm just finished its process this step.
   virtual bool finished() { return rose(); }

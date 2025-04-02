@@ -42,7 +42,7 @@ public:
    * @param triggerThreshold value that triggers peak detection
    * @param engine the engine running this unit
    */
-  PeakDetector(float triggerThreshold, Engine& engine = Engine::singleton());
+  PeakDetector(float triggerThreshold, Engine& engine = Engine::primary());
 
   /**
    * Constructor. Possible modes are:
@@ -54,7 +54,7 @@ public:
    * @param mode peak detection mode
    * @param engine the engine running this unit
    */
-  PeakDetector(float triggerThreshold, uint8_t mode, Engine& engine = Engine::singleton());
+  PeakDetector(float triggerThreshold, uint8_t mode, Engine& engine = Engine::primary());
   virtual ~PeakDetector() {}
 
   /// Sets triggerThreshold.

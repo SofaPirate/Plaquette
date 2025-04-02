@@ -32,7 +32,7 @@ protected:
    * Constructor.
    * @param engine the engine running this unit
    */
-  MovingFilter(Engine& engine = Engine::singleton());
+  MovingFilter(Engine& engine = Engine::primary());
 
   virtual ~MovingFilter() {}
 

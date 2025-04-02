@@ -49,7 +49,7 @@ public:
    * Will renormalize data around a mean of 0.5 and a standard deviation of 0.15.
    * @param engine the engine running this unit
    */
-  Normalizer(Engine& engine = Engine::singleton());
+  Normalizer(Engine& engine = Engine::primary());
 
   /**
    * Constructor with time window.
@@ -57,14 +57,14 @@ public:
    * @param timeWindow the time window over which the normalization applies (in seconds)
    * @param engine the engine running this unit
    */
-  Normalizer(float timeWindow, Engine& engine = Engine::singleton());
+  Normalizer(float timeWindow, Engine& engine = Engine::primary());
 
   /**
    * Constructor with infinite time window.
    * @param mean the target mean
    * @param stdDev the target standard deviation
    */
-  Normalizer(float mean, float stdDev, Engine& engine = Engine::singleton());
+  Normalizer(float mean, float stdDev, Engine& engine = Engine::primary());
 
   /**
    * Constructor with time window.
@@ -72,7 +72,7 @@ public:
    * @param stdDev the target standard deviation
    * @param timeWindow the time window over which the normalization applies (in seconds)
    */
-  Normalizer(float mean, float stdDev, float timeWindow, Engine& engine = Engine::singleton());
+  Normalizer(float mean, float stdDev, float timeWindow, Engine& engine = Engine::primary());
 
   virtual ~Normalizer() {}
 

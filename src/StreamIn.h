@@ -32,14 +32,14 @@ public:
    * Default constructor.
    * @param engine the engine running this unit
    */
-  StreamIn(Engine& engine = Engine::singleton());
+  StreamIn(Engine& engine = Engine::primary());
 
   /**
    * Constructor.
    * @param stream a reference to a Stream object
    * @param engine the engine running this unit
    */
-  StreamIn(Stream& stream, Engine& engine = Engine::singleton());
+  StreamIn(Stream& stream, Engine& engine = Engine::primary());
 
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }

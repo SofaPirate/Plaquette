@@ -144,11 +144,11 @@ public:
   /// Returns sample period.
   float samplePeriod() const { return _samplePeriod; }
 
-  /// Returns the singleton instance of Plaquette.
-  static Engine& singleton();
+  /// Returns the main instance of Plaquette.
+  static Engine& primary();
 
-  /// Returns true if this Engine is the singleton.
-  bool isSingleton() const { return this == &singleton(); }
+  /// Returns true if this Engine is the main.
+  bool isPrimary() const { return this == &primary(); }
 
 private:
   /// Adds a component to Plaquette.
@@ -160,11 +160,12 @@ private:
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
 
+  // Internal use, needs to be called periodically. Updates _totalGlobalMicroSeconds.
   static micro_seconds_t _updateGlobalMicroSeconds();
 
 private:
   // Shared static container containing all units. Static because it is shared between all engines.
-  // Units from main engine are always located at the begnning, then units from other engines.
+  // Units from the primary engine are always located at the begnning, then units from other engines.
   static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& units();
 
   // Range of this engine's units within the _units array list.
@@ -204,10 +205,10 @@ private:
   Engine& operator=(const Engine&);
 };
 
-/// The Plaquette singleton.
+/// The Plaquette main.
 extern Engine& Plaquette;
 
-/// Returns number of steps of main engine.
+/// Returns number of steps of primary engine.
 unsigned long nSteps();
 
 // /// Returns true iff the auto sample rate mode is enabled (default).
@@ -222,10 +223,10 @@ unsigned long nSteps();
 // /// Sets sample period to a fixed value, thus disabling auto sampling rate.
 // void samplePeriod(float samplePeriod);
 
-/// Returns sample rate.
+/// Returns sample rate of primary engine.
 float sampleRate();
 
-/// Returns sample period.
+/// Returns sample period of primary engine.
 float samplePeriod();
 
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
@@ -292,7 +293,7 @@ public:
   
 protected:
   /// Constructor.
-  Unit(Engine& engine = Engine::singleton());
+  Unit(Engine& engine = Engine::primary());
   virtual ~Unit();
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -322,7 +323,7 @@ protected:
 class DigitalUnit : public Unit {
 public:
   /// Constructor.
-  DigitalUnit(Engine& engine = Engine::singleton()) : Unit(engine) {}
+  DigitalUnit(Engine& engine = Engine::primary()) : Unit(engine) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() = 0;
@@ -379,8 +380,8 @@ public:
 class AnalogSource : public Unit {
 public:
   /// Constructor.
-  AnalogSource(Engine& engine = Engine::singleton()) : AnalogSource(0, engine) {}
-  AnalogSource(float initialValue, Engine& engine = Engine::singleton()) : Unit(engine) { _value = constrain(initialValue, 0, 1); }
+  AnalogSource(Engine& engine = Engine::primary()) : AnalogSource(0, engine) {}
+  AnalogSource(float initialValue, Engine& engine = Engine::primary()) : Unit(engine) { _value = constrain(initialValue, 0, 1); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
@@ -397,8 +398,8 @@ protected:
 class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(Engine& engine = Engine::singleton()) : DigitalSource(false, engine) {}
-  DigitalSource(bool initialValue, Engine& engine = Engine::singleton()) : DigitalUnit(engine), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
+  DigitalSource(Engine& engine = Engine::primary()) : DigitalSource(false, engine) {}
+  DigitalSource(bool initialValue, Engine& engine = Engine::primary()) : DigitalUnit(engine), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }

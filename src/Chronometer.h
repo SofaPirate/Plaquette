@@ -28,7 +28,7 @@ namespace pq {
 class Chronometer : public Unit, public AbstractChronometer {
 public:
   /// Constructor.
-  Chronometer(Engine& engine = Engine::singleton());
+  Chronometer(Engine& engine = Engine::primary());
 
   /// Returns elapsed time since start (in seconds).
   virtual float get() { return elapsed(); }

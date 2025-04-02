@@ -151,8 +151,8 @@ public:
    * @param pin the pin number
    * @param mode the mode (DIRECT or INVERTED)
    */
-  AnalogIn(uint8_t pin, Engine& engine = Engine::singleton());
-  AnalogIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::singleton());
+  AnalogIn(uint8_t pin, Engine& engine = Engine::primary());
+  AnalogIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::primary());
   virtual ~AnalogIn() {}
 
   /// Returns value in [0, 1].
@@ -180,8 +180,8 @@ public:
    * @param pin the pin number
    * @param mode the mode (DIRECT, INVERTED, or INTERNAL_PULLUP)
    */
-  DigitalIn(uint8_t pin, Engine& engine = Engine::singleton());
-  DigitalIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::singleton());
+  DigitalIn(uint8_t pin, Engine& engine = Engine::primary());
+  DigitalIn(uint8_t pin, uint8_t mode, Engine& engine = Engine::primary());
   virtual ~DigitalIn() {}
 
   /// Changes the mode of the component.

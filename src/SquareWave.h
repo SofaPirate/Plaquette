@@ -32,14 +32,14 @@ public:
    * Constructor.
    * @param engine the engine running this unit
    */
-  SquareWave(Engine& engine = Engine::singleton());
+  SquareWave(Engine& engine = Engine::primary());
 
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param engine the engine running this unit
    */
-  SquareWave(float period, Engine& engine = Engine::singleton());
+  SquareWave(float period, Engine& engine = Engine::primary());
 
   /**
    * Constructor.
@@ -47,7 +47,7 @@ public:
    * @param width the duty-cycle as a value in [0, 1]
    * @param engine the engine running this unit
    */
-  SquareWave(float period, float width, Engine& engine = Engine::singleton());
+  SquareWave(float period, float width, Engine& engine = Engine::primary());
 
   virtual ~SquareWave() {}
 

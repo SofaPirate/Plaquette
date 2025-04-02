@@ -43,14 +43,14 @@ public:
    * Constructor.
    * @param engine the engine running this unit
    */
-  Ramp(Engine& engine = Engine::singleton());
+  Ramp(Engine& engine = Engine::primary());
 
     /**
    * Constructor with duration.
    * @param duration duration of the ramp
    * @param engine the engine running this unit
    */
-  Ramp(float duration, Engine& engine = Engine::singleton());
+  Ramp(float duration, Engine& engine = Engine::primary());
 
   /// Returns value of ramp.
   virtual float get() { return _value; }

@@ -28,12 +28,12 @@ HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& Engine::units() {
   return instance;
 }
   
-Engine& Engine::singleton() {
+Engine& Engine::primary() {
   static Engine instance;
   return instance;
 }
   
-Engine& Plaquette = Engine::singleton();
+Engine& Plaquette = Engine::primary();
 
 Engine::Engine() 
 : _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0), 
@@ -44,7 +44,7 @@ Engine::~Engine() {
 
 void Engine::preBegin(unsigned long baudrate) {
   // Initialize serial.
-  if (isSingleton() && baudrate)
+  if (isPrimary() && baudrate)
     beginSerial(baudrate);
 
   // Initialize variables.
@@ -100,7 +100,7 @@ void Engine::add(Unit* component) {
 
   // If there are already units, insert it after the last unit. Singleton always
   // adds units in the first part of the array list for efficency.
-  if (nUnits() > 0 || isSingleton()) {
+  if (nUnits() > 0 || isPrimary()) {
     // Insert component.
     if (_unitsEndIndex == allUnits.size()) {
       allUnits.add(component);

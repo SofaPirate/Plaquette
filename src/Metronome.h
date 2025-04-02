@@ -35,14 +35,14 @@ public:
    * Constructor.
    * @param engine the engine running this unit
    */
-  Metronome(Engine& engine = Engine::singleton());
+  Metronome(Engine& engine = Engine::primary());
 
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param engine the engine running this unit
    */
-  Metronome(float period, Engine& engine = Engine::singleton());
+  Metronome(float period, Engine& engine = Engine::primary());
 
   /// Returns true iff the metronome fires.
   virtual bool isOn() { return _onValue; }

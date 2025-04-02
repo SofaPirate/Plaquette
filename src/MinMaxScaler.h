@@ -33,14 +33,14 @@ public:
    * Default constructor. Assigns infinite time window.
    * @param engine the engine running this unit
    */
-  MinMaxScaler(Engine& engine = Engine::singleton());
+  MinMaxScaler(Engine& engine = Engine::primary());
 
   /**
    * Constructor with time window.
    * @param timeWindow the time window (in seconds)
    * @param engine the engine running this unit
    */
-  MinMaxScaler(float timeWindow, Engine& engine = Engine::singleton());
+  MinMaxScaler(float timeWindow, Engine& engine = Engine::primary());
 
   virtual ~MinMaxScaler() {}
 

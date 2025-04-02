@@ -34,14 +34,14 @@ public:
    * Constructor.
    * @param engine the engine running this unit
    */
-  TriangleWave(Engine& engine = Engine::singleton());
+  TriangleWave(Engine& engine = Engine::primary());
 
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
    * @param engine the engine running this unit
    */
-  TriangleWave(float period, Engine& engine = Engine::singleton());
+  TriangleWave(float period, Engine& engine = Engine::primary());
 
   /**
    * Constructor.
@@ -49,7 +49,7 @@ public:
    * @param width the duty-cycle as a value in [0, 1]
    * @param engine the engine running this unit
    */
-  TriangleWave(float period, float width, Engine& engine = Engine::singleton());
+  TriangleWave(float period, float width, Engine& engine = Engine::primary());
   
   virtual ~TriangleWave() {}
 
