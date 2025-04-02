@@ -18,7 +18,7 @@ Engine timerEngine;
 Metronome serialMetro(1.0);
 
 // Metronome toggling the built-in LED, attached to the timer engine.
-Metronome toggleMetro(1.0, timerEngine);
+Metronome toggleMetro(0.25, timerEngine);
 
 // Built-in LED, attached to the timer engine.
 DigitalOut led(LED_BUILTIN, timerEngine);
@@ -27,8 +27,8 @@ void begin() {
   // Begin timer engine.
   timerEngine.begin();
 
-  // Initialize interrupt timer2.
-  timerBegin();
+  // Initialize timer interrupt timer2.
+  timerSetup();
 }
 
 void step() {
@@ -45,7 +45,7 @@ void timerStep() {
 #if defined(__AVR_ATmega328P__)  // Arduino Uno, Nano, etc.
 
 // Timer2 setup for 1kHz on AVR
-void timerBegin() {
+void timerSetup() {
   // Stop Timer2
   TCCR2A = 0;
   TCCR2B = 0;
@@ -80,8 +80,6 @@ ISR(TIMER2_COMPA_vect) {
 
 #elif defined(ESP32)
 
-hw_timer_t *timer = NULL;
-
 void IRAM_ATTR onTimer() {
   // Step engine.
   timerEngine.step();
@@ -90,7 +88,9 @@ void IRAM_ATTR onTimer() {
   timerStep();
 }
 
-void timerBegin() {
+hw_timer_t *timer = NULL;
+
+void timerSetup() {
   timer = timerBegin(0, 80, true);               // 80 prescaler = 1 MHz
   timerAttachInterrupt(timer, &onTimer, true);
   timerAlarmWrite(timer, 1000, true);            // 1000 ticks = 1ms = 1kHz
@@ -98,8 +98,19 @@ void timerBegin() {
 }
 
 #else
-#warning "Unsupported board: No timer setup defined"
-void timerBegin() {
+// Default: without interrupts/timer support we use a 1kHz metronome to trigger timer engine..
+Metronome timerMetro(0.001);
+
+void onTimer() {
+  // Step engine.
+  timerEngine.step();
+
+  // Call timer engine step function.
+  timerStep();
+}
+
+void timerSetup() {
+  timerMetro.onBang(onTimer);
 }
 #endif
 
