@@ -22,6 +22,38 @@
 #ifndef PQ_GLOBALS_H_
 #define PQ_GLOBALS_H_
 
+// Max. components that can be added. Can be pre-defined. Notice that the use of a
+// hybrid array list requires a fixed size at compile time but the size will automatically be
+// adjusted at runtime if necessary using dynamically-allocated memory. 
+#ifndef PLAQUETTE_MAX_UNITS
+#define PLAQUETTE_MAX_UNITS 32
+#endif
+
+// Serial.
+#ifndef PLAQUETTE_SERIAL_BAUD_RATE
+#define PLAQUETTE_SERIAL_BAUD_RATE 9600
+#endif
+
+#define NO_SERIAL 0
+
+// Smoothing.
+#ifndef PLAQUETTE_DEFAULT_SMOOTH_WINDOW
+#define PLAQUETTE_DEFAULT_SMOOTH_WINDOW 0.1f
+#endif
+
+#define PLAQUETTE_NO_SMOOTH_WINDOW 0.0f
+#define PLAQUETTE_INFINITE_SMOOTH_WINDOW (-1)
+
+// Debouncing.
+#ifndef PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW
+#define PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW 0.02f // 20 ms
+#endif
+
+#define PLAQUETTE_NO_DEBOUNCE_WINDOW 0.0f
+
+// Sample rate.
+#define PLAQUETTE_MAX_SAMPLE_RATE FLT_MAX
+
 // Platform type.
 
 // 32-bit platforms
