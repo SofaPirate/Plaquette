@@ -1,5 +1,5 @@
 /**
- * MultiEngines
+ * EnginesMultiTasking
  *
  * Demonstrates the use of multiple Plaquette engines. In this example, the primary
  * engine runs in the main loop and a secondary engine runs on Arduino timer2 interrupt
