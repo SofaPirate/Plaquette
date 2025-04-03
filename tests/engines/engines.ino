@@ -11,6 +11,10 @@ Metronome metro0(0.1);
 Metronome metro1(0.1, engine1);
 Metronome metro2(0.1, engine2);
 
+SquareWave dummy0(1.0);
+SquareWave dummy1(1.0, engine2);
+SquareWave dummy2(1.0);
+
 int count0 = 0;
 int count1 = 0;
 int count2 = 0;
@@ -39,9 +43,9 @@ testing(count) {
 }
 
 test(nUnits) {
-  assertEqual((int)Plaquette.nUnits(), 1);
+  assertEqual((int)Plaquette.nUnits(), 3);
   assertEqual((int)engine1.nUnits(), 1);
-  assertEqual((int)engine2.nUnits(), 1);
+  assertEqual((int)engine2.nUnits(), 2);
 }
 
 void setup() {
