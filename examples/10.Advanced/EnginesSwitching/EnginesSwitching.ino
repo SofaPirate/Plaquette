@@ -3,7 +3,7 @@
  *
  * Demonstrates the use of multiple Plaquette engines allowing to switch between
  * them. In this example, the primary engine runs a sine wave while the secondary
- * engine runs a square wave.
+ * engine runs a square wave. Only one of the two engines is active at a time.
  *
  * The circuit:
  * - Pushbutton: attached to digital pin 2 from ground
