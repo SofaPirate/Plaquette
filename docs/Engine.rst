@@ -39,6 +39,62 @@ Each engine provides its own time measurements:
 
 For more in-depth explanations and examples please read :ref:`secondary-engines`.
 
+|Example|
+---------
+
+This example demonstrates the use of a secondary engine on an Arduino Uno or Nano using
+timer2 interrupt.
+
+.. code-block:: c++
+
+  #include <Plaquette.h>
+
+  Engine timerEngine; // The secondary timer engine.
+
+  Metronome serialMetro(1.0); // Metronome (primary engine).
+
+  Metronome toggleMetro(0.25, timerEngine); // Metronome (timer engine).
+  DigitalOut led(LED_BUILTIN, timerEngine); // Built-in LED (timer engine).
+
+  // Primary engine begin().
+  void begin() {
+    timerEngine.begin(); // Begin timer engine.
+    timerSetup();        // Initialize timer interrupt timer2.
+  }
+
+  // Primary engine step().
+  void step() {
+    if (serialMetro)
+      println("step");
+  }
+
+  // Timer2 interrupt: will be called at 1kHz frequency.
+  ISR(TIMER2_COMPA_vect) {
+    timerEngine.step(); // Step engine.
+    
+    if (toggleMetro) // Toggle LED on metro bang.
+      led.toggle();
+  }
+
+  // Timer2 setup for 1kHz on AVR.
+  void timerSetup() {
+    // Stop Timer2
+    TCCR2A = 0;
+    TCCR2B = 0;
+    TCNT2  = 0;
+
+    // Set compare match register for 1 kHz increments
+    // 16 MHz / (prescaler * 1000) - 1 = OCR2A
+    // Try prescaler = 128 => OCR2A = (16e6 / (128 * 1000)) - 1 ≈ 124
+    OCR2A = 124;
+
+    TCCR2A |= (1 << WGM21); // CTC mode (Clear Timer on Compare Match)
+    TCCR2B |= (1 << CS22) | (1 << CS20);  // Set prescaler to 128
+    TIMSK2 |= (1 << OCIE2A); // Enable Timer2 compare interrupt
+
+    sei(); // Enable global interrupts
+  }
+
 |Reference|
 ----------
 
