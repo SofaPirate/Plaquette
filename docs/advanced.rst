@@ -123,11 +123,13 @@ Here is an example of our blinking code rewritten by using this feature:
     }
 
 
+.. _secondary-engines:
+  
 Using Secondary Engines
 -----------------------
 
 Have you wondered how units such as waves, inputs, outputs, or ramps are automatically initialized and updated in Plaquette?
-This is done thanks to an **engine** which is a control structure that acts like the **conductor of an orchestra**.
+This is done thanks to an :doc:`Engine`, a control structure that acts like the **conductor of an orchestra**.
 It contains an ensemble of **units** and manages their initialization and updates. Every time the engine "ticks", 
 it updates all of its units, making sure they stay synchronized.
 
