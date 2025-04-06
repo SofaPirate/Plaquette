@@ -89,6 +89,8 @@ instead of the Plaquette style.
   * - ``input >> filter >> output;``
     - ``output.put(filter.put(input.get()));``
 
+.. _plaquette-external-library:
+
 Using Plaquette as an External Library
 --------------------------------------
 
@@ -133,11 +135,12 @@ This is done thanks to an :doc:`Engine`, a control structure that acts like the 
 It contains an ensemble of **units** and manages their initialization and updates. Every time the engine "ticks", 
 it updates all of its units, making sure they stay synchronized.
 
-By default, all units are added to a built-in engine called the **primary engine** called ``Plaquette``. This is the object
-that is used when one wants to use Plaquette as an external library. In the default mode, when one declares ``void begin()`` 
-and ``void step()`` functions, the primary engine's ``begin()`` and ``step()`` functions are called automatically.
+By default, all units are added to a built-in engine called the **primary engine**. This engine is simply called ``Plaquette``
+and is mainly used when working with :ref:`Plaquette as an external library<plaquette-external-library>`. In the default 
+mode, when one declares the ``void begin()`` and ``void step()`` functions, the primary engine's ``Plaquette.begin()`` and 
+``Plaquette.step()`` functions are automatically called.
 
-However, there are contexts where you might need more than one engine:
+There are contexts where the primary engine is not sufficient and one needs to use more than one engine:
 
 - **Multi-tasking** Engines allow you to take full advantage of **timer interrupts**, **threads** and/or **multiple processor cores**
   to run different unit ensembles in parallel, possibly running with different frequencies and priorities.
