@@ -155,7 +155,7 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 
 .. _compatible with Arduino:
 
-Arduino Compatible
+Arduino-compatible
 ------------------
 
 Plaquette is installed as an Arduino library and provides a replacement for the
@@ -163,37 +163,36 @@ core Arduino functionalities while remaining fully compatible with Arduino code.
 Seasoned Arduino users should consult the :doc:`advanced` section for some tips
 on how to integrate Plaquette into their existing code.
 
-The following example uses Arduino's `constrain() <https://docs.arduino.cc/language-reference/en/functions/math/constrain/>`_
-function and `Serial <https://docs.arduino.cc/language-reference/en/functions/communication/serial/>`_ object
-to control a blinking LED that slows down with each button push. keeping the oscillation
-period within a certain range.
+The following example uses Plaquette to control a blinking LED that slows down with 
+each button push, using Arduino's `constrain() <https://docs.arduino.cc/language-reference/en/functions/math/constrain/>`_
+to keep the LED oscillation period within a certain range and `Serial <https://docs.arduino.cc/language-reference/en/functions/communication/serial/>`_ object
+to reset the counter to a random integer value using `random() <https://docs.arduino.cc/language-reference/en/functions/random-numbers/random/>`_.
 
 .. code-block:: c++
 
    #include <Plaquette.h>
 
-   DigitalIn button(2);
+   DigitalIn button(2, INTERNAL_PULLUP); // button input
 
-   DigitalOut led(LED_BUILTIN);
+   DigitalOut led(LED_BUILTIN); // LED output
 
-   SquareWave oscillator(1.0);
+   SquareWave oscillator(1.0); // square oscillator
 
-   int countButtonPushes = 0;
+   int currentPeriod = 0; // oscillator period counter
 
-   void begin() {}
+   void begin() {
+      button.debounce(); // debounce button
+   }
 
    void step() {
-
-      if (Serial.read() == 'R') {
-        countButtonPushes = 0;
-      }
+      if (Serial.read() == 'R') // reset counter
+        currentPeriod = random(1, 10);
       
-      if (button.rose()) { // true when value rises (ie. button is pushed)
-        countButtonPushes++;
-        oscillator.period( constrain(countButtonPushes, 2, 10) );
-      }
+      if (button.rose()) // true when value rises (ie. button is pushed)
+        currentPeriod = constrain(currentPeriod+1, 1, 10); // increment
 
-      oscillator >> led;
+      oscillator.period(currentPeriod); // set period
+      oscillator >> led; // send signal to LED
    }
 
 .. danger::

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SquareWave &mdash; Plaquette 0.6.5 documentation</title>
+  <title>SquareWave &mdash; Plaquette 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d7a12d57"></script>
+      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -151,15 +151,56 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave10SquareWaveEff">
-<span id="_CPPv3N10SquareWave10SquareWaveEff"></span><span id="_CPPv2N10SquareWave10SquareWaveEff"></span><span id="SquareWave::SquareWave__float.float"></span><span class="target" id="classpq_1_1_square_wave_1af11b6fec5adc2201780ac5e5ae7d435d"></span><span class="sig-name descname"><span class="n"><span class="pre">SquareWave</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.5f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave10SquareWaveEff" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave10SquareWaveER6Engine">
+<span id="_CPPv3N10SquareWave10SquareWaveER6Engine"></span><span id="_CPPv2N10SquareWave10SquareWaveER6Engine"></span><span id="SquareWave::SquareWave__EngineR"></span><span class="target" id="classpq_1_1_square_wave_1a411bb2b404f81513d3aa5722474b620c"></span><span class="sig-name descname"><span class="n"><span class="pre">SquareWave</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave10SquareWaveER6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave10SquareWaveEfR6Engine">
+<span id="_CPPv3N10SquareWave10SquareWaveEfR6Engine"></span><span id="_CPPv2N10SquareWave10SquareWaveEfR6Engine"></span><span id="SquareWave::SquareWave__float.EngineR"></span><span class="target" id="classpq_1_1_square_wave_1a21cf5c141852c387e6c556f4a9d9915b"></span><span class="sig-name descname"><span class="n"><span class="pre">SquareWave</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave10SquareWaveEfR6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
+<li><p><strong>engine</strong> – the engine running this unit </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave10SquareWaveEffR6Engine">
+<span id="_CPPv3N10SquareWave10SquareWaveEffR6Engine"></span><span id="_CPPv2N10SquareWave10SquareWaveEffR6Engine"></span><span id="SquareWave::SquareWave__float.float.EngineR"></span><span class="target" id="classpq_1_1_square_wave_1a7e2fb372222b727743ca475d25b3692b"></span><span class="sig-name descname"><span class="n"><span class="pre">SquareWave</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave10SquareWaveEffR6Engine" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
 <li><p><strong>width</strong> – the duty-cycle as a value in [0, 1] </p></li>
+<li><p><strong>engine</strong> – the engine running this unit </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave11shiftByIsOnEf">
+<span id="_CPPv3N10SquareWave11shiftByIsOnEf"></span><span id="_CPPv2N10SquareWave11shiftByIsOnEf"></span><span id="SquareWave::shiftByIsOn__float"></span><span class="target" id="classpq_1_1_square_wave_1a7c317af8d830a08bb9a75a53af5e22fe"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftByIsOn</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phaseShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave11shiftByIsOnEf" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns oscillator’s on/off with given phase shift (in %). </p>
+<p>Supports negative phase shifts. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phase</strong> – the phase shift (in % of period) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the boolean value of oscillator with given phase shift </p>
 </dd>
 </dl>
 </dd></dl>
@@ -274,6 +315,24 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 <dd class="field-even"><p>the value of oscillator with given phase shift </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave7forwardEv">
+<span id="_CPPv3N10SquareWave7forwardEv"></span><span id="_CPPv2N10SquareWave7forwardEv"></span><span id="SquareWave::forward"></span><span class="target" id="classpq_1_1_abstract_wave_1aa1379cc5987831a51cc6e27f6e48634d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave7forwardEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the direction of oscillation to move forward in time. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave7reverseEv">
+<span id="_CPPv3N10SquareWave7reverseEv"></span><span id="_CPPv2N10SquareWave7reverseEv"></span><span id="SquareWave::reverse"></span><span class="target" id="classpq_1_1_abstract_wave_1a359460b2f9cded49f1f8e88496eefde5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave7reverseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the direction of oscillation to move backward in time. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10SquareWave13toggleReverseEv">
+<span id="_CPPv3N10SquareWave13toggleReverseEv"></span><span id="_CPPv2N10SquareWave13toggleReverseEv"></span><span id="SquareWave::toggleReverse"></span><span class="target" id="classpq_1_1_abstract_wave_1a22c5bddf0e50c588b819b3f3485d85e9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleReverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10SquareWave13toggleReverseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Toggles the direction of oscillation. </p>
 </dd></dl>
 
 <dl class="cpp function">

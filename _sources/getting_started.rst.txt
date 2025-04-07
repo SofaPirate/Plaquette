@@ -17,8 +17,7 @@ If you do not have Arduino installed on your machine you need to
 IDE <https://www.arduino.cc/en/Main/Software>`__ for your platform.
 
 Once Arduino is installed, please install Plaquette as an Arduino
-library following `these
-instructions <https://www.arduino.cc/en/Guide/Libraries>`__.
+library following `these instructions <https://www.arduino.cc/en/Guide/Libraries>`__.
 
 Step 2: Your first Plaquette program
 ------------------------------------

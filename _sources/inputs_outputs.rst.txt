@@ -70,7 +70,7 @@ leg of the  button should be connected to ground (GND) while the other should be
     #include <Plaquette.h>
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
-    DigitalOut led(13);                    // LED connected to pin 13
+    DigitalOut led(13);                   // LED connected to pin 13
 
     void begin() {}
 

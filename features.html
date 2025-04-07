@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Plaquette 0.6.5 documentation</title>
+  <title>Features &mdash; Plaquette 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d7a12d57"></script>
+      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -287,39 +287,38 @@ when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
 </table>
 </section>
 <section id="arduino-compatible">
-<span id="compatible-with-arduino"></span><h2>Arduino Compatible<a class="headerlink" href="#arduino-compatible" title="Link to this heading"></a></h2>
+<span id="compatible-with-arduino"></span><h2>Arduino-compatible<a class="headerlink" href="#arduino-compatible" title="Link to this heading"></a></h2>
 <p>Plaquette is installed as an Arduino library and provides a replacement for the
 core Arduino functionalities while remaining fully compatible with Arduino code.
 Seasoned Arduino users should consult the <a class="reference internal" href="advanced.html"><span class="doc">Advanced Usage</span></a> section for some tips
 on how to integrate Plaquette into their existing code.</p>
-<p>The following example uses Arduino’s <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/math/constrain/">constrain()</a>
-function and <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/communication/serial/">Serial</a> object
-to control a blinking LED that slows down with each button push. keeping the oscillation
-period within a certain range.</p>
+<p>The following example uses Plaquette to control a blinking LED that slows down with
+each button push, using Arduino’s <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/math/constrain/">constrain()</a>
+to keep the LED oscillation period within a certain range and <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/communication/serial/">Serial</a> object
+to reset the counter to a random integer value using <a class="reference external" href="https://docs.arduino.cc/language-reference/en/functions/random-numbers/random/">random()</a>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// button input</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
-<span class="n">SquareWave</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// square oscillator</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="n">countButtonPushes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">currentPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// oscillator period counter</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// debounce button</span>
+<span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;R&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// reset counter</span>
+<span class="w">     </span><span class="n">currentPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;R&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">countButtonPushes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="c1">// true when value rises (ie. button is pushed)</span>
+<span class="w">     </span><span class="n">currentPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">constrain</span><span class="p">(</span><span class="n">currentPeriod</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// increment</span>
 
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// true when value rises (ie. button is pushed)</span>
-<span class="w">     </span><span class="n">countButtonPushes</span><span class="o">++</span><span class="p">;</span>
-<span class="w">     </span><span class="n">oscillator</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">constrain</span><span class="p">(</span><span class="n">countButtonPushes</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
-<span class="w">   </span><span class="p">}</span>
-
-<span class="w">   </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="w">   </span><span class="n">oscillator</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">currentPeriod</span><span class="p">);</span><span class="w"> </span><span class="c1">// set period</span>
+<span class="w">   </span><span class="n">oscillator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// send signal to LED</span>
 <span class="p">}</span>
 </pre></div>
 </div>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalizer &mdash; Plaquette 0.6.5 documentation</title>
+  <title>Normalizer &mdash; Plaquette 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d7a12d57"></script>
+      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -162,48 +162,56 @@ it can instead compute over a time window using an <a class="reference external"
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEv">
-<span id="_CPPv3N10Normalizer10NormalizerEv"></span><span id="_CPPv2N10Normalizer10NormalizerEv"></span><span id="Normalizer::Normalizer"></span><span class="target" id="classpq_1_1_normalizer_1ad61ef80087beb790fec03f167dc05549"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEv" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerER6Engine">
+<span id="_CPPv3N10Normalizer10NormalizerER6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerER6Engine"></span><span id="Normalizer::Normalizer__EngineR"></span><span class="target" id="classpq_1_1_normalizer_1a3e8904317dc8762eaaaafcc96259174c"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerER6Engine" title="Link to this definition"></a><br /></dt>
 <dd><p>Default constructor. </p>
-<p>Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEf">
-<span id="_CPPv3N10Normalizer10NormalizerEf"></span><span id="_CPPv2N10Normalizer10NormalizerEf"></span><span id="Normalizer::Normalizer__float"></span><span class="target" id="classpq_1_1_normalizer_1a0e82f55f1250eff086ef2c5e39a09c4d"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEf" title="Link to this definition"></a><br /></dt>
-<dd><p>Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
+<p>Assigns infinite time window. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>smoothWindow</strong> – specifies the approximate “time window” over which the normalization applies(in seconds) </p>
+<dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEff">
-<span id="_CPPv3N10Normalizer10NormalizerEff"></span><span id="_CPPv2N10Normalizer10NormalizerEff"></span><span id="Normalizer::Normalizer__float.float"></span><span class="target" id="classpq_1_1_normalizer_1a1c5c354d405fc1b118cbbf1591ac432f"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEff" title="Link to this definition"></a><br /></dt>
-<dd><p>Constructor with infinite time window. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEfR6Engine">
+<span id="_CPPv3N10Normalizer10NormalizerEfR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfR6Engine"></span><span id="Normalizer::Normalizer__float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1adba75af98111a533966e186496abfc42"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfR6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor with time window. </p>
+<p>Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mean</strong> – the target mean </p></li>
-<li><p><strong>stdDev</strong> – the target standard deviation </p></li>
-<li><p><strong>smoothWindow</strong> – specifies the approximate “time window” over which the normalization applies(in seconds) </p></li>
+<li><p><strong>timeWindow</strong> – the time window over which the normalization applies (in seconds) </p></li>
+<li><p><strong>engine</strong> – the engine running this unit </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEfff">
-<span id="_CPPv3N10Normalizer10NormalizerEfff"></span><span id="_CPPv2N10Normalizer10NormalizerEfff"></span><span id="Normalizer::Normalizer__float.float.float"></span><span class="target" id="classpq_1_1_normalizer_1a9ea175b58d263f9fe54207914c170f16"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfff" title="Link to this definition"></a><br /></dt>
-<dd><p>Constructor. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEffR6Engine">
+<span id="_CPPv3N10Normalizer10NormalizerEffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEffR6Engine"></span><span id="Normalizer::Normalizer__float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1af9b631852ab27c0d8ce59699c884f519"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEffR6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor with infinite time window. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mean</strong> – the target mean </p></li>
 <li><p><strong>stdDev</strong> – the target standard deviation </p></li>
-<li><p><strong>smoothWindow</strong> – specifies the approximate “time window” over which the normalization applies(in seconds) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEfffR6Engine">
+<span id="_CPPv3N10Normalizer10NormalizerEfffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfffR6Engine"></span><span id="Normalizer::Normalizer__float.float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1afb5caaaa616e7dae259ac34412275398"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfffR6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor with time window. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> – the target mean </p></li>
+<li><p><strong>stdDev</strong> – the target standard deviation </p></li>
+<li><p><strong>timeWindow</strong> – the time window over which the normalization applies (in seconds) </p></li>
 </ul>
 </dd>
 </dl>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StreamIn &mdash; Plaquette 0.6.5 documentation</title>
+  <title>StreamIn &mdash; Plaquette 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d7a12d57"></script>
+      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -158,12 +158,26 @@ sending values between 0 and 1.</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn8StreamInER6Stream">
-<span id="_CPPv3N8StreamIn8StreamInER6Stream"></span><span id="_CPPv2N8StreamIn8StreamInER6Stream"></span><span id="StreamIn::StreamIn__StreamR"></span><span class="target" id="classpq_1_1_stream_in_1a956dca89b36835fc5143892384bb5965"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Serial</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn8StreamInER6Stream" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn8StreamInER6Engine">
+<span id="_CPPv3N8StreamIn8StreamInER6Engine"></span><span id="_CPPv2N8StreamIn8StreamInER6Engine"></span><span id="StreamIn::StreamIn__EngineR"></span><span class="target" id="classpq_1_1_stream_in_1a41b112caba56440b02a135849f84bc76"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn8StreamInER6Engine" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8StreamIn8StreamInER6StreamR6Engine">
+<span id="_CPPv3N8StreamIn8StreamInER6StreamR6Engine"></span><span id="_CPPv2N8StreamIn8StreamInER6StreamR6Engine"></span><span id="StreamIn::StreamIn__StreamR.EngineR"></span><span class="target" id="classpq_1_1_stream_in_1aeb124cf01d4ee8b37681421db5366b14"></span><span class="sig-name descname"><span class="n"><span class="pre">StreamIn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Stream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8StreamIn8StreamInER6StreamR6Engine" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stream</strong> – a reference to a Stream object </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stream</strong> – a reference to a Stream object </p></li>
+<li><p><strong>engine</strong> – the engine running this unit </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

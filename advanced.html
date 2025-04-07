@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.6.5 documentation</title>
+  <title>Advanced Usage &mdash; Plaquette 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d7a12d57"></script>
+      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -64,6 +64,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#smoothing-arbitrary-signals">Smoothing Arbitrary Signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vanilla-coding-style">Vanilla Coding Style</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-plaquette-as-an-external-library">Using Plaquette as an External Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-secondary-engines">Using Secondary Engines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-fast-vs-slow-control">Example: Fast vs Slow Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-esp32-dual-core">Example: ESP32 Dual Core</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -200,7 +205,7 @@ instead of the Plaquette style.</p>
 </table>
 </section>
 <section id="using-plaquette-as-an-external-library">
-<h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Link to this heading"></a></h2>
+<span id="plaquette-external-library"></span><h2>Using Plaquette as an External Library<a class="headerlink" href="#using-plaquette-as-an-external-library" title="Link to this heading"></a></h2>
 <p>Seasoned Arduino coders might want to avoid rewriting their code using Plaquette’s
 builtin <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code> functions, or they may want to include Plaquette’s
 self-updating loop in a timer interrupt function. It is possible to do so by
@@ -227,6 +232,163 @@ including the file <code class="docutils literal notranslate"><span class="pre">
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="using-secondary-engines">
+<span id="secondary-engines"></span><h2>Using Secondary Engines<a class="headerlink" href="#using-secondary-engines" title="Link to this heading"></a></h2>
+<p>Have you wondered how units such as waves, inputs, outputs, or ramps are automatically initialized and updated in Plaquette?
+This is done thanks to an <a class="reference internal" href="Engine.html"><span class="doc">Engine</span></a>, a control structure that acts like the <strong>conductor of an orchestra</strong>.
+It contains an ensemble of <strong>units</strong> and manages their initialization and updates. Every time the engine “ticks”,
+it updates all of its units, making sure they stay synchronized.</p>
+<p>By default, all units are added to a built-in engine called the <strong>primary engine</strong>. This engine is simply called <code class="docutils literal notranslate"><span class="pre">Plaquette</span></code>
+and is mainly used when working with <a class="reference internal" href="#plaquette-external-library"><span class="std std-ref">Plaquette as an external library</span></a>. In the default
+mode, when one declares the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">step()</span></code> functions, the primary engine’s <code class="docutils literal notranslate"><span class="pre">Plaquette.begin()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Plaquette.step()</span></code> functions are automatically called.</p>
+<p>There are contexts where the primary engine is not sufficient and one needs to use more than one engine:</p>
+<ul class="simple">
+<li><p><strong>Multi-tasking</strong> Engines allow you to take full advantage of <strong>timer interrupts</strong>, <strong>threads</strong> and/or <strong>multiple processor cores</strong>
+to run different unit ensembles in parallel, possibly running with different frequencies and priorities.</p></li>
+<li><p><strong>Grouping</strong> Engines can be used to better organize your code by creating <strong>groups of units</strong> and possibly run them at different frequencies.</p></li>
+<li><p><strong>Switching</strong> On computationally-intensive applications with lots of units, you may want to <strong>switch between multiple ensembles of
+units</strong> to avoid running them all at the same time.</p></li>
+<li><p><strong>Saving Energy</strong> Lowering the update frequency of units using engines allows for more energy-efficient applications.</p></li>
+</ul>
+<p>In these cases, you can create <strong>secondary engines</strong> that each control their own group of units at their own refresh rate. You can
+step them in a timer interrupt, in a task running on another core, or even from a <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> unit.</p>
+<p>To create an engine, simply declare it:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Engine</span><span class="w"> </span><span class="n">secondaryEngine</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When you create a unit, you can now add it to your new engine by adding the engine as the last argument of the unit’s constructor:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ramp starting at default value.</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="n">secondaryEngine</span><span class="p">);</span>
+
+<span class="c1">// Alarm unit with 10s duration.</span>
+<span class="n">Alarm</span><span class="w"> </span><span class="nf">alarm</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="n">secondaryEngine</span><span class="p">);</span>
+
+<span class="c1">// Square wave unit with period of 1s and 20% width.</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">secondaryEngine</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="example-fast-vs-slow-control">
+<h3>Example: Fast vs Slow Control<a class="headerlink" href="#example-fast-vs-slow-control" title="Link to this heading"></a></h3>
+<p>In this example we will control a blinking LED with a pushbutton: every time we push the button, the LED will blink faster
+and faster. The button should be polled quite frequently to ensure it is debounced properly. However, there is no need to update
+the LED as fast as possible, so we can save some precious computation steps by updating it less often (about 25 frames per second
+would be plenty for such visual feedback).</p>
+<ul class="simple">
+<li><p>The <strong>slow engine</strong> (running at 25 fps) will control the LED with the square wave.</p></li>
+<li><p>The <strong>fast engine</strong> (running at 1000 Hz) will monitor the button.</p></li>
+<li><p>The <strong>primary engine</strong> (running as fast as possible) will use <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> units to trigger the slow and fast engines.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+
+<span class="c1">// The engines.</span>
+<span class="n">Engine</span><span class="w"> </span><span class="n">slowEngine</span><span class="p">;</span>
+<span class="n">Engine</span><span class="w"> </span><span class="n">fastEngine</span><span class="p">;</span>
+
+<span class="c1">// Metronomes (belong to primary engine).</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">slowMetro</span><span class="p">(</span><span class="mf">0.04</span><span class="p">);</span><span class="w">  </span><span class="c1">// 25 fps</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">fastMetro</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1000 Hz</span>
+
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">,</span><span class="w"> </span><span class="n">fastEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button (operates on fast engine).</span>
+
+<span class="c1">// Oscillator and LED (can operate more slowly to save on computation).</span>
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">squareWave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">slowEngine</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">slowEngine</span><span class="p">);</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="n">ledFrequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Oscillation frequency.</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Initialize engines.</span>
+<span class="w">  </span><span class="n">slowEngine</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">  </span><span class="n">fastEngine</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button.</span>
+<span class="w">  </span><span class="c1">// Attach metronomes to engine step functions.</span>
+<span class="w">  </span><span class="n">slowMetro</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">slowEngineStep</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fastMetro</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">fastEngineStep</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">slowEngineStep</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">slowEngine</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"> </span><span class="c1">// Update slow engine.</span>
+<span class="w">  </span><span class="c1">// Adjust frequency and send to LED.</span>
+<span class="w">  </span><span class="n">squareWave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">ledFrequency</span><span class="p">);</span>
+<span class="w">  </span><span class="n">squareWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">fastEngineStep</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">fastEngine</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"> </span><span class="c1">// Update fast engine.</span>
+<span class="w">  </span><span class="c1">// On button press, increase square wave frequency.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span>
+<span class="w">    </span><span class="n">ledFrequency</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="example-esp32-dual-core">
+<h3>Example: ESP32 Dual Core<a class="headerlink" href="#example-esp32-dual-core" title="Link to this heading"></a></h3>
+<p>In this example, we will take full advantage of the ESP32’s dual core architecture:</p>
+<ul class="simple">
+<li><p><strong>Core 1 (default)</strong> will run the <strong>primary engine</strong> to update a simple indicator LED.</p></li>
+<li><p><strong>Core 0</strong> will run a <strong>secondary engine</strong> to animate Neopixel LEDs using a waveform.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Adafruit_NeoPixel.h&gt;</span>
+
+<span class="c1">// Pin where the Neopixel strip is connected</span>
+<span class="cp">#define STRIP_PIN  5</span>
+<span class="cp">#define NUM_LEDS  16</span>
+
+<span class="c1">// The NeoPixel LED strip.</span>
+<span class="n">Adafruit_NeoPixel</span><span class="w"> </span><span class="nf">strip</span><span class="p">(</span><span class="n">NUM_LEDS</span><span class="p">,</span><span class="w"> </span><span class="n">STRIP_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">NEO_GRB</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">NEO_KHZ800</span><span class="p">);</span><span class="w"> </span><span class="c1">// Neopixels.</span>
+
+<span class="n">SquareWave</span><span class="w"> </span><span class="nf">indicatorLedBlink</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span><span class="w"> </span><span class="c1">// Blinking oscillator.</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">indicatorLed</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">   </span><span class="c1">// Indicator LED.</span>
+
+<span class="n">Engine</span><span class="w"> </span><span class="n">ledEngine</span><span class="p">;</span><span class="w"> </span><span class="c1">// Secondary engine for controlling NeoPixels.</span>
+<span class="n">SineWave</span><span class="w"> </span><span class="nf">ledWave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">ledEngine</span><span class="p">);</span><span class="w">  </span><span class="c1">// Waveform for NeoPixels.</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">xTaskCreatePinnedToCore</span><span class="p">(</span><span class="w"> </span><span class="c1">// Launch LED engine on Core 0.</span>
+<span class="w">    </span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">ledEngine</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="c1">// Start LED engine.</span>
+
+<span class="w">      </span><span class="c1">// Initialize LED strip.</span>
+<span class="w">      </span><span class="n">strip</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">      </span><span class="n">strip</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="w">      </span><span class="c1">// Main loop.</span>
+<span class="w">      </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ledEngine</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"> </span><span class="c1">// Step engine.</span>
+<span class="w">        </span><span class="n">stepLeds</span><span class="p">();</span><span class="w">       </span><span class="c1">// Update LEDs.</span>
+<span class="w">        </span><span class="n">vTaskDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="c1">// Important! Prevents IDLE on Core 0 (1 tick = ~1ms).</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s">&quot;LED Engine&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="c1">// Core 0</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Primary engine step function.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">indicatorLedBlink</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">indicatorLed</span><span class="p">;</span><span class="w"> </span><span class="c1">// Blink.</span>
+<span class="p">}</span>
+
+<span class="c1">// Step function for the LED engine.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stepLeds</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Update LED strip according to LED wave.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_LEDS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ledWave</span><span class="p">.</span><span class="n">shiftBy</span><span class="p">(</span><span class="w"> </span><span class="n">mapTo01</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_LEDS</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="n">strip</span><span class="p">.</span><span class="n">setPixelColor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">Color</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Red only</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">strip</span><span class="p">.</span><span class="n">show</span><span class="p">();</span><span class="w"> </span><span class="c1">// Display LEDs.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Multiple engines give you more control and better performance, especially on multi-core platforms or in time-sensitive applications like
+LED control, audio, or robotics.</p>
+</section>
 </section>
 </section>
 
