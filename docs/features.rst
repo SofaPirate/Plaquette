@@ -155,7 +155,7 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 
 .. _compatible with Arduino:
 
-Arduino Compatible
+Arduino-compatible
 ------------------
 
 Plaquette is installed as an Arduino library and provides a replacement for the
