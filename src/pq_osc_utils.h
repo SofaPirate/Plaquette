@@ -102,7 +102,7 @@ fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
 fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time);
 
 /// Computes new phase time for oscillators and returns true when phase time overflows.
-bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate);
+bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool forward = true);
 
 }
 

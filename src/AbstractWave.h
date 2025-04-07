@@ -59,7 +59,7 @@ public:
    * @param period the period of oscillation (in seconds)
    */
   virtual void period(float period);
-  virtual float period() const { return _period; }
+  virtual float period() const { return abs(_period); }
 
   /**
    * Sets the frequency (in Hz).
@@ -149,7 +149,7 @@ public:
   virtual void toggleReverse();
 
   /// Returns true iff the wave is moving forward in time.
-  virtual bool isForward() const { return (_period >= 0); }
+  virtual bool isForward() const { return _isForward; }
 
   /// Returns true iff the wave is currently running.
   bool isRunning() const { return _isRunning; }
@@ -186,6 +186,9 @@ protected:
   // The value contained in the unit.
   bool _isRunning : 1;
 
+  // The direction of oscillation.
+  bool _isForward : 1;
+
   // These variables are only used by the AbstractWave.
   bool _onValue : 1;
 
@@ -196,7 +199,7 @@ protected:
   int8_t _changeState : 2;
 
   // Unused extra space.
-  uint8_t _data : 3;
+  uint8_t _data : 2;
 };
 
 }

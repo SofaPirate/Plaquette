@@ -28,7 +28,7 @@ namespace pq {
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period_, float width_, Engine& engine) 
-: AnalogSource(engine), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), 
+: AnalogSource(engine), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), _isForward(true),
                         _onValue(0), _prevOnValue(0), _changeState(0), _data(0) { // This is just for AbstractWave.
   period(period_);
   width(width_);
@@ -42,7 +42,7 @@ void AbstractWave::begin() {
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
-    phaseTimeUpdate(_phaseTime, _period, sampleRate());
+    phaseTimeUpdate(_phaseTime, _period, sampleRate(), _isForward);
 
   // Compute next value.
   _value = _getAmplified(_phaseTime);
@@ -69,7 +69,9 @@ float AbstractWave::_getAmplified(fixed_t t) {
 }
 
 void AbstractWave::period(float period) {
-  _period = period;
+  if (_period != period) {
+    _period = max(period, 0);    
+  }
 }
 
 void AbstractWave::frequency(float frequency) {
@@ -140,15 +142,15 @@ void AbstractWave::setTime(float time) {
 }
 
 void AbstractWave::forward() {
-  period(abs(_period));
+  _isForward = true;
 }
 
 void AbstractWave::reverse() {
-  period(-abs(_period));
+  _isForward = false;
 }
 
 void AbstractWave::toggleReverse() {
-  period(-_period);
+  _isForward = !_isForward;
 }
 
 }
