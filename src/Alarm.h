@@ -51,7 +51,7 @@ public:
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
   /// Set alarm at specific time.
-  virtual void set(float time);
+  virtual void setTime(float time);
 
 protected:
   virtual void begin();

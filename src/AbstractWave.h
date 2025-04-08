@@ -22,6 +22,7 @@
 #define ABSTRACT_WAVE_H_
 
 #include "PqCore.h"
+#include "Timeable.h"
 #include "pq_osc_utils.h"
 
 namespace pq {
@@ -29,7 +30,7 @@ namespace pq {
 /**
  * Triangle/sawtooth oscillator.
  */
-class AbstractWave : public AnalogSource {
+class AbstractWave : public AnalogSource, public Timeable {
 public:
   /**
    * Constructor.
@@ -121,23 +122,17 @@ public:
     */
   virtual float shiftBy(float phaseShift);
 
-  /// Starts/restarts the wave.
-  virtual void start();
-
-  /// Interrupts the wave and resets to beginning.
-  virtual void stop();
-
-  /// Interrupts the wave.
-  virtual void pause();
-
-  /// Resumes process.
-  virtual void resume();
-
-  /// Toggles pause/unpause.
-  virtual void togglePause();
-
   /// Forces current time (in seconds).
   virtual void setTime(float time);
+
+  /// Forces current time (in seconds).
+  virtual void addTime(float time);
+
+  /// Returns true iff the wave is moving forward in time.
+  virtual bool isForward() const { return _isForward; }
+
+  /// Returns true iff the wave is currently running.
+  virtual bool isRunning() const { return _isRunning; }
 
   /// Sets the direction of oscillation to move forward in time.
   virtual void forward();
@@ -148,13 +143,7 @@ public:
   /// Toggles the direction of oscillation.
   virtual void toggleReverse();
 
-  /// Returns true iff the wave is moving forward in time.
-  virtual bool isForward() const { return _isForward; }
-
-  /// Returns true iff the wave is currently running.
-  bool isRunning() const { return _isRunning; }
-
-protected:
+  protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
@@ -164,6 +153,9 @@ protected:
 
   // Returns amplified version of _get(t).
   virtual float _getAmplified(fixed_t t);
+
+  // Sets running state.
+  virtual void _setIsRunning(bool isRunning);
 
   // Period (seconds). Negative period indicates time reversal (going backwards).
   float _period;
@@ -182,8 +174,6 @@ protected:
   fixed_t _phaseTime;
 
   // Is the wave currently running?
-
-  // The value contained in the unit.
   bool _isRunning : 1;
 
   // The direction of oscillation.

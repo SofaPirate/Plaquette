@@ -28,8 +28,9 @@ namespace pq {
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period_, float width_, Engine& engine) 
-: AnalogSource(engine), _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), _isForward(true),
-                        _onValue(0), _prevOnValue(0), _changeState(0), _data(0) { // This is just for AbstractWave.
+: AnalogSource(engine), Timeable(),
+  _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), _isForward(true),
+  _onValue(0), _prevOnValue(0), _changeState(0), _data(0) {
   period(period_);
   width(width_);
   amplitude(1.0f);
@@ -70,7 +71,7 @@ float AbstractWave::_getAmplified(fixed_t t) {
 
 void AbstractWave::period(float period) {
   if (_period != period) {
-    _period = max(period, 0);    
+    _period = max(period, 0.0f);
   }
 }
 
@@ -104,43 +105,6 @@ float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
 }
 
-
-void AbstractWave::start() {
-  // Start.
-  setTime(0);
-  _isRunning = true;
-}
-
-void AbstractWave::stop() {
-  // Stop.
-  setTime(0);
-  _isRunning = false;
-}
-
-void AbstractWave::pause() {
-  _isRunning = false;
-}
-
-void AbstractWave::resume() {
-  _isRunning = true;
-}
-
-void AbstractWave::togglePause() {
-  _isRunning = !_isRunning;
-}
-
-void AbstractWave::setTime(float time) {
-  // Set current phase time.
-  _phaseTime = floatToPhaseTime(_phase);
-
-  // Perform calculation iff time needs to be added.
-  if (time != 0)
-    _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
-
-  // Compute value.
-  _value = _getAmplified(_phaseTime);
-}
-
 void AbstractWave::forward() {
   _isForward = true;
 }
@@ -151,6 +115,28 @@ void AbstractWave::reverse() {
 
 void AbstractWave::toggleReverse() {
   _isForward = !_isForward;
+}
+
+void AbstractWave::setTime(float time) {
+  // Reset phase time to beginning.
+  _phaseTime = floatToPhaseTime(_phase);
+
+  // Add time.
+  addTime(time);
+}
+
+void AbstractWave::addTime(float time) {
+  // Perform calculation iff time needs to be added.
+  if (time > 0)
+    _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
+
+  // Compute value.
+  _value = _getAmplified(_phaseTime);
+}
+
+void AbstractWave::_setIsRunning(bool isRunning) 
+{ 
+  _isRunning = isRunning; 
 }
 
 }

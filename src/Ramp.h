@@ -144,7 +144,7 @@ public:
   virtual void onFinish(EventCallback callback) { onEvent(callback, EVENT_FINISH); }
 
   /// Forces current time (in seconds).
-  virtual void set(float time);
+  virtual void setTime(float time);
 
   // \deprecated Use go(float to, float durationOrSpeed, easing_function easing=0);
   [[deprecated("Use go(float,easing_function) instead.")]]
@@ -198,11 +198,11 @@ protected:
   easing_function _easing;
 
   // Mode (DURATION or SPEED).
-  uint8_t _mode  : 1;
+  uint8_t _mode          : 1;
 
   // Finished flag.
   uint8_t _finishedState : 2;
-  uint8_t data   : 5;
+  uint8_t _data          : 5;
 };
 
 }

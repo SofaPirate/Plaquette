@@ -103,7 +103,7 @@ float Ramp::speed() const {
 }
 
 void Ramp::start() {
-  AbstractTimer::start();
+  Timeable::start();
   _finishedState = NOT_FINISHED;
 }
 
@@ -166,7 +166,7 @@ void Ramp::go(float to, easing_function easing_) {
 }
 
 void Ramp::begin() {
-  set(0);
+  setTime(0);
   _finishedState = NOT_FINISHED;
 }
 
@@ -210,8 +210,8 @@ float Ramp::_durationOrSpeed() const {
   return _mode == RAMP_DURATION ? duration() : speed();
 }
 
-void Ramp::set(float time) {
-  AbstractTimer::set(time);
+void Ramp::setTime(float time) {
+  AbstractTimer::setTime(time);
   _value = _get();
 }
 

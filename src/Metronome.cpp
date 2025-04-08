@@ -24,13 +24,14 @@
 namespace pq {
 
 Metronome::Metronome(Engine& engine) : Metronome(1.0f, engine) {}
-Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), _phase(0), _onValue(0) {
+Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), Timeable(), _phase(0), _onValue(0), _isRunning(false) {
   period(period_);
 }
 
 void Metronome::begin() {
   _phaseTime = floatToPhaseTime(_phase);
   _onValue = 0;
+  _isRunning = true;
 }
 
 void Metronome::step() {
@@ -67,4 +68,23 @@ bool Metronome::eventTriggered(EventType eventType) {
   else return DigitalUnit::eventTriggered(eventType);
 }
 
+
+void Metronome::setTime(float time) {
+  // Reset phase time to beginning.
+  _phaseTime = floatToPhaseTime(_phase);
+
+  // Add time.
+  addTime(time);
+}
+
+void Metronome::addTime(float time) {
+  // Perform calculation iff time needs to be added.
+  if (time > 0)
+    _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
+}
+
+void Metronome::_setIsRunning(bool isRunning) 
+{ 
+  _isRunning = isRunning; 
+}
 }

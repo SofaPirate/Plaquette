@@ -23,19 +23,7 @@
 namespace pq {
 
 AbstractChronometer::AbstractChronometer()
-  : _startTime(0), _offsetTime(0), _elapsedTime(0), _isRunning(false) {
-}
-
-void AbstractChronometer::start() {
-  // Start.
-  set(0);
-  _isRunning = true;
-}
-
-void AbstractChronometer::stop() {
-  // Stop.
-  set(0);
-  _isRunning = false;
+  : Timeable(), _startTime(0), _offsetTime(0), _elapsedTime(0), _isRunning(false) {
 }
 
 void AbstractChronometer::pause() {
@@ -50,11 +38,6 @@ void AbstractChronometer::resume() {
     _startTime = _time();
     _isRunning = true;
   }
-}
-
-void AbstractChronometer::togglePause() {
-  if (_isRunning) pause();
-  else resume();
 }
 
 bool AbstractChronometer::hasPassed(float timeout) const
@@ -73,13 +56,13 @@ bool AbstractChronometer::hasPassed(float timeout, bool restartIfPassed) {
   }
 }
 
-void AbstractChronometer::set(float time) {
+void AbstractChronometer::setTime(float time) {
   _elapsedTime = _offsetTime = time;
   _startTime = _time();
 }
 
-void AbstractChronometer::add(float time) {
-  set(_elapsedTime + time);
+void AbstractChronometer::addTime(float time) {
+  setTime(_elapsedTime + time);
 }
 
 void AbstractChronometer::update() {

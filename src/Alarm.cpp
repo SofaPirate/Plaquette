@@ -33,7 +33,7 @@ Alarm::Alarm(float duration, Engine& engine) :
   }
   
 void Alarm::begin() {
-  set(0);
+  setTime(0);
 }
 
 void Alarm::step() {
@@ -49,8 +49,8 @@ void Alarm::step() {
   _updateChangeState();
 }
 
-void Alarm::set(float time) {
-  AbstractTimer::set(time);
+void Alarm::setTime(float time) {
+  AbstractTimer::setTime(time);
   _onValue = isFinished();
 }
 

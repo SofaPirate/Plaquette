@@ -22,29 +22,21 @@
 #define PQ_ABSTRACT_CHRONOMETER_H_
 
 #include "PqCore.h"
+#include "Timeable.h"
 
 namespace pq {
 
-class AbstractChronometer {
+class AbstractChronometer : public Timeable {
 public:
   /// Constructor.
   AbstractChronometer();
   virtual ~AbstractChronometer() {}
-
-  /// Starts/restarts the chronometer.
-  virtual void start();
-
-  /// Interrupts the chronometer and resets to zero.
-  virtual void stop();
 
   /// Interrupts the chronometer.
   virtual void pause();
 
   /// Resumes process.
   virtual void resume();
-
-  /// Toggles pause/unpause.
-  virtual void togglePause();
 
   /// The time currently elapsed by the chronometer (in seconds).
   virtual float elapsed() const { return _elapsedTime; }
@@ -53,10 +45,10 @@ public:
   virtual bool hasPassed(float timeout) const;
 
   /// Forces current time (in seconds).
-  virtual void set(float time);
+  virtual void setTime(float time);
 
   /// Adds/subtracts time to the chronometer.
-  virtual void add(float time);
+  virtual void addTime(float time);
 
   /**
    * Returns true iff elapsed time has passed given timeout (optional argument to
@@ -65,21 +57,22 @@ public:
   [[deprecated("Use hasPassed(float) followed by start() instead.")]]
   virtual bool hasPassed(float timeout, bool restartIfPassed);
 
-  [[deprecated("Use add(float) instead.")]]
-  virtual void addTime(float time) { add(time); }
-
   /// Returns true iff the chronometer is currently running.
-  bool isRunning() const { return _isRunning; }
+  virtual bool isRunning() const { return _isRunning; }
 
   [[deprecated("Use isRunning() instead.")]]
   bool isStarted() const { return isRunning(); }
 
 protected:
+  // Updates elapsed time.
   virtual void update();
 
   // Returns current absolute time (in seconds).
   virtual float _time() const = 0;
   
+  // Sets running state.
+  virtual void _setIsRunning(bool isRunning) { _isRunning = isRunning; }
+
   // The starting time (in seconds).
   float _startTime;
 

@@ -22,6 +22,7 @@
 #define METRO_H_
 
 #include "PqCore.h"
+#include "Timeable.h"
 #include "pq_osc_utils.h"
 
 namespace pq {
@@ -29,7 +30,7 @@ namespace pq {
 /**
  * Chronometer digital unit which emits 1/true/"on" for one frame, at a regular pace.
  */
-class Metronome : public DigitalUnit {
+class Metronome : public DigitalUnit, public Timeable {
 public:
   /**
    * Constructor.
@@ -86,6 +87,15 @@ public:
   /// Returns the phase (in % of period).
   virtual float phase() const { return _phase; }
 
+  /// Forces current time (in seconds).
+  virtual void setTime(float time);
+
+  /// Forces current time (in seconds).
+  virtual void addTime(float time);
+
+  /// Returns true iff the wave is currently running.
+  virtual bool isRunning() const { return _isRunning; }
+
   /// Registers event callback on metronome tick ("bang") event.
   virtual void onBang(EventCallback callback);
 
@@ -95,6 +105,8 @@ protected:
 
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);
+
+  virtual void _setIsRunning(bool isRunning);
 
   // Phase (in % of period).
   float _period;
@@ -106,7 +118,12 @@ protected:
   fixed_t _phaseTime;
 
   // Value.
-  bool _onValue;
+  bool _onValue : 1;
+
+  // 
+  bool _isRunning : 1;
+
+  uint8_t data : 6;
 };
 
 [[deprecated("Use Metronome instead.")]]

@@ -1,7 +1,7 @@
 /*
- * Chronometer.cpp
+ * Timeable.cpp
  *
- * (c) 2018 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,28 +18,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Chronometer.h"
+ #include "Timeable.h"
 
-namespace pq {
-
-Chronometer::Chronometer(Engine& engine) : Unit(engine), AbstractChronometer(), _engine(engine) {
-}
-
-float Chronometer::put(float value) {
-  setTime(value);
-  return get();
-}
-  
-void Chronometer::begin() {
-  stop();
-}
-
-void Chronometer::step() {
-  update();
-}
-
-float Chronometer::_time() const {
-  return _engine.seconds();
-}
-
+ namespace pq {
+ 
+ void Timeable::start() {
+   // Start.
+   setTime(0);
+   _setIsRunning(true);
+ }
+ 
+ void Timeable::stop() {
+   // Stop.
+   setTime(0);
+   _setIsRunning(false);
+ }
+ 
+ void Timeable::pause() {
+   _setIsRunning(false);
+ }
+ 
+ void Timeable::resume() {
+   _setIsRunning(true);
+ }
+ 
+ void Timeable::togglePause() {
+   if (isRunning())
+     pause();
+   else
+     resume();
+ }
+ 
 }
