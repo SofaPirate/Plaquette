@@ -46,7 +46,7 @@ Uses a chronometer to change the frequency a blinking LED. Restarts after 10 sec
 
 .. doxygenclass:: Chronometer
    :project: Plaquette
-   :members: Chronometer, get, start, stop, pause, resume, elapsed, isRunning, add, set
+   :members: Chronometer, get, start, stop, pause, resume, elapsed, isRunning, addTime, setTime
 
 |SeeAlso|
 ---------

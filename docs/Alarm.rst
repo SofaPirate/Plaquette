@@ -48,7 +48,7 @@ alarm at random periods of time.
 
 .. doxygenclass:: Alarm
    :project: Plaquette
-   :members: Alarm, isOn, isOff, getInt, get, start, stop, pause, resume, elapsed, progress, isRunning, add, set, finished, isFinished, duration, onRise, onFall, onChange, onFinish, clearEvents
+   :members: Alarm, isOn, isOff, getInt, get, start, stop, pause, resume, isRunning, addTime, setTime, elapsed, progress, finished, isFinished, duration, onRise, onFall, onChange, onFinish, clearEvents
 
 |SeeAlso|
 ---------
