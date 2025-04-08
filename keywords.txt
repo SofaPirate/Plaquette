@@ -6,7 +6,6 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Plaquette	KEYWORD1
 Engine	KEYWORD1
 
 AnalogIn	KEYWORD1
@@ -112,7 +111,6 @@ phase  KEYWORD2
 amplitude  KEYWORD2
 shiftBy  KEYWORD2
 timeToPhase  KEYWORD2
-setTime KEYWORD2
 shiftByIsOn  KEYWORD2
 forward  KEYWORD2
 reverse  KEYWORD2
@@ -143,15 +141,18 @@ clamp    KEYWORD2
 noClamp    KEYWORD2
 isClamped    KEYWORD2
 
-# AbstractChronometer
+# Timeable
 start  KEYWORD2
 stop	KEYWORD2
 pause	KEYWORD2
 resume	KEYWORD2
 togglePause	KEYWORD2
-elapsed KEYWORD2
-add	KEYWORD2
+setTime KEYWORD2
+addTime KEYWORD2
 isRunning KEYWORD2
+
+# AbstractChronometer
+elapsed KEYWORD2
 hasPassed	KEYWORD2
 
 # AbstractTimer
@@ -212,6 +213,8 @@ clearEvents	KEYWORD2
 #######################################
 # Instances (KEYWORD2)
 #######################################
+
+Plaquette	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
