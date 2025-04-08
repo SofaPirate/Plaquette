@@ -95,7 +95,7 @@ timer2 interrupt.
   }
 
 |Reference|
-----------
+-----------
 
 .. doxygenclass:: Engine
    :project: Plaquette
