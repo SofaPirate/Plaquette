@@ -46,26 +46,26 @@ void timerStep() {
 
 // Timer2 setup for 1kHz on AVR
 void timerSetup() {
-  // Stop Timer2
+  // Stop Timer2.
   TCCR2A = 0;
   TCCR2B = 0;
   TCNT2  = 0;
 
-  // Set compare match register for 1 kHz increments
+  // Set compare match register for 1 kHz increments.
   // 16 MHz / (prescaler * 1000) - 1 = OCR2A
   // Try prescaler = 128 => OCR2A = (16e6 / (128 * 1000)) - 1 ≈ 124
   OCR2A = 124;
 
-  // CTC mode (Clear Timer on Compare Match)
+  // CTC mode (Clear Timer on Compare Match).
   TCCR2A |= (1 << WGM21);
 
-  // Set prescaler to 128
+  // Set prescaler to 128.
   TCCR2B |= (1 << CS22) | (1 << CS20);  // 128 prescaler
 
-  // Enable Timer2 compare interrupt
+  // Enable Timer2 compare interrupt.
   TIMSK2 |= (1 << OCIE2A);
 
-  // Enable global interrupts
+  // Enable global interrupts.
   sei();
 }
 
@@ -98,7 +98,7 @@ void timerSetup() {
 }
 
 #else
-// Default: without interrupts/timer support we use a 1kHz metronome to trigger timer engine..
+// Default: without interrupts/timer support we use a 1kHz metronome to trigger timer engine.
 Metronome timerMetro(0.001);
 
 void onTimer() {

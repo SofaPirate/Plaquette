@@ -127,8 +127,8 @@ Here is an example of our blinking code rewritten by using this feature:
 
 .. _secondary-engines:
   
-Using Secondary Engines
------------------------
+Synchronizing Groups of Units with Secondary Engines
+----------------------------------------------------
 
 Have you wondered how units such as waves, inputs, outputs, or ramps are automatically initialized and updated in Plaquette?
 This is done thanks to an :doc:`Engine`, a control structure that acts like the **conductor of an orchestra**.
@@ -140,7 +140,7 @@ and is mainly used when working with :ref:`Plaquette as an external library<plaq
 mode, when one declares the ``void begin()`` and ``void step()`` functions, the primary engine's ``Plaquette.begin()`` and 
 ``Plaquette.step()`` functions are automatically called.
 
-There are contexts where the primary engine is not sufficient and one needs to use more than one engine:
+There are many contexts where more than one engine are necessary:
 
 - **Multi-tasking** Engines allow you to take full advantage of **timer interrupts**, **threads** and/or **multiple processor cores**
   to run different unit ensembles in parallel, possibly running with different frequencies and priorities.
@@ -285,8 +285,10 @@ In this example, we will take full advantage of the ESP32's dual core architectu
     void stepLeds() {
       // Update LED strip according to LED wave.
       for (int i = 0; i < NUM_LEDS; i++) {
-        uint8_t level = ledWave.shiftBy( mapTo01(i, 0, NUM_LEDS-1) )
-        strip.setPixelColor(i, strip.Color(level, 0, 0)); // Red only
+        float phaseShift = mapTo01(i, 0, NUM_LEDS-1);       // LED position to % phase shift.
+        float shiftedLedWave = ledWave.shiftBy(phaseShift); // Shifted wave value in [0, 1].
+        int level = int(mapFrom01(shiftedLedWave, 0, 255)); // Brightness level in [0, 255].
+        strip.setPixelColor(i, strip.Color(level, 0, 0));   // Red channel only.
       }
       strip.show(); // Display LEDs.
     }

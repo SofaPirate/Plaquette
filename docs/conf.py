@@ -37,11 +37,11 @@ html_css_files = ['css/custom.css']
 
 extensions = [
     'sphinx.ext.autodoc',
-#    'sphinx.ext.autosummary',
+    'sphinx.ext.autosummary',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'breathe',
- #   'sphinx.ext.intersphinx',
+    'sphinx.ext.intersphinx',
     'sphinx_rtd_theme',
 ]
 #autosummary_generate = True  # Automatically generate summary files

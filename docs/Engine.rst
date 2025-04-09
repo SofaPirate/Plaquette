@@ -83,15 +83,16 @@ timer2 interrupt.
     TCCR2B = 0;
     TCNT2  = 0;
 
-    // Set compare match register for 1 kHz increments
+    // Set compare match register for 1 kHz increments.
     // 16 MHz / (prescaler * 1000) - 1 = OCR2A
+    // Try prescaler = 128 => OCR2A = (16e6 / (128 * 1000)) - 1 = ~124
     OCR2A = 124;
 
-    TCCR2A |= (1 << WGM21); // CTC mode (Clear Timer on Compare Match)
-    TCCR2B |= (1 << CS22) | (1 << CS20); // Set prescaler to 128
-    TIMSK2 |= (1 << OCIE2A); // Enable Timer2 compare interrupt
+    TCCR2A |= (1 << WGM21); // CTC mode (Clear Timer on Compare Match).
+    TCCR2B |= (1 << CS22) | (1 << CS20); // Set prescaler to 128.
+    TIMSK2 |= (1 << OCIE2A); // Enable Timer2 compare interrupt.
 
-    sei(); // Enable global interrupts
+    sei(); // Enable global interrupts.
   }
 
 |Reference|
