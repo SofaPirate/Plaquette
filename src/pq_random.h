@@ -42,10 +42,13 @@ float randomFloat(float max);
 float randomFloat(float min, float max);
 
 // Deprecated. Left for backwards compatibility.
+[[deprecated("Use randomFloat() instead.")]]
 float randomUniform();
 // Deprecated. Left for backwards compatibility.
+[[deprecated("Use randomFloat(float) instead.")]]
 float randomUniform(float max);
 // Deprecated. Left for backwards compatibility.
+[[deprecated("Use randomFloat(float, float) instead.")]]
 float randomUniform(float min, float max);
 
 } // namespace pq
