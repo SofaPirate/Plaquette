@@ -88,6 +88,12 @@ public:
     */
    virtual bool shiftByIsOn(float phaseShift);
 
+   [[deprecated("Use width(float) instead.")]]
+   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
+ 
+   [[deprecated("Use width() instead.")]]
+   virtual float dutyCycle() const { return width(); }
+ 
 protected:
   // Core Plaquette methods.
   virtual void step();
@@ -101,16 +107,9 @@ protected:
       default:           return AbstractWave::eventTriggered(eventType);
     }
   }
-
-  [[deprecated("Use width(float) instead.")]]
-  virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
-
-  [[deprecated("Use width() instead.")]]
-  virtual float dutyCycle() const { return width(); }
   
 protected:
   // Returns value in [0, 1].
-//  virtual float _get(fixed_t t);
   virtual fixed_t _getFixed(fixed_t t);
 };
 
