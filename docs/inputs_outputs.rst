@@ -131,11 +131,11 @@ of the potentiometer should be connected to analog input pin (`A0``), the left p
     }
 
 Using Units as Their Own Values
---------------------------------
+-------------------------------
 
 Plaquette offers an elegant shortcut: you don't need to explicitly call ``isOn()`` or ``get()`` for
-digital or analog inputs. Instead, you can use the input or output unit itself as its value. This
-makes your code cleaner and easier to read.
+digital or analog inputs. Instead, you can use the input or output unit itself in lieu of the value
+it contains. This makes your code cleaner and easier to read.
 
 Here's the same LED and button example, rewritten with this feature:
 
@@ -149,7 +149,7 @@ Here's the same LED and button example, rewritten with this feature:
     void begin() {}
 
     void step() {
-      if (button) {  // No need for button.isOn(), just use button as its own value
+      if (button) {  // No need for button.isOn() : just use button as its own value
         led.on();
       } else {
         led.off();
@@ -157,7 +157,7 @@ Here's the same LED and button example, rewritten with this feature:
     }
 
 For analog inputs, this works similarly. Instead of calling ``dimmer.get()``, you can use the
-``dimmer`` object directly:
+``dimmer`` unit directly:
 
 .. code-block:: cpp
 
@@ -169,7 +169,7 @@ For analog inputs, this works similarly. Instead of calling ``dimmer.get()``, yo
     void begin() {}
 
     void step() {
-      led.put(dimmer); // No need for dimmer.get(), just use dimmer
+      led.put(dimmer); // No need for dimmer.get() : just use dimmer as its own value
     }
 
 These simplifications make your code more expressive and emphasize the logic over the syntax.
@@ -177,7 +177,7 @@ These simplifications make your code more expressive and emphasize the logic ove
 The Piping Operator (>>)
 ------------------------
 
-In Plaquette, the `>>` operator allows you to directly send or "pipe" the value of one unit to 
+In Plaquette, the ``>>`` operator allows you to directly send or "pipe" the value of one unit to 
 another. This makes it incredibly simple to map inputs to outputs without extra variables or 
 function calls.
 
@@ -197,6 +197,13 @@ Let's revisit the potentiometer and LED example using the piping operator:
     }
 
 This operator improves code readability and emphasizes the relationship between inputs and outputs.
+
+.. note::
+
+  The piping operator (``>>``) allows to expressively connect input, output, and filtering units
+  in a similar fashion to data-flow environments such as `Max <https://cycling74.com/products/max>`_,
+  `Pure Data <https://puredata.info>`_, and `TouchDesigner <https://derivative.ca>`_. The operator is
+  directly inspired from the ChucK operator (``=>``) in programming languge `ChucK <http://chuck.cs.princeton.edu/>`__.
 
 Dealing with Noisy Signals: Debouncing and Smoothing
 ----------------------------------------------------
@@ -265,7 +272,7 @@ to see the result:
 * ``lightSensor.smooth(0.01)`` : Smooth over 10ms
 
 Mapping Values to Different Ranges
------------------------------------
+----------------------------------
 
 Sometimes, the output of a sensor doesn't match the range needed for an actuator. Plaquette
 provides a simple **mapping function** ``mapTo(low, high)`` which maps the analog input value 
@@ -291,7 +298,7 @@ to a specified range which is very useful for scaling sensor readings.
     }
 
 Making Decisions with Conditions
----------------------------------
+--------------------------------
 
 Interactive systems often need to respond to changes in input. Plaquette provides convenient
 methods like ``rose()``, ``fell()``, and ``changed()`` for detecting transitions in digital signals.
