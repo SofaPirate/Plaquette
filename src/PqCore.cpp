@@ -79,11 +79,11 @@ void Engine::end() {
 }
 
 float Engine::seconds(bool referenceTime) const {
-  return microSeconds(referenceTime) * SECONDS_TO_MICROS;
+  return microsToSeconds(microSeconds(referenceTime));
 }
 
 uint32_t Engine::milliSeconds(bool referenceTime) const {
-  return static_cast<uint32_t>(microSeconds(referenceTime) * MILLIS_TO_MICROS);
+  return microsToMillis(microSeconds(referenceTime));
 }
 
 uint64_t Engine::microSeconds(bool referenceTime) const {

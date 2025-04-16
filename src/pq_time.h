@@ -27,19 +27,27 @@
 namespace pq {
 
 // Time constants.
-#define MILLIS_PER_SECOND 1e3f
-#define MACROS_PER_MILLIS 1e3f
-#define MICROS_PER_SECOND 1e6f
+#define MILLIS_PER_MICROS    1000
+#define MICROS_PER_MILLIS    1000
+#define MILLIS_PER_SECOND    1000
+#define MICROS_PER_SECOND 1000000UL
 
-#define SECONDS_TO_MICROS 1e-6f
-#define SECONDS_TO_MILLIS 1e-3f
-#define MILLIS_TO_MICROS  1e-3f
+#define SECONDS_PER_MINUTE     60
+#define SECONDS_PER_HOUR     3600
+#define SECONDS_PER_DAY     86400
 
-#define SECONDS_PER_MINUTE 60.0f
-#define MINUTES_PER_HOUR   60.0f
-#define HOURS_PER_DAY      24.0f
+#define MINUTES_PER_HOUR       60
+#define HOURS_PER_DAY          24
 
-// Special yype to store time in microseconds.
+#define MILLIS_TO_MICROS      1e3f
+#define SECONDS_TO_MILLIS     1e3f
+#define SECONDS_TO_MICROS     1e6f
+
+#define MICROS_TO_MILLIS     1e-3f
+#define MILLIS_TO_SECONDS    1e-3f
+#define MICROS_TO_SECONDS    1e-6f
+
+// Special type to store time in microseconds.
 // Allows dealing with micros() timer overflow to represent time as a 64-bit value.
 typedef union {
   // 64 bits version.
@@ -79,6 +87,69 @@ uint32_t milliSeconds(bool referenceTime=true);
  * @return the time in microseconds
  */
 uint64_t microSeconds(bool referenceTime=true);
+
+/**
+ * Converts microseconds to milliseconds.
+ * @param micros microseconds
+ * @return milliseconds
+ */
+inline uint32_t microsToMillis(uint64_t micros) { return micros / MICROS_PER_MILLIS; }
+
+/**
+ * Converts microseconds to seconds.
+ * @param micros microseconds
+ * @return seconds
+ */
+inline float microsToSeconds(uint64_t micros) { return micros * MICROS_TO_SECONDS; }
+
+/**
+ * Converts milliseconds to microseconds.
+ * @param millis milliseconds
+ * @return microseconds
+ */
+inline uint64_t millisToMicros(uint32_t millis) { return static_cast<uint64_t>(millis * MICROS_PER_MILLIS); }
+
+/**
+ * Converts milliseconds to seconds.
+ * @param millis milliseconds
+ * @return seconds
+ */
+inline float millisToSeconds(uint32_t millis) { return millis * MILLIS_TO_SECONDS; }
+
+/**
+ * Converts seconds to microseconds.
+ * @param secs seconds
+ * @return microseconds
+ */
+inline uint64_t secondsToMicros(float secs) { return static_cast<uint64_t>(secs * SECONDS_TO_MICROS); }
+
+/**
+ * Converts seconds to milliseconds.
+ * @param secs seconds
+ * @return milliseconds
+ */
+inline uint32_t secondsToMillis(float secs) { return static_cast<uint32_t>(secs * SECONDS_TO_MILLIS); }
+
+/**
+ * Converts minutes to seconds.
+ * @param minutes number of minutes
+ * @return seconds
+ */
+inline float minutesToSeconds(float minutes) { return minutes * SECONDS_PER_MINUTE; }
+
+/**
+ * Converts hours to seconds.
+ * @param hours number of hours
+ * @return seconds
+ */
+inline float hoursToSeconds(float hours) { return hours * SECONDS_PER_HOUR; }
+
+/**
+ * Converts days to seconds.
+ * @param days number of days
+ * @return seconds
+ */
+inline float daysToSeconds(float days) { return days * SECONDS_PER_DAY; }
 
 } // namespace pq
 
