@@ -161,7 +161,10 @@ public:
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh);
 
-  /// Reads raw value from the pin.
+  /// Direcly reads value from the pin (bypasses mode, smoothing, and engine).
+  float read() const;
+
+  /// Directly reads raw value from the pin (bypasses mode, smoothing, and engine).
   int rawRead() const;
 
 protected:
@@ -187,7 +190,10 @@ public:
   /// Changes the mode of the component.
   virtual void mode(uint8_t mode);
 
-  /// Reads raw value from the pin as HIGH or LOW.
+  /// Directly reads value from the pin as 1 or 0 (bypasses mode, debounce, and engine).
+  float read() const;
+
+  /// Directly reads raw value from the pin as HIGH or LOW (bypasses mode, debounce, and engine).
   int rawRead() const;
 
 protected:

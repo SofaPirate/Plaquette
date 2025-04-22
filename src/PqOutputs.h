@@ -49,7 +49,10 @@ public:
   /// Inverts value by calling ``put(1-get())`` (eg. 0.2 becomes 0.8).
   virtual void invert() { put(1-get()); }
 
-  /// Writes raw value to the pin.
+  /// Direclty writes value in [0, 1] to the pin (bypasses mode and engine).
+  void write(float value);
+
+  /// Direclty writes raw value to the pin (bypasses mode and engine).
   void rawWrite(int value);
 
 protected:
@@ -77,7 +80,13 @@ public:
   /// Changes the mode of the component.
   virtual void mode(uint8_t mode);
   
-  /// Write HIGH or LOW value to the pin.
+  /// Directly writes value to the pin (bypasses mode and engine).
+  void write(bool value);
+
+  /// Directly writes value in [0, 1] to the pin (bypasses mode and engine).
+  void write(float value);
+
+  /// Directly writes HIGH or LOW value to the pin (bypasses mode and engine).
   void rawWrite(int value);
 
 protected:

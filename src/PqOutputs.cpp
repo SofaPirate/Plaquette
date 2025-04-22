@@ -49,6 +49,16 @@ float AnalogOut::put(float value) {
 #define analogWriteFunction analogWrite
 #endif
 
+void AnalogOut::write(float value) {
+  // Make sure value is in [0, 1].
+  value = constrain(value, 0, 1);
+
+  // Remap to [0, ANALOG_WRITE_MAX_VALUE].
+  value = value * ANALOG_WRITE_MAX_VALUE;
+  value = round(value);
+  rawWrite(value);
+}
+
 void AnalogOut::rawWrite(int value) {
   value = constrain(value, 0, ANALOG_WRITE_MAX_VALUE);
   _value = (_mode == DIRECT ? value : ANALOG_WRITE_MAX_VALUE - value) / (float)ANALOG_WRITE_MAX_VALUE;
@@ -77,8 +87,15 @@ void DigitalOut::_init() {
   pinMode(_pin, OUTPUT);
 }
 
+void DigitalOut::write(bool value) {
+  rawWrite(value ? HIGH : LOW);
+}
+
+void DigitalOut::write(float value) {
+  rawWrite(analogToDigital(value) ? HIGH : LOW);
+}
+
 void DigitalOut::rawWrite(int value) {
-  putOn(_mode == DIRECT ? value == HIGH : value == LOW);
   digitalWrite(_pin, value);
 }
 

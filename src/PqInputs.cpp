@@ -154,6 +154,10 @@ float AnalogIn::mapTo(float toLow, float toHigh) {
   return mapFrom01(get(), toLow, toHigh);
 }
 
+float AnalogIn::read() const {
+  return analogRead(_pin) / float(ANALOG_READ_MAX_VALUE);
+}
+
 int AnalogIn::rawRead() const {
   return analogRead(_pin);
 }
@@ -180,6 +184,11 @@ void DigitalIn::_init() {
 void DigitalIn::mode(uint8_t mode) {
   _mode = mode;
   _init();
+}
+
+
+float DigitalIn::read() const {
+  return digitalRead(_pin);
 }
 
 int DigitalIn::rawRead() const {
