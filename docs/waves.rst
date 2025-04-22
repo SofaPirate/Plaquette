@@ -132,7 +132,7 @@ Let us explore these properties and their corresponding functions:
   For each wave type, this property has a specific effect:
 
     - For :doc:`SquareWave`, it adjusts the duty cycle (the ratio of ON to OFF time).
-    - For :doc:`TriangleWave`, it determines whether the wave skews towards a sawtooth (width = 0) or inverted sawtooth (width = 1).
+    - For :doc:`TriangleWave`, it skews the wave towards a sawtooth (width = 0) or inverted sawtooth (width = 1).
     - For :doc:`SineWave`, it shifts the inflection points of the wave, altering its symmetry.
 - **frequency()**: Inverse of period; sets the cycles per second (Hz).
 - **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
