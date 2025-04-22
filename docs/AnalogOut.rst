@@ -51,7 +51,7 @@ The ``mode`` specifies the behavior of the component attached to the pin:
 
 .. doxygenclass:: AnalogOut
    :project: Plaquette
-   :members: AnalogOut, get, put, invert, pin, mode, rawWrite
+   :members: AnalogOut, get, put, invert, pin, mode, write, rawWrite
 
 |SeeAlso|
 ---------

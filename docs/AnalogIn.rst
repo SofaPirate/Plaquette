@@ -47,7 +47,7 @@ Control an LED using a potentiometer.
 
 .. doxygenclass:: AnalogIn
    :project: Plaquette
-   :members: AnalogIn, get, mapTo, smooth, noSmooth, cutoff, pin, mode, rawRead
+   :members: AnalogIn, get, mapTo, smooth, noSmooth, cutoff, pin, mode, read, rawRead
 
 |SeeAlso|
 ---------

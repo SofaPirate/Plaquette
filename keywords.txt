@@ -93,6 +93,8 @@ debounceMode  KEYWORD2
 # In/Out
 rawRead  KEYWORD2
 rawWrite  KEYWORD2
+read  KEYWORD2
+write  KEYWORD2
 
 # Window-based
 infiniteTimeWindow	KEYWORD2
