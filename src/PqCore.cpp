@@ -124,9 +124,6 @@ void Engine::add(Unit* component) {
     _unitsEndIndex = _unitsBeginIndex+1;
   }
 
-  // Serial.println("Adding unit");
-  // Serial.println(_units.size());
-
   // Assign parent engine.
   component->engine = this;
 
@@ -189,10 +186,7 @@ void Engine::samplePeriod(float samplePeriod) {
     autoSampleRate();
 }
 
-//float seconds(bool realTime) { return Engine::seconds(); }
 unsigned long nSteps() { return Plaquette.nSteps(); }
-// void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
-// void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 

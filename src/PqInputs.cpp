@@ -88,8 +88,7 @@ void Debounceable::_step() {
       }
     }
 
-    // DEBOUNCE_PROMPT_DETECT
-    else  {
+    else  { // debounce mode : DEBOUNCE_PROMPT_DETECT
       if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
           currentTime - _startTime >= _interval) {
         // We have passed the time threshold, so a new change of state is allowed.
