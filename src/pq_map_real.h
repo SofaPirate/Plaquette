@@ -27,6 +27,7 @@
 
 namespace pq {
 
+/// @brief Mapping modes.
 enum {
   UNCONSTRAIN = 0,
   CONSTRAIN = 1,

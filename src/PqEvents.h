@@ -29,14 +29,15 @@ class Unit;
 /// Callback type for event listeners.
 typedef void (*EventCallback)();
 
+/// Event types.
 enum EventType {  
-  EVENT_NONE,
-  EVENT_CHANGE,
-  EVENT_RISE,
-  EVENT_FALL,
-  EVENT_BANG,
-  EVENT_FINISH,
-  EVENT_UPDATE,
+  EVENT_NONE,    // no event
+  EVENT_CHANGE,  // value changed
+  EVENT_RISE,    // value rose
+  EVENT_FALL,    // value fell
+  EVENT_BANG,    // single trigger
+  EVENT_FINISH,  // process/timer finished
+  EVENT_UPDATE,  // unit updated
 };
 
 /// Manages event listeners for Plaquette units.
