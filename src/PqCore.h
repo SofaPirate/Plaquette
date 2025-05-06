@@ -43,17 +43,9 @@ enum {
   DIRECT,
   INVERTED,
   INTERNAL_PULLUP,
-  // PULLDOWN = DIRECT,
-  // PULLUP = INVERTED,
   SOURCE = DIRECT, // deprecated
   SINK = INVERTED  // deprecated
 };
-
-// /// @brief Range modes.
-// enum {
-//   RANGE_ZERO_ONE, // [0, 1]
-//   RANGE_ZERO_CENTERED // [-1, 1]
-// };
 
 class Unit;
 
