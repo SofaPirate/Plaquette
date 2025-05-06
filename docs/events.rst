@@ -133,11 +133,11 @@ to the ``onRise()`` event of our button unit, which will trigger at the instant 
      button.onRise(toggleLed); // Toggle the LED on button press
    }
 
-In this case, the ``step()`` function can be left empty because the callback will take care of all the logic.
+In this case, since the callback will take care of all the logic, the ``step()`` function can be left empty!
 
 .. code-block:: cpp
 
-   void step() {} // Nothing to do here
+   void step() {} // Nothing to do here!
 
 Here is the final code for this example:
 
@@ -189,7 +189,7 @@ press and release events.
    // Callback function to print button state.
    void printButton() {
      print("Button ");
-     println(button ? "pressed" : "released")
+     println(button ? "pressed" : "released");
    }
 
    void begin() {
