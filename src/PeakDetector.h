@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PEAK_H_
-#define PEAK_H_
+#ifndef PEAK_DETECTOR_H_
+#define PEAK_DETECTOR_H_
 
 #include "PqCore.h"
 
@@ -33,7 +33,7 @@ enum {
 namespace pq {
 
 /**
- * Emits a signals when a signal peaks.
+ * Emits a "bang" signal when another signal peaks.
  */
 class PeakDetector : public DigitalUnit {
 public:
