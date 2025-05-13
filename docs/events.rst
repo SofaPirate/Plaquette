@@ -108,8 +108,8 @@ First, let us create the units we will be working with:
 
    #include <Plaquette.h>
 
-   DigitalOut led(LED_BUILTIN);  // LED connected to built-in pin
-   DigitalIn button(2, INTERNAL_PULLUP);  // Button connected to pin 2
+   DigitalOut led(LED_BUILTIN); // LED connected to built-in pin
+   DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
 
 In order to react to an event, we first need to create a callback function which will be called when
 the event will happen:
@@ -127,7 +127,7 @@ to the ``onRise()`` event of our button unit, which will trigger at the instant 
 .. code-block:: cpp
 
    void begin() {
-     button.debounce();  // Enable debouncing to avoid multiple events
+     button.debounce(); // Enable debouncing to avoid multiple events
 
      // Register callbacks for button events.
      button.onRise(toggleLed); // Toggle the LED on button press
@@ -145,8 +145,8 @@ Here is the final code for this example:
 
    #include <Plaquette.h>
 
-   DigitalOut led(LED_BUILTIN);  // LED connected to built-in pin
-   DigitalIn button(2, INTERNAL_PULLUP);  // Button connected to pin 2
+   DigitalOut led(LED_BUILTIN); // LED connected to built-in pin
+   DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
 
    // Callback function to toggle the LED.
    void toggleLed() {
@@ -154,7 +154,7 @@ Here is the final code for this example:
    }
 
    void begin() {
-     button.debounce();  // Enable debouncing to avoid multiple events
+     button.debounce(); // Enable debouncing to avoid multiple events
 
      // Register callbacks for button events.
      button.onRise(toggleLed); // Toggle the LED on button press
@@ -178,8 +178,8 @@ press and release events.
 
    #include <Plaquette.h>
 
-   DigitalOut led(LED_BUILTIN);  // LED connected to built-in pin
-   DigitalIn button(2, INTERNAL_PULLUP);  // Button connected to pin 2
+   DigitalOut led(LED_BUILTIN); // LED connected to built-in pin
+   DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
 
    // Callback function to toggle the LED.
    void toggleLed() {
@@ -193,7 +193,7 @@ press and release events.
    }
 
    void begin() {
-     button.debounce();  // Enable debouncing to avoid multiple events
+     button.debounce(); // Enable debouncing to avoid multiple events
 
      // Register callbacks for button events.
      button.onRise(toggleLed); // Toggle the LED on button press
@@ -219,11 +219,11 @@ interval. A ramp is used to fade the analog LED.
 
    #include <Plaquette.h>
 
-   DigitalOut led1(LED_BUILTIN);  // First LED (digital) connected to built-in pin
-   AnalogOut led2(9); // Second LED (PWM) connected to pin 9
-   Metronome metro1(1.0);  // Metronome with a one second period
-   Metronome metro2(2.0);  // Metronome with a 2 second period
-   Ramp rampLed(0.5); // Short ramp to control LED 2
+   DigitalOut led1(LED_BUILTIN); // First LED (digital) connected to built-in pin
+   AnalogOut led2(9);            // Second LED (PWM) connected to pin 9
+   Metronome metro1(1.0);        // Metronome with a 1 second period
+   Metronome metro2(2.0);        // Metronome with a 2 seconds period
+   Ramp rampLed(0.5);            // Short ramp to control LED 2
 
    // Function to toggle the first LED.
    void pingLed1() {
@@ -237,8 +237,8 @@ interval. A ramp is used to fade the analog LED.
 
    void begin() {
      // Register callbacks for the metronomes.
-     metro1.onBang(pingLed1);  // Toggle LED 1 every second
-     metro2.onBang(pingLed2);  // Fade in LED 2 every 2 seconds
+     metro1.onBang(pingLed1); // Toggle LED 1 every second
+     metro2.onBang(pingLed2); // Fade in LED 2 every 2 seconds
    }
 
    void step() {
