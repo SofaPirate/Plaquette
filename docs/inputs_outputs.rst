@@ -114,7 +114,7 @@ An :doc:`AnalogIn` unit reads continuous values from sensors, such as potentiome
 or temperature sensors.
 
 Let's use a potentiometer to control an LED's brightness. For this circuit, the center pin
-of the potentiometer should be connected to analog input pin (`A0``), the left pin to ground
+of the potentiometer should be connected to analog input pin (``A0``), the left pin to ground
 (GND) and the right pin to +5V (Vcc).
 
 .. code-block:: cpp

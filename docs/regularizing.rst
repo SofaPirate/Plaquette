@@ -14,7 +14,7 @@ We will be using an analog sensor such as a photoresistor for this example.
 .. note::
   In order to build this circuit, you will need to create a simple 
   `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
-  Connect the photoresistor between the ground (GND) and the analog input pin (`A0``). Then connect
+  Connect the photoresistor between the ground (GND) and the analog input pin (``A0``). Then connect
   a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
   For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
   resistor of about 5.5k :math:`\Omega`).
