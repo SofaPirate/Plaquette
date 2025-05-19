@@ -126,11 +126,11 @@ void Debounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, Engine& engine)
-  : Unit(engine), PinUnit(pin, DIRECT)
+  : Unit(engine), PinConfig(pin, DIRECT)
 {}
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode, Engine& engine)
-  : Unit(engine), PinUnit(pin, mode)
+  : Unit(engine), PinConfig(pin, mode)
 {}
 
 float AnalogIn::_read() {
@@ -162,11 +162,11 @@ int AnalogIn::rawRead() const {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, Engine& engine)
-  : DigitalSource(engine), PinUnit(pin, DIRECT)
+  : DigitalSource(engine), PinConfig(pin, DIRECT)
 {}
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode, Engine& engine)
-  : DigitalSource(engine), PinUnit(pin, mode)
+  : DigitalSource(engine), PinConfig(pin, mode)
 {}
 
 bool DigitalIn::_isOn() {

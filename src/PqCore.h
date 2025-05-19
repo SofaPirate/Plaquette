@@ -572,10 +572,10 @@ inline Unit& operator>>(uint64_t value, Unit& unit) {
 // }
 
 /// Superclass for pin-based components.
-class PinUnit {
+class PinConfig {
 public:
-  PinUnit(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
-  virtual ~PinUnit() {}
+  PinConfig(uint8_t pin, uint8_t mode) : _pin(pin), _mode(mode) {}
+  virtual ~PinConfig() {}
 
   /// Returns the pin this component is attached to.
   uint8_t pin() const { return _pin; }

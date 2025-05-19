@@ -24,11 +24,11 @@
 namespace pq {
 
 AnalogOut::AnalogOut(uint8_t pin, Engine& engine)
-  : AnalogSource(engine), PinUnit(pin, DIRECT)
+  : AnalogSource(engine), PinConfig(pin, DIRECT)
 {}
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode, Engine& engine)
-  : AnalogSource(engine), PinUnit(pin, mode)
+  : AnalogSource(engine), PinConfig(pin, mode)
 {}
 
 float AnalogOut::put(float value) {
@@ -70,11 +70,11 @@ void AnalogOut::step() {
 }
 
 DigitalOut::DigitalOut(uint8_t pin, Engine& engine)
-  : DigitalSource(engine), PinUnit(pin, DIRECT)
+  : DigitalSource(engine), PinConfig(pin, DIRECT)
 {}
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode, Engine& engine)
-  : DigitalSource(engine), PinUnit(pin, mode)
+  : DigitalSource(engine), PinConfig(pin, mode)
 {}
 
 

@@ -144,7 +144,7 @@ protected:
 };
 
 /// A generic class representing a simple analog input.
-class AnalogIn : public Unit, public PinUnit, public Smoothable {
+class AnalogIn : public Unit, public PinConfig, public Smoothable {
 public:
   /**
    * Constructor.
@@ -176,7 +176,7 @@ protected:
 };
 
 /// A generic class representing a simple digital input.
-class DigitalIn : public DigitalSource, public PinUnit, public Debounceable {
+class DigitalIn : public DigitalSource, public PinConfig, public Debounceable {
 public:
   /**
    * Constructor.

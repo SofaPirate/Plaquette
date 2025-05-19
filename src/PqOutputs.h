@@ -26,7 +26,7 @@
 namespace pq {
 
 /// A generic class representing a simple PWM output.
-class AnalogOut : public AnalogSource, public PinUnit {
+class AnalogOut : public AnalogSource, public PinConfig {
 public:
   /**
    * Constructor with default mode DIRECT.
@@ -60,7 +60,7 @@ protected:
 };
 
 /// A generic class representing a simple digital output.
-class DigitalOut : public DigitalSource, public PinUnit {
+class DigitalOut : public DigitalSource, public PinConfig {
 public:
   /**
    * Constructor with default mode DIRECT.
