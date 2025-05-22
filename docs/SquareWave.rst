@@ -4,13 +4,13 @@ SquareWave
 ==========
 
 A source unit that generates a `square wave <https://en.wikipedia.org/wiki/Square_wave>`_
-signal. The signal can be tuned by changing the ``period`` and/or ``frequency``
-of the oscillation, as well as the ``width``.
+signal. The signal can be tuned by adjusting parameters such as ``period``, ``frequency``, 
+``amplitude``, or ``width``.
 
 .. image:: images/Plaquette-SquareWave.png
 
-The width represents the proportion of time (expressed as a percentage) in each
-cycle (period) during which the wave is "on".
+The ``width`` represents the proportion of time (expressed as a percentage) in each
+cycle (period) during which the wave is "on" -- in other words, its *duty cycle*.
 
 .. image:: images/Plaquette-SquareWave-Width.png
 

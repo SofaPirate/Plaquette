@@ -5,8 +5,9 @@ TriangleWave
 
 A source unit that can generate a range of triangle-shaped signals such as the
 `triangle wave <https://en.wikipedia.org/wiki/Triangle_wave>`_ and the
-`sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_. The signal can be
-adjusted by changing the ``period`` and/or ``frequency`` of the oscillation.
+`sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_.  The signal can 
+be tuned by adjusting parameters such as ``period``, ``frequency``, ``amplitude``, 
+or ``width``.
 
 .. image:: images/Plaquette-TriangleWave.png
 
