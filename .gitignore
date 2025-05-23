@@ -245,10 +245,14 @@ trash
 .clang_complete
 .gcc-flags.json
 .pio/
+research/
 lib/
 include/
 docs/xml/
 docs/*env/
+docs/html
+docs/_static
+.vscode
 
 # arduino_ci unit test binaries and artifacts
 *.bin
