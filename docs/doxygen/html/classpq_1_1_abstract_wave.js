@@ -1,0 +1,26 @@
+var classpq_1_1_abstract_wave =
+[
+    [ "AbstractWave", "classpq_1_1_abstract_wave.html#acdc6e3766d741170c041565c8fa3adc3", null ],
+    [ "AbstractWave", "classpq_1_1_abstract_wave.html#ab2ed03a5594f42d52a330ec7e01bbe1e", null ],
+    [ "AbstractWave", "classpq_1_1_abstract_wave.html#ab7dc7dabd551667fc75b205a3b5f9c82", null ],
+    [ "addTime", "classpq_1_1_abstract_wave.html#a595843dd3c2341493c5ba59dd69f337f", null ],
+    [ "amplitude", "classpq_1_1_abstract_wave.html#a7c5c9cf07d86c281d4b2de2e7435455b", null ],
+    [ "amplitude", "classpq_1_1_abstract_wave.html#ada41f6815ccadde5af91e0e6ac047bd7", null ],
+    [ "bpm", "classpq_1_1_abstract_wave.html#a769dbd668130c9680920f8c461e92b35", null ],
+    [ "bpm", "classpq_1_1_abstract_wave.html#a30a9f5ad2868cb783e234dc69566a079", null ],
+    [ "forward", "classpq_1_1_abstract_wave.html#aa1379cc5987831a51cc6e27f6e48634d", null ],
+    [ "frequency", "classpq_1_1_abstract_wave.html#acdd19702053a02f2e550a8c3bc169d57", null ],
+    [ "frequency", "classpq_1_1_abstract_wave.html#a659f1058314036a9578c6142c74e2dcb", null ],
+    [ "isForward", "classpq_1_1_abstract_wave.html#af5413100dfb5fb293616034589056080", null ],
+    [ "isRunning", "classpq_1_1_abstract_wave.html#a527322389dfa750cd6cf6317e17a4fb7", null ],
+    [ "period", "classpq_1_1_abstract_wave.html#a92a04135a8c71e03d44e002f13f5365b", null ],
+    [ "phase", "classpq_1_1_abstract_wave.html#a2921392a9d5cf568de33ab520f42e864", null ],
+    [ "phase", "classpq_1_1_abstract_wave.html#ab8d518137311823e99163d59705b2712", null ],
+    [ "reverse", "classpq_1_1_abstract_wave.html#a359460b2f9cded49f1f8e88496eefde5", null ],
+    [ "setTime", "classpq_1_1_abstract_wave.html#ac0fb251979da0195d3b32657aafc0e07", null ],
+    [ "shiftBy", "classpq_1_1_abstract_wave.html#a99ed4db672b98c5a4c4fe7482546bb5d", null ],
+    [ "timeToPhase", "classpq_1_1_abstract_wave.html#a5ba3ae5e131d56037d516063c478ca25", null ],
+    [ "toggleReverse", "classpq_1_1_abstract_wave.html#a22c5bddf0e50c588b819b3f3485d85e9", null ],
+    [ "width", "classpq_1_1_abstract_wave.html#ac352b24bcc48f86705caffa3068196c0", null ],
+    [ "width", "classpq_1_1_abstract_wave.html#a61e6b81e69c37b6747e63849255a81e0", null ]
+];
