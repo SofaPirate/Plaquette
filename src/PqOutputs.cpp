@@ -35,11 +35,6 @@ float AnalogOut::put(float value) {
   // Make sure value is in [0, 1].
   _value = constrain(value, 0, 1);
 
-  // Remap to [0, ANALOG_WRITE_MAX_VALUE].
-  value = _value * ANALOG_WRITE_MAX_VALUE;
-  value = round(value);
-  // Write to analog output (inverting if needed).
-
   return _value;
 }
 
@@ -66,7 +61,8 @@ void AnalogOut::rawWrite(int value) {
 }
 
 void AnalogOut::step() {
-  analogWriteFunction(_pin, (_mode == SOURCE ? _value : ANALOG_WRITE_MAX_VALUE - _value));
+  float value = (_mode == DIRECT ? _value : 1 - _value) * ANALOG_WRITE_MAX_VALUE;
+  analogWriteFunction(_pin, round(value));
 }
 
 DigitalOut::DigitalOut(uint8_t pin, Engine& engine)
