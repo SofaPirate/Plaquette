@@ -149,6 +149,22 @@ inline float triggerThreshold() const { return _triggerThreshold; }
 
 ---
 
+## Step-Invariance
+
+Units in Plaquette should adhere to the following principles to ensure 
+consistency and predictability during each execution step:
+
+- The value returned by a unit’s `get()` function **must remain constant 
+throughout a step**, unless explicitly changed via the unit’s `put()` function.
+- After a unit is updated via `put()`, the unit's `step()` function should 
+apply the change using either the **last received value** or a suitable 
+**aggregate** of values received during that step (eg. average).
+- **Transductions** (such as ADC reads or DAC writes) must **only occur 
+inside the `step()` function**, which is automatically called by the engine 
+once per step. This ensures consistent timing and avoids unintended side effects.
+
+---
+
 ## Licensing and Attribution
 
 - All files must include a **GPLv3+ license header**.
