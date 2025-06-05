@@ -35,7 +35,6 @@
 // Stream.
 #include "StreamIn.h"
 #include "StreamOut.h"
-//#include "OscilloscopeOut.h"
 
 // Timing.
 #include "Alarm.h"
