@@ -234,6 +234,12 @@ Gemfile.lock
 *.gif
 *.svg
 
+# arduino_ci unit test binaries and artifacts
+*.bin
+*.bin.dSYM
+/.bundle/
+vendor
+
 # Other
 *.o
 *.out
@@ -248,14 +254,9 @@ trash
 research/
 lib/
 include/
+research/
 docs/xml/
 docs/*env/
 docs/html
 docs/_static
 .vscode
-
-# arduino_ci unit test binaries and artifacts
-*.bin
-*.bin.dSYM
-/.bundle/
-vendor
