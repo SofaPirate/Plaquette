@@ -81,18 +81,27 @@ public:
   /// Registers event callback on change event.
   virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
 
-     /**
-    * Returns oscillator's on/off with given phase shift (in %). Supports negative phase shifts.
-    * @param phase the phase shift (in % of period)
-    * @return the boolean value of oscillator with given phase shift
-    */
-   virtual bool shiftByIsOn(float phaseShift);
+  /**
+   * Returns oscillator's on/off with given phase shift (in % of period).
+   * Supports values outside [0,1], which will be wrapped accordingly.
+   * @param phase the phase shift (in % of period)
+   * @return the boolean value of oscillator with given phase shift
+   */
+  virtual bool shiftByIsOn(float phaseShift);
 
-   [[deprecated("Use width(float) instead.")]]
-   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
+  /**
+   * Returns the oscillator's on/off at a given absolute phase (in % of period).
+   * Supports values outside [0,1], which will be wrapped accordingly.
+   * @param phase the absolute phase at which to evaluate the oscillator (in % of period)
+   * @return the value of the oscillator at the given phase
+   */
+  virtual bool atPhaseIsOn(float phase);
+
+  [[deprecated("Use width(float) instead.")]]
+  virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
  
-   [[deprecated("Use width() instead.")]]
-   virtual float dutyCycle() const { return width(); }
+  [[deprecated("Use width() instead.")]]
+  virtual float dutyCycle() const { return width(); }
  
 protected:
   // Core Plaquette methods.

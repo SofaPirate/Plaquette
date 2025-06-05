@@ -115,12 +115,23 @@ public:
   virtual float timeToPhase(float time) const;
 
    /**
-    * Returns oscillator's value with given phase shift (in %). Supports negative phase shifts.
+    * Returns oscillator's value with given phase shift (in % of period).
+    * Supports values outside [0,1], which will be wrapped accordingly.
     * Eg. shiftBy(0.2) returns future value of oscillator after 20% of its period would have passed.
     * @param phase the phase shift (in % of period)
     * @return the value of oscillator with given phase shift
     */
   virtual float shiftBy(float phaseShift);
+
+  /**
+   * Returns the oscillator's value at a given absolute phase (in % of period).
+   * Supports values outside [0,1], which will be wrapped accordingly.
+   * Eg: atPhase(0.25) returns the oscillator value at 25% of its period.
+   *
+   * @param phase the absolute phase at which to evaluate the oscillator (in % of period)
+   * @return the value of the oscillator at the given phase
+  */
+  virtual float atPhase(float phase);
 
   /// Forces current time (in seconds).
   virtual void setTime(float time);

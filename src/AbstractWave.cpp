@@ -105,6 +105,10 @@ float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
 }
 
+float AbstractWave::atPhase(float phase) {
+  return _getAmplified(floatToPhaseTime(phase));
+}
+
 void AbstractWave::forward() {
   _isForward = true;
 }
