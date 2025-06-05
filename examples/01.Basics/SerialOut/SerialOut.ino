@@ -18,9 +18,7 @@
 // The analog input.
 AnalogIn in(A0);
 
-// The serial input.
-// TIP: try replacing the line by:
-//     OscilloscopeOut serialOut;
+// The serial output.
 StreamOut serialOut;
 
 void begin() {}
