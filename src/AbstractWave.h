@@ -69,7 +69,7 @@ public:
   virtual void frequency(float frequency);
 
   /// Returns the frequency (in Hz).
-  virtual float frequency() const { return (_period == 0 ? FLT_MAX : 1.0f/_period); }
+  virtual float frequency() const { return _frequency; }
 
   /**
    * Sets the frequency in beats-per-minute.
@@ -133,6 +133,8 @@ public:
   */
   virtual float atPhase(float phase);
 
+  virtual float getShiftedByTime(float time);
+
   /// Forces current time (in seconds).
   virtual void setTime(float time);
 
@@ -170,6 +172,9 @@ public:
 
   // Period (seconds). Negative period indicates time reversal (going backwards).
   float _period;
+
+    // Frequency (Hz). Negative frequency indicates time reversal (going backwards).
+  float _frequency;
 
   // Phase (in % of period).
   float _phase;

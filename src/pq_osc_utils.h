@@ -95,6 +95,9 @@ inline fixed_t fixedDivide(fixed_t x, fixed_t y) { return divide_32div32(x, y); 
 /// Converts time in seconds to phase in %.
 inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }
 
+/// Converts time in seconds to phase in %.
+inline float frequencyAndTimeToPhase(float frequency, float time) { return time * frequency; }
+
 /// Returns phase time value with offset.
 fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
 

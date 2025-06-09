@@ -72,6 +72,11 @@ float AbstractWave::_getAmplified(fixed_t t) {
 void AbstractWave::period(float period) {
   if (_period != period) {
     _period = max(period, 0.0f);
+    if ( period != 0 ) {
+      _frequency = 1.0/period;
+    } else {
+      _frequency = 0;
+    }
   }
 }
 
@@ -92,17 +97,23 @@ void AbstractWave::amplitude(float amplitude)  {
 }
 
 void AbstractWave::phase(float phase) {
-  if (phase != _phase) {
+  _phaseTime = floatToPhaseTime(phase);
+  _phase = 0;
+  //if (phase != _phase) {
     // Need to readjust _phaseTime.
-      _phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
-    _phase = phase;
-  }
+      //_phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
+   // _phase = phase;
+  //}
 }
 
 float AbstractWave::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
 float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
+}
+
+float AbstractWave::getShiftedByTime(float time) {
+  return _getAmplified(phaseTimeAddPhase(_phaseTime, pq::frequencyAndTimeToPhase(_frequency, time)));
 }
 
 float AbstractWave::atPhase(float phase) {
