@@ -48,7 +48,6 @@ bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool fo
     // Add increment (will overflow when reaching max).
     phaseTime += increment;
     return overflow;
-
   }
 
   // Backwards case.

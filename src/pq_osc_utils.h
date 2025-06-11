@@ -38,8 +38,8 @@ namespace pq {
 
 typedef uint32_t fixed_t;
 
-#define FIXED_MAX static_cast<fixed_t>(0xFFFFFFFF)
-#define HALF_FIXED_MAX static_cast<fixed_t>(0x80000000)
+constexpr fixed_t FIXED_MAX = static_cast<fixed_t>(0xFFFFFFFF);
+constexpr fixed_t HALF_FIXED_MAX = static_cast<fixed_t>(0x80000000);
 //constexpr fixed_t HALF_FIXED_MAX = 0.5f * FIXED_MAX;
 constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
 
