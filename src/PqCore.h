@@ -613,8 +613,8 @@ void Engine::postStep() {
 
   // Calculate true sample rate.
   _updateGlobalMicroSeconds();
-  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;\
-  float trueSampleRate = (diffTime ? MICROS_PER_SECOND / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
+  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
+  float trueSampleRate = (diffTime ? SECONDS_TO_MICROS / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
 
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
