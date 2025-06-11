@@ -47,6 +47,8 @@ namespace pq {
 #define MILLIS_TO_SECONDS    1e-3f
 #define MICROS_TO_SECONDS    1e-6f
 
+constexpr float BPM_TO_HZ = 1.0f / SECONDS_PER_MINUTE;
+
 // Special type to store time in microseconds.
 // Allows dealing with micros() timer overflow to represent time as a 64-bit value.
 typedef union {

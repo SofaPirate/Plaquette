@@ -60,7 +60,7 @@ public:
    * @param period the period of oscillation (in seconds)
    */
   virtual void period(float period);
-  virtual float period() const { return abs(_period); }
+  virtual float period() const { return _period; }
 
   /**
    * Sets the frequency (in Hz).
@@ -69,7 +69,13 @@ public:
   virtual void frequency(float frequency);
 
   /// Returns the frequency (in Hz).
-  virtual float frequency() const { return _frequency; }
+  virtual float frequency() const {
+#if PQ_OPTIMIZE_FOR_CPU
+    return _frequency; 
+#else
+    return frequencyToPeriod(_period);
+#endif  
+  }
 
   /**
    * Sets the frequency in beats-per-minute.
@@ -170,11 +176,13 @@ public:
   // Sets running state.
   virtual void _setIsRunning(bool isRunning);
 
-  // Period (seconds). Negative period indicates time reversal (going backwards).
+  // Period (seconds).
   float _period;
 
-    // Frequency (Hz). Negative frequency indicates time reversal (going backwards).
+#if PQ_OPTIMIZE_FOR_CPU
+  // Frequency (Hz).
   float _frequency;
+#endif
 
   // Phase (in % of period).
   float _phase;

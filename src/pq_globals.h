@@ -22,6 +22,10 @@
 #ifndef PQ_GLOBALS_H_
 #define PQ_GLOBALS_H_
 
+// ----------------------------------------------------------------------------
+// Global constants.
+// ----------------------------------------------------------------------------
+
 // Max. components that can be added. Can be pre-defined. Notice that the use of a
 // hybrid array list requires a fixed size at compile time but the size will automatically be
 // adjusted at runtime if necessary using dynamically-allocated memory. 
@@ -54,23 +58,9 @@
 // Sample rate.
 #define PLAQUETTE_MAX_SAMPLE_RATE FLT_MAX
 
-// Platform type.
-
-// 32-bit platforms
-#if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32) || defined(ESP32) || defined(TEENSYDUINO) || defined(__arm__) || defined(__riscv)
-  #define PQ_ARCH_32BITS
-// 8-bit AVR boards (Uno, Mega, Nano, ATtiny)
-#elif defined(__AVR__)
-  #define PQ_ARCH_8BITS
-#else
-  #define PQ_ARCH_8BITS
-#endif
-
-// IEEE 754 floating point supported.
-#if defined(__STDC_IEC_559__) || defined(__IEEE754__) || defined(ESP_PLATFORM) || defined(TEENSYDUINO) || defined(__AVR__) || defined(__ARM_FP)
-  #define IEEE_754_SUPPORTED
-#endif
-
+// ----------------------------------------------------------------------------
+// Default analog write and read values.
+// ----------------------------------------------------------------------------
 
 #if defined(ARDUINO_ARCH_AVR)
     // Arduino Uno, Nano, Mega (8-bit PWM, 10-bit ADC)
@@ -108,5 +98,44 @@
     #define ANALOG_READ_MAX_VALUE 1023
 #endif
 
+
+// ----------------------------------------------------------------------------
+// Optimization flags.
+// ----------------------------------------------------------------------------
+
+// 32-bit vs 8-bit platforms.
+#if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32) || defined(ESP32) || defined(TEENSYDUINO) || defined(__arm__) || defined(__riscv)
+  #define PQ_ARCH_32BITS
+// 8-bit AVR boards (Uno, Mega, Nano, ATtiny)
+#elif defined(__AVR__)
+  #define PQ_ARCH_8BITS
+#else
+  #define PQ_ARCH_8BITS
+#endif
+
+// IEEE 754 floating point supported.
+#if defined(__STDC_IEC_559__) || defined(__IEEE754__) || defined(ESP_PLATFORM) || defined(TEENSYDUINO) || defined(__AVR__) || defined(__ARM_FP)
+  #define PQ_IEEE_754_SUPPORTED
+#endif
+
+// Enable CPU optimization (as opposed to memory optimization).
+#ifndef PQ_OPTIMIZE_FOR_CPU
+
+// Disable CPU optimization for low-RAM AVR chips (≤ 2 KB SRAM)
+#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)  || \
+    defined(__AVR_ATmega88__)   || defined(__AVR_ATmega48__)   || \
+    defined(__AVR_ATmega8__)    || defined(__AVR_ATmega16__)   || \
+    defined(__AVR_ATmega32__)   || defined(__AVR_ATtiny85__)   || \
+    defined(__AVR_ATtiny84__)   || defined(__AVR_ATmega168PB__)|| \
+    defined(__AVR_AT90S2313__)  || defined(__AVR_AT90S4433__)
+
+    #define PQ_OPTIMIZE_FOR_CPU 0
+
+// All other platforms: enable optimization by default
+#else
+    #define PQ_OPTIMIZE_FOR_CPU 1
+#endif
+
+#endif
 
 #endif

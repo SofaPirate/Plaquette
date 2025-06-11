@@ -71,21 +71,20 @@ float AbstractWave::_getAmplified(fixed_t t) {
 
 void AbstractWave::period(float period) {
   if (_period != period) {
-    _period = max(period, 0.0f);
-    if ( period != 0 ) {
-      _frequency = 1.0/period;
-    } else {
-      _frequency = 0;
-    }
+    _period = max(period, 0.0f); // Make sure period is positive.
+
+#if PQ_OPTIMIZE_FOR_CPU
+    _frequency = periodToFrequency(_period);
+#endif
   }
 }
 
 void AbstractWave::frequency(float frequency) {
-  period( frequency == 0 ? FLT_MAX : 1.0f/frequency );
+  period( frequencyToPeriod(frequency) );
 }
 
 void AbstractWave::bpm(float bpm) {
-  period( bpm == 0 ? FLT_MAX : 60.0f/bpm );
+  frequency(bpm * BPM_TO_HZ);
 }
 
 void AbstractWave::width(float width) {
