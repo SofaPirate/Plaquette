@@ -98,11 +98,17 @@ inline float timeToPhase(float period, float time) { return period == 0 ? 0 : ti
 /// Converts time in seconds to phase in %.
 inline float frequencyAndTimeToPhase(float frequency, float time) { return time * frequency; }
 
-/// Returns the frequency (in Hz) based on period. If period is 0, returns FLT_MAX.
 inline float periodToFrequency(float period) { return (period == 0) ? FLT_MAX : 1.0f / period; }
 
-/// Returns the period (in seconds) based on frequency. If frequency is 0, returns FLT_MAX.
-inline float frequencyToPeriod(float frequency) { return periodToFrequency(frequency); }
+
+// https://www.programiz.com/online-compiler/1hIyxD51PqRYE
+inline float stepIntervalForNormalizedValue(int count) {
+  if ( count < 2) return 1.0;
+  return 1.0 / (float)(count-1);
+}
+
+/// Converts time in seconds to phase in %.
+inline float frequencyToPeriod(float frequency) { return 1.0 / frequency; }
 
 /// Returns phase time value with offset.
 fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
