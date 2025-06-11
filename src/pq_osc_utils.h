@@ -69,7 +69,7 @@ inline fixed_t floatTofixed(float x) {
 }
 
 inline float constrain01(float x) {
-#if defined(IEEE_754_SUPPORTED)
+#if defined(PQ_IEEE_754_SUPPORTED)
     union {
         float f;
         uint32_t i;
@@ -97,6 +97,12 @@ inline float timeToPhase(float period, float time) { return period == 0 ? 0 : ti
 
 /// Converts time in seconds to phase in %.
 inline float frequencyAndTimeToPhase(float frequency, float time) { return time * frequency; }
+
+/// Returns the frequency (in Hz) based on period. If period is 0, returns FLT_MAX.
+inline float periodToFrequency(float period) { return (period == 0) ? FLT_MAX : 1.0f / period; }
+
+/// Returns the period (in seconds) based on frequency. If frequency is 0, returns FLT_MAX.
+inline float frequencyToPeriod(float frequency) { return periodToFrequency(frequency); }
 
 /// Returns phase time value with offset.
 fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
