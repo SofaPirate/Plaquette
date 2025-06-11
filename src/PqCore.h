@@ -247,7 +247,7 @@ protected:
 
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
-  virtual float get() = 0;
+  virtual float get() { return 0.0f; }
 
   /// Object can be used directly to access its value.
   operator float() { return get(); }
@@ -313,12 +313,13 @@ protected:
 
 /// A generic class representing a simple digital (true/false)unit.
 class DigitalUnit : public Unit {
-public:
+protected:
   /// Constructor.
   DigitalUnit(Engine& engine = Engine::primary()) : Unit(engine) {}
 
+public:
   /// Returns true iff the input is "on".
-  virtual bool isOn() = 0;
+  virtual bool isOn() { return false; }
 
   /// Returns true iff the input is "off".
   virtual bool isOff() { return !isOn(); }
