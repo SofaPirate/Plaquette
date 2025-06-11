@@ -34,22 +34,22 @@ namespace pq
         const size_t _lastIndex = COUNT - 1;
         size_t _index;
         size_t _previousIndex;
+        float _period;
         uint64_t _chrono;   // microseconds
         uint64_t _interval; // microseconds
         bool _full;
         float _lastValue;
-
-       
+        fixed_t _phaseTime;
 
     public:
-     void reset()
+        void reset()
         {
-
+            _index = 0;
             _previousIndex = 0;
             _full = false;
-            uint64_t time = engine->microSeconds();
+            //uint64_t time = engine->microSeconds();
 
-            _chrono = time;
+           // _chrono = time;
             /*
             if (time > _chrono)
             {
@@ -72,9 +72,9 @@ namespace pq
             }
                 */
         }
-        TimeMap(float period) : _count(COUNT), _full(false)
+        TimeMap(float period) : _count(COUNT), _full(false), _period(period)
         {
-            _interval = floor(period * 1000000.0); // convert to microseconds
+            _interval = floor(_period * 1000000.0); // convert to microseconds
             reset();
         }
 
@@ -96,10 +96,7 @@ namespace pq
             if (_full)
                 reset();
 
-            uint64_t time = engine->microSeconds();
-
-            uint64_t duration = time - _chrono;
-            if (duration >= _interval)
+            if (phaseTimeUpdate(_phaseTime, _period, sampleRate(), true))
             {
                 _index = _lastIndex;
                 _write(_lastValue);
@@ -107,9 +104,11 @@ namespace pq
             }
             else
             {
-                _index = (duration * _lastIndex / _interval);
+                _index = floor(fixedToFloat(_phaseTime) * (float)_lastIndex );
                 _index = min(_index, _lastIndex);
+               
             }
+
             /* if (time > _chrono)
              {
                  uint64_t duration = time - _chrono; // microseconds
