@@ -20,8 +20,26 @@
 
 namespace pq {
 
+// Assumes high > 0.
+float WRAP_POSITIVE(double x, double high) {
+  // Calculate modulo.
+  double mod = fmodf(x, high);
+
+  // If x is positive, fmodf behaves similarly to integer modulo (%).
+  if (x >= 0)
+    return mod;
+  
+  // If x is negative then mod will also be negative *unless* it is zero.
+  else if (mod < 0)
+    return (high + mod);
+  
+  // Always means that (mod == 0) which means that (f % high == 0).
+  else 
+    return 0;
+}
+
 float wrap01(double x) {
-    return wrap(x, 1.0f);
+  return WRAP_POSITIVE(x, 1);
 }
 
 float wrap(double x, double high) {
@@ -31,28 +49,13 @@ float wrap(double x, double high) {
   
   // If high is negative, return wrapped value in [high, 0).
   else if (high < 0)
-    return high + wrap(x, -high);
+    return high + WRAP_POSITIVE(x, -high);
 
   // Compute wrapping.
-  else {
-    // Calculate modulo.
-    double mod = fmodf(x, high);
-
-    // If x is positive, fmodf behaves similarly to integer modulo (%).
-    if (x >= 0)
-      return mod;
-    
-    // If x is negative then mod will also be negative *unless* it is zero.
-    else if (mod < 0)
-      return (high + mod);
-    
-    // Always means that (mod == 0) which means that (f % high == 0).
-    else 
-      return 0;
-  }
+  else
+    return WRAP_POSITIVE(x, high);
 }
 
-  
 float wrap(double x, double low, double high) {
   return (low <= high) ? wrap(x-low, high-low) + low : wrap(x-high, low-high) + high;
 }
