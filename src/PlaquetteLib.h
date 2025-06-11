@@ -41,4 +41,6 @@
  // Basic set of extra components.
  #include "PqExtra.h"
 
+ #include "TimeMap.h"
+
  #endif

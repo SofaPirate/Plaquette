@@ -29,33 +29,59 @@ namespace pq
     class TimeMap : public AbstractMap
     {
     protected:
-        int _buffer[COUNT];
+        float _buffer[COUNT];
         size_t _count;
-        //size_t _maxIndex;
+        const size_t _lastIndex = COUNT - 1;
         size_t _index;
         size_t _previousIndex;
-        unsigned long _chrono;   // microseconds
-        unsigned long _interval; // microseconds
+        uint64_t _chrono;   // microseconds
+        uint64_t _interval; // microseconds
         bool _full;
+        float _lastValue;
 
-        void _reset() {
-            _previousIndex = 0;
-            _full = false;
-            _chrono = micros();
-        }
+       
 
     public:
+     void reset()
+        {
+
+            _previousIndex = 0;
+            _full = false;
+            uint64_t time = engine->microSeconds();
+
+            _chrono = time;
+            /*
+            if (time > _chrono)
+            {
+                uint64_t duration = time - _chrono; // microseconds
+                if (duration > _interval)
+                {
+                    uint64_t overshoot = duration - _interval;
+                    _chrono = time - overshoot;
+                    Serial.print("interval ");
+                    Serial.println(_interval);
+                    Serial.print("overshoot ");
+                    Serial.println(overshoot);
+                }
+                else
+                {
+                    _chrono = time;
+                }
+            } else {
+                _chrono = time;
+            }
+                */
+        }
         TimeMap(float period) : _count(COUNT), _full(false)
         {
-            //_maxIndex = COUNT - 1;
-            _interval = floor(period * 1000000.0); // convet to microseconds
-            _reset();
+            _interval = floor(period * 1000000.0); // convert to microseconds
+            reset();
         }
 
         float read(float percent) override
         {
             percent = constrain(percent, 0.0, 1.0);
-            int index = floor(percent * (float)_maxIndex);
+            int index = floor(percent * (float)_lastIndex);
             return _buffer[index];
         }
 
@@ -66,14 +92,41 @@ namespace pq
 
         void step() override
         {
-            if ( _full ) reset();
 
-            unsigned long duration = micros() - _chrono; // microseconds
-            _index = (duration * COUNT / _interval);
-            if ( _index >= COUNT ) {
+            if (_full)
+                reset();
+
+            uint64_t time = engine->microSeconds();
+
+            uint64_t duration = time - _chrono;
+            if (duration >= _interval)
+            {
+                _index = _lastIndex;
+                _write(_lastValue);
                 _full = true;
-                _index = COUNT-1;
             }
+            else
+            {
+                _index = (duration * _lastIndex / _interval);
+                _index = min(_index, _lastIndex);
+            }
+            /* if (time > _chrono)
+             {
+                 uint64_t duration = time - _chrono; // microseconds
+                 _index = (duration * COUNT / _interval);
+                 _index = min(_index, _lastIndex);
+                 if (duration >= _interval)
+                 {
+                     _index = _lastIndex;
+                     _write(_lastValue);
+                     _full = true;
+                 }
+             }
+             else
+             {
+                 _index = 0;
+             }
+                 */
         }
 
     protected:
@@ -84,8 +137,8 @@ namespace pq
 
         float _write(float value) override
         {
-            if (_full)
-                return _full;
+
+            _lastValue = value;
 
             // fill missing data
             if (_previousIndex < _index)
@@ -94,13 +147,12 @@ namespace pq
                 {
                     _buffer[i] = value;
                 }
-                _previousIndex = _index;
             }
             else
             {
                 _buffer[_index] = value;
             }
-            
+            _previousIndex = _index;
 
             return _full;
         }
