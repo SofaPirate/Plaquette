@@ -87,7 +87,7 @@ inline float constrain01(float x) {
 }
 
 /// Converts floating point to fixed_t.
-inline fixed_t floatToPhaseTime(float x) { return wrap01(x) * FIXED_MAX; }
+inline fixed_t floatToPhaseTime(float x) { return x * FIXED_MAX; }
 
 /// Phase-time division.
 inline fixed_t fixedDivide(fixed_t x, fixed_t y) { return divide_32div32(x, y); }
