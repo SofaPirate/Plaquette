@@ -111,7 +111,7 @@ public:
    virtual void phase(float phase);
 
    /// Returns the phase (in % of period).
-   virtual float phase() const { return _phase; }
+   virtual float phase() const { return pq::fixedToFloat(_phaseTime); }
 
    /**
     * Utility function to convert time to phase.
@@ -185,7 +185,7 @@ public:
 #endif
 
   // Phase (in % of period).
-  float _phase;
+  //float _phase;
 
   // Amplitude (in %).
 //  float _amplitude;
