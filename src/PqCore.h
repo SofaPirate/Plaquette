@@ -224,28 +224,15 @@ float samplePeriod();
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
 void beginSerial(unsigned long baudRate);
 
-/**
- * A generic class representing a unit in the system.
- * Main class for components to be added to Plaquette.
- * Each such unit can be read using function get(). Values
- * can also be sent to a unit using put().
- */
-class Unit {
-  friend class Engine;
-  friend class EventManager;
+class Chainable {
+  private:
+    // Prevents assignation operations by making them private.
+  Chainable& operator=(bool);
+  Chainable& operator=(int);
+  Chainable& operator=(float);
+  Chainable& operator=(Chainable&);
 
-public:
-  /// Converts analog (float) value to digital (bool) value.
-  static bool  analogToDigital(float f) { return (f >= 0.5); }
-
-  /// Converts digital (bool) value to analog (float) value.
-  static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
-
-protected:
-  virtual void begin() {}
-  virtual void step() {}
-
-public:
+  public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return 0.0f; }
 
@@ -258,6 +245,32 @@ public:
    * @return the new value of the unit
    */
   virtual float put(float value) { return get(); } // do nothing by default (read-only)
+
+  /// Converts analog (float) value to digital (bool) value.
+  static bool  analogToDigital(float f) { return (f >= 0.5); }
+
+  /// Converts digital (bool) value to analog (float) value.
+  static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
+};
+
+/**
+ * A generic class representing a unit in the system.
+ * Main class for components to be added to Plaquette.
+ * Each such unit can be read using function get(). Values
+ * can also be sent to a unit using put().
+ */
+class Unit : public Chainable {
+  friend class Engine;
+  friend class EventManager;
+
+
+
+protected:
+  virtual void begin() {}
+  virtual void step() {}
+
+public:
+  
 
   /// Maps value to new range. If the unit's values are unbounded, simply returns get().
   virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
@@ -300,11 +313,7 @@ private:
   // "if (obj)" use the bool() operator while other expressions can use the float() operator.
   explicit operator bool() { return Unit::analogToDigital(get()); }
 
-  // Prevents assignation operations by making them private.
-  Unit& operator=(bool);
-  Unit& operator=(int);
-  Unit& operator=(float);
-  Unit& operator=(Unit&);
+
 
 protected:
   // The engine that owns this unit.
@@ -460,61 +469,61 @@ protected:
 // Value to unit operators ///////////////////////////////////////
 
 // Base value to unit operator.
-inline Unit& operator>>(float value, Unit& unit) {
+inline Chainable& operator>>(float value, Chainable& unit) {
   unit.put(value);
   return unit;
 }
 
-// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Unit&)).
-inline Unit& operator>>(Unit& source, Unit& sink) {
+// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Chainable&)).
+inline Chainable& operator>>(Chainable& source, Chainable& sink) {
   return pq::operator>>(source.get(), sink);
 }
 
-inline Unit& operator>>(double value, Unit& unit) {
+inline Chainable& operator>>(double value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(bool value, Unit& unit) {
-  return pq::operator>>(Unit::digitalToAnalog(value), unit);
+inline Chainable& operator>>(bool value, Chainable& unit) {
+  return pq::operator>>(Chainable::digitalToAnalog(value), unit);
 }
 
 // This code is needed on the Curie and ARM chips.
 // Otherwise it causes an ambiguous operator error.
 #if defined(__arc__) || defined(__arm__)
-inline Unit& operator>>(int value, Unit& unit) {
+inline Chainable& operator>>(int value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 #endif
 
-inline Unit& operator>>(int8_t value, Unit& unit) {
+inline Chainable& operator>>(int8_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(uint8_t value, Unit& unit) {
+inline Chainable& operator>>(uint8_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(int16_t value, Unit& unit) {
+inline Chainable& operator>>(int16_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(uint16_t value, Unit& unit) {
+inline Chainable& operator>>(uint16_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(int32_t value, Unit& unit) {
+inline Chainable& operator>>(int32_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(uint32_t value, Unit& unit) {
+inline Chainable& operator>>(uint32_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(int64_t value, Unit& unit) {
+inline Chainable& operator>>(int64_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 
-inline Unit& operator>>(uint64_t value, Unit& unit) {
+inline Chainable& operator>>(uint64_t value, Chainable& unit) {
   return pq::operator>>((float)value, unit);
 }
 

@@ -42,5 +42,6 @@
  #include "PqExtra.h"
 
  #include "TimeMap.h"
+ #include "Wave.h"
 
  #endif
