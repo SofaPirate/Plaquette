@@ -40,16 +40,16 @@ These conventions define the coding style and design principles of a Plaquette, 
 
 ## Naming Conventions
 
-| Element         | Convention     | Example             |
-|-----------------|----------------|---------------------|
-| Class names     | PascalCase     | `PeakDetector`      |
-| Method names (public)    | camelCase()      | `reloadThreshold()` |
+| Element                  | Convention     | Example             |
+|--------------------------|----------------|---------------------|
+| Class names              | PascalCase     | `PeakDetector`      |
+| Method names (public)    | camelCase()    | `reloadThreshold()` |
 | Variable names (public)  | camelCase      | `value`             |
-| Method names (private)   | _camelCase()     | `_read()` |
-| Variable names (private or protected) | _camelCase     | `_peakValue`|
-| Enum values     | UPPER_SNAKE    | `PEAK_MIN`          |
-| Constants/Macros| UPPER_SNAKE    | `PLAQUETTE_DEFAULT_SMOOTH_WINDOW` |
-| Singletons      | PascalCase     | `Plaquette`         |
+| Method names (private or protected)    | _camelCase()  | `_read()`    |
+| Variable names (private or protected)  | _camelCase    | `_peakValue` |
+| Enum values              | UPPER_SNAKE    | `PEAK_MIN`          |
+| Constants/Macros         | UPPER_SNAKE    | `PLAQUETTE_DEFAULT_SMOOTH_WINDOW` |
+| Singletons               | PascalCase     | `Plaquette`         |
 
 ---
 
