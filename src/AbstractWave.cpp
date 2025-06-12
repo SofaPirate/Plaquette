@@ -29,7 +29,7 @@ AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period_, float width_, Engine& engine) 
 : AnalogSource(engine), Timeable(),
-  _period(0), _phase(0), _amplitude(1), _width(0), _isRunning(false), _isForward(true),
+  _period(0),  _amplitude(1), _width(0), _isRunning(false), _isForward(true),
   _onValue(0), _prevOnValue(0), _changeState(0), _data(0) {
   period(period_);
   width(width_);
@@ -97,7 +97,7 @@ void AbstractWave::amplitude(float amplitude)  {
 
 void AbstractWave::phase(float phase) {
   _phaseTime = floatToPhaseTime(phase);
-  _phase = 0;
+
   //if (phase != _phase) {
     // Need to readjust _phaseTime.
       //_phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
@@ -133,7 +133,7 @@ void AbstractWave::toggleReverse() {
 
 void AbstractWave::setTime(float time) {
   // Reset phase time to beginning.
-  _phaseTime = floatToPhaseTime(_phase);
+  _phaseTime = 0;
 
   // Add time.
   addTime(time);
