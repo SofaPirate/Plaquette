@@ -259,4 +259,5 @@ docs/xml/
 docs/*env/
 docs/html
 docs/_static
-.vscode
+.vscode/*
+!.vscode/settings.json

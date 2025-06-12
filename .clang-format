@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+IndentWidth: 2
+UseTab: Never
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 100
+SpaceAfterCStyleCast: true
+AlignAfterOpenBracket: Align
+PointerAlignment: Left
+DerivePointerAlignment: false
+SortIncludes: false
+AccessModifierOffset: -2
