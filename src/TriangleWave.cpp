@@ -22,19 +22,39 @@
 
 namespace pq {
 
-TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine) {}
-TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine) {}
-TriangleWave::TriangleWave(float period, float width, Engine& engine) : AbstractWave(period, width, engine) {}
-  
+TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
+TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
+TriangleWave::TriangleWave(float period, float width, Engine& engine) : AbstractWave(period, width, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
+
 fixed_t TriangleWave::_getFixed(fixed_t t) {
-  return (t <= _width) ? 
+  return (t <= _width) ?
         fixedDivide(t, _width) :
         fixedDivide(FIXED_MAX - t, FIXED_MAX - _width);
 }
 
+float TriangleWave::_getAmplified(fixed_t t) {
+  if (t <= _width) {
+    fixed_t fixedValue = fixedDivide(t, _width);
+    if (_riseEasing == easeNone) {
+      return fixedToFloat( amplifyFixed(fixedValue, _amplitude) );
+    }
+    else {
+      return amplifyFloat(_riseEasing(fixedToFloat(fixedValue)), _amplitude);
+    }
+  }
+  else {
+    if (_fallEasing == easeNone) {
+      return AbstractWave::_getAmplified(t);
+    }
+    else {
+      return amplifyFloat(_fallEasing(fixedToFloat(fixedDivide(FIXED_MAX - t, FIXED_MAX - _width))), _amplitude);
+    }
+  }
+}
+
 // float TriangleWave::_get(fixed_t t) {
 //   // Compute triangle depending on raising or falling step.
-//   return (t <= _width) ? 
+//   return (t <= _width) ?
 //            t / (float(_width) + FLT_MIN) : // + FLT_MIN to avoid 0/0
 //            (FIXED_MAX - t) / (float)(FIXED_MAX - _width);
 // }

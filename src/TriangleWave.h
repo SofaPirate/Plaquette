@@ -22,6 +22,7 @@
 #define TRIANGLE_WAVE_H_
 
 #include "AbstractWave.h"
+#include "pq_easing.h"
 
 namespace pq {
 
@@ -50,13 +51,47 @@ public:
    * @param engine the engine running this unit
    */
   TriangleWave(float period, float width, Engine& engine = Engine::primary());
-  
+
   virtual ~TriangleWave() {}
+
+  /**
+   * Sets easing function to apply to wave rise.
+   * @param easing the easing function
+   */
+  void riseEasing(easing_function easing) { _riseEasing = easing; }
+
+  /// Remove easing function for wave rise.
+  void noRiseEasing() { riseEasing(easeNone); }
+
+    /**
+   * Sets easing function to apply to wave rise.
+   * @param easing the easing function
+   */
+  void fallEasing(easing_function easing) { _fallEasing = easing; }
+
+  /// Remove easing function for wave rise.
+  void noFallEasing() { fallEasing(easeNone); }
+
+  /**
+   * Sets easing function to apply to both rise and fall of the wave.
+   * @param easing the easing function
+   */
+  void easing(easing_function easing) { _riseEasing = _fallEasing = easing; }
+
+  /// Remove easing functions.
+  void noEasing() { easing(easeNone); }
 
 protected:
   // Returns value in [0, 1].
 //  virtual float _get(fixed_t t);
   virtual fixed_t _getFixed(fixed_t t);
+
+
+  virtual float _getAmplified(fixed_t t);
+
+  // Optional easing to apply on the rise and fall of the wave.
+  easing_function _riseEasing;
+  easing_function _fallEasing;
 };
 
 [[deprecated("Use TriangleWave instead.")]]
