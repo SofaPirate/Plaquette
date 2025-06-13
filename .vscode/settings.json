@@ -1,0 +1,23 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": false,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.pio": true,
+    "**/.vscode": false
+  },
+  "C_Cpp.clang_format_style": "file",
+  "C_Cpp.intelliSenseEngine": "Default",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/**"
+  ],
+  "clang-format.executable": "clang-format",
+  "clang-format.style": "file",
+  "arduino.commandPath": "arduino-cli",
+  "arduino.useArduinoCli": true,
+  "arduino.defaultBaudRate": 115200,
+  "arduino.enableUSBDetection": true
+}
