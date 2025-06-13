@@ -25,7 +25,7 @@ namespace pq {
 SquareWave::SquareWave(Engine& engine) : AbstractWave(engine) {}
 SquareWave::SquareWave(float period, Engine& engine) : AbstractWave(period, engine) {}
 SquareWave::SquareWave(float period, float width, Engine& engine) : AbstractWave(period, width, engine) {}
-  
+
 bool SquareWave::isOn() {
   return _onValue;
 }
@@ -41,13 +41,16 @@ bool SquareWave::atPhaseIsOn(float phase) {
 void SquareWave::step() {
   AbstractWave::step();
 
+  // Force compute digital value.
+  _onValue = (_phaseTime <= _width);
+
   // Update change state.
   _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;
   _prevOnValue = _onValue;
 }
 
 fixed_t SquareWave::_getFixed(fixed_t t) {
-  return ((_onValue = (t <= _width)) ? FIXED_MAX : 0); // XXX small trick here: we set _onValue at the same time to deal with state changes
+  return (_onValue ? FIXED_MAX : 0);
 }
 
 }

@@ -27,29 +27,40 @@ namespace pq {
 
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
-AbstractWave::AbstractWave(float period_, float width_, Engine& engine) 
+AbstractWave::AbstractWave(float period_, float width_, Engine& engine)
 : AnalogSource(engine), Timeable(),
-  _period(0),  _amplitude(1), _width(0), _isRunning(false), _isForward(true),
+  _period(0),  _amplitude(1), _width(0), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
   _onValue(0), _prevOnValue(0), _changeState(0), _data(0), _overflowed(false) {
   period(period_);
   width(width_);
   amplitude(1.0f);
 }
 
+float AbstractWave::get() {
+  // Prevents unnecessary computations in the step() function by updating the value on a need basis.
+  if (_valueNeedsUpdate) {
+      // Compute next value.
+    _value = _getAmplified(_phaseTime);
+    _valueNeedsUpdate = false; // reset flag
+  }
+
+  return _value;
+}
+
 void AbstractWave::begin() {
   start();
+  _valueNeedsUpdate = true;
 }
 
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
     _overflowed = phaseTimeUpdate(_phaseTime, _period, sampleRate(), _isForward);
-  else 
+  else
     _overflowed = false;
 
-  // Compute next value.
-  _value = _getAmplified(_phaseTime);
-
+  // Set flag to indicate value is out of sync.
+  _valueNeedsUpdate = true;
   // // Notice: this computation is not exact but manages naturally changes in the period without
   // // inducing dephasings on Arduino boards.
   // float relativeTime = seconds() - _startTime;
@@ -72,6 +83,7 @@ float AbstractWave::_getAmplified(fixed_t t) {
 }
 
 void AbstractWave::period(float period) {
+  // Assign period.
   if (_period != period) {
     _period = max(period, 0.0f); // Make sure period is positive.
 
@@ -114,7 +126,7 @@ float AbstractWave::shiftBy(float phaseShift) {
 }
 
 float AbstractWave::getShiftedByTime(float time) {
-  return _getAmplified(phaseTimeAddPhase(_phaseTime, pq::frequencyAndTimeToPhase(_frequency, time)));
+  return _getAmplified(phaseTimeAddPhase(_phaseTime, pq::frequencyAndTimeToPhase(frequency(), time)));
 }
 
 float AbstractWave::atPhase(float phase) {
@@ -150,9 +162,9 @@ void AbstractWave::addTime(float time) {
   _value = _getAmplified(_phaseTime);
 }
 
-void AbstractWave::_setIsRunning(bool isRunning) 
-{ 
-  _isRunning = isRunning; 
+void AbstractWave::_setIsRunning(bool isRunning)
+{
+  _isRunning = isRunning;
 }
 
 }

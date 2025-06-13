@@ -99,10 +99,10 @@ public:
 
   [[deprecated("Use width(float) instead.")]]
   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
- 
+
   [[deprecated("Use width() instead.")]]
   virtual float dutyCycle() const { return width(); }
- 
+
 protected:
   // Core Plaquette methods.
   virtual void step();
@@ -116,7 +116,7 @@ protected:
       default:           return AbstractWave::eventTriggered(eventType);
     }
   }
-  
+
 protected:
   // Returns value in [0, 1].
   virtual fixed_t _getFixed(fixed_t t);

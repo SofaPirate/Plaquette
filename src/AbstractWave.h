@@ -55,11 +55,16 @@ public:
 
   virtual ~AbstractWave() {}
 
+  /// Returns value in [0, 1].
+  virtual float get();
+
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
    */
   virtual void period(float period);
+
+  /// Returns the period (in seconds).
   virtual float period() const { return _period; }
 
   /**
@@ -71,10 +76,10 @@ public:
   /// Returns the frequency (in Hz).
   virtual float frequency() const {
 #if PQ_OPTIMIZE_FOR_CPU
-    return _frequency; 
+    return _frequency;
 #else
     return frequencyToPeriod(_period);
-#endif  
+#endif
   }
 
   /**
@@ -82,7 +87,7 @@ public:
    * @param bpm the frequency of oscillation (in BPM)
    */
   virtual void bpm(float bpm);
-  
+
   /// Returns the frequency (in BPM).
   virtual float bpm() const { return (_period == 0 ? FLT_MAX : 60.0f/_period); }
 
@@ -206,17 +211,22 @@ public:
   // The direction of oscillation.
   bool _isForward : 1;
 
-  // These variables are only used by the AbstractWave.
+  // Flag that makes sure the value is updated only on a need basis.
+  bool _valueNeedsUpdate : 1;
+
+  // These variables are only used by the SquareWave.
+
+  // Current value.
   bool _onValue : 1;
 
   // Previous value, used to compute change state.
-  bool _prevOnValue : 1; 
+  bool _prevOnValue : 1;
 
   // The change state contained in the unit.
   int8_t _changeState : 2;
 
   // Unused extra space.
-  uint8_t _data : 2;
+  uint8_t _data : 1;
 };
 
 }
