@@ -69,10 +69,7 @@ namespace pq
 
     private:
         Shape _shape;
-        
-        fixed_t _target32;
-        float _target; // Used by random
-        float _current;
+        fixed_t _value;
     };
 
 }

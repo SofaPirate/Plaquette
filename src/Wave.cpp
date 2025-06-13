@@ -120,17 +120,20 @@ namespace pq
             break;
 
         case Shape::Random:
-
             if (_overflowed)
             {
-                _target = (float)random(1000000) / (float)1000000 ;
+                fixed_t range = _width >> 1; // must at least reduce by a bit for int32u_t to signed (long)
+                int64_t result = (int64_t)(random(range)<<1) - (int64_t)(range); // we want to center the random value around 0
+                result = result + _value ; 
+                if ( result > FIXED_MAX ) _value =  FIXED_MAX;
+                else if ( result < 0 ) _value =  0;
+                else _value = result ;
             }
-            _current = (_target-_current)* 0.001 + _current;
-            return floatTofixed(_current);//HALF_FIXED_MAX; //t);
+            return _value;;
             break;
 
         default: // SHOULD NOT BE POSSIBLE
-            return _PqSineWave(t, _width);
+            return 0;
             break;
         };
     }
