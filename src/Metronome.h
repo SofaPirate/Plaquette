@@ -67,7 +67,13 @@ public:
   virtual void frequency(float frequency);
 
   /// Returns the frequency (in Hz).
-  virtual float frequency() const { return (1/_period); }
+  virtual float frequency() const {
+#if PQ_OPTIMIZE_FOR_CPU
+    return _frequency;
+#else
+    return periodToFrequency(_period);
+#endif
+  }
 
   /**
    * Sets the frequency in beats-per-minute.
@@ -76,18 +82,27 @@ public:
   virtual void bpm(float bpm);
 
   /// Returns the frequency (in BPM).
-  virtual float bpm() const { return (60/_period); }
+  virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
-  /**
-   * Sets the phase (ie. the offset, in % of period).
-   * @param phase the phase (in % of period)
-   */
-  virtual void phase(float phase);
+   /**
+    * Sets the phase (ie. the offset, in % of period).
+    * @param phase the phase (in % of period)
+    */
+   virtual void phase(float phase);
 
-  /// Returns the phase (in % of period).
-  virtual float phase() const { return _phase; }
+   /// Returns the phase (in % of period).
+   virtual float phase() const { return pq::fixedToFloat(_phaseTime); }
 
-  /// Forces current time (in seconds).
+   /**
+    * Sets the phase (ie. the offset, in % of period).
+    * @param phase the phase (in % of period)
+    */
+   virtual void phaseShift(float phaseShift);
+
+   /// Returns the phase (in % of period).
+   virtual float phaseShift() const { return _phaseShift; }
+
+   /// Forces current time (in seconds).
   virtual void setTime(float time);
 
   /// Forces current time (in seconds).
@@ -106,13 +121,19 @@ protected:
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);
 
+  // Sets running state.
   virtual void _setIsRunning(bool isRunning);
 
   // Phase (in % of period).
   float _period;
 
-  // Phase (in % of period).
-  float _phase;
+#if PQ_OPTIMIZE_FOR_CPU
+  // Frequency (Hz).
+  float _frequency;
+#endif
+
+  // Phase shift (in % of period).
+  float _phaseShift;
 
   // Internal use.
   fixed_t _phaseTime;
@@ -120,9 +141,10 @@ protected:
   // Value.
   bool _onValue : 1;
 
-  // 
+  // Is the wave currently running?
   bool _isRunning : 1;
 
+  // Extra data.
   uint8_t data : 6;
 };
 
