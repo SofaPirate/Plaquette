@@ -51,6 +51,7 @@ public:
   virtual void addTime(float time);
 
   /**
+   * @deprecated
    * Returns true iff elapsed time has passed given timeout (optional argument to
    * automatically restart if true).
    */
@@ -60,6 +61,7 @@ public:
   /// Returns true iff the chronometer is currently running.
   virtual bool isRunning() const { return _isRunning; }
 
+  /// @deprecated
   [[deprecated("Use isRunning() instead.")]]
   bool isStarted() const { return isRunning(); }
 
@@ -69,7 +71,7 @@ protected:
 
   // Returns current absolute time (in seconds).
   virtual float _time() const = 0;
-  
+
   // Sets running state.
   virtual void _setIsRunning(bool isRunning) { _isRunning = isRunning; }
 

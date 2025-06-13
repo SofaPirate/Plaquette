@@ -94,6 +94,7 @@ protected:
   easing_function _fallEasing;
 };
 
+/// @deprecated
 [[deprecated("Use TriangleWave instead.")]]
 typedef TriangleWave TriOsc;
 

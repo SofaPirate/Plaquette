@@ -57,6 +57,7 @@ protected:
   virtual fixed_t _getFixed(fixed_t t);
 };
 
+/// @deprecated
 [[deprecated("Use SineWave instead.")]]
 typedef SineWave SineOsc;
 

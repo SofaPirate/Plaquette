@@ -148,6 +148,7 @@ protected:
   uint8_t data : 6;
 };
 
+/// @deprecated
 [[deprecated("Use Metronome instead.")]]
 typedef Metronome Metro;
 

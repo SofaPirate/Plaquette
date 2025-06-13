@@ -115,18 +115,22 @@ public:
   unsigned long nSteps() const { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
+  /// @deprecated
   [[deprecated("Function sampleRate(float) is deprecated so autoSampleRate() should always be true.")]]
   bool autoSampleRate();
 
   /// Enables auto sample rate mode (default).
+  /// @deprecated
   [[deprecated("Function sampleRate(float) is deprecated so enableAutoSampleRate() should not have to be called.")]]
   void enableAutoSampleRate();
 
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
+  /// @deprecated
   [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void sampleRate(float sampleRate);
 
   /// Sets sample period to a fixed value, thus disabling auto sampling rate.
+  /// @deprecated
   [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void samplePeriod(float samplePeriod);
 
@@ -270,7 +274,7 @@ protected:
   virtual void step() {}
 
 public:
-  
+
 
   /// Maps value to new range. If the unit's values are unbounded, simply returns get().
   virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
@@ -295,7 +299,7 @@ public:
 
   /// Returns enginesample period.
   float samplePeriod() const { return engine->samplePeriod(); }
-  
+
 protected:
   /// Constructor.
   Unit(Engine& engine = Engine::primary());
@@ -375,8 +379,8 @@ public:
 };
 
 /**
- * An analog analog source that contains a value constrained to a finite range 
- * (typically in [0, 1]). It is the responsibility of the subclass's programmer to make 
+ * An analog analog source that contains a value constrained to a finite range
+ * (typically in [0, 1]). It is the responsibility of the subclass's programmer to make
  * sure the value stays within range OR to update the mapTo() function accordingly.
  */
 class AnalogSource : public Unit {
@@ -457,7 +461,7 @@ protected:
   bool    _onValue     : 1;
 
   // Previous value, used to compute change state.
-  bool    _prevOnValue : 1; 
+  bool    _prevOnValue : 1;
 
   // The change state contained in the unit.
   int8_t  _changeState : 2;

@@ -97,9 +97,11 @@ public:
    */
   virtual bool atPhaseIsOn(float phase);
 
+  /// @deprecated
   [[deprecated("Use width(float) instead.")]]
   virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
 
+  /// @deprecated
   [[deprecated("Use width() instead.")]]
   virtual float dutyCycle() const { return width(); }
 
@@ -122,6 +124,7 @@ protected:
   virtual fixed_t _getFixed(fixed_t t);
 };
 
+/// @deprecated
 [[deprecated("Use SquareWave instead.")]]
 typedef SquareWave SquareOsc;
 
