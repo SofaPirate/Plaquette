@@ -78,7 +78,7 @@ public:
 #if PQ_OPTIMIZE_FOR_CPU
     return _frequency;
 #else
-    return frequencyToPeriod(_period);
+    return periodToFrequency(_period);
 #endif
   }
 
