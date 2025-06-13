@@ -89,7 +89,7 @@ public:
   virtual void bpm(float bpm);
 
   /// Returns the frequency (in BPM).
-  virtual float bpm() const { return (_period == 0 ? FLT_MAX : 60.0f/_period); }
+  virtual float bpm() const { frequency() * HZ_TO_BPM; }
 
   /**
    * Sets the width of the signal as a % of period.
