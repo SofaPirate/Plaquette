@@ -51,13 +51,30 @@ These conventions define the coding style and design principles of a Plaquette, 
 | Constants/Macros         | UPPER_SNAKE    | `PLAQUETTE_DEFAULT_SMOOTH_WINDOW` |
 | Singletons               | PascalCase     | `Plaquette`         |
 
+- Accessor/getter and mutator/setter functions for class properties should have the same name (eg. `float period()` and `void period(float)`).
+- Avoid abbreviations (eg. `frequency` instead of `freq`).
+- Avoid acronyms unless they are extermely clear within the domain of real-time signal processing (eg. BPM, OSC).
+
 ---
 
 ## Comments and Documentation
 
-- Use `//` for brief, inline comments.
-- Use `/** ... */` or `///` for block or Doxygen-style comments.
+- Use `/** ... */` or `///` for Doxygen-style comments.
+- Use `//` above blocks of code with human-readable sentences ending with a period (`.`)
+- Use trailing comments for short clarifications about a line of code.
 - All public API elements should be documented with purpose and units (if applicable).
+
+```cpp
+/**
+ * Sets the frequency (in Hz).
+ * @param frequeny the frequency of oscillation (in Hz)
+ */
+void frequency(float frequency) {
+  // Assign frequency.
+  frequency = max(frequency, 0.0f); // Ensure frequency >= 0.
+  _period = 1.0f / abs(frequency);
+}
+```
 
 ---
 
@@ -117,8 +134,8 @@ enum {
 
 ```cpp
 #define PLAQUETTE_NO_SMOOTH_WINDOW 0.0f
-#define NORMALIZER_NO_CLAMP 0
 #define INFINITE_WINDOW (-1)
+constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
 ```
 
 ---
@@ -151,16 +168,16 @@ inline float triggerThreshold() const { return _triggerThreshold; }
 
 ## Step-Invariance
 
-Units in Plaquette should adhere to the following principles to ensure 
+Units in Plaquette should adhere to the following principles to ensure
 consistency and predictability during each execution step:
 
-- The value returned by a unit’s `get()` function **must remain constant 
+- The value returned by a unit’s `get()` function **must remain constant
 throughout a step**, unless explicitly changed via the unit’s `put()` function.
-- After a unit is updated via `put()`, the unit's `step()` function should 
-apply the change using either the **last received value** or a suitable 
+- After a unit is updated via `put()`, the unit's `step()` function should
+apply the change using either the **last received value** or a suitable
 **aggregate** of values received during that step (eg. average).
-- **Transductions** (such as ADC reads or DAC writes) must **only occur 
-inside the `step()` function**, which is automatically called by the engine 
+- **Transductions** (such as ADC reads or DAC writes) must **only occur
+inside the `step()` function**, which is automatically called by the engine
 once per step. This ensures consistent timing and avoids unintended side effects.
 
 ---
