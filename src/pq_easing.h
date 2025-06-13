@@ -5,7 +5,7 @@
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2022 Thomas O Fredericks :: tof(@)t-o-f(.)info
- * 
+ *
  * Source: https://github.com/nicolausYes/easing-functions/blob/master/src/easing.cpp
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ namespace pq {
 typedef float (*easing_function)(float);
 
 /// Linear easing function f(t) = t.
-float easeNone(float t);
+inline float easeNone(float t) { return t; }
 
 float easeInSine(float t);
 
