@@ -110,13 +110,23 @@ period  KEYWORD2
 frequency  KEYWORD2
 width  KEYWORD2
 phase  KEYWORD2
+phaseShift  KEYWORD2
 amplitude  KEYWORD2
 shiftBy  KEYWORD2
+atPhase  KEYWORD2
 timeToPhase  KEYWORD2
 shiftByIsOn  KEYWORD2
 forward  KEYWORD2
 reverse  KEYWORD2
 toggleReverse  KEYWORD2
+
+# Easing
+easing  KEYWORD2
+noEasing  KEYWORD2
+riseEasing  KEYWORD2
+noRiseEasing  KEYWORD2
+fallEasing  KEYWORD2
+noFallEasing  KEYWORD2
 
 # Ramp
 duration  KEYWORD2
@@ -124,8 +134,6 @@ speed  KEYWORD2
 fromTo  KEYWORD2
 to  KEYWORD2
 go  KEYWORD2
-easing  KEYWORD2
-noEasing  KEYWORD2
 
 # Normalizer
 targetMean	KEYWORD2
