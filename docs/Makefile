@@ -60,6 +60,7 @@ clean:
 doxygen:
 	$(DOXYGENBUILD)
 	sed -i 's/pq:://g' ./xml/*.xml # remove pq:: namespace from XML
+	mv ./html $(BUILDDIR)/html/doxygen
 
 .PHONY: html
 html:

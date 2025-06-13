@@ -53,3 +53,4 @@ Related Info
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    credits
    license
+   Doxygen Documentation <http://sofapirate.github.io/Plaquette/doxygen/>
