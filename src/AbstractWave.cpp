@@ -29,8 +29,13 @@ AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period_, float width_, Engine& engine)
 : AnalogSource(engine), Timeable(),
-  _period(0),  _amplitude(1), _width(0), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
-  _onValue(0), _prevOnValue(0), _changeState(0), _data(0), _overflowed(false) {
+  _period(0),
+#if PQ_OPTIMIZE_FOR_CPU
+  _frequency(FLT_MAX),
+#endif
+  _amplitude(1), _width(0), _phaseShift(0),
+  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
+  _onValue(0), _prevOnValue(0), _changeState(0) {
   period(period_);
   width(width_);
   amplitude(1.0f);
@@ -88,13 +93,24 @@ void AbstractWave::period(float period) {
     _period = max(period, 0.0f); // Make sure period is positive.
 
 #if PQ_OPTIMIZE_FOR_CPU
+    // Assign frequency.
     _frequency = periodToFrequency(_period);
 #endif
   }
 }
 
 void AbstractWave::frequency(float frequency) {
+#if PQ_OPTIMIZE_FOR_CPU
+  // Assign period.
+  if (_frequency != frequency) {
+    _frequency = max(frequency, 0.0f); // Make sure frequency is positive.
+
+    // Assign period.
+    _period = frequencyToPeriod(_frequency);
+  }
+#else
   period( frequencyToPeriod(frequency) );
+#endif
 }
 
 void AbstractWave::bpm(float bpm) {
@@ -111,12 +127,14 @@ void AbstractWave::amplitude(float amplitude)  {
 
 void AbstractWave::phase(float phase) {
   _phaseTime = floatToPhaseTime(phase);
+}
 
-  //if (phase != _phase) {
-    // Need to readjust _phaseTime.
-      //_phaseTime = phaseTimeAddPhase(_phaseTime, _phase - phase);
-   // _phase = phase;
-  //}
+void AbstractWave::phaseShift(float phaseShift) {
+  if (_phaseShift != phaseShift) {
+    // Need to readjust phase time.
+    _phaseTime = phaseTimeAddPhase(_phaseTime, _phaseShift - phaseShift);
+    _phaseShift = phaseShift;
+  }
 }
 
 float AbstractWave::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
@@ -147,7 +165,7 @@ void AbstractWave::toggleReverse() {
 
 void AbstractWave::setTime(float time) {
   // Reset phase time to beginning.
-  _phaseTime = 0;
+  _phaseTime = floatToPhaseTime(_phaseShift);
 
   // Add time.
   addTime(time);
@@ -159,7 +177,7 @@ void AbstractWave::addTime(float time) {
     _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
 
   // Compute value.
-  _value = _getAmplified(_phaseTime);
+  _valueNeedsUpdate = true;
 }
 
 void AbstractWave::_setIsRunning(bool isRunning)

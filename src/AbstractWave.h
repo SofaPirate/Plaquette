@@ -89,7 +89,7 @@ public:
   virtual void bpm(float bpm);
 
   /// Returns the frequency (in BPM).
-  virtual float bpm() const { frequency() * HZ_TO_BPM; }
+  virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
   /**
    * Sets the width of the signal as a % of period.
@@ -117,6 +117,15 @@ public:
 
    /// Returns the phase (in % of period).
    virtual float phase() const { return pq::fixedToFloat(_phaseTime); }
+
+   /**
+    * Sets the phase (ie. the offset, in % of period).
+    * @param phase the phase (in % of period)
+    */
+   virtual void phaseShift(float phaseShift);
+
+   /// Returns the phase (in % of period).
+   virtual float phaseShift() const { return _phaseShift; }
 
    /**
     * Utility function to convert time to phase.
@@ -189,8 +198,8 @@ public:
   float _frequency;
 #endif
 
-  // Phase (in % of period).
-  //float _phase;
+  // Phase shift (in % of period).
+  float _phaseShift;
 
   // Amplitude (in %).
 //  float _amplitude;
@@ -203,7 +212,7 @@ public:
   fixed_t _phaseTime;
 
   // Internal use : overflow indicator
-  bool _overflowed;
+  bool _overflowed : 1;
 
   // Is the wave currently running?
   bool _isRunning : 1;
@@ -224,9 +233,6 @@ public:
 
   // The change state contained in the unit.
   int8_t _changeState : 2;
-
-  // Unused extra space.
-  uint8_t _data : 1;
 };
 
 }
