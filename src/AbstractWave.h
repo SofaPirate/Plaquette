@@ -197,6 +197,9 @@ public:
   // Internal use: holds current phase time.
   fixed_t _phaseTime;
 
+  // Internal use : overflow indicator
+  bool _overflowed;
+
   // Is the wave currently running?
   bool _isRunning : 1;
 
