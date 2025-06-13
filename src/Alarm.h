@@ -67,9 +67,6 @@ protected:
 
   // Returns current absolute time (in seconds).
   virtual float _time() const;
-
-  // Parent engine (needed to access engine time).
-  Engine& _engine;
 };
 
 }

@@ -27,11 +27,10 @@ Alarm::Alarm(Engine& engine) : Alarm(1.0f, engine) {}
 
 Alarm::Alarm(float duration, Engine& engine) :
     DigitalSource(engine),
-    AbstractTimer(duration),
-    _engine(engine)
+    AbstractTimer(duration)
   {
   }
-  
+
 void Alarm::begin() {
   setTime(0);
 }
