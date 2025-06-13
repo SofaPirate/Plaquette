@@ -46,8 +46,9 @@ testing(timing) {
     // }
     if (unit->isOn()) {
       nMetro[i]++;
-      if (i != 2)
+      if (i != 2) {
         assertEqual(unit2->get(), 1.0f);
+      }
     }
   }
 
@@ -72,7 +73,7 @@ void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
     SquareWave *unit2 = osc[i];
-    unit2->phase(-0.25f);
+    unit2->phaseShift(-0.25f);
     unit2->width(0.75f);
   }
 
