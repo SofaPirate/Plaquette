@@ -9,7 +9,17 @@ ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
-ABBREVIATE_BRIEF       = "The $name class"                          "The $name widget"                          "The $name file"                          is                          provides                          specifies                          contains                          represents                          a                          an                          the
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = YES
 FULL_PATH_NAMES        = YES
@@ -76,7 +86,14 @@ WARN_NO_PARAMDOC       = NO
 WARN_FORMAT            = "$file:$line: $text"
 INPUT                  = ../src
 INPUT_ENCODING         = UTF-8
-FILE_PATTERNS          = *.c                          *.cc                          *.cxx                          *.cpp                          *.h                          *.hxx                          *.hpp                          *.h++
+FILE_PATTERNS          = *.c \
+                         *.cc \
+                         *.cxx \
+                         *.cpp \
+                         *.h \
+                         *.hxx \
+                         *.hpp \
+                         *.h++
 RECURSIVE              = YES
 EXCLUDE_SYMLINKS       = NO
 EXAMPLE_PATTERNS       = *
@@ -94,7 +111,7 @@ VERBATIM_HEADERS       = YES
 CLANG_ASSISTED_PARSING = NO
 ALPHABETICAL_INDEX     = YES
 COLS_IN_ALPHA_INDEX    = 5
-GENERATE_HTML          = NO
+GENERATE_HTML          = YES
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
 HTML_COLORSTYLE_HUE    = 220
@@ -117,8 +134,8 @@ QHP_NAMESPACE          = org.doxygen.Plaquette
 QHP_VIRTUAL_FOLDER     = doc
 GENERATE_ECLIPSEHELP   = NO
 ECLIPSE_DOC_ID         = org.doxygen.Plaquette
-DISABLE_INDEX          = NO
-GENERATE_TREEVIEW      = NO
+DISABLE_INDEX          = YES
+GENERATE_TREEVIEW      = YES
 ENUM_VALUES_PER_LINE   = 4
 TREEVIEW_WIDTH         = 250
 EXT_LINKS_IN_WINDOW    = NO
@@ -162,7 +179,7 @@ GENERATE_AUTOGEN_DEF   = NO
 GENERATE_PERLMOD       = NO
 PERLMOD_LATEX          = NO
 PERLMOD_PRETTY         = YES
-ENABLE_PREPROCESSING   = NO
+ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = NO
 EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
@@ -171,9 +188,9 @@ ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 EXTERNAL_PAGES         = YES
 PERL_PATH              = /usr/bin/perl
-CLASS_DIAGRAMS         = NO
+CLASS_DIAGRAMS         = YES
 HIDE_UNDOC_RELATIONS   = YES
-HAVE_DOT               = NO
+HAVE_DOT               = YES
 DOT_NUM_THREADS        = 0
 DOT_FONTNAME           = Helvetica
 DOT_FONTSIZE           = 10
