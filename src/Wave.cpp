@@ -23,6 +23,7 @@
 #include "pq_time.h"
 #include "pq_wrap.h"
 #include "pq_fixed_trig.h"
+// #include <FastLED.h>
 
 namespace pq
 {
@@ -118,8 +119,18 @@ namespace pq
             return t;
             break;
 
-        default:
-            return _PqSineWave(t, _width); // SHOULD NOT BE POSSIBLE
+        case Shape::Random:
+
+            if (_overflowed)
+            {
+                _target = (float)random(1000000) / (float)1000000 ;
+            }
+            _current = (_target-_current)* 0.001 + _current;
+            return floatTofixed(_current);//HALF_FIXED_MAX; //t);
+            break;
+
+        default: // SHOULD NOT BE POSSIBLE
+            return _PqSineWave(t, _width);
             break;
         };
     }

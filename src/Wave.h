@@ -35,7 +35,8 @@ namespace pq
             Sine,
             Square,
             Triangle,
-            Ramp
+            Ramp,
+            Random
         };
 
         /**
@@ -67,7 +68,11 @@ namespace pq
         virtual fixed_t _getFixed(fixed_t t);
 
     private:
-        Shape _shape;;
+        Shape _shape;
+        
+        fixed_t _target32;
+        float _target; // Used by random
+        float _current;
     };
 
 }
