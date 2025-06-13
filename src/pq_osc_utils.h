@@ -43,20 +43,9 @@ constexpr fixed_t HALF_FIXED_MAX = static_cast<fixed_t>(0x80000000);
 //constexpr fixed_t HALF_FIXED_MAX = 0.5f * FIXED_MAX;
 constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
 
-/// Applies amplitude scaling to 32-bit fixed-point value interpreted as a signal centered at UINT32_MAX/2.
-inline fixed_t amplifyFixed(fixed_t x, fixed_t amplitude) {
-  // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).
-  int32_t centered = (int32_t)(x ^ 0x80000000);
-
-  // Apply amplitude scaling (keeping within 32-bit range).
-  centered = ((int64_t)centered * amplitude) >> 32;
-
-  // Convert back to unsigned range.
-  return (fixed_t)(centered ^ 0x80000000);
-}
 
 /// Converts 32-bit fixed-point value to floating point.
-inline float fixedToFloat(uint32_t x) {
+inline float fixedToFloat(fixed_t x) {
   return (x * INV_FIXED_MAX);
 }
 
@@ -84,6 +73,23 @@ inline float constrain01(float x) {
 #else
   return constrain(x, 0, 1);
 #endif
+}
+
+/// Applies amplitude scaling to 32-bit fixed-point value interpreted as a signal centered at UINT32_MAX/2.
+inline fixed_t amplifyFixed(fixed_t x, fixed_t amplitude) {
+  // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).
+  int32_t centered = (int32_t)(x ^ 0x80000000);
+
+  // Apply amplitude scaling (keeping within 32-bit range).
+  centered = ((int64_t)centered * amplitude) >> 32;
+
+  // Convert back to unsigned range.
+  return (fixed_t)(centered ^ 0x80000000);
+}
+
+/// Applies amplitude scaling to float using fixed-point amplitude.
+inline float amplifyFloat(float x, fixed_t amplitude) {
+  return fixedToFloat(amplitude) * (x - 0.5f) + 0.5f;
 }
 
 /// Converts floating point to fixed_t.
