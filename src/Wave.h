@@ -21,60 +21,114 @@
 #ifndef WAVE_H
 #define WAVE_H
 
-#include "AbstractWave.h"
+#include "PqCore.h"
+#include "pq_osc_utils.h"
 
-namespace pq
-{
+namespace pq {
 
-    /// Sine oscillator. Phase is expressed as % of period.
-    class Wave : public AbstractWave
-    {
-    public:
-        enum Shape
-        {
-            Sine,
-            Square,
-            Triangle,
-            Ramp,
-            Random
-        };
+class FloatAndQ032 {
+public:
+  using Q032 = uint32_t;
 
-        /**
-         * Constructor.
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, Engine &engine = Engine::primary());
+private:
+  float _valueFloat;
+  Q032 _valueQ032;
+  bool _dirtyFloat;
+  bool _dirtyQ032;
 
-        /**
-         * Constructor.
-         * @param period the period of oscillation (in seconds)
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, float period, Engine &engine = Engine::primary());
+public:
+  FloatAndQ032() : _valueFloat(0.0f), _valueQ032(0), _dirtyFloat(false), _dirtyQ032(false) {
+  }
 
-        /**
-         * Constructor.
-         * @param period the period of oscillation (in seconds)
-         * @param width the duty-cycle as a value in [0, 1]
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, float period, float width, Engine &engine = Engine::primary());
+  // Set a new float value
+  void setFloat(float value) {
+    //if (value != _valueFloat) {
+      _valueFloat = value;
+      _dirtyQ032 = true;
+    //}
+  }
 
-        virtual ~Wave() {}
+    // Set a new float value
+  void setQ032(Q032 value) {
+   // if (value != _valueQ032) {
+      _valueQ032 = value;
+      _dirtyFloat = true;
+   // }
+  }
 
-    protected:
-        // Returns value in [0, 1].
-        //  virtual float _get(fixed_t t);
-        virtual fixed_t _getFixed(fixed_t t);
+  // Get the float value
+  float getFloat()  {
+    if (_dirtyFloat) {
+      _valueFloat = fixedToFloat(_valueQ032);
+      _dirtyFloat = false;
+    }
+    return _valueFloat;
+  }
 
-    private:
-        Shape _shape;
-        
-        fixed_t _target32;
-        float _target; // Used by random
-        float _current;
-    };
+  // Get the fixed value (updates if needed)
+  Q032 getQ032() {
+     if (_dirtyQ032) {
+      _valueQ032 = floatTofixed(_valueFloat);
+      _dirtyQ032 = false;
+    }
+    return _valueQ032;
+  }
 
-}
+  
+
+
+};
+
+class Wave : public Unit {
+public:
+  enum Shape { Sine, Square, Triangle, Ramp, Random };
+
+  /**
+   * Constructor.
+   * @param engine the engine running this unit
+   */
+  Wave(Shape shape, Engine& engine = Engine::primary());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param engine the engine running this unit
+   */
+  Wave(Shape shape, float period, Engine& engine = Engine::primary());
+
+  /**
+   * Constructor.
+   * @param period the period of oscillation (in seconds)
+   * @param skew the duty-cycle as a value in [0, 1]
+   * @param engine the engine running this unit
+   */
+  Wave(Shape shape, float period, float skew, Engine& engine = Engine::primary());
+
+  virtual ~Wave() {};
+
+  void begin() override;
+  void step() override;
+  float get() override;
+  float put(float f) override;
+  void start();
+  void stop();
+  void pause();
+  void skew(float f);
+  void period(float f);
+  void frequency(float f);
+
+protected:
+private:
+  Shape _shape;
+  // Period (seconds).
+  FloatAndQ032 _frequency;
+  // Skew (%)
+  FloatAndQ032 _skew;
+  FloatAndQ032 _phasor;
+  bool _running;
+  float _value;
+};
+
+}  // namespace pq
 
 #endif

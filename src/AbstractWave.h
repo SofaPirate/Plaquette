@@ -203,7 +203,7 @@ public:
   fixed_t _phaseTime;
 
   // Internal use : overflow indicator
-  bool _overflowed;
+  // bool _overflowed; // WAS ADDED FOR A TEST BY TOF
 
   // Is the wave currently running?
   bool _isRunning : 1;

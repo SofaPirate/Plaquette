@@ -30,7 +30,7 @@ AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 
 AbstractWave::AbstractWave(float period_, float width_, Engine& engine)
 : AnalogSource(engine), Timeable(),
   _period(0),  _amplitude(1), _width(0), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
-  _onValue(0), _prevOnValue(0), _changeState(0), _data(0), _overflowed(false) {
+  _onValue(0), _prevOnValue(0), _changeState(0), _data(0),  {
   period(period_);
   width(width_);
   amplitude(1.0f);
@@ -55,9 +55,7 @@ void AbstractWave::begin() {
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
-    _overflowed = phaseTimeUpdate(_phaseTime, _period, sampleRate(), _isForward);
-  else
-    _overflowed = false;
+   phaseTimeUpdate(_phaseTime, _period, sampleRate(), _isForward);
 
   // Set flag to indicate value is out of sync.
   _valueNeedsUpdate = true;
