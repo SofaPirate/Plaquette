@@ -25,8 +25,6 @@
 
 namespace pq {
 
-float easeNone(float t) { return t; }
-
 float easeInSine(float t) {
   return fastSin( HALF_PI * t );
 }
@@ -44,7 +42,7 @@ float easeInQuad(float t) {
     return t * t;
 }
 
-float easeOutQuad(float t) { 
+float easeOutQuad(float t) {
     return t * (2 - t);
 }
 
