@@ -53,7 +53,7 @@ public:
   Ramp(float duration, Engine& engine = Engine::primary());
 
   /// Returns value of ramp.
-  virtual float get() { return _value; }
+  virtual float get();
 
   /**
    * Forces value in the ramp. If this happens while the ramp is running, it will
@@ -182,9 +182,6 @@ protected:
   // Returns current absolute time (in seconds).
   virtual float _time() const;
 
-  // Parent engine (needed to access engine time).
-  Engine& _engine;
-  
   // The starting point.
   float _from;
 
@@ -202,7 +199,12 @@ protected:
 
   // Finished flag.
   uint8_t _finishedState : 2;
-  uint8_t _data          : 5;
+
+  // Flag that makes sure the value is updated only on a need basis.
+  bool _valueNeedsUpdate : 1;
+
+  // Unused extra space.
+  uint8_t _data          : 4;
 };
 
 }

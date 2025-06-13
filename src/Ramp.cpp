@@ -30,9 +30,21 @@ Ramp::Ramp(Engine& engine) : Ramp(1.0f, engine) {}
 Ramp::Ramp(float duration, Engine& engine) :
   Unit(engine),
   AbstractTimer(duration),
-  _engine(engine), _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED)
+  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED), _valueNeedsUpdate(true)
 {
 }
+
+float Ramp::get() {
+  // Prevents unnecessary computations in the step() function by updating the value on a need basis.
+  if (_valueNeedsUpdate) {
+      // Compute next value.
+    _value = _get();
+    _valueNeedsUpdate = false; // reset flag
+  }
+
+  return _value;
+}
+
 
 float Ramp::put(float value) {
   if (_mode == RAMP_SPEED) {
@@ -167,6 +179,7 @@ void Ramp::go(float to, easing_function easing_) {
 
 void Ramp::begin() {
   setTime(0);
+  _valueNeedsUpdate = true;
   _finishedState = NOT_FINISHED;
 }
 
@@ -176,7 +189,7 @@ void Ramp::step() {
 
   if (_isRunning) {
     // Compute value if running -- otherwise leave as is.
-    _value = _get();
+    _valueNeedsUpdate = true;
   }
 
   // Check if finished this turn.
@@ -212,7 +225,7 @@ float Ramp::_durationOrSpeed() const {
 
 void Ramp::setTime(float time) {
   AbstractTimer::setTime(time);
-  _value = _get();
+  _valueNeedsUpdate = true;
 }
 
 float Ramp::_time() const {
