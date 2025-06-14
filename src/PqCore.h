@@ -255,6 +255,12 @@ class Chainable {
 
   /// Converts digital (bool) value to analog (float) value.
   static float digitalToAnalog(bool b) { return (b ? 1.0f : 0.0f); }
+
+  public:
+  /// Operator that allows usage in conditional expressions.
+  // NOTE: This operator is defined as explicit so that boolean expression like
+  // "if (obj)" use the bool() operator while other expressions can use the float() operator.
+  explicit operator bool() { return Chainable::analogToDigital(get()); }
 };
 
 /**
@@ -315,7 +321,7 @@ private:
   /// Operator that allows usage in conditional expressions.
   // NOTE: This operator is defined as explicit so that boolean expression like
   // "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  explicit operator bool() { return Unit::analogToDigital(get()); }
+  //explicit operator bool() { return Unit::analogToDigital(get()); }
 
 
 

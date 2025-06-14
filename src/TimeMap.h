@@ -35,8 +35,8 @@ namespace pq
         size_t _index;
         size_t _previousIndex;
         float _period;
-        uint64_t _chrono;   // microseconds
-        uint64_t _interval; // microseconds
+        //uint64_t _chrono;   // microseconds
+        //uint64_t _interval; // microseconds
         bool _full;
         float _lastValue;
         fixed_t _phaseTime;
@@ -74,7 +74,7 @@ namespace pq
         }
         TimeMap(float period) : _count(COUNT), _full(false), _period(period)
         {
-            _interval = floor(_period * 1000000.0); // convert to microseconds
+            //_interval = floor(_period * 1000000.0); // convert to microseconds
             reset();
         }
 
