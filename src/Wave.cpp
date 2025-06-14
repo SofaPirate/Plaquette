@@ -28,42 +28,42 @@
 namespace pq
 {
 
-    fixed_t _PqSquareWave(fixed_t t, fixed_t width)
+    fixed_t _PqSquareWave(fixed_t t, fixed_t skew)
     {
-        return (t <= width) ? FIXED_MAX : 0; // XXX small trick here: we set _onValue at the same time to deal with state changes
+        return (t <= skew) ? FIXED_MAX : 0; // XXX small trick here: we set _onValue at the same time to deal with state changes
     }
 
-    fixed_t _PqTriangleWave(fixed_t t, fixed_t width)
+    fixed_t _PqTriangleWave(fixed_t t, fixed_t skew)
     {
-        return (t <= width) ? fixedDivide(t, width) : fixedDivide(FIXED_MAX - t, FIXED_MAX - width);
+        return (t <= skew) ? fixedDivide(t, skew) : fixedDivide(FIXED_MAX - t, FIXED_MAX - skew);
     }
 
     // Improved version of Sine Wave.
-    fixed_t _PqSineWave(fixed_t t, fixed_t width)
+    fixed_t _PqSineWave(fixed_t t, fixed_t skew)
     {
 #if defined(PQ_ARCH_32BITS)
         // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
         fixed_t phaseTime;
 
-        // Special case: width == 0.5 (default and most common). More efficient.
-        if (width == HALF_FIXED_MAX)
+        // Special case: skew == 0.5 (default and most common). More efficient.
+        if (skew == HALF_FIXED_MAX)
         {
             phaseTime = t;
         }
         // Rising part of sine wave.
-        else if (t < width)
+        else if (t < skew)
         {
-            phaseTime = fixedDivide(t, width) / 2;
+            phaseTime = fixedDivide(t, skew) / 2;
         }
         // Falling part of sine wave.
         else
         {
-            phaseTime = fixedDivide(t - width, FIXED_MAX - width) / 2 + HALF_FIXED_MAX;
+            phaseTime = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
         }
         // Serial.print(t); Serial.print(" ");
         // Serial.println(phaseTime);
         // // Peak of sine wave.
-        // else { // t == _width
+        // else { // t == _skew
         //   phaseTime = FIXED_MAX / 2;
         // }
 
@@ -72,24 +72,24 @@ namespace pq
         // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
         uint16_t phaseTime16;
 
-        // Special case: width == 0.5 (default and most common). More efficient.
-        if (width == HALF_FIXED_MAX)
+        // Special case: skew == 0.5 (default and most common). More efficient.
+        if (skew == HALF_FIXED_MAX)
         {
             phaseTime16 = static_cast<uint16_t>(t >> 16);
         }
         // Rising part of sine wave.
-        else if (t < width)
+        else if (t < skew)
         {
-            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t) << 15) / width);
+            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t) << 15) / skew);
         }
         // Falling part of sine wave.
-        else if (t > width)
+        else if (t > skew)
         {
-            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t - width) << 15) / (FIXED_MAX - width)) + 32768;
+            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_MAX - skew)) + 32768;
         }
         // Peak of sine wave.
         else
-        { // t == _width
+        { // t == _skew
             phaseTime16 = 32768;
         }
 
@@ -103,19 +103,19 @@ namespace pq
         switch (_shape)
         {
         case Shape::Sine:
-            return _PqSineWave(t, _width);
+            return _PqSineWave(t, _skew);
             break;
 
         case Shape::Square:
-            return _PqSquareWave(t, _width);
+            return _PqSquareWave(t, _skew);
             break;
 
         case Shape::Triangle:
-            return _PqTriangleWave(t, _width);
+            return _PqTriangleWave(t, _skew);
             break;
 
         case Shape::Ramp:
-            // TODO width should control the curve
+            // TODO skew should control the curve
             return t;
             break;
 
@@ -130,13 +130,13 @@ namespace pq
             break;
 
         default: // SHOULD NOT BE POSSIBLE
-            return _PqSineWave(t, _width);
+            return _PqSineWave(t, _skew);
             break;
         };
     }
 
     Wave::Wave(Shape shape, Engine &engine) : AbstractWave(engine), _shape(shape) {};
     Wave::Wave(Shape shape, float period, Engine &engine) : AbstractWave(period, engine), _shape(shape) {};
-    Wave::Wave(Shape shape, float period, float width, Engine &engine) : AbstractWave(period, width, engine), _shape(shape) {};
+    Wave::Wave(Shape shape, float period, float skew, Engine &engine) : AbstractWave(period, skew, engine), _shape(shape) {};
 
 }

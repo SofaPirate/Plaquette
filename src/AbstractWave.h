@@ -48,10 +48,10 @@ public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
-   * @param width the duty-cycle as a value in [0, 1]
+   * @param skew the duty-cycle as a value in [0, 1]
    * @param engine the engine running this unit
    */
-  AbstractWave(float period, float width, Engine& engine = Engine::primary());
+  AbstractWave(float period, float skew, Engine& engine = Engine::primary());
 
   virtual ~AbstractWave() {}
 
@@ -92,13 +92,26 @@ public:
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
   /**
-   * Sets the width of the signal as a % of period.
-   * @param width the width as a value in [0, 1]
+   * Sets the skew of the signal as a % of period.
+   * @param skew the skew as a value in [0, 1]
    */
-  virtual void width(float width);
+  virtual void skew(float skew);
 
-  /// Returns the width of the signal.
-  virtual float width() const { return fixedToFloat(_width); }
+  /// Returns the skew of the signal.
+  virtual float skew() const { return fixedToFloat(_skew); }
+
+  /**
+   * @deprecated
+   * Sets the width of the signal as a % of period.
+   * @param width the skew as a value in [0, 1]
+   */
+  [[deprecated("Use skew(float) instead.")]]
+  virtual void width(float width) { skew(width); }
+
+  /// @deprecated
+  /// Returns the skew of the signal.
+  [[deprecated("Use skew() instead.")]]
+  virtual float width() const { return skew(); }
 
   /**
    * Sets the amplitude of the wave.
@@ -206,7 +219,7 @@ public:
   uint32_t _amplitude;
 
   // Width of the signal.
-  fixed_t _width;
+  fixed_t _skew;
 
   // Internal use: holds current phase time.
   fixed_t _phaseTime;

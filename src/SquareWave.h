@@ -44,10 +44,10 @@ public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
-   * @param width the duty-cycle as a value in [0, 1]
+   * @param skew the duty-cycle as a value in [0, 1]
    * @param engine the engine running this unit
    */
-  SquareWave(float period, float width, Engine& engine = Engine::primary());
+  SquareWave(float period, float skew, Engine& engine = Engine::primary());
 
   virtual ~SquareWave() {}
 
@@ -98,12 +98,12 @@ public:
   virtual bool atPhaseIsOn(float phase);
 
   /// @deprecated
-  [[deprecated("Use width(float) instead.")]]
-  virtual void dutyCycle(float dutyCycle) { width(dutyCycle); }
+  [[deprecated("Use skew(float) instead.")]]
+  virtual void dutyCycle(float dutyCycle) { skew(dutyCycle); }
 
   /// @deprecated
-  [[deprecated("Use width() instead.")]]
-  virtual float dutyCycle() const { return width(); }
+  [[deprecated("Use skew() instead.")]]
+  virtual float dutyCycle() const { return skew(); }
 
 protected:
   // Core Plaquette methods.

@@ -55,10 +55,10 @@ namespace pq
         /**
          * Constructor.
          * @param period the period of oscillation (in seconds)
-         * @param width the duty-cycle as a value in [0, 1]
+         * @param skew the duty-cycle as a value in [0, 1]
          * @param engine the engine running this unit
          */
-        Wave(Shape shape, float period, float width, Engine &engine = Engine::primary());
+        Wave(Shape shape, float period, float skew, Engine &engine = Engine::primary());
 
         virtual ~Wave() {}
 
@@ -69,7 +69,7 @@ namespace pq
 
     private:
         Shape _shape;
-        
+
         fixed_t _target32;
         float _target; // Used by random
         float _current;

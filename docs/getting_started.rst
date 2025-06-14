@@ -64,12 +64,12 @@ states: ("on/off", "high/low", "1/0").
 The word ``myLed`` is a **name** for the object we are creating.
 
 Finally, ``13`` is a **parameter** of the object ``myLed`` that specifies the hardware
-*pin* that it corresponds to on the board. In English, the statement would thus read 
+*pin* that it corresponds to on the board. In English, the statement would thus read
 as: "Create a unit named ``myLed`` of type ``DigitalOut`` on pin ``13``."
 
 .. tip::
-  Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on 
-  most boards, this LED is connected to digital pin ``13``. The constant ``LED_BUILTIN`` is 
+  Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on
+  most boards, this LED is connected to digital pin ``13``. The constant ``LED_BUILTIN`` is
   the number of the pin to which the on-board LED is connected.
 
 Create an input unit
@@ -94,7 +94,7 @@ Each Plaquette sketch necessitates the declaration of two functions:
 Function ``begin()`` is called only once at the beginning of the sketch
 (just like the
 `setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
-function in Arduino). For our first program, we do not need to perform any 
+function in Arduino). For our first program, we do not need to perform any
 special configuration at startup so we will leave the ``begin()`` function
 empty:
 
@@ -162,10 +162,10 @@ take default values.
 
 .. code:: cpp
 
-    SquareWave myWave(period, width);
+    SquareWave myWave(period, skew);
 
 - ``period`` can be any positive number representing the period of oscillation (in seconds)
-- ``width`` can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion 
+- ``skew`` can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
   of the period during which the signal is "high" (ie. "on duty") (default: 0.5)
 
 .. note::
@@ -173,7 +173,7 @@ take default values.
 
 .. image:: images/Plaquette-SquareWave.png
 
-Try changing the first parameter (period) in the square oscillator unit to change 
+Try changing the first parameter (period) in the square oscillator unit to change
 the period of oscillation.
 
 - ``SquareWave myWave(1.0);`` for a period of one second
@@ -184,14 +184,14 @@ the period of oscillation.
 .. important::
    Don't forget to re-upload the sketch after each change.
 
-Now try adding a second parameter (width) to control the oscillator's
-`width <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing 
+Now try adding a second parameter (skew) to control the oscillator's
+`skew <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing
 the duty cycle to different percentages between 0.0 and 1.0.
 
-- ``SquareWave myWave(2.0, 0.5);`` for a width of 50% (default)
-- ``SquareWave myWave(2.0, 0.25);`` for a width of 25%
-- ``SquareWave myWave(2.0, 0.75);`` for a width of 75%
-- ``SquareWave myWave(2.0, 0.9);`` for a width of 90%
+- ``SquareWave myWave(2.0, 0.5);`` for a skew of 50% (default)
+- ``SquareWave myWave(2.0, 0.25);`` for a skew of 25%
+- ``SquareWave myWave(2.0, 0.75);`` for a skew of 75%
+- ``SquareWave myWave(2.0, 0.9);`` for a skew of 90%
 
 .. image:: images/Plaquette-SquareWave-Width.png
 
@@ -211,15 +211,15 @@ For example, to change the period, simply call the following inside the ``step()
       myWave >> myLed;
     }
 
-Of course, to accomplish our goal, we need a way to *change* the value ``newPeriod`` 
-during runtime. We can accomplish this in many different ways, but let's try something 
+Of course, to accomplish our goal, we need a way to *change* the value ``newPeriod``
+during runtime. We can accomplish this in many different ways, but let's try something
 simple: we will use another wave to *modulate* our wave's period.
 
 For this, we will be using another kind of source called a ``SineWave`` and will use its
 outputs to change the period of ``myWave``.
 
 .. code:: cpp
-    
+
     SineWave myModulator(20.0);
 
 This wave will oscillate smoothly from 0 to 1 every 20 seconds.
@@ -227,19 +227,19 @@ This wave will oscillate smoothly from 0 to 1 every 20 seconds.
 .. image:: images/Plaquette-SineWave.png
 
 .. code:: cpp
-    
+
     void step() {
       myWave.period(myModulator);
       myWave >> myLed;
     }
 
 Upload the sketch and you should see the LED blinking as before, with the difference that
-the blinking speed will now change from blinking very fast (in fact, infinitely fast, with 
+the blinking speed will now change from blinking very fast (in fact, infinitely fast, with
 a period of zero seconds!) to very slow (period of 20 seconds).
 
 .. tip::
 
-   If you want to visualize the values of both waves on your computer, you can print them 
+   If you want to visualize the values of both waves on your computer, you can print them
    on the serial port one after the other, separated by a space. Add the following code to
    your ``step()`` function:
 
@@ -252,24 +252,24 @@ a period of zero seconds!) to very slow (period of 20 seconds).
    Then, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
    by selecting in in **Tools > Serial Plotter**.
 
-Now try modulating the width of ``myWave`` instead of its period:
+Now try modulating the skew of ``myWave`` instead of its period:
 
 .. code:: cpp
-    
-    myWave.width(myModulator);
+
+    myWave.skew(myModulator);
 
 Use a button
 ~~~~~~~~~~~~
 
 Now let's try to do some very simple interactivity by using a simple switch or button. For this
 we will be using the internal pull-up resistor available on Arduino boards for a very simple circuit.
-One leg of the button should be connected to ground (GND) while the other should be connected to 
+One leg of the button should be connected to ground (GND) while the other should be connected to
 digital pin 2.
 
 .. tip::
-   
-   If you do not have a button or switch, you can just use two electric wires: one connected to 
-   ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch 
+
+   If you do not have a button or switch, you can just use two electric wires: one connected to
+   ground (GND) and the other one to digital pin 2. When you want to press the button, simply touch
    the wires together to close the circuit.
 
 Declare the button unit with the other units at the top of your sketch:
@@ -289,7 +289,7 @@ while the LED is considered an output or actuator (``Out``) our button is rather
    If you are curious, you might also want to know that there is an :doc:`AnalogIn` and an :doc:`AnalogOut`
    types which support sensors and actuators that work with continuous values between 0 and 1 (0% to 100%).
 
-Now, let's use this button as a way to control whether the LED blinks or not. For this, we will need to use 
+Now, let's use this button as a way to control whether the LED blinks or not. For this, we will need to use
 the value of the button as part of a **condition** for an
 `if...else <https://www.arduino.cc/reference/en/language/structure/control-structure/if/>`__
 statement.
@@ -352,22 +352,22 @@ from the Arduino software in **File > Examples > Plaquette** including:
 The Plaquette Reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The online reference can be accessed :doc:`here <reference>` or directly from the sidebar of the `Plaquette website <http://sofapirate.github.io/Plaquette>`__. 
-It provides detailed technical documentation for every available unit and function in Plaquette. This reference 
-serves as a go-to resource for understanding the specifics of each component, including their parameters, methods, 
+The online reference can be accessed :doc:`here <reference>` or directly from the sidebar of the `Plaquette website <http://sofapirate.github.io/Plaquette>`__.
+It provides detailed technical documentation for every available unit and function in Plaquette. This reference
+serves as a go-to resource for understanding the specifics of each component, including their parameters, methods,
 and behavior.
 
 Here are the key sections of the reference:
 
-- :doc:`base_units`: Introduces foundational units like :doc:`DigitalIn`, :doc:`DigitalOut`, 
+- :doc:`base_units`: Introduces foundational units like :doc:`DigitalIn`, :doc:`DigitalOut`,
   :doc:`AnalogIn`, and :doc:`AnalogOut`. These are the building blocks for interfacing with hardware pins.
-- :doc:`generators`: Covers the signal generators :doc:`SquareWave`, :doc:`TriangleWave`, and :doc:`SineWave`. These 
+- :doc:`generators`: Covers the signal generators :doc:`SquareWave`, :doc:`TriangleWave`, and :doc:`SineWave`. These
   are used to create various oscillating or periodic signals.
-- :doc:`timing`: Focuses on units related to time management, like :doc:`Metronome` for periodic events, 
+- :doc:`timing`: Focuses on units related to time management, like :doc:`Metronome` for periodic events,
   :doc:`Alarm` for duration-based functionality, and :doc:`Ramp` for smooth transitions.
-- :doc:`filters`: Discusses tools for :doc:`smoothing <Smoother>`, :doc:`scaling <MinMaxScaler>`, or 
+- :doc:`filters`: Discusses tools for :doc:`smoothing <Smoother>`, :doc:`scaling <MinMaxScaler>`, or
   :doc:`normalizing <Normalizer>` signals, as well as :doc:`detecting peaks <PeakDetector>`.
-- :doc:`functions`: Explains helper functions for tasks like value mapping, signal transformations, 
+- :doc:`functions`: Explains helper functions for tasks like value mapping, signal transformations,
   and conversions.
 - :doc:`structure`: Describes core structural functions and operators.
 - :doc:`extra`: Contains miscellaneous units and features.
@@ -378,11 +378,11 @@ What's Next?
 With the basics covered, you are now ready to dive deeper into Plaquette's capabilities. Explore the
 rest of the guide to learn about specific features and advanced techniques:
 
-- :doc:`inputs_outputs`: Learn how to use Plaquette to handle a variety of inputs and outputs, 
+- :doc:`inputs_outputs`: Learn how to use Plaquette to handle a variety of inputs and outputs,
   including analog, digital, and specialized sensors or actuators.
-- :doc:`waves`: Understand the different types of wave generators available and how they can be 
+- :doc:`waves`: Understand the different types of wave generators available and how they can be
   used for oscillatory or periodic behavior.
-- :doc:`timing_basics`: Delve into Plaquette's timing management units to handle scheduling and 
+- :doc:`timing_basics`: Delve into Plaquette's timing management units to handle scheduling and
   time-based logic in your projects.
 - :doc:`regularizing`: Discover methods for automatically scaling and normalizing signals amd respond
   to peaks.

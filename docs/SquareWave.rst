@@ -4,12 +4,12 @@ SquareWave
 ==========
 
 A source unit that generates a `square wave <https://en.wikipedia.org/wiki/Square_wave>`_
-signal. The signal can be tuned by adjusting parameters such as ``period``, ``frequency``, 
-``amplitude``, or ``width``.
+signal. The signal can be tuned by adjusting parameters such as ``period``, ``frequency``,
+``amplitude``, or ``skew``.
 
 .. image:: images/Plaquette-SquareWave.png
 
-The ``width`` represents the proportion of time (expressed as a percentage) in each
+The ``skew`` represents the proportion of time (expressed as a percentage) in each
 cycle (period) during which the wave is "on" -- in other words, its *duty cycle*.
 
 .. image:: images/Plaquette-SquareWave-Width.png
@@ -29,7 +29,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
    SquareWave blinkOsc(4.0);
 
    void begin() {
-     blinkOsc.width(0.25); // Sets the duty cycle to 25%
+     blinkOsc.skew(0.25); // Sets the duty cycle to 25%
    }
 
    void step() {
@@ -38,8 +38,8 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. doxygenclass:: SquareWave
    :project: Plaquette
-   :members: SquareWave, get, period, frequency, width, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, shiftByIsOn, atPhase, atPhaseIsOn, start, stop, pause, resume, isRunning, addTime, setTime
-   
+   :members: SquareWave, get, period, frequency, skew, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, shiftByIsOn, atPhase, atPhaseIsOn, start, stop, pause, resume, isRunning, addTime, setTime
+
 |SeeAlso|
 ---------
 - :doc:`SineWave`

@@ -5,16 +5,16 @@ TriangleWave
 
 A source unit that can generate a range of triangle-shaped signals such as the
 `triangle wave <https://en.wikipedia.org/wiki/Triangle_wave>`_ and the
-`sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_.  The signal can 
-be tuned by adjusting parameters such as ``period``, ``frequency``, ``amplitude``, 
-or ``width``.
+`sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_.  The signal can
+be tuned by adjusting parameters such as ``period``, ``frequency``, ``amplitude``,
+or ``skew``.
 
 .. image:: images/Plaquette-TriangleWave.png
 
-The ``width`` parameter represents the "turning point" during the period at which
-the signals reaches its maximum and starts going down again. Changing the width
+The ``skew`` parameter represents the "turning point" during the period at which
+the signals reaches its maximum and starts going down again. Changing the skew
 allows to generate different kinds of triangular-shaped waves. For example, by
-setting width to 1.0 (100%) one obtains a *sawtooth* wave; by setting it to 0.0 (0%)
+setting skew to 1.0 (100%) one obtains a *sawtooth* wave; by setting it to 0.0 (0%)
 an *inverted sawtooth* is created; anything in between generates different flavors
 of *triangle* waves.
 
@@ -37,7 +37,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.
    TriangleWave osc(10.0);
 
    void begin() {
-     osc.width(1.0); // sawtooth wave
+     osc.skew(1.0); // sawtooth wave
    }
 
    void step() {
@@ -54,7 +54,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.
 
 .. doxygenclass:: TriangleWave
    :project: Plaquette
-   :members: SquareWave, get, period, frequency, width, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, atPhase, start, stop, pause, resume, isRunning, addTime, setTime
+   :members: SquareWave, get, period, frequency, skew, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, atPhase, start, stop, pause, resume, isRunning, addTime, setTime
 
 |SeeAlso|
 ---------

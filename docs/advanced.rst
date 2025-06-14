@@ -6,10 +6,10 @@ Advanced Usage
 Smoothing Arbitrary Signals
 ---------------------------
 
-While the :doc:`AnalogIn` unit in Plaquette provide a convenient built-in ``smooth()`` function for removing 
+While the :doc:`AnalogIn` unit in Plaquette provide a convenient built-in ``smooth()`` function for removing
 noise, there are many cases where you may need to smooth signals coming from other sources such as specialized
-sensors. The :doc:`Smoother` unit provides a highly flexible smoothing solution for such use cases, allowing 
-seamless integration into any signal pipeline. It works using an exponential moving average, acting as a 
+sensors. The :doc:`Smoother` unit provides a highly flexible smoothing solution for such use cases, allowing
+seamless integration into any signal pipeline. It works using an exponential moving average, acting as a
 low-pass filter to stabilize fast variations.
 
 Here is an example of using the :doc:`Smoother` to smoothen a DHT 22 temperature and humidity sensor using the
@@ -43,7 +43,7 @@ external `DHT sensor library <https://docs.arduino.cc/libraries/dht-sensor-libra
 Vanilla Coding Style
 --------------------
 
-You can avoid Plaquette's :doc:`>> <pipe>` operator or auto-conversion of units to values 
+You can avoid Plaquette's :doc:`>> <pipe>` operator or auto-conversion of units to values
 (eg., ``if (input)``, ``input >> output``) in favor of a more conventional programming style
 by simply using the ``get()`` and ``put()`` functions of Plaquette units.
 
@@ -60,9 +60,9 @@ of the unit (the same that would be returned by ``get()``):
 
   float put(float value)
 
-Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metronome` 
+Additionally, digital input units such as :doc:`DigitalIn`, :doc:`Metronome`
 have a ``boolean isOn()`` method that works for boolean ``true/false`` values,
-while digital output units such as :doc:`DigitalOut` have a ``boolean putOn(boolean value)`` 
+while digital output units such as :doc:`DigitalOut` have a ``boolean putOn(boolean value)``
 method.
 
 Here are some examples of how to adopt a classic object-oriented functions style
@@ -126,18 +126,18 @@ Here is an example of our blinking code rewritten by using this feature:
 
 
 .. _secondary-engines:
-  
+
 Synchronizing Groups of Units with Secondary Engines
 ----------------------------------------------------
 
 Have you wondered how units such as waves, inputs, outputs, or ramps are automatically initialized and updated in Plaquette?
 This is done thanks to an :doc:`Engine`, a control structure that acts like the **conductor of an orchestra**.
-It contains an ensemble of **units** and manages their initialization and updates. Every time the engine "ticks", 
+It contains an ensemble of **units** and manages their initialization and updates. Every time the engine "ticks",
 it updates all of its units, making sure they stay synchronized.
 
 By default, all units are added to a built-in engine called the **primary engine**. This engine is simply called ``Plaquette``
-and is mainly used when working with :ref:`Plaquette as an external library<plaquette-external-library>`. In the default 
-mode, when one declares the ``void begin()`` and ``void step()`` functions, the primary engine's ``Plaquette.begin()`` and 
+and is mainly used when working with :ref:`Plaquette as an external library<plaquette-external-library>`. In the default
+mode, when one declares the ``void begin()`` and ``void step()`` functions, the primary engine's ``Plaquette.begin()`` and
 ``Plaquette.step()`` functions are automatically called.
 
 There are many contexts where more than one engine are necessary:
@@ -145,11 +145,11 @@ There are many contexts where more than one engine are necessary:
 - **Multi-tasking** Engines allow you to take full advantage of **timer interrupts**, **threads** and/or **multiple processor cores**
   to run different unit ensembles in parallel, possibly running with different frequencies and priorities.
 - **Grouping** Engines can be used to better organize your code by creating **groups of units** and possibly run them at different frequencies.
-- **Switching** On computationally-intensive applications with lots of units, you may want to **switch between multiple ensembles of 
+- **Switching** On computationally-intensive applications with lots of units, you may want to **switch between multiple ensembles of
   units** to avoid running them all at the same time.
 - **Saving Energy** Lowering the update frequency of units using engines allows for more energy-efficient applications.
 
-In these cases, you can create **secondary engines** that each control their own group of units at their own refresh rate. You can 
+In these cases, you can create **secondary engines** that each control their own group of units at their own refresh rate. You can
 step them in a timer interrupt, in a task running on another core, or even from a :doc:`Metronome` unit.
 
 To create an engine, simply declare it:
@@ -168,15 +168,15 @@ When you create a unit, you can now add it to your new engine by adding the engi
   // Alarm unit with 10s duration.
   Alarm alarm(10.0, secondaryEngine);
 
-  // Square wave unit with period of 1s and 20% width.
+  // Square wave unit with period of 1s and 20% skew.
   SineWave wave(1.0, 0.2, secondaryEngine);
 
 Example: Fast vs Slow Control
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this example we will control a blinking LED with a pushbutton: every time we push the button, the LED will blink faster 
-and faster. The button should be polled quite frequently to ensure it is debounced properly. However, there is no need to update 
-the LED as fast as possible, so we can save some precious computation steps by updating it less often (about 25 frames per second 
+In this example we will control a blinking LED with a pushbutton: every time we push the button, the LED will blink faster
+and faster. The button should be polled quite frequently to ensure it is debounced properly. However, there is no need to update
+the LED as fast as possible, so we can save some precious computation steps by updating it less often (about 25 frames per second
 would be plenty for such visual feedback).
 
 - The **slow engine** (running at 25 fps) will control the LED with the square wave.
@@ -202,7 +202,7 @@ would be plenty for such visual feedback).
   DigitalOut led(LED_BUILTIN, slowEngine);
 
   float ledFrequency = 1.0; // Oscillation frequency.
-  
+
   void begin() {
     // Initialize engines.
     slowEngine.begin();
@@ -254,7 +254,7 @@ In this example, we will take full advantage of the ESP32's dual core architectu
 
     Engine ledEngine; // Secondary engine for controlling NeoPixels.
     SineWave ledWave(1.0, ledEngine);  // Waveform for NeoPixels.
-    
+
     void begin() {
       xTaskCreatePinnedToCore( // Launch LED engine on Core 0.
         [] (void* param) {
@@ -294,5 +294,5 @@ In this example, we will take full advantage of the ESP32's dual core architectu
     }
 
 
-Multiple engines give you more control and better performance, especially on multi-core platforms or in time-sensitive applications like 
+Multiple engines give you more control and better performance, especially on multi-core platforms or in time-sensitive applications like
 LED control, audio, or robotics.

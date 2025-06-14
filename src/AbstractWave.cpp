@@ -27,17 +27,17 @@ namespace pq {
 
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
-AbstractWave::AbstractWave(float period_, float width_, Engine& engine)
+AbstractWave::AbstractWave(float period_, float skew_, Engine& engine)
 : AnalogSource(engine), Timeable(),
   _period(0),
 #if PQ_OPTIMIZE_FOR_CPU
   _frequency(FLT_MAX),
 #endif
-  _amplitude(1), _width(0), _phaseShift(0),
+  _amplitude(1), _skew(0), _phaseShift(0),
   _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
   _onValue(0), _prevOnValue(0), _changeState(0) {
   period(period_);
-  width(width_);
+  skew(skew_);
   amplitude(1.0f);
 }
 
@@ -54,6 +54,7 @@ float AbstractWave::get() {
 
 void AbstractWave::begin() {
   start();
+  _phaseTime =
   _valueNeedsUpdate = true;
 }
 
@@ -76,8 +77,8 @@ void AbstractWave::step() {
   //   _value = 0;
   //   _startTime = seconds();
   // }
-  // else if (progress >= _width) _value = (1 - progress) / (1 - _width);
-  // else                         _value = progress / _width;
+  // else if (progress >= _skew) _value = (1 - progress) / (1 - _skew);
+  // else                         _value = progress / _skew;
   //
   // // Amplify.
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
@@ -117,8 +118,8 @@ void AbstractWave::bpm(float bpm) {
   frequency(bpm * BPM_TO_HZ);
 }
 
-void AbstractWave::width(float width) {
-  _width = floatTofixed(width);
+void AbstractWave::skew(float skew) {
+  _skew = floatTofixed(skew);
 }
 
 void AbstractWave::amplitude(float amplitude)  {
@@ -165,7 +166,7 @@ void AbstractWave::toggleReverse() {
 
 void AbstractWave::setTime(float time) {
   // Reset phase time to beginning.
-  _phaseTime = floatToPhaseTime(_phaseShift);
+  _phaseTime = 0;
 
   // Add time.
   addTime(time);
@@ -177,7 +178,7 @@ void AbstractWave::addTime(float time) {
     _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
 
   // Compute value.
-  _valueNeedsUpdate = true;
+  _value = _getAmplified(_phaseTime);
 }
 
 void AbstractWave::_setIsRunning(bool isRunning)

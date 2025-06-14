@@ -7,7 +7,7 @@ you are counting time, triggering events, or generating periodic signals, Plaque
 powerful tools to manage time effectively. In this section, we will explore timing functions and
 units, such as :doc:`seconds`, :doc:`Chronometer`, :doc:`Alarm`, :doc:`Metronome`, and :doc:`Ramp`.
 
-Timing is the backbone of interactive systems. By understanding and leveraging Plaquette's timing tools, 
+Timing is the backbone of interactive systems. By understanding and leveraging Plaquette's timing tools,
 you can create precise, dynamic, creative projects that respond in real-time to various inputs and conditions.
 
 .. note::
@@ -17,20 +17,20 @@ you can create precise, dynamic, creative projects that respond in real-time to 
   - A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
   - An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
 
-  It is strongly advised to use the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__ 
+  It is strongly advised to use the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
   to visualize the signals.
 
 .. warning::
 
     The value returned by timing units and functions are approximations. They are good enough for most creative applications. They should,
-    however, not be used as a substitute for a real-time clock in applications requiring high precision, especially over long 
+    however, not be used as a substitute for a real-time clock in applications requiring high precision, especially over long
     periods of time. For example, on an Arduino Uno, a drift may be experienced of up to 10 seconds per hour, or 5 minutes per day.
 
 Measuring Absolute Time with seconds()
 --------------------------------------
 
 The most fundamental timing functionality in Plaquette is the :doc:`seconds` function. As its name suggests,
-it simply returns the elapsed time in seconds `since the program started running`. This is very useful for measuring 
+it simply returns the elapsed time in seconds `since the program started running`. This is very useful for measuring
 durations or triggering time-based events.
 
 **Example**: Turn LED off after 3 seconds, then on again after 10 seconds.
@@ -53,10 +53,10 @@ durations or triggering time-based events.
       }
     }
 
-While :doc:`seconds` provides a simple and effective way to measure time, it is inherently limited in scope. It measures only 
-the elapsed time since the program started, functioning as a continuously increasing global counter that cannot be reset or adapted 
-for specific events. This makes it inflexible when we need to measure time between arbitrary points or manage multiple independent 
-timing events. For precise control and event-specific timing operations such as starting, stopping, resetting, or tracking multiple 
+While :doc:`seconds` provides a simple and effective way to measure time, it is inherently limited in scope. It measures only
+the elapsed time since the program started, functioning as a continuously increasing global counter that cannot be reset or adapted
+for specific events. This makes it inflexible when we need to measure time between arbitrary points or manage multiple independent
+timing events. For precise control and event-specific timing operations such as starting, stopping, resetting, or tracking multiple
 durations simultaneously, we need more refined timing instruments.
 
 Timing Units
@@ -81,7 +81,7 @@ Let us dive into these units and see what each one of them has to offer.
 Keeping Track of Time with Chronometer
 --------------------------------------
 
-While :doc:`seconds` can only give you the time since the start of the program, the :doc:`Chronometer` unit 
+While :doc:`seconds` can only give you the time since the start of the program, the :doc:`Chronometer` unit
 allows you to measure the time elapsed since it was started, like a real-life stopwatch. It is your basic
 building block for creating responsive systems where timing matters.
 
@@ -115,18 +115,18 @@ short and long presses differently.
         ledValue >> led;
         chrono.stop(); // Stops/resets the timer when button is released
       }
-    
+
       println(chrono); // Prints value of chrono for visualization.
     }
 
-The :doc:`Chronometer` is great for counting time. In many scenarios, however, you want to know whether you waited 
+The :doc:`Chronometer` is great for counting time. In many scenarios, however, you want to know whether you waited
 for a certain amount of time. The :doc:`Alarm` unit provides a convenient way to do so.
 
 Scheduling with Alarm
 ---------------------
 
 Like a real-world alarm-clock, the :doc:`Alarm` unit starts "buzzing" after a predefined time. This
-**digital unit** is initialized with a certain duration. It outputs 0/false until it reaches its timeout; 
+**digital unit** is initialized with a certain duration. It outputs 0/false until it reaches its timeout;
 then, it starts "ringing" and outputs 1/true until it is stopped or restarted.
 
 Once triggered, it can be stopped by calling its ``stop()`` function, or restarted by calling ``start()``,
@@ -136,7 +136,7 @@ Alarms can help manage actions that require specific timing, such as turning off
 certain duration or triggering an animation. Their flexibility makes them a powerful tool in time-
 based designs.
 
-**Example**: Starts blinking an LED when we reach the alarm's timeout. Pushing the button restarts 
+**Example**: Starts blinking an LED when we reach the alarm's timeout. Pushing the button restarts
 the alarm, increasing its duration by 50% each time.
 
 .. code-block:: cpp
@@ -173,9 +173,9 @@ the alarm, increasing its duration by 50% each time.
 Triggering Periodic Events with Metronome
 -----------------------------------------
 
-While the :doc:`Alarm` unit is great for dealing with one-time events, there are many cases 
-where an action needs to be triggered periodically. For such use cases, Plaquette provides the 
-:doc:`Metronome` unit which sends a periodic pulse or "bang". In other words, it acts like an 
+While the :doc:`Alarm` unit is great for dealing with one-time events, there are many cases
+where an action needs to be triggered periodically. For such use cases, Plaquette provides the
+:doc:`Metronome` unit which sends a periodic pulse or "bang". In other words, it acts like an
 :doc:`Alarm` that gets restarted as soon as it starts buzzing. It also bears some resemblance
 with :doc:`wave units <waves>`.
 
@@ -240,9 +240,9 @@ Creating Smooth Transitions with Ramp
 -------------------------------------
 
 Ramps are a cornerstone of creative expression. Unlike oscillators like :doc:`TriangleWave` and :doc:`SineWave`,
-which generate periodic signals, ramps interpolate from one value to another over a specific duration or at a 
-specific speed. The :doc:`Ramp` unit in Plaquette provides a flexible and powerful way to animate visual 
-elements such as LEDs or physical components such as motors in a natural manner, allowing the creation of rich, 
+which generate periodic signals, ramps interpolate from one value to another over a specific duration or at a
+specific speed. The :doc:`Ramp` unit in Plaquette provides a flexible and powerful way to animate visual
+elements such as LEDs or physical components such as motors in a natural manner, allowing the creation of rich,
 dynamic, evolving experiences.
 
 .. tip::
@@ -278,7 +278,7 @@ will ramp between 0 and 1.
       println(ramp); // Visualize ramp value with the Serial Plotter
     }
 
-Try changing the behavior of the ramp to rather go from 1 to 0 by calling the ``fromTo()`` function 
+Try changing the behavior of the ramp to rather go from 1 to 0 by calling the ``fromTo()`` function
 and see how that changes the behavior of the ramp:
 
 .. code-block:: cpp
@@ -291,8 +291,8 @@ and see how that changes the behavior of the ramp:
 Flexible Ranges
 ~~~~~~~~~~~~~~~
 
-Ramps are not restricted to the range [0, 1]. You can define any starting and ending values, 
-making ramps very useful for various applications such as changing properties of waves, controlling the 
+Ramps are not restricted to the range [0, 1]. You can define any starting and ending values,
+making ramps very useful for various applications such as changing properties of waves, controlling the
 angle of a servo motor, adjusting the color of a RGB LED, etc.
 
 **Example**: Gradually increases an LED brightness over a 5 seconds period every time a button is pressed.
@@ -339,7 +339,7 @@ A common scenario in creative applications is to respond to events by changing a
 position of a servomotor, the color of a RGB LED, or the volume of a sound. Ramps are often used in
 these cases to create smooth transitions instead of abrupt changes.
 
-The ``go()`` function provides a simple way to immediately launch a ramp from one value to another, 
+The ``go()`` function provides a simple way to immediately launch a ramp from one value to another,
 or simply from the current value towards a new goal.
 
 .. image:: images/Plaquette-Ramp.png
@@ -357,7 +357,7 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
     TriangleWave wave; // Oscillator
 
     void begin() {
-      wave.width(1.0);   // Sawtooth wave
+      wave.skew(1.0);   // Sawtooth wave
       wave.bpm(100);     // Initial BPM
       button.debounce(); // Debounce button
     }
@@ -376,7 +376,7 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
     }
 
 .. note::
-  Ramps provide multiple ways to call ``go()`` depending on the desired behavior, including specifying 
+  Ramps provide multiple ways to call ``go()`` depending on the desired behavior, including specifying
   starting value and duration on the spot. For more details, please consult the :doc:`Ramp unit's reference <Ramp>`.
 
 Generating Expressive Effects with Easing Functions
@@ -411,8 +411,8 @@ them feel more natural and lifelike.
       println(ramp); // Visualize ramp value with the Serial Plotter
     }
 
-Try experimenting with different easing functions and observe the results on the LED and using the 
-Serial Plotter. Easing can transform mechanical transitions into expressive animations, giving your 
+Try experimenting with different easing functions and observe the results on the LED and using the
+Serial Plotter. Easing can transform mechanical transitions into expressive animations, giving your
 projects character.
 
 Operational Modes: Duration vs Speed
@@ -420,7 +420,7 @@ Operational Modes: Duration vs Speed
 
 By default, ramps transition between two values over a definite duration. However, there are
 many scenarios where this is not the appropriate behavior. For example, one might want to move
-a servomotor at a specific angular speed: ramping over 10 degrees should take much less time than 
+a servomotor at a specific angular speed: ramping over 10 degrees should take much less time than
 a 90 degrees transition.
 
 Ramps accomodate these different use cases by providing two modes of operation:
@@ -460,7 +460,7 @@ Serial Plotter.
     }
 
 .. tip::
-  To switch between modes, you can simply call the ``duration(value)`` or ``speed(value)`` 
+  To switch between modes, you can simply call the ``duration(value)`` or ``speed(value)``
   functions with a target duration or speed (recommended). Alternatively, you can change mode by calling ``mode(RAMP_DURATION)``
   or ``mode(RAMP_SPEED)``, in which case the duration or speed will be computed based on the ramp's
   current properties (ie. duration/speed, starting, and target values).
@@ -470,7 +470,7 @@ Combining Timing Units
 ----------------------
 
 Plaquette allows you to combine different timing units to achieve complex behaviors while keeping your workflow clear
-and intuitive. For instance, you can use a :doc:`Metronome` to repeatedly trigger a :doc:`Ramp` or 
+and intuitive. For instance, you can use a :doc:`Metronome` to repeatedly trigger a :doc:`Ramp` or
 synchronize multiple timing units.
 
 **Example**: Use a Metronome to trigger a Ramp at regular intervals:
@@ -494,17 +494,17 @@ synchronize multiple timing units.
       println(ramp); // Stream the ramp's value for visualization
     }
 
-Combining timing units unlocks an even greater range of creative possibilities. Use these tools to 
+Combining timing units unlocks an even greater range of creative possibilities. Use these tools to
 design intricate behaviors, smooth transitions, and expressive animations in your projects.
 
 Conclusion
 ----------
 
-Timing is an essential aspect of creating interactive and dynamic systems, and Plaquette provides an 
+Timing is an essential aspect of creating interactive and dynamic systems, and Plaquette provides an
 intuitive set of tools to make this process seamless. From measuring durations with the :doc:`Chronometer`,
-to triggering events with the :doc:`Alarm`, generating rhythmic patterns with the :doc:`Metronome`, 
+to triggering events with the :doc:`Alarm`, generating rhythmic patterns with the :doc:`Metronome`,
 and creating smooth transitions with the :doc:`Ramp`, each timing unit offers unique possibilities.
 
-The flexibility of these tools allows for countless creative applications, whether you are developing 
-reactive systems, synchronizing events, or designing natural and expressive transitions. By combining 
+The flexibility of these tools allows for countless creative applications, whether you are developing
+reactive systems, synchronizing events, or designing natural and expressive transitions. By combining
 these units, you can build intricate behaviors that bring your projects to life.

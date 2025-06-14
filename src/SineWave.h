@@ -44,10 +44,10 @@ public:
   /**
    * Constructor.
    * @param period the period of oscillation (in seconds)
-   * @param width the duty-cycle as a value in [0, 1]
+   * @param skew the duty-cycle as a value in [0, 1]
    * @param engine the engine running this unit
    */
-  SineWave(float period, float width, Engine& engine = Engine::primary());
+  SineWave(float period, float skew, Engine& engine = Engine::primary());
 
   virtual ~SineWave() {}
 
