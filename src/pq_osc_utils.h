@@ -95,8 +95,12 @@ inline float amplifyFloat(float x, fixed_t amplitude) {
 /// Converts floating point to fixed_t.
 inline fixed_t floatToPhaseTime(float x) { return x * FIXED_MAX; }
 
+
+
 /// Phase-time division.
 inline fixed_t fixedDivide(fixed_t x, fixed_t y) { return divide_32div32(x, y); }
+
+inline fixed_t fixedMultiply(fixed_t x, fixed_t y) { return multiply_32x32_rshift32(x,y) ;}
 
 /// Converts time in seconds to phase in %.
 inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }
