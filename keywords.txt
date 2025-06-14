@@ -108,7 +108,7 @@ isCalibrating KEYWORD2
 # Oscillators
 period  KEYWORD2
 frequency  KEYWORD2
-width  KEYWORD2
+skew  KEYWORD2
 phase  KEYWORD2
 phaseShift  KEYWORD2
 amplitude  KEYWORD2
