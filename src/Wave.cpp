@@ -122,14 +122,14 @@ namespace pq
         case Shape::Random:
             if (_overflowed)
             {
-                fixed_t range = _width >> 1; // must at least reduce by a bit for int32u_t to signed (long)
+                fixed_t range = _skew >> 1; // must at least reduce by a bit for int32u_t to signed (long)
                 int64_t result = (int64_t)(random(range)<<1) - (int64_t)(range); // we want to center the random value around 0
                 result = result + _value ;
                 if ( result > FIXED_MAX ) _value =  FIXED_MAX;
                 else if ( result < 0 ) _value =  0;
                 else _value = result ;
             }
-            return _value;;
+            return _value;
             break;
 
         default: // SHOULD NOT BE POSSIBLE
