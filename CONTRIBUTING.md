@@ -21,7 +21,7 @@ These conventions define the coding style and design principles of a Plaquette, 
 - `.h` header files define interfaces, constants, and inline utilities.
 - `.cpp` source files contain implementation details.
 - `.ino` files provide tests using AUnit.
-- Include guards must protect all header files.
+- Include guards must protect all header files. Use the following style for include guards: `#define FILE_NAME_H_` eg. `#define MIN_MAX_SCALER_H_`.
 
 ---
 
@@ -82,8 +82,21 @@ void frequency(float frequency) {
 
 ### Artist-Friendly Interfaces
 
-- APIs should reflect **concepts familiar to digital artists** (e.g., `frequency()`, `bpm()`, `duration()`, `speed()`).
-- Provide high-level metaphors (e.g., `triggerThreshold()`, `put()`, `isOn()`) instead of low-level control structures.
+#### Things to Do ✅
+
+Public APIs should:
+- Reflect **concepts familiar to digital artists** (e.g., `frequency()`, `bpm()`, `duration()`, `speed()`).
+- Provide **high-level metaphors** (e.g., `mapTo()`, `triggerThreshold()`, `isOn()`) instead of low-level control structures.
+- Encourage **default arguments** for common use (eg. `DigitalIn(pin)` default to `DIRECT` mode).
+
+#### Things to Avoid ❌
+
+Public APIs should **avoid**:
+- **API leakage** of implementation details like engine internals, buffer pointers, or state flags.
+- **Pointers** (`*ptr`, `&object`) (with the exception of arrays or chains of characters); use references instead.
+- **Scope-resolution operator** (`::`) such as static members of classes and class enums.
+- **Overuse of inheritance** in favor of composition or plug-and-play interfaces.
+- **Ambiguous overloads** with minimal type differences (e.g., `set(float)` vs `set(double)`).
 
 ### Measurement Units
 
@@ -113,8 +126,8 @@ AnalogIn(int pin, Engine& engine);
 ### Enums
 
 - Used for mode/state selection and event classification.
-- Prefer traditional `enum` unless `enum class` adds clear value.
-- Values must be `UPPER_SNAKE_CASE`.
+- Enum values must be `UPPER_SNAKE_CASE`.
+- Avoid using class member enums or enum classes that would require the use of the `::` operator.
 
 ```cpp
 enum {
@@ -190,4 +203,4 @@ once per step. This ensures consistent timing and avoids unintended side effects
 
 ---
 
-*Last updated: 2025-05-19*
+*Last updated: 2025-06-16*
