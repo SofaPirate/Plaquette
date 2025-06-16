@@ -82,21 +82,21 @@ void frequency(float frequency) {
 
 ### Artist-Friendly Interfaces
 
-#### Things to Do ✅
+#### Things to Do
 
 Public APIs should:
-- Reflect **concepts familiar to digital artists** (e.g., `frequency()`, `bpm()`, `duration()`, `speed()`).
-- Provide **high-level metaphors** (e.g., `mapTo()`, `triggerThreshold()`, `isOn()`) instead of low-level control structures.
-- Encourage **default arguments** for common use (eg. `DigitalIn(pin)` default to `DIRECT` mode).
+- ✅ Reflect **concepts familiar to digital artists** (e.g., `frequency()`, `bpm()`, `duration()`, `speed()`).
+- ✅ Provide **high-level metaphors** (e.g., `mapTo()`, `triggerThreshold()`, `isOn()`) instead of low-level control structures.
+- ✅ Encourage **default arguments** for common use (eg. `DigitalIn(pin)` default to `DIRECT` mode).
 
-#### Things to Avoid ❌
+#### Things to Avoid
 
 Public APIs should **avoid**:
-- **API leakage** of implementation details like engine internals, buffer pointers, or state flags.
-- **Pointers** (`*ptr`, `&object`) (with the exception of arrays or chains of characters); use references instead.
-- **Scope-resolution operator** (`::`) such as static members of classes and class enums.
-- **Overuse of inheritance** in favor of composition or plug-and-play interfaces.
-- **Ambiguous overloads** with minimal type differences (e.g., `set(float)` vs `set(double)`).
+- ❌ **API leakage** of implementation details like engine internals, buffer pointers, or state flags.
+- ❌ **Pointers** (`*ptr`, `&object`) (with the exception of arrays or chains of characters); use references instead.
+- ❌ **Scope-resolution operator** (`::`) such as static members of classes and class enums.
+- ❌ **Overuse of inheritance** in favor of composition or plug-and-play interfaces.
+- ❌ **Ambiguous overloads** with minimal type differences (e.g., `set(float)` vs `set(double)`).
 
 ### Measurement Units
 
@@ -127,7 +127,7 @@ AnalogIn(int pin, Engine& engine);
 
 - Used for mode/state selection and event classification.
 - Enum values must be `UPPER_SNAKE_CASE`.
-- Avoid using class member enums or enum classes that would require the use of the `::` operator.
+- ❌ Avoid using class member enums or enum classes that would require the use of the `::` operator.
 
 ```cpp
 enum {
@@ -156,17 +156,14 @@ constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
 ## Memory and Performance
 
 - Code must run efficiently on microcontrollers with limited RAM and CPU.
-- **Avoid heap allocations** unless justified and controlled.
-- Favor:
+- Favor memory over speed by default.
+- Use flag `PQ_OPTIMIZE_FOR_CPU` to provide CPU optimization that might use more memory.
+- Use **inline functions** and `const` references to avoid copies.
+- ❌ **Avoid heap allocations** unless justified and controlled.
+- ✅ Favor
   - **Stack allocation**
   - **Pre-allocated buffers**
   - **Fixed-size containers**
-- Avoid STL containers unless proven lightweight and portable.
-- Use **inline functions** and `const` references to avoid copies.
-
-```cpp
-inline float triggerThreshold() const { return _triggerThreshold; }
-```
 
 ---
 
@@ -175,7 +172,7 @@ inline float triggerThreshold() const { return _triggerThreshold; }
 - Use **composition** over inheritance where appropriate.
 - Use `virtual` destructors in base classes.
 - Use public inheritance only when there is a clear "is-a" relationship.
-- Avoid deep inheritance hierarchies.
+- ❌ **Avoid deep inheritance** hierarchies.
 
 ---
 
