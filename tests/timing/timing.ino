@@ -74,7 +74,7 @@ void setup() {
   for (int i=0; i<N_METRO; i++) {
     SquareWave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
-    unit2->width(0.75f);
+    unit2->skew(0.75f);
   }
 
   testRampDuration.go(0, TEST_RAMP_MAX, TEST_RAMP_DURATION);
