@@ -125,6 +125,8 @@ fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
 /// Returns phase time value with time offset.
 fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time);
 
+bool phaseTimeUpdateFixed(fixed_t& phaseTime, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward = true);
+
 /// Computes new phase time for oscillators and returns true when phase time overflows.
 bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool forward = true);
 

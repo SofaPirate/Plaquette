@@ -61,7 +61,7 @@ void AbstractWave::begin() {
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
-    _overflowed = phaseTimeUpdate(_phaseTime, _period, sampleRate(), _isForward);
+    _overflowed = phaseTimeUpdateFixed(_phaseTime, frequency(), engine->deltaTimeSecondsTimesFixedMax(), _isForward);
   else
     _overflowed = false;
 

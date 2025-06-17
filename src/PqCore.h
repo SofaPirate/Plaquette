@@ -140,6 +140,12 @@ public:
   /// Returns sample period.
   float samplePeriod() const { return _samplePeriod; }
 
+  /// Returns time between steps (in microseconds).
+  uint32_t deltaTimeMicroSeconds() const { return _deltaTimeMicroSeconds; }
+
+  /// Returns time between steps, expressed in fixed point propotion.
+  float deltaTimeSecondsTimesFixedMax() const { return _deltaTimeSecondsTimesFixedMax; }
+
   /// Returns the main instance of Plaquette.
   static Engine& primary();
 
@@ -180,6 +186,12 @@ private:
 
   // Whether the auto sample rate mode is activated.
   float _targetSampleRate;
+
+  // Number of microseconds between steps.
+  uint32_t _deltaTimeMicroSeconds;
+
+  // Number of seconds between steps time FIXED_MAX.
+  float _deltaTimeSecondsTimesFixedMax;
 
   // Number of steps accomplished.
   unsigned long _nSteps;
@@ -632,8 +644,10 @@ void Engine::postStep() {
 
   // Calculate true sample rate.
   _updateGlobalMicroSeconds();
-  uint32_t diffTime = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
-  float trueSampleRate = (diffTime ? SECONDS_TO_MICROS / diffTime : PLAQUETTE_MAX_SAMPLE_RATE);
+
+  // Compute inter-step time.
+  _deltaTimeMicroSeconds = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
+  float trueSampleRate = (_deltaTimeMicroSeconds ? SECONDS_TO_MICROS / _deltaTimeMicroSeconds : PLAQUETTE_MAX_SAMPLE_RATE);
 
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
@@ -645,8 +659,14 @@ void Engine::postStep() {
   // Otherwise: Wait in order to synchronize seconds with real time.
   else {
     uint32_t startTime  = _microSeconds.micros32.base;
+
+    // Compute inter-step time.
+    // TODO: this value could be saved and re-used between steps
+    _deltaTimeMicroSeconds = (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
+
+    // Target time = current time + 1/_targetSampleRate
     micro_seconds_t targetTime = _microSeconds;
-    targetTime.micros32.base += (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
+    targetTime.micros32.base += _deltaTimeMicroSeconds;
 
     if (targetTime.micros32.base < startTime) { // overflow
       targetTime.micros32.overflows++;
@@ -657,8 +677,12 @@ void Engine::postStep() {
       while (_updateGlobalMicroSeconds().micros32.base < targetTime.micros32.base); // wait
       _microSeconds.micros32.base = targetTime.micros32.base; // not the exact "true" time but more accurate for computations
     }
+
     _setSampleRate(_targetSampleRate);
   }
+
+  uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
+  _deltaTimeSecondsTimesFixedMax = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
 }
 
 void Engine::begin(unsigned long baudrate) {

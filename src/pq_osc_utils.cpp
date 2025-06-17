@@ -17,6 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "pq_osc_utils.h"
+#include "pq_time.h"
 
 namespace pq {
 
@@ -29,6 +30,33 @@ fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase) {
 fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time) {
   return phaseTimeAddPhase(phaseTime, timeToPhase(period, time));
 }
+
+bool phaseTimeUpdateFixed(fixed_t& phaseTime, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward) {
+  // Premultiply.
+  frequency *= deltaTimeSecondsTimesFixedMax;
+
+  // Compute increment/decrement.
+  fixed_t increment = round(frequency);
+
+  // Forward case.
+  if (forward) {
+    // Check if increment will overflow.
+    bool overflow = (increment > FIXED_MAX - phaseTime);
+    // Add increment (will overflow when reaching max).
+    phaseTime += increment;
+    return overflow;
+  }
+
+  // Backwards case.
+  else {
+    // Check if increment will underflow.
+    bool underflow = (increment > phaseTime);
+    // Add increment (will overflow when reaching max).
+    phaseTime -= increment;
+    return underflow;
+  }
+}
+
 
 /// Computes new phase time for oscillators and returns when phase time overflows or underflows.
 bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool forward) {
