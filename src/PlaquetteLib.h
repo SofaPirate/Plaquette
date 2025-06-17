@@ -18,30 +18,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- #ifndef PLAQUETTE_LIB_H_
- #define PLAQUETTE_LIB_H_
+#ifndef PLAQUETTE_LIB_H_
+#define PLAQUETTE_LIB_H_
 
- #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
- #include <Arduino.h>
- #else
- #include <WProgram.h>
- #endif
+#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
+#include <Arduino.h>
+#else
+#include <WProgram.h>
+#endif
 
- // Plaquette builtin functions.
- #include "pq_map.h"
- #include "pq_print.h"
- #include "pq_random.h"
- #include "pq_time.h"
+// Plaquette builtin defines.
+#include "pq_globals.h"
+#include "pq_time.h"
 
- // Core files.
- #include "PqCore.h"
- #include "PqInputs.h"
- #include "PqOutputs.h"
+// Plaquette builtin functions.
+#include "pq_constrain.h"
+#include "pq_map.h"
+#include "pq_print.h"
+#include "pq_random.h"
+#include "pq_wrap.h"
 
- // Basic set of extra components.
- #include "PqExtra.h"
+// Core files.
+#include "PqCore.h"
+#include "PqInputs.h"
+#include "PqOutputs.h"
 
- #include "TimeMap.h"
- #include "Wave.h"
+// Basic set of extra components.
+#include "PqExtra.h"
 
  #endif

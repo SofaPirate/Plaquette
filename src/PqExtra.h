@@ -42,9 +42,12 @@
 #include "Metronome.h"
 #include "Ramp.h"
 
+#include "TimeMap.h"
+
 // Generators.
 #include "SineWave.h"
 #include "SquareWave.h"
 #include "TriangleWave.h"
+#include "Wave.h"
 
 #endif
