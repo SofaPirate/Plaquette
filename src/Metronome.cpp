@@ -24,67 +24,19 @@
 namespace pq {
 
 Metronome::Metronome(Engine& engine) : Metronome(1.0f, engine) {}
-Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), Timeable(),
-  _period(0),
-#if PQ_OPTIMIZE_FOR_CPU
-  _frequency(FLT_MAX),
-#endif
-  _phaseShift(0), _onValue(0), _isRunning(false) {
-  period(period_);
-}
+Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), AbstractOscillator(period_) {}
 
 void Metronome::begin() {
-  _phaseTime = floatToPhaseTime(_phaseShift);
+  start();
   _onValue = 0;
-  _isRunning = true;
 }
 
 void Metronome::step() {
   // Adjust phase time.
-  _onValue = phaseTimeUpdate(_phaseTime, _period, sampleRate());
-}
-
-
-void Metronome::period(float period) {
-  // Assign period.
-  if (_period != period) {
-    _period = max(period, 0.0f); // Make sure period is positive.
-
-#if PQ_OPTIMIZE_FOR_CPU
-    // Assign frequency.
-    _frequency = periodToFrequency(_period);
-#endif
-  }
-}
-
-void Metronome::frequency(float frequency) {
-#if PQ_OPTIMIZE_FOR_CPU
-  // Assign period.
-  if (_frequency != frequency) {
-    _frequency = max(frequency, 0.0f); // Make sure frequency is positive.
-
-    // Assign period.
-    _period = frequencyToPeriod(_frequency);
-  }
-#else
-  period( frequencyToPeriod(frequency) );
-#endif
-}
-
-void Metronome::bpm(float bpm) {
-  frequency(bpm * BPM_TO_HZ);
-}
-
-void Metronome::phase(float phase) {
-  _phaseTime = floatToPhaseTime(phase);
-}
-
-void Metronome::phaseShift(float phaseShift) {
-  if (_phaseShift != phaseShift) {
-    // Need to readjust phase time.
-    _phaseTime = phaseTimeAddPhase(_phaseTime, _phaseShift - phaseShift);
-    _phaseShift = phaseShift;
-  }
+  if (isRunning())
+    _onValue = phaseTimeUpdateFixed(_phaseTime, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward);
+  else
+    _onValue = false;
 }
 
 void Metronome::onBang(EventCallback callback) {
@@ -96,23 +48,4 @@ bool Metronome::eventTriggered(EventType eventType) {
   else return DigitalUnit::eventTriggered(eventType);
 }
 
-
-void Metronome::setTime(float time) {
-  // Reset phase time to beginning.
-  _phaseTime = floatToPhaseTime(_phaseShift);
-
-  // Add time.
-  addTime(time);
-}
-
-void Metronome::addTime(float time) {
-  // Perform calculation iff time needs to be added.
-  if (time > 0)
-    _phaseTime = phaseTimeAddTime(_phaseTime, _period, time);
-}
-
-void Metronome::_setIsRunning(bool isRunning)
-{
-  _isRunning = isRunning;
-}
 }
