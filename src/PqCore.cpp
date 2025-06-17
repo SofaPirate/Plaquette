@@ -27,17 +27,17 @@ HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& Engine::units() {
   static HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS> instance;
   return instance;
 }
-  
+
 Engine& Engine::primary() {
   static Engine instance;
   return instance;
 }
-  
+
 Engine& Plaquette = Engine::primary();
 
-Engine::Engine() 
-: _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0), 
- _nSteps(0), _beginCompleted(false), _firstRun(true) 
+Engine::Engine()
+: _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0),
+ _nSteps(0), _beginCompleted(false), _firstRun(true)
  {}
 Engine::~Engine() {
 }
@@ -92,10 +92,10 @@ uint64_t Engine::microSeconds(bool referenceTime) const {
 
 void Engine::add(Unit* component) {
   HybridArrayList<Unit*, PLAQUETTE_MAX_UNITS>& allUnits = units();
-  if (component->engine) {
+  if (component->engine()) {
     return; // XXX does not support moving components between engines
   }
-  
+
   // Find the right place to insert the component.
 
   // If there are already units, insert it after the last unit. Singleton always
@@ -110,7 +110,7 @@ void Engine::add(Unit* component) {
       allUnits.insert(_unitsEndIndex++, component);
       // Shift indices of next engines in the array.
       for (size_t i=_unitsEndIndex; i<allUnits.size(); ) {
-        Engine* engine = allUnits[i]->engine;
+        Engine* engine = allUnits[i]->engine();
         ++engine->_unitsBeginIndex;
         i = ++engine->_unitsEndIndex;
       }
@@ -125,7 +125,7 @@ void Engine::add(Unit* component) {
   }
 
   // Assign parent engine.
-  component->engine = this;
+  component->_engine = this;
 
   // Initialize component if needed.
   if (_beginCompleted)
@@ -162,7 +162,7 @@ micro_seconds_t Engine::_updateGlobalMicroSeconds() {
   // Detect overflow.
   if (us < prevUs)
     _totalGlobalMicroSeconds.micros32.overflows++;
-  
+
   // Update previous time.
   _totalGlobalMicroSeconds.micros32.base = us;
 
@@ -199,7 +199,7 @@ void beginSerial(unsigned long baudRate) {
   while (Serial.available()) Serial.read();
 }
 
-Unit::Unit(Engine& engineRef) : engine(0) {
+Unit::Unit(Engine& engineRef) : _engine(0) {
   engineRef.add(this);
 }
 
@@ -207,11 +207,11 @@ Unit::~Unit() {
 }
 
 void Unit::clearEvents() {
-  engine->_eventManager.clearListeners(this);
+  _engine->_eventManager.clearListeners(this);
 }
 
 void Unit::onEvent(EventCallback callback, EventType eventType) {
-  engine->_eventManager.addListener(this, callback, eventType);
+  _engine->_eventManager.addListener(this, callback, eventType);
 }
 
 } // namespace pq

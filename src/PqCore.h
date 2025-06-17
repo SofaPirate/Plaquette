@@ -290,8 +290,6 @@ class Unit : public Chainable {
   friend class Engine;
   friend class EventManager;
 
-
-
 protected:
   virtual void begin() {}
   virtual void step() {}
@@ -301,22 +299,22 @@ public:
   virtual void clearEvents();
 
   /// Returns engine time in seconds.
-  float seconds() const { return engine->seconds(); }
+  float seconds() const { return _engine->seconds(); }
 
   /// Returns engine time in milliseconds.
-  uint32_t milliSeconds() const { return engine->milliSeconds(); }
+  uint32_t milliSeconds() const { return _engine->milliSeconds(); }
 
   /// Returns engine time in microseconds.
-  uint64_t microSeconds() const { return engine->microSeconds(); }
+  uint64_t microSeconds() const { return _engine->microSeconds(); }
 
   /// Returns number of engine steps.
-  unsigned long nSteps() const { return engine->nSteps(); }
+  unsigned long nSteps() const { return _engine->nSteps(); }
 
   /// Returns engine sample rate.
-  float sampleRate() const { return engine->sampleRate(); }
+  float sampleRate() const { return _engine->sampleRate(); }
 
   /// Returns enginesample period.
-  float samplePeriod() const { return engine->samplePeriod(); }
+  float samplePeriod() const { return _engine->samplePeriod(); }
 
 protected:
   /// Constructor.
@@ -330,16 +328,12 @@ protected:
   virtual void onEvent(EventCallback callback, EventType eventType);
 
 private:
-  /// Operator that allows usage in conditional expressions.
-  // NOTE: This operator is defined as explicit so that boolean expression like
-  // "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  //explicit operator bool() { return Unit::analogToDigital(get()); }
-
-
+  // The engine that owns this unit.
+  Engine* _engine;
 
 protected:
-  // The engine that owns this unit.
-  Engine* engine;
+  /// Returns the engine that owns this unit.
+  Engine* engine() const { return _engine; }
 };
 
 /// A generic class representing a simple digital (true/false)unit.
