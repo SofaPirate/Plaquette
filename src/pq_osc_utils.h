@@ -57,6 +57,7 @@ inline fixed_t floatTofixed(float x) {
   else             return static_cast<fixed_t>(x * FIXED_MAX);
 }
 
+/// Clamps floating point value in range [0, 1].
 inline float constrain01(float x) {
 #if defined(PQ_IEEE_754_SUPPORTED)
     union {
@@ -71,7 +72,7 @@ inline float constrain01(float x) {
 
     return u.f;
 #else
-  return constrain(x, 0, 1);
+  return constrain(x, 0.0f, 1.0f);
 #endif
 }
 
@@ -95,17 +96,16 @@ inline float amplifyFloat(float x, fixed_t amplitude) {
 /// Converts floating point to fixed_t.
 inline fixed_t floatToPhaseTime(float x) { return floatTofixed(x); }
 
-
-
-/// Phase-time division.
+/// Fixed-point division.
 inline fixed_t fixedDivide(fixed_t x, fixed_t y) { return divide_32div32(x, y); }
 
+/// Fixed-point multiplication.
 inline fixed_t fixedMultiply(fixed_t x, fixed_t y) { return multiply_32x32_rshift32(x,y) ;}
 
 /// Converts time in seconds to phase in %.
 inline float timeToPhase(float period, float time) { return period == 0 ? 0 : time / period; }
 
-/// Converts time in seconds to phase in %.
+/// Converts time in seconds an frequency in Hz to phase in %.
 inline float frequencyAndTimeToPhase(float frequency, float time) { return time * frequency; }
 
 /// Converts period in seconds to frequency in Hz.

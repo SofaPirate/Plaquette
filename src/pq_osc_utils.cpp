@@ -38,7 +38,7 @@ bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool fo
   // Extreme case: infinite increment.
   if (period == 0)
     return true;
-  
+
   // Forward case.
   else if (forward) {
     // Increment to add to phaseTime.
