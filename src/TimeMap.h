@@ -80,7 +80,7 @@ namespace pq
 
         float read(float percent) override
         {
-            percent = constrain(percent, 0.0, 1.0);
+            percent = constrain01(percent);
             int index = floor(percent * (float)_lastIndex);
             return _buffer[index];
         }
@@ -106,7 +106,7 @@ namespace pq
             {
                 _index = floor(fixedToFloat(_phaseTime) * (float)_lastIndex );
                 _index = min(_index, _lastIndex);
-               
+
             }
 
             /* if (time > _chrono)

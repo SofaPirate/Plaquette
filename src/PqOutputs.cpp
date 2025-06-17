@@ -33,7 +33,7 @@ AnalogOut::AnalogOut(uint8_t pin, uint8_t mode, Engine& engine)
 
 float AnalogOut::put(float value) {
   // Make sure value is in [0, 1].
-  _value = constrain(value, 0, 1);
+  _value = constrain01(value);
 
   return _value;
 }
@@ -46,12 +46,11 @@ float AnalogOut::put(float value) {
 
 void AnalogOut::write(float value) {
   // Make sure value is in [0, 1].
-  value = constrain(value, 0, 1);
+  value = constrain01(value);
 
   // Remap to [0, ANALOG_WRITE_MAX_VALUE].
-  value = value * ANALOG_WRITE_MAX_VALUE;
-  value = round(value);
-  rawWrite(value);
+  value *= ANALOG_WRITE_MAX_VALUE;
+  rawWrite(round(value)); // Write rounded value.
 }
 
 void AnalogOut::rawWrite(int value) {

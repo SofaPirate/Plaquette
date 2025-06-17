@@ -30,7 +30,7 @@ AbstractServoOut::~AbstractServoOut() { detach(); }
 
 float AbstractServoOut::put(float value)
 {
-  _value = constrain(value, 0, 1);
+  _value = constrain01(value);
   value = _value * 180;
   Servo::write(round(value));
 

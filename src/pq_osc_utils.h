@@ -57,25 +57,6 @@ inline fixed_t floatTofixed(float x) {
   else             return static_cast<fixed_t>(x * FIXED_MAX);
 }
 
-/// Clamps floating point value in range [0, 1].
-inline float constrain01(float x) {
-#if defined(PQ_IEEE_754_SUPPORTED)
-    union {
-        float f;
-        uint32_t i;
-    } u;
-
-    u.f = x;
-    u.i &= 0x7FFFFFFF;               // Force non-negative
-    if (u.i > 0x3F800000)            // Clamp to 1.0
-        u.i = 0x3F800000;
-
-    return u.f;
-#else
-  return constrain(x, 0.0f, 1.0f);
-#endif
-}
-
 /// Applies amplitude scaling to 32-bit fixed-point value interpreted as a signal centered at UINT32_MAX/2.
 inline fixed_t amplifyFixed(fixed_t x, fixed_t amplitude) {
   // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).

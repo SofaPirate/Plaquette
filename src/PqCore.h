@@ -34,7 +34,9 @@
 #include "PqEvents.h"
 #include "pq_globals.h"
 #include "pq_time.h"
+#include "pq_constrain.h"
 #include "pq_map_real.h"
+#include "pq_wrap.h"
 
 namespace pq {
 
@@ -405,7 +407,7 @@ class AnalogSource : public Unit {
 public:
   /// Constructor.
   AnalogSource(Engine& engine = Engine::primary()) : AnalogSource(0, engine) {}
-  AnalogSource(float initialValue, Engine& engine = Engine::primary()) : Unit(engine) { _value = constrain(initialValue, 0, 1); }
+  AnalogSource(float initialValue, Engine& engine = Engine::primary()) : Unit(engine) { _value = constrain01(initialValue); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].

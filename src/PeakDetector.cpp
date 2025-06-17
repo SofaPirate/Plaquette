@@ -66,7 +66,7 @@ void PeakDetector::reloadThreshold(float reloadThreshold) {
 }
 
 void PeakDetector::fallbackTolerance(float fallbackTolerance) {
-  _fallbackTolerance = constrain(fallbackTolerance, 0.0f, 1.0f);
+  _fallbackTolerance = constrain01(fallbackTolerance);
 }
 
 void PeakDetector::mode(uint8_t mode) {
@@ -100,7 +100,7 @@ float PeakDetector::put(float value) {
   // Flip value.
   if (modeInverted())
     value = -value;
-  
+
   // Check if value is above triggerThreshold ("high" flag).
   bool high     = (value >= _triggerThreshold); // value is high if above triggerThreshold
 
@@ -109,7 +109,7 @@ float PeakDetector::put(float value) {
     _wasLow = !high;
     _firstRun = false;
   }
-  
+
   else {
 
     bool crossing = (high && _wasLow);            // value is crossing if just crossed triggerThreshold
