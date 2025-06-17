@@ -28,118 +28,115 @@
 namespace pq
 {
 
-    fixed_t _PqSquareWave(fixed_t t, fixed_t skew)
-    {
-        return (t <= skew) ? FIXED_MAX : 0; // XXX small trick here: we set _onValue at the same time to deal with state changes
-    }
+fixed_t _PqSquareWave(fixed_t t, fixed_t skew)
+{
+  return (t <= skew) ? FIXED_MAX : 0; // XXX small trick here: we set _onValue at the same time to deal with state changes
+}
 
-    fixed_t _PqTriangleWave(fixed_t t, fixed_t skew)
-    {
-        return (t <= skew) ? fixedDivide(t, skew) : fixedDivide(FIXED_MAX - t, FIXED_MAX - skew);
-    }
+fixed_t _PqTriangleWave(fixed_t t, fixed_t skew)
+{
+  return (t <= skew) ? fixedDivide(t, skew) : fixedDivide(FIXED_MAX - t, FIXED_MAX - skew);
+}
 
-    // Improved version of Sine Wave.
-    fixed_t _PqSineWave(fixed_t t, fixed_t skew)
-    {
+// Improved version of Sine Wave.
+fixed_t _PqSineWave(fixed_t t, fixed_t skew)
+{
 #if defined(PQ_ARCH_32BITS)
-        // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
-        fixed_t phaseTime;
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  fixed_t phaseTime;
 
-        // Special case: skew == 0.5 (default and most common). More efficient.
-        if (skew == HALF_FIXED_MAX)
-        {
-            phaseTime = t;
-        }
-        // Rising part of sine wave.
-        else if (t < skew)
-        {
-            phaseTime = fixedDivide(t, skew) / 2;
-        }
-        // Falling part of sine wave.
-        else
-        {
-            phaseTime = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
-        }
-        // Serial.print(t); Serial.print(" ");
-        // Serial.println(phaseTime);
-        // // Peak of sine wave.
-        // else { // t == _skew
-        //   phaseTime = FIXED_MAX / 2;
-        // }
+  // Special case: skew == 0.5 (default and most common). More efficient.
+  if (skew == HALF_FIXED_MAX)
+  {
+      phaseTime = t;
+  }
+  // Rising part of sine wave.
+  else if (t < skew)
+  {
+      phaseTime = fixedDivide(t, skew) / 2;
+  }
+  // Falling part of sine wave.
+  else
+  {
+      phaseTime = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
+  }
+  // Serial.print(t); Serial.print(" ");
+  // Serial.println(phaseTime);
+  // // Peak of sine wave.
+  // else { // t == _skew
+  //   phaseTime = FIXED_MAX / 2;
+  // }
 
-        return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
+  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
 #else
-        // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
-        uint16_t phaseTime16;
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  uint16_t phaseTime16;
 
-        // Special case: skew == 0.5 (default and most common). More efficient.
-        if (skew == HALF_FIXED_MAX)
-        {
-            phaseTime16 = static_cast<uint16_t>(t >> 16);
-        }
-        // Rising part of sine wave.
-        else if (t < skew)
-        {
-            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t) << 15) / skew);
-        }
-        // Falling part of sine wave.
-        else if (t > skew)
-        {
-            phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_MAX - skew)) + 32768;
-        }
-        // Peak of sine wave.
-        else
-        { // t == _skew
-            phaseTime16 = 32768;
-        }
+  // Special case: skew == 0.5 (default and most common). More efficient.
+  if (skew == HALF_FIXED_MAX)
+  {
+      phaseTime16 = static_cast<uint16_t>(t >> 16);
+  }
+  // Rising part of sine wave.
+  else if (t < skew)
+  {
+      phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t) << 15) / skew);
+  }
+  // Falling part of sine wave.
+  else if (t > skew)
+  {
+      phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_MAX - skew)) + 32768;
+  }
+  // Peak of sine wave.
+  else
+  { // t == _skew
+      phaseTime16 = 32768;
+  }
 
-        // Convert to [0, 1] with wave shape similar to triangle wave.
-        return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phaseTime16)) << 16;
+  // Convert to [0, 1] with wave shape similar to triangle wave.
+  return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phaseTime16)) << 16;
 #endif
-    }
+}
 
-    fixed_t Wave::_getFixed(fixed_t t)
+Wave::Wave(float period, Engine &engine) : Wave(period, 0.5f, engine) {}
+Wave::Wave(float period, float skew, Engine &engine) : Wave(SQUARE, period, skew, engine) {}
+Wave::Wave(WaveShape shape, float period, Engine &engine) : Wave(shape, period, 0.5f, engine) {}
+Wave::Wave(WaveShape shape, float period, float skew, Engine &engine) : AbstractWave(period, skew, engine), _shape(shape) {};
+
+fixed_t Wave::_getFixed(fixed_t t)
+{
+    switch (_shape)
     {
-        switch (_shape)
+    case SINE:
+        return _PqSineWave(t, _skew);
+        break;
+
+    case SQUARE:
+        return _PqSquareWave(t, _skew);
+        break;
+
+    case TRIANGLE:
+        return _PqTriangleWave(t, _skew);
+        break;
+
+    case RANDOM:
+        if (_overflowed)
         {
-        case Shape::Sine:
-            return _PqSineWave(t, _skew);
-            break;
+            fixed_t range = _skew >> 1; // must at least reduce by a bit for int32u_t to signed (long)
+            int64_t result = (int64_t)(random(range)<<1) - (int64_t)(range); // we want to center the random value around 0
+            result = result + _value ;
+            if ( result > FIXED_MAX ) _value =  FIXED_MAX;
+            else if ( result < 0 ) _value =  0;
+            else _value = result ;
+        }
+        return _value;
+        break;
 
-        case Shape::Square:
-            return _PqSquareWave(t, _skew);
-            break;
+    default: // SHOULD NOT BE POSSIBLE
+        return 0;
+        break;
+    };
+}
 
-        case Shape::Triangle:
-            return _PqTriangleWave(t, _skew);
-            break;
-
-        case Shape::Ramp:
-            // TODO skew should control the curve
-            return t;
-            break;
-
-        case Shape::Random:
-            if (_overflowed)
-            {
-                fixed_t range = _skew >> 1; // must at least reduce by a bit for int32u_t to signed (long)
-                int64_t result = (int64_t)(random(range)<<1) - (int64_t)(range); // we want to center the random value around 0
-                result = result + _value ;
-                if ( result > FIXED_MAX ) _value =  FIXED_MAX;
-                else if ( result < 0 ) _value =  0;
-                else _value = result ;
-            }
-            return _value;
-            break;
-
-        default: // SHOULD NOT BE POSSIBLE
-            return 0;
-            break;
-        };
-    }
-
-    Wave::Wave(Shape shape, Engine &engine) : AbstractWave(engine), _shape(shape) {};
-    Wave::Wave(Shape shape, float period, Engine &engine) : AbstractWave(period, engine), _shape(shape) {};
-    Wave::Wave(Shape shape, float period, float skew, Engine &engine) : AbstractWave(period, skew, engine), _shape(shape) {};
 
 }

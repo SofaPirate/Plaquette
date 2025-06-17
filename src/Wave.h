@@ -18,62 +18,69 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WAVE_H
-#define WAVE_H
+#ifndef WAVE_H_
+#define WAVE_H_
 
 #include "AbstractWave.h"
 
 namespace pq
 {
 
-    /// Sine oscillator. Phase is expressed as % of period.
-    class Wave : public AbstractWave
-    {
-    public:
-        enum Shape
-        {
-            Sine,
-            Square,
-            Triangle,
-            Ramp,
-            Random
-        };
+enum WaveShape {
+  SQUARE,
+  TRIANGLE,
+  SINE,
+  RANDOM
+};
 
-        /**
-         * Constructor.
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, Engine &engine = Engine::primary());
+/// Sine oscillator. Phase is expressed as % of period.
+class Wave : public AbstractWave
+{
+public:
+    /**
+     * Constructor (creates default square wave).
+     * @param period the period of oscillation (in seconds)
+     * @param engine the engine running this unit
+     */
+    Wave(float period, Engine &engine = Engine::primary());
 
-        /**
-         * Constructor.
-         * @param period the period of oscillation (in seconds)
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, float period, Engine &engine = Engine::primary());
+    /**
+     * Constructor (creates default square wave).
+     * @param period the period of oscillation (in seconds)
+     * @param skew the duty-cycle as a value in [0, 1]
+     * @param engine the engine running this unit
+     */
+    Wave(float period, float skew, Engine &engine = Engine::primary());
 
-        /**
-         * Constructor.
-         * @param period the period of oscillation (in seconds)
-         * @param skew the duty-cycle as a value in [0, 1]
-         * @param engine the engine running this unit
-         */
-        Wave(Shape shape, float period, float skew, Engine &engine = Engine::primary());
+    /**
+     * Constructor.
+     * @param period the period of oscillation (in seconds)
+     * @param engine the engine running this unit
+     */
+    Wave(WaveShape shape, float period, Engine &engine = Engine::primary());
 
-        virtual ~Wave() {}
+    /**
+     * Constructor.
+     * @param period the period of oscillation (in seconds)
+     * @param skew the duty-cycle as a value in [0, 1]
+     * @param engine the engine running this unit
+     */
+    Wave(WaveShape shape, float period, float skew, Engine &engine = Engine::primary());
 
-    protected:
-        // Returns value in [0, 1].
-        //  virtual float _get(fixed_t t);
-        virtual fixed_t _getFixed(fixed_t t);
+    virtual ~Wave() {}
 
-    private:
-        Shape _shape;
+protected:
+    // Returns value in [0, 1].
+    //  virtual float _get(fixed_t t);
+    virtual fixed_t _getFixed(fixed_t t);
 
-        fixed_t _target32;
-        float _target; // Used by random
-        float _current;
-    };
+private:
+    WaveShape _shape;
+
+    fixed_t _target32;
+    float _target; // Used by random
+    float _current;
+};
 
 }
 
