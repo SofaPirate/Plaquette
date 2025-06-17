@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pq_map_real.h"
+#include "pq_map.h"
 #include "pq_wrap.h"
 
 namespace pq {

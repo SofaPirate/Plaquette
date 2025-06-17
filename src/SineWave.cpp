@@ -19,7 +19,7 @@
  */
 
 #include "SineWave.h"
-#include "pq_map_real.h"
+#include "pq_map.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
 #include "pq_fixed_trig.h"

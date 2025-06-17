@@ -20,8 +20,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_MAP_REAL_H_
-#define PQ_MAP_REAL_H_
+#ifndef PQ_MAP_H_
+#define PQ_MAP_H_
 
 #include <stdint.h>
 

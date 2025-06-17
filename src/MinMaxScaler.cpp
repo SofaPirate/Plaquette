@@ -21,7 +21,7 @@
 #include "MinMaxScaler.h"
 
 #include "float.h"
-#include "pq_map_real.h"
+#include "pq_map.h"
 #include "MovingAverage.h"
 
 namespace pq {

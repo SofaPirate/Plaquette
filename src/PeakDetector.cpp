@@ -18,7 +18,7 @@
  */
 
 #include "PeakDetector.h"
-#include "pq_map_real.h"
+#include "pq_map.h"
 
 namespace pq {
 

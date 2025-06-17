@@ -21,7 +21,7 @@
 #include "PqInputs.h"
 #include "pq_globals.h"
 #include "pq_time.h"
-#include "pq_map_real.h"
+#include "pq_map.h"
 
 namespace pq {
 
@@ -138,7 +138,7 @@ float AnalogIn::_read() {
 }
 
 void AnalogIn::begin() {
-  _begin(); 
+  _begin();
 }
 
 void AnalogIn::step() {

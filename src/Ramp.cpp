@@ -19,7 +19,7 @@
  */
 
 #include "Ramp.h"
-#include "pq_map_real.h"
+#include "pq_map.h"
 #include "pq_time.h"
 
 namespace pq {

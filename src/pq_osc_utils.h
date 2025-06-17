@@ -18,8 +18,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PQ_OSC_UTILS_H
-#define PQ_OSC_UTILS_H
+#ifndef PQ_OSC_UTILS_H_
+#define PQ_OSC_UTILS_H_
 
 #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
 #include <Arduino.h>
