@@ -93,7 +93,7 @@ inline float amplifyFloat(float x, fixed_t amplitude) {
 }
 
 /// Converts floating point to fixed_t.
-inline fixed_t floatToPhaseTime(float x) { return x * FIXED_MAX; }
+inline fixed_t floatToPhaseTime(float x) { return floatTofixed(x); }
 
 
 
