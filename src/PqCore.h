@@ -256,6 +256,10 @@ class Chainable {
   /// Object can be used directly to access its value.
   operator float() { return get(); }
 
+  /// Maps value to new range. This function guarantees that the value is within [toLow, toHigh].
+  /// If the unit's values are unbounded, returns get() constrained to [toLow, toHigh].
+  virtual float mapTo(float toLow, float toHigh) { return constrain(get(), toLow, toHigh); } // default: just constrain
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit
@@ -293,11 +297,6 @@ protected:
   virtual void step() {}
 
 public:
-
-
-  /// Maps value to new range. If the unit's values are unbounded, simply returns get().
-  virtual float mapTo(float toLow, float toHigh) { return get(); } // default: do nothing
-
   // Clears all event listeners.
   virtual void clearEvents();
 
