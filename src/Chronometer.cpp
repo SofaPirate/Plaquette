@@ -22,14 +22,14 @@
 
 namespace pq {
 
-Chronometer::Chronometer(Engine& engine) : Unit(engine), AbstractChronometer(), _engine(engine) {
+Chronometer::Chronometer(Engine& engine) : Unit(engine), AbstractChronometer() {
 }
 
 float Chronometer::put(float value) {
   setTime(value);
   return get();
 }
-  
+
 void Chronometer::begin() {
   stop();
 }
@@ -39,7 +39,7 @@ void Chronometer::step() {
 }
 
 float Chronometer::_time() const {
-  return _engine.seconds();
+  return seconds();
 }
 
 }

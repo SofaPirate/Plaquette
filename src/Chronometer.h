@@ -35,16 +35,13 @@ public:
 
   /// Sets current time in seconds and returns it.
   virtual float put(float value);
-  
+
 protected:
   virtual void begin();
   virtual void step();
 
   // Returns current absolute time (in seconds).
   virtual float _time() const;
-
-  // Parent engine (needed to access engine time).
-  Engine& _engine;
 };
 
 }
