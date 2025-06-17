@@ -103,7 +103,7 @@ float Normalizer::put(float value) {
 
   // Normalize value to target normal.
   _value = _value * _targetStdDev + _targetMean;
-  
+
   // Check for clamp.
   if (isClamped())
     _value = _clamp(_value);
@@ -116,7 +116,7 @@ void Normalizer::step() {
   // In other words: repeat update with previous value.
   if (_nValuesStep == 0) {
     float alpha = _avg.alpha(sampleRate());
-    _avg.update(_currentMeanStep, alpha, true); 
+    _avg.update(_currentMeanStep, alpha, true);
     MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
   }
   // Otherwise: reset (but keep _currentMeanStep).
@@ -174,13 +174,15 @@ void Normalizer::_init(float mean, float stdDev) {
 
 float Normalizer::_clamp(float value) const {
   float absStdDevOutlier = _clampStdDev * targetStdDev();
-  return constrain(value, _targetMean - absStdDevOutlier, _targetMean + absStdDevOutlier);
+  float minValue = _targetMean - absStdDevOutlier;
+  float maxValue = _targetMean + absStdDevOutlier;
+  return constrain(value, minValue, maxValue);
 }
 
 float Normalizer::mapTo(float toLow, float toHigh) {
   float absStdDevOutlier = _targetStdDev *
     (_clampStdDev == NORMALIZER_NO_CLAMP ? NORMALIZER_DEFAULT_CLAMP_STDDEV : _clampStdDev);
-  
+
   return mapFloat(get() - _targetMean, -absStdDevOutlier, absStdDevOutlier, toLow, toHigh);
 }
 
