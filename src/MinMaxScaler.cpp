@@ -60,9 +60,12 @@ void MinMaxScaler::reset() {
   MovingFilter::reset();
   _minValue =  FLT_MAX;
   _maxValue = -FLT_MAX;
+  _smoothedMinValue = 0.5f;
+  _smoothedMaxValue = 0.5f;
   _value = 0.5f;
   _currentValueStep = 0;
   _nValuesStep = 0;
+  _nSamples = 0;
 }
 
 float MinMaxScaler::put(float value)
@@ -72,11 +75,15 @@ float MinMaxScaler::put(float value)
     // Update min. value.
     if (value < _minValue) {
       _minValue = value;
+      if (_nSamples == 0)
+        _smoothedMinValue = _minValue;
     }
 
     // Update max. value.
     if (value > _maxValue) {
       _maxValue = value;
+      if (_nSamples == 0)
+        _smoothedMaxValue = _maxValue;
     }
 
     // Increment n. values.
@@ -94,7 +101,7 @@ float MinMaxScaler::put(float value)
   }
 
   // Compute rescaled value.
-  _value = mapTo01(value, _minValue, _maxValue, CONSTRAIN);
+  _value = mapTo01(value, _smoothedMinValue, _smoothedMaxValue, CONSTRAIN);
 
   return _value;
 }
@@ -108,12 +115,21 @@ void MinMaxScaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
+    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+
     // Apply decay on min and max values.
     if (!timeWindowIsInfinite()) {
-      float alpha = MovingAverage::alpha(sampleRate(), _timeWindow);
       MovingAverage::applyUpdate(_minValue, _currentValueStep, alpha);
       MovingAverage::applyUpdate(_maxValue, _currentValueStep, alpha);
     }
+
+    // Smooth out min and max values.
+    MovingAverage::applyUpdate(_smoothedMinValue, _minValue, alpha);
+    MovingAverage::applyUpdate(_smoothedMaxValue, _maxValue, alpha);
+
+    // Increase number of samples.
+    if (_nSamples < UINT_MAX)
+      _nSamples++;
   }
 }
 

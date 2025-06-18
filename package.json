@@ -1,0 +1,10 @@
+{
+  "name": "Plaquette",
+  "version": "0.6.0",
+  "devDependencies": {
+    "auto-changelog": "*"
+  },
+  "scripts": {
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  }
+}

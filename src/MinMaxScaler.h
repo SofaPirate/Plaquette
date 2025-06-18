@@ -85,6 +85,15 @@ protected:
   // Maximum value ever put (decays over time if time window is finite).
   float _maxValue;
 
+  // Smoothed minimum value.
+  float _smoothedMinValue;
+
+  // Smoothed minimum value.
+  float _smoothedMaxValue;
+
+  // Number of samples that have been processed thus far.
+  unsigned int _nSamples;
+  
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentValueStep;
 };

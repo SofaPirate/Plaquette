@@ -113,7 +113,11 @@ void Ramp::speed(float speed) {
 
   AbstractTimer::duration( speedToDuration(
 #if PQ_OPTIMIZE_FOR_CPU
+<<<<<<< HEAD
     _speed = max(speed, 0.0f)
+=======
+    _speed = max(speed, 0.f)
+>>>>>>> 1181fd5fa3fd3258220601b8517b005cfc7d2226
 #else
     speed
 #endif
