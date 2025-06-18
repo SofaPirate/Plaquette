@@ -1,0 +1,96 @@
+/*
+ * pq_wave_utils.h
+ *
+ * Utility functions for waves.
+ *
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#ifndef PQ_WAVE_UTILS_H_
+#define PQ_WAVE_UTILS_H_
+
+#include "pq_osc_utils.h"
+#include "pq_fixed_trig.h"
+
+namespace pq {
+
+inline fixed_t squareWave(fixed_t t, fixed_t skew)
+{
+  return (t <= skew) ? FIXED_MAX : 0;
+}
+
+inline fixed_t triangleWave(fixed_t t, fixed_t skew)
+{
+  return (t <= skew) ?
+            fixedDivide(t, skew) :
+            fixedDivide(FIXED_MAX - t, FIXED_MAX - skew);
+}
+
+inline fixed_t sineWave(fixed_t t, fixed_t skew)
+{
+#if defined(PQ_ARCH_32BITS)
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  fixed_t phaseTime;
+
+  // Special case: skew == 0.5 (default and most common). More efficient.
+  if (skew == HALF_FIXED_MAX)
+  {
+      phaseTime = t;
+  }
+  // Rising part of sine wave.
+  else if (t < skew)
+  {
+      phaseTime = fixedDivide(t, skew) / 2;
+  }
+  // Falling part of sine wave.
+  else
+  {
+      phaseTime = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
+  }
+
+  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
+#else
+  // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
+  uint16_t phaseTime16;
+
+  // Special case: skew == 0.5 (default and most common). More efficient.
+  if (skew == HALF_FIXED_MAX)
+  {
+      phaseTime16 = static_cast<uint16_t>(t >> 16);
+  }
+  // Rising part of sine wave.
+  else if (t < skew)
+  {
+      phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t) << 15) / skew);
+  }
+  // Falling part of sine wave.
+  else if (t > skew)
+  {
+      phaseTime16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_MAX - skew)) + 32768;
+  }
+  // Peak of sine wave.
+  else
+  { // t == _skew
+      phaseTime16 = 32768;
+  }
+
+  // Convert to [0, 1] with wave shape similar to triangle wave.
+  return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phaseTime16)) << 16;
+#endif
+}
+
+}
+
+#endif

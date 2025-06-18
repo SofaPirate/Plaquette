@@ -30,7 +30,7 @@ enum WaveShape {
   SQUARE,
   TRIANGLE,
   SINE,
-  RANDOM
+  N_SHAPES
 };
 
 /// Sine oscillator. Phase is expressed as % of period.
@@ -69,6 +69,15 @@ public:
 
     virtual ~Wave() {}
 
+    /**
+     * Sets wave shape.
+     * @param shape the wave shape (SQUARE, TRIANGLE, SINE)
+     */
+    void shape(WaveShape shape);
+
+    /// Returns current wave shape
+    WaveShape shape() const { return _shape; }
+
 protected:
     // Returns value in [0, 1].
     //  virtual float _get(fixed_t t);
@@ -76,10 +85,6 @@ protected:
 
 private:
     WaveShape _shape;
-
-    fixed_t _target32;
-    float _target; // Used by random
-    float _current;
 };
 
 }
