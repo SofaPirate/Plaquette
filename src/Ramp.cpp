@@ -30,7 +30,11 @@ Ramp::Ramp(Engine& engine) : Ramp(1.0f, engine) {}
 Ramp::Ramp(float duration, Engine& engine) :
   Unit(engine),
   AbstractTimer(duration),
-  _from(0.0f), _to(1.0f), _easing(easeNone), _mode(RAMP_DURATION), _finishedState(NOT_FINISHED), _valueNeedsUpdate(true)
+  _from(0.0f), _to(1.0f), _easing(easeNone),
+#if PQ_OPTIMIZE_FOR_CPU
+  _speed(0.0f),
+#endif
+  _mode(RAMP_DURATION), _finishedState(NOT_FINISHED), _valueNeedsUpdate(true)
 {
 }
 
@@ -96,24 +100,29 @@ void Ramp::fromTo(float from, float to) {
 void Ramp::duration(float duration) {
   mode(RAMP_DURATION);
   AbstractTimer::duration(duration);
+#if PQ_OPTIMIZE_FOR_CPU
+  _speed = durationToSpeed(_duration);
+#endif
 }
 
 void Ramp::speed(float speed) {
   mode(RAMP_SPEED);
-  float diff = (_to - _from);
-  speed = abs(speed);
-  AbstractTimer::duration( speed > 0 ? abs(diff) / speed : 0 );
+
+  AbstractTimer::duration( speedToDuration(
+#if PQ_OPTIMIZE_FOR_CPU
+    _speed = max(speed, 0.f)
+#else
+    speed
+#endif
+  ) );
 }
 
 float Ramp::speed() const {
-  if (_duration > 0) {
-    float diff = (_to - _from);
-    return abs(diff) / _duration;
-  }
-  else if (_to == _from)
-    return 0;
-  else
-    return FLT_MAX;
+#if PQ_OPTIMIZE_FOR_CPU
+  return _speed;
+#else
+  return durationToSpeed(_duration);
+#endif
 }
 
 void Ramp::start() {
@@ -129,25 +138,6 @@ void Ramp::start(float from, float to, float duration_, easing_function easing_)
   go(from, to, duration_, easing_);
 }
 
-// void Ramp::go(float from, float to, float durationOrSpeed, uint8_t mode_, easing_function easing_) {
-//   // Set from and to values.
-//   fromTo(from, to);
-
-//   // Change easing if specified.
-//   if (easing_)
-//     easing(easing_);
-
-//   // Set mode.
-//   mode(mode_);
-
-//   // Initialize mode and duration / speed.
-//   _durationOrSpeed(durationOrSpeed);
-
-//   // Start chronometer.
-//   start();
-
-// }
-
 void Ramp::go(float from, float to, float durationOrSpeed, easing_function easing_) {
   // Set from and to values.
   fromTo(from, to);
@@ -162,14 +152,6 @@ void Ramp::go(float from, float to, float durationOrSpeed, easing_function easin
   // Start chronometer.
   start();
 }
-
-// void Ramp::go(float from, float to, easing_function easing_) {
-//   go(from, to, _durationOrSpeed(), easing_);
-// }
-
-// void Ramp::go(float to, float durationOrSpeed, uint8_t mode_, easing_function easing_) {
-//   go(_value, to, durationOrSpeed, mode_, easing_);
-// }
 
 void Ramp::go(float to, float durationOrSpeed, easing_function easing_) {
   go(_value, to, durationOrSpeed, easing_);
@@ -228,6 +210,22 @@ float Ramp::_durationOrSpeed() const {
 void Ramp::setTime(float time) {
   AbstractTimer::setTime(time);
   _valueNeedsUpdate = true;
+}
+
+float Ramp::durationToSpeed(float duration) const
+{
+  if (duration > 0) {
+    float diff = (_to - _from);
+    return abs(diff) / duration;
+  }
+  else if (_to == _from)
+    return 0;
+  else
+    return FLT_MAX; // infinity
+}
+
+float Ramp::speedToDuration(float speed) const {
+  return durationToSpeed(speed); // both these functions perform the same operation of inversion f(x) = 1/x
 }
 
 float Ramp::_time() const {
