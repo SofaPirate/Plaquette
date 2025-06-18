@@ -51,8 +51,9 @@ float Ramp::put(float value) {
     fromTo(value, _to);
   }
   else {
+    // Project value on the ramp and set it as the new "from" value.
     float p = progress();
-    float projectedFrom = (value - p*_to) / (1 - p); ////// verify this
+    float projectedFrom = (p >= 1.0f) ? _to : (value - p*_to) / (1 - p);
     fromTo(projectedFrom, _to);
   }
 
@@ -100,7 +101,8 @@ void Ramp::duration(float duration) {
 void Ramp::speed(float speed) {
   mode(RAMP_SPEED);
   float diff = (_to - _from);
-  AbstractTimer::duration( abs(diff) / abs(speed) );
+  speed = abs(speed);
+  AbstractTimer::duration( speed > 0 ? abs(diff) / speed : 0 );
 }
 
 float Ramp::speed() const {
