@@ -146,6 +146,12 @@ public:
   /// Forces current time (in seconds).
   virtual void setTime(float time);
 
+  /// Returns speed based on duration.
+  float durationToSpeed(float duration) const;
+
+    /// Returns duration based on speed.
+  float speedToDuration(float speed) const;
+
   /// @deprecated
   [[deprecated("Use go(float,easing_function) instead.")]]
   virtual void start(float to, float durationOrSpeed, easing_function easing=0);
@@ -193,6 +199,11 @@ protected:
 
   // Optional easing function.
   easing_function _easing;
+
+#if PQ_OPTIMIZE_FOR_CPU
+  // Speed.
+  float _speed;
+#endif
 
   // Mode (DURATION or SPEED).
   uint8_t _mode          : 1;
