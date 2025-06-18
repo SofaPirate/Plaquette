@@ -91,6 +91,7 @@ float AbstractWave::atPhase(float phase) {
 
 void AbstractWave::skew(float skew) {
   _skew = floatTofixed(skew);
+  _valueNeedsUpdate = true;
 }
 
 // void AbstractWave::_setIsRunning(bool isRunning)
