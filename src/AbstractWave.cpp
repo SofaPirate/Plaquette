@@ -81,8 +81,8 @@ float AbstractWave::shiftBy(float phaseShift) {
   return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
 }
 
-float AbstractWave::getShiftedByTime(float time) {
-  return _getAmplified(phaseTimeAddPhase(_phaseTime, pq::frequencyAndTimeToPhase(frequency(), time)));
+float AbstractWave::shiftByTime(float timeShift) {
+  return _getAmplified(phaseTimeAddPhase(_phaseTime, frequencyAndTimeToPhase(frequency(), timeShift)));
 }
 
 float AbstractWave::atPhase(float phase) {

@@ -58,16 +58,21 @@ public:
   /// Returns value in [0, 1].
   virtual float get();
 
-     /**
-    * Returns oscillator's value with given phase shift (in % of period).
-    * Supports values outside [0,1], which will be wrapped accordingly.
-    * Eg. shiftBy(0.2) returns future value of oscillator after 20% of its period would have passed.
-    * @param phase the phase shift (in % of period)
-    * @return the value of oscillator with given phase shift
-    */
+  /**
+   * Returns oscillator's value with given phase shift (in % of period).
+   * Supports values outside [0,1], which will be wrapped accordingly.
+   * Eg. shiftBy(0.2) returns future value of oscillator after 20% of its period would have passed.
+   * @param phaseShift the phase shift (in % of period)
+   * @return the value of oscillator with given phase shift
+   */
   virtual float shiftBy(float phaseShift);
 
-  virtual float getShiftedByTime(float time);
+  /**
+   * Returns oscillator's value with given phase shift expressed in time (in seconds).
+   * @param timeShift the shift in time (seconds)
+   * @return the value of oscillator with time shift
+   */
+  virtual float shiftByTime(float timeShift);
 
   /**
    * Returns the oscillator's value at a given absolute phase (in % of period).
