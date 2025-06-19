@@ -17,6 +17,16 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
+# Get name of operating system.
+UNAME_S := $(shell uname -s)
+
+# Adjust sed command for in-place editing based on the OS.
+ifeq ($(UNAME_S),Darwin)
+    SED_INPLACE := sed -i ''
+else
+    SED_INPLACE := sed -i
+endif
+
 .PHONY: all
 all: doxygen html latexpdf
 
@@ -59,8 +69,10 @@ clean:
 .PHONY: doxygen
 doxygen:
 	$(DOXYGENBUILD)
-	sed -i 's/pq:://g' ./xml/*.xml # remove pq:: namespace from XML
-	mv ./html $(BUILDDIR)/html/doxygen
+	$(SED_INPLACE) 's/pq:://g' ./xml/*.xml # remove pq:: namespace from XML
+	mkdir -p $(BUILDDIR)/html/doxygen
+	rm -rf $(BUILDDIR)/html/doxygen/*
+	mv ./html/* $(BUILDDIR)/html/doxygen/
 
 .PHONY: html
 html:
