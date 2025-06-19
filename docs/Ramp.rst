@@ -63,7 +63,7 @@ Sequentially ramps through different values.
 
 .. doxygenclass:: Ramp
    :project: Plaquette
-   :members: Ramp, get, start, stop, pause, resume, isRunning, addTime, setTime, elapsed, progress, finished, isFinished, go, easing, noEasing, to, from, fromTo, duration, speed, mode, onFinish, clearEvents
+   :members:
 
 |SeeAlso|
 ---------

@@ -60,7 +60,7 @@ starts moving in the opposite direction.
 
 .. doxygenclass:: ContinuousServoOut
    :project: Plaquette
-   :members: ContinuousServoOut, stop, reverse, get, put, pin
+   :members:
 
 
 |SeeAlso|
