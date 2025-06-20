@@ -38,7 +38,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 
 .. doxygenclass:: SquareWave
    :project: Plaquette
-   :members: SquareWave, get, period, frequency, skew, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, shiftByIsOn, atPhase, atPhaseIsOn, start, stop, pause, resume, isRunning, addTime, setTime
+   :members:
 
 |SeeAlso|
 ---------

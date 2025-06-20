@@ -24,7 +24,7 @@ StandaloneHTMLBuilder.supported_image_types = new_supported_image_types + additi
 
 html_sidebars = { '**': ['fulltoc.html', 'relations.html', 'searchbox.html'] }
 
-html_logo = "Plaquette-LogoText.png"
+html_logo = "images/Plaquette-LogoText.png"
 html_favicon = "plaquette-favicon.ico"
 html_theme = "sphinx_rtd_theme"
 html_style = None

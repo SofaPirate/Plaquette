@@ -39,7 +39,7 @@ Smooth a sensor over time.
 
 .. doxygenclass:: Smoother
    :project: Plaquette
-   :members: Smoother, get, put, cutoff, timeWindow
+   :members:
 
 |SeeAlso|
 ---------

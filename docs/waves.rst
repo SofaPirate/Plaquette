@@ -80,7 +80,7 @@ Plaquette provides 3 types of waves:
   of digital units.
 
   .. image:: images/Plaquette-SquareWave.png
-    :skew: 50%
+    :width: 50%
     :align: center
 
 - :doc:`TriangleWave`: Smoothly transitions between two levels in a linear fashion. By varying the
@@ -88,14 +88,14 @@ Plaquette provides 3 types of waves:
   (skew = 1). This is ideal for simulating ramping motions or gradual changes in brightness.
 
   .. image:: images/Plaquette-TriangleWave.png
-    :skew: 50%
+    :width: 50%
     :align: center
 
 - :doc:`SineWave`: Produces a sinusoidal waveform for smoother modulation. Commonly used for
   creating natural, flowing transitions, such as smooth dimming or speed control.
 
   .. image:: images/Plaquette-SineWave.png
-    :skew: 50%
+    :width: 50%
     :align: center
 
 

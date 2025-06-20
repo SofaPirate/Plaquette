@@ -59,7 +59,7 @@ automatically adapt to incoming sensor values.
 
 .. doxygenclass:: MinMaxScaler
    :project: Plaquette
-   :members: MinMaxScaler, get, put, mapTo, timeWindow, infiniteTimeWindow, timeWindowIsInfinite, reset, resumeCalibrating, pauseCalibrating, isCalibrating
+   :members:
 
 |SeeAlso|
 ---------

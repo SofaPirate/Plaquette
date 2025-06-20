@@ -11,7 +11,7 @@ Description.
 .. code-block:: c++
 
    #include <Plaquette.h>
-   
+
    void begin() {}
 
    void step() {
@@ -22,7 +22,7 @@ Description.
 
 .. doxygenclass:: UnitName
    :project: Plaquette
-   :members: UnitName, get, put
+   :members:
 
 .. warning::
    Optional.

@@ -86,7 +86,7 @@ peaks. Toggle and LED each time a peak is detected.
 
 .. doxygenclass:: PeakDetector
    :project: Plaquette
-   :members: PeakDetector, get, put, isOn, triggerThreshold, reloadThreshold, fallbackTolerance, modeInverted, modeCrossing, modePeak, mode, onBang, clearEvents
+   :members:
 
 |SeeAlso|
 ---------

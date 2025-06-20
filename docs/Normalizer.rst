@@ -45,7 +45,7 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 
 .. doxygenclass:: Normalizer
    :project: Plaquette
-   :members: Normalizer, get, put, mapTo, timeWindow, infiniteTimeWindow, timeWindowIsInfinite, reset, resumeCalibrating, pauseCalibrating, isCalibrating, targetMean, targetStdDev, isHighOutlier, isLowOutlier, isOutlier, highOutlierThreshold, lowOutlierThreshold, clamp, noClamp, isClamped
+   :members:
 
 |SeeAlso|
 ---------

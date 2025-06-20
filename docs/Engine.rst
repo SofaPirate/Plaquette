@@ -3,11 +3,11 @@
 Engine
 ======
 
-A control structure that acts like the **conductor of an orchestra**, managing an ensemble of **units**. 
+A control structure that acts like the **conductor of an orchestra**, managing an ensemble of **units**.
 It handles their initialization, updates, and timing, ensuring that all components remain synchronized.
 
 By default, all units are automatically added to the **primary engine** which can be accessed using the
-global object ``Plaquette``. By using **secondary engines** you can organize and optimize your code, 
+global object ``Plaquette``. By using **secondary engines** you can organize and optimize your code,
 allowing for multi-tasking, grouping units, switching between ensembles of units, and save power by
 running engines at lower frequency.
 
@@ -71,7 +71,7 @@ timer2 interrupt.
   // Timer2 interrupt: will be called at 1kHz frequency.
   ISR(TIMER2_COMPA_vect) {
     timerEngine.step(); // Step engine.
-    
+
     if (toggleMetro) // Toggle LED on metro bang.
       led.toggle();
   }
@@ -100,7 +100,7 @@ timer2 interrupt.
 
 .. doxygenclass:: Engine
    :project: Plaquette
-   :members: Engine, begin, step, nUnits, seconds, milliSeconds, microSeconds, nSteps, sampleRate, samplePeriod, primary, isPrimary
+   :members:
 
 |SeeAlso|
 ---------

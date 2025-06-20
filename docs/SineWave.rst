@@ -39,7 +39,7 @@ Pulses an LED.
 
 .. doxygenclass:: SineWave
    :project: Plaquette
-   :members: SquareWave, get, period, frequency, skew, phase, amplitude, bpm, mapTo, forward, reverse, toggleReverse, shiftBy, atPhase, start, stop, pause, resume, isRunning, addTime, setTime
+   :members:
 
 |SeeAlso|
 ---------

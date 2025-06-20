@@ -12,7 +12,7 @@ which it becomes "on".
 |Example|
 ---------
 
-Uses an alarm to activate built-in LED. Button is used to reset the 
+Uses an alarm to activate built-in LED. Button is used to reset the
 alarm at random periods of time.
 
 .. code-block:: c++
@@ -48,7 +48,7 @@ alarm at random periods of time.
 
 .. doxygenclass:: Alarm
    :project: Plaquette
-   :members: Alarm, isOn, isOff, getInt, get, start, stop, pause, resume, isRunning, addTime, setTime, elapsed, progress, finished, isFinished, duration, onRise, onFall, onChange, onFinish, clearEvents
+   :members:
 
 |SeeAlso|
 ---------
