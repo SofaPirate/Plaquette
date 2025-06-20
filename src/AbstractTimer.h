@@ -23,6 +23,7 @@
 
 #include "PqCore.h"
 #include "Chronometer.h"
+#include "pq_osc_utils.h"
 
 namespace pq {
 
@@ -60,6 +61,11 @@ public:
 protected:
   // The duration.
   float _duration;
+
+#if PQ_OPTIMIZE_FOR_CPU
+  // Precomputed 1/duration.
+  float _invDuration;
+#endif
 };
 
 }
