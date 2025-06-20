@@ -23,7 +23,7 @@
 
 #include "PqCore.h"
 #include "Timeable.h"
-#include "pq_osc_utils.h"
+#include "pq_phase_utils.h"
 
 namespace pq {
 

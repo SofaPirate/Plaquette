@@ -1,5 +1,5 @@
 /*
- * pq_osc_utils.cpp
+ * pq_phase_utils.cpp
  *
  * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
  *
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "pq_osc_utils.h"
+#include "pq_phase_utils.h"
 #include "pq_time.h"
 
 namespace pq {

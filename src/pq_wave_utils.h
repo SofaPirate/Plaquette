@@ -21,7 +21,7 @@
 #ifndef PQ_WAVE_UTILS_H_
 #define PQ_WAVE_UTILS_H_
 
-#include "pq_osc_utils.h"
+#include "pq_phase_utils.h"
 #include "pq_fixed_trig.h"
 
 namespace pq {

@@ -1,5 +1,5 @@
 /*
- * pq_osc_utils.h
+ * pq_phase_utils.h
  *
  * Utility functions for phase quantization oscillators.
  *
@@ -18,8 +18,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PQ_OSC_UTILS_H_
-#define PQ_OSC_UTILS_H_
+#ifndef PQ_PHASE_UTILS_H_
+#define PQ_PHASE_UTILS_H_
 
 #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
 #include <Arduino.h>
@@ -107,6 +107,7 @@ fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase);
 /// Returns phase time value with time offset.
 fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time);
 
+/// Computes new phase time for oscillators and returns true when phase time overflows (uses precompiled deltaTimeSecondsTimesFixedMax).
 bool phaseTimeUpdateFixed(fixed_t& phaseTime, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward = true);
 
 /// Computes new phase time for oscillators and returns true when phase time overflows.
