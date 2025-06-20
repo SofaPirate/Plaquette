@@ -32,7 +32,7 @@ Ramp::Ramp(float duration, Engine& engine) :
   AbstractTimer(duration),
   _from(0.0f), _to(1.0f), _easing(easeNone),
 #if PQ_OPTIMIZE_FOR_CPU
-  _speed(0.0f),
+    _speed(FLT_MAX),
 #endif
   _mode(RAMP_DURATION), _finishedState(NOT_FINISHED), _valueNeedsUpdate(true)
 {
@@ -113,11 +113,7 @@ void Ramp::speed(float speed) {
 
   AbstractTimer::duration( speedToDuration(
 #if PQ_OPTIMIZE_FOR_CPU
-<<<<<<< HEAD
     _speed = max(speed, 0.0f)
-=======
-    _speed = max(speed, 0.f)
->>>>>>> 1181fd5fa3fd3258220601b8517b005cfc7d2226
 #else
     speed
 #endif
@@ -238,6 +234,5 @@ float Ramp::speedToDuration(float speed) const {
 float Ramp::_time() const {
   return seconds();
 }
-
 
 }
