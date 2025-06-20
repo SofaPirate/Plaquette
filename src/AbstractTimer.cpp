@@ -19,6 +19,7 @@
  */
 
 #include "AbstractTimer.h"
+#include "pq_phase_utils.h"
 
 namespace pq {
 
