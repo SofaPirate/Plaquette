@@ -2,7 +2,7 @@
  * Blink
  *
  * Turns on and off a light emitting diode (LED) connected to a digital
- * pin using a SquareWave.
+ * pin using a Wave.
  *
  * The circuit:
  * - LED attached from pin 13 to ground.
@@ -19,11 +19,11 @@
 DigitalOut led(LED_BUILTIN);
 
 // A square-wave (on/off) oscillator.
-SquareWave oscillator(2.0); // 2 seconds period
+Wave oscillator(2.0); // 2 seconds period
 
 void begin() {
   // Set duty cycle of wave.
-  oscillator.width(0.1); // 0.1 => 10% up, 90% down
+  oscillator.skew(0.1); // 0.1 => 10% up, 90% down
 }
 
 void step() {

@@ -7,13 +7,13 @@ using namespace pq;
 
 #define N_GENERATORS 5
 Unit* generators[N_GENERATORS] = {
-  new SquareWave(1),
-  new TriangleWave(1, 0),
-  new TriangleWave(1, 1),
+  new Wave(SQUARE, 1),
+  new Wave(TRIANGLE, 1, 0),
+  new Wave(TRIANGLE, 1, 1),
   // new TriangleWave(0),
   // new TriangleWave(1),
-  new TriangleWave(1, 0.5),
-  new SineWave(1)
+  new Wave(TRIANGLE, 1, 0.5),
+  new Wave(SINE, 1)
 };
 
 #define N_DETECTOR_TYPES 4

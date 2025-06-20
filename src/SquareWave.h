@@ -25,7 +25,11 @@
 
 namespace pq {
 
-/// Square oscillator. Duty cycle is expressed as % of period.
+/**
+ * @deprecated
+ * Square oscillator. Duty cycle is expressed as % of period.
+ */
+[[deprecated("Use Wave(SQUARE) instead.")]]
 class SquareWave : public AbstractWave {
 public:
   /**

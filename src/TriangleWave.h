@@ -27,8 +27,10 @@
 namespace pq {
 
 /**
+ * @deprecated
  * Triangle/sawtooth oscillator.
  */
+[[deprecated("Use Wave(TRIANGLE) instead.")]]
 class TriangleWave : public AbstractWave {
 public:
   /**

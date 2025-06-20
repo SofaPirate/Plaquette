@@ -30,7 +30,7 @@ Metronome fastMetro(0.001); // 1000 Hz
 DigitalIn button(2, INTERNAL_PULLUP, fastEngine);
 
 // The square wave and LED (can operate more slowly to save on computation).
-SquareWave squareWave(1.0, slowEngine);
+Wave wave(1.0, slowEngine);
 DigitalOut led(LED_BUILTIN, slowEngine);
 
 // Frequency of the square wave.
@@ -55,8 +55,8 @@ void slowEngineStep() {
   slowEngine.step();
 
   // Adjust frequency and send to LED.
-  squareWave.frequency(ledFrequency);
-  squareWave >> led;
+  wave.frequency(ledFrequency);
+  wave >> led;
 }
 
 void fastEngineStep() {

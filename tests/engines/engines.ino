@@ -11,9 +11,9 @@ Metronome metro0(0.1);
 Metronome metro1(0.1, engine1);
 Metronome metro2(0.1, engine2);
 
-SquareWave dummy0(1.0);
-SquareWave dummy1(1.0, engine2);
-SquareWave dummy2(1.0);
+Wave dummy0(1.0);
+Wave dummy1(1.0, engine2);
+Wave dummy2(1.0);
 
 int count0 = 0;
 int count1 = 0;

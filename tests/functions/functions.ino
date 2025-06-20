@@ -3,13 +3,13 @@
 #include <AUnit.h>
 #include <pq_random.h>
 
-#include <pq_osc_utils.h>
+#include <pq_phase_utils.h>
 
 using namespace pq;
 using namespace aunit;
 
 test(map) {
-  
+
   for (uint8_t mode=0; mode<=2; mode++) {
     assertEqual(mapFrom01(0, -10, 10, mode), -10.0);
     assertEqual(mapFrom01(1, -10, 10, mode),  mode == WRAP ? -10: 10.0);

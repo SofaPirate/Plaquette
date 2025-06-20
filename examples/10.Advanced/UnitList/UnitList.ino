@@ -6,9 +6,9 @@
  *
  * The circuit:
  * - Three LEDs.
- * - The anode of the LEDs are connected in series with a 220-ohm resistor to pins 4, 5, and 6. 
+ * - The anode of the LEDs are connected in series with a 220-ohm resistor to pins 4, 5, and 6.
  * - Their cathodes connect to ground.
- * 
+ *
  * Created in 2024 by Sofian Audry
  *
  * This example code is in the public domain.
@@ -29,7 +29,7 @@ UnitList sources(N_LEDS);
 AnalogOut leds[] = { 4, 5, 6 }; // shorthand for DigitalOut leds[] = { DigitalOut(4), DigitalOut(5), DigitalOut(6) };
 
 void begin() {
-  sources.add(new SquareWave(1.0));
+  sources.add(new Wave(1.0));
   sources.add(new SineWave(1.0));
   sources.add(new AnalogIn(A0));
 }

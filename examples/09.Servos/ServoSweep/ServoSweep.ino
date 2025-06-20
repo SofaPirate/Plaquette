@@ -20,7 +20,7 @@
 #include <PqServo.h>
 
 // Triangular wave source.
-TriangleWave osc(5.0); // period = 5 seconds
+Wave osc(TRIANGLE, 5.0); // period = 5 seconds
 
 // Metronome.
 Metronome metro(10.0); // Triggers every 10 seconds.
@@ -33,7 +33,7 @@ void begin() {}
 void step() {
   // When metro triggers, change width.
   if (metro)
-    osc.width(randomFloat()); // set width to random value in [0, 1]
+    osc.skew(randomFloat()); // set width to random value in [0, 1]
 
   // Control the servomotor directly with the triangular wave.
   osc >> servo;

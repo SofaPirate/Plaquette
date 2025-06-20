@@ -25,7 +25,11 @@
 
 namespace pq {
 
-/// Sine oscillator. Phase is expressed as % of period.
+  /**
+ * @deprecated
+ * Sine oscillator. Phase is expressed as % of period.
+ */
+[[deprecated("Use Wave(SINE) instead.")]]
 class SineWave : public AbstractWave {
 public:
   /**

@@ -13,10 +13,10 @@
 #include <Plaquette.h>
 
 // The main oscillator.
-SquareWave osc;
+Wave osc(SQUARE);
 
 // The LFO.
-SineWave lfo(20.0); // 20 seconds period
+Wave lfo(SINE, 20.0); // 20 seconds period
 
 // The LED.
 DigitalOut led(LED_BUILTIN);

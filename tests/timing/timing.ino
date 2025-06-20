@@ -11,10 +11,10 @@ Metronome* metro[N_METRO] = {
   new Metronome(0.1)
 };
 
-SquareWave* osc[N_METRO] = {
-  new SquareWave(0.01),
-  new SquareWave(0.1),
-  new SquareWave(0.1)
+Wave* osc[N_METRO] = {
+  new Wave(0.01),
+  new Wave(0.1),
+  new Wave(0.1)
 };
 
 #define TEST_RAMP_MAX 100.0f
@@ -37,7 +37,7 @@ testing(timing) {
 
   for (int i=0; i<N_METRO; i++) {
     Metronome* unit = metro[i];
-    SquareWave *unit2 = osc[i];
+    Wave *unit2 = osc[i];
     // if (i == 0) {
     //   print(Plaquette.seconds()-startTime); print(" "); print(unit->isOn()); print(" "); print(unit2->get());
     //   if (unit->isOn())
@@ -72,7 +72,7 @@ testing(timing) {
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
-    SquareWave *unit2 = osc[i];
+    Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);
   }

@@ -6,8 +6,8 @@ using namespace pq;
 
 #define N_GENERATORS 6
 AbstractWave* generators[N_GENERATORS] = {
-  new SquareWave(0.005),
-  new SquareWave(1),
+  new Wave(0.005),
+  new Wave(1),
   new TriangleWave(0.005),
   new TriangleWave(1),
   new SineWave(0.005),

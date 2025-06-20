@@ -28,14 +28,14 @@ Engine engine2;
 // Digital LED.
 DigitalOut led1(13, engine1);
 
-// Sine oscillator.
-SquareWave wave1(2.0, engine1); // period of 5 seconds
+// Square oscillator.
+Wave wave1(SQUARE, 2.0, engine1); // period of 5 seconds
 
 // Analog (PWM) LED.
 AnalogOut led2(9, engine2);
 
 // Sine oscillator.
-SineWave wave2(2.0, engine2); // period of 5 seconds
+Wave wave2(SINE, 2.0, engine2); // period of 5 seconds
 
 // Push-button.
 DigitalIn button(2, INTERNAL_PULLUP);
