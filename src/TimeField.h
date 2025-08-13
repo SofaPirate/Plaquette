@@ -35,10 +35,15 @@ public:
   }
   virtual ~TimeField() {}
 
-  virtual float read(float percent) override
+  /**
+   * Returns value at given proportion in [0, 1].
+   * @param proportion the proportion of the field to read
+   * @return the value
+   */
+  virtual float read(float proportion) override
   {
-    percent = constrain01(percent);
-    int index = floor(percent * (float)_lastIndex);
+    proportion = constrain01(proportion);
+    int index = floor(proportion * (float)_lastIndex);
     return _buffer[index];
   }
 

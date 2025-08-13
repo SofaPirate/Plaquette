@@ -31,7 +31,7 @@ public:
   virtual ~AbstractField() {}
 
 public:
-  /// Returns value in [0, 1].
+  /// Returns value.
   virtual float get() override { return _read(); }
 
   /**
@@ -41,11 +41,17 @@ public:
    */
   virtual float put(float value) override { return _write(value); }
 
+  /**
+   * Returns value at given proportion in [0, 1].
+   * @param proportion the proportion of the field to read
+   * @return the value
+   */
+  virtual float read(float proportion) = 0;
+
 protected:
   virtual float _read() = 0;
   virtual float _write(float value) = 0;
 
-  virtual float read(float percent) = 0;
 };
 
 };
