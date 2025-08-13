@@ -42,7 +42,7 @@
 #include "Metronome.h"
 #include "Ramp.h"
 
-#include "TimeMap.h"
+#include "TimeField.h"
 
 // Generators.
 #include "SineWave.h"
