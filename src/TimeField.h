@@ -1,22 +1,22 @@
-  /*
-  * TimeField.h
-  *
-  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
-  * (c) 2025 Thomas O Fredericks :: tof(@)t-o-f(.)info
-  *
-  * This program is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU General Public License as published by
-  * the Free Software Foundation, either version 3 of the License, or
-  * (at your option) any later version.
-  *
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU General Public License for more details.
-  *
-  * You should have received a copy of the GNU General Public License
-  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+    /*
+    * TimeField.h
+    *
+    * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
+    * (c) 2025 Thomas O Fredericks :: tof(@)t-o-f(.)info
+    *
+    * This program is free software: you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation, either version 3 of the License, or
+    * (at your option) any later version.
+    *
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU General Public License for more details.
+    *
+    * You should have received a copy of the GNU General Public License
+    * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
 #ifndef TIME_FIELD_H_
 #define TIME_FIELD_H_
 
@@ -28,13 +28,6 @@ template <size_t COUNT>
 class TimeField : public AbstractField
 {
 public:
-  void reset()
-  {
-    _index = 0;
-    _previousIndex = 0;
-    _full = false;
-  }
-
   TimeField(float period) : _count(COUNT), _full(false), _period(period)
   {
       //_interval = floor(_period * 1000000.0); // convert to microseconds
@@ -59,7 +52,15 @@ public:
       return _full;
   }
 
+  void reset()
+  {
+    _index = 0;
+    _previousIndex = 0;
+    _full = false;
+  }
+
 protected:
+
   virtual void step() override
   {
     if (_full)
@@ -106,7 +107,7 @@ protected:
 
     // fill missing data
     if (_previousIndex < _index)
-  {
+    {
       for (int i = _previousIndex + 1; i <= _index; ++i)
       {
         _buffer[i] = value;
@@ -135,5 +136,5 @@ protected:
   fixed_t _phaseTime;
 };
 
-};
+}
 #endif

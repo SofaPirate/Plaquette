@@ -1,5 +1,5 @@
 /*
- * Field.h
+ * AbstractField.h
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2025 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ABTRACT_FIELD_H
-#define ABTRACT_FIELD_H
+#ifndef ABTRACT_FIELD_H_
+#define ABTRACT_FIELD_H_
 
 #include "PqCore.h"
 
