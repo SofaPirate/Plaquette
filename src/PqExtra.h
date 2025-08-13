@@ -42,6 +42,8 @@
 #include "Metronome.h"
 #include "Ramp.h"
 
+// Fields.
+#include "LevelField.h"
 #include "TimeField.h"
 
 // Generators.
