@@ -28,6 +28,13 @@ template <size_t COUNT>
 class TimeField : public AbstractField
 {
 public:
+  void reset()
+  {
+    _index = 0;
+    _previousIndex = 0;
+    _full = false;
+  }
+
   TimeField(float period) : _count(COUNT), _full(false), _period(period)
   {
       //_interval = floor(_period * 1000000.0); // convert to microseconds
