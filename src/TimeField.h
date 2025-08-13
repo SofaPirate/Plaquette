@@ -59,6 +59,7 @@ public:
       return _full;
   }
 
+protected:
   virtual void step() override
   {
     if (_full)
@@ -95,7 +96,6 @@ public:
     */
   }
 
-protected:
   virtual float _read() override
   {
     return _full;
