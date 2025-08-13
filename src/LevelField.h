@@ -21,13 +21,15 @@
 #define LEVEL_FIELD_H_
 
 #include "AbstractField.h"
+#include "pq_easing.h"
 
 namespace pq {
 
 class LevelField : public AbstractField
 {
 public:
-  LevelField() {}
+  /// Constructor.
+  LevelField();
   virtual ~LevelField() {}
 
   /**
@@ -35,11 +37,50 @@ public:
    * @param proportion the proportion of the field to read
    * @return the value
    */
-  virtual float read(float proportion) override
-  {
-    proportion = constrain01(proportion);
-    return (proportion <= _value) ? 1.0 : 0.0;
+  virtual float read(float proportion) override;
+
+    /**
+   * Sets easing function to apply to ramp.
+   * @param easing the easing function
+   */
+  void easing(easing_function easing) { _easing = easing; }
+
+  /// Remove easing function (linear/no easing).
+  void noEasing() { easing(easeNone); }
+
+  /**
+   * Sets left skew ie. how far to the left of current value the ramp starts.
+   * @param leftSkew the left skew in [0, 1]
+   */
+  void leftSkew(float leftSkew) {
+    _leftSkew = constrain01(leftSkew);
   }
+
+  /// Removes left skew.
+  void noLeftSkew() { leftSkew(0); }
+
+  /**
+   * Sets right skew ie. how far to the right of current value the ramp starts.
+   * @param leftSkew the right skew in [0, 1]
+   */
+  void rightSkew(float rightSkew) {
+    _rightSkew = constrain01(rightSkew);
+  }
+
+  /// Removes right skew.
+  void noRightSkew() { rightSkew(0); }
+
+  /// Returns left skew.
+  float leftSkew() const { return _leftSkew; }
+
+  /// Returns right skew.
+  float rightSkew() const { return _rightSkew; }
+
+  void rising() { _falling = false; }
+  void falling() { _falling = true; }
+
+  bool isRising() const { return !_falling; }
+  bool isFalling() const { return _falling; }
 
 protected:
   virtual float _read() override
@@ -53,7 +94,18 @@ protected:
   }
 
 protected:
+  // The current value.
   float _value;
+
+  // Left and right skew.
+  float _leftSkew;
+  float _rightSkew;
+
+  // Is the value falling or rising (from left to right)?
+  bool _falling;
+
+  // Optional easing function.
+  easing_function _easing;
 };
 
 };
