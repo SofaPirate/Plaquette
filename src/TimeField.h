@@ -28,7 +28,7 @@ template <size_t COUNT>
 class TimeField : public AbstractField
 {
 public:
-  TimeField(float period) : _count(COUNT), _full(false), _period(period)
+  TimeField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period)
   {
       //_interval = floor(_period * 1000000.0); // convert to microseconds
       reset();
@@ -42,14 +42,17 @@ public:
    */
   virtual float read(float proportion) override
   {
-    proportion = constrain01(proportion);
-    int index = floor(proportion * (float)_lastIndex);
+    float indexFloat = constrain01(proportion) * _lastIndex;
+    int index = round(indexFloat);
+    if (_rolling) {
+      index = (COUNT + _index - index) % COUNT;
+    }
     return _buffer[index];
   }
 
   float triggered()
   {
-      return _full;
+    return _full && (!_rolling || _changed);
   }
 
   void reset()
@@ -57,13 +60,18 @@ public:
     _index = 0;
     _previousIndex = 0;
     _full = false;
+    _changed = false;
   }
+
+  void roll()     { _rolling = true; }
+  void noRoll()   { _rolling = false; }
+  bool isRolling() const { return _rolling; }
 
 protected:
 
   virtual void step() override
   {
-    if (_full)
+    if (_full && !_rolling)
       reset();
 
     if (phaseTimeUpdate(_phaseTime, _period, sampleRate(), true))
@@ -71,11 +79,14 @@ protected:
       _index = _lastIndex;
       _write(_lastValue);
       _full = true;
+      _changed = true;
     }
     else
     {
-      _index = floor(fixedToFloat(_phaseTime) * (float)_lastIndex );
-      _index = min(_index, _lastIndex);
+      size_t nextIndex = floor(fixedToFloat(_phaseTime) * (float)_lastIndex );
+      nextIndex = min(nextIndex, _lastIndex);
+      _changed = (nextIndex != _index);
+      _index = nextIndex;
     }
 
     /* if (time > _chrono)
@@ -132,6 +143,8 @@ protected:
   //uint64_t _chrono;   // microseconds
   //uint64_t _interval; // microseconds
   bool _full;
+  bool _rolling;
+  bool _changed;
   float _lastValue;
   fixed_t _phaseTime;
 };
