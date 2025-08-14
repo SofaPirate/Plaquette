@@ -28,9 +28,12 @@ template <size_t COUNT>
 class TimeField : public AbstractField
 {
 public:
+  /**
+   * Constructor.
+   * @param period the period in seconds
+   */
   TimeField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period)
   {
-      //_interval = floor(_period * 1000000.0); // convert to microseconds
       reset();
   }
   virtual ~TimeField() {}
@@ -44,7 +47,7 @@ public:
   {
     // Find index as a floating point value in [0, COUNT).
     proportion = constrain01(proportion);
-    if (proportion >= 1) proportion = 0;
+    if (proportion >= 1) proportion = 0; // wrap
     float indexFloat = proportion * COUNT;
 
     // Find previous index and linear interpolation (lerp) factor.
