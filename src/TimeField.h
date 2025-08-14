@@ -42,12 +42,25 @@ public:
    */
   virtual float read(float proportion) override
   {
-    float indexFloat = constrain01(proportion) * _lastIndex;
-    int index = round(indexFloat);
+    // Find index as a floating point value in [0, COUNT).
+    proportion = constrain01(proportion);
+    if (proportion >= 1) proportion = 0;
+    float indexFloat = proportion * COUNT;
+
+    // Find previous index and linear interpolation (lerp) factor.
+    size_t prevIndex = floor(indexFloat);
+    float lerpFactor = indexFloat - prevIndex;
+
+    // Update previous index if rolling.
     if (_rolling) {
-      index = (COUNT + _index - index) % COUNT;
+      prevIndex = (COUNT + _index - prevIndex) % COUNT;
     }
-    return _buffer[index];
+
+    // Find next index.
+    size_t nextIndex = (prevIndex + 1) % COUNT;
+
+    // Interpolate between prev and next value in buffer.
+    return mapFrom01(lerpFactor, _buffer[prevIndex], _buffer[nextIndex]);
   }
 
   float triggered()
