@@ -45,24 +45,22 @@ void LevelField::rampShift(float rampShift) {
 }
 
 float LevelField::read(float proportion) {
-  // No skew: return square (no ramp) value.
+  // No ramp.
   if (_rampWidth <= 0) {
     return (proportion <= _value ^ _falling ? 0 : 1);
   }
 
-  // Skew: return ramp value.
+  // Ramp.
   else {
     // Compute ramp value.
-    // Note: the following code is equivalent to:
-    // float center = _value + (2*_rampShift - 1) * _rampWidth
-    // float rampValue = mapTo01(proportion, _value - center, _value + center, CONSTRAIN);
+    // Note: the following code is mathematically equivalent to:
+    // float center = _value + (2*_rampShift - 1) * _rampWidth;
+    // float rampValue = mapTo01(proportion, center - _rampWidth / 2, center + _rampWidth / 2, CONSTRAIN);
 #if PQ_OPTIMIZE_FOR_CPU
-    float rampValue = (proportion - _value) * _invRampWidth + _rampShiftFactor;
+    float rampValue = constrain01( (proportion - _value) * _invRampWidth + _rampShiftFactor );
 #else
-    float rampValue = (proportion - _value) / _rampWidth - 2*_rampShift + 1.5f;
+    float rampValue = constrain01( (proportion - _value) / _rampWidth - 2*_rampShift + 1.5f );
 #endif
-    // Clamp in [0, 1].
-    rampValue = constrain01(rampValue);
 
     // Compute easing.
     if (_easing != easeNone)
