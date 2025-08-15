@@ -70,8 +70,8 @@ public:
   float rampShift() const { return _rampShift; }
 
   /// Sets falling or rising (from left to right).
-  void rising() { _falling = false; }
-  void falling() { _falling = true; }
+  void rising(bool rising=true) { _falling = !rising; }
+  void falling(bool falling=true) { _falling = falling; }
 
   bool isRising() const { return !_falling; }
   bool isFalling() const { return _falling; }
