@@ -66,7 +66,8 @@ public:
     return mapFrom01(lerpFactor, _buffer[prevIndex], _buffer[nextIndex]);
   }
 
-  float triggered()
+  /// Returns true if the field has been updated and is ready to be used.
+  bool updated()
   {
     return _full && (!_rolling || _changed);
   }
@@ -122,6 +123,14 @@ protected:
       _index = 0;
     }
     */
+  }
+
+  /// Returns true iff an event of a certain type has been triggered.
+  virtual bool eventTriggered(EventType eventType) {
+    switch (eventType) {
+      case EVENT_UPDATE: return updated();
+      default:           return Unit::eventTriggered(eventType);
+    }
   }
 
   virtual float _read() override
