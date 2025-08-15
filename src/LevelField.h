@@ -49,33 +49,27 @@ public:
   void noEasing() { easing(easeNone); }
 
   /**
-   * Sets left skew ie. how far to the left of current value the ramp starts.
-   * @param leftSkew the left skew in [0, 1]
+   * Sets ramp width as % of field range.
+   * @param rampWidth the ramp width in [0, 1]
    */
-  void leftSkew(float leftSkew) {
-    _leftSkew = constrain01(leftSkew);
-  }
+  void rampWidth(float rampWidth);
 
-  /// Removes left skew.
-  void noLeftSkew() { leftSkew(0); }
+  /// Removes ramp width.
+  void noRampWidth() { rampWidth(0); }
 
   /**
-   * Sets right skew ie. how far to the right of current value the ramp starts.
-   * @param leftSkew the right skew in [0, 1]
+   * Sets ramp shift in [0, 1] (default: 0.5 = center).
+   * @param rampShift the ramp shift in [0, 1]
    */
-  void rightSkew(float rightSkew) {
-    _rightSkew = constrain01(rightSkew);
-  }
+  void rampShift(float rampShift);
 
-  /// Removes right skew.
-  void noRightSkew() { rightSkew(0); }
+  /// Returns ramp width.
+  float rampWidth() const { return _rampWidth; }
 
-  /// Returns left skew.
-  float leftSkew() const { return _leftSkew; }
+  /// Returns ramp shift.
+  float rampShift() const { return _rampShift; }
 
-  /// Returns right skew.
-  float rightSkew() const { return _rightSkew; }
-
+  /// Sets falling or rising (from left to right).
   void rising() { _falling = false; }
   void falling() { _falling = true; }
 
@@ -83,29 +77,33 @@ public:
   bool isFalling() const { return _falling; }
 
 protected:
-  virtual float _read() override
-  {
-    return _value;
-  }
+  virtual float _read() override { return _value; }
 
   virtual float _write(float value) override {
-    _value = constrain01(value);
-    return _value;
+    return (_value = constrain01(value));
   }
 
 protected:
   // The current value.
   float _value;
 
-  // Left and right skew.
-  float _leftSkew;
-  float _rightSkew;
+  // The ramp width as %.
+  float _rampWidth;
+
+  // The ramp shift in [0, 1].
+  float _rampShift;
 
   // Is the value falling or rising (from left to right)?
   bool _falling;
 
   // Optional easing function.
   easing_function _easing;
+
+#if PQ_OPTIMIZE_FOR_CPU
+  // Precompiled values.
+  float _invRampWidth;
+  float _rampShiftFactor;
+#endif
 };
 
 };
