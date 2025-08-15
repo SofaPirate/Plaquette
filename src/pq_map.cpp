@@ -22,6 +22,7 @@
 
 #include "pq_map.h"
 #include "pq_wrap.h"
+#include "pq_constrain.h"
 
 namespace pq {
 
@@ -38,6 +39,21 @@ float _mapConvert(float value, float toLow, float toHigh, uint8_t mode) {
     default:          return value;
   }
 }
+
+float _mapConvert01(float value, uint8_t mode) {
+  // Convert -0.0f to 0.0f
+  if (value == 0.0f)
+    value = 0.0f;
+
+  // Apply mode and return.
+  switch (mode) {
+    case UNCONSTRAIN: return value;
+    case CONSTRAIN:   return constrain01(value);
+    case WRAP:        return wrap01(value);
+    default:          return value;
+  }
+}
+
 
 float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode)
 {
@@ -66,7 +82,7 @@ float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode) {
     value = (value - fromLow) / (fromHigh - fromLow);
 
   // Return and constrain.
-  return _mapConvert(value, 0.0, 1.0, mode);
+  return _mapConvert01(value, mode);
 }
 
 } // namespace pq
