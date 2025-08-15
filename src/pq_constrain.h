@@ -33,10 +33,12 @@ inline float constrain01(float x) {
     union { float f; uint32_t i; } u{ x };
 
     // If > 1.0f, clamp to 1.0f.
-    if (u.i > 0x3F800000u) return 1.0f;
+    if (u.i > 0x3F800000u)
+      return 1.0f;
 
     // If negative, clamp to 0.
-    if (u.i & 0x80000000u) return 0.0f;
+    if (u.i & 0x80000000u) // check the sign bit
+      return 0.0f;
 
     // Otherwise already in [0,1].
     return u.f;
