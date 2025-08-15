@@ -88,11 +88,14 @@ protected:
 
   virtual void step() override
   {
+    // Reset if full.
     if (_full && !_rolling)
       reset();
 
+    // Update phase time.
     if (phaseTimeUpdate(_phaseTime, _period, sampleRate(), true))
     {
+      // Overflow.
       _index = _lastIndex;
       _write(_lastValue);
       _full = true;
@@ -100,6 +103,7 @@ protected:
     }
     else
     {
+      // No overflow.
       size_t nextIndex = floor(fixedToFloat(_phaseTime) * (float)_lastIndex );
       nextIndex = min(nextIndex, _lastIndex);
       _changed = (nextIndex != _index);
