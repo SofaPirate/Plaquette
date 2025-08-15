@@ -26,6 +26,7 @@ namespace pq
 {
 
 Wave::Wave(float period, Engine &engine) : Wave(period, 0.5f, engine) {}
+Wave::Wave(WaveShape shape, Engine &engine) : Wave(shape, 1.0f, engine) {}
 Wave::Wave(float period, float skew, Engine &engine) : Wave(SQUARE, period, skew, engine) {}
 Wave::Wave(WaveShape shape, float period, Engine &engine) : Wave(shape, period, 0.5f, engine) {}
 Wave::Wave(WaveShape shape, float period, float skew, Engine &engine) : AbstractWave(period, skew, engine), _shape(shape) {};

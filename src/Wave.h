@@ -45,6 +45,13 @@ public:
     Wave(float period, Engine &engine = Engine::primary());
 
     /**
+     * Constructor. Defaults to period of 1 second.
+     * @param shape the wave shape
+     * @param engine the engine running this unit
+     */
+    Wave(WaveShape shape, Engine &engine = Engine::primary());
+
+    /**
      * Constructor (creates default square wave).
      * @param period the period of oscillation (in seconds)
      * @param skew the duty-cycle as a value in [0, 1]
@@ -54,6 +61,7 @@ public:
 
     /**
      * Constructor.
+     * @param shape the wave shape
      * @param period the period of oscillation (in seconds)
      * @param engine the engine running this unit
      */
@@ -61,6 +69,7 @@ public:
 
     /**
      * Constructor.
+     * @param shape the wave shape
      * @param period the period of oscillation (in seconds)
      * @param skew the duty-cycle as a value in [0, 1]
      * @param engine the engine running this unit
