@@ -49,7 +49,7 @@ public:
      * @param shape the wave shape
      * @param engine the engine running this unit
      */
-    Wave(WaveShape shape, Engine &engine = Engine::primary());
+    explicit Wave(WaveShape shape, Engine &engine = Engine::primary());
 
     /**
      * Constructor (creates default square wave).
