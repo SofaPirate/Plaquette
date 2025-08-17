@@ -69,23 +69,20 @@ public:
   /// Returns ramp shift.
   float rampShift() const { return _rampShift; }
 
-  /**
-   * Sets the direction of the ramp.
-   * @param rising true for rising (default), false for falling
-   */
-  void rising(bool rising=true) { _falling = !rising; }
-
-  /**
-   * Sets the direction of the ramp.
-   * @param falling true for falling (default), false for rising
-   */
-  void falling(bool falling=true) { _falling = falling; }
-
   /// Returns true if rising.
   bool isRising() const { return !_falling; }
 
-  /// Returns true if falling.
-  bool isFalling() const { return _falling; }
+  /**
+   * Sets the direction of the ramp.
+   * @param rising true for rising, false for falling
+   */
+  void setRising(bool rising) { _falling = !rising; }
+
+  /// Sets the direction of the ramp to rising.
+  void rising() { setRising(true); }
+
+  /// Sets the direction of the ramp to falling.
+  void falling() { setRising(false); }
 
 protected:
   virtual float _read() override { return _value; }

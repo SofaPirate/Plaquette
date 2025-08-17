@@ -113,20 +113,26 @@ public:
   /// Forces current time (in seconds).
   virtual void addTime(float time);
 
-  /// Returns true iff the wave is moving forward in time.
-  virtual bool isForward() const { return _isForward; }
-
   /// Returns true iff the wave is currently running.
   virtual bool isRunning() const { return _isRunning; }
 
+  /// Returns true iff the wave is moving forward in time.
+  virtual bool isForward() const { return _isForward; }
+
+  /**
+   * Sets the direction of oscillation.
+   * @param isForward true iff the wave is moving forward in time
+   */
+  virtual void setForward(bool isForward) { _isForward = isForward; }
+
   /// Sets the direction of oscillation to move forward in time.
-  virtual void forward();
+  virtual void forward() { _isForward = true; }
 
   /// Sets the direction of oscillation to move backward in time.
-  virtual void reverse();
+  virtual void reverse() { _isForward = false; }
 
   /// Toggles the direction of oscillation.
-  virtual void toggleReverse();
+  virtual void toggleReverse() { _isForward = !_isForward; }
 
 protected:
 

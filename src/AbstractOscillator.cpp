@@ -85,18 +85,6 @@ void AbstractOscillator::phaseShift(float phaseShift) {
 
 float AbstractOscillator::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
-void AbstractOscillator::forward() {
-  _isForward = true;
-}
-
-void AbstractOscillator::reverse() {
-  _isForward = false;
-}
-
-void AbstractOscillator::toggleReverse() {
-  _isForward = !_isForward;
-}
-
 void AbstractOscillator::setTime(float time) {
   // Reset phase time to beginning.
   _setPhaseTime( phaseTimeAddTime(_phaseShift, _period, time) );
