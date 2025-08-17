@@ -30,8 +30,7 @@ namespace pq {
  * @deprecated
  * Triangle/sawtooth oscillator.
  */
-[[deprecated("Use Wave(TRIANGLE) instead.")]]
-class TriangleWave : public AbstractWave {
+class [[deprecated("Use Wave(TRIANGLE) instead.")]] TriangleWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -97,7 +96,7 @@ protected:
 };
 
 /// @deprecated
-[[deprecated("Use TriangleWave instead.")]]
+[[deprecated("Use Wave(TRIANGLE) instead.")]]
 typedef TriangleWave TriOsc;
 
 }

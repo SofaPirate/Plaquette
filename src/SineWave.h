@@ -29,8 +29,7 @@ namespace pq {
  * @deprecated
  * Sine oscillator. Phase is expressed as % of period.
  */
-[[deprecated("Use Wave(SINE) instead.")]]
-class SineWave : public AbstractWave {
+class [[deprecated("Use Wave(SINE) instead.")]] SineWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -62,7 +61,7 @@ protected:
 };
 
 /// @deprecated
-[[deprecated("Use SineWave instead.")]]
+[[deprecated("Use Wave(SINE) instead.")]]
 typedef SineWave SineOsc;
 
 }

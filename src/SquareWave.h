@@ -29,8 +29,7 @@ namespace pq {
  * @deprecated
  * Square oscillator. Duty cycle is expressed as % of period.
  */
-[[deprecated("Use Wave(SQUARE) instead.")]]
-class SquareWave : public AbstractWave {
+class [[deprecated("Use Wave(SQUARE) instead.")]] SquareWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -129,7 +128,7 @@ protected:
 };
 
 /// @deprecated
-[[deprecated("Use SquareWave instead.")]]
+[[deprecated("Use Wave(SQUARE) instead.")]]
 typedef SquareWave SquareOsc;
 
 }
