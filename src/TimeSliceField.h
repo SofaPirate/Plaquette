@@ -1,5 +1,5 @@
 /*
- * TimeField.h
+ * TimeSliceField.h
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -25,18 +25,18 @@
 namespace pq {
 
 template <size_t COUNT>
-class TimeField : public AbstractField
+class TimeSliceField : public AbstractField
 {
 public:
   /**
    * Constructor.
    * @param period the period in seconds
    */
-  TimeField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period)
+  TimeSliceField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period)
   {
       reset();
   }
-  virtual ~TimeField() {}
+  virtual ~TimeSliceField() {}
 
   /**
    * Returns value at given proportion in [0, 1].
