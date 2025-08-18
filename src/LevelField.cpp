@@ -21,7 +21,7 @@
 
 namespace pq {
 
-LevelField::LevelField() : _value(0), _rampWidth(-1), _rampShift(-1), _falling(true), _easing(easeNone) {
+LevelField::LevelField() : _value(0), _rampWidth(-1), _rampShift(-1), _center(0), _falling(true), _easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
 }
@@ -45,6 +45,9 @@ void LevelField::rampShift(float rampShift) {
 }
 
 float LevelField::read(float proportion) {
+  // Remap proportion relative to center.
+  proportion = mapTo01(proportion, _center, (proportion < _center ? 0 : 1));
+
   // No ramp.
   if (_rampWidth <= 0) {
     return (proportion <= _value ^ _falling ? 0 : 1);

@@ -57,17 +57,26 @@ public:
   /// Removes ramp width.
   void noRampWidth() { rampWidth(0); }
 
+  /// Returns ramp width.
+  float rampWidth() const { return _rampWidth; }
+
   /**
    * Sets ramp shift in [0, 1] (default: 0.5 = center).
    * @param rampShift the ramp shift in [0, 1]
    */
   void rampShift(float rampShift);
 
-  /// Returns ramp width.
-  float rampWidth() const { return _rampWidth; }
-
   /// Returns ramp shift.
   float rampShift() const { return _rampShift; }
+
+  /**
+   * Sets center of the ramp in [0, 1].
+   * @param center the center in [0, 1]
+   */
+  void center(float center) { _center = constrain01(center); }
+
+  /// Returns center of the ramp.
+  float center() const { return _center; }
 
   /// Returns true if rising.
   bool isRising() const { return !_falling; }
@@ -100,6 +109,9 @@ protected:
 
   // The ramp shift in [0, 1].
   float _rampShift;
+
+  // The center of the ramp in [0, 1].
+  float _center;
 
   // Is the value falling or rising (from left to right)?
   bool _falling;
