@@ -31,27 +31,12 @@ public:
   virtual ~AbstractField() {}
 
 public:
-  /// Returns value.
-  virtual float get() override { return _read(); }
-
-  /**
-   * Pushes value into the unit.
-   * @param value the value sent to the unit
-   * @return the new value of the unit
-   */
-  virtual float put(float value) override { return _write(value); }
-
   /**
    * Returns value at given proportion in [0, 1].
    * @param proportion the proportion of the field to read
    * @return the value
    */
   virtual float read(float proportion) = 0;
-
-protected:
-  virtual float _read() = 0;
-  virtual float _write(float value) = 0;
-
 };
 
 };

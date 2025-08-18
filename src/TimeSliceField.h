@@ -66,6 +66,42 @@ public:
     return mapFrom01(lerpFactor, _buffer[prevIndex], _buffer[nextIndex]);
   }
 
+  /// Returns value.
+  virtual float get() override {
+    return _lastValue;
+  }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value) override {
+    _lastValue = value;
+
+    // Fill missing data.
+    if (_previousIndex < _index)
+    {
+      for (int i = _previousIndex + 1; i <= _index; ++i)
+      {
+        _buffer[i] = value;
+      }
+    }
+    else
+    {
+      _buffer[_index] = value;
+    }
+    _previousIndex = _index;
+
+    return _lastValue;
+  }
+
+  float valueAt(size_t index) {
+    return _buffer[index];
+  }
+
+  size_t count() const { return _count; }
+
   /// Returns true if the field has been updated and is ready to be used.
   bool updated()
   {
@@ -97,7 +133,7 @@ protected:
     {
       // Overflow.
       _index = _lastIndex;
-      _write(_lastValue);
+      put(_lastValue);
       _full = true;
       _changed = true;
     }
@@ -135,31 +171,6 @@ protected:
       case EVENT_UPDATE: return updated();
       default:           return Unit::eventTriggered(eventType);
     }
-  }
-
-  virtual float _read() override
-  {
-    return _full;
-  }
-
-  virtual float _write(float value) override {
-    _lastValue = value;
-
-    // fill missing data
-    if (_previousIndex < _index)
-    {
-      for (int i = _previousIndex + 1; i <= _index; ++i)
-      {
-        _buffer[i] = value;
-      }
-    }
-    else
-    {
-      _buffer[_index] = value;
-    }
-    _previousIndex = _index;
-
-    return _full;
   }
 
 protected:

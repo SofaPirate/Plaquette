@@ -46,6 +46,18 @@ public:
    */
   virtual float read(float proportion) override;
 
+    /// Returns value.
+  virtual float get() override { return _value; }
+
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
+  virtual float put(float value) override {
+    return (_value = constrain01(value));
+  }
+
   /**
    * Sets mode to use.
    * @param mode the mode to set
@@ -104,12 +116,7 @@ public:
   float center() const { return _center; }
 
 protected:
-  virtual float _read() override { return _value; }
-
-  virtual float _write(float value) override {
-    return (_value = constrain01(value));
-  }
-
+  // Internal use: return ramp value based on proportion compared to value.
   float _ramp(float proportion, float value) {
     return
 #if PQ_OPTIMIZE_FOR_CPU
