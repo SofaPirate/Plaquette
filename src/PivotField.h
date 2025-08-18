@@ -1,5 +1,5 @@
 /*
- * LevelField.h
+ * PivotField.h
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -32,12 +32,12 @@ enum LevelFieldMode {
   LEVEL_NOTCH
 };
 
-class LevelField : public AbstractField
+class PivotField : public AbstractField
 {
 public:
   /// Constructor.
-  LevelField();
-  virtual ~LevelField() {}
+  PivotField();
+  virtual ~PivotField() {}
 
   /**
    * Returns value at given proportion in [0, 1].

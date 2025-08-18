@@ -1,5 +1,5 @@
 /*
- * LevelField.cpp
+ * PivotField.cpp
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2018 Thomas O Fredericks :: tof(@)t-o-f(.)info
@@ -17,17 +17,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "LevelField.h"
+#include "PivotField.h"
 
 namespace pq {
 
-LevelField::LevelField() : _mode(LEVEL_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
+PivotField::PivotField() : _mode(LEVEL_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
   bumpWidth(0.25f);
 }
 
-void LevelField::rampWidth(float rampWidth) {
+void PivotField::rampWidth(float rampWidth) {
   if (_rampWidth != rampWidth) {
     _rampWidth = constrain01(rampWidth);
 #if PQ_OPTIMIZE_FOR_CPU
@@ -36,7 +36,7 @@ void LevelField::rampWidth(float rampWidth) {
   }
 }
 
-void LevelField::rampShift(float rampShift) {
+void PivotField::rampShift(float rampShift) {
   if (_rampShift != rampShift) {
     _rampShift = constrain01(rampShift);
 #if PQ_OPTIMIZE_FOR_CPU
@@ -45,7 +45,7 @@ void LevelField::rampShift(float rampShift) {
   }
 }
 
-void LevelField::bumpWidth(float bumpWidth) {
+void PivotField::bumpWidth(float bumpWidth) {
   _halfBumpWidth = constrain01(bumpWidth) / 2;
 }
 
@@ -54,7 +54,7 @@ float remapFromCenter(float proportion, float center) {
 }
 
 
-float LevelField::read(float proportion) {
+float PivotField::read(float proportion) {
   bool bumpMode = (_mode == LEVEL_BUMP || _mode == LEVEL_NOTCH);
   bool falling = (_mode == LEVEL_FALLING || _mode == LEVEL_BUMP);
 
