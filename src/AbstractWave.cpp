@@ -94,7 +94,7 @@ void AbstractWave::skew(float skew) {
   _valueNeedsUpdate = true;
 }
 
-// void AbstractWave::_setIsRunning(bool isRunning)
+// void AbstractWave::_setRunning(bool isRunning)
 // {
 //   _isRunning = isRunning;
 // }

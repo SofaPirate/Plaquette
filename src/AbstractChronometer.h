@@ -73,7 +73,7 @@ protected:
   virtual float _time() const = 0;
 
   // Sets running state.
-  virtual void _setIsRunning(bool isRunning) { _isRunning = isRunning; }
+  virtual void _setRunning(bool isRunning) { _isRunning = isRunning; }
 
   // The starting time (in seconds).
   float _startTime;

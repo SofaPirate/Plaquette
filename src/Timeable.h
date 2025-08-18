@@ -54,7 +54,7 @@ public:
 
 protected:
   // Sets running state.
-  virtual void _setIsRunning(bool isRunning) = 0;
+  virtual void _setRunning(bool isRunning) = 0;
 };
 
 }

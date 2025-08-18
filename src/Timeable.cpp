@@ -21,32 +21,32 @@
  #include "Timeable.h"
 
  namespace pq {
- 
+
  void Timeable::start() {
    // Start.
    setTime(0);
-   _setIsRunning(true);
+   _setRunning(true);
  }
- 
+
  void Timeable::stop() {
    // Stop.
    setTime(0);
-   _setIsRunning(false);
+   _setRunning(false);
  }
- 
+
  void Timeable::pause() {
-   _setIsRunning(false);
+   _setRunning(false);
  }
- 
+
  void Timeable::resume() {
-   _setIsRunning(true);
+   _setRunning(true);
  }
- 
+
  void Timeable::togglePause() {
    if (isRunning())
      pause();
    else
      resume();
  }
- 
+
 }

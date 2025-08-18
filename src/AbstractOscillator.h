@@ -140,7 +140,7 @@ protected:
   virtual void _setPhaseTime(fixed_t phaseTime);
 
   // Sets running state.
-  virtual void _setIsRunning(bool isRunning);
+  virtual void _setRunning(bool isRunning);
 
   // Period (seconds).
   float _period;

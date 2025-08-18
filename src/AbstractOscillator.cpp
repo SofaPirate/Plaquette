@@ -101,7 +101,7 @@ void AbstractOscillator::_setPhaseTime(fixed_t phaseTime) {
   _valueNeedsUpdate = true;
 }
 
-void AbstractOscillator::_setIsRunning(bool isRunning)
+void AbstractOscillator::_setRunning(bool isRunning)
 {
   _isRunning = isRunning;
 }
