@@ -182,9 +182,10 @@ protected:
   float _period;
   //uint64_t _chrono;   // microseconds
   //uint64_t _interval; // microseconds
-  bool _full;
-  bool _rolling;
-  bool _changed;
+  bool _full : 1;
+  bool _rolling : 1;
+  bool _changed : 1;
+  uint8_t _unused : 5;
   float _lastValue;
   fixed_t _phaseTime;
 };
