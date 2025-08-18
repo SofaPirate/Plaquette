@@ -25,6 +25,13 @@
 
 namespace pq {
 
+enum LevelFieldMode {
+  LEVEL_RISING,
+  LEVEL_FALLING,
+  LEVEL_BUMP,
+  LEVEL_NOTCH
+};
+
 class LevelField : public AbstractField
 {
 public:
@@ -39,7 +46,16 @@ public:
    */
   virtual float read(float proportion) override;
 
-    /**
+  /**
+   * Sets mode to use.
+   * @param mode the mode to set
+   */
+  void mode(LevelFieldMode mode) { _mode = mode; }
+
+  /// Returns mode.
+  LevelFieldMode mode() const { return _mode; }
+
+  /**
    * Sets easing function to apply to ramp.
    * @param easing the easing function
    */
@@ -70,6 +86,15 @@ public:
   float rampShift() const { return _rampShift; }
 
   /**
+   * Sets bump width as % of field range. Only applies to LEVEL_BUMP and LEVEL_NOTCH modes.
+   * @param bumpWidth the bump width in [0, 1]
+  */
+  void bumpWidth(float bumpWidth);
+
+  /// Returns bump width.
+  float bumpWidth() const { return 2*_halfBumpWidth; }
+
+  /**
    * Sets center of the ramp in [0, 1].
    * @param center the center in [0, 1]
    */
@@ -78,21 +103,6 @@ public:
   /// Returns center of the ramp.
   float center() const { return _center; }
 
-  /// Returns true if rising.
-  bool isRising() const { return !_falling; }
-
-  /**
-   * Sets the direction of the ramp.
-   * @param rising true for rising, false for falling
-   */
-  void setRising(bool rising) { _falling = !rising; }
-
-  /// Sets the direction of the ramp to rising.
-  void rising() { setRising(true); }
-
-  /// Sets the direction of the ramp to falling.
-  void falling() { setRising(false); }
-
 protected:
   virtual float _read() override { return _value; }
 
@@ -100,7 +110,19 @@ protected:
     return (_value = constrain01(value));
   }
 
+  float _ramp(float proportion, float value) {
+    return
+#if PQ_OPTIMIZE_FOR_CPU
+      constrain01( (proportion - value) * _invRampWidth + _rampShiftFactor );
+#else
+      constrain01( (proportion - value) / _rampWidth - 2*_rampShift + 1.5f );
+#endif
+  }
+
 protected:
+  // The current mode.
+  LevelFieldMode _mode;
+
   // The current value.
   float _value;
 
@@ -110,11 +132,11 @@ protected:
   // The ramp shift in [0, 1].
   float _rampShift;
 
+  // The bump width as %.
+  float _halfBumpWidth;
+
   // The center of the ramp in [0, 1].
   float _center;
-
-  // Is the value falling or rising (from left to right)?
-  bool _falling;
 
   // Optional easing function.
   easing_function _easing;
@@ -126,5 +148,5 @@ protected:
 #endif
 };
 
-};
+}
 #endif

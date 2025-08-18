@@ -21,9 +21,10 @@
 
 namespace pq {
 
-LevelField::LevelField() : _value(0), _rampWidth(-1), _rampShift(-1), _center(0), _falling(true), _easing(easeNone) {
+LevelField::LevelField() : _mode(LEVEL_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
+  bumpWidth(0.25f);
 }
 
 void LevelField::rampWidth(float rampWidth) {
@@ -44,33 +45,53 @@ void LevelField::rampShift(float rampShift) {
   }
 }
 
+void LevelField::bumpWidth(float bumpWidth) {
+  _halfBumpWidth = constrain01(bumpWidth) / 2;
+}
+
+float remapFromCenter(float proportion, float center) {
+  return mapTo01(proportion, center, (proportion < center ? 0 : 1));
+}
+
+
 float LevelField::read(float proportion) {
+  bool bumpMode = (_mode == LEVEL_BUMP || _mode == LEVEL_NOTCH);
+  bool falling = (_mode == LEVEL_FALLING || _mode == LEVEL_BUMP);
+
   // Remap proportion relative to center.
-  proportion = mapTo01(proportion, _center, (proportion < _center ? 0 : 1));
+  proportion = remapFromCenter(proportion, _center);
 
   // No ramp.
   if (_rampWidth <= 0) {
-    return (proportion <= _value ^ _falling ? 0 : 1);
+    if (bumpMode) {
+      float diff = proportion - _value;
+      return (abs(diff) < _halfBumpWidth ^ falling ? 0 : 1);
+    }
+    else
+      return (proportion <= _value ^ falling ? 0 : 1);
   }
 
   // Ramp.
   else {
-    // Compute ramp value.
-    // Note: the following code is mathematically equivalent to:
-    // float center = _value + (2*_rampShift - 1) * _rampWidth;
-    // float rampValue = mapTo01(proportion, center - _rampWidth / 2, center + _rampWidth / 2, CONSTRAIN);
-#if PQ_OPTIMIZE_FOR_CPU
-    float rampValue = constrain01( (proportion - _value) * _invRampWidth + _rampShiftFactor );
-#else
-    float rampValue = constrain01( (proportion - _value) / _rampWidth - 2*_rampShift + 1.5f );
-#endif
+    float rampValue;
+    if (bumpMode) {
+      proportion = remapFromCenter(proportion, _value);
+      rampValue = _ramp(proportion, _halfBumpWidth);
+    }
+    else {
+      // Compute ramp value.
+      // Note: the following code is mathematically equivalent to:
+      // float center = _value + (2*_rampShift - 1) * _rampWidth;
+      // float rampValue = mapTo01(proportion, center - _rampWidth / 2, center + _rampWidth / 2, CONSTRAIN);
+      rampValue = _ramp(proportion, _value);
+    }
 
     // Compute easing.
     if (_easing != easeNone)
       rampValue = _easing(rampValue);
 
     // Invert.
-    if (_falling)
+    if (falling)
       rampValue = 1 - rampValue;
 
     return rampValue;
