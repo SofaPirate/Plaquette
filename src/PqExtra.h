@@ -44,7 +44,7 @@
 
 // Fields.
 #include "PivotField.h"
-#include "TimeField.h"
+#include "TimeSliceField.h"
 
 // Generators.
 #include "SineWave.h"
