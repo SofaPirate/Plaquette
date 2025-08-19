@@ -116,8 +116,9 @@ public:
     _changed = false;
   }
 
-  void roll()     { _rolling = true; }
-  void noRoll()   { _rolling = false; }
+  void setRolling(bool rolling) { _rolling = rolling; }
+  void rolling() { setRolling(true); }
+  void noRolling() { setRolling(false); }
   bool isRolling() const { return _rolling; }
 
 protected:
