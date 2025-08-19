@@ -17,19 +17,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef LEVEL_FIELD_H_
-#define LEVEL_FIELD_H_
+#ifndef PIVOT_FIELD_H_
+#define PIVOT_FIELD_H_
 
 #include "AbstractField.h"
 #include "pq_easing.h"
 
 namespace pq {
 
-enum LevelFieldMode {
-  LEVEL_RISING,
-  LEVEL_FALLING,
-  LEVEL_BUMP,
-  LEVEL_NOTCH
+enum PivotFieldMode {
+  PIVOT_RISING,
+  PIVOT_FALLING,
+  PIVOT_BUMP,
+  PIVOT_NOTCH
 };
 
 class PivotField : public AbstractField
@@ -62,10 +62,10 @@ public:
    * Sets mode to use.
    * @param mode the mode to set
    */
-  void mode(LevelFieldMode mode) { _mode = mode; }
+  void mode(PivotFieldMode mode) { _mode = mode; }
 
   /// Returns mode.
-  LevelFieldMode mode() const { return _mode; }
+  PivotFieldMode mode() const { return _mode; }
 
   /**
    * Sets easing function to apply to ramp.
@@ -98,7 +98,7 @@ public:
   float rampShift() const { return _rampShift; }
 
   /**
-   * Sets bump width as % of field range. Only applies to LEVEL_BUMP and LEVEL_NOTCH modes.
+   * Sets bump width as % of field range. Only applies to PIVOT_BUMP and PIVOT_NOTCH modes.
    * @param bumpWidth the bump width in [0, 1]
   */
   void bumpWidth(float bumpWidth);
@@ -128,7 +128,7 @@ protected:
 
 protected:
   // The current mode.
-  LevelFieldMode _mode;
+  PivotFieldMode _mode;
 
   // The current value.
   float _value;
