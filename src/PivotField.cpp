@@ -21,7 +21,7 @@
 
 namespace pq {
 
-PivotField::PivotField() : _mode(LEVEL_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
+PivotField::PivotField() : _mode(PIVOT_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
   bumpWidth(0.25f);
@@ -55,8 +55,8 @@ float remapFromCenter(float proportion, float center) {
 
 
 float PivotField::read(float proportion) {
-  bool bumpMode = (_mode == LEVEL_BUMP || _mode == LEVEL_NOTCH);
-  bool falling = (_mode == LEVEL_FALLING || _mode == LEVEL_BUMP);
+  bool bumpMode = (_mode == PIVOT_BUMP || _mode == PIVOT_NOTCH);
+  bool falling = (_mode == PIVOT_FALLING || _mode == PIVOT_BUMP);
 
   // Remap proportion relative to center.
   proportion = remapFromCenter(proportion, _center);
