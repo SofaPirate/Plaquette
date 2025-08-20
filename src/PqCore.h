@@ -27,6 +27,8 @@
 #include <WProgram.h>
 #endif
 
+#include "pq_math.h"
+
 #include <stdint.h>
 #include <float.h>
 

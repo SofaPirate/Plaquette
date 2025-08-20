@@ -89,6 +89,47 @@ test(analog) {
   assertEqual(aOut3, 1.0f);
 }
 
+test(math) {
+  // --- min / max ---
+  assertEqual(min(3, 5), 3);
+  assertEqual(max(3, 5), 5);
+  assertEqual(min(2.5f, 1.5f), 1.5f);
+  assertEqual(max(2.5, 3.1), 3.1);
+
+  assertEqual(min(3, 2.5), 2.5); // mixed types
+  assertEqual(max(3, 2.5f), 3.0f); // mixed types
+
+  // --- abs ---
+  assertEqual(abs(-5), 5);
+  assertEqual(abs(5), 5);
+  assertEqual(abs(-3.2f), 3.2f);
+
+  // --- constrain ---
+  assertEqual(constrain(5, 0, 10), 5);
+  assertEqual(constrain(-3, 0, 10), 0);
+  assertEqual(constrain(15, 0, 10), 10);
+  assertEqual(constrain(3.2f, 1.0f, 3.0f), 3.0f);
+  assertEqual(constrain(2.5, 0.0, 3.0), 2.5);
+
+  assertEqual(constrain(5, 0.0, 10.0f), 5.0); // mixed types
+  assertEqual(constrain(2.5, 3.0, 0.0), 3.0); // strange but consistent with Arduino's version
+
+  // --- round ---
+  assertEqual(round(2.3f), 2L);
+  assertEqual(round(2.7f), 3L);
+  assertEqual(round(-2.3f), -2L);
+  assertEqual(round(-2.7f), -3L);
+
+  // --- radians / degrees ---
+  assertEqual(radians(180.0), PI); // crude check
+  assertEqual(degrees(PI), 180.0);
+
+  // --- sq ---
+  assertEqual(sq(3), 9);
+  assertEqual(sq(-4), 16);
+  assertEqual(sq(1.5), 2.25);
+}
+
 void setup() {
   Plaquette.begin();
   Plaquette.sampleRate(10000);
