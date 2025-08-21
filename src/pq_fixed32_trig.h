@@ -1,5 +1,5 @@
 /*
- * pq_fixed_trig.h
+ * pq_fixed32_trig.h
  *
  * Fixed-point trigonometric functions.
  *
@@ -29,7 +29,7 @@
 #define PQ_q0_32u_tRIG_H_
 
 #include <stdint.h>
-#include "pq_fixed_math.h"
+#include "pq_fixed32_math.h"
 
 namespace pq {
 

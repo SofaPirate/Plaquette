@@ -50,7 +50,7 @@ void AbstractWave::begin() {
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
-    _overflowed = phaseTimeUpdateFixed(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward);
+    _overflowed = phase32UpdateFixed32(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixed32Max(), _isForward);
   else
     _overflowed = false;
 
@@ -66,31 +66,31 @@ void AbstractWave::step() {
   //   _value = 0;
   //   _startTime = seconds();
   // }
-  // else if (progress >= _skew) _value = (1 - progress) / (1 - _skew);
-  // else                         _value = progress / _skew;
+  // else if (progress >= _skew32) _value = (1 - progress) / (1 - _skew32);
+  // else                         _value = progress / _skew32;
   //
   // // Amplify.
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 float AbstractWave::_getAmplified(q0_32u_t t) {
-  return fixedToFloat( amplifyFixed(_getFixed(t), _amplitude) );
+  return fixed32ToFloat( amplifyFixed32(_getFixed32(t), _amplitude) );
 }
 
 float AbstractWave::shiftBy(float phaseShift) {
-  return _getAmplified(phaseTimeAddPhase(_phase32, phaseShift));
+  return _getAmplified(phase32AddPhase(_phase32, phaseShift));
 }
 
 float AbstractWave::shiftByTime(float timeShift) {
-  return _getAmplified(phaseTimeAddPhase(_phase32, frequencyAndTimeToPhase(frequency(), timeShift)));
+  return _getAmplified(phase32AddPhase(_phase32, frequencyAndTimeToPhase(frequency(), timeShift)));
 }
 
 float AbstractWave::atPhase(float phase) {
-  return _getAmplified(floatToPhaseTime(phase));
+  return _getAmplified(floatToPhase32(phase));
 }
 
 void AbstractWave::skew(float skew) {
-  _skew = floatTofixed(skew);
+  _skew32 = floatToFixed32(skew);
   _valueNeedsUpdate = true;
 }
 

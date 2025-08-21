@@ -130,7 +130,7 @@ protected:
       reset();
 
     // Update phase time.
-    if (phaseTimeUpdate(_phase32, _period, sampleRate(), true))
+    if (phase32Update(_phase32, _period, sampleRate(), true))
     {
       // Overflow.
       _index = _lastIndex;
@@ -141,7 +141,7 @@ protected:
     else
     {
       // No overflow.
-      size_t nextIndex = floor(fixedToFloat(_phase32) * (float)_lastIndex );
+      size_t nextIndex = floor(fixed32ToFloat(_phase32) * (float)_lastIndex );
       nextIndex = min(nextIndex, _lastIndex);
       _changed = (nextIndex != _index);
       _index = nextIndex;

@@ -23,7 +23,7 @@
 #define PQ_FAST_MATH_H_
 
 #include "pq_globals.h"
-#include "pq_fixed_trig.h"
+#include "pq_fixed32_trig.h"
 #include "pq_wrap.h"
 
 #include <stdint.h>

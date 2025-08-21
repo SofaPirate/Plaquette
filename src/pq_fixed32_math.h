@@ -1,10 +1,10 @@
 /*
- * pq_fixed_math.h
+ * pq_fixed32_math.h
  *
- * Fixed-point mathfunctions.
+ * Fixed32-point mathfunctions.
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
- * 
+ *
  * Code imported from Audio Library for Teensy 3.X
  * Copyright (c) 2014, Paul Stoffregen, paul@pjrc.com
  *

@@ -80,7 +80,7 @@ public:
    virtual void amplitude(float amplitude);
 
    /// Returns the amplitude of the wave.
-   virtual float amplitude() const { return fixedToFloat(_amplitude); }
+   virtual float amplitude() const { return fixed32ToFloat(_amplitude); }
 
    /**
     * Sets the phase (ie. the offset, in % of period).
@@ -89,7 +89,7 @@ public:
    virtual void phase(float phase);
 
    /// Returns the phase (in % of period).
-   virtual float phase() const { return pq::fixedToFloat(_phase32); }
+   virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
 
    /**
     * Sets the phase (ie. the offset, in % of period).
@@ -137,7 +137,7 @@ public:
 protected:
 
   // Sets phase time.
-  virtual void _setPhaseTime(q0_32u_t phase32);
+  virtual void _setPhase32(q0_32u_t phase32);
 
   // Sets running state.
   virtual void _setRunning(bool isRunning);
@@ -158,7 +158,7 @@ protected:
   uint32_t _amplitude;
 
   // Width of the signal.
-  q0_32u_t _skew;
+  q0_32u_t _skew32;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;

@@ -147,7 +147,7 @@ public:
   uint32_t deltaTimeMicroSeconds() const { return _deltaTimeMicroSeconds; }
 
   /// Returns time between steps, expressed in fixed point propotion.
-  float deltaTimeSecondsTimesFixedMax() const { return _deltaTimeSecondsTimesFixedMax; }
+  float deltaTimeSecondsTimesFixed32Max() const { return _deltaTimeSecondsTimesFixed32Max; }
 
   /// Returns the main instance of Plaquette.
   static Engine& primary();
@@ -194,7 +194,7 @@ private:
   uint32_t _deltaTimeMicroSeconds;
 
   // Number of seconds between steps time FIXED_MAX.
-  float _deltaTimeSecondsTimesFixedMax;
+  float _deltaTimeSecondsTimesFixed32Max;
 
   // Number of steps accomplished.
   unsigned long _nSteps;
@@ -678,7 +678,7 @@ void Engine::postStep() {
   }
 
   uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
-  _deltaTimeSecondsTimesFixedMax = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
+  _deltaTimeSecondsTimesFixed32Max = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
 }
 
 void Engine::begin(unsigned long baudrate) {

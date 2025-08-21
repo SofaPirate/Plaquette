@@ -91,7 +91,7 @@ public:
   virtual void skew(float skew);
 
   /// Returns the skew of the signal.
-  virtual float skew() const { return fixedToFloat(_skew); }
+  virtual float skew() const { return fixed32ToFloat(_skew32); }
 
   /**
    * @deprecated
@@ -111,14 +111,14 @@ public:
   virtual void begin();
   virtual void step();
 
-  // Returns value in [0, 1] as fixed-point value (to be defined by subclasses).
-  virtual q0_32u_t _getFixed(q0_32u_t t) = 0;
+  // Returns value in [0, 1] as fixed32-point value (to be defined by subclasses).
+  virtual q0_32u_t _getFixed32(q0_32u_t t) = 0;
 
   // Returns amplified version of _get(t).
   virtual float _getAmplified(q0_32u_t t);
 
   // Skew of the signal.
-  q0_32u_t _skew;
+  q0_32u_t _skew32;
 };
 
 }

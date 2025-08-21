@@ -22,18 +22,18 @@
 namespace pq {
 
 /// Returns phase time value with offset.
-q0_32u_t phaseTimeAddPhase(q0_32u_t phase32, float phase) {
-  return phase32 + floatToPhaseTime(phase);
+q0_32u_t phase32AddPhase(q0_32u_t phase32, float phase) {
+  return phase32 + floatToPhase32(phase);
 }
 
 /// Returns phase time value with offset.
-q0_32u_t phaseTimeAddTime(q0_32u_t phase32, float period, float time) {
-  return phaseTimeAddPhase(phase32, timeToPhase(period, time));
+q0_32u_t phase32AddTime(q0_32u_t phase32, float period, float time) {
+  return phase32AddPhase(phase32, timeToPhase(period, time));
 }
 
-bool phaseTimeUpdateFixed(q0_32u_t& phase32, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward) {
+bool phase32UpdateFixed32(q0_32u_t& phase32, float frequency, float deltaTimeSecondsTimesFixed32Max, bool forward) {
   // Premultiply.
-  frequency *= deltaTimeSecondsTimesFixedMax;
+  frequency *= deltaTimeSecondsTimesFixed32Max;
 
   // Compute increment/decrement.
   q0_32u_t increment = round(frequency);
@@ -59,7 +59,7 @@ bool phaseTimeUpdateFixed(q0_32u_t& phase32, float frequency, float deltaTimeSec
 
 
 /// Computes new phase time for oscillators and returns when phase time overflows or underflows.
-bool phaseTimeUpdate(q0_32u_t& phase32, float period, float sampleRate, bool forward) {
+bool phase32Update(q0_32u_t& phase32, float period, float sampleRate, bool forward) {
   // Premultiply period.
   period *= sampleRate;
 
@@ -70,7 +70,7 @@ bool phaseTimeUpdate(q0_32u_t& phase32, float period, float sampleRate, bool for
   // Forward case.
   else if (forward) {
     // Increment to add to phase32.
-    q0_32u_t increment = floatToPhaseTime(1.0f / period);
+    q0_32u_t increment = floatToPhase32(1.0f / period);
     // Check if increment will overflow.
     bool overflow = (increment > FIXED_MAX - phase32);
     // Add increment (will overflow when reaching max).
@@ -81,7 +81,7 @@ bool phaseTimeUpdate(q0_32u_t& phase32, float period, float sampleRate, bool for
   // Backwards case.
   else {
     // Decrement to subtract from phase32.
-    q0_32u_t decrement = floatToPhaseTime(1.0f / period);
+    q0_32u_t decrement = floatToPhase32(1.0f / period);
     // Check if increment will underflow.
     bool underflow = (decrement > phase32);
     // Add increment (will overflow when reaching max).

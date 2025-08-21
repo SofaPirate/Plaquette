@@ -68,17 +68,17 @@ void AbstractOscillator::bpm(float bpm) {
 }
 
 void AbstractOscillator::amplitude(float amplitude)  {
-  _amplitude = floatTofixed(amplitude);
+  _amplitude = floatToFixed32(amplitude);
 }
 
 void AbstractOscillator::phase(float phase) {
-  _setPhaseTime(floatToPhaseTime(phase));
+  _setPhase32(floatToPhase32(phase));
 }
 
 void AbstractOscillator::phaseShift(float phaseShift) {
   if (_phaseShift != phaseShift) {
     // Need to readjust phase time.
-    _setPhaseTime(phaseTimeAddPhase(_phase32, _phaseShift - phaseShift));
+    _setPhase32(phase32AddPhase(_phase32, _phaseShift - phaseShift));
     _phaseShift = phaseShift;
   }
 }
@@ -87,16 +87,16 @@ float AbstractOscillator::timeToPhase(float time) const { return pq::timeToPhase
 
 void AbstractOscillator::setTime(float time) {
   // Reset phase time to beginning.
-  _setPhaseTime( phaseTimeAddTime(_phaseShift, _period, time) );
+  _setPhase32( phase32AddTime(_phaseShift, _period, time) );
 }
 
 void AbstractOscillator::addTime(float time) {
   // Perform calculation iff time needs to be added.
   if (time > 0)
-    _setPhaseTime( phaseTimeAddTime(_phase32, _period, time) );
+    _setPhase32( phase32AddTime(_phase32, _period, time) );
 }
 
-void AbstractOscillator::_setPhaseTime(q0_32u_t phase32) {
+void AbstractOscillator::_setPhase32(q0_32u_t phase32) {
   _phase32 = phase32;
   _valueNeedsUpdate = true;
 }
