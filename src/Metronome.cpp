@@ -33,10 +33,8 @@ void Metronome::begin() {
 
 void Metronome::step() {
   // Adjust phase time.
-  if (isRunning())
-    _onValue = phaseTimeUpdateFixed(_phaseTime, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward);
-  else
-    _onValue = false;
+  _onValue = (isRunning() &&
+              phaseTimeUpdateFixed(_phaseTime, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward));
 }
 
 void Metronome::onBang(EventCallback callback) {
