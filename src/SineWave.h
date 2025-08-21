@@ -56,8 +56,8 @@ public:
 
 protected:
   // Returns value in [0, 1].
-//  virtual float _get(fixed_t t);
-  virtual fixed_t _getFixed(fixed_t t);
+//  virtual float _get(q0_32u_t t);
+  virtual q0_32u_t _getFixed(q0_32u_t t);
 };
 
 /// @deprecated

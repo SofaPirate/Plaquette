@@ -26,41 +26,41 @@
 
 namespace pq {
 
-inline fixed_t squareWave(fixed_t t, fixed_t skew)
+inline q0_32u_t squareWave(q0_32u_t t, q0_32u_t skew)
 {
   return (t <= skew) ? FIXED_MAX : 0;
 }
 
-inline fixed_t triangleWave(fixed_t t, fixed_t skew)
+inline q0_32u_t triangleWave(q0_32u_t t, q0_32u_t skew)
 {
   return (t <= skew) ?
             fixedDivide(t, skew) :
             fixedDivide(FIXED_MAX - t, FIXED_MAX - skew);
 }
 
-inline fixed_t sineWave(fixed_t t, fixed_t skew)
+inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
 {
 #if defined(PQ_ARCH_32BITS)
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
-  fixed_t phaseTime;
+  q0_32u_t phase32;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
   if (skew == HALF_FIXED_MAX)
   {
-      phaseTime = t;
+      phase32 = t;
   }
   // Rising part of sine wave.
   else if (t < skew)
   {
-      phaseTime = fixedDivide(t, skew) / 2;
+      phase32 = fixedDivide(t, skew) / 2;
   }
   // Falling part of sine wave.
   else
   {
-      phaseTime = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
+      phase32 = fixedDivide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
   }
 
-  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
+  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phase32));
 #else
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint16_t phaseTime16;

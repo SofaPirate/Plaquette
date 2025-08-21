@@ -22,44 +22,44 @@
 namespace pq {
 
 /// Returns phase time value with offset.
-fixed_t phaseTimeAddPhase(fixed_t phaseTime, float phase) {
-  return phaseTime + floatToPhaseTime(phase);
+q0_32u_t phaseTimeAddPhase(q0_32u_t phase32, float phase) {
+  return phase32 + floatToPhaseTime(phase);
 }
 
 /// Returns phase time value with offset.
-fixed_t phaseTimeAddTime(fixed_t phaseTime, float period, float time) {
-  return phaseTimeAddPhase(phaseTime, timeToPhase(period, time));
+q0_32u_t phaseTimeAddTime(q0_32u_t phase32, float period, float time) {
+  return phaseTimeAddPhase(phase32, timeToPhase(period, time));
 }
 
-bool phaseTimeUpdateFixed(fixed_t& phaseTime, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward) {
+bool phaseTimeUpdateFixed(q0_32u_t& phase32, float frequency, float deltaTimeSecondsTimesFixedMax, bool forward) {
   // Premultiply.
   frequency *= deltaTimeSecondsTimesFixedMax;
 
   // Compute increment/decrement.
-  fixed_t increment = round(frequency);
+  q0_32u_t increment = round(frequency);
 
   // Forward case.
   if (forward) {
     // Check if increment will overflow.
-    bool overflow = (increment > FIXED_MAX - phaseTime);
+    bool overflow = (increment > FIXED_MAX - phase32);
     // Add increment (will overflow when reaching max).
-    phaseTime += increment;
+    phase32 += increment;
     return overflow;
   }
 
   // Backwards case.
   else {
     // Check if increment will underflow.
-    bool underflow = (increment > phaseTime);
+    bool underflow = (increment > phase32);
     // Add increment (will overflow when reaching max).
-    phaseTime -= increment;
+    phase32 -= increment;
     return underflow;
   }
 }
 
 
 /// Computes new phase time for oscillators and returns when phase time overflows or underflows.
-bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool forward) {
+bool phaseTimeUpdate(q0_32u_t& phase32, float period, float sampleRate, bool forward) {
   // Premultiply period.
   period *= sampleRate;
 
@@ -69,23 +69,23 @@ bool phaseTimeUpdate(fixed_t& phaseTime, float period, float sampleRate, bool fo
 
   // Forward case.
   else if (forward) {
-    // Increment to add to phaseTime.
-    fixed_t increment = floatToPhaseTime(1.0f / period);
+    // Increment to add to phase32.
+    q0_32u_t increment = floatToPhaseTime(1.0f / period);
     // Check if increment will overflow.
-    bool overflow = (increment > FIXED_MAX - phaseTime);
+    bool overflow = (increment > FIXED_MAX - phase32);
     // Add increment (will overflow when reaching max).
-    phaseTime += increment;
+    phase32 += increment;
     return overflow;
   }
 
   // Backwards case.
   else {
-    // Decrement to subtract from phaseTime.
-    fixed_t decrement = floatToPhaseTime(1.0f / period);
+    // Decrement to subtract from phase32.
+    q0_32u_t decrement = floatToPhaseTime(1.0f / period);
     // Check if increment will underflow.
-    bool underflow = (decrement > phaseTime);
+    bool underflow = (decrement > phase32);
     // Add increment (will overflow when reaching max).
-    phaseTime -= decrement;
+    phase32 -= decrement;
     return underflow;
   }
 }

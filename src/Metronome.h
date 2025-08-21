@@ -49,7 +49,7 @@ public:
   virtual bool isOn() { return _onValue; }
 
   /// The progress of the timer process (in %).
-  virtual float progress() const { return fixedToFloat(_phaseTime); }
+  virtual float progress() const { return fixedToFloat(_phase32); }
 
   /// Registers event callback on metronome tick ("bang") event.
   virtual void onBang(EventCallback callback);
@@ -73,7 +73,7 @@ protected:
   float _phaseShift;
 
   // Internal use.
-  fixed_t _phaseTime;
+  q0_32u_t _phase32;
 
   // Value.
   bool _onValue : 1;

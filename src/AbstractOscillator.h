@@ -89,7 +89,7 @@ public:
    virtual void phase(float phase);
 
    /// Returns the phase (in % of period).
-   virtual float phase() const { return pq::fixedToFloat(_phaseTime); }
+   virtual float phase() const { return pq::fixedToFloat(_phase32); }
 
    /**
     * Sets the phase (ie. the offset, in % of period).
@@ -137,7 +137,7 @@ public:
 protected:
 
   // Sets phase time.
-  virtual void _setPhaseTime(fixed_t phaseTime);
+  virtual void _setPhaseTime(q0_32u_t phase32);
 
   // Sets running state.
   virtual void _setRunning(bool isRunning);
@@ -158,10 +158,10 @@ protected:
   uint32_t _amplitude;
 
   // Width of the signal.
-  fixed_t _skew;
+  q0_32u_t _skew;
 
   // Internal use: holds current phase time.
-  fixed_t _phaseTime;
+  q0_32u_t _phase32;
 
   // Internal use : overflow indicator
   bool _overflowed : 1;

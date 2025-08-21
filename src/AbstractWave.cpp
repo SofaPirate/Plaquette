@@ -36,7 +36,7 @@ float AbstractWave::get() {
   // Prevents unnecessary computations in the step() function by updating the value on a need basis.
   if (_valueNeedsUpdate) {
       // Compute next value.
-    _value = _getAmplified(_phaseTime);
+    _value = _getAmplified(_phase32);
     _valueNeedsUpdate = false; // reset flag
   }
 
@@ -50,7 +50,7 @@ void AbstractWave::begin() {
 void AbstractWave::step() {
   // Update phase time.
   if (isRunning())
-    _overflowed = phaseTimeUpdateFixed(_phaseTime, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward);
+    _overflowed = phaseTimeUpdateFixed(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixedMax(), _isForward);
   else
     _overflowed = false;
 
@@ -73,16 +73,16 @@ void AbstractWave::step() {
   // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
-float AbstractWave::_getAmplified(fixed_t t) {
+float AbstractWave::_getAmplified(q0_32u_t t) {
   return fixedToFloat( amplifyFixed(_getFixed(t), _amplitude) );
 }
 
 float AbstractWave::shiftBy(float phaseShift) {
-  return _getAmplified(phaseTimeAddPhase(_phaseTime, phaseShift));
+  return _getAmplified(phaseTimeAddPhase(_phase32, phaseShift));
 }
 
 float AbstractWave::shiftByTime(float timeShift) {
-  return _getAmplified(phaseTimeAddPhase(_phaseTime, frequencyAndTimeToPhase(frequency(), timeShift)));
+  return _getAmplified(phaseTimeAddPhase(_phase32, frequencyAndTimeToPhase(frequency(), timeShift)));
 }
 
 float AbstractWave::atPhase(float phase) {

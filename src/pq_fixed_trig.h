@@ -4,10 +4,10 @@
  * Fixed-point trigonometric functions.
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
- * 
+ *
  * sin32() and cos32() functions adapted from Teensy Audio library
  * (c) 2014 Paul Stoffregen     :: paul(@)pjrc.com
- * 
+ *
  * sin16() and cos16() functions adapted from FastLED library
  * https://fastled.io/
  *
@@ -25,15 +25,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PQ_FIXED_TRIG_H_
-#define PQ_FIXED_TRIG_H_
+#ifndef PQ_q0_32u_tRIG_H_
+#define PQ_q0_32u_tRIG_H_
 
 #include <stdint.h>
 #include "pq_fixed_math.h"
 
 namespace pq {
 
-/** 
+/**
  * Fixed-point sin function with 32 bits precision.
  * Author: Paul Stoffregen (from Teensy Audio library)
  * Range: [ -2147483532, +2147483532 ]
@@ -134,7 +134,7 @@ static inline int16_t sin16(uint16_t theta)
     m     = data[ sectionX4 + 2];
 
     uint8_t secoffset8 = (uint8_t)(offset) / 2;
-    
+
     uint16_t mx = m * secoffset8;
 
     int16_t  y  = mx + u.b;

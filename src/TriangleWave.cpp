@@ -26,15 +26,15 @@ TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine), _riseEasing(e
 TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 TriangleWave::TriangleWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 
-fixed_t TriangleWave::_getFixed(fixed_t t) {
+q0_32u_t TriangleWave::_getFixed(q0_32u_t t) {
   return (t <= _skew) ?
         fixedDivide(t, _skew) :
         fixedDivide(FIXED_MAX - t, FIXED_MAX - _skew);
 }
 
-float TriangleWave::_getAmplified(fixed_t t) {
+float TriangleWave::_getAmplified(q0_32u_t t) {
   if (t <= _skew) {
-    fixed_t fixedValue = fixedDivide(t, _skew);
+    q0_32u_t fixedValue = fixedDivide(t, _skew);
     if (_riseEasing == easeNone) {
       return fixedToFloat( amplifyFixed(fixedValue, _amplitude) );
     }
@@ -52,7 +52,7 @@ float TriangleWave::_getAmplified(fixed_t t) {
   }
 }
 
-// float TriangleWave::_get(fixed_t t) {
+// float TriangleWave::_get(q0_32u_t t) {
 //   // Compute triangle depending on raising or falling step.
 //   return (t <= _skew) ?
 //            t / (float(_skew) + FLT_MIN) : // + FLT_MIN to avoid 0/0

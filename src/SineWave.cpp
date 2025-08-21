@@ -31,31 +31,31 @@ SineWave::SineWave(float period, Engine& engine) : AbstractWave(period, engine) 
 SineWave::SineWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine) {}
 
 // Improved version of SineWave::_get with optimizations and typo fixes.
-fixed_t SineWave::_getFixed(fixed_t t) {
+q0_32u_t SineWave::_getFixed(q0_32u_t t) {
 #if defined(PQ_ARCH_32BITS)
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
-  uint32_t phaseTime;
+  uint32_t phase32;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
   if (_skew == HALF_FIXED_MAX) {
-    phaseTime = t;
+    phase32 = t;
   }
   // Rising part of sine wave.
   else if (t < _skew) {
-    phaseTime = fixedDivide(t, _skew) / 2;
+    phase32 = fixedDivide(t, _skew) / 2;
   }
   // Falling part of sine wave.
   else {
-    phaseTime = fixedDivide(t - _skew, FIXED_MAX - _skew) / 2 + HALF_FIXED_MAX;
+    phase32 = fixedDivide(t - _skew, FIXED_MAX - _skew) / 2 + HALF_FIXED_MAX;
   }
   // Serial.print(t); Serial.print(" ");
-  // Serial.println(phaseTime);
+  // Serial.println(phase32);
   // // Peak of sine wave.
   // else { // t == _skew
-  //   phaseTime = FIXED_MAX / 2;
+  //   phase32 = FIXED_MAX / 2;
   // }
 
-  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phaseTime));
+  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phase32));
 #else
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint16_t phaseTime16;

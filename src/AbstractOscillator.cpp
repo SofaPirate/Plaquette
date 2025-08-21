@@ -78,7 +78,7 @@ void AbstractOscillator::phase(float phase) {
 void AbstractOscillator::phaseShift(float phaseShift) {
   if (_phaseShift != phaseShift) {
     // Need to readjust phase time.
-    _setPhaseTime(phaseTimeAddPhase(_phaseTime, _phaseShift - phaseShift));
+    _setPhaseTime(phaseTimeAddPhase(_phase32, _phaseShift - phaseShift));
     _phaseShift = phaseShift;
   }
 }
@@ -93,11 +93,11 @@ void AbstractOscillator::setTime(float time) {
 void AbstractOscillator::addTime(float time) {
   // Perform calculation iff time needs to be added.
   if (time > 0)
-    _setPhaseTime( phaseTimeAddTime(_phaseTime, _period, time) );
+    _setPhaseTime( phaseTimeAddTime(_phase32, _period, time) );
 }
 
-void AbstractOscillator::_setPhaseTime(fixed_t phaseTime) {
-  _phaseTime = phaseTime;
+void AbstractOscillator::_setPhaseTime(q0_32u_t phase32) {
+  _phase32 = phase32;
   _valueNeedsUpdate = true;
 }
 

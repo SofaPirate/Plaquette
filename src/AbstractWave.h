@@ -112,13 +112,13 @@ public:
   virtual void step();
 
   // Returns value in [0, 1] as fixed-point value (to be defined by subclasses).
-  virtual fixed_t _getFixed(fixed_t t) = 0;
+  virtual q0_32u_t _getFixed(q0_32u_t t) = 0;
 
   // Returns amplified version of _get(t).
-  virtual float _getAmplified(fixed_t t);
+  virtual float _getAmplified(q0_32u_t t);
 
   // Skew of the signal.
-  fixed_t _skew;
+  q0_32u_t _skew;
 };
 
 }
