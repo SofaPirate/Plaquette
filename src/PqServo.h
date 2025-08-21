@@ -44,6 +44,12 @@ public:
   /// Returns the pin this servomotor is attached to.
   uint8_t pin() const { return _pin; }
 
+  /// Activates the servomotor (default).
+  virtual void activate();
+
+  /// Deactivates the servomotor.
+  virtual void deactivate();
+
 protected:
   virtual void begin();
 
