@@ -186,6 +186,10 @@ void Engine::samplePeriod(float samplePeriod) {
     autoSampleRate();
 }
 
+bool Engine::randomTrigger(float timeWindow) {
+  return pq::randomTrigger(timeWindow, samplePeriod());
+}
+
 unsigned long nSteps() { return Plaquette.nSteps(); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }

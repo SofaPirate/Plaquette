@@ -35,9 +35,10 @@
 #include "HybridArrayList.h"
 #include "PqEvents.h"
 #include "pq_globals.h"
-#include "pq_time.h"
 #include "pq_constrain.h"
 #include "pq_map.h"
+#include "pq_random.h"
+#include "pq_time.h"
 
 namespace pq {
 
@@ -154,6 +155,18 @@ public:
 
   /// Returns true if this Engine is the main.
   bool isPrimary() const { return this == &primary(); }
+
+  /**
+   * Randomly triggers an event about once per time window, on average.
+   *
+   * Call this function once in each step(). It will occasionally return
+   * true, with the frequency adjusted so that you get roughly one event for each
+   * `timeWindow` period, no matter how fast your loop is running.
+   *
+   * @param timeWindow duration of the window (in seconds)
+   * @return true when an event occurs during this sample
+   */
+  bool randomTrigger(float timeWindow);
 
 private:
   /// Adds a component to Plaquette.

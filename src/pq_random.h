@@ -41,6 +41,19 @@ float randomFloat(float max);
 /// Generates a uniform random number in the interval [min,max) (b>a).
 float randomFloat(float min, float max);
 
+/**
+ * Randomly triggers an event about once per time window, on average.
+ *
+ * Call this function once in each loop or sample. It will occasionally return
+ * true, with the frequency adjusted so that you get roughly one event for each
+ * `timeWindow` period, no matter how fast your loop is running.
+ *
+ * @param timeWindow  Duration of the window
+ * @param samplePeriod Duration of a sample (in same unit as timeWindow eg. seconds)
+ * @return true when an event occurs during this sample
+ */
+bool randomTrigger(float timeWindow, float samplePeriod);
+
 /// @deprecated
 [[deprecated("Use randomFloat() instead.")]]
 float randomUniform();
