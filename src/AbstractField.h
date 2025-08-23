@@ -37,7 +37,30 @@ public:
    * @return the value
    */
   virtual float at(float proportion) = 0;
-  virtual float read(float proportion) = 0;
+
+  /**
+   * Fills an array with values from this field.
+   * @param array the array to read into
+   * @param size the size of the array
+   */
+  template <typename T>
+  void populate(T* array, size_t size) {
+    if (size) {
+      float step = 1.0f / size;
+      float p = step * 0.5f; // start in the middle of
+      for (size_t i = 0; i < size; i++, p += step) {
+        _write(array[i], at(p));
+      }
+    }
+  }
+
+private:
+  // Write a float value into a Chainable type.
+  template <typename T>
+  inline void _write(T& dst, float src) { src >> dst; }
+
+  // Write a float value to another float.
+  inline void _write(float& dst, float src) { dst = src; }
 };
 
 };
