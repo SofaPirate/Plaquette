@@ -68,6 +68,46 @@ inline float fastPow(float a, float b) {
     return (float)fastPow((double)a, (double)b);
 }
 
+// Source: https://gist.github.com/jrade/293a73f89dfef51da6522428c857802d
+// N. Schraudolph, “A Fast, Compact Approximation of the Exponential Function”,
+// Neural Computation 11, 853–862 (1999).
+// (available at https://nic.schraudolph.org/pubs/Schraudolph99.pdf)
+inline float fastExp(float x)
+{
+    constexpr float a = (1 << 23) / 0.69314718f;
+    constexpr float b = (1 << 23) * (127 - 0.043677448f);
+    x = a * x + b;
+
+    // Remove these lines if bounds checking is not needed
+    constexpr float c = (1 << 23);
+    constexpr float d = (1 << 23) * 255;
+    if (x < c || x > d)
+        x = (x < c) ? 0.0f : d;
+
+    // With C++20 one can use std::bit_cast instead
+    uint32_t n = static_cast<uint32_t>(x);
+    memcpy(&x, &n, 4);
+    return x;
+}
+
+// inline double fastExp(double x)
+// {
+//     constexpr double a = (1ll << 52) / 0.6931471805599453;
+//     constexpr double b = (1ll << 52) * (1023 - 0.04367744890362246);
+//     x = a * x + b;
+
+//     // Remove these lines if bounds checking is not needed
+//     constexpr double c = (1ll << 52);
+//     constexpr double d = (1ll << 52) * 2047;
+//     if (x < c || x > d)
+//         x = (x < c) ? 0.0 : d;
+
+//     // With C++20 one can use std::bit_cast instead
+//     uint64_t n = static_cast<uint64_t>(x);
+//     memcpy(&x, &n, 8);
+//     return x;
+// }
+
 } // namespace pq
 
 #endif
