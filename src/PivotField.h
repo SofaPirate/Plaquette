@@ -44,7 +44,7 @@ public:
    * @param proportion the proportion of the field to read
    * @return the value
    */
-  virtual float read(float proportion) override;
+  virtual float at(float proportion) override;
 
     /// Returns value.
   virtual float get() override { return _value; }

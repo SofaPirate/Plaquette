@@ -54,7 +54,7 @@ float remapFromCenter(float proportion, float center) {
 }
 
 
-float PivotField::read(float proportion) {
+float PivotField::at(float proportion) {
   bool bumpMode = (_mode == PIVOT_BUMP || _mode == PIVOT_NOTCH);
   bool falling = (_mode == PIVOT_FALLING || _mode == PIVOT_BUMP);
 

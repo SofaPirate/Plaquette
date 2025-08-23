@@ -32,9 +32,8 @@ public:
    * Constructor.
    * @param period the period in seconds
    */
-  TimeSliceField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period)
-  {
-      reset();
+  TimeSliceField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period) {
+    reset();
   }
   virtual ~TimeSliceField() {}
 
@@ -43,8 +42,7 @@ public:
    * @param proportion the proportion of the field to read
    * @return the value
    */
-  virtual float read(float proportion) override
-  {
+  virtual float at(float proportion) override {
     // Find index as a floating point value in [0, COUNT).
     proportion = constrain01(proportion);
     if (proportion >= 1) proportion = 0; // wrap
@@ -80,36 +78,34 @@ public:
     _lastValue = value;
 
     // Fill missing data.
-    if (_previousIndex < _index)
-    {
-      for (int i = _previousIndex + 1; i <= _index; ++i)
-      {
-        _buffer[i] = value;
-      }
+    while (_previousIndex <= _index) {
+      _buffer[_previousIndex] = value;
+      _previousIndex++;
     }
-    else
-    {
-      _buffer[_index] = value;
-    }
-    _previousIndex = _index;
+
+    // if (_previousIndex < _index) {
+    //   for (int i = _previousIndex + 1; i <= _index; ++i) {
+    //     _buffer[i] = value;
+    //   }
+    // }
+    // else {
+    //   _buffer[_index] = value;
+    // }
+    // _previousIndex = _index;
 
     return _lastValue;
   }
 
-  float valueAt(size_t index) {
+  float atIndex(size_t index) {
     return _buffer[index];
   }
 
   size_t count() const { return _count; }
 
   /// Returns true if the field has been updated and is ready to be used.
-  bool updated()
-  {
-    return _full && (!_rolling || _changed);
-  }
+  bool updated() { return _full && (!_rolling || _changed); }
 
-  void reset()
-  {
+  void reset() {
     _index = 0;
     _previousIndex = 0;
     _full = false;
@@ -123,23 +119,20 @@ public:
 
 protected:
 
-  virtual void step() override
-  {
+  virtual void step() override {
     // Reset if full.
     if (_full && !_rolling)
       reset();
 
     // Update phase time.
-    if (phase32Update(_phase32, _period, sampleRate(), true))
-    {
+    if (phase32Update(_phase32, _period, sampleRate(), true)) {
       // Overflow.
       _index = _lastIndex;
       put(_lastValue);
       _full = true;
       _changed = true;
     }
-    else
-    {
+    else {
       // No overflow.
       size_t nextIndex = floor(fixed32ToFloat(_phase32) * (float)_lastIndex );
       nextIndex = min(nextIndex, _lastIndex);

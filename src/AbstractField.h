@@ -36,6 +36,7 @@ public:
    * @param proportion the proportion of the field to read
    * @return the value
    */
+  virtual float at(float proportion) = 0;
   virtual float read(float proportion) = 0;
 };
 
