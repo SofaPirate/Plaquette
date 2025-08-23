@@ -15,7 +15,7 @@
  */
 #include <Plaquette.h>
 
-// The LED.
+// The number of LEDs.
 const int N_LEDS = 3;
 
 // A square-wave (on/off) oscillator for each LED.
@@ -28,7 +28,7 @@ Wave oscillators[] = {
   3.0 // shorthand for Wave(3.0)
 };
 
-// The three LEDs.
+// The array of LEDs.
 DigitalOut leds[] = { 4, 5, 6 }; // shorthand for DigitalOut leds[] = { DigitalOut(4), DigitalOut(5), DigitalOut(6) };
 
 void begin() {}
