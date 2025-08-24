@@ -193,6 +193,7 @@ bool Engine::randomTrigger(float timeWindow) {
 unsigned long nSteps() { return Plaquette.nSteps(); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
+bool randomTrigger(float timeWindow) { return Plaquette.randomTrigger(timeWindow); }
 
 void beginSerial(unsigned long baudRate) {
   // Wait for last transmitted data to be sent.

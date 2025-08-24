@@ -253,6 +253,18 @@ float sampleRate();
 /// Returns sample period of primary engine.
 float samplePeriod();
 
+/**
+ * Randomly triggers an event about once per time window, on average.
+ *
+ * Call this function once in each step(). It will occasionally return
+ * true, with the frequency adjusted so that you get roughly one event for each
+ * `timeWindow` period, no matter how fast your loop is running.
+ *
+ * @param timeWindow duration of the window (in seconds)
+ * @return true when an event occurs during this sample
+ */
+bool randomTrigger(float timeWindow);
+
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
 void beginSerial(unsigned long baudRate);
 
