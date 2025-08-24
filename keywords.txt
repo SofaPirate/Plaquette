@@ -57,7 +57,10 @@ mapFloat	KEYWORD2
 mapFrom01	KEYWORD2
 mapTo01 KEYWORD2
 randomFloat	KEYWORD2
+randomTrigger	KEYWORD2
 wrap	KEYWORD2
+constrain01	KEYWORD2
+wrap01	KEYWORD2
 
 # Node
 put	KEYWORD2
