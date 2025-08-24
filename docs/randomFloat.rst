@@ -39,3 +39,4 @@ This function returns a random real-valued number.
 |SeeAlso|
 ---------
 - `random() <https://www.arduino.cc/reference/en/language/functions/random-numbers/random/>`_
+- :doc:`randomTrigger``
