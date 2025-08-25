@@ -27,7 +27,7 @@ your loop runs very fast.
    void step() {
      // Returns true on average once every 5 seconds.
      if (randomTrigger(5.0))
-       led.toggle();
+       led.toggle(); // toggle LED
    }
 
 
