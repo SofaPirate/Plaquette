@@ -32,7 +32,7 @@ public:
    * Constructor.
    * @param period the period in seconds
    */
-  TimeSliceField(float period) : _count(COUNT), _full(false), _rolling(false), _changed(false), _period(period) {
+  TimeSliceField(float period) : _count(COUNT), _period(period), _full(false), _rolling(false), _changed(false) {
     reset();
   }
   virtual ~TimeSliceField() {}
