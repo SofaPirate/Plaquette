@@ -54,7 +54,7 @@ public:
 
     // Update previous index if rolling.
     if (_rolling) {
-      prevIndex = (COUNT + _index - prevIndex) % COUNT;
+      prevIndex = (COUNT + _rollingIndex - prevIndex) % COUNT;
     }
 
     // Find next index.
@@ -75,23 +75,16 @@ public:
    * @return the new value of the unit
    */
   virtual float put(float value) override {
-    _lastValue = value;
 
     // Fill missing data.
-    while (_previousIndex <= _index) {
+    while (_previousIndex != _index) {
       _buffer[_previousIndex] = value;
-      _previousIndex++;
+      _previousIndex = (_previousIndex + 1) % COUNT;
     }
+    _buffer[_previousIndex] = value;
 
-    // if (_previousIndex < _index) {
-    //   for (int i = _previousIndex + 1; i <= _index; ++i) {
-    //     _buffer[i] = value;
-    //   }
-    // }
-    // else {
-    //   _buffer[_index] = value;
-    // }
-    // _previousIndex = _index;
+    // Set last value.
+    _lastValue = value;
 
     return _lastValue;
   }
@@ -108,6 +101,7 @@ public:
   void reset() {
     _index = 0;
     _previousIndex = 0;
+    _rollingIndex = 0;
     _full = false;
     _changed = false;
   }
@@ -120,7 +114,7 @@ public:
 protected:
 
   virtual void step() override {
-    // Reset if full.
+    // Reset if full (non-rolling).
     if (_full && !_rolling)
       reset();
 
@@ -140,23 +134,9 @@ protected:
       _index = nextIndex;
     }
 
-    /* if (time > _chrono)
-    {
-      uint64_t duration = time - _chrono; // microseconds
-      _index = (duration * COUNT / _interval);
-      _index = min(_index, _lastIndex);
-      if (duration >= _interval)
-      {
-        _index = _lastIndex;
-        _write(_lastValue);
-        _full = true;
-      }
-    }
-    else
-    {
-      _index = 0;
-    }
-    */
+    // Update rolling index.
+    if (_full && _rolling && _changed)
+      _rollingIndex = (_rollingIndex + 1) % COUNT;
   }
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -173,6 +153,7 @@ protected:
   const size_t _lastIndex = COUNT - 1;
   size_t _index;
   size_t _previousIndex;
+  size_t _rollingIndex;
   float _period;
   //uint64_t _chrono;   // microseconds
   //uint64_t _interval; // microseconds
