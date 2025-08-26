@@ -31,7 +31,7 @@ AbstractOscillator::AbstractOscillator(float period_)
 #if PQ_OPTIMIZE_FOR_CPU
   _frequency(FLT_MAX),
 #endif
-  _amplitude(1), _phaseShift(0),
+  _phaseShift(0), _amplitude(1),
   _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true) {
   period(period_);
   amplitude(1.0f);
