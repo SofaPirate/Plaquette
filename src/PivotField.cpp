@@ -21,7 +21,7 @@
 
 namespace pq {
 
-PivotField::PivotField() : _mode(PIVOT_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _easing(easeNone) {
+PivotField::PivotField() : _mode(PIVOT_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _center(0),_easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
   bumpWidth(0.25f);
@@ -65,10 +65,10 @@ float PivotField::at(float proportion) {
   if (_rampWidth <= 0) {
     if (bumpMode) {
       float diff = proportion - _value;
-      return (abs(diff) < _halfBumpWidth ^ falling ? 0 : 1);
+      return ( (abs(diff) < _halfBumpWidth) ^ falling ? 0 : 1 );
     }
     else
-      return (proportion <= _value ^ falling ? 0 : 1);
+      return ( (proportion <= _value) ^ falling ? 0 : 1 );
   }
 
   // Ramp.
