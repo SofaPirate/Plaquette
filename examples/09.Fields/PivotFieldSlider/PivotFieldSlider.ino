@@ -49,18 +49,10 @@ void step() {
   // Change mode when button is pressed.
   if (button.rose()) {
     switch (field.mode()) {
-      case PIVOT_FALLING:
-        field.mode(PIVOT_RISING);
-        break;
-      case PIVOT_RISING:
-        field.mode(PIVOT_BUMP);
-        break;
-      case PIVOT_BUMP:
-        field.mode(PIVOT_NOTCH);
-        break;
-      case PIVOT_NOTCH:
-        field.mode(PIVOT_FALLING);
-        break;
+      case PIVOT_FALLING: field.mode(PIVOT_RISING);  break;
+      case PIVOT_RISING:  field.mode(PIVOT_BUMP);    break;
+      case PIVOT_BUMP:    field.mode(PIVOT_NOTCH);   break;
+      case PIVOT_NOTCH:   field.mode(PIVOT_FALLING); break;
     }
   }
 
