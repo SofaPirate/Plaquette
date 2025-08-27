@@ -89,6 +89,7 @@ potentiometer is used to reveal the values of the `PivotField` from 0 to 1.
 |SeeAlso|
 --------
 
+- :doc:`array`
 - :doc:`TimeSliceField`
 - :doc:`easings`
 - :doc:`Ramp`
