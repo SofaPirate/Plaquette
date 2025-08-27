@@ -43,4 +43,4 @@ your loop runs very fast.
 |SeeAlso|
 ---------
 - `random() <https://www.arduino.cc/reference/en/language/functions/random-numbers/random/>`_
-- :doc:`randomFloat``
+- :doc:`randomFloat`
