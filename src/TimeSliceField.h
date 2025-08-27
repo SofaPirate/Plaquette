@@ -89,15 +89,18 @@ public:
     return _lastValue;
   }
 
+  /// Returns value at given index.
   float atIndex(size_t index) {
     return _buffer[index];
   }
 
+  /// Returns count.
   size_t count() const { return _count; }
 
   /// Returns true if the field has been updated and is ready to be used.
   bool updated() { return _full && (!_rolling || _changed); }
 
+  /// Resets the field.
   void reset() {
     _index = 0;
     _previousIndex = 0;
@@ -106,10 +109,23 @@ public:
     _changed = false;
   }
 
+  /**
+   * Sets rolling mode.
+   * @param rolling the rolling mode
+   */
   void setRolling(bool rolling) { _rolling = rolling; }
+
+  /// Activates rolling mode.
   void rolling() { setRolling(true); }
+
+  /// Deactivates rolling mode.
   void noRolling() { setRolling(false); }
+
+  /// Returns true if rolling mode is active.
   bool isRolling() const { return _rolling; }
+
+  /// Registers event callback on update event.
+  virtual void onUpdate(EventCallback callback) { onEvent(callback, EVENT_UPDATE); }
 
 protected:
 
