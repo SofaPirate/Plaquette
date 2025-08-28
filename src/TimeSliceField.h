@@ -43,19 +43,19 @@ public:
    * @return the value
    */
   virtual float at(float proportion) override {
-    // Find index as a floating point value in [0, COUNT).
-    proportion = constrain01(proportion);
-    if (proportion >= 1) proportion = 0; // wrap
-    float indexFloat = proportion * COUNT;
+    // Special case: proportion == 1 -> return last value.
+    if (proportion >= 1)
+      return _buffer[_trueIndex(_lastIndex)];
+
+    // Find index as a floating point value in [0, COUNT-1).
+    float indexFloat = max(proportion, 0) * (COUNT-1);
 
     // Find previous index and linear interpolation (lerp) factor.
-    size_t prevIndex = floor(indexFloat);
-    float lerpFactor = indexFloat - prevIndex;
+    size_t prevIndex = floor(indexFloat); // index in [0, COUNT-1) ie. [0, COUNT-2]
+    float lerpFactor = indexFloat - prevIndex; // remainder
 
     // Update previous index if rolling.
-    if (_rolling) {
-      prevIndex = (COUNT + _rollingIndex - prevIndex) % COUNT;
-    }
+    prevIndex = _trueIndex(prevIndex);
 
     // Find next index.
     size_t nextIndex = (prevIndex + 1) % COUNT;
@@ -162,6 +162,10 @@ protected:
       default:           return Unit::eventTriggered(eventType);
     }
   }
+
+private:
+    // Internal use: return true index by adjusting it if rolling.
+  size_t _trueIndex(size_t index) { return (_rolling ? index : (COUNT + _rollingIndex - index)) % COUNT; }
 
 protected:
   float _buffer[COUNT];
