@@ -42,14 +42,26 @@ public:
    * Fills an array with values from this field.
    * @param array the array to read into
    * @param size the size of the array
+   * @param wrap if true, the array is considered to be a circular buffer that wraps around
    */
   template <typename T>
-  void populate(T* array, size_t size) {
+  void populate(T* array, size_t size, bool wrap = false) {
     if (size) {
-      float step = 1.0f / size;
-      float p = step * 0.5f; // start in the middle of
-      for (size_t i = 0; i < size; i++, p += step) {
-        _write(array[i], at(p));
+      // Initialize step and proportion.
+      float step;
+      float proportion;
+      if (wrap) {
+          step = 1.0f / size;
+          proportion = step * 0.5f; // start in the middle of bin
+      }
+      else {
+          step = 1.0f / min(size-1, 1);
+          proportion = 0;
+      }
+
+      // Fill array.
+      for (size_t i = 0; i < size; i++, proportion += step) {
+        _write(array[i], at(proportion));
       }
     }
   }
