@@ -88,6 +88,15 @@ public:
     return _lastValue;
   }
 
+  /**
+   * Sets period over which the time slice occurs.
+   * @param period the new period (in seconds)
+   */
+  void setPeriod(float period) { _period = max(period, 0.0f); }
+
+  /// Returns period.
+  float period() const { return _period; }
+
   /// Returns value at given index.
   float atIndex(size_t index) { return _buffer[index]; }
 
