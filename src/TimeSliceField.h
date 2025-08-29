@@ -92,11 +92,7 @@ public:
    * Sets period over which the time slice occurs.
    * @param period the new period (in seconds)
    */
-<<<<<<< HEAD
   void period(float period) { _period = max(period, 0.0f); }
-=======
-  void setPeriod(float period) { _period = max(period, 0.0f); }
->>>>>>> 2114cf21e5286e1e7cc76d68dfa8a382d7625183
 
   /// Returns period.
   float period() const { return _period; }
