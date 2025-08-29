@@ -24,6 +24,10 @@
 
 namespace pq {
 
+/**
+  * TimeSliceField generic class
+  * @tparam COUNT the size of the buffer
+  */
 template <size_t COUNT>
 class TimeSliceField : public AbstractField
 {
