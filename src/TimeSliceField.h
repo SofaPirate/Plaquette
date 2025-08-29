@@ -212,7 +212,7 @@ protected:
   static constexpr size_t LAST_INDEX = COUNT - 1;
 
   // Buffer containing values.
-  float _buffer[COUNT];
+  float _buffer[COUNT] = {}; // initialized to zero
 
   // Current index in buffer.
   size_t _index;
