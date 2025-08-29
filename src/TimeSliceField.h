@@ -106,6 +106,9 @@ public:
   /// Returns true if the field has been updated and is ready to be used.
   bool updated() { return _rolling ? _changed : _full; }
 
+  /// Returns true if the field is full.
+  bool isFull() { return _full; }
+
   /// Resets the field.
   void reset() {
     _index = 0;
