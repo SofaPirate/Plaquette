@@ -55,11 +55,13 @@ public:
   /// Returns true if time window is infinite.
   bool timeWindowIsInfinite() const { return _avg.timeWindowIsInfinite(); }
 
-  /// Changes the smoothing window cutoff frequency (expressed in Hz).
-  void cutoff(float hz);
+  // Keep this commented out to prevent confusion with MovingFilter::cutoff().
+  //
+  // /// Changes the smoothing window cutoff frequency (expressed in Hz).
+  // void cutoff(float hz);
 
-  /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return _avg.cutoff(); }
+  // /// Returns the smoothing window cutoff frequency (expressed in Hz).
+  // float cutoff() const { return _avg.cutoff(); }
 
   /// Resets the statistics.
   virtual void reset();
