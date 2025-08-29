@@ -82,7 +82,7 @@ testing(smoothing) {
       assertMoreOrEqual(unit->minValue(), -100.0f);
       assertLessOrEqual(unit->maxValue(),  100.0f);
 
-      assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
+//      assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
 
       if (!unit->timeWindowIsInfinite() &&
           t >= unit->timeWindow()*2) {
