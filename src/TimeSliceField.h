@@ -98,7 +98,7 @@ public:
   float period() const { return _period; }
 
   /// Returns value at given index.
-  float atIndex(size_t index) { return _buffer[index]; }
+  float atIndex(size_t index) { return _buffer[_trueIndex(index)]; }
 
   /// Returns count.
   size_t count() const { return COUNT; }
