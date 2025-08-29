@@ -32,7 +32,7 @@ public:
    * Constructor.
    * @param period the period in seconds
    */
-  TimeSliceField(float period) : _count(COUNT), _period(period), _full(false), _rolling(false), _changed(false) {
+  TimeSliceField(float period) : _period(period), _full(false), _rolling(false), _changed(false) {
     reset();
   }
   virtual ~TimeSliceField() {}
@@ -45,10 +45,10 @@ public:
   virtual float at(float proportion) override {
     // Special case: proportion == 1 -> return last value.
     if (proportion >= 1)
-      return _buffer[_trueIndex(_lastIndex)];
+      return _buffer[_trueIndex(LAST_INDEX)];
 
     // Find index as a floating point value in [0, COUNT-1).
-    float indexFloat = max(proportion, 0) * (COUNT-1);
+    float indexFloat = max(proportion, 0) * LAST_INDEX;
 
     // Find previous index and linear interpolation (lerp) factor.
     size_t prevIndex = floor(indexFloat); // index in [0, COUNT-1) ie. [0, COUNT-2]
@@ -76,14 +76,11 @@ public:
    */
   virtual float put(float value) override {
 
-    // Fill missing data.
-    while (_previousIndex != _index) {
-      _buffer[_previousIndex] = value;
-      _previousIndex = (_previousIndex + 1) % COUNT;
-    }
-    _buffer[_previousIndex] = value;
+    // Update value.
+    _nValuesStep++;
+    _currentSumValuesStep += value;
 
-    // Set last value.
+    // Save last value.
     _lastValue = value;
 
     return _lastValue;
@@ -95,7 +92,7 @@ public:
   }
 
   /// Returns count.
-  size_t count() const { return _count; }
+  size_t count() const { return COUNT; }
 
   /// Returns true if the field has been updated and is ready to be used.
   bool updated() { return _full && (!_rolling || _changed); }
@@ -104,7 +101,8 @@ public:
   void reset() {
     _index = 0;
     _previousIndex = 0;
-    _rollingIndex = 0;
+    _currentSumValuesStep = 0;
+    _nValuesStep = 0;
     _full = false;
     _changed = false;
   }
@@ -129,30 +127,54 @@ public:
 
 protected:
 
+  void _updateBuffer() {
+
+    // Compute value as average.
+    float value = (_nValuesStep ? _currentSumValuesStep / _nValuesStep : _lastValue);
+
+    // Fill missing data.
+    while (_previousIndex != _index) {
+      _buffer[_previousIndex] = value;
+      _previousIndex = (_previousIndex + 1) % COUNT;
+    }
+    _buffer[_previousIndex] = value;
+
+  }
+
   virtual void step() override {
     // Reset if full (non-rolling).
     if (_full && !_rolling)
       reset();
 
+    size_t prevIndex = _index;
+    bool needsUpdate = false;
+
     // Update phase time.
     if (phase32Update(_phase32, _period, sampleRate(), true)) {
       // Overflow.
-      _index = _lastIndex;
-      put(_lastValue);
+      _index = LAST_INDEX;
       _full = true;
-      _changed = true;
+      needsUpdate = true;
     }
     else {
-      // No overflow.
-      size_t nextIndex = floor(fixed32ToFloat(_phase32) * (float)_lastIndex );
-      nextIndex = min(nextIndex, _lastIndex);
-      _changed = (nextIndex != _index);
-      _index = nextIndex;
+      // No overflow: set index as proportion of phase.
+      _index = floor(fixed32ToFloat(_phase32) * COUNT);
+      if (_index < LAST_INDEX)
+        needsUpdate = true;
     }
 
-    // Update rolling index.
-    if (_full && _rolling && _changed)
-      _rollingIndex = (_rollingIndex + 1) % COUNT;
+    // Record change.
+    _changed = (_index != prevIndex);
+
+    // Upon index change: update buffer.
+    if (needsUpdate && _changed) {
+      // Update buffer.
+      _updateBuffer();
+
+      // Reset.
+      _currentSumValuesStep = 0;
+      _nValuesStep = 0;
+    }
   }
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -165,24 +187,39 @@ protected:
 
 private:
     // Internal use: return true index by adjusting it if rolling.
-  size_t _trueIndex(size_t index) { return (_rolling ? index : (COUNT + _rollingIndex - index)) % COUNT; }
+//  size_t _trueIndex(size_t index) { return (_rolling ? (COUNT + _rollingIndex - index) : index) % COUNT; }
+  size_t _trueIndex(size_t index) {
+    if (!_full)
+      return index;
+
+    if (_rolling)
+      index += _index + 1; // _index corresponds to end position
+
+    return index % COUNT;
+  }
 
 protected:
   float _buffer[COUNT];
-  size_t _count;
-  const size_t _lastIndex = COUNT - 1;
+  static constexpr size_t LAST_INDEX = COUNT - 1;
+
   size_t _index;
   size_t _previousIndex;
-  size_t _rollingIndex;
   float _period;
+
+  float _lastValue;
+
+  float _currentSumValuesStep;
+  uint16_t _nValuesStep;
+
+  q0_32u_t _phase32;
   //uint64_t _chrono;   // microseconds
   //uint64_t _interval; // microseconds
+
   bool _full : 1;
   bool _rolling : 1;
   bool _changed : 1;
   uint8_t _unused : 5;
-  float _lastValue;
-  q0_32u_t _phase32;
+
 };
 
 }
