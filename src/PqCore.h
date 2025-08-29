@@ -254,7 +254,8 @@ float sampleRate();
 float samplePeriod();
 
 /**
- * Randomly triggers an event about once per time window, on average.
+ * Randomly triggers an event about once per time window, on average based on
+ * sampling rate of primary engine.
  *
  * Call this function once in each step(). It will occasionally return
  * true, with the frequency adjusted so that you get roughly one event for each
