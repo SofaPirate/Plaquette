@@ -92,14 +92,18 @@ template <typename A, typename B, typename C>
 // -------- min / max --------
 template <class A, class B>
 constexpr common_pair_t<A,B> min(A a, B b) {
-    return (a < b) ? static_cast<common_pair_t<A,B>>(a)
-                   : static_cast<common_pair_t<A,B>>(b);
+  typedef common_pair_t<A,B> R;
+  return (static_cast<R>(a) < static_cast<R>(b)) ?
+            static_cast<R>(a) :
+            static_cast<R>(b);
 }
 
 template <class A, class B>
 constexpr common_pair_t<A,B> max(A a, B b) {
-    return (a < b) ? static_cast<common_pair_t<A,B>>(b)
-                   : static_cast<common_pair_t<A,B>>(a);
+  typedef common_pair_t<A,B> R;
+  return (static_cast<R>(a) > static_cast<R>(b)) ?
+            static_cast<R>(a) :
+            static_cast<R>(b);
 }
 
 // -------- abs --------
@@ -113,9 +117,10 @@ constexpr T abs(T x) {
 template <class A, class L, class H>
 constexpr common_triple_t<A,L,H>
 constrain(A amt, L low, H high) {
-    return (amt < low ? static_cast<common_triple_t<A,L,H>>(low) :
-            amt > high ? static_cast<common_triple_t<A,L,H>>(high) :
-            static_cast<common_triple_t<A,L,H>>(amt));
+  typedef common_triple_t<A,L,H> R;
+    return (static_cast<R>(amt) < static_cast<R>(low) ? static_cast<R>(low) :
+            static_cast<R>(amt) > static_cast<R>(high) ? static_cast<R>(high) :
+            static_cast<R>(amt));
 }
 
 // -------- round (Arduino semantics: return long) --------
