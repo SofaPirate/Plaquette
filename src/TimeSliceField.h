@@ -65,9 +65,7 @@ public:
   }
 
   /// Returns value.
-  virtual float get() override {
-    return _lastValue;
-  }
+  virtual float get() override { return _lastValue; }
 
   /**
    * Pushes value into the unit.
@@ -87,9 +85,7 @@ public:
   }
 
   /// Returns value at given index.
-  float atIndex(size_t index) {
-    return _buffer[index];
-  }
+  float atIndex(size_t index) { return _buffer[index]; }
 
   /// Returns count.
   size_t count() const { return COUNT; }
@@ -137,8 +133,7 @@ protected:
       _buffer[_previousIndex] = value;
       _previousIndex = (_previousIndex + 1) % COUNT;
     }
-    _buffer[_previousIndex] = value;
-
+    _buffer[_index] = value; // last element
   }
 
   virtual void step() override {
@@ -146,7 +141,10 @@ protected:
     if (_full && !_rolling)
       reset();
 
+    // Save previous index.
     size_t prevIndex = _index;
+
+    // Track if we need to update buffer.
     bool needsUpdate = false;
 
     // Update phase time.
@@ -159,8 +157,7 @@ protected:
     else {
       // No overflow: set index as proportion of phase.
       _index = floor(fixed32ToFloat(_phase32) * COUNT);
-      if (_index < LAST_INDEX)
-        needsUpdate = true;
+      needsUpdate = (_index < LAST_INDEX);
     }
 
     // Record change.
@@ -187,38 +184,47 @@ protected:
 
 private:
     // Internal use: return true index by adjusting it if rolling.
-//  size_t _trueIndex(size_t index) { return (_rolling ? (COUNT + _rollingIndex - index) : index) % COUNT; }
   size_t _trueIndex(size_t index) {
-    if (!_full)
-      return index;
+    // Started rolling: adjust index.
+    // _index corresponds to end position - used to perform the rolling
+    if (_full && _rolling)
+      index += _index + 1;
 
-    if (_rolling)
-      index += _index + 1; // _index corresponds to end position
-
+    // Return true index (clamped).
     return index % COUNT;
   }
 
 protected:
-  float _buffer[COUNT];
+  // Internal use: precompiled last index.
   static constexpr size_t LAST_INDEX = COUNT - 1;
 
+  // Buffer containing values.
+  float _buffer[COUNT];
+
+  // Current index in buffer.
   size_t _index;
+
+  // Previous index updated in buffer.
   size_t _previousIndex;
+
+  // Period in seconds.
   float _period;
 
+  // Last value recorded by put(float);
   float _lastValue;
 
+  // Current sum of values between steps + n values (used to compute average).
   float _currentSumValuesStep;
   uint16_t _nValuesStep;
 
+  // Phase in [0, 1).
   q0_32u_t _phase32;
-  //uint64_t _chrono;   // microseconds
-  //uint64_t _interval; // microseconds
 
-  bool _full : 1;
-  bool _rolling : 1;
-  bool _changed : 1;
-  uint8_t _unused : 5;
+  // Flags.
+  bool _full      : 1; // is the buffer full
+  bool _rolling   : 1; // rolling mode
+  bool _changed   : 1; // did we change index
+  uint8_t _unused : 5; // unused data
 
 };
 
