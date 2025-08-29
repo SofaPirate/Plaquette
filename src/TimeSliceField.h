@@ -104,7 +104,7 @@ public:
   size_t count() const { return COUNT; }
 
   /// Returns true if the field has been updated and is ready to be used.
-  bool updated() { return _full && (!_rolling || _changed); }
+  bool updated() { return _rolling ? _changed : _full; }
 
   /// Resets the field.
   void reset() {
