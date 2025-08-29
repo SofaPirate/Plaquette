@@ -39,7 +39,7 @@ The curve can be finely configured using many different parameters:
 
 
 |Example|
---------
+---------
 
 This example uses a single PWM analog LED and two potentiometers to show the behavior
 of a PivotField. The first potentiometer is used to control the pivot point, then the second
@@ -80,14 +80,14 @@ potentiometer is used to reveal the values of the `PivotField` from 0 to 1.
 
 
 |Reference|
-----------
+-----------
 
 .. doxygenclass:: PivotField
    :members:
    :undoc-members:
 
 |SeeAlso|
---------
+---------
 
 - :doc:`array`
 - :doc:`TimeSliceField`

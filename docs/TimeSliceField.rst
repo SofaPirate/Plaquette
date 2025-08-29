@@ -68,7 +68,7 @@ Here is a simple example that uses a `TimeSliceField` to collect data from a sin
 |Reference|
 -----------
 
-.. doxygenclass:: pq::TimeSliceField
+.. doxygenclass:: TimeSliceField
    :members:
    :undoc-members:
 

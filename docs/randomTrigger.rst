@@ -34,7 +34,7 @@ your loop runs very fast.
 |Reference|
 -----------
 
-.. doxygenfunction:: randomTrigger(float)
+.. doxygenfunction:: pq::randomTrigger(float)
    :project: Plaquette
 
 .. doxygenfunction:: randomTrigger(float, float)
