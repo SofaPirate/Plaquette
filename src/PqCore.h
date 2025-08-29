@@ -405,7 +405,7 @@ public:
   virtual bool putOn(bool value) { return isOn(); } // do nothing by default (read-only)
 
   /// Maps value to new range.
-  virtual float mapTo(float toLow, float toHigh) { return mapFrom01(get(), toLow, toHigh); }
+  virtual float mapTo(float toLow, float toHigh) { return isOn() ? toHigh : toLow; }
 
   /// Operator that allows usage in conditional expressions.
   operator bool() { return isOn(); }

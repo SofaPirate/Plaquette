@@ -65,8 +65,4 @@ float AbstractTimer::progress() const {
   return constrain01(prog);
 }
 
-float AbstractTimer::mapTo(float toLow, float toHigh) {
-  return mapFrom01(progress(), toLow, toHigh);
-}
-
 }

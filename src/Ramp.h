@@ -63,6 +63,9 @@ public:
    */
   virtual float put(float value);
 
+  /// Maps value to new range.
+  virtual float mapTo(float toLow, float toHigh);
+
   /**
    * Sets easing function to apply to ramp.
    * @param easing the easing function
@@ -180,8 +183,7 @@ protected:
     }
   }
 
-  float _get();
-
+  // Sets duration or speed (depending on current mode).
   void _durationOrSpeed(float durationOrSpeed);
   float _durationOrSpeed() const;
 

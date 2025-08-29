@@ -54,9 +54,6 @@ public:
   [[deprecated("Use isFinished() instead.")]]
   virtual bool isComplete() const { return isFinished(); }
 
-  /// Maps value to new range.
-  virtual float mapTo(float toLow, float toHigh);
-
 protected:
   // The duration.
   float _duration;

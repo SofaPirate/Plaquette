@@ -45,7 +45,8 @@ float Ramp::get() {
   // Prevents unnecessary computations in the step() function by updating the value on a need basis.
   if (_valueNeedsUpdate) {
       // Compute next value.
-    _value = _get();
+    _value = mapFrom01(_easing(progress()), _from, _to);
+
     _valueNeedsUpdate = false; // reset flag
   }
 
@@ -67,6 +68,10 @@ float Ramp::put(float value) {
   // Set to value.
   _value = value;
   return _value;
+}
+
+float Ramp::mapTo(float toLow, float toHigh) {
+  return mapFloat(get(), _from, _to, toLow, toHigh);
 }
 
 void Ramp::easing(easing_function easing) {
@@ -193,10 +198,6 @@ void Ramp::step() {
       _finishedState = NOT_FINISHED;
     }
   }
-}
-
-float Ramp::_get() {
-  return mapFrom01(_easing(progress()), _from, _to);
 }
 
 void Ramp::_durationOrSpeed(float durationOrSpeed) {
