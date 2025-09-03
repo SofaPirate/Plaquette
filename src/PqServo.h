@@ -19,8 +19,14 @@
 #ifndef PQ_SERVO_H_
 #define PQ_SERVO_H_
 
-#define PQ_ARCH_SUPPORTS_SERVO (defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_SAM) || \
-                                defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32F4) || defined(ARDUINO_ARCH_NRF52))
+#ifndef PQ_ARCH_SUPPORTS_SERVO
+#if (defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_SAM) || \
+     defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32F4) || defined(ARDUINO_ARCH_NRF52))
+  #define PQ_ARCH_SUPPORTS_SERVO 1
+#else
+  #define PQ_ARCH_SUPPORTS_SERVO 0
+#endif
+#endif
 
 #if PQ_ARCH_SUPPORTS_SERVO
 
