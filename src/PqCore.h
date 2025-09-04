@@ -684,15 +684,8 @@ bool Engine::timeStep() {
   _deltaTimeMicroSeconds = _totalGlobalMicroSeconds.micros32.base - _microSeconds.micros32.base;
   float trueSampleRate = (_deltaTimeMicroSeconds ? SECONDS_TO_MICROS / _deltaTimeMicroSeconds : PLAQUETTE_MAX_SAMPLE_RATE);
 
-  // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
-  // then we should just assign the true sample rate.
-  if (_autoSampleRate) {
-    // Update sample rate and current time to "true" / actual values.
-    _setSampleRate(trueSampleRate);
-  }
-
-  // Otherwise: Wait in order to synchronize seconds with real time.
-  else {
+  // If autoSampleRate is off: wait in order to synchronize seconds with real time.
+  if (!_autoSampleRate) {
 
     // Initilize step state.
     if (_stepState == STEP_INIT) {
@@ -722,12 +715,12 @@ bool Engine::timeStep() {
         return false; // break
     }
 
-    // Set sample rate to target.
+    // Reset state.
     _stepState = STEP_INIT;
-
-    // Update sample rate and current time to "true" / actual values if it is too slow.
-    _setSampleRate(trueSampleRate < _targetSampleRate ? trueSampleRate : _targetSampleRate);
   }
+
+  // Update sample rate and current time to "true" / actual values.
+  _setSampleRate(trueSampleRate);
 
   // Calculate delta time in fixed point.
   uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
