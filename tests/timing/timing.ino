@@ -81,7 +81,7 @@ void setup() {
   testRampSpeed.mode(RAMP_SPEED);
   testRampSpeed.go(0, TEST_RAMP_MAX, TEST_RAMP_SPEED);
 
-  Plaquette.sampleRate(100000.0f);
+//  Plaquette.sampleRate(100000.0f);
 }
 
 void loop() {
