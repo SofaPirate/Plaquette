@@ -68,7 +68,6 @@ test(nUnits) {
 
 void setup() {
   Plaquette.begin();
-  // Plaquette.sampleRate(10000);
   for (int i=0; i<N_GENERATORS; i++) {
     detectors[i]->reloadThreshold(PEAK_DETECTOR_THRESHOLD-0.1f);
   }

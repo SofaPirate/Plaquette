@@ -109,7 +109,6 @@ test(random) {
 
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(10000);
 }
 
 void loop() {

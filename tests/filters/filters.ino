@@ -114,7 +114,6 @@ test(smoother) {
 
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(1000);
 }
 
 void loop() {
