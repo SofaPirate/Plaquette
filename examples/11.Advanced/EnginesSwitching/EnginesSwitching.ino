@@ -21,8 +21,8 @@
  */
 #include <Plaquette.h>
 
+// Two extra engines.
 Engine engine1;
-
 Engine engine2;
 
 // Digital LED.
