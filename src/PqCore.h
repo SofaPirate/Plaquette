@@ -689,9 +689,6 @@ bool Engine::timeStep() {
   if (_autoSampleRate) {
     // Update sample rate and current time to "true" / actual values.
     _setSampleRate(trueSampleRate);
-
-    // Update reference current time.
-    _microSeconds = _totalGlobalMicroSeconds;
   }
 
   // Otherwise: Wait in order to synchronize seconds with real time.
@@ -718,17 +715,11 @@ bool Engine::timeStep() {
       // Still needs to wait.
       if (_totalGlobalMicroSeconds.micros32.base < _targetTime.micros32.base)
         return false; // break
-
-      // Update current time with predicted target time (not real time).
-      _microSeconds.micros32.base = _targetTime.micros32.base;
     }
     else { // stepState == STEP_WAIT_OVERFLOW
       // Still needs to wait.
       if (_totalGlobalMicroSeconds.micros64 < _targetTime.micros64)
         return false; // break
-
-      // Update current time with predicted target time (not real time).
-      _microSeconds = _targetTime;
     }
 
     // Set sample rate to target.
@@ -741,6 +732,9 @@ bool Engine::timeStep() {
   // Calculate delta time in fixed point.
   uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
   _deltaTimeSecondsTimesFixed32Max = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
+
+  // Sync reference time with global (true) time.
+  _microSeconds = _totalGlobalMicroSeconds;
 
   // Increment step.
   _nSteps++;
