@@ -36,9 +36,18 @@ Engine& Engine::primary() {
 Engine& Plaquette = Engine::primary();
 
 Engine::Engine()
-: _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0),
- _nSteps(0), _beginCompleted(false), _firstRun(true)
- {}
+  : _unitsBeginIndex(0), _unitsEndIndex(0),
+    _sampleRate(0.0f), _samplePeriod(0.0f), _targetSampleRate(0.0f),
+    _microSeconds{},
+    _targetTime{}, _stepState(STEP_INIT),
+    _deltaTimeMicroSeconds(0),
+    _deltaTimeSecondsTimesFixed32Max(0.0f),
+    _nSteps(0),
+    _beginCompleted(false),
+    _firstRun(true),
+    _eventManager() // default constructed
+{}
+
 Engine::~Engine() {
 }
 
@@ -48,8 +57,12 @@ void Engine::preBegin(unsigned long baudrate) {
     beginSerial(baudrate);
 
   // Initialize variables.
+  _sampleRate = _samplePeriod = _targetSampleRate = 0;
   _microSeconds.micros64 = microSeconds(false);
-  _targetSampleRate = 0;
+  _targetTime = _microSeconds;
+  _stepState = STEP_INIT;
+  _deltaTimeMicroSeconds = 0;
+  _deltaTimeSecondsTimesFixed32Max = 0;
   _nSteps = 0;
   _firstRun = true;
 
@@ -67,7 +80,10 @@ void Engine::preBegin(unsigned long baudrate) {
 void Engine::postBegin() {
   // Start timer.
   _microSeconds.micros64 = microSeconds(false);
+  // Trick: by setting _nSteps = LONG_MAX, stepTime() will do _nStep++ which will overflow to 0
+  _nSteps = LONG_MAX;
 }
+
 
 void Engine::end() {
   if (_firstRun) {
@@ -75,7 +91,7 @@ void Engine::end() {
     _firstRun = false;
   }
   else
-    postStep();
+    stepTime();
 }
 
 float Engine::seconds(bool referenceTime) const {

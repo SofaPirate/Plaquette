@@ -70,14 +70,17 @@ public:
   /// Updates all components (calls step() on all of them).
   inline void preStep();
 
-  /// Performs additional tasks after the class to step().
-  inline void postStep();
+  /**
+   * Performs additional tasks after the class to step().
+   * @return true if the program should
+   */
+  inline bool stepTime();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
   inline void begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
-  inline void step();
+  inline bool step();
 
   /**
    * Optional function to be used within the PlaquetteLib context. No need to call it if the program
@@ -119,23 +122,15 @@ public:
   unsigned long nSteps() const { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
-  /// @deprecated
-  [[deprecated("Function sampleRate(float) is deprecated so autoSampleRate() should always be true.")]]
   bool autoSampleRate();
 
   /// Enables auto sample rate mode (default).
-  /// @deprecated
-  [[deprecated("Function sampleRate(float) is deprecated so enableAutoSampleRate() should not have to be called.")]]
   void enableAutoSampleRate();
 
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
-  /// @deprecated
-  [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void sampleRate(float sampleRate);
 
   /// Sets sample period to a fixed value, thus disabling auto sampling rate.
-  /// @deprecated
-  [[deprecated("Use timing units such as a Metronome to control sample rate.")]]
   void samplePeriod(float samplePeriod);
 
   /// Returns sample rate.
@@ -190,10 +185,6 @@ private:
   size_t _unitsBeginIndex; // begin index
   size_t _unitsEndIndex;   // end index (= _unitsBeginIndex + nUnits())
 
-  // Snapshot of time in seconds from current step.
-  micro_seconds_t _microSeconds;
-  // uint32_t _previousMicroSeconds; // This is the 32 first bits of microseconds used for inter-step calculations.
-
   // Sampling rate (ie. how many times per seconds step() is called).
   float _sampleRate;
 
@@ -202,6 +193,23 @@ private:
 
   // Whether the auto sample rate mode is activated.
   float _targetSampleRate;
+
+  // Snapshot of time in seconds from current step.
+  micro_seconds_t _microSeconds;
+  // uint32_t _previousMicroSeconds; // This is the 32 first bits of microseconds used for inter-step calculations.
+
+  // Target time for next step (when using sampleRate(float)).
+  micro_seconds_t _targetTime;
+
+  // Step state for state machine to manage sample rate.
+  enum StepState {
+    STEP_INIT,
+    STEP_WAIT,
+    STEP_WAIT_OVERFLOW
+  };
+
+  // Current step state.
+  StepState _stepState;
 
   // Number of microseconds between steps.
   uint32_t _deltaTimeMicroSeconds;
@@ -221,6 +229,7 @@ private:
   // Used to keep track of events.
   EventManager _eventManager;
 
+  // Global time in microseconds.
   static micro_seconds_t _totalGlobalMicroSeconds;
 
 private:
@@ -660,10 +669,7 @@ void Engine::preStep() {
   _eventManager.step();
 }
 
-void Engine::postStep() {
-  // Increment step.
-  _nSteps++;
-
+bool Engine::stepTime() {
   // Calculate true sample rate.
   _updateGlobalMicroSeconds();
 
@@ -674,53 +680,89 @@ void Engine::postStep() {
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
   if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
+    // Update sample rate and current time to "true" / actual values.
     _setSampleRate(trueSampleRate);
     _microSeconds = _totalGlobalMicroSeconds;
+
+    // Reset step state.
+    _stepState = STEP_INIT;
   }
 
   // Otherwise: Wait in order to synchronize seconds with real time.
   else {
-    uint32_t startTime  = _microSeconds.micros32.base;
 
-    // Compute inter-step time.
-    // TODO: this value could be saved and re-used between steps
-    _deltaTimeMicroSeconds = (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
+    // Initilize step state.
+    if (_stepState == STEP_INIT) {
+      // Compute inter-step time.
+      // TODO: this value could be saved and re-used between steps
+      _deltaTimeMicroSeconds = (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
 
-    // Target time = current time + 1/_targetSampleRate
-    micro_seconds_t targetTime = _microSeconds;
-    targetTime.micros32.base += _deltaTimeMicroSeconds;
+      // Target time = current time + 1/_targetSampleRate
+      _targetTime = _microSeconds;
+      _targetTime.micros32.base += _deltaTimeMicroSeconds;
 
-    if (targetTime.micros32.base < startTime) { // overflow
-      targetTime.micros32.overflows++;
-      while (_updateGlobalMicroSeconds().micros64 < targetTime.micros64); // wait
-      _microSeconds = targetTime;
+      // Check for overflow.
+      if (_targetTime.micros32.base >= _microSeconds.micros32.base) { // if target time is in the future: no overflow.
+        _stepState = STEP_WAIT;
+      }
+      else { // overflow
+        _targetTime.micros32.overflows++;
+        _stepState = STEP_WAIT_OVERFLOW;
+      }
     }
-    else {
-      while (_updateGlobalMicroSeconds().micros32.base < targetTime.micros32.base); // wait
-      _microSeconds.micros32.base = targetTime.micros32.base; // not the exact "true" time but more accurate for computations
+
+    // Process waiting state: will return false if still waiting, otherwise will complete the function.
+    if (_stepState == STEP_WAIT) {
+      // Still needs to wait.
+      if (_totalGlobalMicroSeconds.micros32.base < _targetTime.micros32.base)
+        return false; // break
+
+      // Update current time with predicted target time (not real time).
+      _microSeconds.micros32.base = _targetTime.micros32.base;
+    }
+    else { // stepState == STEP_WAIT_OVERFLOW
+      // Still needs to wait.
+      if (_totalGlobalMicroSeconds.micros64 < _targetTime.micros64)
+        return false; // break
+
+      // Update current time with predicted target time (not real time).
+      _microSeconds = _targetTime;
     }
 
+    // Set sample rate to target.
     _setSampleRate(_targetSampleRate);
   }
 
+  // Calculate delta time in fixed point.
   uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
   _deltaTimeSecondsTimesFixed32Max = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
+
+  // Increment step.
+  _nSteps++;
+
+  return true;
 }
 
 void Engine::begin(unsigned long baudrate) {
   preBegin(baudrate);
 }
 
-void Engine::step() {
-  if (_firstRun) {
+bool Engine::step() {
+  // On first run: do a post-begin.
+  if (_firstRun) { // the compiler should make this branching step effectively CPU-free
     postBegin();
     _firstRun = false;
+    return false;
+  }
+
+  // Otherwise: do a step.
+  else if (stepTime()) { // stepTime() will return false if we need to wait due to restrictive sampleRate(float)
+    // Do the pre-step.
+    preStep();
+    return true;
   }
   else
-    postStep();
-
-  // Do the pre-step.
-  preStep();
+    return false;
 }
 
 void Engine::_setSampleRate(float sampleRate) {
