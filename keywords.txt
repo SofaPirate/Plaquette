@@ -46,7 +46,7 @@ begin	KEYWORD2
 step	KEYWORD2
 
 autoSampleRate  KEYWORD2
-enableAutoSampleRate  KEYWORD2
+hasAutoSampleRate  KEYWORD2
 sampleRate  KEYWORD2
 samplePeriod  KEYWORD2
 seconds  KEYWORD2
