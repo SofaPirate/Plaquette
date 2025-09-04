@@ -43,7 +43,7 @@ Engine::Engine()
     _deltaTimeMicroSeconds(0),
     _deltaTimeSecondsTimesFixed32Max(0.0f),
     _nSteps(0),
-    _autoSampleRate(false),
+    _autoSampleRate(true),
     _beginCompleted(false),
     _firstRun(true),
     _eventManager() // default constructed
@@ -65,6 +65,7 @@ void Engine::preBegin(unsigned long baudrate) {
   _deltaTimeMicroSeconds = 0;
   _deltaTimeSecondsTimesFixed32Max = 0;
   _nSteps = 0;
+  _autoSampleRate = true;
   _firstRun = true;
 
   _setSampleRate(FLT_MAX);
