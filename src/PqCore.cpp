@@ -43,6 +43,7 @@ Engine::Engine()
     _deltaTimeMicroSeconds(0),
     _deltaTimeSecondsTimesFixed32Max(0.0f),
     _nSteps(0),
+    _autoSampleRate(false),
     _beginCompleted(false),
     _firstRun(true),
     _eventManager() // default constructed
@@ -80,7 +81,7 @@ void Engine::preBegin(unsigned long baudrate) {
 void Engine::postBegin() {
   // Start timer.
   _microSeconds.micros64 = microSeconds(false);
-  // Trick: by setting _nSteps = LONG_MAX, stepTime() will do _nStep++ which will overflow to 0
+  // Trick: by setting _nSteps = LONG_MAX, timeStep() will do _nStep++ which will overflow to 0
   _nSteps = ULONG_MAX;
 }
 
@@ -90,8 +91,8 @@ void Engine::end() {
     postBegin();
     _firstRun = false;
   }
-  else
-    stepTime();
+  // else
+  //   timeStep();
 }
 
 float Engine::seconds(bool referenceTime) const {
@@ -185,23 +186,27 @@ micro_seconds_t Engine::_updateGlobalMicroSeconds() {
   return _totalGlobalMicroSeconds;
 }
 
-bool Engine::autoSampleRate() { return (_targetSampleRate <= 0); }
+void Engine::autoSampleRate() {
+  // Enable auto sample rate mode.
+  _autoSampleRate = true;
 
-void Engine::enableAutoSampleRate() {
+  // Reset target sample rate (to keep things clean).
   _targetSampleRate = 0;
   _targetDeltaTimeMicroSeconds = 0; // unused
+  _stepState = STEP_INIT;
 }
 
 void Engine::sampleRate(float sampleRate) {
+  // Disable auto sample rate.
+  _autoSampleRate = false;
+
+  // Set target sample rate and delta time in us.
   _targetSampleRate = max(sampleRate, FLT_MIN);
-  _targetDeltaTimeMicroSeconds = max(static_cast<uint32_t>(round(MICROS_PER_SECOND/_targetSampleRate)), 1); // rounded (minimum 1us)
+  _targetDeltaTimeMicroSeconds = static_cast<uint32_t>(round(MICROS_PER_SECOND/_targetSampleRate));
 }
 
 void Engine::samplePeriod(float samplePeriod) {
-  if (samplePeriod > 0)
-    sampleRate(1.0f / samplePeriod);
-  else
-    autoSampleRate();
+  sampleRate(periodToFrequency(samplePeriod));
 }
 
 bool Engine::randomTrigger(float timeWindow) {
@@ -209,8 +214,8 @@ bool Engine::randomTrigger(float timeWindow) {
 }
 
 unsigned long nSteps() { return Plaquette.nSteps(); }
-bool autoSampleRate() { return Plaquette.autoSampleRate(); }
-void enableAutoSampleRate() { Plaquette.enableAutoSampleRate(); }
+bool hasAutoSampleRate() { return Plaquette.hasAutoSampleRate(); }
+void autoSampleRate() { Plaquette.autoSampleRate(); }
 void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
 void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }

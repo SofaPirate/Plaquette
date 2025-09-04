@@ -37,6 +37,7 @@
 #include "pq_globals.h"
 #include "pq_constrain.h"
 #include "pq_map.h"
+#include "pq_phase_utils.h"
 #include "pq_random.h"
 #include "pq_time.h"
 
@@ -74,7 +75,7 @@ public:
    * Performs additional tasks after the class to step().
    * @return true if the program should
    */
-  inline bool stepTime();
+  inline bool timeStep();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
   inline void begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
@@ -122,10 +123,10 @@ public:
   unsigned long nSteps() const { return _nSteps; }
 
   /// Returns true iff the auto sample rate mode is enabled (default).
-  bool autoSampleRate();
+  bool hasAutoSampleRate() const { return _autoSampleRate; }
 
   /// Enables auto sample rate mode (default).
-  void enableAutoSampleRate();
+  void autoSampleRate();
 
   /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
   void sampleRate(float sampleRate);
@@ -137,7 +138,7 @@ public:
   float sampleRate() const { return _sampleRate; }
 
   /// Returns sample period.
-  float samplePeriod() const { return _samplePeriod; }
+  float samplePeriod() const { return (_samplePeriod > 0 ? _samplePeriod : (_samplePeriod = frequencyToPeriod(_sampleRate))); }
 
   /// Returns time between steps (in microseconds).
   uint32_t deltaTimeMicroSeconds() const { return _deltaTimeMicroSeconds; }
@@ -189,7 +190,7 @@ private:
   float _sampleRate;
 
   // Sampling period (ie. 1.0 / sampleRate()).
-  float _samplePeriod;
+  mutable float _samplePeriod;
 
   // Whether the auto sample rate mode is activated.
   float _targetSampleRate;
@@ -223,7 +224,10 @@ private:
   // Number of steps accomplished.
   unsigned long _nSteps;
 
-  // True when units' begin() has been called during preBegin().
+  // True if using auto sample rate mode.
+  bool _autoSampleRate;
+
+  // True if begin has been completed..
   bool _beginCompleted;
 
   // True during first run.
@@ -248,10 +252,10 @@ extern Engine& Plaquette;
 unsigned long nSteps();
 
 /// Returns true iff the auto sample rate mode is enabled (default).
-bool autoSampleRate();
+bool hasAutoSampleRate();
 
 /// Enables auto sample rate mode (default).
-void enableAutoSampleRate();
+void autoSampleRate();
 
 /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
 void sampleRate(float sampleRate);
@@ -672,7 +676,7 @@ void Engine::preStep() {
   _eventManager.step();
 }
 
-bool Engine::stepTime() {
+bool Engine::timeStep() {
   // Calculate true sample rate.
   _updateGlobalMicroSeconds();
 
@@ -682,13 +686,12 @@ bool Engine::stepTime() {
 
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
-  if (autoSampleRate()) {
+  if (_autoSampleRate) {
     // Update sample rate and current time to "true" / actual values.
     _setSampleRate(trueSampleRate);
-    _microSeconds = _totalGlobalMicroSeconds;
 
-    // Reset step state.
-    _stepState = STEP_INIT;
+    // Update reference current time.
+    _microSeconds = _totalGlobalMicroSeconds;
   }
 
   // Otherwise: Wait in order to synchronize seconds with real time.
@@ -758,7 +761,7 @@ bool Engine::step() {
   }
 
   // Otherwise: do a step.
-  else if (stepTime()) { // stepTime() will return false if we need to wait due to restrictive sampleRate(float)
+  else if (timeStep()) { // timeStep() will return false if we need to wait due to restrictive sampleRate(float)
     // Do the pre-step.
     preStep();
     return true;
@@ -769,7 +772,7 @@ bool Engine::step() {
 
 void Engine::_setSampleRate(float sampleRate) {
   _sampleRate = max(sampleRate, FLT_MIN); // cannot be zero
-  _samplePeriod = 1.0f / _sampleRate;
+  _samplePeriod = 0; // set to zero to reset cache
 }
 
 } // namespace pq
