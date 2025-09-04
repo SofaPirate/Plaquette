@@ -138,7 +138,7 @@ public:
   float sampleRate() const { return _sampleRate; }
 
   /// Returns sample period.
-  float samplePeriod() const { return (_samplePeriod > 0 ? _samplePeriod : (_samplePeriod = frequencyToPeriod(_sampleRate))); }
+  float samplePeriod() const { return (_samplePeriod ? _samplePeriod : (_samplePeriod = frequencyToPeriod(_sampleRate))); }
 
   /// Returns time between steps (in microseconds).
   uint32_t deltaTimeMicroSeconds() const { return _deltaTimeMicroSeconds; }
