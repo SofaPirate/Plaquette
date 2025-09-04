@@ -125,6 +125,37 @@ Here is an example of our blinking code rewritten by using this feature:
     }
 
 
+.. warning::
+
+  ``Plaquette.step()`` computes timings and peforms background update operations on units.
+  When setting a specific (target) sample rate using ``Plaquette.sampleRate(rate)``, the
+  ``Plaquette.step()`` function returns ``true`` if the step has been fully performed and ``false``
+  if it is still waiting for the next "tick". As an example, if one sets a 100 Hz sample rate by
+  calling ``Plaquette.sampleRate(100)``, the ``Plaquette.step()`` function should return ``true``
+  about 100 times per second.
+
+  It is thus highly recommended to use this feature as a
+  `guard condition <https://en.wikipedia.org/wiki/Guard_(computer_science)>`__ in the main
+  stepping loop to avoid performing unnecessary operations on units:
+
+  .. code:: cpp
+
+    void loop() {
+      if (Plaquette.step()) {
+        myWave >> myLed;
+      }
+    }
+
+  Alternative syntax that performs early exit if not ready:
+
+  .. code:: cpp
+
+    void loop() {
+      if (!Plaquette.step())
+        return; // exit
+      myWave >> myLed;
+    }
+
 .. _secondary-engines:
 
 Synchronizing Groups of Units with Secondary Engines
