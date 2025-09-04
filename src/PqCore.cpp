@@ -81,7 +81,7 @@ void Engine::postBegin() {
   // Start timer.
   _microSeconds.micros64 = microSeconds(false);
   // Trick: by setting _nSteps = LONG_MAX, stepTime() will do _nStep++ which will overflow to 0
-  _nSteps = LONG_MAX;
+  _nSteps = ULONG_MAX;
 }
 
 
