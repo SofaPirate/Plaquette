@@ -217,6 +217,9 @@ private:
   // Number of seconds between steps time FIXED_MAX.
   float _deltaTimeSecondsTimesFixed32Max;
 
+  // Number of microseconds between steps.
+  uint32_t _targetDeltaTimeMicroSeconds;
+
   // Number of steps accomplished.
   unsigned long _nSteps;
 
@@ -244,17 +247,17 @@ extern Engine& Plaquette;
 /// Returns number of steps of primary engine.
 unsigned long nSteps();
 
-// /// Returns true iff the auto sample rate mode is enabled (default).
-// bool autoSampleRate();
+/// Returns true iff the auto sample rate mode is enabled (default).
+bool autoSampleRate();
 
-// /// Enables auto sample rate mode (default).
-// void enableAutoSampleRate();
+/// Enables auto sample rate mode (default).
+void enableAutoSampleRate();
 
-// /// Sets sample rate to a fixed value, thus disabling auto sampling rate.
-// void sampleRate(float sampleRate);
+/// Sets sample rate to a fixed value, thus disabling auto sampling rate.
+void sampleRate(float sampleRate);
 
-// /// Sets sample period to a fixed value, thus disabling auto sampling rate.
-// void samplePeriod(float samplePeriod);
+/// Sets sample period to a fixed value, thus disabling auto sampling rate.
+void samplePeriod(float samplePeriod);
 
 /// Returns sample rate of primary engine.
 float sampleRate();
@@ -679,7 +682,7 @@ bool Engine::stepTime() {
 
   // If we are in auto sample mode OR if the target sample rate is too fast for the "true" sample rate
   // then we should just assign the true sample rate.
-  if (autoSampleRate() || trueSampleRate < _targetSampleRate) {
+  if (autoSampleRate()) {
     // Update sample rate and current time to "true" / actual values.
     _setSampleRate(trueSampleRate);
     _microSeconds = _totalGlobalMicroSeconds;
@@ -693,13 +696,9 @@ bool Engine::stepTime() {
 
     // Initilize step state.
     if (_stepState == STEP_INIT) {
-      // Compute inter-step time.
-      // TODO: this value could be saved and re-used between steps
-      _deltaTimeMicroSeconds = (uint32_t)(MICROS_PER_SECOND/_targetSampleRate + 0.5f); // rounded
-
       // Target time = current time + 1/_targetSampleRate
       _targetTime = _microSeconds;
-      _targetTime.micros32.base += _deltaTimeMicroSeconds;
+      _targetTime.micros32.base += _targetDeltaTimeMicroSeconds;
 
       // Check for overflow.
       if (_targetTime.micros32.base >= _microSeconds.micros32.base) { // if target time is in the future: no overflow.
@@ -730,7 +729,10 @@ bool Engine::stepTime() {
     }
 
     // Set sample rate to target.
-    _setSampleRate(_targetSampleRate);
+    _stepState = STEP_INIT;
+
+    // Update sample rate and current time to "true" / actual values if it is too slow.
+    _setSampleRate(trueSampleRate < _targetSampleRate ? trueSampleRate : _targetSampleRate);
   }
 
   // Calculate delta time in fixed point.

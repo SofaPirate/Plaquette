@@ -189,10 +189,12 @@ bool Engine::autoSampleRate() { return (_targetSampleRate <= 0); }
 
 void Engine::enableAutoSampleRate() {
   _targetSampleRate = 0;
+  _targetDeltaTimeMicroSeconds = 0; // unused
 }
 
 void Engine::sampleRate(float sampleRate) {
   _targetSampleRate = max(sampleRate, FLT_MIN);
+  _targetDeltaTimeMicroSeconds = max(static_cast<uint32_t>(round(MICROS_PER_SECOND/_targetSampleRate)), 1); // rounded (minimum 1us)
 }
 
 void Engine::samplePeriod(float samplePeriod) {
@@ -207,6 +209,10 @@ bool Engine::randomTrigger(float timeWindow) {
 }
 
 unsigned long nSteps() { return Plaquette.nSteps(); }
+bool autoSampleRate() { return Plaquette.autoSampleRate(); }
+void enableAutoSampleRate() { Plaquette.enableAutoSampleRate(); }
+void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
+void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 bool randomTrigger(float timeWindow) { return Plaquette.randomTrigger(timeWindow); }
