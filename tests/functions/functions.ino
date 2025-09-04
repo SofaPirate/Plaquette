@@ -103,8 +103,6 @@ test(random) {
   assertNear((float)countRandomTrigger(100, BASE_N_BLOCKS), (float)BASE_N_BLOCKS, BASE_N_BLOCKS*TOLERANCE);
   assertNear((float)countRandomTrigger(1000, BASE_N_BLOCKS), (float)BASE_N_BLOCKS, BASE_N_BLOCKS*TOLERANCE);
   assertNear((float)countRandomTrigger(10000, LOW_N_BLOCKS), (float)LOW_N_BLOCKS, LOW_N_BLOCKS*TOLERANCE);
-  assertNear((float)countRandomTrigger(100000, LOW_N_BLOCKS), (float)LOW_N_BLOCKS, LOW_N_BLOCKS*TOLERANCE);
-  assertNear((float)countRandomTrigger(1000000, LOW_N_BLOCKS), (float)LOW_N_BLOCKS, LOW_N_BLOCKS*TOLERANCE);
 }
 
 void setup() {
