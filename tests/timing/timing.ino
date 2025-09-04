@@ -7,13 +7,13 @@ using namespace pq;
 #define N_METRO 3
 Metronome* metro[N_METRO] = {
   new Metronome(0.01),
-  new Metronome(0.1),
+  new Metronome(0.05),
   new Metronome(0.1)
 };
 
 Wave* osc[N_METRO] = {
   new Wave(0.01),
-  new Wave(0.1),
+  new Wave(0.05),
   new Wave(0.1)
 };
 
@@ -44,11 +44,12 @@ testing(timing) {
     //     print(" ***");
     //   println();
     // }
+    // if (i == 0) {
+    //   print(unit2->get()); print(" "); println(unit->isOn());
+    // }
     if (unit->isOn()) {
       nMetro[i]++;
-      if (i != 2) {
-        assertEqual(unit2->get(), 1.0f);
-      }
+      assertEqual(unit2->get(), 1.0f);
     }
   }
 
