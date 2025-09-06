@@ -60,14 +60,14 @@ in the main stepping loop.
 .. code:: cpp
 
   void begin() {
-    myEngine.sampleRate(100); // Target sample rate: 100 Hz
+    myEngine.sampleRate(100); // Target sample rate: 100 Hz.
   }
 
   void loop() {
-    if (!myEngine.step()) // Guard condition
-      return; // Exit the loop
+    if (!myEngine.step()) // Guard condition.
+      return; // Exit the loop.
 
-    // The operations below will be performed at ~100 Hz
+    // The operations below will be performed at ~100 Hz.
     if (button)
       wave >> led;
     ...
