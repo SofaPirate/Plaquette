@@ -6,17 +6,22 @@ tags:
   - Embedded Systems
   - Creative Coding
   - Interactive Media
+  - Signal Processing
   - Research-Creation
 authors:
   - name: Sofian Audry
+    equal-contrib: true
     affiliation: 1
     orcid: 0000-0002-6340-2550
   - name: Thomas Ouellet Fredericks
+    equal-contrib: true
     affiliation: 2
 affiliations:
-  - name: Université du Québec à Montréal (UQAM), École des médias
+  - name: Université du Québec à Montréal, Canada
+    ror: 002rjbv21
     index: 1
-  - name: Collège Montmorency, Laval, QC
+  - name: Collège Montmorency, Canada
+    ror: 05kqg2j33
     index: 2
 date: 2025-09-07
 bibliography: paper.bib
@@ -40,15 +45,15 @@ also providing a reproducible infrastructure for scholarly inquiry.
 
 # Statement of Need
 
-Research in interactive media, human–computer interaction (HCI), sound and music computing, and
-research-creation increasingly depends on microcontrollers to sense, process, and actuate in real
+Research and research-creation in interactive media, sound and music computing, and human–computer interaction (HCI)
+increasingly depends on microcontrollers to sense, process, and actuate in real
 time. However, programming microcontrollers directly through environments such as Arduino is
 challenging: it lacks an integrated object-oriented framework, offers limited abstractions for
 managing concurrent processes, and makes timing-sensitive operations cumbersome. In parallel,
 dataflow environments popular in creative communities (e.g., Max/MSP, Pure Data, TouchDesigner)
 provide powerful models for composing signals and behaviors, but they are computationally heavy and
 cannot run on constrained hardware. Finally, scientific tools such as Python’s NumPy/SciPy or R, while
-allow rich offline data analysis tools, are not designed for real-time signal processing on embedded devices.
+offering rich signal analysis tools, are not designed for real-time signal processing on embedded devices.
 
 *Plaquette* addresses this gap by bringing the expressive power of dataflow-style signal-based
 programming into a lightweight, efficient, object-oriented C++ framework optimized for
