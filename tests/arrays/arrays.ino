@@ -42,7 +42,6 @@ void setup() {
   for (int i=0; i<N_UNITS; i++) {
     oscillators[i].phase(mapTo01(i, 0, N_UNITS));
   }
-  Plaquette.sampleRate(10000);
 }
 
 void loop() {
