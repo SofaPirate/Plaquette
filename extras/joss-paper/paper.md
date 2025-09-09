@@ -34,11 +34,13 @@ embedded microcontrollers, supporting a wide range of Arduino-compatible archite
 SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions
 (oscillators, filters, units, and scheduling engines) that simplify the design of
 time-based behaviors in embedded interactive systems. Its expressive syntax allow fast prototyping with multiple
-sensors, actuators, and real-time processes, enabling both researchers and artists to experiment with complex interactive environments.
+sensors, actuators, and real-time processes, enabling both researchers and creative practitioners to experiment
+and design with complex interactive environments.
 
 Beyond its technical contributions, *Plaquette* serves as a bridge between art, science, and engineering. Its applications
-in interdisciplinary research projects involving affective biofeedback, interactive sound synthesis, and robotic expression,
-demonstrate the framework’s potential to advance embodied, interdisciplinary approaches to interactive media while also providing a robust infrastructure for scholarly inquiry.
+in interdisciplinary research projects involving affective biofeedback, interactive sound synthesis, and robotic behavior design,
+demonstrate the framework’s potential to advance embodied, interdisciplinary approaches to interactive media while
+providing a robust infrastructure for scholarly inquiry.
 
 # Statement of Need
 
@@ -47,27 +49,27 @@ increasingly depends on microcontrollers to sense, process, and actuate in real
 time. However, programming microcontrollers through environments such as Arduino is
 challenging due to lack of integrated object-oriented frameworks and limited abstractions for
 managing concurrent processes and signal processing. In parallel,
-dataflow environments popular in creative communities (e.g., Max/MSP, Pure Data, TouchDesigner)
-provide powerful models for composing with signals, but they are computationally heavy and
-cannot run on constrained hardware. Finally, scientific tools such as Python’s NumPy/SciPy or R, while
+dataflow environments popular in creative communities and scientific research on real-time interactive media
+(e.g., Max/MSP, Pure Data, TouchDesigner) provide powerful models for composing with signals, but they are computationally heavy and
+can usually not run on constrained hardware. Finally, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while
 offering rich signal analysis tools, are not designed for real-time signal processing on embedded devices.
 
 *Plaquette* addresses this gap by bringing the expressive power of dataflow-style signal-based
 programming into a lightweight, efficient, object-oriented C++ framework optimized for
-microcontrollers (low memory trace and CPU usage). It enables intuitive handling of multiple simultaneous processes and provides
+microcontrollers (i.e., with low memory trace and CPU usage). It enables intuitive handling of multiple simultaneous processes and provides
 real-time implementations of core signal processing functions such as peak detection, normalization, and
-scaling, using moving averages that allow flexible automated calibration. This
+scaling, providing flexible automated calibration using moving averages. This
 design enables researchers in art, science and engineering, as well as creative practitioners, to focus on
-experimentation and artistic expression with tangible computing, while ensuring accurate and reliable real-time performance on
+experimentation and expressivity with tangible computing, while ensuring accurate and reliable real-time performance on
 resource-constrained platforms.
 
 *Plaquette* also provides the groundwork for workshop-based and participatory research-creation projects,
 in which researchers and participants from creative communities collaboratively design and test interactive systems.
 This methodology is increasingly important in research-creation contexts in media arts, design, and HCI where embodied interaction
-and situated practices require adaptable prototyping tools.
+and situated practices require adaptable prototyping tools that can be learned easily.
 
 The framework has been used to as part of public research projects, illustrating its broad applicability. It was
-used to improve real-time physiological signakl processing as part of the [BioData](https://github.com/eringee/BioData)
+used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData)
 library for affective biofeedback, supporting creative applications in music and performance [Gee2023-BioSynth], and used in
 studies of electrodermal activity measurement [Hagler2022-Flexible]. It was integrated at the core of the
 [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling researchers and practitionners to explore object behaviors
@@ -132,14 +134,12 @@ This program reacts to peaks in the incoming signal by triggering a sudden movem
   Ramp ramp{2.0};              // ramp with duration of 2 seconds (by default: ramps from 0 to 1)
 
   void begin() {
-    normalizer.timeWindow(60); // normalizing sliding time window: 60 seconds
+    normalizer.timeWindow(60); // normalizing calibration sliding time window: 60 seconds
   }
 
   void step() {
     inputs >> normalizer >> peak; // process input signal
-
     if (peak) ramp.start(); // on peak detection: restart ramp
-
     ramp >> servo; // send ramp value to servo motor
   }
 ```
@@ -147,6 +147,6 @@ This program reacts to peaks in the incoming signal by triggering a sudden movem
 # Acknowledgements
 
 This work was partially supported by the Natural Sciences and Engineering Research Council of Canada, the
-Social Sciences and Humanities Research Council of Canada, the Fonds de Recherche du Québec -- Société et Culture,
+Social Sciences and Humanities Research Council of Canada, the Fonds de Recherche du Québec — Société et Culture,
 and the Canada Council for the Arts. We thank our collaborators and colleagues for supporting the project, in
-paticular Luana Belinsky, Erin Gee, and Chris Salter.
+paticular Erin Gee, Luana Belinsky, and Chris Salter.
