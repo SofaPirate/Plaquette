@@ -215,7 +215,7 @@ private:
   // Number of microseconds between steps.
   uint32_t _deltaTimeMicroSeconds;
 
-  // Number of seconds between steps time FIXED_MAX.
+  // Number of seconds between steps time FIXED_32_MAX.
   float _deltaTimeSecondsTimesFixed32Max;
 
   // Number of microseconds between steps.

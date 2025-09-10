@@ -28,6 +28,7 @@
 #endif
 
 #include "pq_globals.h"
+#include "pq_fixed.h"
 #include "pq_fixed32_math.h"
 #include "pq_wrap.h"
 
@@ -36,37 +37,16 @@
 
 namespace pq {
 
-typedef uint32_t q0_32u_t;
-
-constexpr q0_32u_t FIXED_MAX = static_cast<q0_32u_t>(0xFFFFFFFF);
-constexpr q0_32u_t HALF_FIXED_MAX = static_cast<q0_32u_t>(0x80000000);
-//constexpr q0_32u_t HALF_FIXED_MAX = 0.5f * FIXED_MAX;
-constexpr float INV_FIXED_MAX = 1.0f / FIXED_MAX;
-
-
-/// Converts 32-bit fixed32-point value to floating point.
-inline float fixed32ToFloat(q0_32u_t x) {
-  return (x * INV_FIXED_MAX);
-}
-
-/// Converts floating point in range [0, 1] to 32-bit fixed32-point value.
-inline q0_32u_t floatToFixed32(float x) {
-  // The x >= 1 instruction prevents overflow issues when x is close to 1.
-  if      (x <= 0) return 0;
-  else if (x >= 1) return FIXED_MAX;
-  else             return static_cast<q0_32u_t>(x * FIXED_MAX);
-}
-
 /// Applies amplitude scaling to 32-bit fixed32-point value interpreted as a signal centered at UINT32_MAX/2.
 inline q0_32u_t amplifyFixed32(q0_32u_t x, q0_32u_t amplitude) {
   // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).
-  int32_t centered = (int32_t)(x ^ 0x80000000);
+  int32_t centered = (int32_t)(x ^ HALF_FIXED_32_MAX);
 
   // Apply amplitude scaling (keeping within 32-bit range).
   centered = ((int64_t)centered * amplitude) >> 32;
 
   // Convert back to unsigned range.
-  return (q0_32u_t)(centered ^ 0x80000000);
+  return (q0_32u_t)(centered ^ HALF_FIXED_32_MAX);
 }
 
 /// Applies amplitude scaling to float using fixed32-point amplitude.

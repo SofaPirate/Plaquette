@@ -10,7 +10,8 @@ using namespace aunit;
 
 test(map) {
 
-  for (uint8_t mode=0; mode<=2; mode++) {
+  for (uint8_t m=0; m<=2; m++) {
+    MapMode mode = (MapMode)m;
     assertEqual(mapFrom01(0, -10, 10, mode), -10.0);
     assertEqual(mapFrom01(1, -10, 10, mode),  mode == WRAP ? -10: 10.0);
 

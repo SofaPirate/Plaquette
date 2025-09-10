@@ -28,14 +28,14 @@ namespace pq {
 
 inline q0_32u_t squareWave(q0_32u_t t, q0_32u_t skew)
 {
-  return (t <= skew) ? FIXED_MAX : 0;
+  return (t <= skew) ? FIXED_32_MAX : 0;
 }
 
 inline q0_32u_t triangleWave(q0_32u_t t, q0_32u_t skew)
 {
   return (t <= skew) ?
             fixed32Divide(t, skew) :
-            fixed32Divide(FIXED_MAX - t, FIXED_MAX - skew);
+            fixed32Divide(FIXED_32_MAX - t, FIXED_32_MAX - skew);
 }
 
 inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
@@ -45,7 +45,7 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   q0_32u_t phase32;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
-  if (skew == HALF_FIXED_MAX)
+  if (skew == HALF_FIXED_32_MAX)
   {
       phase32 = t;
   }
@@ -57,16 +57,16 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   // Falling part of sine wave.
   else
   {
-      phase32 = fixed32Divide(t - skew, FIXED_MAX - skew) / 2 + HALF_FIXED_MAX;
+      phase32 = fixed32Divide(t - skew, FIXED_32_MAX - skew) / 2 + HALF_FIXED_MAX;
   }
 
-  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phase32));
+  return static_cast<uint32_t>(HALF_FIXED_32_MAX - cos32(phase32));
 #else
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint16_t phase16;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
-  if (skew == HALF_FIXED_MAX)
+  if (skew == HALF_FIXED_32_MAX)
   {
       phase16 = static_cast<uint16_t>(t >> 16);
   }
@@ -78,7 +78,7 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   // Falling part of sine wave.
   else if (t > skew)
   {
-      phase16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_MAX - skew)) + 32768;
+      phase16 = static_cast<uint16_t>((static_cast<uint64_t>(t - skew) << 15) / (FIXED_32_MAX - skew)) + HALF_FIXED_16_MAX;
   }
   // Peak of sine wave.
   else
@@ -87,7 +87,7 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   }
 
   // Convert to [0, 1] with wave shape similar to triangle wave.
-  return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phase16)) << 16;
+  return static_cast<uint32_t>(static_cast<uint16_t>(HALF_FIXED_16_MAX-1) - cos16(phase16)) << 16;
 #endif
 }
 

@@ -95,7 +95,6 @@ testing(countingPeaks) {
 
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(20000);
 
   for (int i=0; i<N_DETECTOR_TYPES; i++)
     for (int j=0; j<N_GENERATORS; j++) {
