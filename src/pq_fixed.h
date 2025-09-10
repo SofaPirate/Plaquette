@@ -28,10 +28,12 @@
 
 namespace pq {
 
+// Fixed-point types.
 typedef uint32_t q0_32u_t;
 typedef uint16_t q0_16u_t;
 typedef uint8_t  q0_8u_t;
 
+// Fixed-point constants.
 constexpr q0_32u_t FIXED_32_MAX = static_cast<q0_32u_t>(0xFFFFFFFF);
 constexpr q0_32u_t HALF_FIXED_32_MAX = static_cast<q0_32u_t>(0x80000000);
 constexpr float    INV_FIXED_32_MAX = 1.0f / FIXED_32_MAX;
