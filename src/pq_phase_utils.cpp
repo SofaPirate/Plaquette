@@ -31,17 +31,12 @@ q0_32u_t phase32AddTime(q0_32u_t phase32, float period, float time) {
   return phase32AddPhase(phase32, timeToPhase(period, time));
 }
 
-bool phase32UpdateFixed32(q0_32u_t& phase32, float frequency, float deltaTimeSecondsTimesFixed32Max, bool forward) {
-  // Premultiply.
-  frequency *= deltaTimeSecondsTimesFixed32Max;
-
-  // Compute increment/decrement.
-  q0_32u_t increment = round(frequency);
-
+// Helper function.
+bool _phase32Update(q0_32u_t& phase32, q0_32u_t increment, bool forward) {
   // Forward case.
   if (forward) {
     // Check if increment will overflow.
-    bool overflow = (increment > FIXED_MAX - phase32);
+    bool overflow = (increment > FIXED_MAX_32 - phase32);
     // Add increment (will overflow when reaching max).
     phase32 += increment;
     return overflow;
@@ -57,37 +52,17 @@ bool phase32UpdateFixed32(q0_32u_t& phase32, float frequency, float deltaTimeSec
   }
 }
 
+bool phase32UpdateFixed32(q0_32u_t& phase32, float frequency, float deltaTimeSecondsTimesFixed32Max, bool forward) {
+  return _phase32Update(phase32, round(frequency * deltaTimeSecondsTimesFixed32Max), forward);
+}
+
 
 /// Computes new phase time for oscillators and returns when phase time overflows or underflows.
 bool phase32Update(q0_32u_t& phase32, float period, float sampleRate, bool forward) {
   // Premultiply period.
   period *= sampleRate;
 
-  // Extreme case: infinite increment.
-  if (period == 0)
-    return true;
-
-  // Forward case.
-  else if (forward) {
-    // Increment to add to phase32.
-    q0_32u_t increment = floatToPhase32(1.0f / period);
-    // Check if increment will overflow.
-    bool overflow = (increment > FIXED_MAX - phase32);
-    // Add increment (will overflow when reaching max).
-    phase32 += increment;
-    return overflow;
-  }
-
-  // Backwards case.
-  else {
-    // Decrement to subtract from phase32.
-    q0_32u_t decrement = floatToPhase32(1.0f / period);
-    // Check if increment will underflow.
-    bool underflow = (decrement > phase32);
-    // Add increment (will overflow when reaching max).
-    phase32 -= decrement;
-    return underflow;
-  }
+  return (period == 0) ? true : _phase32Update(phase32, floatToPhase32(1.0f / period), forward);
 }
 
 }
