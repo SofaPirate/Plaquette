@@ -36,7 +36,7 @@ bool _phase32Update(q0_32u_t& phase32, q0_32u_t increment, bool forward) {
   // Forward case.
   if (forward) {
     // Check if increment will overflow.
-    bool overflow = (increment > FIXED_MAX_32 - phase32);
+    bool overflow = (increment > FIXED_32_MAX - phase32);
     // Add increment (will overflow when reaching max).
     phase32 += increment;
     return overflow;

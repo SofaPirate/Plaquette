@@ -50,7 +50,7 @@ void SquareWave::step() {
 }
 
 q0_32u_t SquareWave::_getFixed32(q0_32u_t t) {
-  return (_onValue ? FIXED_MAX_32 : 0);
+  return (_onValue ? FIXED_32_MAX : 0);
 }
 
 }

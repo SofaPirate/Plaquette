@@ -32,17 +32,17 @@ typedef uint32_t q0_32u_t;
 typedef uint16_t q0_16u_t;
 typedef uint8_t  q0_8u_t;
 
-constexpr q0_32u_t FIXED_MAX_32 = static_cast<q0_32u_t>(0xFFFFFFFF);
-constexpr q0_32u_t HALF_FIXED_MAX_32 = static_cast<q0_32u_t>(0x80000000);
-constexpr float    INV_FIXED_MAX_32 = 1.0f / FIXED_MAX_32;
+constexpr q0_32u_t FIXED_32_MAX = static_cast<q0_32u_t>(0xFFFFFFFF);
+constexpr q0_32u_t HALF_FIXED_32_MAX = static_cast<q0_32u_t>(0x80000000);
+constexpr float    INV_FIXED_32_MAX = 1.0f / FIXED_32_MAX;
 
-constexpr q0_16u_t FIXED_MAX_16 = static_cast<q0_16u_t>(0xFFFF);
-constexpr q0_16u_t HALF_FIXED_MAX_16 = static_cast<q0_16u_t>(0x8000);
-constexpr float    INV_FIXED_MAX_16 = 1.0f / FIXED_MAX_16;
+constexpr q0_16u_t FIXED_16_MAX = static_cast<q0_16u_t>(0xFFFF);
+constexpr q0_16u_t HALF_FIXED_16_MAX = static_cast<q0_16u_t>(0x8000);
+constexpr float    INV_FIXED_16_MAX = 1.0f / FIXED_16_MAX;
 
-constexpr q0_8u_t FIXED_MAX_8 = static_cast<q0_8u_t>(0xFF);
-constexpr q0_8u_t HALF_FIXED_MAX_8 = static_cast<q0_8u_t>(0x80);
-constexpr float   INV_FIXED_MAX_8 = 1.0f / FIXED_MAX_8;
+constexpr q0_8u_t FIXED_8_MAX = static_cast<q0_8u_t>(0xFF);
+constexpr q0_8u_t HALF_FIXED_8_MAX = static_cast<q0_8u_t>(0x80);
+constexpr float   INV_FIXED_8_MAX = 1.0f / FIXED_8_MAX;
 
 /**
  * Re-maps a number in range [0, 1] to a new range [0, toHigh].
@@ -80,22 +80,22 @@ inline float fixedToFloat(I value, float invMax) {
 }
 
 /// Converts 32-bit fixed32-point value to floating point.
-inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloat(x, INV_FIXED_MAX_32); }
+inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloat(x, INV_FIXED_32_MAX); }
 
 /// Converts floating point in range [0, 1] to 32-bit fixed32-point value.
-inline q0_32u_t floatToFixed32(float x) { return floatToFixed(x, FIXED_MAX_32); }
+inline q0_32u_t floatToFixed32(float x) { return floatToFixed(x, FIXED_32_MAX); }
 
 /// Converts 16-bit fixed16-point value to floating point.
-inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloat(x, INV_FIXED_MAX_16); }
+inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloat(x, INV_FIXED_16_MAX); }
 
 /// Converts floating point in range [0, 1] to 16-bit fixed16-point value.
-inline q0_16u_t floatToFixed16(float x) { return floatToFixed(x, FIXED_MAX_16); }
+inline q0_16u_t floatToFixed16(float x) { return floatToFixed(x, FIXED_16_MAX); }
 
 /// Converts 8-bit fixed8-point value to floating point.
-inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloat(x, INV_FIXED_MAX_8); }
+inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloat(x, INV_FIXED_8_MAX); }
 
 /// Converts floating point in range [0, 1] to 8-bit fixed8-point value.
-inline q0_8u_t floatToFixed8(float x) { return floatToFixed(x, FIXED_MAX_8); }
+inline q0_8u_t floatToFixed8(float x) { return floatToFixed(x, FIXED_8_MAX); }
 
 }
 

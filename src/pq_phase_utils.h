@@ -40,13 +40,13 @@ namespace pq {
 /// Applies amplitude scaling to 32-bit fixed32-point value interpreted as a signal centered at UINT32_MAX/2.
 inline q0_32u_t amplifyFixed32(q0_32u_t x, q0_32u_t amplitude) {
   // Shift to signed range (-UINT32_MAX/2 to UINT32_MAX/2).
-  int32_t centered = (int32_t)(x ^ HALF_FIXED_MAX_32);
+  int32_t centered = (int32_t)(x ^ HALF_FIXED_32_MAX);
 
   // Apply amplitude scaling (keeping within 32-bit range).
   centered = ((int64_t)centered * amplitude) >> 32;
 
   // Convert back to unsigned range.
-  return (q0_32u_t)(centered ^ HALF_FIXED_MAX_32);
+  return (q0_32u_t)(centered ^ HALF_FIXED_32_MAX);
 }
 
 /// Applies amplitude scaling to float using fixed32-point amplitude.
