@@ -29,7 +29,7 @@ TriangleWave::TriangleWave(float period, float skew, Engine& engine) : AbstractW
 q0_32u_t TriangleWave::_getFixed32(q0_32u_t t) {
   return (t <= _skew32) ?
         fixed32Divide(t, _skew32) :
-        fixed32Divide(FIXED_MAX - t, FIXED_MAX - _skew32);
+        fixed32Divide(FIXED_MAX_32 - t, FIXED_MAX_32 - _skew32);
 }
 
 float TriangleWave::_getAmplified(q0_32u_t t) {
@@ -47,7 +47,7 @@ float TriangleWave::_getAmplified(q0_32u_t t) {
       return AbstractWave::_getAmplified(t);
     }
     else {
-      return amplifyFloat(_fallEasing(fixed32ToFloat(fixed32Divide(FIXED_MAX - t, FIXED_MAX - _skew32))), _amplitude);
+      return amplifyFloat(_fallEasing(fixed32ToFloat(fixed32Divide(FIXED_MAX_32 - t, FIXED_MAX_32 - _skew32))), _amplitude);
     }
   }
 }
@@ -56,7 +56,7 @@ float TriangleWave::_getAmplified(q0_32u_t t) {
 //   // Compute triangle depending on raising or falling step.
 //   return (t <= _skew32) ?
 //            t / (float(_skew32) + FLT_MIN) : // + FLT_MIN to avoid 0/0
-//            (FIXED_MAX - t) / (float)(FIXED_MAX - _skew32);
+//            (FIXED_MAX_32 - t) / (float)(FIXED_MAX_32 - _skew32);
 // }
 
 }

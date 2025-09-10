@@ -37,7 +37,7 @@ q0_32u_t SineWave::_getFixed32(q0_32u_t t) {
   uint32_t phase32;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
-  if (_skew32 == HALF_FIXED_MAX) {
+  if (_skew32 == HALF_FIXED_MAX_32) {
     phase32 = t;
   }
   // Rising part of sine wave.
@@ -46,22 +46,22 @@ q0_32u_t SineWave::_getFixed32(q0_32u_t t) {
   }
   // Falling part of sine wave.
   else {
-    phase32 = fixed32Divide(t - _skew32, FIXED_MAX - _skew32) / 2 + HALF_FIXED_MAX;
+    phase32 = fixed32Divide(t - _skew32, FIXED_MAX_32 - _skew32) / 2 + HALF_FIXED_MAX_32;
   }
   // Serial.print(t); Serial.print(" ");
   // Serial.println(phase32);
   // // Peak of sine wave.
   // else { // t == _skew32
-  //   phase32 = FIXED_MAX / 2;
+  //   phase32 = FIXED_MAX_32 / 2;
   // }
 
-  return static_cast<uint32_t>(HALF_FIXED_MAX - cos32(phase32));
+  return static_cast<uint32_t>(HALF_FIXED_MAX_32 - cos32(phase32));
 #else
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint16_t phase16;
 
   // Special case: skew == 0.5 (default and most common). More efficient.
-  if (_skew32 == HALF_FIXED_MAX) {
+  if (_skew32 == HALF_FIXED_MAX_32) {
     phase16 = static_cast<uint16_t>(t >> 16);
   }
   // Rising part of sine wave.
@@ -70,15 +70,15 @@ q0_32u_t SineWave::_getFixed32(q0_32u_t t) {
   }
   // Falling part of sine wave.
   else if (t > _skew32) {
-    phase16 = static_cast<uint16_t> ((static_cast<uint64_t>(t - _skew32) << 15) / (FIXED_MAX - _skew32)) + 32768;
+    phase16 = static_cast<uint16_t> ((static_cast<uint64_t>(t - _skew32) << 15) / (FIXED_MAX_32 - _skew32)) + HALF_FIXED_MAX_16;
   }
   // Peak of sine wave.
   else { // t == _skew32
-    phase16 = 32768;
+    phase16 = HALF_FIXED_MAX_16;
   }
 
   // Convert to [0, 1] with wave shape similar to triangle wave.
-  return static_cast<uint32_t>(static_cast<uint16_t>(32767) - cos16(phase16)) << 16;
+  return static_cast<uint32_t>(static_cast<uint16_t>(HALF_FIXED_MAX_16-1) - cos16(phase16)) << 16;
 #endif
 }
 
