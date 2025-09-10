@@ -116,6 +116,8 @@
 // IEEE 754 floating point supported.
 #if defined(__STDC_IEC_559__) || defined(__IEEE754__) || defined(ESP_PLATFORM) || defined(TEENSYDUINO) || defined(__AVR__) || defined(__ARM_FP)
   #define PQ_IEEE_754_SUPPORTED
+#else
+  #warning "IEEE 754 floating point not supported on this architecture. This may cause unexpected behavior."
 #endif
 
 // Enable CPU optimization (as opposed to memory optimization).
