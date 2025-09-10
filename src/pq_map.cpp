@@ -26,7 +26,7 @@
 
 namespace pq {
 
-float _mapConvert(float value, float toLow, float toHigh, uint8_t mode) {
+float _mapConvert(float value, float toLow, float toHigh, MapMode mode) {
   // Convert -0.0f to 0.0f
   if (value == 0.0f)
     value = 0.0f;
@@ -40,7 +40,7 @@ float _mapConvert(float value, float toLow, float toHigh, uint8_t mode) {
   }
 }
 
-float _mapConvert01(float value, uint8_t mode) {
+float _mapConvert01(float value, MapMode mode) {
   // Convert -0.0f to 0.0f
   if (value == 0.0f)
     value = 0.0f;
@@ -55,7 +55,7 @@ float _mapConvert01(float value, uint8_t mode) {
 }
 
 
-float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode)
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, MapMode mode)
 {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
@@ -66,7 +66,7 @@ float mapFloat(double value, double fromLow, double fromHigh, double toLow, doub
   return _mapConvert(value, toLow, toHigh, mode);
 }
 
-float mapFrom01(double value, double toLow, double toHigh, uint8_t mode) {
+float mapFrom01(double value, double toLow, double toHigh, MapMode mode) {
   // Compute value.
   value = (value * (toHigh - toLow)) + toLow;
 
@@ -74,7 +74,7 @@ float mapFrom01(double value, double toLow, double toHigh, uint8_t mode) {
   return _mapConvert(value, toLow, toHigh, mode);
 }
 
-float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode) {
+float mapTo01(double value, double fromLow, double fromHigh, MapMode mode) {
   // Avoid divisions by zero.
   if (fromLow == fromHigh)
     value = 0.5f; // dummy value

@@ -28,7 +28,7 @@
 namespace pq {
 
 /// @brief Mapping modes.
-enum {
+enum MapMode {
   UNCONSTRAIN = 0,
   CONSTRAIN = 1,
   WRAP = 2
@@ -44,7 +44,7 @@ enum {
  * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value
  */
-float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, uint8_t mode=UNCONSTRAIN);
+float mapFloat(double value, double fromLow, double fromHigh, double toLow, double toHigh, MapMode mode=UNCONSTRAIN);
 
 /**
  * Re-maps a number in range [0, 1] to a new range.
@@ -54,7 +54,7 @@ float mapFloat(double value, double fromLow, double fromHigh, double toLow, doub
  * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value in [toLow, toHigh]
  */
-float mapFrom01(double value, double toLow, double toHigh, uint8_t mode=UNCONSTRAIN);
+float mapFrom01(double value, double toLow, double toHigh, MapMode mode=UNCONSTRAIN);
 
 /**
  * Re-maps a number to the [0, 1] range.
@@ -64,7 +64,7 @@ float mapFrom01(double value, double toLow, double toHigh, uint8_t mode=UNCONSTR
  * @param mode set to CONSTRAIN to constrain the return value between toLow and toHigh or WRAP for the value to wrap around
  * @return the mapped value in [0, 1]
  */
-float mapTo01(double value, double fromLow, double fromHigh, uint8_t mode=UNCONSTRAIN);
+float mapTo01(double value, double fromLow, double fromHigh, MapMode mode=UNCONSTRAIN);
 
 
 } // namespace pq
