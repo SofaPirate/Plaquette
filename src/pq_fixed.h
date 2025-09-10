@@ -47,11 +47,11 @@ constexpr float   INV_FIXED_8_MAX = 1.0f / FIXED_8_MAX;
 /**
  * Re-maps a number in range [0, 1] to a new range [0, toHigh].
  * @param value the number to map (in [0,1])
- * @param toHigh the upper bound of the value’s target range
- * @return the mapped value in [0, toHigh]
+ * @param high the upper bound of the value’s target range
+ * @return the mapped value in [0, high]
  */
 template <typename I>
-inline I floatToFixed(float value, I toHigh) {
+inline I floatToFixed(float value, I high) {
 #if defined(PQ_IEEE_754_SUPPORTED)
   uint32_t ui;
   memcpy(&ui, &value, sizeof ui); // safe bit copy
@@ -60,39 +60,50 @@ inline I floatToFixed(float value, I toHigh) {
   if (ui & 0x80000000u) return static_cast<I>(0);
 
   // Closed upper bound: x > 1.0f -> 1.0f
-  if (ui >= 0x3F800000u) return toHigh;
+  if (ui >= 0x3F800000u) return high;
 
-  return static_cast<I>(value + value * toHigh); // x * (toHigh + 1)
+  return static_cast<I>(value + value * high); // x * (toHigh + 1)
 #else
-  return (value < 0.0f) ? 0 : (value > 1.0f) ? toHigh : static_cast<I>(value + value * toHigh);
+  return (value <= 0.0f) ? 0 : (value >= 1.0f) ? high : static_cast<I>(value + value * high);
 #endif
 }
 
 /**
- * Re-maps a number from [0, toHigh] to the [0, 1] range.
+ * Re-maps a number from [0, high] to the [0, 1] range.
  * @param value the number to map
- * @param toHigh the upper bound of the value’s target range
+ * @param high the upper bound of the value’s target range
  * @return the mapped value in [0, 1]
  */
 template <typename I>
-inline float fixedToFloat(I value, float invMax) {
-  return constrain01(value * invMax);
+inline float fixedToFloat(I value, I high) {
+  return constrain01(value / static_cast<float>(high));
+}
+
+/**
+ * Re-maps a number from [0, high] to the [0, 1] range.
+ * @param value the number to map
+ * @param invHigh the inverse of the upper bound of the value’s target range ie. 1.0f / high
+ * @return the mapped value in [0, 1]
+ */
+template <typename I>
+inline float fixedToFloatInv(I value, float invHigh) {
+  return constrain01(value * invHigh);
 }
 
 /// Converts 32-bit fixed32-point value to floating point.
-inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloat(x, INV_FIXED_32_MAX); }
+inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloatInv(x, INV_FIXED_32_MAX); }
 
 /// Converts floating point in range [0, 1] to 32-bit fixed32-point value.
 inline q0_32u_t floatToFixed32(float x) { return floatToFixed(x, FIXED_32_MAX); }
 
 /// Converts 16-bit fixed16-point value to floating point.
-inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloat(x, INV_FIXED_16_MAX); }
+inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloatInv(x, INV_FIXED_16_MAX); }
 
 /// Converts floating point in range [0, 1] to 16-bit fixed16-point value.
 inline q0_16u_t floatToFixed16(float x) { return floatToFixed(x, FIXED_16_MAX); }
 
 /// Converts 8-bit fixed8-point value to floating point.
-inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloat(x, INV_FIXED_8_MAX); }
+inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloatInv(x, INV_FIXED_8_MAX); }
 
 /// Converts floating point in range [0, 1] to 8-bit fixed8-point value.
 inline q0_8u_t floatToFixed8(float x) { return floatToFixed(x, FIXED_8_MAX); }
