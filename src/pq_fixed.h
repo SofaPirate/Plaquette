@@ -105,3 +105,5 @@ inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloat(x, INV_FIXED_MAX_8);
 inline q0_8u_t floatToFixed8(float x) { return floatToFixed(x, FIXED_MAX_8); }
 
 }
+
+#endif
