@@ -21,17 +21,10 @@
 #ifndef PQ_FIXED_H_
 #define PQ_FIXED_H_
 
-#if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
-#include <Arduino.h>
-#else
-#include <WProgram.h>
-#endif
-
 #include "pq_globals.h"
-#include "pq_wrap.h"
+#include "pq_constrain.h"
 
 #include <stdint.h>
-#include <float.h>
 
 namespace pq {
 
