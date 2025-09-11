@@ -8,10 +8,10 @@ using namespace pq;
 AbstractWave* generators[N_GENERATORS] = {
   new Wave(0.005),
   new Wave(1),
-  new TriangleWave(0.005),
-  new TriangleWave(1),
-  new SineWave(0.005),
-  new SineWave(1)
+  new Wave(TRIANGLE, 0.005),
+  new Wave(TRIANGLE, 1),
+  new Wave(SINE, 0.005),
+  new Wave(SINE, 1)
 };
 
 #define PEAK_DETECTOR_THRESHOLD 0.6f
