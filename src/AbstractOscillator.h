@@ -161,13 +161,8 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  uint8_t data : 4;
-
-  // // Previous value, used to compute change state.
-  // bool _prevOnValue : 1;
-
-  // // The change state contained in the unit.
-  // int8_t _changeState : 2;
+  // Padding data (for alignment).
+  uint8_t _data : 4;
 };
 
 }
