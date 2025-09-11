@@ -10,10 +10,11 @@ tags:
   - Research-Creation
 authors:
   - name: Sofian Audry
+    orcid: 0000-0002-6340-2550
     equal-contrib: true
     affiliation: 1
-    orcid: 0000-0002-6340-2550
   - name: Thomas Ouellet Fredericks
+    orcid: 0009-0004-8587-9508
     equal-contrib: true
     affiliation: 2
 affiliations:
@@ -73,7 +74,7 @@ used to improve real-time physiological signal processing as part of the [BioDat
 library for affective biofeedback, supporting creative applications in music and performance [Gee2023-BioSynth], and used in
 studies of electrodermal activity measurement [Hagler2022-Flexible]. It was integrated at the core of the
 [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling researchers and practitionners to explore object behaviors
-from artistic and scientific perspectives. Finally, it was employed for signal processing and LED-based robotic expression in the
+from artistic and scientific perspectives. It was also employed for signal processing and LED-based robotic expression in the
 artwork *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning
 [Audry2020-Behaviour,Audry2024-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also
 as a catalyst for interdisciplinary exploration.
