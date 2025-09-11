@@ -127,7 +127,7 @@ public:
   virtual float _getAmplified(q0_32u_t t);
 
   // Amplitude (in %).
-  uint32_t _amplitude;
+  q0_32u_t _amplitude;
 
   // Skew of the signal.
   q0_32u_t _skew32;
