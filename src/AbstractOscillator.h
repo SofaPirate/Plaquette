@@ -73,15 +73,6 @@ public:
   /// Returns the frequency (in BPM).
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
-  /**
-   * Sets the amplitude of the wave.
-   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
-   */
-   virtual void amplitude(float amplitude);
-
-   /// Returns the amplitude of the wave.
-   virtual float amplitude() const { return fixed32ToFloat(_amplitude); }
-
    /**
     * Sets the phase (ie. the offset, in % of period).
     * @param phase the phase (in % of period)
@@ -152,13 +143,6 @@ protected:
 
   // Phase shift (in % of period).
   float _phaseShift;
-
-  // Amplitude (in %).
-//  float _amplitude;
-  uint32_t _amplitude;
-
-  // Width of the signal.
-  q0_32u_t _skew32;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;

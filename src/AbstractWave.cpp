@@ -28,8 +28,9 @@ namespace pq {
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, float skew_, Engine& engine)
-: AnalogSource(engine), AbstractOscillator(period) {
+: AnalogSource(engine), AbstractOscillator(period), _amplitude(0) {
   skew(skew_);
+  amplitude(1.0f);
 }
 
 float AbstractWave::get() {
@@ -87,6 +88,10 @@ float AbstractWave::shiftByTime(float timeShift) {
 
 float AbstractWave::atPhase(float phase) {
   return _getAmplified(floatToPhase32(phase));
+}
+
+void AbstractWave::amplitude(float amplitude)  {
+  _amplitude = floatToFixed32(amplitude);
 }
 
 void AbstractWave::skew(float skew) {

@@ -27,14 +27,13 @@ namespace pq {
 
 AbstractOscillator::AbstractOscillator(float period_)
 : Timeable(),
-  _period(0),
+  _period(period_+1), // makes sure period is different and will be adjusted
 #if PQ_OPTIMIZE_FOR_CPU
   _frequency(FLT_MAX),
 #endif
-  _phaseShift(0), _amplitude(1),
+  _phaseShift(0),
   _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true) {
   period(period_);
-  amplitude(1.0f);
 }
 
 void AbstractOscillator::period(float period) {
@@ -65,10 +64,6 @@ void AbstractOscillator::frequency(float frequency) {
 
 void AbstractOscillator::bpm(float bpm) {
   frequency(bpm * BPM_TO_HZ);
-}
-
-void AbstractOscillator::amplitude(float amplitude)  {
-  _amplitude = floatToFixed32(amplitude);
 }
 
 void AbstractOscillator::phase(float phase) {

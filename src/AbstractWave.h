@@ -85,6 +85,15 @@ public:
   virtual float atPhase(float phase);
 
   /**
+   * Sets the amplitude of the wave.
+   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
+   */
+   virtual void amplitude(float amplitude);
+
+   /// Returns the amplitude of the wave.
+   virtual float amplitude() const { return fixed32ToFloat(_amplitude); }
+
+  /**
    * Sets the skew of the signal as a % of period.
    * @param skew the skew as a value in [0, 1]
    */
@@ -116,6 +125,9 @@ public:
 
   // Returns amplified version of _get(t).
   virtual float _getAmplified(q0_32u_t t);
+
+  // Amplitude (in %).
+  uint32_t _amplitude;
 
   // Skew of the signal.
   q0_32u_t _skew32;
