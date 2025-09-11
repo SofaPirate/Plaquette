@@ -60,29 +60,6 @@ protected:
 
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);
-
-  // Phase (in % of period).
-  float _period;
-
-#if PQ_OPTIMIZE_FOR_CPU
-  // Frequency (Hz).
-  float _frequency;
-#endif
-
-  // Phase shift (in % of period).
-  float _phaseShift;
-
-  // Internal use.
-  q0_32u_t _phase32;
-
-  // Value.
-  bool _onValue : 1;
-
-  // Is the wave currently running?
-  bool _isRunning : 1;
-
-  // Extra data.
-  uint8_t data : 6;
 };
 
 /// @deprecated
