@@ -28,13 +28,11 @@ Metronome::Metronome(float period_, Engine& engine) : DigitalUnit(engine), Abstr
 
 void Metronome::begin() {
   start();
-  _onValue = 0;
 }
 
 void Metronome::step() {
   // Adjust phase time.
-  _onValue = (isRunning() &&
-              phase32UpdateFixed32(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixed32Max(), _isForward));
+  _stepPhase(engine()->deltaTimeSecondsTimesFixed32Max());
 }
 
 void Metronome::onBang(EventCallback callback) {
@@ -42,7 +40,7 @@ void Metronome::onBang(EventCallback callback) {
 }
 
 bool Metronome::eventTriggered(EventType eventType) {
-  if (eventType == EVENT_BANG) return _onValue;
+  if (eventType == EVENT_BANG) return _overflowed;
   else return DigitalUnit::eventTriggered(eventType);
 }
 

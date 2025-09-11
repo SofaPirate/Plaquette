@@ -125,6 +125,9 @@ protected:
 protected:
   // Returns value in [0, 1].
   virtual q0_32u_t _getFixed32(q0_32u_t t);
+
+  // The current high/low value of the unit.
+  bool _onValue = false;
 };
 
 /// @deprecated

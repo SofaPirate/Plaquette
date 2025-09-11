@@ -50,28 +50,10 @@ void AbstractWave::begin() {
 
 void AbstractWave::step() {
   // Update phase time.
-  if (isRunning())
-    _overflowed = phase32UpdateFixed32(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixed32Max(), _isForward);
-  else
-    _overflowed = false;
+  _stepPhase(engine()->deltaTimeSecondsTimesFixed32Max());
 
   // Set flag to indicate value is out of sync.
   _valueNeedsUpdate = true;
-  // // Notice: this computation is not exact but manages naturally changes in the period without
-  // // inducing dephasings on Arduino boards.
-  // float relativeTime = seconds() - _startTime;
-  //
-  // // Check where we are.
-  // float progress = relativeTime / _period;
-  // if (progress >= 1) {
-  //   _value = 0;
-  //   _startTime = seconds();
-  // }
-  // else if (progress >= _skew32) _value = (1 - progress) / (1 - _skew32);
-  // else                         _value = progress / _skew32;
-  //
-  // // Amplify.
-  // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 float AbstractWave::_getAmplified(q0_32u_t t) {

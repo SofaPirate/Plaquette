@@ -126,6 +126,8 @@ public:
   virtual void toggleReverse() { _isForward = !_isForward; }
 
 protected:
+  // Perform step with under
+  void _stepPhase(float deltaTimeSecondsTimesFixed32Max);
 
   // Sets phase time.
   virtual void _setPhase32(q0_32u_t phase32);
@@ -159,10 +161,7 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  // Current value.
-  bool _onValue : 1;
-
-  uint8_t data : 3;
+  uint8_t data : 4;
 
   // // Previous value, used to compute change state.
   // bool _prevOnValue : 1;

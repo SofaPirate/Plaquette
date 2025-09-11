@@ -36,6 +36,13 @@ AbstractOscillator::AbstractOscillator(float period_)
   period(period_);
 }
 
+void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
+  // Adjust phase time.
+  // NOTE (optimization trick): If isRunning() is false, phase32UpdateFixed32() will not be called.
+  _overflowed = (isRunning() &&
+                 phase32UpdateFixed32(_phase32, frequency(), deltaTimeSecondsTimesFixed32Max, _isForward));
+}
+
 void AbstractOscillator::period(float period) {
   // Assign period.
   if (_period != period) {

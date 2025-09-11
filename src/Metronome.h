@@ -46,12 +46,13 @@ public:
   Metronome(float period, Engine& engine = Engine::primary());
 
   /// Returns true iff the metronome fires.
-  virtual bool isOn() { return _onValue; }
+  virtual bool isOn() { return _overflowed; }
 
   /// Registers event callback on metronome tick ("bang") event.
   virtual void onBang(EventCallback callback);
 
 protected:
+  // Core Plaquette methods.
   virtual void begin();
   virtual void step();
 
