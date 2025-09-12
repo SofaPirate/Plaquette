@@ -22,8 +22,12 @@
 
 namespace pq {
 
+#ifndef RANDOM_MAX
+#define	RANDOM_MAX 0x7FFFFFFF
+#endif
+
 float randomFloat() {
-  return (float)rand() / (float) RAND_MAX;
+  return (float)random() / (float)RANDOM_MAX;
 }
 
 float randomFloat(float max) {
