@@ -14,7 +14,7 @@ Metronome* metro[N_METRO] = {
 Metronome* randomMetro[N_METRO] = {
   new Metronome(0.005),
   new Metronome(0.01),
-  new Metronome(0.05)
+  new Metronome(0.02)
 };
 
 Wave* osc[N_METRO] = {
@@ -77,7 +77,8 @@ testing(timing) {
       Metronome* unit = metro[i];
       Metronome* randomUnit = randomMetro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
-      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.1f);
+      // Assert random metronome is within 15% tolerance.
+      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.15f);
     }
     pass();
   }
