@@ -25,13 +25,7 @@
 #ifndef RANDOM_H_
 #define RANDOM_H_
 
-#include <limits.h>
-#include <stdlib.h>
-#include <inttypes.h>
-
 namespace pq {
-
-constexpr uint32_t RANDOM_32_MAX = UINT32_MAX;
 
 // Floating point random numbers.
 
@@ -56,9 +50,6 @@ float randomFloat(float min, float max);
  * @return true when an event occurs during this sample
  */
 bool randomTrigger(float timeWindow, float samplePeriod);
-
-uint32_t random32();
-void randomSeed32(uint64_t seed);
 
 /// @deprecated
 [[deprecated("Use randomFloat() instead.")]]
