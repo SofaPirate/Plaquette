@@ -57,7 +57,7 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   // Falling part of sine wave.
   else
   {
-      phase32 = fixed32Divide(t - skew, FIXED_32_MAX - skew) / 2 + HALF_FIXED_MAX;
+      phase32 = fixed32Divide(t - skew, FIXED_32_MAX - skew) / 2 + HALF_FIXED_32_MAX;
   }
 
   return static_cast<uint32_t>(HALF_FIXED_32_MAX - cos32(phase32));
