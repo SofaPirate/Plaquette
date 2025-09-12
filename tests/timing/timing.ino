@@ -11,6 +11,12 @@ Metronome* metro[N_METRO] = {
   new Metronome(0.1)
 };
 
+Metronome* randomMetro[N_METRO] = {
+  new Metronome(0.005),
+  new Metronome(0.01),
+  new Metronome(0.05)
+};
+
 Wave* osc[N_METRO] = {
   new Wave(0.01),
   new Wave(0.05),
@@ -29,14 +35,16 @@ testing(timing) {
   static float startTime = Plaquette.seconds();
 
   static float nMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
+  static float nRandomMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
   // static float nMetro[N_METRO] = { 0.0f , 0.0f};
   // static float nMetro[N_METRO] = { 0.0f };
-  static const float TOTAL_DURATION = 5.0f;
+  static const float TOTAL_DURATION = 8.0f;
 
   Plaquette.step();
 
   for (int i=0; i<N_METRO; i++) {
     Metronome* unit = metro[i];
+    Metronome* randomUnit = randomMetro[i];
     Wave *unit2 = osc[i];
     // if (i == 0) {
     //   print(Plaquette.seconds()-startTime); print(" "); print(unit->isOn()); print(" "); print(unit2->get());
@@ -51,6 +59,9 @@ testing(timing) {
       nMetro[i]++;
       assertEqual(unit2->get(), 1.0f);
     }
+    if (randomUnit->isOn()) {
+      nRandomMetro[i]++;
+    }
   }
 
   if (Plaquette.seconds() <= TEST_RAMP_MAX) {
@@ -64,15 +75,19 @@ testing(timing) {
   if (Plaquette.seconds() - startTime > TOTAL_DURATION) {
     for (int i=0; i<N_METRO; i++) {
       Metronome* unit = metro[i];
+      Metronome* randomUnit = randomMetro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
-      pass();
+      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.1f);
     }
+    pass();
   }
 }
 
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
+    Metronome* randomUnit = randomMetro[i];
+    randomUnit->random();
     Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);

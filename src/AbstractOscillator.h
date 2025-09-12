@@ -125,6 +125,13 @@ public:
   /// Toggles the direction of oscillation.
   virtual void toggleReverse() { _isForward = !_isForward; }
 
+  virtual void random() { setRandom(true); }
+  virtual void noRandom() { setRandom(false); }
+  virtual bool isRandom() const { return _isRandom; }
+  virtual void setRandom(bool isRandom);
+
+  virtual void start();
+
 protected:
   // Perform step with under
   void _stepPhase(float deltaTimeSecondsTimesFixed32Max);
@@ -134,6 +141,8 @@ protected:
 
   // Sets running state.
   virtual void _setRunning(bool isRunning);
+
+  void _randomPickNext();
 
   // Period (seconds).
   float _period;
@@ -145,6 +154,9 @@ protected:
 
   // Phase shift (in % of period).
   float _phaseShift;
+
+  // Effective frequency (Hz) for randomization.
+  float _randEffHz = 0.0f;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;
@@ -162,7 +174,10 @@ protected:
   bool _valueNeedsUpdate : 1;
 
   // Padding data (for alignment).
-  uint8_t _data : 4;
+  bool _isRandom : 1;
+
+  // Padding data (for alignment).
+  uint8_t _data : 3;
 };
 
 }
