@@ -80,6 +80,38 @@ bool randomTrigger(float timeWindow, float samplePeriod) {
   return (rand() <= (probability*RAND_MAX));
 }
 
+
+uint64_t pcg_state = 0x853c49e6748fea9bull;
+uint64_t pcg_inc   = 0xda3e39cb94b95bdbull; // must be odd
+
+uint32_t random32() {
+  uint64_t old = pcg_state;
+  pcg_state = old * 6364136223846793005ull + pcg_inc;
+  uint32_t xorshifted = (uint32_t)(((old >> 18u) ^ old) >> 27u);
+  uint32_t rot = (uint32_t)(old >> 59u);
+  return (xorshifted >> rot) | (xorshifted << ((-(int)rot) & 31));
+}
+
+void random32Seed(uint64_t s, uint64_t inc) {
+  pcg_state = s; pcg_inc = (inc << 1) | 1ull;
+}
+
+void random32Seed(uint64_t seed) {
+    // Use SplitMix64 to scramble the input into two 64-bit values
+    uint64_t s = seed + 0x9e3779b97f4a7c15ull;
+    s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
+    s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
+    uint64_t state0 = s ^ (s >> 31);
+
+    s = seed + 0x5851f42d4c957f2dull;
+    s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
+    s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
+    uint64_t inc0 = (s ^ (s >> 31)) | 1ull; // must be odd
+
+    pcg_state = state0;
+    pcg_inc   = inc0;
+}
+
 float randomUniform() { return randomFloat(); }
 float randomUniform(float max) { return randomFloat(max); }
 float randomUniform(float min, float max) { return randomFloat(min, max); }
