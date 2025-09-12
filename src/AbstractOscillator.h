@@ -146,6 +146,7 @@ protected:
   // Sets running state.
   virtual void _setRunning(bool isRunning);
 
+  // Picks next random frequency multiplier (for randomized oscillation).
   void _randomPickNext();
 
   // Period (seconds).
@@ -158,9 +159,6 @@ protected:
 
   // Phase shift (in % of period).
   float _phaseShift;
-
-  // Effective frequency (Hz) for randomization.
-  float _randEffHz = 0.0f;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;
@@ -179,6 +177,9 @@ protected:
 
   // Randomness level.
   uint8_t _randomness : 4;
+
+  // Frequency multiplier for randomness.
+  float _randomFrequencyMultiplier = 0.0f;
 };
 
 }

@@ -43,26 +43,21 @@ void AbstractOscillator::start() {
 }
 
 #define K 32.0f
-#define KMULT (65535.0f/K)
-#define KINV (K/65535.0f)
+
 void AbstractOscillator::_randomPickNext() {
   const float u = max(randomFloat(), FLT_MIN); // (0,1]
   // Precise –ln(u). If log1pf exists it’s slightly better for tiny arguments.
 #if defined(log1pf)
-  float periodMultiplier = -log1pf(u - 1.0f);
+  float periodProportion = -log1pf(u - 1.0f);
 #else
-  float periodMultiplier = -logf(u);
+  float periodProportion = -logf(u);
 #endif
 
-  periodMultiplier = constrain(periodMultiplier, 1.0f/K, K);
-
-//  _randScaleQ12 = (uint16_t)(k * KMULT);
+  // Optional clamping to avoid extreme speeds (rare outliers):
+  periodProportion = constrain(periodProportion, 1.0f/K, K);
 
   // Piecewise-constant instantaneous frequency for this interval
-  float randomWeight = randomness();
-  float randomPeriod = (1 - randomWeight) + randomWeight * periodMultiplier;
-  _randEffHz = 1 / randomPeriod;
-
+  _randomFrequencyMultiplier = 1.0f / (1 + randomness() * (periodProportion - 1));
 }
 
 #define RANDOMNESS_MAX 15
@@ -81,7 +76,7 @@ void AbstractOscillator::randomize(float randomness) {
 
   // If we are passing to random mode, reset effective frequency to ask for random pick.
   if (!wasRandom && _randomness)
-    _randEffHz = 0;
+    _randomFrequencyMultiplier = 0;
 }
 
 void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
@@ -104,25 +99,25 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
     // const float k = (float)_randScaleQ12 * (1.0f / 1024.0f);
     // const float feff = frequency() * k;
 
-    // _overflowed = phase32UpdateFixed32(_phase32, _randEffHz,
+    // _overflowed = phase32UpdateFixed32(_phase32, _randomFrequencyMultiplier,
     //                                    deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // if (_overflowed) _randomPickNext();
 
     // --- Stochastic "speed-driven" path ---
     // Ensure we have an effective frequency for the current interval
-  //  _randEffHz = (float)_randScaleQ12 * KINV;
-    if (!_randEffHz) {
+  //  _randomFrequencyMultiplier = (float)_randScaleQ12 * KINV;
+    if (!_randomFrequencyMultiplier) {
       _randomPickNext();
     }
 
     // Advance phase using the instantaneous frequency for THIS interval
-    _overflowed = phase32UpdateFixed32(_phase32, _randEffHz*frequency(),
+    _overflowed = phase32UpdateFixed32(_phase32, _randomFrequencyMultiplier*frequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // Overflowed: schedule next.
     if (_overflowed) {
-      _randEffHz = 0.0f;
+      _randomFrequencyMultiplier = 0.0f;
     }
   }
 }
