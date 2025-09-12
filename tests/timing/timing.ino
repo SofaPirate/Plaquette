@@ -87,7 +87,7 @@ void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
     Metronome* randomUnit = randomMetro[i];
-    randomUnit->random();
+    randomUnit->randomize();
     Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);

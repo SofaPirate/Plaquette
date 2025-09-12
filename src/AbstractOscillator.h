@@ -125,10 +125,14 @@ public:
   /// Toggles the direction of oscillation.
   virtual void toggleReverse() { _isForward = !_isForward; }
 
-  virtual void random() { setRandom(true); }
-  virtual void noRandom() { setRandom(false); }
-  virtual bool isRandom() const { return _isRandom; }
-  virtual void setRandom(bool isRandom);
+  /// Returns the randomness level in [0, 1].
+  virtual float randomness() const;
+
+  /// Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness).
+  virtual void randomize(float randomness=1.0f);
+
+  /// Disables randomness.
+  virtual void noRandomize() { randomize(0.0f); }
 
   virtual void start();
 
@@ -173,11 +177,8 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  // Padding data (for alignment).
-  bool _isRandom : 1;
-
-  // Padding data (for alignment).
-  uint8_t _data : 3;
+  // Randomness level.
+  uint8_t _randomness : 4;
 };
 
 }

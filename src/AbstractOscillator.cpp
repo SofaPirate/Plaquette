@@ -98,30 +98,39 @@ void AbstractOscillator::_randomPickNext() {
   const float u = uniform01_open32();
   // Precise –ln(u). If log1pf exists it’s slightly better for tiny arguments.
 #if defined(log1pf)
-  const float negLogU = -log1pf(u - 1.0f);
+  float periodMultiplier = -log1pf(u - 1.0f);
 #else
-  const float negLogU = -logf(u);
+  float periodMultiplier = -logf(u);
 #endif
 
-  float k = 1.0f / negLogU;    // k = 1 / ( -ln u )
-//  Serial.println(k);
-
-  // Clamp tails to keep speeds within reasonable bounds:
-  k = constrain(k, 1.0f/K, K);
+  periodMultiplier = constrain(periodMultiplier, 1.0f/K, K);
 
 //  _randScaleQ12 = (uint16_t)(k * KMULT);
 
   // Piecewise-constant instantaneous frequency for this interval
-  _randEffHz = 1 / negLogU;
+  float randomWeight = randomness();
+  float randomPeriod = (1 - randomWeight) + randomWeight * periodMultiplier;
+  _randEffHz = 1 / randomPeriod;
+
 }
 
-void AbstractOscillator::setRandom(bool isRandom) {
-  if (_isRandom != isRandom) {
-    _isRandom = isRandom;
+#define RANDOMNESS_MAX 15
+constexpr float INV_RANDOMNESS_MAX = 1.0f / RANDOMNESS_MAX;
+float AbstractOscillator::randomness() const {
+  return fixedToFloatInv(_randomness, INV_RANDOMNESS_MAX);
+}
 
-    if (_isRandom)
-      _randEffHz = 0;
-  }
+void AbstractOscillator::randomize(float randomness) {
+  bool wasRandom = (_randomness != 0);
+  _randomness = floatToFixed(randomness, RANDOMNESS_MAX);
+
+  // If randomness is larger than zero, set random level to at least 1.
+  if (randomness > 0)
+    _randomness = max(_randomness, 1);
+
+  // If we are passing to random mode, reset effective frequency to ask for random pick.
+  if (!wasRandom && _randomness)
+    _randEffHz = 0;
 }
 
 void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
@@ -130,7 +139,7 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
     _overflowed = false;
   }
 
-  else if (!isRandom()) {
+  else if (!_randomness) {
     // Deterministic path (unchanged)
     _overflowed = phase32UpdateFixed32(_phase32, frequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
