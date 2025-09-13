@@ -32,27 +32,30 @@ AbstractOscillator::AbstractOscillator(float period_)
 #if PQ_OPTIMIZE_FOR_CPU
   _frequency(FLT_MAX),
 #endif
-  _phaseShift(0),
+  _phaseShiftOrRandomFrequencyRatio(0),
   _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _randomness(0) {
   period(period_);
 }
 
-#define K 32.0f
+#define RANDOM_MAX_PERIOD_RATIO 32.0f
+constexpr float RANDOM_MIN_PERIOD_RATIO = 1.0f / RANDOM_MAX_PERIOD_RATIO;
 
 void AbstractOscillator::_randomPickNext() {
+  // Pick random period ratio for this interval using Poisson distribution.
   const float u = max(randomFloat(), FLT_MIN); // (0,1]
   // Precise –ln(u). If log1pf exists it’s slightly better for tiny arguments.
 #if defined(log1pf)
-  float periodProportion = -log1pf(u - 1.0f);
+  float periodRatio = -log1pf(u - 1.0f);
 #else
-  float periodProportion = -logf(u);
+  float periodRatio = -logf(u);
 #endif
 
-  // Optional clamping to avoid extreme speeds (rare outliers):
-  periodProportion = constrain(periodProportion, 1.0f/K, K);
+  // clamping to avoid extreme ratios (rare outliers).
+  periodRatio = constrain(periodRatio, RANDOM_MIN_PERIOD_RATIO, RANDOM_MAX_PERIOD_RATIO);
 
-  // Piecewise-constant instantaneous frequency for this interval
-  _randomFrequencyMultiplier = 1.0f / (1 + randomness() * (periodProportion - 1));
+  // Apply random mixing factor between periodRatio and 1.0
+  // = 1 / ( (1-r) * 1 + r x ratio )
+  _phaseShiftOrRandomFrequencyRatio = 1.0f / (1 + randomness() * (periodRatio - 1));
 }
 
 #define RANDOMNESS_MAX 15
@@ -71,7 +74,7 @@ void AbstractOscillator::randomize(float randomness) {
 
   // If we are passing to random mode, reset effective frequency to ask for random pick.
   if (!wasRandom && _randomness)
-    _randomFrequencyMultiplier = 0;
+    _phaseShiftOrRandomFrequencyRatio = 0;
 }
 
 void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
@@ -102,17 +105,17 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
     // --- Stochastic "speed-driven" path ---
     // Ensure we have an effective frequency for the current interval
   //  _randomFrequencyMultiplier = (float)_randScaleQ12 * KINV;
-    if (!_randomFrequencyMultiplier) {
+    if (!_phaseShiftOrRandomFrequencyRatio) {
       _randomPickNext();
     }
 
     // Advance phase using the instantaneous frequency for THIS interval
-    _overflowed = phase32UpdateFixed32(_phase32, _randomFrequencyMultiplier*frequency(),
+    _overflowed = phase32UpdateFixed32(_phase32, _phaseShiftOrRandomFrequencyRatio*frequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // Overflowed: schedule next.
     if (_overflowed) {
-      _randomFrequencyMultiplier = 0.0f;
+      _phaseShiftOrRandomFrequencyRatio = 0.0f;
     }
   }
 }
@@ -153,23 +156,29 @@ void AbstractOscillator::phase(float phase) {
 }
 
 void AbstractOscillator::phaseShift(float phaseShift) {
-  if (_phaseShift != phaseShift) {
+  if (!_randomness && _phaseShiftOrRandomFrequencyRatio != phaseShift) {
     // Need to readjust phase time.
-    _setPhase32(phase32AddPhase(_phase32, _phaseShift - phaseShift));
-    _phaseShift = phaseShift;
+    _setPhase32(phase32AddPhase(_phase32, _phaseShiftOrRandomFrequencyRatio - phaseShift));
+    _phaseShiftOrRandomFrequencyRatio = phaseShift;
   }
+}
+
+float AbstractOscillator::phaseShift() const {
+  return (_randomness ? 0 : _phaseShiftOrRandomFrequencyRatio);
 }
 
 float AbstractOscillator::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
 void AbstractOscillator::setTime(float time) {
-  // Reset phase time to beginning.
-  _setPhase32( phase32AddTime(_phaseShift, _period, time) );
+  if (!_randomness) {
+    // Reset phase time to beginning.
+    _setPhase32( phase32AddTime(_phaseShiftOrRandomFrequencyRatio, _period, time) );
+  }
 }
 
 void AbstractOscillator::addTime(float time) {
   // Perform calculation iff time needs to be added.
-  if (time > 0)
+  if (!_randomness && time > 0)
     _setPhase32( phase32AddTime(_phase32, _period, time) );
 }
 

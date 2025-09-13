@@ -73,23 +73,28 @@ public:
   /// Returns the frequency (in BPM).
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
-   /**
-    * Sets the phase (ie. the offset, in % of period).
-    * @param phase the phase (in % of period)
-    */
-   virtual void phase(float phase);
+  /**
+  * Sets the phase (ie. the offset, in % of period).
+  * @param phase the phase (in % of period)
+  */
+  virtual void phase(float phase);
 
-   /// Returns the phase (in % of period).
-   virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
+  /// Returns the phase (in % of period).
+  virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
 
-   /**
-    * Sets the phase (ie. the offset, in % of period).
-    * @param phase the phase (in % of period)
-    */
-   virtual void phaseShift(float phaseShift);
+  /**
+  * Sets the phase (ie. the offset, in % of period).
+  *
+  * @param phase the phase (in % of period)
+  * @warning This function is disabled if randomness() > 0.
+  */
+  virtual void phaseShift(float phaseShift);
 
-   /// Returns the phase (in % of period).
-   virtual float phaseShift() const { return _phaseShift; }
+  /**
+  * Returns the phase (in % of period).
+  * @warning This function always returns 0 when randomness() > 0.
+  */
+  virtual float phaseShift() const;
 
    /**
     * Utility function to convert time to phase.
@@ -98,10 +103,16 @@ public:
     */
   virtual float timeToPhase(float time) const;
 
-  /// Forces current time (in seconds).
+  /**
+   * Forces current time (in seconds).
+   * @warning This function is disabled if randomness() > 0.
+   */
   virtual void setTime(float time);
 
-  /// Forces current time (in seconds).
+  /**
+   * Adds time to current time (in seconds).
+   * @warning This function is disabled if randomness() > 0.
+   */
   virtual void addTime(float time);
 
   /// Returns true iff the wave is currently running.
@@ -155,8 +166,9 @@ protected:
   float _frequency;
 #endif
 
-  // Phase shift (in % of period).
-  float _phaseShift;
+  // Non-random mode: Phase shift (in % of period).
+  // Random mode: random frequency ratio (in % of frequency).
+  float _phaseShiftOrRandomFrequencyRatio = 0;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;
@@ -175,9 +187,6 @@ protected:
 
   // Randomness level.
   uint8_t _randomness : 4;
-
-  // Frequency multiplier for randomness.
-  float _randomFrequencyMultiplier = 0.0f;
 };
 
 }
