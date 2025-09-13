@@ -31,7 +31,7 @@ inline q0_32u_t squareWave(const q0_32u_t& t, const q0_32u_t& skew)
   return (t <= skew) ? FIXED_32_MAX : 0;
 }
 
-inline const q0_32u_t& triangleWave(const q0_32u_t& t, const q0_32u_t& skew)
+inline q0_32u_t triangleWave(const q0_32u_t& t, const q0_32u_t& skew)
 {
   return (t <= skew) ?
             fixed32Divide(t, skew) :
