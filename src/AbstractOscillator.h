@@ -134,8 +134,6 @@ public:
   /// Disables randomness.
   virtual void noRandomize() { randomize(0.0f); }
 
-  virtual void start();
-
 protected:
   // Perform step with under
   void _stepPhase(float deltaTimeSecondsTimesFixed32Max);

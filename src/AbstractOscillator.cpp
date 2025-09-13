@@ -37,11 +37,6 @@ AbstractOscillator::AbstractOscillator(float period_)
   period(period_);
 }
 
-void AbstractOscillator::start() {
-  Timeable::start();
-  _overflowed = false;
-}
-
 #define K 32.0f
 
 void AbstractOscillator::_randomPickNext() {
