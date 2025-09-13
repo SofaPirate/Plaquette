@@ -81,6 +81,15 @@ void AbstractWave::skew(float skew) {
   _valueNeedsUpdate = true;
 }
 
+void AbstractWave::onBang(EventCallback callback) {
+  onEvent(callback, EVENT_BANG);
+}
+
+bool AbstractWave::eventTriggered(EventType eventType) {
+  if (eventType == EVENT_BANG) return _overflowed;
+  else return AnalogSource::eventTriggered(eventType);
+}
+
 // void AbstractWave::_setRunning(bool isRunning)
 // {
 //   _isRunning = isRunning;

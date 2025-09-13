@@ -2,20 +2,20 @@
 Managing Events
 ===============
 
-Plaquette supports event-driven programming, allowing you to execute specific actions automatically when 
+Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
 an event occurs instead of constantly checking for changes with conditional statements such as ``if (button.changed())``.
 In Plaquette, this is achieved by **events** and function **callbacks**.
 
 An **event** is an instantaneous situation that is triggered by a unit under specific conditions, such as
-the push of a button, the tick of a metronome, the end of a timer, or a peak detection. 
+the push of a button, the tick of a metronome, the end of a timer, or a peak detection.
 
-A **callback** is a custom function that is registered with a source event: when the event is triggered, 
+A **callback** is a custom function that is registered with a source event: when the event is triggered,
 the registered callback is automatically called.
 
 .. note::
-  In programming, a **callback function** is like giving someone instructions on what to do when a 
-  specific event happens. For example, imagine you are baking cookies and you set a timer. Instead of 
-  constantly watching the oven, you set the timer to "call you back" (in other words, alert you) when 
+  In programming, a **callback function** is like giving someone instructions on what to do when a
+  specific event happens. For example, imagine you are baking cookies and you set a timer. Instead of
+  constantly watching the oven, you set the timer to "call you back" (in other words, alert you) when
   time is up, so you can take the cookies out.
 
 This approach offers several advantages:
@@ -51,51 +51,58 @@ Supported Events
     - ✔
     - ✔
     - ✔
-    - 
+    -
     - ✔
-    - 
+    -
   * - :doc:`DigitalIn`
     - ✔
     - ✔
     - ✔
-    - 
-    - 
-    - 
+    -
+    -
+    -
   * - :doc:`Metronome`
-    - 
-    - 
-    - 
+    -
+    -
+    -
     - ✔
-    - 
-    - 
+    -
+    -
   * - :doc:`PeakDetector`
-    - 
-    - 
-    - 
+    -
+    -
+    -
     - ✔
-    - 
-    - 
+    -
+    -
   * - :doc:`Ramp`
-    - 
-    - 
-    - 
-    - 
+    -
+    -
+    -
+    -
     - ✔
-    - 
+    -
   * - :doc:`SquareWave`
     - ✔
     - ✔
     - ✔
-    - 
-    - 
-    - 
+    -
+    -
+    -
   * - :doc:`StreamIn`
-    - 
-    - 
-    - 
-    - 
-    - 
+    -
+    -
+    -
+    -
+    -
     - ✔
+  * - :doc:`Wave`
+    -
+    -
+    -
+    - ✔
+    -
+    -
 
 Reacting to an Event
 --------------------
@@ -258,7 +265,7 @@ the following syntax:
     // Function content goes here.
   }
 
-It allows you to write concise code without defining separate named functions and is 
+It allows you to write concise code without defining separate named functions and is
 thus especially useful for short, self-contained actions, keeping the code clean and readable.
 
 For example, we could rewrite the callback registration from the example above in a shorter
@@ -275,7 +282,7 @@ way, like this:
 Conclusion
 ----------
 
-Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling 
-actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event 
-sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at 
+Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling
+actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event
+sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at
 different rates.

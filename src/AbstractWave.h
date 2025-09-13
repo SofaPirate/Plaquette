@@ -115,10 +115,16 @@ public:
   [[deprecated("Use skew() instead.")]]
   virtual float width() const { return skew(); }
 
-  protected:
+  /// Registers event callback on wave end-of-period ("bang") event.
+  virtual void onBang(EventCallback callback);
+
+protected:
   // Core Plaquette methods.
   virtual void begin();
   virtual void step();
+
+  // Returns true if event is triggered.
+  virtual bool eventTriggered(EventType eventType);
 
   // Returns value in [0, 1] as fixed32-point value (to be defined by subclasses).
   virtual q0_32u_t _getFixed32(q0_32u_t t) = 0;
