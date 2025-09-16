@@ -30,6 +30,11 @@ Filters
 * :doc:`PeakDetector` Detects peaks (local maxima) in input signals, allowing for event-based processing such as edge detection.
 * :doc:`Smoother` Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.
 
+Fields
+------
+* :doc:`PivotField` Generates a spatial response curve based on a pivot point around which the field transitions happens, making it ideal for creating animations such as VU-meters or fades on arrays of actuators such as LEDs or motors.
+* :doc:`TimeSliceField` Collects values over time which can then be sampled spatially like an array accross a normalized range. Useful for plotting time-varying signals, such as mapping audio or sensor input onto an LED strip or a motor array.
+
 Functions
 ---------
 
