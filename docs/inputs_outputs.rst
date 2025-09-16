@@ -117,6 +117,9 @@ Let's use a potentiometer to control an LED's brightness. For this circuit, the 
 of the potentiometer should be connected to analog input pin (``A0``), the left pin to ground
 (GND) and the right pin to +5V (Vcc).
 
+.. image:: images/Plaquette-CircuitLedPotButton.png
+    :align: center
+
 .. code-block:: cpp
 
     #include <Plaquette.h>
@@ -246,6 +249,9 @@ Connect the photoresistor between the ground (GND) and the analog input pin (``A
 a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
 For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
 resistor of about 5.5k :math:`\Omega`).
+
+.. image:: images/Plaquette-CircuitVoltageDivider.png
+    :align: center
 
 .. code-block:: cpp
 

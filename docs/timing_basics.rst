@@ -20,6 +20,9 @@ you can create precise, dynamic, creative projects that respond in real-time to 
   It is strongly advised to use the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
   to visualize the signals.
 
+  .. image:: images/Plaquette-CircuitLedPotButton.png
+      :align: center
+
 .. warning::
 
     The value returned by timing units and functions are approximations. They are good enough for most creative applications. They should,
