@@ -27,9 +27,10 @@
 namespace pq {
 
 /**
+ * @deprecated
  * Triangle/sawtooth oscillator.
  */
-class TriangleWave : public AbstractWave {
+class [[deprecated("Use Wave(TRIANGLE) instead.")]] TriangleWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -83,11 +84,11 @@ public:
 
 protected:
   // Returns value in [0, 1].
-//  virtual float _get(fixed_t t);
-  virtual fixed_t _getFixed(fixed_t t);
+//  virtual float _get(q0_32u_t t);
+  virtual q0_32u_t _getFixed32(q0_32u_t t);
 
 
-  virtual float _getAmplified(fixed_t t);
+  virtual float _getAmplified(q0_32u_t t);
 
   // Optional easing to apply on the rise and fall of the wave.
   easing_function _riseEasing;
@@ -95,7 +96,7 @@ protected:
 };
 
 /// @deprecated
-[[deprecated("Use TriangleWave instead.")]]
+[[deprecated("Use Wave(TRIANGLE) instead.")]]
 typedef TriangleWave TriOsc;
 
 }

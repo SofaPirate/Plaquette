@@ -26,6 +26,7 @@ namespace pq
 {
 
 Wave::Wave(float period, Engine &engine) : Wave(period, 0.5f, engine) {}
+Wave::Wave(WaveShape shape, Engine &engine) : Wave(shape, 1.0f, engine) {}
 Wave::Wave(float period, float skew, Engine &engine) : Wave(SQUARE, period, skew, engine) {}
 Wave::Wave(WaveShape shape, float period, Engine &engine) : Wave(shape, period, 0.5f, engine) {}
 Wave::Wave(WaveShape shape, float period, float skew, Engine &engine) : AbstractWave(period, skew, engine), _shape(shape) {};
@@ -37,11 +38,11 @@ void Wave::shape(WaveShape shape) {
   }
 }
 
-fixed_t Wave::_getFixed(fixed_t t)
+q0_32u_t Wave::_getFixed32(q0_32u_t t)
 {
-  static fixed_t (*WAVE_FORM_FUNCTIONS[N_SHAPES])(fixed_t, fixed_t) = {squareWave, triangleWave, sineWave};
+  static q0_32u_t (*WAVE_FORM_FUNCTIONS[N_SHAPES])(const q0_32u_t&, const q0_32u_t&) = {squareWave, triangleWave, sineWave};
   // Return appropriate wave function according to shape.
-  return WAVE_FORM_FUNCTIONS[_shape](t, _skew);
+  return WAVE_FORM_FUNCTIONS[_shape](t, _skew32);
 }
 
 }

@@ -37,7 +37,7 @@ enum EventType {
   EVENT_FALL,    // value fell
   EVENT_BANG,    // single trigger
   EVENT_FINISH,  // process/timer finished
-  EVENT_UPDATE,  // unit updated
+  EVENT_UPDATE,  // unit updated and ready to be read/used
 };
 
 /// Manages event listeners for Plaquette units.

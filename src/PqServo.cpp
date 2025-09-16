@@ -3,14 +3,14 @@
  *
  * (c) 2017 Sofian Audry        :: info(@)sofianaudry(.)com
  *
- * This program is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/|| modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, ||
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY || FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -19,26 +19,26 @@
 
 #include "PqServo.h"
 
-#if defined(ARDUINO_ARCH_AVR) or defined(ARDUINO_ARCH_SAM) or defined(ARDUINO_ARCH_SAMD) or defined(ARDUINO_ARCH_STM32F4) or defined(ARDUINO_ARCH_NRF52)
+#if PQ_ARCH_SUPPORTS_SERVO
 
+#warning "Using PqServo.cpp"
 #include "pq_map.h"
 
 namespace pq {
 
 AbstractServoOut::AbstractServoOut(uint8_t pin, Engine& engine) : AnalogSource(engine), _pin(pin) {}
-AbstractServoOut::~AbstractServoOut() { detach(); }
+AbstractServoOut::~AbstractServoOut() { deactivate(); }
 
 float AbstractServoOut::put(float value)
 {
   _value = constrain01(value);
-  value = _value * 180;
-  Servo::write(round(value));
+  Servo::write(round(_value*180));
 
   return _value;
 }
 
 void AbstractServoOut::begin() {
-  attach(_pin);
+  activate();
 }
 
 ServoOut::ServoOut(uint8_t pin, Engine& engine) : AbstractServoOut(pin, engine) {}
@@ -50,8 +50,7 @@ float ServoOut::putAngle(float angle)
 }
 
 float ServoOut::getAngle() {
-  float value = _value*180;
-  return round(value);
+  return round(_value*180);
 }
 
 ContinuousServoOut::ContinuousServoOut(uint8_t pin, Engine& engine) : AbstractServoOut(pin, engine) {}

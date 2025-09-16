@@ -103,7 +103,6 @@ testing(matchRandomNormal) {
 
 void setup() {
   Plaquette.begin();
-// Plaquette.sampleRate(20000);
 }
 
 void loop() {

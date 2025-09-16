@@ -37,9 +37,10 @@ void setup() {
 }
 
 void loop() {
-  Plaquette.preStep();
-  step();
-  Plaquette.postStep();
+  if (Plaquette.timeStep()) {
+    Plaquette.preStep();
+    step();
+  }
 }
 
 #endif

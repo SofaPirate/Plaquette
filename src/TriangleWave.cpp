@@ -26,20 +26,20 @@ TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine), _riseEasing(e
 TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 TriangleWave::TriangleWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 
-fixed_t TriangleWave::_getFixed(fixed_t t) {
-  return (t <= _skew) ?
-        fixedDivide(t, _skew) :
-        fixedDivide(FIXED_MAX - t, FIXED_MAX - _skew);
+q0_32u_t TriangleWave::_getFixed32(q0_32u_t t) {
+  return (t <= _skew32) ?
+        fixed32Divide(t, _skew32) :
+        fixed32Divide(FIXED_32_MAX - t, FIXED_32_MAX - _skew32);
 }
 
-float TriangleWave::_getAmplified(fixed_t t) {
-  if (t <= _skew) {
-    fixed_t fixedValue = fixedDivide(t, _skew);
+float TriangleWave::_getAmplified(q0_32u_t t) {
+  if (t <= _skew32) {
+    q0_32u_t fixed32Value = fixed32Divide(t, _skew32);
     if (_riseEasing == easeNone) {
-      return fixedToFloat( amplifyFixed(fixedValue, _amplitude) );
+      return fixed32ToFloat( amplifyFixed32(fixed32Value, _amplitude) );
     }
     else {
-      return amplifyFloat(_riseEasing(fixedToFloat(fixedValue)), _amplitude);
+      return amplifyFloat(_riseEasing(fixed32ToFloat(fixed32Value)), _amplitude);
     }
   }
   else {
@@ -47,16 +47,16 @@ float TriangleWave::_getAmplified(fixed_t t) {
       return AbstractWave::_getAmplified(t);
     }
     else {
-      return amplifyFloat(_fallEasing(fixedToFloat(fixedDivide(FIXED_MAX - t, FIXED_MAX - _skew))), _amplitude);
+      return amplifyFloat(_fallEasing(fixed32ToFloat(fixed32Divide(FIXED_32_MAX - t, FIXED_32_MAX - _skew32))), _amplitude);
     }
   }
 }
 
-// float TriangleWave::_get(fixed_t t) {
+// float TriangleWave::_get(q0_32u_t t) {
 //   // Compute triangle depending on raising or falling step.
-//   return (t <= _skew) ?
-//            t / (float(_skew) + FLT_MIN) : // + FLT_MIN to avoid 0/0
-//            (FIXED_MAX - t) / (float)(FIXED_MAX - _skew);
+//   return (t <= _skew32) ?
+//            t / (float(_skew32) + FLT_MIN) : // + FLT_MIN to avoid 0/0
+//            (FIXED_32_MAX - t) / (float)(FIXED_32_MAX - _skew32);
 // }
 
 }

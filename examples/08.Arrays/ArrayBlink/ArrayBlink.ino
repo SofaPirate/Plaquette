@@ -6,29 +6,29 @@
  *
  * The circuit:
  * - Three LEDs.
- * - The anode of the LEDs are connected in series with a 220-ohm resistor to pins 4, 5, and 6. 
+ * - The anode of the LEDs are connected in series with a 220-ohm resistor to pins 4, 5, and 6.
  * - Their cathodes connect to ground.
- * 
+ *
  * Created in 2024 by Sofian Audry
  *
  * This example code is in the public domain.
  */
 #include <Plaquette.h>
 
-// The LED.
+// The number of LEDs.
 const int N_LEDS = 3;
 
 // A square-wave (on/off) oscillator for each LED.
 // - The first LED will blink once per second.
 // - The second LED will blink once every two seconds with a duty-cycle of 80%.
 // - The third LED will blink once every three seconds.
-SquareWave oscillators[] = {
-  SquareWave(1.0), 
-  SquareWave(2.0, 0.8), 
-  3.0 // shorthand for SquareWave(3.0)
+Wave oscillators[] = {
+  Wave(1.0),
+  Wave(2.0, 0.8),
+  3.0 // shorthand for Wave(3.0)
 };
 
-// The three LEDs.
+// The array of LEDs.
 DigitalOut leds[] = { 4, 5, 6 }; // shorthand for DigitalOut leds[] = { DigitalOut(4), DigitalOut(5), DigitalOut(6) };
 
 void begin() {}

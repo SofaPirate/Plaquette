@@ -6,12 +6,12 @@ using namespace pq;
 
 #define N_GENERATORS 6
 AbstractWave* generators[N_GENERATORS] = {
-  new SquareWave(0.005),
-  new SquareWave(1),
-  new TriangleWave(0.005),
-  new TriangleWave(1),
-  new SineWave(0.005),
-  new SineWave(1)
+  new Wave(0.005),
+  new Wave(1),
+  new Wave(TRIANGLE, 0.005),
+  new Wave(TRIANGLE, 1),
+  new Wave(SINE, 0.005),
+  new Wave(SINE, 1)
 };
 
 #define PEAK_DETECTOR_THRESHOLD 0.6f
@@ -68,7 +68,6 @@ test(nUnits) {
 
 void setup() {
   Plaquette.begin();
-  // Plaquette.sampleRate(10000);
   for (int i=0; i<N_GENERATORS; i++) {
     detectors[i]->reloadThreshold(PEAK_DETECTOR_THRESHOLD-0.1f);
   }

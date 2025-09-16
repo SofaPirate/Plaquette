@@ -32,7 +32,7 @@ Ramp::Ramp(float duration, Engine& engine) :
   AbstractTimer(duration),
   _from(0.0f), _to(1.0f), _easing(easeNone),
 #if PQ_OPTIMIZE_FOR_CPU
-  _speed(0.0f),
+    _speed(FLT_MAX),
 #endif
   _mode(RAMP_DURATION), _finishedState(NOT_FINISHED), _valueNeedsUpdate(true)
 {
@@ -45,7 +45,8 @@ float Ramp::get() {
   // Prevents unnecessary computations in the step() function by updating the value on a need basis.
   if (_valueNeedsUpdate) {
       // Compute next value.
-    _value = _get();
+    _value = mapFrom01(_easing(progress()), _from, _to);
+
     _valueNeedsUpdate = false; // reset flag
   }
 
@@ -67,6 +68,10 @@ float Ramp::put(float value) {
   // Set to value.
   _value = value;
   return _value;
+}
+
+float Ramp::mapTo(float toLow, float toHigh) {
+  return mapFloat(get(), _from, _to, toLow, toHigh);
 }
 
 void Ramp::easing(easing_function easing) {
@@ -113,11 +118,7 @@ void Ramp::speed(float speed) {
 
   AbstractTimer::duration( speedToDuration(
 #if PQ_OPTIMIZE_FOR_CPU
-<<<<<<< HEAD
     _speed = max(speed, 0.0f)
-=======
-    _speed = max(speed, 0.f)
->>>>>>> 1181fd5fa3fd3258220601b8517b005cfc7d2226
 #else
     speed
 #endif
@@ -199,10 +200,6 @@ void Ramp::step() {
   }
 }
 
-float Ramp::_get() {
-  return mapFrom01(_easing(progress()), _from, _to);
-}
-
 void Ramp::_durationOrSpeed(float durationOrSpeed) {
   if (_mode == RAMP_DURATION)
     duration(durationOrSpeed);
@@ -238,6 +235,5 @@ float Ramp::speedToDuration(float speed) const {
 float Ramp::_time() const {
   return seconds();
 }
-
 
 }

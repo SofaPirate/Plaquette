@@ -36,9 +36,19 @@ Engine& Engine::primary() {
 Engine& Plaquette = Engine::primary();
 
 Engine::Engine()
-: _unitsBeginIndex(0), _unitsEndIndex(0), _sampleRate(0), _targetSampleRate(0),
- _nSteps(0), _beginCompleted(false), _firstRun(true)
- {}
+  : _unitsBeginIndex(0), _unitsEndIndex(0),
+    _sampleRate(0.0f), _samplePeriod(0.0f), _targetSampleRate(0.0f),
+    _microSeconds{},
+    _targetTime{}, _stepState(STEP_INIT),
+    _deltaTimeMicroSeconds(0),
+    _deltaTimeSecondsTimesFixed32Max(0.0f),
+    _nSteps(0),
+    _autoSampleRate(true),
+    _beginCompleted(false),
+    _firstRun(true),
+    _eventManager() // default constructed
+{}
+
 Engine::~Engine() {
 }
 
@@ -48,9 +58,14 @@ void Engine::preBegin(unsigned long baudrate) {
     beginSerial(baudrate);
 
   // Initialize variables.
+  _sampleRate = _samplePeriod = _targetSampleRate = 0;
   _microSeconds.micros64 = microSeconds(false);
-  _targetSampleRate = 0;
+  _targetTime = _microSeconds;
+  _stepState = STEP_INIT;
+  _deltaTimeMicroSeconds = 0;
+  _deltaTimeSecondsTimesFixed32Max = 0;
   _nSteps = 0;
+  _autoSampleRate = true;
   _firstRun = true;
 
   _setSampleRate(FLT_MAX);
@@ -67,15 +82,18 @@ void Engine::preBegin(unsigned long baudrate) {
 void Engine::postBegin() {
   // Start timer.
   _microSeconds.micros64 = microSeconds(false);
+  // Trick: by setting _nSteps = LONG_MAX, timeStep() will do _nStep++ which will overflow to 0
+  _nSteps = ULONG_MAX;
 }
+
 
 void Engine::end() {
   if (_firstRun) {
     postBegin();
     _firstRun = false;
   }
-  else
-    postStep();
+  // else
+  //   timeStep();
 }
 
 float Engine::seconds(bool referenceTime) const {
@@ -169,26 +187,41 @@ micro_seconds_t Engine::_updateGlobalMicroSeconds() {
   return _totalGlobalMicroSeconds;
 }
 
-bool Engine::autoSampleRate() { return (_targetSampleRate <= 0); }
+void Engine::autoSampleRate() {
+  // Enable auto sample rate mode.
+  _autoSampleRate = true;
 
-void Engine::enableAutoSampleRate() {
+  // Reset target sample rate (to keep things clean).
   _targetSampleRate = 0;
+  _targetDeltaTimeMicroSeconds = 0; // unused
+  _stepState = STEP_INIT;
 }
 
 void Engine::sampleRate(float sampleRate) {
+  // Disable auto sample rate.
+  _autoSampleRate = false;
+
+  // Set target sample rate and delta time in us.
   _targetSampleRate = max(sampleRate, FLT_MIN);
+  _targetDeltaTimeMicroSeconds = static_cast<uint32_t>(round(MICROS_PER_SECOND/_targetSampleRate));
 }
 
 void Engine::samplePeriod(float samplePeriod) {
-  if (samplePeriod > 0)
-    sampleRate(1.0f / samplePeriod);
-  else
-    autoSampleRate();
+  sampleRate(periodToFrequency(samplePeriod));
+}
+
+bool Engine::randomTrigger(float timeWindow) {
+  return pq::randomTrigger(timeWindow, samplePeriod());
 }
 
 unsigned long nSteps() { return Plaquette.nSteps(); }
+bool hasAutoSampleRate() { return Plaquette.hasAutoSampleRate(); }
+void autoSampleRate() { Plaquette.autoSampleRate(); }
+void sampleRate(float sampleRate) { Plaquette.sampleRate(sampleRate); }
+void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
+bool randomTrigger(float timeWindow) { return Plaquette.randomTrigger(timeWindow); }
 
 void beginSerial(unsigned long baudRate) {
   // Wait for last transmitted data to be sent.

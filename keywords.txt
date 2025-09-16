@@ -27,6 +27,9 @@ Normalizer	KEYWORD1
 PeakDetector	KEYWORD1
 Smoother	KEYWORD1
 
+PivotField	KEYWORD1
+TimeSliceField	KEYWORD1
+
 ServoOut	KEYWORD1
 ContinuousServoOut	KEYWORD1
 
@@ -43,7 +46,7 @@ begin	KEYWORD2
 step	KEYWORD2
 
 autoSampleRate  KEYWORD2
-enableAutoSampleRate  KEYWORD2
+hasAutoSampleRate  KEYWORD2
 sampleRate  KEYWORD2
 samplePeriod  KEYWORD2
 seconds  KEYWORD2
@@ -54,7 +57,10 @@ mapFloat	KEYWORD2
 mapFrom01	KEYWORD2
 mapTo01 KEYWORD2
 randomFloat	KEYWORD2
+randomTrigger	KEYWORD2
 wrap	KEYWORD2
+constrain01	KEYWORD2
+wrap01	KEYWORD2
 
 # Node
 put	KEYWORD2
@@ -181,6 +187,19 @@ modeInverted	KEYWORD2
 modeCrossing	KEYWORD2
 modeApex	KEYWORD2
 
+# PivotField
+rampWidth	KEYWORD2
+noRampWidth	KEYWORD2
+rampShift KEYWORD2
+bumpWidth KEYWORD2
+center  KEYWORD2
+
+# TimeSliceField
+setRolling  KEYWORD2
+rolling  KEYWORD2
+noRolling  KEYWORD2
+isRolling  KEYWORD2
+
 # Easing functions
 easeOutSine	KEYWORD2
 easeInOutSine	KEYWORD2
@@ -220,6 +239,8 @@ onChange	KEYWORD2
 onFinish	KEYWORD2
 clearEvents	KEYWORD2
 
+updated	KEYWORD2
+
 #######################################
 # Instances (KEYWORD2)
 #######################################
@@ -251,3 +272,10 @@ PEAK_MIN	LITERAL1
 
 RAMP_DURATION	LITERAL1
 RAMP_SPEED	LITERAL1
+
+PIVOT_RISING	LITERAL1
+PIVOT_FALLING LITERAL1
+PIVOT_BUMP  LITERAL1
+PIVOT_NOTCH LITERAL1
+
+

@@ -36,9 +36,10 @@ void MovingStats::timeWindow(float seconds) {
   _avg.timeWindow(seconds);
 }
 
-void MovingStats::cutoff(float hz) {
-  _avg.cutoff(hz);
-}
+// Keep this commented out to prevent confusion with MovingFilter::cutoff().
+// void MovingStats::cutoff(float hz) {
+//   _avg.cutoff(hz);
+// }
 
 void MovingStats::reset() {
   _avg.reset();

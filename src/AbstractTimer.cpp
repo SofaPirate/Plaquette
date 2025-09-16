@@ -19,10 +19,15 @@
  */
 
 #include "AbstractTimer.h"
+#include "pq_phase_utils.h"
 
 namespace pq {
 
-AbstractTimer::AbstractTimer(float duration_) : AbstractChronometer() {
+AbstractTimer::AbstractTimer(float duration_) : AbstractChronometer(), _duration(0)
+#if PQ_OPTIMIZE_FOR_CPU
+  , _invDuration(FLT_MAX)
+#endif
+ {
   duration(duration_);
 }
 
@@ -37,7 +42,12 @@ void AbstractTimer::start(float duration_) {
 
 void AbstractTimer::duration(float duration) {
   // Set parameters.
-  _duration = max(duration, 0.0f);
+  if (_duration != duration) {
+    _duration = max(duration, 0.0f);
+#if PQ_OPTIMIZE_FOR_CPU
+    _invDuration = invert(_duration);
+#endif
+  }
 }
 
 float AbstractTimer::progress() const {
@@ -45,13 +55,14 @@ float AbstractTimer::progress() const {
     return 1.0;
 
   // Compute progress as % of duration.
-  float prog = elapsed() / _duration;
-  prog = constrain01(prog);
-  return prog;
-}
-
-float AbstractTimer::mapTo(float toLow, float toHigh) {
-  return mapFrom01(progress(), toLow, toHigh);
+  float prog = elapsed()
+#if PQ_OPTIMIZE_FOR_CPU
+    * _invDuration // prevents a division
+#else
+    / _duration
+#endif
+  ;
+  return constrain01(prog);
 }
 
 }

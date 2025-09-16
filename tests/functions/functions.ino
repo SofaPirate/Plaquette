@@ -3,14 +3,15 @@
 #include <AUnit.h>
 #include <pq_random.h>
 
-#include <pq_osc_utils.h>
+#include <pq_phase_utils.h>
 
 using namespace pq;
 using namespace aunit;
 
 test(map) {
-  
-  for (uint8_t mode=0; mode<=2; mode++) {
+
+  for (uint8_t m=0; m<=2; m++) {
+    MapMode mode = (MapMode)m;
     assertEqual(mapFrom01(0, -10, 10, mode), -10.0);
     assertEqual(mapFrom01(1, -10, 10, mode),  mode == WRAP ? -10: 10.0);
 
@@ -71,9 +72,42 @@ test(wrapHighLowSwap) {
         assertNear(wrap(f, low, high), wrap(f, high, low), 0.0001);
 }
 
+uint32_t countRandomTrigger(int randomTimeBlock, int nBlocks) {
+  uint32_t count = 0;
+  for (int i=0; i<nBlocks; i++) {
+
+    unsigned long startTime = micros();
+    unsigned long prevTime = startTime;
+
+    while (true) {
+      unsigned long now = micros();
+      unsigned long samplePeriod = now - prevTime;
+
+      if (randomTrigger(randomTimeBlock, samplePeriod)) {
+        count++;
+      }
+
+      prevTime = now;
+      if (now - startTime > randomTimeBlock)
+        break;
+    }
+  }
+
+  return count;
+}
+
+test(random) {
+  #define BASE_N_BLOCKS 1000
+  #define LOW_N_BLOCKS 100
+  #define TOLERANCE 0.05f
+  assertNear((float)countRandomTrigger(10, BASE_N_BLOCKS), (float)BASE_N_BLOCKS, BASE_N_BLOCKS*TOLERANCE);
+  assertNear((float)countRandomTrigger(100, BASE_N_BLOCKS), (float)BASE_N_BLOCKS, BASE_N_BLOCKS*TOLERANCE);
+  assertNear((float)countRandomTrigger(1000, BASE_N_BLOCKS), (float)BASE_N_BLOCKS, BASE_N_BLOCKS*TOLERANCE);
+  assertNear((float)countRandomTrigger(10000, LOW_N_BLOCKS), (float)LOW_N_BLOCKS, LOW_N_BLOCKS*TOLERANCE);
+}
+
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(10000);
 }
 
 void loop() {

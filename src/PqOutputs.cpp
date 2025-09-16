@@ -45,12 +45,8 @@ float AnalogOut::put(float value) {
 #endif
 
 void AnalogOut::write(float value) {
-  // Make sure value is in [0, 1].
-  value = constrain01(value);
-
-  // Remap to [0, ANALOG_WRITE_MAX_VALUE].
-  value *= ANALOG_WRITE_MAX_VALUE;
-  rawWrite(round(value)); // Write rounded value.
+  // Remap to [0, ANALOG_WRITE_MAX_VALUE] (rawWrite() will constrain value).
+  rawWrite(round(value * ANALOG_WRITE_MAX_VALUE)); // Write rounded value.
 }
 
 void AnalogOut::rawWrite(int value) {

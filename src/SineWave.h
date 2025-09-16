@@ -25,8 +25,11 @@
 
 namespace pq {
 
-/// Sine oscillator. Phase is expressed as % of period.
-class SineWave : public AbstractWave {
+  /**
+ * @deprecated
+ * Sine oscillator. Phase is expressed as % of period.
+ */
+class [[deprecated("Use Wave(SINE) instead.")]] SineWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -53,12 +56,12 @@ public:
 
 protected:
   // Returns value in [0, 1].
-//  virtual float _get(fixed_t t);
-  virtual fixed_t _getFixed(fixed_t t);
+//  virtual float _get(q0_32u_t t);
+  virtual q0_32u_t _getFixed32(q0_32u_t t);
 };
 
 /// @deprecated
-[[deprecated("Use SineWave instead.")]]
+[[deprecated("Use Wave(SINE) instead.")]]
 typedef SineWave SineOsc;
 
 }

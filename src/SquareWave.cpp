@@ -31,26 +31,26 @@ SquareWave::SquareWave(float period, float skew, Engine& engine) : AbstractWave(
 // }
 
 // bool SquareWave::shiftByIsOn(float phaseShift) {
-//   return (phaseTimeAddPhase(_phaseTime, phaseShift) <= _skew);
+//   return (phase32AddPhase(_phase32, phaseShift) <= _skew32);
 // }
 
 // bool SquareWave::atPhaseIsOn(float phase) {
-//   return (floatToPhaseTime(phase) <= _skew);
+//   return (floatToPhase32(phase) <= _skew32);
 // }
 
 void SquareWave::step() {
   AbstractWave::step();
 
   // // Force compute digital value.
-  _onValue = (_phaseTime <= _skew);
+  _onValue = (_phase32 <= _skew32);
 
   // // Update change state.
   // _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;
   // _prevOnValue = _onValue;
 }
 
-fixed_t SquareWave::_getFixed(fixed_t t) {
-  return (_onValue ? FIXED_MAX : 0);
+q0_32u_t SquareWave::_getFixed32(q0_32u_t t) {
+  return (_onValue ? FIXED_32_MAX : 0);
 }
 
 }

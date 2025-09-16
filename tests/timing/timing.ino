@@ -7,14 +7,20 @@ using namespace pq;
 #define N_METRO 3
 Metronome* metro[N_METRO] = {
   new Metronome(0.01),
-  new Metronome(0.1),
+  new Metronome(0.05),
   new Metronome(0.1)
 };
 
-SquareWave* osc[N_METRO] = {
-  new SquareWave(0.01),
-  new SquareWave(0.1),
-  new SquareWave(0.1)
+Metronome* randomMetro[N_METRO] = {
+  new Metronome(0.005),
+  new Metronome(0.01),
+  new Metronome(0.02)
+};
+
+Wave* osc[N_METRO] = {
+  new Wave(0.01),
+  new Wave(0.05),
+  new Wave(0.1)
 };
 
 #define TEST_RAMP_MAX 100.0f
@@ -29,26 +35,32 @@ testing(timing) {
   static float startTime = Plaquette.seconds();
 
   static float nMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
+  static float nRandomMetro[N_METRO] = { 0.0f, 0.0f, 0.0f };
   // static float nMetro[N_METRO] = { 0.0f , 0.0f};
   // static float nMetro[N_METRO] = { 0.0f };
-  static const float TOTAL_DURATION = 5.0f;
+  static const float TOTAL_DURATION = 8.0f;
 
   Plaquette.step();
 
   for (int i=0; i<N_METRO; i++) {
     Metronome* unit = metro[i];
-    SquareWave *unit2 = osc[i];
+    Metronome* randomUnit = randomMetro[i];
+    Wave *unit2 = osc[i];
     // if (i == 0) {
     //   print(Plaquette.seconds()-startTime); print(" "); print(unit->isOn()); print(" "); print(unit2->get());
     //   if (unit->isOn())
     //     print(" ***");
     //   println();
     // }
+    // if (i == 0) {
+    //   print(unit2->get()); print(" "); println(unit->isOn());
+    // }
     if (unit->isOn()) {
       nMetro[i]++;
-      if (i != 2) {
-        assertEqual(unit2->get(), 1.0f);
-      }
+      assertEqual(unit2->get(), 1.0f);
+    }
+    if (randomUnit->isOn()) {
+      nRandomMetro[i]++;
     }
   }
 
@@ -63,16 +75,21 @@ testing(timing) {
   if (Plaquette.seconds() - startTime > TOTAL_DURATION) {
     for (int i=0; i<N_METRO; i++) {
       Metronome* unit = metro[i];
+      Metronome* randomUnit = randomMetro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
-      pass();
+      // Assert random metronome is within 15% tolerance.
+      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.15f);
     }
+    pass();
   }
 }
 
 void setup() {
   Plaquette.begin();
   for (int i=0; i<N_METRO; i++) {
-    SquareWave *unit2 = osc[i];
+    Metronome* randomUnit = randomMetro[i];
+    randomUnit->randomize();
+    Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);
   }
@@ -80,8 +97,6 @@ void setup() {
   testRampDuration.go(0, TEST_RAMP_MAX, TEST_RAMP_DURATION);
   testRampSpeed.mode(RAMP_SPEED);
   testRampSpeed.go(0, TEST_RAMP_MAX, TEST_RAMP_SPEED);
-
-  Plaquette.sampleRate(100000.0f);
 }
 
 void loop() {

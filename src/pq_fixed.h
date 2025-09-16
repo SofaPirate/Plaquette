@@ -1,0 +1,115 @@
+/*
+ * pq_fixed.h
+ *
+ * Utility functions for fixed-point arithmetic.
+ *
+ * (c) 2022 Sofian Audry        :: info(@)sofianaudry(.)com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#ifndef PQ_FIXED_H_
+#define PQ_FIXED_H_
+
+#include "pq_globals.h"
+#include "pq_constrain.h"
+
+#include <stdint.h>
+
+namespace pq {
+
+// Fixed-point types.
+typedef uint32_t q0_32u_t;
+typedef uint16_t q0_16u_t;
+typedef uint8_t  q0_8u_t;
+
+// Fixed-point constants.
+constexpr q0_32u_t FIXED_32_MAX = static_cast<q0_32u_t>(0xFFFFFFFF);
+constexpr q0_32u_t HALF_FIXED_32_MAX = static_cast<q0_32u_t>(0x80000000);
+constexpr float    INV_FIXED_32_MAX = 1.0f / FIXED_32_MAX;
+
+constexpr q0_16u_t FIXED_16_MAX = static_cast<q0_16u_t>(0xFFFF);
+constexpr q0_16u_t HALF_FIXED_16_MAX = static_cast<q0_16u_t>(0x8000);
+constexpr float    INV_FIXED_16_MAX = 1.0f / FIXED_16_MAX;
+
+constexpr q0_8u_t FIXED_8_MAX = static_cast<q0_8u_t>(0xFF);
+constexpr q0_8u_t HALF_FIXED_8_MAX = static_cast<q0_8u_t>(0x80);
+constexpr float   INV_FIXED_8_MAX = 1.0f / FIXED_8_MAX;
+
+/**
+ * Re-maps a number in range [0, 1] to a new range [0, toHigh].
+ * @param value the number to map (in [0,1])
+ * @param high the upper bound of the value’s target range
+ * @return the mapped value in [0, high]
+ */
+template <typename I>
+inline I floatToFixed(float value, I high) {
+#if defined(PQ_IEEE_754_SUPPORTED)
+  uint32_t ui;
+  memcpy(&ui, &value, sizeof ui); // safe bit copy
+
+  // Negative -> clamp to 0.0f
+  if (ui & 0x80000000u) return static_cast<I>(0);
+
+  // Closed upper bound: x > 1.0f -> 1.0f
+  if (ui >= 0x3F800000u) return high;
+
+  return static_cast<I>(value + value * high); // x * (toHigh + 1)
+#else
+  return (value <= 0.0f) ? 0 : (value >= 1.0f) ? high : static_cast<I>(value + value * high);
+#endif
+}
+
+/**
+ * Re-maps a number from [0, high] to the [0, 1] range.
+ * @param value the number to map
+ * @param high the upper bound of the value’s target range
+ * @return the mapped value in [0, 1]
+ */
+template <typename I>
+inline float fixedToFloat(I value, I high) {
+  return constrain01(value / static_cast<float>(high));
+}
+
+/**
+ * Re-maps a number from [0, high] to the [0, 1] range.
+ * @param value the number to map
+ * @param invHigh the inverse of the upper bound of the value’s target range ie. 1.0f / high
+ * @return the mapped value in [0, 1]
+ */
+template <typename I>
+inline float fixedToFloatInv(I value, float invHigh) {
+  return constrain01(value * invHigh);
+}
+
+/// Converts 32-bit fixed32-point value to floating point.
+inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloatInv(x, INV_FIXED_32_MAX); }
+
+/// Converts floating point in range [0, 1] to 32-bit fixed32-point value.
+inline q0_32u_t floatToFixed32(float x) { return floatToFixed(x, FIXED_32_MAX); }
+
+/// Converts 16-bit fixed16-point value to floating point.
+inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloatInv(x, INV_FIXED_16_MAX); }
+
+/// Converts floating point in range [0, 1] to 16-bit fixed16-point value.
+inline q0_16u_t floatToFixed16(float x) { return floatToFixed(x, FIXED_16_MAX); }
+
+/// Converts 8-bit fixed8-point value to floating point.
+inline float fixed8ToFloat(q0_8u_t x) { return fixedToFloatInv(x, INV_FIXED_8_MAX); }
+
+/// Converts floating point in range [0, 1] to 8-bit fixed8-point value.
+inline q0_8u_t floatToFixed8(float x) { return floatToFixed(x, FIXED_8_MAX); }
+
+}
+
+#endif

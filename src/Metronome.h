@@ -23,7 +23,7 @@
 
 #include "PqCore.h"
 #include "AbstractOscillator.h"
-#include "pq_osc_utils.h"
+#include "pq_phase_utils.h"
 
 namespace pq {
 
@@ -46,43 +46,18 @@ public:
   Metronome(float period, Engine& engine = Engine::primary());
 
   /// Returns true iff the metronome fires.
-  virtual bool isOn() { return _onValue; }
-
-  /// The progress of the timer process (in %).
-  virtual float progress() const { return fixedToFloat(_phaseTime); }
+  virtual bool isOn() { return _overflowed; }
 
   /// Registers event callback on metronome tick ("bang") event.
   virtual void onBang(EventCallback callback);
 
 protected:
+  // Core Plaquette methods.
   virtual void begin();
   virtual void step();
 
   // Returns true if event is triggered.
   virtual bool eventTriggered(EventType eventType);
-
-  // Phase (in % of period).
-  float _period;
-
-#if PQ_OPTIMIZE_FOR_CPU
-  // Frequency (Hz).
-  float _frequency;
-#endif
-
-  // Phase shift (in % of period).
-  float _phaseShift;
-
-  // Internal use.
-  fixed_t _phaseTime;
-
-  // Value.
-  bool _onValue : 1;
-
-  // Is the wave currently running?
-  bool _isRunning : 1;
-
-  // Extra data.
-  uint8_t data : 6;
 };
 
 /// @deprecated

@@ -3,24 +3,33 @@
  *
  * (c) 2017 Sofian Audry        :: info(@)sofianaudry(.)com
  *
- * This program is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/|| modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 3 of the License, ||
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY || FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #ifndef PQ_SERVO_H_
 #define PQ_SERVO_H_
 
-#if defined(ARDUINO_ARCH_AVR) or defined(ARDUINO_ARCH_SAM) or defined(ARDUINO_ARCH_SAMD) or defined(ARDUINO_ARCH_STM32F4) or defined(ARDUINO_ARCH_NRF52)
+#ifndef PQ_ARCH_SUPPORTS_SERVO
+#if (defined(ARDUINO_ARCH_AVR) || defined(ARDUINO_ARCH_SAM) || \
+     defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_STM32F4) || defined(ARDUINO_ARCH_NRF52))
+  #define PQ_ARCH_SUPPORTS_SERVO 1
+#else
+  #define PQ_ARCH_SUPPORTS_SERVO 0
+#endif
+#endif
+
+#if PQ_ARCH_SUPPORTS_SERVO
+
 #include "PqCore.h"
 #include <Servo.h>
 
@@ -43,6 +52,15 @@ public:
 
   /// Returns the pin this servomotor is attached to.
   uint8_t pin() const { return _pin; }
+
+  /// Activates the servomotor (default).
+  virtual void activate() { attach(_pin); }
+
+  /// Deactivates the servomotor.
+  virtual void deactivate() { detach(); }
+
+  /// Returns true if the servomotor is active.
+  virtual bool isActive() { return attached(); }
 
 protected:
   virtual void begin();

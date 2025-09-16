@@ -25,8 +25,11 @@
 
 namespace pq {
 
-/// Square oscillator. Duty cycle is expressed as % of period.
-class SquareWave : public AbstractWave {
+/**
+ * @deprecated
+ * Square oscillator. Duty cycle is expressed as % of period.
+ */
+class [[deprecated("Use Wave(SQUARE) instead.")]] SquareWave : public AbstractWave {
 public:
   /**
    * Constructor.
@@ -121,11 +124,14 @@ protected:
 
 protected:
   // Returns value in [0, 1].
-  virtual fixed_t _getFixed(fixed_t t);
+  virtual q0_32u_t _getFixed32(q0_32u_t t);
+
+  // The current high/low value of the unit.
+  bool _onValue = false;
 };
 
 /// @deprecated
-[[deprecated("Use SquareWave instead.")]]
+[[deprecated("Use Wave(SQUARE) instead.")]]
 typedef SquareWave SquareOsc;
 
 }

@@ -30,19 +30,14 @@
 /// Clamps floating point value in range [0, 1].
 inline float constrain01(float x) {
 #if defined(PQ_IEEE_754_SUPPORTED)
-    union {
-        float f;
-        uint32_t i;
-    } u;
+    uint32_t ui;
+    memcpy(&ui, &x, sizeof(ui)); // safe bit copy
 
-    u.f = x;
-    u.i &= 0x7FFFFFFF;               // Force non-negative
-    if (u.i > 0x3F800000)            // Clamp to 1.0
-        u.i = 0x3F800000;
-
-    return u.f;
+    if (ui & 0x80000000u) return 0.0f; // check sign: negative => return 0
+    if (ui > 0x3F800000u) return 1.0f; // check if > 1.0f => return 1
+    return x;                          // already in [0,1]
 #else
-  return constrain(x, 0.0f, 1.0f);
+    return (x < 0.0f) ? 0.0f : (x > 1.0f ? 1.0f : x);
 #endif
 }
 

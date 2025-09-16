@@ -10,8 +10,8 @@ AnalogIn   analogIn(A0);
 AnalogOut  analogOut(9);
 DigitalIn  digitalIn(0);
 DigitalOut digitalOut(10);
-SquareWave  square(0.5);
-TriangleWave     tri(0.5);
+Wave  square(0.5);
+Wave tri(TRIANGLE, 0.5);
 Metronome      metro(0.5);
 
 #define N_UNITS 7
@@ -149,7 +149,6 @@ testingF(TestPiping, test) {
 
 void setup() {
   Plaquette.begin();
-  Plaquette.sampleRate(1000);
 }
 
 void loop() {

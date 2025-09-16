@@ -7,7 +7,7 @@ using namespace pq;
 using namespace aunit;
 
 #define N_UNITS 4
-SquareWave oscillators[] = {SquareWave(1), SquareWave(2), SquareWave(3), SquareWave(4)};
+Wave oscillators[] = {Wave(1), Wave(2), Wave(3), Wave(4)};
 DigitalOut leds[] = { 0, 1, 2, 3 };
 
 test(nUnits) {
@@ -27,7 +27,7 @@ testing(basic) {
   Plaquette.step();
 
   for (int i=0; i<N_UNITS; i++) {
-    SquareWave& osc = oscillators[i];
+    Wave& osc = oscillators[i];
     DigitalOut& led = leds[i];
     osc >> led;
     assertEqual(osc.get(), led.get());
@@ -42,7 +42,6 @@ void setup() {
   for (int i=0; i<N_UNITS; i++) {
     oscillators[i].phase(mapTo01(i, 0, N_UNITS));
   }
-  Plaquette.sampleRate(10000);
 }
 
 void loop() {

@@ -21,7 +21,9 @@ These conventions define the coding style and design principles of a Plaquette, 
 - `.h` header files define interfaces, constants, and inline utilities.
 - `.cpp` source files contain implementation details.
 - `.ino` files provide tests using AUnit.
-- Include guards must protect all header files. Use the following style for include guards: `#define FILE_NAME_H_` eg. `#define MIN_MAX_SCALER_H_`.
+- Include guards must protect all header files.
+  - ✅ Use the following style for include guards: `#define FILE_NAME_H_` eg. `#define MIN_MAX_SCALER_H_`.
+  - ❌ Avoid using `#pragma once` for better compability and robustness.
 
 ---
 
