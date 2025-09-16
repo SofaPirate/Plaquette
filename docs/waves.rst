@@ -15,6 +15,9 @@ Finally, we will look at how to use randomness to generate noisy waveforms that 
   - A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
   - An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
 
+   .. image:: images/Plaquette-CircuitLedPotButton.png
+      :align: center
+
 Visualizing Waves with the Serial Plotter
 -----------------------------------------
 
@@ -59,7 +62,7 @@ newline using ``println()``.
     #include <Plaquette.h>
 
     AnalogIn pot(A0);   // Potentiometer input
-    SineWave wave(2.0); // Sine wave with period of 2 seconds
+    Wave wave(SINE, 2.0); // Sine wave with period of 2 seconds
 
     void begin() {}
 
@@ -73,9 +76,9 @@ newline using ``println()``.
 Types of Waves
 --------------
 
-Plaquette provides 3 types of waves:
+Plaquette provides 3 shapes of waves:
 
-- :doc:`SquareWave`: Alternates between two levels with sharp transitions. Useful for creating rhythmic
+- **SQUARE** (default): Default wave shape. Alternates between two levels with sharp transitions. Useful for creating rhythmic
   on-off patterns such as blinking LEDs or simple tone generators for buzzers. Possesses some properties
   of digital units.
 
@@ -83,7 +86,7 @@ Plaquette provides 3 types of waves:
     :width: 50%
     :align: center
 
-- :doc:`TriangleWave`: Smoothly transitions between two levels in a linear fashion. By varying the
+- **TRIANGLE**: Smoothly transitions between two levels in a linear fashion. By varying the
   skew of the wave, you can create a **sawtooth wave** (skew = 0) or an **inverted sawtooth wave**
   (skew = 1). This is ideal for simulating ramping motions or gradual changes in brightness.
 
@@ -91,7 +94,7 @@ Plaquette provides 3 types of waves:
     :width: 50%
     :align: center
 
-- :doc:`SineWave`: Produces a sinusoidal waveform for smoother modulation. Commonly used for
+- **SINE**: Produces a sinusoidal waveform for smoother modulation. Commonly used for
   creating natural, flowing transitions, such as smooth dimming or speed control.
 
   .. image:: images/Plaquette-SineWave.png
@@ -108,9 +111,9 @@ You can visualize these waves on the Serial Plotter by streaming their values.
     #include <Plaquette.h>
 
     // Three wave types.
-    SquareWave square(1.0);
-    TriangleWave triangle(1.0);
-    SineWave sine(1.0);
+    Wave square(SQUARE, 1.0);
+    Wave triangle(TRIANGLE, 1.0);
+    Wave sine(SINE, 1.0);
 
     void begin() {}
 
@@ -124,16 +127,17 @@ You can visualize these waves on the Serial Plotter by streaming their values.
 Wave Properties
 ---------------
 
-Oscillators are defined by their **period**, **skew**, **frequency**, **amplitude**, and **phase**.
+Oscillators are defined by their **shape**, **period**, **skew**, **frequency**, **amplitude**, and **phase**.
 Let us explore these properties and their corresponding functions:
 
+- **shape()**: Sets the shape of the wave (SQUARE, TRIANGLE or SINE).
 - **period()**: Sets the duration of one cycle in seconds.
 - **skew()**: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
   For each wave type, this property has a specific effect:
 
-    - For :doc:`SquareWave`, it adjusts the duty cycle (the ratio of ON to OFF time).
-    - For :doc:`TriangleWave`, it skews the wave towards a sawtooth (skew = 0) or inverted sawtooth (skew = 1).
-    - For :doc:`SineWave`, it shifts the inflection points of the wave, altering its symmetry.
+    - For the SQUARE wave, it adjusts the duty cycle (the ratio of ON to OFF time).
+    - For the TRIANGLE wave, it skews the wave towards a sawtooth (skew = 0) or inverted sawtooth (skew = 1).
+    - For the SINE wave, it shifts the inflection points of the wave, altering its symmetry.
 - **frequency()**: Inverse of period; sets the cycles per second (Hz).
 - **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
 - **phase()**: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).
@@ -150,9 +154,10 @@ The period and skew of a waveform can be initialized when the unit is created.
 
     #include <Plaquette.h>
 
-    TriangleWave wave1;           // period = 1 sec (default), skew = 0.5 (default)
-    TriangleWave wave2(2.0);      // period = 2 sec, skew = 0.5 (default)
-    TriangleWave wave3(3.0, 0.1); // period = 3 sec, skew = 0.1
+    Wave wave1;           // shape = SQUARE (default), period = 1 sec (default), skew = 0.5 (default)
+    Wave wave1(TRIANGLE);           // shape = Triangle, period = 1 sec (default), skew = 0.5 (default)
+    Wave wave2(SINE, 2.0);      // shape = SINE, period = 2 sec, skew = 0.5 (default)
+    Wave wave3(SQUARE, 3.0, 0.1); // shape = SQUARE, period = 3 sec, skew = 0.1
 
 Other properties are typically initialized in the ``begin()`` to build a specific waveform.
 It is also common to initialize period and skew in the same way for more expressive code.
@@ -163,9 +168,10 @@ It is also common to initialize period and skew in the same way for more express
 
     #include <Plaquette.h>
 
-    TriangleWave wave;
+     Wave wave;
 
     void begin() {
+      wave.shape(TRIANGLE); // triangle wave
       wave.frequency(2); // 2 Hz
       wave.skew(0.9); // skew 90%
       wave.phase(0.1); // dephased by 10% of period
@@ -190,9 +196,9 @@ evolutive effects.
 
     AnalogIn pot(A0); // Potentiometer input
 
-    SquareWave square(1.0);
-    TriangleWave triangle(1.0);
-    SineWave sine(1.0);
+    Wave square(SQUARE, 1.0);
+    Wave triangle(TRIANGLE, 1.0);
+    Wave sine(SINE, 1.0);
 
     void begin() {}
 
@@ -216,9 +222,9 @@ potentiometer value to appropriate ranges.
 
     AnalogIn pot(A0); // Potentiometer input
 
-    SquareWave square(1.0);
-    TriangleWave triangle(1.0);
-    SineWave sine(1.0);
+    Wave square(SQUARE, 1.0);
+    Wave triangle(TRIANGLE, 1.0);
+    Wave sine(SINE, 1.0);
 
     void begin() {}
 
@@ -257,7 +263,7 @@ All properties in wave units have two variants:
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
 
-    TriangleWave wave(1.0); // Wave with initial 1 second period
+    Wave wave(TRIANGLE, 1.0); // Wave with initial 1 second period
 
     void begin() {}
 
@@ -280,16 +286,16 @@ One compelling example of wave addition is simulating a **heartbeat**. A heartbe
 two peaks: a stronger primary beat followed by a softer secondary beat. This can be achieved by adding
 two waves with different amplitudes and timings.
 
-**Example**: Heartbeat simulation. This example uses two :doc:`SineWave` units: one for the primary
-beat one for the secondary beat. The ``bpm()`` function sets the frequency of the waves in beats
+**Example**: Heartbeat simulation. This example uses two **SINE wave** units: one for the primary
+beat, and one for the secondary beat. The ``bpm()`` function sets the frequency of the waves in beats
 per minute.
 
 .. code-block:: cpp
 
     #include <Plaquette.h>
 
-    SineWave primary;   // Main heartbeat wave
-    SineWave secondary; // Secondary beat
+    Wave primary(SINE);   // Main heartbeat wave
+    Wave secondary(SINE); // Secondary beat
     AnalogOut led(9);   // LED for visualizing the heartbeat
 
     void begin() {
@@ -326,8 +332,8 @@ modulate the frequency, phase, period, amplitude, or skew of a faster wave.
 
     #include <Plaquette.h>
 
-    TriangleWave modulator(10.0); // LFO (10 seconds period)
-    SineWave sine;    // Main wave
+    Wave modulator(TRIANGLE, 10.0); // LFO (10 seconds period)
+    Wave sine(SINE);    // Main wave
     AnalogOut led(9); // LED output
 
     void begin() {}
@@ -364,7 +370,7 @@ These random values can be used to add noise directly to a signal.
 
     #include <Plaquette.h>
 
-    SineWave wave(1.0); // Base waveform
+    Wave wave(SINE, 1.0); // Base waveform
     AnalogOut led(9);   // LED output
 
     void begin() {}
@@ -387,7 +393,7 @@ the amount of noise.
     #include <Plaquette.h>
 
     AnalogIn pot(A0);   // Potentiometer input
-    SineWave wave(1.0); // Wave with initial period of 1 second
+    Wave wave(SINE, 1.0); // Wave with initial period of 1 second
     AnalogOut led(9);   // LED output
 
     void begin() {}
@@ -407,7 +413,7 @@ each push of the button.
     #include <Plaquette.h>
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
-    TriangleWave wave; // Wave with default properties
+    Wave wave(TRIANGLE); // Wave with default properties
     AnalogOut led(9);  // LED output
 
     void begin() {
@@ -446,7 +452,7 @@ Oscillators offer various timing functions to control their behavior:
     #include <Plaquette.h>
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
-    SineWave sine;    // Wave with default properties
+    Wave sine(SINE);    // Wave with default properties
     AnalogOut led(9); // LED output
 
     void begin() {
@@ -474,7 +480,7 @@ patterns.
 
     #include <Plaquette.h>
 
-    SineWave wave(5.0); // Sine wave with 5 seconds period
+    Wave wave(SINE, 5.0); // Sine wave with 5 seconds period
 
     void begin() {}
 

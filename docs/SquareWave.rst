@@ -12,7 +12,7 @@ signal. The signal can be tuned by adjusting parameters such as ``period``, ``fr
 The ``skew`` represents the proportion of time (expressed as a percentage) in each
 cycle (period) during which the wave is "on" -- in other words, its *duty cycle*.
 
-.. image:: images/Plaquette-SquareWave-Width.png
+.. image:: images/Plaquette-SquareWave-Skew.png
 
 |Example|
 ---------

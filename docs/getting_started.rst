@@ -193,7 +193,7 @@ the duty cycle to different percentages between 0.0 and 1.0.
 - ``SquareWave myWave(2.0, 0.75);`` for a skew of 75%
 - ``SquareWave myWave(2.0, 0.9);`` for a skew of 90%
 
-.. image:: images/Plaquette-SquareWave-Width.png
+.. image:: images/Plaquette-SquareWave-Skew.png
 
 Change parameters of a unit during runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

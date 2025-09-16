@@ -18,7 +18,7 @@ setting skew to 1.0 (100%) one obtains a *sawtooth* wave; by setting it to 0.0 (
 an *inverted sawtooth* is created; anything in between generates different flavors
 of *triangle* waves.
 
-.. image:: images/Plaquette-TriangleWave-Width.png
+.. image:: images/Plaquette-TriangleWave-Skew.png
 
 |Example|
 ---------

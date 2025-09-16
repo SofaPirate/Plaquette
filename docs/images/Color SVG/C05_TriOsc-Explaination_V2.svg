@@ -1,1 +1,235 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><style>.cls-1,.cls-4,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1,.cls-5{stroke:#000;}.cls-1{stroke-width:10px;}.cls-2{font-size:60px;font-family:Helvetica, Helvetica;}.cls-3{fill:#fff;}.cls-4{stroke:#0071bc;}.cls-4,.cls-5{stroke-width:7px;}.cls-6{letter-spacing:-0.04em;}</style></defs><title>Sawtooth</title><g id="_08_Smoother" data-name="08_Smoother"><g id="graph-3" data-name="graph"><polyline class="cls-1" points="1646.75 720.8 1013.65 720.8 1013.65 283.41"/><polyline class="cls-1" points="931.54 720.8 298.44 720.8 298.44 283.41"/><polyline class="cls-1" points="1591.9 686.31 1646.75 720.8 1597.56 747.37 1591.9 750.2"/><polyline class="cls-1" points="876.7 686.85 931.54 721.34 882.35 747.92 876.7 750.74"/></g><g id="Text-3" data-name="Text"><text class="cls-2" transform="translate(449.03 804.59)">input signal<tspan x="18.4" y="72">(example)</tspan></text><text class="cls-2"><tspan x="1190.12" y="803.74">smoothed </tspan><tspan x="1251.81" y="875.74">signal</tspan><tspan x="1330.2" y="947.74"></tspan></text></g><rect class="cls-3" x="-20.69" width="1940.69" height="1080"/></g><g id="Redone_04_SquareOscycle_V2" data-name="Redone 04_SquareOscycle_V2"><g id="Layer_29" data-name="Layer 29"><polyline class="cls-4" points="349.31 189.13 516.22 354.2 516.41 189.13 683.5 356.22 683.5 189.13 850.59 356.22 850.59 189.13 1017.69 356.22 1017.69 189.13 1184.78 356.22 1184.78 189.13 1351.87 356.22 1351.87 189.13 1518.96 356.22"/><polyline class="cls-4" points="349.31 652.17 432.86 481.03 516.41 648.12 599.77 480.98 683.5 648.12 767.05 481.03 850.41 651.36 931.54 480.98 1017.69 648.12 1101.05 480.98 1184.78 648.12 1268.14 480.98 1351.87 648.12 1435.23 481.03 1518.96 648.12"/><polyline class="cls-4" points="349.32 944.11 516.22 774.97 516.22 939 683.32 774.97 683.32 939 850.41 774.97 850.41 939 1017.5 774.97 1017.69 942.07 1184.59 774.97 1184.78 938 1351.69 774.97 1351.87 942.07 1518.78 774.97 1518.96 942.07"/></g><g id="Graph-4" data-name="Graph"><polyline class="cls-1" points="349.31 505.92 349.31 476.97 349.31 652.17 1627 652.17"/><polyline class="cls-1" points="1631.01 943.98 1611.66 943.98 1591.91 943.99 349.32 944.11 349.31 772.92"/><polyline class="cls-1" points="349.31 210.59 349.31 181 349.31 360.09 1627 360.09"/></g><g id="Text-4" data-name="Text"><line class="cls-5" x1="346.97" y1="457.5" x2="433" y2="457.5"/><line class="cls-5" x1="349.31" y1="753" x2="515.5" y2="753"/><line class="cls-5" x1="348.72" y1="148" x2="348.72" y2="172"/><line class="cls-5" x1="518.25" y1="741" x2="518.25" y2="765"/><line class="cls-5" x1="348.72" y1="741" x2="348.72" y2="765"/><line class="cls-5" x1="433" y1="445.5" x2="433" y2="469.5"/><line class="cls-5" x1="347.57" y1="445.5" x2="347.57" y2="469.5"/><text class="cls-2" transform="translate(339.01 125.41)">0% width</text><text class="cls-2" transform="translate(339.01 422.67)">50% width</text><text class="cls-2" transform="translate(335.33 723.81)">100% width</text><polyline class="cls-1" points="1577 319 1631.67 360.3 1577 399.67"/><polyline class="cls-1" points="1581.16 613.71 1635.83 655 1581.16 694.38"/><polyline class="cls-1" points="1584.31 903.78 1638.98 945.07 1584.31 984.45"/></g></g><g id="Smoother"><g id="Text-5" data-name="Text"><text class="cls-2" transform="translate(74.39 283.41)">Inverted<tspan x="-16.68" y="72">Sawtooth</tspan></text><text class="cls-2" transform="translate(88 645.97)"><tspan class="cls-6">T</tspan><tspan x="34.45" y="0">riangle</tspan></text><text class="cls-2"><tspan x="61.7" y="943.38">Sawtooth</tspan></text></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg25"
+   sodipodi:docname="C05_TriOsc-Explaination_V2.svg"
+   inkscape:export-filename="C05_TriOsc-Explaination_V2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.71574074"
+     inkscape:cx="890.68564"
+     inkscape:cy="540"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Text-4" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1,.cls-4,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1,.cls-5{stroke:#000;}.cls-1{stroke-width:10px;}.cls-2{font-size:60px;font-family:Helvetica, Helvetica;}.cls-3{fill:#fff;}.cls-4{stroke:#0071bc;}.cls-4,.cls-5{stroke-width:7px;}.cls-6{letter-spacing:-0.04em;}</style>
+  </defs>
+  <title
+     id="title1">Sawtooth</title>
+  <g
+     id="_08_Smoother"
+     data-name="08_Smoother">
+    <g
+       id="graph-3"
+       data-name="graph">
+      <polyline
+         class="cls-1"
+         points="1646.75 720.8 1013.65 720.8 1013.65 283.41"
+         id="polyline1" />
+      <polyline
+         class="cls-1"
+         points="931.54 720.8 298.44 720.8 298.44 283.41"
+         id="polyline2" />
+      <polyline
+         class="cls-1"
+         points="1591.9 686.31 1646.75 720.8 1597.56 747.37 1591.9 750.2"
+         id="polyline3" />
+      <polyline
+         class="cls-1"
+         points="876.7 686.85 931.54 721.34 882.35 747.92 876.7 750.74"
+         id="polyline4" />
+    </g>
+    <g
+       id="Text-3"
+       data-name="Text">
+      <text
+         class="cls-2"
+         transform="translate(449.03 804.59)"
+         id="text4">input signal<tspan
+   x="18.4"
+   y="72"
+   id="tspan4">(example)</tspan></text>
+      <text
+         class="cls-2"
+         id="text7"><tspan
+           x="1190.12"
+           y="803.74"
+           id="tspan5">smoothed </tspan><tspan
+           x="1251.81"
+           y="875.74"
+           id="tspan6">signal</tspan><tspan
+           x="1330.2"
+           y="947.74"
+           id="tspan7" /></text>
+    </g>
+    <rect
+       class="cls-3"
+       x="-20.69"
+       width="1940.69"
+       height="1080"
+       id="rect7" />
+  </g>
+  <g
+     id="Redone_04_SquareOscycle_V2"
+     data-name="Redone 04_SquareOscycle_V2">
+    <g
+       id="Layer_29"
+       data-name="Layer 29">
+      <polyline
+         class="cls-4"
+         points="349.31 189.13 516.22 354.2 516.41 189.13 683.5 356.22 683.5 189.13 850.59 356.22 850.59 189.13 1017.69 356.22 1017.69 189.13 1184.78 356.22 1184.78 189.13 1351.87 356.22 1351.87 189.13 1518.96 356.22"
+         id="polyline7" />
+      <polyline
+         class="cls-4"
+         points="349.31 652.17 432.86 481.03 516.41 648.12 599.77 480.98 683.5 648.12 767.05 481.03 850.41 651.36 931.54 480.98 1017.69 648.12 1101.05 480.98 1184.78 648.12 1268.14 480.98 1351.87 648.12 1435.23 481.03 1518.96 648.12"
+         id="polyline8" />
+      <polyline
+         class="cls-4"
+         points="349.32 944.11 516.22 774.97 516.22 939 683.32 774.97 683.32 939 850.41 774.97 850.41 939 1017.5 774.97 1017.69 942.07 1184.59 774.97 1184.78 938 1351.69 774.97 1351.87 942.07 1518.78 774.97 1518.96 942.07"
+         id="polyline9" />
+    </g>
+    <g
+       id="Graph-4"
+       data-name="Graph">
+      <polyline
+         class="cls-1"
+         points="349.31 505.92 349.31 476.97 349.31 652.17 1627 652.17"
+         id="polyline10" />
+      <polyline
+         class="cls-1"
+         points="1631.01 943.98 1611.66 943.98 1591.91 943.99 349.32 944.11 349.31 772.92"
+         id="polyline11" />
+      <polyline
+         class="cls-1"
+         points="349.31 210.59 349.31 181 349.31 360.09 1627 360.09"
+         id="polyline12" />
+    </g>
+    <g
+       id="Text-4"
+       data-name="Text">
+      <line
+         class="cls-5"
+         x1="346.97"
+         y1="457.5"
+         x2="433"
+         y2="457.5"
+         id="line12" />
+      <line
+         class="cls-5"
+         x1="349.31"
+         y1="753"
+         x2="515.5"
+         y2="753"
+         id="line13" />
+      <line
+         class="cls-5"
+         x1="348.72"
+         y1="148"
+         x2="348.72"
+         y2="172"
+         id="line14" />
+      <line
+         class="cls-5"
+         x1="518.25"
+         y1="741"
+         x2="518.25"
+         y2="765"
+         id="line15" />
+      <line
+         class="cls-5"
+         x1="348.72"
+         y1="741"
+         x2="348.72"
+         y2="765"
+         id="line16" />
+      <line
+         class="cls-5"
+         x1="433"
+         y1="445.5"
+         x2="433"
+         y2="469.5"
+         id="line17" />
+      <line
+         class="cls-5"
+         x1="347.57"
+         y1="445.5"
+         x2="347.57"
+         y2="469.5"
+         id="line18" />
+      <text
+         class="cls-2"
+         transform="translate(339.01,125.41)"
+         id="text18">0% skew</text>
+      <text
+         class="cls-2"
+         transform="translate(339.01,422.67)"
+         id="text19">50% skew</text>
+      <text
+         class="cls-2"
+         transform="translate(335.33,723.81)"
+         id="text20">100% skew</text>
+      <polyline
+         class="cls-1"
+         points="1577 319 1631.67 360.3 1577 399.67"
+         id="polyline20" />
+      <polyline
+         class="cls-1"
+         points="1581.16 613.71 1635.83 655 1581.16 694.38"
+         id="polyline21" />
+      <polyline
+         class="cls-1"
+         points="1584.31 903.78 1638.98 945.07 1584.31 984.45"
+         id="polyline22" />
+    </g>
+  </g>
+  <g
+     id="Smoother">
+    <g
+       id="Text-5"
+       data-name="Text">
+      <text
+         class="cls-2"
+         transform="translate(74.39 283.41)"
+         id="text22">Inverted<tspan
+   x="-16.68"
+   y="72"
+   id="tspan22">Sawtooth</tspan></text>
+      <text
+         class="cls-2"
+         transform="translate(88 645.97)"
+         id="text24"><tspan
+           class="cls-6"
+           id="tspan23">T</tspan><tspan
+           x="34.45"
+           y="0"
+           id="tspan24">riangle</tspan></text>
+      <text
+         class="cls-2"
+         id="text25"><tspan
+           x="61.7"
+           y="943.38"
+           id="tspan25">Sawtooth</tspan></text>
+    </g>
+  </g>
+</svg>
