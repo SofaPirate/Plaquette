@@ -74,7 +74,7 @@ public:
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
   /**
-  * Sets the phase (ie. the offset, in % of period).
+  * Sets the phase at % of period.
   * @param phase the phase (in % of period)
   */
   virtual void phase(float phase);
@@ -83,22 +83,22 @@ public:
   virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
 
   /**
-  * Sets the phase (ie. the offset, in % of period).
+  * Sets the phase shift (ie. the offset, in % of period).
   *
-  * @param phase the phase (in % of period)
+  * @param phaseShift the phase shift (in % of period)
   * @warning This function is disabled if randomness() > 0.
   */
   virtual void phaseShift(float phaseShift);
 
   /**
-  * Returns the phase (in % of period).
+  * Returns the phase shift (ie. the offset, in % of period).
   * @warning This function always returns 0 when randomness() > 0.
   */
   virtual float phaseShift() const;
 
    /**
     * Utility function to convert time to phase.
-    * @param t relative time in seconds
+    * @param time relative time in seconds
     * @return the equivalent phase
     */
   virtual float timeToPhase(float time) const;
