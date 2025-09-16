@@ -31,7 +31,7 @@ Regardless of the shape, the signal can be tuned by adjusting the following para
 .. _square-wave:
 
 Square Wave
-----------
+-----------
 
 Generates a `square wave <https://en.wikipedia.org/wiki/Square_wave>`_ signal when the ``shape`` parameter is
 set to ``SQUARE``. The square wave is the default for this parameter.
@@ -61,7 +61,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
    void begin() {
      blinkOsc.skew(0.25); // Sets the duty cycle to 25%
    }
-   
+
    void step() {
      blinkOsc >> led;
    }
@@ -69,7 +69,8 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.
 .. _triangle-wave:
 
 Triangle Wave
-----------
+-------------
+
 Generates a wave such as the
 `triangle wave <https://en.wikipedia.org/wiki/Triangle_wave>`_ and the
 `sawtooth wave <https://en.wikipedia.org/wiki/Sawtooth_wave>`_ when the ``shape`` parameter is set to ``TRIANGLE``.
@@ -124,7 +125,7 @@ Sine Wave
 
 Generates a sinusoid or `sine wave <https://en.wikipedia.org/wiki/Sine_wave>`_ when the ``shape`` parameter is set to ``SINE``.
 The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as the traditional sine wave
-function). 
+function).
 
 Here, the ``skew`` parameter controls when the sine wave reaches its peak within a cycle. A skew value of
 0.5 (default) yields a standard symmetric sine wave. Lower values shift the peak earlier (left-skewed),
