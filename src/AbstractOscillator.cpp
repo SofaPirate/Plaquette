@@ -68,12 +68,12 @@ void AbstractOscillator::randomize(float randomness) {
   bool wasRandom = (_randomness != 0);
   _randomness = floatToFixed(randomness, RANDOMNESS_MAX);
 
-  // If randomness is larger than zero, set random level to at least 1.
+  // If randomness is larger than zero (even slightly), set random level to at least 1.
   if (randomness > 0)
     _randomness = max(_randomness, 1);
 
-  // If we are passing to random mode, reset effective frequency to ask for random pick.
-  if (!wasRandom && _randomness)
+  // If we are switching mode, reset phase-shift / frequency ratio to zero.
+  if (wasRandom ^ (_randomness != 0))
     _phaseShiftOrRandomFrequencyRatio = 0;
 }
 
