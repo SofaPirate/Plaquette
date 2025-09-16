@@ -71,5 +71,5 @@ latex_elements = {
 }
 latex_documents = [
   (master_doc, 'Plaquette.tex', u'Plaquette Manual',
-   u'Sofian Audry', 'manual'),
+   u'', 'manual'),
 ]
