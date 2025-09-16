@@ -21,7 +21,7 @@ after each powerup or reset of the board.
 
    #include <Plaquette.h>
 
-   SquareWave oscillator;
+   Wave oscillator;
    AnalogIn input(A0);
 
    void begin() {

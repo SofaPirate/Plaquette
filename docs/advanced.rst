@@ -113,7 +113,7 @@ Here is an example of our blinking code rewritten by using this feature:
 
     DigitalOut myLed(13);
 
-    SquareWave myWave(2.0, 0.5);
+    Wave myWave(2.0, 0.5);
 
     void setup() {
       Plaquette.begin();
@@ -199,8 +199,8 @@ When you create a unit, you can now add it to your new engine by adding the engi
   // Alarm unit with 10s duration.
   Alarm alarm(10.0, secondaryEngine);
 
-  // Square wave unit with period of 1s and 20% skew.
-  SineWave wave(1.0, 0.2, secondaryEngine);
+  // Sine wave unit with period of 1s and 20% skew.
+  Wave wave(SINE, 1.0, 0.2, secondaryEngine);
 
 Example: Fast vs Slow Control
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -229,7 +229,7 @@ would be plenty for such visual feedback).
   DigitalIn button(2, INTERNAL_PULLUP, fastEngine); // Button (operates on fast engine).
 
   // Oscillator and LED (can operate more slowly to save on computation).
-  SquareWave squareWave(1.0, slowEngine);
+  Wave squareWave(1.0, slowEngine);
   DigitalOut led(LED_BUILTIN, slowEngine);
 
   float ledFrequency = 1.0; // Oscillation frequency.
@@ -280,11 +280,11 @@ In this example, we will take full advantage of the ESP32's dual core architectu
     // The NeoPixel LED strip.
     Adafruit_NeoPixel strip(NUM_LEDS, STRIP_PIN, NEO_GRB + NEO_KHZ800); // Neopixels.
 
-    SquareWave indicatorLedBlink(1.0, 0.2); // Blinking oscillator.
+    Wave indicatorLedBlink(1.0, 0.2); // Blinking oscillator.
     DigitalOut indicatorLed(LED_BUILTIN);   // Indicator LED.
 
     Engine ledEngine; // Secondary engine for controlling NeoPixels.
-    SineWave ledWave(1.0, ledEngine);  // Waveform for NeoPixels.
+    Wave ledWave(SINE, 1.0, ledEngine);  // Waveform for NeoPixels.
 
     void begin() {
       xTaskCreatePinnedToCore( // Launch LED engine on Core 0.

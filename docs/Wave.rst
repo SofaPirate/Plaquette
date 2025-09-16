@@ -159,3 +159,7 @@ Pulses an LED.
    :project: Plaquette
    :members:
 
+|SeeAlso|
+---------
+- :doc:`Metronome`
+- :doc:`Ramp`

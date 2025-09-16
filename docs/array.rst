@@ -8,7 +8,7 @@ Arrays can be complicated, but using simple arrays is relatively straightforward
 
 For a general description of arrays, please refer to `this page <https://www.arduino.cc/reference/en/language/variables/data-types/array/>`_.
 
-Arrays of Plaquette units such as :doc:`DigitalIn`. :doc:`SineWave`, and :doc:`MinMaxScaler` can be easily created using the following syntax:
+Arrays of Plaquette units such as :doc:`DigitalIn`. :doc:`Wave`, and :doc:`MinMaxScaler` can be easily created using the following syntax:
 
 .. code-block:: c++
 
@@ -31,12 +31,12 @@ When more than a single parameter is used, however, it needs to be called explic
 
 .. code-block:: c++
 
-    SquareWave oscillators[] = { 1.0, 2.0, SquareWave(3.0, 0.8) };
+    Wave oscillators[] = { 1.0, 2.0, Wave(3.0, 0.8) };
 
 .. warning::
 
     Units in array need to be all of the same type. In other words, it is not currently possible to mix different types of objects such as
-    DigitalIn and SquareWave in the same array.
+    DigitalIn and Wave in the same array.
 
 
 |Example|
@@ -48,8 +48,8 @@ When more than a single parameter is used, however, it needs to be called explic
 
   AnalogOut leds[] = { 9, 10, 11 };
 
-  // Creates three triangle oscillators with a 2 seconds period, with different skew.
-  TriangleWave oscillators[] = { TriangleWave(2.0, 0.0), 2.0, TriangleWave(2.0, 1.0) };
+  // Creates three different kinds of oscillators with a 2 seconds period.
+  Wave oscillators[] = { Wave(SQUARE, 2.0), Wave(TRIANGLE, 2.0), Wave(SINE, 2.0) };
 
   void begin() {}
 

@@ -12,9 +12,8 @@ Base Units
 Generators
 ----------
 
-* :doc:`SineWave` Generates a smooth, periodic sine wave signal. Commonly used for oscillatory motion or smooth transitions.
-* :doc:`SquareWave` Generates a periodic square wave signal, alternating between high and low states. Ideal for toggling signals like blinking LEDs.
-* :doc:`TriangleWave` Produces a periodic triangle wave signal with a linear rise and fall. Useful for generating smoother oscillatory patterns than square waves.
+* :doc:`Ramp` Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.
+* :doc:`Wave` Generates a smooth, periodic wave signal with a square, triangle, or sine shape. Commonly used for oscillatory motion or smooth transitions.
 
 Timing
 ------
@@ -22,7 +21,6 @@ Timing
 * :doc:`Alarm` Triggers an event after a specified time duration. Can be used to schedule delays or time-based actions.
 * :doc:`Chronometer` Measures elapsed time since the start or reset. Useful for timing events or profiling system performance.
 * :doc:`Metronome` Produces a periodic tick at specified intervals. Often used in rhythmic applications such as sound or light pulses.
-* :doc:`Ramp` Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.
 
 Filters
 -------

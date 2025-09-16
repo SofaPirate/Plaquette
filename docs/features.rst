@@ -138,7 +138,7 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 |   int ledPin = 12;                             |     DigitalOut led(12);                        |
 |                                                |                                                |
 |   void setup() {                               |     // Square wave 1 second period.            |
-|     pinMode(buttonPin, OUTPUT);                |     SquareWave oscillator(1.0);                |
+|     pinMode(buttonPin, OUTPUT);                |     Wave oscillator(1.0);                |
 |     pinMode(ledPin, OUTPUT);                   |                                                |
 |   }                                            |     void begin() {}                            |
 |                                                |                                                |
@@ -163,7 +163,7 @@ core Arduino functionalities while remaining fully compatible with Arduino code.
 Seasoned Arduino users should consult the :doc:`advanced` section for some tips
 on how to integrate Plaquette into their existing code.
 
-The following example uses Plaquette to control a blinking LED that slows down with 
+The following example uses Plaquette to control a blinking LED that slows down with
 each button push, using Arduino's `constrain() <https://docs.arduino.cc/language-reference/en/functions/math/constrain/>`_
 to keep the LED oscillation period within a certain range and `Serial <https://docs.arduino.cc/language-reference/en/functions/communication/serial/>`_ object
 to reset the counter to a random integer value using `random() <https://docs.arduino.cc/language-reference/en/functions/random-numbers/random/>`_.
@@ -176,7 +176,7 @@ to reset the counter to a random integer value using `random() <https://docs.ard
 
    DigitalOut led(LED_BUILTIN); // LED output
 
-   SquareWave oscillator(1.0); // square oscillator
+   Wave oscillator(1.0); // square oscillator
 
    int currentPeriod = 0; // oscillator period counter
 
@@ -187,7 +187,7 @@ to reset the counter to a random integer value using `random() <https://docs.ard
    void step() {
       if (Serial.read() == 'R') // reset counter
         currentPeriod = random(1, 10);
-      
+
       if (button.rose()) // true when value rises (ie. button is pushed)
         currentPeriod = constrain(currentPeriod+1, 1, 10); // increment
 
@@ -196,17 +196,17 @@ to reset the counter to a random integer value using `random() <https://docs.ard
    }
 
 .. danger::
-   Plaquette needs the main processing loop to run continuously without interruption 
-   to work correctly. Users should thus **avoid using blocking processes** such as Arduino's 
+   Plaquette needs the main processing loop to run continuously without interruption
+   to work correctly. Users should thus **avoid using blocking processes** such as Arduino's
    `delay() <https://docs.arduino.cc/language-reference/en/functions/time/delay/>`__ and
    `delayMicroseconds() <https://docs.arduino.cc/language-reference/en/functions/time/delayMicroseconds/>`__ and
    functions in their code when using Plaquette.
 
 .. warning::
    Many of the core Arduino functions work with integer types such as ``int`` or ``long``
-   rather than floating-point types such as ``float``. Plaquette provides alternative 
+   rather than floating-point types such as ``float``. Plaquette provides alternative
    :doc:`functions <functions>` which should be used instead.
-   
+
    In particular, please use:
 
    * :doc:`mapFloat` instead of `map() <https://docs.arduino.cc/language-reference/en/functions/math/map/>`_

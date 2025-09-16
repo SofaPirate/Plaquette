@@ -77,13 +77,13 @@ Create an input unit
 
 We will now create another unit that will generate a signal which will
 be sent to the LED to make it blink. To this effect, we will use the
-``SquareWave`` unit type which generates a `square
+``Wave`` unit type to generate a `square
 wave <https://en.wikipedia.org/wiki/Square_wave>`__ oscillating between
 "on/high/one" and "off/low/zero" at a regular period of 2.0 seconds:
 
 .. code:: cpp
 
-    SquareWave myWave(2.0);
+    Wave myWave(2.0);
 
 Create the begin() function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -140,7 +140,7 @@ Full code
 
     DigitalOut myLed(13);
 
-    SquareWave myWave(2.0);
+    Wave myWave(2.0);
 
     void begin() {}
 
@@ -156,13 +156,13 @@ So far so good. Let's see if we can push this a bit further.
 Change initial parameters of a unit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``SquareWave`` unit type provides two parameters when it is created that allows
+The ``Wave`` unit type provides two parameters when it is created that allows
 you to configure the oscillator's behavior. Both are optional: if not specified, they will
 take default values.
 
 .. code:: cpp
 
-    SquareWave myWave(period, skew);
+    Wave myWave(period, skew);
 
 - ``period`` can be any positive number representing the period of oscillation (in seconds)
 - ``skew`` can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
@@ -176,10 +176,10 @@ take default values.
 Try changing the first parameter (period) in the square oscillator unit to change
 the period of oscillation.
 
-- ``SquareWave myWave(1.0);`` for a period of one second
-- ``SquareWave myWave(2.5);`` for a period of 2.5 seconds
-- ``SquareWave myWave(10.0);`` for a period of 10 seconds
-- ``SquareWave myWave(0.5);`` for a period of half a second (500 milliseconds)
+- ``Wave myWave(1.0);`` for a period of one second
+- ``Wave myWave(2.5);`` for a period of 2.5 seconds
+- ``Wave myWave(10.0);`` for a period of 10 seconds
+- ``Wave myWave(0.5);`` for a period of half a second (500 milliseconds)
 
 .. important::
    Don't forget to re-upload the sketch after each change.
@@ -188,10 +188,10 @@ Now try adding a second parameter (skew) to control the oscillator's
 `skew <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing
 the duty cycle to different percentages between 0.0 and 1.0.
 
-- ``SquareWave myWave(2.0, 0.5);`` for a skew of 50% (default)
-- ``SquareWave myWave(2.0, 0.25);`` for a skew of 25%
-- ``SquareWave myWave(2.0, 0.75);`` for a skew of 75%
-- ``SquareWave myWave(2.0, 0.9);`` for a skew of 90%
+- ``Wave myWave(2.0, 0.5);`` for a skew of 50% (default)
+- ``Wave myWave(2.0, 0.25);`` for a skew of 25%
+- ``Wave myWave(2.0, 0.75);`` for a skew of 75%
+- ``Wave myWave(2.0, 0.9);`` for a skew of 90%
 
 .. image:: images/Plaquette-SquareWave-Skew.png
 
@@ -199,7 +199,7 @@ Change parameters of a unit during runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What if we wanted to change the parameters of the oscillator during runtime rather than
-just at the beginning? The ``SquareWave`` unit type allows real-time modification of
+just at the beginning? The ``Wave`` unit type allows real-time modification of
 its parameters by calling one of its functions using the :doc:`dot` operator.
 
 For example, to change the period, simply call the following inside the ``step()`` function:
@@ -215,12 +215,12 @@ Of course, to accomplish our goal, we need a way to *change* the value ``newPeri
 during runtime. We can accomplish this in many different ways, but let's try something
 simple: we will use another wave to *modulate* our wave's period.
 
-For this, we will be using another kind of source called a ``SineWave`` and will use its
+For this, we will be using another type of source called a sine wave and will use its
 outputs to change the period of ``myWave``.
 
 .. code:: cpp
 
-    SineWave myModulator(20.0);
+    Wave myModulator(SINE, 20.0);
 
 This wave will oscillate smoothly from 0 to 1 every 20 seconds.
 
@@ -312,9 +312,9 @@ Full code
 
     DigitalOut myLed(13);
 
-    SquareWave myWave(2.0);
+    Wave myWave(2.0);
 
-    SineWave myModulator(20.0);
+    Wave myModulator(SINE, 20.0);
 
     DigitalIn myButton(2, INTERNAL_PULLUP);
 
@@ -361,10 +361,10 @@ Here are the key sections of the reference:
 
 - :doc:`base_units`: Introduces foundational units like :doc:`DigitalIn`, :doc:`DigitalOut`,
   :doc:`AnalogIn`, and :doc:`AnalogOut`. These are the building blocks for interfacing with hardware pins.
-- :doc:`generators`: Covers the signal generators :doc:`SquareWave`, :doc:`TriangleWave`, and :doc:`SineWave`. These
-  are used to create various oscillating or periodic signals.
-- :doc:`timing`: Focuses on units related to time management, like :doc:`Metronome` for periodic events,
-  :doc:`Alarm` for duration-based functionality, and :doc:`Ramp` for smooth transitions.
+- :doc:`generators`: Covers the signal generators :doc:`Wave` and :doc:`Ramp`. These
+  are used to create various types of regular signals.
+- :doc:`timing`: Focuses on units related to time management such as :doc:`Metronome` for periodic events and
+  :doc:`Alarm` for duration-based functionality.
 - :doc:`filters`: Discusses tools for :doc:`smoothing <Smoother>`, :doc:`scaling <MinMaxScaler>`, or
   :doc:`normalizing <Normalizer>` signals, as well as :doc:`detecting peaks <PeakDetector>`.
 - :doc:`functions`: Explains helper functions for tasks like value mapping, signal transformations,

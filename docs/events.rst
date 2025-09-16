@@ -82,7 +82,7 @@ Supported Events
     -
     - ✔
     -
-  * - :doc:`SquareWave`
+  * - :doc:`Wave`
     - ✔
     - ✔
     - ✔

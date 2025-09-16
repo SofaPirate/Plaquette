@@ -40,4 +40,4 @@ A metronome digital source unit. Emits an "on" signal at a regular pace.
 - :doc:`Alarm`
 - :doc:`Chronometer`
 - :doc:`Ramp`
-- :doc:`SquareWave`
+- :doc:`Wave`

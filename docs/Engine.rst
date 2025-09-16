@@ -24,7 +24,7 @@ To assign units to a specific engine, add it as the last parameter at constructi
 
 .. code-block:: c++
 
-   SquareWave wave(1.0, 0.2, myEngine); // Use myEngine instead of the default
+   Wave wave(1.0, 0.2, myEngine); // Use myEngine instead of the default
 
 Each engine provides its own time measurements:
 

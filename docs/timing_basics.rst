@@ -149,7 +149,7 @@ the alarm, increasing its duration by 50% each time.
     DigitalOut led(LED_BUILTIN); // LED on built-in pin
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
 
-    SquareWave blink(0.5); // Wave to blink LED when alarm is buzzing
+    Wave blink(0.5); // Wave to blink LED when alarm is buzzing
 
     Alarm alarm(2.0); // Alarm with 2s duration
 
@@ -213,7 +213,7 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
     #include <Plaquette.h>
 
     DigitalOut led(LED_BUILTIN); // LED on built-in pin
-    SquareWave blink(1.0); // Wave to blink the LED
+    Wave blink(1.0); // Wave to blink the LED
     Metronome metroToggle(2.0); // Metronome to toggle visibility
     Metronome metroAccelerate(10.0); // Metronome to accelerate blink
 
@@ -242,8 +242,8 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
 Creating Smooth Transitions with Ramp
 -------------------------------------
 
-Ramps are a cornerstone of creative expression. Unlike oscillators like :doc:`TriangleWave` and :doc:`SineWave`,
-which generate periodic signals, ramps interpolate from one value to another over a specific duration or at a
+Ramps are a cornerstone of creative expression. Unlike :doc:`Wave` units, which
+generate periodic signals, ramps interpolate from one value to another over a specific duration or at a
 specific speed. The :doc:`Ramp` unit in Plaquette provides a flexible and powerful way to animate visual
 elements such as LEDs or physical components such as motors in a natural manner, allowing the creation of rich,
 dynamic, evolving experiences.
@@ -357,7 +357,7 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
     AnalogOut led(9);  // LED output
     Ramp ramp(5.0);    // Ramp with 5 seconds duration
-    TriangleWave wave; // Oscillator
+    Wave wave(TRIANGLE, 1.0); // Oscillator
 
     void begin() {
       wave.skew(1.0);   // Sawtooth wave

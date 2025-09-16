@@ -154,10 +154,10 @@ The period and skew of a waveform can be initialized when the unit is created.
 
     #include <Plaquette.h>
 
-    Wave wave1;           // shape = SQUARE (default), period = 1 sec (default), skew = 0.5 (default)
-    Wave wave1(TRIANGLE);           // shape = Triangle, period = 1 sec (default), skew = 0.5 (default)
-    Wave wave2(SINE, 2.0);      // shape = SINE, period = 2 sec, skew = 0.5 (default)
-    Wave wave3(SQUARE, 3.0, 0.1); // shape = SQUARE, period = 3 sec, skew = 0.1
+    Wave wave1;            // Default (square wave, 1 second period, 50% skew)
+    Wave wave1(TRIANGLE);  // Triangle wave with default period and skew
+    Wave wave2(SINE, 2.0); // Sine wave with 2 seconds period and default skew
+    Wave wave3(SQUARE, 3.0, 0.1); // Square wave, 3 seconds period, 10% skew
 
 Other properties are typically initialized in the ``begin()`` to build a specific waveform.
 It is also common to initialize period and skew in the same way for more expressive code.
@@ -168,14 +168,14 @@ It is also common to initialize period and skew in the same way for more express
 
     #include <Plaquette.h>
 
-     Wave wave;
+    Wave wave;
 
     void begin() {
       wave.shape(TRIANGLE); // triangle wave
-      wave.frequency(2); // 2 Hz
-      wave.skew(0.9); // skew 90%
-      wave.phase(0.1); // dephased by 10% of period
-      wave.amplitude(0.5); // 50% amplitude
+      wave.frequency(2);    // 2 Hz
+      wave.skew(0.9);       // skew 90%
+      wave.phaseShift(0.1); // dephased by 10% of period
+      wave.amplitude(0.5);  // 50% amplitude
     }
 
     void step() {
