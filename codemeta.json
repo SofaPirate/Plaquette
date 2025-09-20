@@ -1,0 +1,28 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "0000-0002-6340-2550",
+      "@type": "Person",
+      "name": "Sofian Audry",
+      "affiliation": "Université du Québec à Montréal"
+    },
+    {
+      "@id": "0009-0004-8587-9508",
+      "@type": "Person",
+      "name": "Thomas O Fredericks",
+      "affiliation": "Collège Montmorency"
+    }
+  ],
+  "identifier": "",
+  "codeRepository": "https://github.com/SofaPirate/Plaquette",
+  "datePublished": "2025-09-20",
+  "dateModified": "2025-09-20",
+  "dateCreated": "2025-09-20",
+  "description": "Plaquette is an object-oriented, user-friendly, signal-centric programming framework for creative physical computing. Its features include signal filtering, oscillators, timing, ramps, and event management.",
+  "keywords": "Arduino, C++, Creative Coding, Embedded Systems, Interactive Media, Signal Processing, Research-Creation",
+  "license": "GPL v3.0",
+  "title": "Plaquette",
+  "version": "v0.8.0"
+}
