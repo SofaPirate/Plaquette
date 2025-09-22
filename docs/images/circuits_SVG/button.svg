@@ -8,17 +8,20 @@
    width="6.50331in"
    x="0in"
    y="0in"
-   id="svg2729"
-   sodipodi:docname="button_V1.svg"
+   id="svg2723"
+   sodipodi:docname="button.svg"
+   inkscape:export-filename="button.png"
+   inkscape:export-xdpi="210"
+   inkscape:export-ydpi="210"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs2729" />
+     id="defs2723" />
   <sodipodi:namedview
-     id="namedview2729"
+     id="namedview2723"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -35,7 +38,7 @@
      inkscape:window-x="2551"
      inkscape:window-y="341"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2729" />
+     inkscape:current-layer="svg2723" />
   <g
      partID="57930"
      id="g1723">
@@ -24825,7 +24828,7 @@
        x1="248.524"
        x2="252.839"
        y1="338.413"
-       y2="316.802"
+       y2="316.803"
        id="line2712" />
     <line
        stroke="#404040"
@@ -24834,7 +24837,7 @@
        x1="248.524"
        x2="252.839"
        y1="338.413"
-       y2="316.802"
+       y2="316.803"
        id="line2713" />
   </g>
   <g
@@ -24844,8 +24847,8 @@
        stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="97.3331"
-       x2="97.4456"
+       x1="97.3328"
+       x2="97.4453"
        y1="136.8"
        y2="338.434"
        id="line2714" />
@@ -24853,164 +24856,98 @@
        stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="97.3331"
-       x2="97.4456"
+       x1="97.3328"
+       x2="97.4453"
        y1="136.8"
        y2="338.434"
        id="line2715" />
   </g>
   <g
-     partID="855159970"
+     partID="855160860"
      id="g2717">
     <line
-       stroke="#8c0000"
+       stroke="#1b5bb3"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="111.711"
-       x2="241.407"
-       y1="331.254"
-       y2="331.296"
+       x1="306.01"
+       x2="303.24"
+       y1="165.502"
+       y2="180.002"
        id="line2716" />
     <line
-       stroke="#cc1414"
+       stroke="#418dd9"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="111.711"
-       x2="241.407"
-       y1="331.254"
-       y2="331.296"
+       x1="306.01"
+       x2="303.24"
+       y1="165.502"
+       y2="180.002"
        id="line2717" />
   </g>
   <g
-     partID="855155270"
+     partID="855160790"
      id="g2719">
     <line
-       stroke="#8c0000"
+       stroke="#1b5bb3"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="241.407"
-       x2="245.639"
-       y1="331.296"
-       y2="316.802"
+       x1="284.543"
+       x2="306.01"
+       y1="165.502"
+       y2="165.502"
        id="line2718" />
     <line
-       stroke="#cc1414"
+       stroke="#418dd9"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="241.407"
-       x2="245.639"
-       y1="331.296"
-       y2="316.802"
+       x1="284.543"
+       x2="306.01"
+       y1="165.502"
+       y2="165.502"
        id="line2719" />
   </g>
   <g
-     partID="855155240"
+     partID="855155330"
      id="g2721">
     <line
-       stroke="#8c0000"
+       stroke="#1b5bb3"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="111.733"
-       x2="111.711"
-       y1="144.004"
-       y2="331.254"
+       x1="284.519"
+       x2="284.543"
+       y1="107.999"
+       y2="165.502"
        id="line2720" />
     <line
-       stroke="#cc1414"
+       stroke="#418dd9"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="111.733"
-       x2="111.711"
-       y1="144.004"
-       y2="331.254"
+       x1="284.519"
+       x2="284.543"
+       y1="107.999"
+       y2="165.502"
        id="line2721" />
   </g>
   <g
-     partID="855160860"
+     partID="855160210"
      id="g2723">
     <line
-       stroke="#1b5bb3"
+       stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="306.01"
-       x2="303.24"
-       y1="165.502"
-       y2="180.002"
+       x1="270.132"
+       x2="270.119"
+       y1="136.8"
+       y2="107.999"
        id="line2722" />
     <line
-       stroke="#418dd9"
+       stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="306.01"
-       x2="303.24"
-       y1="165.502"
-       y2="180.002"
+       x1="270.132"
+       x2="270.119"
+       y1="136.8"
+       y2="107.999"
        id="line2723" />
-  </g>
-  <g
-     partID="855160790"
-     id="g2725">
-    <line
-       stroke="#1b5bb3"
-       stroke-linecap="round"
-       stroke-width="3.2"
-       x1="284.543"
-       x2="306.01"
-       y1="165.502"
-       y2="165.502"
-       id="line2724" />
-    <line
-       stroke="#418dd9"
-       stroke-linecap="round"
-       stroke-width="1.6"
-       x1="284.543"
-       x2="306.01"
-       y1="165.502"
-       y2="165.502"
-       id="line2725" />
-  </g>
-  <g
-     partID="855155330"
-     id="g2727">
-    <line
-       stroke="#1b5bb3"
-       stroke-linecap="round"
-       stroke-width="3.2"
-       x1="284.519"
-       x2="284.543"
-       y1="107.999"
-       y2="165.502"
-       id="line2726" />
-    <line
-       stroke="#418dd9"
-       stroke-linecap="round"
-       stroke-width="1.6"
-       x1="284.519"
-       x2="284.543"
-       y1="107.999"
-       y2="165.502"
-       id="line2727" />
-  </g>
-  <g
-     partID="855160210"
-     id="g2729">
-    <line
-       stroke="#8c0000"
-       stroke-linecap="round"
-       stroke-width="3.2"
-       x1="270.132"
-       x2="270.119"
-       y1="144"
-       y2="107.999"
-       id="line2728" />
-    <line
-       stroke="#cc1414"
-       stroke-linecap="round"
-       stroke-width="1.6"
-       x1="270.132"
-       x2="270.119"
-       y1="144"
-       y2="107.999"
-       id="line2729" />
   </g>
 </svg>
