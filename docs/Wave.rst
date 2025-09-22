@@ -34,7 +34,8 @@ Regardless of the shape, the signal can be tuned by adjusting the following para
 - **phase()**: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).
 - **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]).
 
-In addition, it is possible to :ref:`add randomness <wave-randomization>` to a wave's period using function ``randomize``.
+.. tip::
+  In addition, it is possible to :ref:`add randomness <wave-randomization>` to a wave's period using function ``randomize()``.
 
 .. _square-wave:
 

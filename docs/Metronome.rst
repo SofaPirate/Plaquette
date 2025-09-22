@@ -17,8 +17,23 @@ Parameters
 - **bpm()**: Another convenience method to set the frequency using beats per minute (BPM).
 - **phase()**: Sets the initial offset within the cycle (in range [0,1]).
 
-In addition, it is possible to :ref:`add randomness <metronome-randomization>` to a metronome's
-period using function ``randomize``.
+Randomization
+-------------
+
+Metronomes can also be used to generated **randomozed patterns** using the ``randomize()`` function.
+This makes their ticks feel less mechanical and closer to natural rhythms such as raindrops falling,
+typing on a keyboard, or the reactions of a living entity. When activating randomization, the metronome does
+not trigger at perfectly regular intervals anymore. Instead, the length of each cycle is perturbed according
+to the chosen randomness level. At low values (close to 0), the timing remains close to steady with
+gentle variation. At high values (close to 1), the ticks may cluster together or leave longer pauses, while
+still averaging the correct period over time. This means that even with randomness, the metronome respects
+its ``period`` setting in the long run, but the *spacing* between individual ticks is altered.
+
+Here is an event raster showing the effect of different randomization levels on event triggers (all
+metronomes have a one-second period):
+
+.. image:: images/Plaquette-Metronome-Randomize.png
+
 
 Basic Example
 -------------
@@ -63,8 +78,8 @@ You can run several metronomes in parallel to control independent events:
 Randomized Metronome
 --------------------
 
-Using randomness allows the timing to feel less mechanical, closer to natural rhythms. The following
-sketch blinks the LED at an *average* rate of once per second, but with irregular spacing:
+The following sketch blinks the LED at an *average* rate of once per second, but
+with irregular spacing:
 
 .. code-block:: c++
 

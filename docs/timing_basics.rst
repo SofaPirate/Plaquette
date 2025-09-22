@@ -239,6 +239,13 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
         led.off();
     }
 
+.. tip::
+
+   You can make a metronome feel more natural by adding randomness.  Simply call ``randomize(amount)``
+   where ``amount`` is between ``0`` (perfectly regular) and ``1`` (highly irregular). This is useful when
+   you want a rhythm that feels organic rather than mechanical, like breathing, footsteps, or blinking
+   lights in nature. See the :doc:`Metronome` unit documentation for more information.
+
 Creating Smooth Transitions with Ramp
 -------------------------------------
 
