@@ -1,12 +1,15 @@
 .. include:: defs.hrst
 
-====
 Wave
 ====
 
+An analog source unit that generates a `wave <https://en.wikipedia.org/wiki/Wave>`_ signal in range [0, 1].
 
-A source unit that generates a `wave <https://en.wikipedia.org/wiki/Wave>`_ signal. There are three potential wave types that can be set
-using the ``shape`` parameter: :ref:`SQUARE (default) <square-wave>`, :ref:`TRIANGLE <triangle-wave>` or :ref:`SINE <sine-wave>`.
+Shape
+-----
+
+There are three potential wave types that can be set using the ``shape`` parameter:
+:ref:`SQUARE (default) <square-wave>`, :ref:`TRIANGLE <triangle-wave>` or :ref:`SINE <sine-wave>`.
 
 .. image:: images/Plaquette-SquareWave.png
   :width: 33%
@@ -17,16 +20,21 @@ using the ``shape`` parameter: :ref:`SQUARE (default) <square-wave>`, :ref:`TRIA
 .. image:: images/Plaquette-SineWave-noSkew.png
   :width: 33%
 
+Parameters
+----------
+
 Regardless of the shape, the signal can be tuned by adjusting the following parameters:
 
-- **shape()**: Sets the shape of the wave (:ref:`SQUARE (default) <square-wave>`, :ref:`TRIANGLE <triangle-wave>` or :ref:`SINE <sine-wave>`).
 - **period()**: Sets the duration of one cycle in seconds.
 - **skew()**: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
   Each wave type behaves slightly differently with this parameter, which will be detailed below.
+- **random()**: Controls the degree of randomness of the wave (in range [0, 1]).
 - **frequency()**: Inverse of period; sets the cycles per second (Hz).
 - **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
 - **phase()**: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).
-- **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]);
+- **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]).
+
+In addition, it is possible to :ref:`add randomness <wave-randomization>` to a wave's period using function ``randomize``.
 
 .. _square-wave:
 
@@ -154,6 +162,42 @@ Pulses an LED.
    void step() {
      osc >> led;
    }
+
+.. _wave-randomization:
+
+Randomization
+-------------
+
+In addition to controlling period, shape, skew, and amplitude, the ``Wave`` units can also generate
+**randomized oscillations** in a similar manner as :doc:`Metronome` units using the ``randomize`` function.
+This allows the oscillation to feel less mechanical and more organic, closer to natural rhythms like breathing,
+heartbeat variations, or the flicker of firelight.
+
+When randomness is active, the wave no longer produces perfectly periodic oscillations. Instead,
+each cycle's duration is perturbed according to the chosen randomness level. However, on the long run,
+the average period of oscillation will match the wave's ``period`` parameter.
+
+|Example|
+---------
+
+Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's randomness.
+
+.. code-block:: c++
+
+  #include <Plaquette.h>
+
+  AnalogOut led(9);
+
+  Wave osc(SINE); // average period of 1 second (default)
+
+  Wave lfo(SINE, 20.0); // 20-seconds oscillator
+
+  void begin() {}
+
+  void step() {
+    osc.randomize(lfo);
+    osc >> led;
+  }
 
 .. doxygenclass:: Wave
    :project: Plaquette
