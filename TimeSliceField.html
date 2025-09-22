@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TimeSliceField &mdash; Plaquette 0.7.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="prev" title="PivotField" href="PivotField.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.7.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="fields.html">Fields</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PivotField.html">PivotField</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TimeSliceField</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://sofapirate.github.io/Plaquette/doxygen/">Doxygen Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="fields.html">Fields</a> &raquo;</li>
+      <li>TimeSliceField</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="timeslicefield">
+<h1>TimeSliceField<a class="headerlink" href="#timeslicefield" title="Permalink to this heading"></a></h1>
+<p>This field unit stores a <strong>series of values collected over time</strong>, which can then be sampled spatially like an array
+across the normalized range [0, 1]. It is useful for plotting time-varying signals, such as mapping audio or sensor
+input onto an LED strip or a motor array.</p>
+<p>The unit gathers samples over a defined time period, storing them in its internal memory. When it is ready to be
+read, it fires an <code class="docutils literal notranslate"><span class="pre">updated</span></code> event which can be used to update outputs only when necessary.</p>
+<p>The size <code class="docutils literal notranslate"><span class="pre">SIZE</span></code> of the internal memory (ie., the number of values that are stored internally) and the overall time
+<code class="docutils literal notranslate"><span class="pre">period</span></code> (in seconds) over which the field applies is specified at creation time:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">TimeSliceField</span><span class="o">&lt;</span><span class="n">SIZE</span><span class="o">&gt;</span><span class="w"> </span><span class="n">field</span><span class="p">(</span><span class="n">period</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<dl>
+<dt>The unit supports two modes:</dt><dd><ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">block</span></code> mode (default) the buffer fills up and fires the <code class="docutils literal notranslate"><span class="pre">updated</span></code> event when it is full; then it is
+emptied and starts filling up again.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">rolling</span></code> mode the buffer fills up, then…</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>… when it is full it fires <code class="docutils literal notranslate"><span class="pre">updated</span></code>;</p></li>
+<li><p>… when enough time has passed that a new value needs to be replaced, the older value is removed and the buffer
+is shifted by one value and it fires <code class="docutils literal notranslate"><span class="pre">updated</span></code> to signal a change.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>Here is a simple example that uses a <cite>TimeSliceField</cite> to collect data from a sine wave and render it to an LED strip.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// The number of LEDs.</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N_LEDS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// An array of LEDs.</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="n">leds</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// shorthand for DigitalOut leds[] = { DigitalOut(2), DigitalOut(3), DigitalOut(4), ... };</span>
+
+<span class="c1">// The sine wave with a period of one second.</span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// The time slice field (over 2 seconds period).</span>
+<span class="n">TimeSliceField</span><span class="o">&lt;</span><span class="n">N_LEDS</span><span class="o">&gt;</span><span class="w"> </span><span class="n">timeSlice</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Set field to rolling mode.</span>
+<span class="w">  </span><span class="n">timeSlice</span><span class="p">.</span><span class="n">rolling</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Update the field.</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">timeSlice</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Update the LEDs.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timeSlice</span><span class="p">.</span><span class="n">updated</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">N_LEDS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">float</span><span class="w"> </span><span class="n">proportion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapTo01</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N_LEDS</span><span class="mi">-1</span><span class="p">);</span><span class="w"> </span><span class="c1">// maps i to [0, 1]</span>
+<span class="w">      </span><span class="n">timeSlice</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// send to LED</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I_6size_tE14TimeSliceField">
+<span id="_CPPv3I_6size_tE14TimeSliceField"></span><span id="_CPPv2I_6size_tE14TimeSliceField"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">COUNT</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classpq_1_1_time_slice_field"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TimeSliceField</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractField</span></span><a class="headerlink" href="#_CPPv4I_6size_tE14TimeSliceField" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classpq_1_1_time_slice_field"><span class="std std-ref">TimeSliceField</span></a> generic class. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters</dt>
+<dd class="field-odd"><p><strong>COUNT</strong> – the size of the buffer </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField14TimeSliceFieldEf">
+<span id="_CPPv3N14TimeSliceField14TimeSliceFieldEf"></span><span id="_CPPv2N14TimeSliceField14TimeSliceFieldEf"></span><span id="TimeSliceField::TimeSliceField__float"></span><span class="target" id="classpq_1_1_time_slice_field_1abb9651eb0cf149a3e891a6e61f62be0e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TimeSliceField</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField14TimeSliceFieldEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>period</strong> – the period in seconds </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceFieldD0Ev">
+<span id="_CPPv3N14TimeSliceFieldD0Ev"></span><span id="_CPPv2N14TimeSliceFieldD0Ev"></span><span id="TimeSliceField::~TimeSliceField"></span><span class="target" id="classpq_1_1_time_slice_field_1a82f7be7c2cf14d8807f7df993162f818"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~TimeSliceField</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceFieldD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField2atEf">
+<span id="_CPPv3N14TimeSliceField2atEf"></span><span id="_CPPv2N14TimeSliceField2atEf"></span><span id="TimeSliceField::at__float"></span><span class="target" id="classpq_1_1_time_slice_field_1a78fde0ca59ce4437de38755c6591dfbc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">at</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">proportion</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N14TimeSliceField2atEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value at given proportion in [0, 1]. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>proportion</strong> – the proportion of the field to read </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField3getEv">
+<span id="_CPPv3N14TimeSliceField3getEv"></span><span id="_CPPv2N14TimeSliceField3getEv"></span><span id="TimeSliceField::get"></span><span class="target" id="classpq_1_1_time_slice_field_1a4cd308f9cfff0dd9a73cd29811188fb9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N14TimeSliceField3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField3putEf">
+<span id="_CPPv3N14TimeSliceField3putEf"></span><span id="_CPPv2N14TimeSliceField3putEf"></span><span id="TimeSliceField::put__float"></span><span class="target" id="classpq_1_1_time_slice_field_1af7fd9a0d0fe4a901ddc85bd5bb508113"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N14TimeSliceField3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField7atIndexE6size_t">
+<span id="_CPPv3N14TimeSliceField7atIndexE6size_t"></span><span id="_CPPv2N14TimeSliceField7atIndexE6size_t"></span><span id="TimeSliceField::atIndex__s"></span><span class="target" id="classpq_1_1_time_slice_field_1a5219c82054a58a1aed619a50d7e1a6fa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atIndex</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField7atIndexE6size_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value at given index. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField5countEv">
+<span id="_CPPv3NK14TimeSliceField5countEv"></span><span id="_CPPv2NK14TimeSliceField5countEv"></span><span id="TimeSliceField::countC"></span><span class="target" id="classpq_1_1_time_slice_field_1a455863a7fb1a8b192da23aa9dfac77f8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">count</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField5countEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns count. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField7updatedEv">
+<span id="_CPPv3N14TimeSliceField7updatedEv"></span><span id="_CPPv2N14TimeSliceField7updatedEv"></span><span id="TimeSliceField::updated"></span><span class="target" id="classpq_1_1_time_slice_field_1a35a0a94dc303fb0cf230b0b1fd621ef1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updated</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField7updatedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the field has been updated and is ready to be used. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField5resetEv">
+<span id="_CPPv3N14TimeSliceField5resetEv"></span><span id="_CPPv2N14TimeSliceField5resetEv"></span><span id="TimeSliceField::reset"></span><span class="target" id="classpq_1_1_time_slice_field_1af5ed2889479aadf9db90da2415f3d344"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the field. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField10setRollingEb">
+<span id="_CPPv3N14TimeSliceField10setRollingEb"></span><span id="_CPPv2N14TimeSliceField10setRollingEb"></span><span id="TimeSliceField::setRolling__b"></span><span class="target" id="classpq_1_1_time_slice_field_1a9904e58334c2f1ccb130a9b2a0a331cb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRolling</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rolling</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField10setRollingEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets rolling mode. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rolling</strong> – the rolling mode </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField7rollingEv">
+<span id="_CPPv3N14TimeSliceField7rollingEv"></span><span id="_CPPv2N14TimeSliceField7rollingEv"></span><span id="TimeSliceField::rolling"></span><span class="target" id="classpq_1_1_time_slice_field_1abe5423adeb48a98ef73a31d7b10fbb81"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rolling</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField7rollingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Activates rolling mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField9noRollingEv">
+<span id="_CPPv3N14TimeSliceField9noRollingEv"></span><span id="_CPPv2N14TimeSliceField9noRollingEv"></span><span id="TimeSliceField::noRolling"></span><span class="target" id="classpq_1_1_time_slice_field_1abad127c030442725269732ada209c643"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noRolling</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField9noRollingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Deactivates rolling mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField9isRollingEv">
+<span id="_CPPv3NK14TimeSliceField9isRollingEv"></span><span id="_CPPv2NK14TimeSliceField9isRollingEv"></span><span id="TimeSliceField::isRollingC"></span><span class="target" id="classpq_1_1_time_slice_field_1a9d6f3d8e75d98b9442f970fb9cf8950b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRolling</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField9isRollingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if rolling mode is active. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField8onUpdateE13EventCallback">
+<span id="_CPPv3N14TimeSliceField8onUpdateE13EventCallback"></span><span id="_CPPv2N14TimeSliceField8onUpdateE13EventCallback"></span><span id="TimeSliceField::onUpdate__EventCallback"></span><span class="target" id="classpq_1_1_time_slice_field_1aee752f0174eff1c9f3250dd163fb0344"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onUpdate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField8onUpdateE13EventCallback" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Registers event callback on update event. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN14TimeSliceField8populateEvP1T6size_tb">
+<span id="_CPPv3I0EN14TimeSliceField8populateEP1T6size_tb"></span><span id="_CPPv2I0EN14TimeSliceField8populateEP1T6size_tb"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classpq_1_1_abstract_field_1a531408928251e4cd7a03fc3a53ccb46f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">populate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN14TimeSliceField8populateEvP1T6size_tb" title="TimeSliceField::populate::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">wrap</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN14TimeSliceField8populateEvP1T6size_tb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fills an array with values from this field. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> – the array to read into </p></li>
+<li><p><strong>size</strong> – the size of the array </p></li>
+<li><p><strong>wrap</strong> – if true, the array is considered to be a circular buffer that wraps around </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField11clearEventsEv">
+<span id="_CPPv3N14TimeSliceField11clearEventsEv"></span><span id="_CPPv2N14TimeSliceField11clearEventsEv"></span><span id="TimeSliceField::clearEvents"></span><span class="target" id="classpq_1_1_unit_1a9ba83d98b0f05b45d1981f1f0d69046c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clearEvents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField11clearEventsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField7secondsEv">
+<span id="_CPPv3NK14TimeSliceField7secondsEv"></span><span id="_CPPv2NK14TimeSliceField7secondsEv"></span><span id="TimeSliceField::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField12milliSecondsEv">
+<span id="_CPPv3NK14TimeSliceField12milliSecondsEv"></span><span id="_CPPv2NK14TimeSliceField12milliSecondsEv"></span><span id="TimeSliceField::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField12microSecondsEv">
+<span id="_CPPv3NK14TimeSliceField12microSecondsEv"></span><span id="_CPPv2NK14TimeSliceField12microSecondsEv"></span><span id="TimeSliceField::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField6nStepsEv">
+<span id="_CPPv3NK14TimeSliceField6nStepsEv"></span><span id="_CPPv2NK14TimeSliceField6nStepsEv"></span><span id="TimeSliceField::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField10sampleRateEv">
+<span id="_CPPv3NK14TimeSliceField10sampleRateEv"></span><span id="_CPPv2NK14TimeSliceField10sampleRateEv"></span><span id="TimeSliceField::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField12samplePeriodEv">
+<span id="_CPPv3NK14TimeSliceField12samplePeriodEv"></span><span id="_CPPv2NK14TimeSliceField12samplePeriodEv"></span><span id="TimeSliceField::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceFieldcvfEv">
+<span id="_CPPv3N14TimeSliceFieldcvfEv"></span><span id="_CPPv2N14TimeSliceFieldcvfEv"></span><span id="TimeSliceField::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceFieldcvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField5mapToEff">
+<span id="_CPPv3N14TimeSliceField5mapToEff"></span><span id="_CPPv2N14TimeSliceField5mapToEff"></span><span id="TimeSliceField::mapTo__float.float"></span><span class="target" id="classpq_1_1_chainable_1a5a8c57d4edc84dadaf764be3f4643e7f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+<p>This function guarantees that the value is within [toLow, toHigh]. If the unit’s values are unbounded, returns get() constrained to [toLow, toHigh]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceFieldcvbEv">
+<span id="_CPPv3N14TimeSliceFieldcvbEv"></span><span id="_CPPv2N14TimeSliceFieldcvbEv"></span><span id="TimeSliceField::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceFieldcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField15analogToDigitalEf">
+<span id="_CPPv3N14TimeSliceField15analogToDigitalEf"></span><span id="_CPPv2N14TimeSliceField15analogToDigitalEf"></span><span id="TimeSliceField::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField15digitalToAnalogEb">
+<span id="_CPPv3N14TimeSliceField15digitalToAnalogEb"></span><span id="_CPPv2N14TimeSliceField15digitalToAnalogEb"></span><span id="TimeSliceField::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a></p></li>
+<li><p><a class="reference internal" href="PivotField.html"><span class="doc">PivotField</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PivotField.html" class="btn btn-neutral float-left" title="PivotField" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

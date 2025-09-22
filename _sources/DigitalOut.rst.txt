@@ -39,7 +39,7 @@ Switches off an LED connected in "sink" mode after a timeout.
 
 .. doxygenclass:: DigitalOut
    :project: Plaquette
-   :members: DigitalOut, on, off, toggle, isOn, isOff, smooth, noSmooth, get, getInt, put, pin, mode, rose, fell, changed, changeState, onRise, onFall, onChange, clearEvents, rawWrite
+   :members:
 
 |SeeAlso|
 ---------

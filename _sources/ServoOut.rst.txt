@@ -43,7 +43,7 @@ Sweeps the shaft of a servo motor back and forth across 180 degrees.
 
 .. doxygenclass:: ServoOut
    :project: Plaquette
-   :members: ServoOut, getAngle, putAngle, center, get, put, pin
+   :members:
 
 |SeeAlso|
 ---------

@@ -16,7 +16,7 @@ is equivalent to:
 
    mapFloat(x, 0, 1, toLow, toHigh)
 
-By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
+By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because
 out-of-range values are sometimes intended and useful. In order to constrain the return value within
 range, use the ``CONSTRAIN`` argument as the last parameter:
 
@@ -44,8 +44,8 @@ See :doc:`mapFloat` for more details.
 
    void step() {
      // Change duty-cycle of oscillator in range [0.2, 0.8].
-     float width = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
-     oscillator.width(width);
+     float skew = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)
+     oscillator.skew(skew);
 
      // Send to LED.
      oscillator >> led;

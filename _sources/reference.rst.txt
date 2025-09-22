@@ -45,6 +45,7 @@ Functions
 Structure
 ---------
 
+* :doc:`Engine` A control structure managing an ensemble of units, handling their initialization, update, and timing, ensuring they remain synchronized.
 * :doc:`begin` Initializes the system, similar to Arduino's `setup()` function. Sets up necessary configurations and prepares units for operation.
 * :doc:`step` Repeatedly called during the program's execution, akin to Arduino's `loop()` function. Drives the execution of the main logic.
 * :doc:`array` Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.

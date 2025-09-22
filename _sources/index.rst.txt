@@ -38,6 +38,7 @@ Reference
    generators
    timing
    filters
+   fields
    functions
    structure
    extra
@@ -53,3 +54,4 @@ Related Info
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    credits
    license
+   Doxygen Documentation <http://sofapirate.github.io/Plaquette/doxygen/>

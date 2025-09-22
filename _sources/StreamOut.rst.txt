@@ -38,7 +38,7 @@ To run this example:
 
 .. doxygenclass:: StreamOut
    :project: Plaquette
-   :members: StreamOut, get, put, precision
+   :members:
 
 |SeeAlso|
 ---------

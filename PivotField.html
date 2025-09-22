@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PivotField &mdash; Plaquette 0.7.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TimeSliceField" href="TimeSliceField.html" />
+    <link rel="prev" title="Fields" href="fields.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.7.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="fields.html">Fields</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PivotField</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modes">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjustments">Adjustments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TimeSliceField.html">TimeSliceField</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://sofapirate.github.io/Plaquette/doxygen/">Doxygen Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="fields.html">Fields</a> &raquo;</li>
+      <li>PivotField</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pivotfield">
+<h1>PivotField<a class="headerlink" href="#pivotfield" title="Permalink to this heading"></a></h1>
+<p>This field unit generates a spatial response curve based on a <strong>pivot point</strong> around which the field transitions happens.
+It can output sharp steps, smooth ramps, bumps or notches, across the normalized range [0, 1], making it ideal
+for creating animations on arrays of actuators such as LEDs or motors (eg. VU-meters, fades, or envelope-like visualizations).</p>
+<section id="modes">
+<h2>Modes<a class="headerlink" href="#modes" title="Permalink to this heading"></a></h2>
+<p>The behavior of the field is defined by its mode:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PIVOT_FALLING</span></code> (default): Values are <cite>1.0</cite> from the left up to the pivot, then fall to <cite>0.0</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIVOT_RISING</span></code> : Values are <cite>0.0</cite> on the left and rise to <cite>1.0</cite> after the pivot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIVOT_BUMP</span></code>: Peak at the pivot: <cite>1.0</cite> around the pivot, tapering down on both sides.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIVOT_NOTCH</span></code>: Inverse of <code class="docutils literal notranslate"><span class="pre">PIVOT_BUMP</span></code>: <cite>0.0</cite> around the pivot, <cite>1.0</cite> elsewhere.</p></li>
+</ul>
+</section>
+<section id="adjustments">
+<h2>Adjustments<a class="headerlink" href="#adjustments" title="Permalink to this heading"></a></h2>
+<p>The curve can be finely configured using many different parameters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rampWidth</span></code>: Ramp width as a fraction of total range (e.g., <cite>0.2</cite> for 20% width). Default: <cite>0</cite> (no ramp).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code>: Point from which the curve starts (in [0, 1]). Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code> (default) Start from left side.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code> Start from middle going in both directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.75</span></code> Start from ¾ (75%) going in both directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code> Start from right side.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easing</span></code>: Optional <a class="reference internal" href="easings.html"><span class="doc">easing function</span></a> applied to the ramp. Default: <code class="docutils literal notranslate"><span class="pre">easeNone</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rampShift</span></code>: Determines the horizontal shift of the ramp. Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code> Ramp ends at the pivot point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code> (default) Ramp is right in the middle of the pivot point.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code> Ramp starts at the pivot point.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bumpWidth</span></code>: When choosing <code class="docutils literal notranslate"><span class="pre">PIVOT_BUMP</span></code> or <code class="docutils literal notranslate"><span class="pre">PIVOT_NOTCH</span></code>, determines the width of the peak. Default: <cite>0.25</cite> (25%).</p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>This example uses a single PWM analog LED and two potentiometers to show the behavior
+of a PivotField. The first potentiometer is used to control the pivot point, then the second
+potentiometer is used to reveal the values of the <cite>PivotField</cite> from 0 to 1.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Potentiometer #1 to control the pivot point.</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Potentiometer #2 for exploring the field.</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">slider</span><span class="p">(</span><span class="n">A1</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// The PWM LED.</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// The pivot field.</span>
+<span class="n">PivotField</span><span class="w"> </span><span class="n">field</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Parameters. Change at will to explore different configurations.</span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">rampWidth</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeInSine</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">mode</span><span class="p">(</span><span class="n">PIVOT_FALLING</span><span class="p">);</span><span class="w"> </span><span class="c1">// default</span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">center</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// default</span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">bumpWidth</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span><span class="w"> </span><span class="c1">// default</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Send potientiometer value to the pivot field.</span>
+<span class="w">  </span><span class="n">pot</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">field</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Send field value at position of slider to LED.</span>
+<span class="w">  </span><span class="n">field</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">slider</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410PivotField">
+<span id="_CPPv310PivotField"></span><span id="_CPPv210PivotField"></span><span id="PivotField"></span><span class="target" id="classpq_1_1_pivot_field"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PivotField</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractField</span></span><a class="headerlink" href="#_CPPv410PivotField" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField10PivotFieldEv">
+<span id="_CPPv3N10PivotField10PivotFieldEv"></span><span id="_CPPv2N10PivotField10PivotFieldEv"></span><span id="PivotField::PivotField"></span><span class="target" id="classpq_1_1_pivot_field_1a0d428799f95a2701e6fc02203c978774"></span><span class="sig-name descname"><span class="n"><span class="pre">PivotField</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField10PivotFieldEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotFieldD0Ev">
+<span id="_CPPv3N10PivotFieldD0Ev"></span><span id="_CPPv2N10PivotFieldD0Ev"></span><span id="PivotField::~PivotField"></span><span class="target" id="classpq_1_1_pivot_field_1a266c0ce965d513645675a0dd0a89b1bd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~PivotField</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotFieldD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField2atEf">
+<span id="_CPPv3N10PivotField2atEf"></span><span id="_CPPv2N10PivotField2atEf"></span><span id="PivotField::at__float"></span><span class="target" id="classpq_1_1_pivot_field_1afbd43e8c172ee032c3b3ab9c57c2566b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">at</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">proportion</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10PivotField2atEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value at given proportion in [0, 1]. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>proportion</strong> – the proportion of the field to read </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField3getEv">
+<span id="_CPPv3N10PivotField3getEv"></span><span id="_CPPv2N10PivotField3getEv"></span><span id="PivotField::get"></span><span class="target" id="classpq_1_1_pivot_field_1ad1abdc90c77b8dfd1a9ac5d5bef617b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10PivotField3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField3putEf">
+<span id="_CPPv3N10PivotField3putEf"></span><span id="_CPPv2N10PivotField3putEf"></span><span id="PivotField::put__float"></span><span class="target" id="classpq_1_1_pivot_field_1a1856cf976a67c520ba9d50f91d0a4ced"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10PivotField3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField4modeE14PivotFieldMode">
+<span id="_CPPv3N10PivotField4modeE14PivotFieldMode"></span><span id="_CPPv2N10PivotField4modeE14PivotFieldMode"></span><span id="PivotField::mode__PivotFieldMode"></span><span class="target" id="classpq_1_1_pivot_field_1a6abbd877990e7a7e16719617e7975fd9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">PivotFieldMode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField4modeE14PivotFieldMode" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets mode to use. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> – the mode to set </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField4modeEv">
+<span id="_CPPv3NK10PivotField4modeEv"></span><span id="_CPPv2NK10PivotField4modeEv"></span><span id="PivotField::modeC"></span><span class="target" id="classpq_1_1_pivot_field_1a0b44db525de94c4876fee37bd880f4e1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">PivotFieldMode</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField4modeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField6easingE15easing_function">
+<span id="_CPPv3N10PivotField6easingE15easing_function"></span><span id="_CPPv2N10PivotField6easingE15easing_function"></span><span id="PivotField::easing__easing_function"></span><span class="target" id="classpq_1_1_pivot_field_1a00419c3ab1aa164a675cadf07bbceb15"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">easing</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">easing_function</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">easing</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField6easingE15easing_function" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets easing function to apply to ramp. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>easing</strong> – the easing function </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField8noEasingEv">
+<span id="_CPPv3N10PivotField8noEasingEv"></span><span id="_CPPv2N10PivotField8noEasingEv"></span><span id="PivotField::noEasing"></span><span class="target" id="classpq_1_1_pivot_field_1a3be46051d1d2ad151d2d7e617f544912"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noEasing</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField8noEasingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Remove easing function (linear/no easing). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField9rampWidthEf">
+<span id="_CPPv3N10PivotField9rampWidthEf"></span><span id="_CPPv2N10PivotField9rampWidthEf"></span><span id="PivotField::rampWidth__float"></span><span class="target" id="classpq_1_1_pivot_field_1add45dbcada72d0ef4b1f07b006ac6e7d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rampWidth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rampWidth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField9rampWidthEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets ramp width as % of field range. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rampWidth</strong> – the ramp width in [0, 1] </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField11noRampWidthEv">
+<span id="_CPPv3N10PivotField11noRampWidthEv"></span><span id="_CPPv2N10PivotField11noRampWidthEv"></span><span id="PivotField::noRampWidth"></span><span class="target" id="classpq_1_1_pivot_field_1a6022851359f04dba974318ba4401f4da"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noRampWidth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField11noRampWidthEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Removes ramp width. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField9rampWidthEv">
+<span id="_CPPv3NK10PivotField9rampWidthEv"></span><span id="_CPPv2NK10PivotField9rampWidthEv"></span><span id="PivotField::rampWidthC"></span><span class="target" id="classpq_1_1_pivot_field_1a64be608e800309d33c85aa026c228443"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rampWidth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField9rampWidthEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns ramp width. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField9rampShiftEf">
+<span id="_CPPv3N10PivotField9rampShiftEf"></span><span id="_CPPv2N10PivotField9rampShiftEf"></span><span id="PivotField::rampShift__float"></span><span class="target" id="classpq_1_1_pivot_field_1a324c407c6b9c9b1a8e4552338bb980c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rampShift</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rampShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField9rampShiftEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets ramp shift in [0, 1] (default: 0.5 = center). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rampShift</strong> – the ramp shift in [0, 1] </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField9rampShiftEv">
+<span id="_CPPv3NK10PivotField9rampShiftEv"></span><span id="_CPPv2NK10PivotField9rampShiftEv"></span><span id="PivotField::rampShiftC"></span><span class="target" id="classpq_1_1_pivot_field_1a01a6039b58a6d18c40d195c9d5d61a9e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rampShift</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField9rampShiftEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns ramp shift. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField9bumpWidthEf">
+<span id="_CPPv3N10PivotField9bumpWidthEf"></span><span id="_CPPv2N10PivotField9bumpWidthEf"></span><span id="PivotField::bumpWidth__float"></span><span class="target" id="classpq_1_1_pivot_field_1a85c3bc7f3ecdce4627c6544a20cceec4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bumpWidth</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bumpWidth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField9bumpWidthEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets bump width as % of field range. </p>
+<p>Only applies to PIVOT_BUMP and PIVOT_NOTCH modes. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bumpWidth</strong> – the bump width in [0, 1] </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField9bumpWidthEv">
+<span id="_CPPv3NK10PivotField9bumpWidthEv"></span><span id="_CPPv2NK10PivotField9bumpWidthEv"></span><span id="PivotField::bumpWidthC"></span><span class="target" id="classpq_1_1_pivot_field_1a0d75f51b48528fe203d99d41aad0bed0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bumpWidth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField9bumpWidthEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns bump width. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField6centerEf">
+<span id="_CPPv3N10PivotField6centerEf"></span><span id="_CPPv2N10PivotField6centerEf"></span><span id="PivotField::center__float"></span><span class="target" id="classpq_1_1_pivot_field_1a380bb7bc09ed430b96bada5326581b01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">center</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField6centerEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets center of the ramp in [0, 1]. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>center</strong> – the center in [0, 1] </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField6centerEv">
+<span id="_CPPv3NK10PivotField6centerEv"></span><span id="_CPPv2NK10PivotField6centerEv"></span><span id="PivotField::centerC"></span><span class="target" id="classpq_1_1_pivot_field_1aa486f89467915182fe75129dbe0c671b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField6centerEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns center of the ramp. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN10PivotField8populateEvP1T6size_tb">
+<span id="_CPPv3I0EN10PivotField8populateEP1T6size_tb"></span><span id="_CPPv2I0EN10PivotField8populateEP1T6size_tb"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classpq_1_1_abstract_field_1a531408928251e4cd7a03fc3a53ccb46f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">populate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN10PivotField8populateEvP1T6size_tb" title="PivotField::populate::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">array</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">wrap</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN10PivotField8populateEvP1T6size_tb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Fills an array with values from this field. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> – the array to read into </p></li>
+<li><p><strong>size</strong> – the size of the array </p></li>
+<li><p><strong>wrap</strong> – if true, the array is considered to be a circular buffer that wraps around </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField11clearEventsEv">
+<span id="_CPPv3N10PivotField11clearEventsEv"></span><span id="_CPPv2N10PivotField11clearEventsEv"></span><span id="PivotField::clearEvents"></span><span class="target" id="classpq_1_1_unit_1a9ba83d98b0f05b45d1981f1f0d69046c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clearEvents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField11clearEventsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField7secondsEv">
+<span id="_CPPv3NK10PivotField7secondsEv"></span><span id="_CPPv2NK10PivotField7secondsEv"></span><span id="PivotField::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField12milliSecondsEv">
+<span id="_CPPv3NK10PivotField12milliSecondsEv"></span><span id="_CPPv2NK10PivotField12milliSecondsEv"></span><span id="PivotField::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField12microSecondsEv">
+<span id="_CPPv3NK10PivotField12microSecondsEv"></span><span id="_CPPv2NK10PivotField12microSecondsEv"></span><span id="PivotField::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField6nStepsEv">
+<span id="_CPPv3NK10PivotField6nStepsEv"></span><span id="_CPPv2NK10PivotField6nStepsEv"></span><span id="PivotField::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField10sampleRateEv">
+<span id="_CPPv3NK10PivotField10sampleRateEv"></span><span id="_CPPv2NK10PivotField10sampleRateEv"></span><span id="PivotField::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10PivotField12samplePeriodEv">
+<span id="_CPPv3NK10PivotField12samplePeriodEv"></span><span id="_CPPv2NK10PivotField12samplePeriodEv"></span><span id="PivotField::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10PivotField12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotFieldcvfEv">
+<span id="_CPPv3N10PivotFieldcvfEv"></span><span id="_CPPv2N10PivotFieldcvfEv"></span><span id="PivotField::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotFieldcvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField5mapToEff">
+<span id="_CPPv3N10PivotField5mapToEff"></span><span id="_CPPv2N10PivotField5mapToEff"></span><span id="PivotField::mapTo__float.float"></span><span class="target" id="classpq_1_1_chainable_1a5a8c57d4edc84dadaf764be3f4643e7f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+<p>This function guarantees that the value is within [toLow, toHigh]. If the unit’s values are unbounded, returns get() constrained to [toLow, toHigh]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotFieldcvbEv">
+<span id="_CPPv3N10PivotFieldcvbEv"></span><span id="_CPPv2N10PivotFieldcvbEv"></span><span id="PivotField::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotFieldcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField15analogToDigitalEf">
+<span id="_CPPv3N10PivotField15analogToDigitalEf"></span><span id="_CPPv2N10PivotField15analogToDigitalEf"></span><span id="PivotField::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10PivotField15digitalToAnalogEb">
+<span id="_CPPv3N10PivotField15digitalToAnalogEb"></span><span id="_CPPv2N10PivotField15digitalToAnalogEb"></span><span id="PivotField::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10PivotField15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a></p></li>
+<li><p><a class="reference internal" href="TimeSliceField.html"><span class="doc">TimeSliceField</span></a></p></li>
+<li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a></p></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fields.html" class="btn btn-neutral float-left" title="Fields" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TimeSliceField.html" class="btn btn-neutral float-right" title="TimeSliceField" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

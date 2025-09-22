@@ -33,7 +33,7 @@ A metronome digital source unit. Emits an "on" signal at a regular pace.
 
 .. doxygenclass:: Metronome
    :project: Plaquette
-   :members: Metronome, isOn, isOff, getInt, get, rose, fell, changed, changeState, period, frequency, bpm, phase, onBang, clearEvents
+   :members:
 
 |SeeAlso|
 ---------

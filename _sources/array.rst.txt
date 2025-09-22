@@ -3,7 +3,7 @@
 [] (arrays)
 ===========
 
-An array is a collection of variables or objects that are accessed with an index number. 
+An array is a collection of variables or objects that are accessed with an index number.
 Arrays can be complicated, but using simple arrays is relatively straightforward.
 
 For a general description of arrays, please refer to `this page <https://www.arduino.cc/reference/en/language/variables/data-types/array/>`_.
@@ -35,7 +35,7 @@ When more than a single parameter is used, however, it needs to be called explic
 
 .. warning::
 
-    Units in array need to be all of the same type. In other words, it is not currently possible to mix different types of objects such as 
+    Units in array need to be all of the same type. In other words, it is not currently possible to mix different types of objects such as
     DigitalIn and SquareWave in the same array.
 
 
@@ -48,7 +48,7 @@ When more than a single parameter is used, however, it needs to be called explic
 
   AnalogOut leds[] = { 9, 10, 11 };
 
-  // Creates three triangle oscillators with a 2 seconds period, with different width.
+  // Creates three triangle oscillators with a 2 seconds period, with different skew.
   TriangleWave oscillators[] = { TriangleWave(2.0, 0.0), 2.0, TriangleWave(2.0, 1.0) };
 
   void begin() {}

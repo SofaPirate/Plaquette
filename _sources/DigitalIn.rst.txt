@@ -58,7 +58,7 @@ one side to pin 2 and the other to ground.
 
 .. doxygenclass:: DigitalIn
    :project: Plaquette
-   :members: DigitalIn, isOn, isOff, pin, mode, getInt, get, debounce, noDebounce, debounceMode, rose, fell, changed, changeState, onRise, onFall, onChange, clearEvents, rawRead
+   :members:
 
 |SeeAlso|
 ---------

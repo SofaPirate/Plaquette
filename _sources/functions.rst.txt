@@ -10,5 +10,6 @@ Standalone utility functions.
    mapFrom01
    mapTo01
    randomFloat
+   randomTrigger
    seconds
    wrap
