@@ -67,7 +67,7 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFloat(double, double, double, double, double, uint8_t)
+.. doxygenfunction:: mapFloat(double, double, double, double, double, MapMode)
    :project: Plaquette
 
 |SeeAlso|
