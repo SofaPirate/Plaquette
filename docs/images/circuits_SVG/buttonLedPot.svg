@@ -8,17 +8,20 @@
    width="6.50331in"
    x="0in"
    y="0in"
-   id="svg2780"
-   sodipodi:docname="generating waveforms circuit.svg"
+   id="svg2782"
+   sodipodi:docname="buttonLedPot.svg"
+   inkscape:export-filename="buttonLedPot.png"
+   inkscape:export-xdpi="210"
+   inkscape:export-ydpi="210"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs2780" />
+     id="defs2782" />
   <sodipodi:namedview
-     id="namedview2780"
+     id="namedview2782"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -27,15 +30,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="in"
-     inkscape:zoom="2.3284746"
-     inkscape:cx="312.00684"
-     inkscape:cy="346.3641"
-     inkscape:window-width="2560"
-     inkscape:window-height="1351"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:zoom="1.5886239"
+     inkscape:cx="312.21991"
+     inkscape:cy="243.29233"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="2551"
+     inkscape:window-y="341"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2780" />
+     inkscape:current-layer="svg2782" />
   <g
      partID="57930"
      id="g1723">
@@ -14637,7 +14640,7 @@
      partID="855154960"
      id="g2694">
     <g
-       transform="translate(119.668,172.803)"
+       transform="translate(119.667,172.802)"
        id="g2693">
       <g
          gorn="0.2"
@@ -24662,7 +24665,7 @@
      partID="855159780"
      id="g2705">
     <g
-       transform="translate(205.105,27.21)"
+       transform="translate(205.104,27.21)"
        id="g2704">
       <g
          id="g2703">
@@ -25445,7 +25448,7 @@
      partID="855159840"
      id="g2708">
     <g
-       transform="translate(161.067,97.1701)"
+       transform="translate(161.066,97.1701)"
        id="g2707">
       <g
          id="g2706">
@@ -25561,7 +25564,7 @@
     </g>
   </g>
   <path
-     d="M189.872,100.803L190.92,100.803"
+     d="M163.162,100.802L162.114,100.802"
      fill="none"
      opacity="1"
      stroke="#8c8c8c"
@@ -25570,7 +25573,7 @@
      stroke-width="2.0952"
      id="path2708" />
   <path
-     d="M189.872,100.803L190.92,100.803"
+     d="M163.162,100.802L162.114,100.802"
      fill="none"
      opacity="0.2"
      stroke="#00ff00"
@@ -25579,7 +25582,7 @@
      stroke-width="2.0952"
      id="path2709" />
   <path
-     d="M163.162,100.803L162.115,100.803"
+     d="M189.871,100.802L190.919,100.802"
      fill="none"
      opacity="1"
      stroke="#8c8c8c"
@@ -25588,7 +25591,7 @@
      stroke-width="2.0952"
      id="path2710" />
   <path
-     d="M163.162,100.803L162.115,100.803"
+     d="M189.871,100.802L190.919,100.802"
      fill="none"
      opacity="0.2"
      stroke="#00ff00"
@@ -25600,7 +25603,7 @@
      partID="855159870"
      id="g2728">
     <g
-       transform="translate(268.603,64.1711)"
+       transform="translate(268.603,64.171)"
        id="g2727">
       <g
          id="g2726">
@@ -25735,7 +25738,7 @@
      partID="855159900"
      id="g2736">
     <g
-       transform="translate(150.391,32.5796)"
+       transform="translate(150.39,32.5796)"
        id="g2735">
       <g
          id="g2734">
@@ -25860,7 +25863,7 @@
     </g>
   </g>
   <path
-     d="M162.12,61.7864L162.12,86.4025"
+     d="M154.917,61.7864L154.917,86.4025"
      fill="none"
      opacity="1"
      stroke="#8c8c8c"
@@ -25869,7 +25872,7 @@
      stroke-width="2.15136"
      id="path2736" />
   <path
-     d="M162.12,82.4025L162.12,86.4025"
+     d="M154.917,82.4025L154.917,86.4025"
      fill="none"
      opacity="0.2"
      stroke="#00ff00"
@@ -25878,7 +25881,7 @@
      stroke-width="2.15136"
      id="path2737" />
   <path
-     d="M154.917,61.7864L154.917,86.4025"
+     d="M162.119,61.7864L162.119,86.4025"
      fill="none"
      opacity="1"
      stroke="#8c8c8c"
@@ -25887,7 +25890,7 @@
      stroke-width="2.15136"
      id="path2738" />
   <path
-     d="M154.917,82.4025L154.917,86.4025"
+     d="M162.119,82.4025L162.119,86.4025"
      fill="none"
      opacity="0.2"
      stroke="#00ff00"
@@ -25902,19 +25905,19 @@
        stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="97.4463"
+       x1="97.4456"
        x2="248.524"
        y1="338.434"
-       y2="338.412"
+       y2="338.413"
        id="line2739" />
     <line
        stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="97.4463"
+       x1="97.4456"
        x2="248.524"
        y1="338.434"
-       y2="338.412"
+       y2="338.413"
        id="line2740" />
   </g>
   <g
@@ -25925,18 +25928,18 @@
        stroke-linecap="round"
        stroke-width="3.2"
        x1="248.524"
-       x2="252.84"
+       x2="252.839"
        y1="338.412"
-       y2="316.803"
+       y2="316.802"
        id="line2741" />
     <line
        stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
        x1="248.524"
-       x2="252.84"
+       x2="252.839"
        y1="338.412"
-       y2="316.803"
+       y2="316.802"
        id="line2742" />
   </g>
   <g
@@ -25946,8 +25949,8 @@
        stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="97.3331"
-       x2="97.4463"
+       x1="97.3328"
+       x2="97.446"
        y1="136.8"
        y2="338.434"
        id="line2743" />
@@ -25955,8 +25958,8 @@
        stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="97.3331"
-       x2="97.4463"
+       x1="97.3328"
+       x2="97.446"
        y1="136.8"
        y2="338.434"
        id="line2744" />
@@ -25968,8 +25971,8 @@
        stroke="#8c0000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="111.712"
-       x2="241.408"
+       x1="111.711"
+       x2="241.407"
        y1="331.254"
        y2="331.296"
        id="line2745" />
@@ -25977,8 +25980,8 @@
        stroke="#cc1414"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="111.712"
-       x2="241.408"
+       x1="111.711"
+       x2="241.407"
        y1="331.254"
        y2="331.296"
        id="line2746" />
@@ -25991,7 +25994,7 @@
        stroke-linecap="round"
        stroke-width="3.2"
        x1="241.408"
-       x2="245.64"
+       x2="245.639"
        y1="331.296"
        y2="316.803"
        id="line2747" />
@@ -26000,7 +26003,7 @@
        stroke-linecap="round"
        stroke-width="1.6"
        x1="241.408"
-       x2="245.64"
+       x2="245.639"
        y1="331.296"
        y2="316.803"
        id="line2748" />
@@ -26012,18 +26015,18 @@
        stroke="#8c0000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="111.733"
-       x2="111.712"
-       y1="144.004"
+       x1="111.732"
+       x2="111.711"
+       y1="144.003"
        y2="331.254"
        id="line2749" />
     <line
        stroke="#cc1414"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="111.733"
-       x2="111.712"
-       y1="144.004"
+       x1="111.732"
+       x2="111.711"
+       y1="144.003"
        y2="331.254"
        id="line2750" />
   </g>
@@ -26123,32 +26126,32 @@
        stroke-linecap="round"
        stroke-width="3.2"
        x1="284.309"
-       x2="281.64"
+       x2="281.639"
        y1="331.327"
-       y2="316.803"
+       y2="316.802"
        id="line2759" />
     <line
        stroke="#fa50e6"
        stroke-linecap="round"
        stroke-width="1.6"
        x1="284.309"
-       x2="281.64"
+       x2="281.639"
        y1="331.327"
-       y2="316.803"
+       y2="316.802"
        id="line2760" />
   </g>
   <g
      partID="855155300"
      id="g2761">
     <path
-       d="M219.719,100.8C251.253,104.809, 255.93,158.606 255.93,158.606"
+       d="M219.718,100.8C251.253,104.809, 255.93,158.606 255.93,158.606"
        fill="none"
        stroke="#dc00dc"
        stroke-linecap="round"
        stroke-width="3.2"
        id="path2760" />
     <path
-       d="M219.719,100.8C251.253,104.809, 255.93,158.606 255.93,158.606"
+       d="M219.718,100.8C251.253,104.809, 255.93,158.606 255.93,158.606"
        fill="none"
        stroke="#fa50e6"
        stroke-linecap="round"
@@ -26162,19 +26165,19 @@
        stroke="#1b5bb3"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="306.011"
-       x2="303.241"
+       x1="306.01"
+       x2="303.24"
        y1="165.502"
-       y2="180.003"
+       y2="180.002"
        id="line2761" />
     <line
        stroke="#418dd9"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="306.011"
-       x2="303.241"
+       x1="306.01"
+       x2="303.24"
        y1="165.502"
-       y2="180.003"
+       y2="180.002"
        id="line2762" />
   </g>
   <g
@@ -26185,7 +26188,7 @@
        stroke-linecap="round"
        stroke-width="3.2"
        x1="284.543"
-       x2="306.011"
+       x2="306.01"
        y1="165.502"
        y2="165.502"
        id="line2763" />
@@ -26194,7 +26197,7 @@
        stroke-linecap="round"
        stroke-width="1.6"
        x1="284.543"
-       x2="306.011"
+       x2="306.01"
        y1="165.502"
        y2="165.502"
        id="line2764" />
@@ -26206,7 +26209,7 @@
        stroke="#1b5bb3"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="284.519"
+       x1="284.518"
        x2="284.543"
        y1="107.999"
        y2="165.502"
@@ -26215,7 +26218,7 @@
        stroke="#418dd9"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="284.519"
+       x1="284.518"
        x2="284.543"
        y1="107.999"
        y2="165.502"
@@ -26229,18 +26232,18 @@
        stroke-linecap="round"
        stroke-width="3.2"
        x1="248.652"
-       x2="248.52"
+       x2="248.519"
        y1="165.502"
-       y2="180.003"
+       y2="180.002"
        id="line2767" />
     <line
        stroke="#25cc35"
        stroke-linecap="round"
        stroke-width="1.6"
        x1="248.652"
-       x2="248.52"
+       x2="248.519"
        y1="165.502"
-       y2="180.003"
+       y2="180.002"
        id="line2768" />
   </g>
   <g
@@ -26272,18 +26275,18 @@
        stroke="#00a527"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="190.919"
+       x1="190.918"
        x2="190.958"
-       y1="115.203"
+       y1="115.202"
        y2="165.502"
        id="line2771" />
     <line
        stroke="#25cc35"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="190.919"
+       x1="190.918"
        x2="190.958"
-       y1="115.203"
+       y1="115.202"
        y2="165.502"
        id="line2772" />
   </g>
@@ -26297,7 +26300,7 @@
        x1="154.934"
        x2="154.919"
        y1="136.802"
-       y2="108.003"
+       y2="108.002"
        id="line2773" />
     <line
        stroke="#404040"
@@ -26306,7 +26309,7 @@
        x1="154.934"
        x2="154.919"
        y1="136.802"
-       y2="108.003"
+       y2="108.002"
        id="line2774" />
   </g>
   <g
@@ -26316,7 +26319,7 @@
        stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="212.533"
+       x1="212.532"
        x2="212.519"
        y1="136.8"
        y2="107.999"
@@ -26325,7 +26328,7 @@
        stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="212.533"
+       x1="212.532"
        x2="212.519"
        y1="136.8"
        y2="107.999"
@@ -26335,44 +26338,66 @@
      partID="855160210"
      id="g2778">
     <line
-       stroke="#8c0000"
+       stroke="#000000"
        stroke-linecap="round"
        stroke-width="3.2"
        x1="270.132"
        x2="270.119"
-       y1="144"
+       y1="136.8"
        y2="107.999"
        id="line2777" />
     <line
-       stroke="#cc1414"
+       stroke="#404040"
        stroke-linecap="round"
        stroke-width="1.6"
        x1="270.132"
        x2="270.119"
-       y1="144"
+       y1="136.8"
        y2="107.999"
        id="line2778" />
   </g>
   <g
-     partID="855160520"
+     partID="855162170"
      id="g2780">
     <line
        stroke="#8c0000"
        stroke-linecap="round"
        stroke-width="3.2"
-       x1="226.933"
+       x1="226.769"
        x2="226.919"
-       y1="136.8"
+       y1="144.14"
        y2="107.999"
        id="line2779" />
     <line
        stroke="#cc1414"
        stroke-linecap="round"
        stroke-width="1.6"
-       x1="226.933"
+       x1="226.769"
        x2="226.919"
-       y1="136.8"
+       y1="144.14"
        y2="107.999"
        id="line2780" />
+  </g>
+  <g
+     partID="855160520"
+     id="g2782">
+    <line
+       stroke="#8c0000"
+       stroke-linecap="round"
+       stroke-width="3.2"
+       x1="226.933"
+       x2="226.769"
+       y1="136.8"
+       y2="144.14"
+       id="line2781" />
+    <line
+       stroke="#cc1414"
+       stroke-linecap="round"
+       stroke-width="1.6"
+       x1="226.933"
+       x2="226.769"
+       y1="136.8"
+       y2="144.14"
+       id="line2782" />
   </g>
 </svg>
