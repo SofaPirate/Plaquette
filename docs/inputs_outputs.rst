@@ -65,6 +65,9 @@ A :doc:`DigitalIn` unit reads binary states from devices like buttons or switche
 to connect a button or switch is to use the **internal pull-up** resistor on Arduino boards. One
 leg of the  button should be connected to ground (GND) while the other should be connected to a digital pin.
 
+.. image:: images/Plaquette-CircuitButton.png
+   :align: center
+
 .. code-block:: cpp
 
     #include <Plaquette.h>
@@ -93,6 +96,9 @@ An :doc:`AnalogOut` unit controls devices like LEDs or motors with continuous va
 example of dimming an LED. The cathode (short leg) of the LED should be connected to ground, while
 the anode (long leg) should be connected to a 300 :math:`\Omega` resistor, which in turn should be
 connected to an analog / PWM pin (eg. pin 9).
+
+.. image:: images/Plaquette-CircuitLedButton.png
+    :align: center
 
 .. code-block:: cpp
 

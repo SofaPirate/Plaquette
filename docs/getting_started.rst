@@ -266,6 +266,9 @@ we will be using the internal pull-up resistor available on Arduino boards for a
 One leg of the button should be connected to ground (GND) while the other should be connected to
 digital pin 2.
 
+.. image:: images/Plaquette-CircuitButton.png
+   :align: center
+
 .. tip::
 
    If you do not have a button or switch, you can just use two electric wires: one connected to
