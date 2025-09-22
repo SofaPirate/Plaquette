@@ -138,7 +138,7 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 |   int ledPin = 12;                             |     DigitalOut led(12);                        |
 |                                                |                                                |
 |   void setup() {                               |     // Square wave 1 second period.            |
-|     pinMode(buttonPin, OUTPUT);                |     Wave oscillator(1.0);                |
+|     pinMode(buttonPin, OUTPUT);                |     Wave oscillator(1.0);                      |
 |     pinMode(ledPin, OUTPUT);                   |                                                |
 |   }                                            |     void begin() {}                            |
 |                                                |                                                |
