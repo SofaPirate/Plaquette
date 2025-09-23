@@ -29,11 +29,10 @@ gentle variation. At high values (close to 1), the ticks may cluster together or
 still averaging the correct period over time. This means that even with randomness, the metronome respects
 its ``period`` setting in the long run, but the *spacing* between individual ticks is altered.
 
-Here is an event raster showing the effect of different randomization levels on event triggers (all
-metronomes have a one-second period):
+This graph shows the effect of different randomization levels on event triggers (all metronomes have a
+one-second period):
 
 .. image:: images/Plaquette-Metronome-Randomize.png
-
 
 Basic Example
 -------------
