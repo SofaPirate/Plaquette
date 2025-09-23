@@ -43,6 +43,15 @@ Reference
    structure
    extra
 
+Libraries
+=========
+
+.. toctree::
+   :caption: Libraries
+   :titlesonly:
+
+   PqLLEDStrip <https://github.com/SofaPirate/PqLEDStrip/>
+
 Related Info
 ============
 
@@ -54,4 +63,4 @@ Related Info
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    credits
    license
-   Doxygen Documentation <http://sofapirate.github.io/Plaquette/doxygen/>
+   Doxygen Documentation <http://plaquette.org/Plaquette/doxygen/>
