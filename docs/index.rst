@@ -50,7 +50,7 @@ Libraries
    :caption: Libraries
    :titlesonly:
 
-   PqLLEDStrip <https://github.com/SofaPirate/PqLEDStrip/>
+   PqLEDStrip <https://github.com/SofaPirate/PqLEDStrip/>
 
 Related Info
 ============
