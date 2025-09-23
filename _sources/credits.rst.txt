@@ -10,11 +10,12 @@ Core Developers
 Contributors
 ------------
 
-- API Design & Documentation: Erin Gee • `Website <https://www.eringee.net>`__ • `GitHub <https://github.com/eringee>`__
-- Testing: Luana Belinsky • `Website <https://www.instagram.com/cadavre_xquis_>`__
-- Logo: Ian Donnelly • `Website <https://ijdonnelly.com>`__
-- Code: Matthew Loewen • `Website <https://www.mloewen.com>`__ • `GitHub <https://github.com/mattdoescode>`__
-- Code: Samuel Favreau • `Website <https://samuelfavreau.com>`__
+- Erin Gee (API design, documentation, testing) • `Website <https://www.eringee.net>`__ • `GitHub <https://github.com/eringee>`__
+- Luana Belinsky (testing) • `Website <https://www.instagram.com/cadavre_xquis_>`__ • `GitHub <https://github.com/https://github.com/possibly-human>`__
+- Marianne Fournier (documentation) • `GitHub <https://github.com/www-mariie_>`__
+- Ian Donnelly (logo) • `Website <https://ijdonnelly.com>`__
+- Matthew Loewen (code) • `Website <https://www.mloewen.com>`__ • `GitHub <https://github.com/mattdoescode>`__
+- Samuel Favreau (code) • `Website <https://samuelfavreau.com>`__
 
 Partners
 --------
@@ -31,14 +32,15 @@ Funding
 - `NSERC <https://www.nserc-crsng.gc.ca>`__
 - `FRQSC <https://frq.gouv.qc.ca/en/society-and-culture>`__
 
-Plaquette's base source code was produced as part of a research project at labXmodal. A special thanks to 
+Plaquette's base source code was produced as part of a research project at labXmodal. A special thanks to
 `Chris Salter <http://chrissalter.com>`__ for his support.
 
 Inspiration
 -----------
 
-Plaquette borrows ideas from the `Arduino <https://arduino.cc>`__,
-`ChucK <http://chuck.cs.princeton.edu/>`__,
-`mbed <https://www.mbed.com/>`__,
-`Processing <https://processing.org/>`__, and `Pure
-Data <https://puredata.info/>`__.
+- `Arduino <https://arduino.cc>`__
+- `ChucK <http://chuck.cs.princeton.edu/>`__
+- `mbed <https://www.mbed.com/>`__
+- `Processing <https://processing.org/>`__
+- `Pure Data <https://puredata.info/>`__
+- `TouchDesigner <https://derivative.ca/>`__

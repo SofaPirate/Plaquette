@@ -1,24 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plaquette &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Plaquette &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="#" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="#" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +66,14 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -78,6 +81,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -93,8 +97,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Plaquette</li>
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Plaquette</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -104,7 +108,7 @@
            <div itemprop="articleBody">
              
   <section id="plaquette">
-<h1>Plaquette<a class="headerlink" href="#plaquette" title="Link to this heading"></a></h1>
+<h1>Plaquette<a class="headerlink" href="#plaquette" title="Permalink to this heading"></a></h1>
 <img alt="_images/Plaquette-LogoTextAnim.gif" src="_images/Plaquette-LogoTextAnim.gif" />
 <p>Plaquette is an object-oriented, user-friendly, signal-centric programming
 framework for <strong>creative physical computing</strong>. It promotes <strong>expressiveness</strong> over
@@ -124,10 +128,10 @@ creative embedded and IoT projects.</p>
 </ul>
 </div></blockquote>
 <p><strong>Quick links:</strong></p>
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="features.html"><span class="doc">Discover the features</span></a></p></td>
@@ -143,7 +147,7 @@ creative embedded and IoT projects.</p>
 </table>
 </section>
 <section id="essentials">
-<h1>Essentials<a class="headerlink" href="#essentials" title="Link to this heading"></a></h1>
+<h1>Essentials<a class="headerlink" href="#essentials" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
 <ul>
@@ -155,7 +159,7 @@ creative embedded and IoT projects.</p>
 </div>
 </section>
 <section id="guide">
-<h1>Guide<a class="headerlink" href="#guide" title="Link to this heading"></a></h1>
+<h1>Guide<a class="headerlink" href="#guide" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -170,7 +174,7 @@ creative embedded and IoT projects.</p>
 </div>
 </section>
 <section id="reference">
-<h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -178,14 +182,24 @@ creative embedded and IoT projects.</p>
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
 </div>
 </section>
+<section id="libraries">
+<h1>Libraries<a class="headerlink" href="#libraries" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
+</ul>
+</div>
+</section>
 <section id="related-info">
-<h1>Related Info<a class="headerlink" href="#related-info" title="Link to this heading"></a></h1>
+<h1>Related Info<a class="headerlink" href="#related-info" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -193,6 +207,7 @@ creative embedded and IoT projects.</p>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 </div>
 </section>

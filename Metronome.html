@@ -1,27 +1,27 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metronome &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Metronome &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Ramp" href="Ramp.html" />
+    <link rel="next" title="Filters" href="filters.html" />
     <link rel="prev" title="Chronometer" href="Chronometer.html" /> 
 </head>
 
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -70,21 +69,26 @@
 <li class="toctree-l2"><a class="reference internal" href="Alarm.html">Alarm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Chronometer.html">Chronometer</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Metronome</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv49Metronome"><code class="docutils literal notranslate"><span class="pre">Metronome</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#randomization">Randomization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-metronomes">Multiple Metronomes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#randomized-metronome">Randomized Metronome</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -92,6 +96,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -107,9 +112,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="timing.html">Timing</a></li>
-      <li class="breadcrumb-item active">Metronome</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="timing.html">Timing</a> &raquo;</li>
+      <li>Metronome</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,43 +124,104 @@
            <div itemprop="articleBody">
              
   <section id="metronome">
-<h1>Metronome<a class="headerlink" href="#metronome" title="Link to this heading"></a></h1>
-<p>A metronome digital source unit. Emits an “on” signal at a regular pace.</p>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<h1>Metronome<a class="headerlink" href="#metronome" title="Permalink to this heading"></a></h1>
+<p>A digital source unit that emits a pulse at a regular pace. It is conceptually similar to an
+<a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> that automatically restarts after each trigger. Metronomes are ideal for
+<strong>triggering periodic events</strong> in interactive systems, such as blinking LEDs, synchronizing motor
+movements, or scheduling actions at regular intervals.  Each time the metronome “ticks,” it
+evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> for a single frame, and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>period()</strong>: Sets the duration of one cycle in seconds.</p></li>
+<li><p><strong>frequency()</strong>: Alternative to period, sets the rate in cycles per second (Hz).</p></li>
+<li><p><strong>bpm()</strong>: Another convenience method to set the frequency using beats per minute (BPM).</p></li>
+<li><p><strong>phase()</strong>: Sets the initial offset within the cycle (in range [0,1]).</p></li>
+</ul>
+</section>
+<section id="randomization">
+<h2>Randomization<a class="headerlink" href="#randomization" title="Permalink to this heading"></a></h2>
+<p>Metronomes can also be used to generated <strong>randomozed patterns</strong> using the <code class="docutils literal notranslate"><span class="pre">randomize()</span></code> function.
+This makes their ticks feel less mechanical and closer to natural rhythms such as raindrops falling,
+typing on a keyboard, or the reactions of a living entity. When activating randomization, the metronome does
+not trigger at perfectly regular intervals anymore. Instead, the length of each cycle is perturbed according
+to the chosen randomness level. At low values (close to 0), the timing remains close to steady with
+gentle variation. At high values (close to 1), the ticks may cluster together or leave longer pauses, while
+still averaging the correct period over time. This means that even with randomness, the metronome respects
+its <code class="docutils literal notranslate"><span class="pre">period</span></code> setting in the long run, but the <em>spacing</em> between individual ticks is altered.</p>
+<p>This graph shows the effect of different randomization levels on event triggers (all metronomes have a
+one-second period):</p>
+<img alt="_images/Plaquette-Metronome-Randomize.png" src="_images/Plaquette-Metronome-Randomize.png" />
+</section>
+<section id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this heading"></a></h2>
+<p>The simplest use of a metronome is to trigger an LED blink every 0.5 seconds:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">Metronome</span><span class="w"> </span><span class="nf">myMetro</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// a metronome with a half-second duration</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">myMetro</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// tick every 0.5 seconds</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myMetro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-metronomes">
+<h2>Multiple Metronomes<a class="headerlink" href="#multiple-metronomes" title="Permalink to this heading"></a></h2>
+<p>You can run several metronomes in parallel to control independent events:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myMetro</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Change LED state.</span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"></span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metroFast</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w">   </span><span class="c1">// Blink at 2 Hz</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metroSlow</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Trigger every 2 seconds</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metroFast</span><span class="p">)</span><span class="w"> </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metroSlow</span><span class="p">)</span><span class="w"> </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tick!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="randomized-metronome">
+<span id="metronome-randomization"></span><h2>Randomized Metronome<a class="headerlink" href="#randomized-metronome" title="Permalink to this heading"></a></h2>
+<p>The following sketch blinks the LED at an <em>average</em> rate of once per second, but
+with irregular spacing:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// base period of 1 second</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">metro</span><span class="p">.</span><span class="n">randomize</span><span class="p">();</span><span class="w"> </span><span class="c1">// 100% randomness (default)</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49Metronome">
-<span id="_CPPv39Metronome"></span><span id="_CPPv29Metronome"></span><span id="Metronome"></span><span class="target" id="classpq_1_1_metronome"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalUnit</span></span><a class="headerlink" href="#_CPPv49Metronome" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv39Metronome"></span><span id="_CPPv29Metronome"></span><span id="Metronome"></span><span class="target" id="classpq_1_1_metronome"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractOscillator</span></span><a class="headerlink" href="#_CPPv49Metronome" title="Permalink to this definition"></a><br /></dt>
 <dd><p><a class="reference internal" href="Chronometer.html#classpq_1_1_chronometer"><span class="std std-ref">Chronometer</span></a> digital unit which emits 1/true/”on” for one frame, at a regular pace. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome9MetronomeER6Engine">
-<span id="_CPPv3N9Metronome9MetronomeER6Engine"></span><span id="_CPPv2N9Metronome9MetronomeER6Engine"></span><span id="Metronome::Metronome__EngineR"></span><span class="target" id="classpq_1_1_metronome_1a3eeb6a26f26d63a83fdeec7f49aed36d"></span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9MetronomeER6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome9MetronomeER6Engine"></span><span id="_CPPv2N9Metronome9MetronomeER6Engine"></span><span id="Metronome::Metronome__EngineR"></span><span class="target" id="classpq_1_1_metronome_1a3eeb6a26f26d63a83fdeec7f49aed36d"></span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9MetronomeER6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
@@ -163,10 +229,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome9MetronomeEfR6Engine">
-<span id="_CPPv3N9Metronome9MetronomeEfR6Engine"></span><span id="_CPPv2N9Metronome9MetronomeEfR6Engine"></span><span id="Metronome::Metronome__float.EngineR"></span><span class="target" id="classpq_1_1_metronome_1a6d7e6c19846070f6d127160a87549b1a"></span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9MetronomeEfR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome9MetronomeEfR6Engine"></span><span id="_CPPv2N9Metronome9MetronomeEfR6Engine"></span><span id="Metronome::Metronome__float.EngineR"></span><span class="target" id="classpq_1_1_metronome_1a6d7e6c19846070f6d127160a87549b1a"></span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9MetronomeEfR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>period</strong> – the period of oscillation (in seconds) </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
@@ -177,16 +243,128 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome4isOnEv">
-<span id="_CPPv3N9Metronome4isOnEv"></span><span id="_CPPv2N9Metronome4isOnEv"></span><span id="Metronome::isOn"></span><span class="target" id="classpq_1_1_metronome_1a8d7308318559f8ef98b31dc7d21d9cc5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome4isOnEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome4isOnEv"></span><span id="_CPPv2N9Metronome4isOnEv"></span><span id="Metronome::isOn"></span><span class="target" id="classpq_1_1_metronome_1a8d7308318559f8ef98b31dc7d21d9cc5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome4isOnEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the metronome fires. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome6onBangE13EventCallback">
+<span id="_CPPv3N9Metronome6onBangE13EventCallback"></span><span id="_CPPv2N9Metronome6onBangE13EventCallback"></span><span id="Metronome::onBang__EventCallback"></span><span class="target" id="classpq_1_1_metronome_1a567e30fecc027d01e5785b27c6aa1fa5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onBang</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6onBangE13EventCallback" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Registers event callback on metronome tick (“bang”) event. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5isOffEv">
+<span id="_CPPv3N9Metronome5isOffEv"></span><span id="_CPPv2N9Metronome5isOffEv"></span><span id="Metronome::isOff"></span><span class="target" id="classpq_1_1_digital_unit_1ace23aca8df66cbe7a810aae87a6f8687"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5isOffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the input is “off”. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome6getIntEv">
+<span id="_CPPv3N9Metronome6getIntEv"></span><span id="_CPPv2N9Metronome6getIntEv"></span><span id="Metronome::getInt"></span><span class="target" id="classpq_1_1_digital_unit_1a16967b70b9033d44c4c0e04c5dd36758"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6getIntEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value as integer (0 or 1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome3getEv">
+<span id="_CPPv3N9Metronome3getEv"></span><span id="_CPPv2N9Metronome3getEv"></span><span id="Metronome::get"></span><span class="target" id="classpq_1_1_digital_unit_1a1e84763649e8d23c99f05b5d80430b35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value as float (either 0.0 or 1.0). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome2onEv">
+<span id="_CPPv3N9Metronome2onEv"></span><span id="_CPPv2N9Metronome2onEv"></span><span id="Metronome::on"></span><span class="target" id="classpq_1_1_digital_unit_1ae30cc3b6a81ee19d1ecb61440c1c7959"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">on</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome2onEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets output to “on” (ie. true, 1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome3offEv">
+<span id="_CPPv3N9Metronome3offEv"></span><span id="_CPPv2N9Metronome3offEv"></span><span id="Metronome::off"></span><span class="target" id="classpq_1_1_digital_unit_1a56b70d2356df94b7f3829281326614ee"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3offEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets output to “off” (ie. false, 0). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome3putEf">
+<span id="_CPPv3N9Metronome3putEf"></span><span id="_CPPv2N9Metronome3putEf"></span><span id="Metronome::put__float"></span><span class="target" id="classpq_1_1_digital_unit_1ab6aee5c14addea2c5ba36424ff52612a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5putOnEb">
+<span id="_CPPv3N9Metronome5putOnEb"></span><span id="_CPPv2N9Metronome5putOnEb"></span><span id="Metronome::putOn__b"></span><span class="target" id="classpq_1_1_digital_unit_1a15b86734a86bd076bc2d63045f2eb807"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">putOn</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5putOnEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5mapToEff">
+<span id="_CPPv3N9Metronome5mapToEff"></span><span id="_CPPv2N9Metronome5mapToEff"></span><span id="Metronome::mapTo__float.float"></span><span class="target" id="classpq_1_1_digital_unit_1a2531d9dbe8f12b52aee01a42ab463211"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9MetronomecvbEv">
+<span id="_CPPv3N9MetronomecvbEv"></span><span id="_CPPv2N9MetronomecvbEv"></span><span id="Metronome::castto-b-operator"></span><span class="target" id="classpq_1_1_digital_unit_1a5d142103212c63a0a063fcbe193117c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9MetronomecvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome7secondsEv">
+<span id="_CPPv3NK9Metronome7secondsEv"></span><span id="_CPPv2NK9Metronome7secondsEv"></span><span id="Metronome::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome12milliSecondsEv">
+<span id="_CPPv3NK9Metronome12milliSecondsEv"></span><span id="_CPPv2NK9Metronome12milliSecondsEv"></span><span id="Metronome::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome12microSecondsEv">
+<span id="_CPPv3NK9Metronome12microSecondsEv"></span><span id="_CPPv2NK9Metronome12microSecondsEv"></span><span id="Metronome::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome6nStepsEv">
+<span id="_CPPv3NK9Metronome6nStepsEv"></span><span id="_CPPv2NK9Metronome6nStepsEv"></span><span id="Metronome::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome10sampleRateEv">
+<span id="_CPPv3NK9Metronome10sampleRateEv"></span><span id="_CPPv2NK9Metronome10sampleRateEv"></span><span id="Metronome::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome12samplePeriodEv">
+<span id="_CPPv3NK9Metronome12samplePeriodEv"></span><span id="_CPPv2NK9Metronome12samplePeriodEv"></span><span id="Metronome::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome6periodEf">
-<span id="_CPPv3N9Metronome6periodEf"></span><span id="_CPPv2N9Metronome6periodEf"></span><span id="Metronome::period__float"></span><span class="target" id="classpq_1_1_metronome_1a670e284874fb76fb4aa5558ca7c00293"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6periodEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome6periodEf"></span><span id="_CPPv2N9Metronome6periodEf"></span><span id="Metronome::period__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1af3f7d4f52906d754e4261ee115ce7377"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6periodEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the period (in seconds). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>period</strong> – the period of oscillation (in seconds) </p>
 </dd>
 </dl>
@@ -194,16 +372,16 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome6periodEv">
-<span id="_CPPv3NK9Metronome6periodEv"></span><span id="_CPPv2NK9Metronome6periodEv"></span><span id="Metronome::periodC"></span><span class="target" id="classpq_1_1_metronome_1ad744661663e3328ebb73a5dbd71481f9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome6periodEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK9Metronome6periodEv"></span><span id="_CPPv2NK9Metronome6periodEv"></span><span id="Metronome::periodC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a11dc9d509dd43e35d50f9d1717a83389"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome6periodEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the period (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome9frequencyEf">
-<span id="_CPPv3N9Metronome9frequencyEf"></span><span id="_CPPv2N9Metronome9frequencyEf"></span><span id="Metronome::frequency__float"></span><span class="target" id="classpq_1_1_metronome_1aff4a6f8a52355f3919a3d4ebc2884585"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9frequencyEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome9frequencyEf"></span><span id="_CPPv2N9Metronome9frequencyEf"></span><span id="Metronome::frequency__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a4c11ebabc5517ef45c1fe0cd952f7c7c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9frequencyEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the frequency (in Hz). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>frequency</strong> – the frequency of oscillation (in Hz) </p>
 </dd>
 </dl>
@@ -211,16 +389,16 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome9frequencyEv">
-<span id="_CPPv3NK9Metronome9frequencyEv"></span><span id="_CPPv2NK9Metronome9frequencyEv"></span><span id="Metronome::frequencyC"></span><span class="target" id="classpq_1_1_metronome_1ac2b44cad910acafe5b7bea0f5c7412bb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome9frequencyEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK9Metronome9frequencyEv"></span><span id="_CPPv2NK9Metronome9frequencyEv"></span><span id="Metronome::frequencyC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ab98a9d13488942d59afe50fbe557a1aa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome9frequencyEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the frequency (in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome3bpmEf">
-<span id="_CPPv3N9Metronome3bpmEf"></span><span id="_CPPv2N9Metronome3bpmEf"></span><span id="Metronome::bpm__float"></span><span class="target" id="classpq_1_1_metronome_1adf4058644d82ae44deef952f3665c84b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bpm</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bpm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3bpmEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N9Metronome3bpmEf"></span><span id="_CPPv2N9Metronome3bpmEf"></span><span id="Metronome::bpm__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a8c8891c21d612bef4a7f536a66240b14"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bpm</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bpm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3bpmEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the frequency in beats-per-minute. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>bpm</strong> – the frequency of oscillation (in BPM) </p>
 </dd>
 </dl>
@@ -228,17 +406,16 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome3bpmEv">
-<span id="_CPPv3NK9Metronome3bpmEv"></span><span id="_CPPv2NK9Metronome3bpmEv"></span><span id="Metronome::bpmC"></span><span class="target" id="classpq_1_1_metronome_1a432fd2fb5d0f0d15467687199fd810e4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bpm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome3bpmEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK9Metronome3bpmEv"></span><span id="_CPPv2NK9Metronome3bpmEv"></span><span id="Metronome::bpmC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1abc7cdbbd08b7b3b7359c13f90318b79a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bpm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome3bpmEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the frequency (in BPM). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9Metronome5phaseEf">
-<span id="_CPPv3N9Metronome5phaseEf"></span><span id="_CPPv2N9Metronome5phaseEf"></span><span id="Metronome::phase__float"></span><span class="target" id="classpq_1_1_metronome_1aab8293f6a2cb7361026f04b9fef5885b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5phaseEf" title="Link to this definition"></a><br /></dt>
-<dd><p>Sets the phase (ie. </p>
-<p>the offset, in % of period). </p>
+<span id="_CPPv3N9Metronome5phaseEf"></span><span id="_CPPv2N9Metronome5phaseEf"></span><span id="Metronome::phase__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ac12947cffc82d85599f89b8b1f9d3f7b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5phaseEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the phase at % of period. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>phase</strong> – the phase (in % of period) </p>
 </dd>
 </dl>
@@ -246,32 +423,173 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome5phaseEv">
-<span id="_CPPv3NK9Metronome5phaseEv"></span><span id="_CPPv2NK9Metronome5phaseEv"></span><span id="Metronome::phaseC"></span><span class="target" id="classpq_1_1_metronome_1a3b90e4bfa93aec146c1903a5eb62d3e8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome5phaseEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK9Metronome5phaseEv"></span><span id="_CPPv2NK9Metronome5phaseEv"></span><span id="Metronome::phaseC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a6daf1f996dfa36646616547b4e486420"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome5phaseEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the phase (in % of period). </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9Metronome6onBangE13EventCallback">
-<span id="_CPPv3N9Metronome6onBangE13EventCallback"></span><span id="_CPPv2N9Metronome6onBangE13EventCallback"></span><span id="Metronome::onBang__EventCallback"></span><span class="target" id="classpq_1_1_metronome_1a567e30fecc027d01e5785b27c6aa1fa5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onBang</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6onBangE13EventCallback" title="Link to this definition"></a><br /></dt>
-<dd><p>Registers event callback on metronome tick (“bang”) event. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome10phaseShiftEf">
+<span id="_CPPv3N9Metronome10phaseShiftEf"></span><span id="_CPPv2N9Metronome10phaseShiftEf"></span><span id="Metronome::phaseShift__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1abd9cd1f4a0890cba74be0db6aacbeca5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phaseShift</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phaseShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome10phaseShiftEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the phase shift (ie. </p>
+<p>the offset, in % of period).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is disabled if <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phaseShift</strong> – the phase shift (in % of period) </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5isOffEv">
-<span id="_CPPv3N9Metronome5isOffEv"></span><span id="_CPPv2N9Metronome5isOffEv"></span><span id="Metronome::isOff"></span><span class="target" id="classpq_1_1_digital_unit_1ace23aca8df66cbe7a810aae87a6f8687"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5isOffEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns true iff the input is “off”. </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome10phaseShiftEv">
+<span id="_CPPv3NK9Metronome10phaseShiftEv"></span><span id="_CPPv2NK9Metronome10phaseShiftEv"></span><span id="Metronome::phaseShiftC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a18632ddb4f0b021a1ef9adbc3049ee7b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phaseShift</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome10phaseShiftEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the phase shift (ie. </p>
+<p>the offset, in % of period). </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function always returns 0 when <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+</div>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9Metronome6getIntEv">
-<span id="_CPPv3N9Metronome6getIntEv"></span><span id="_CPPv2N9Metronome6getIntEv"></span><span id="Metronome::getInt"></span><span class="target" id="classpq_1_1_digital_unit_1a16967b70b9033d44c4c0e04c5dd36758"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6getIntEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns value as integer (0 or 1). </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome11timeToPhaseEf">
+<span id="_CPPv3NK9Metronome11timeToPhaseEf"></span><span id="_CPPv2NK9Metronome11timeToPhaseEf"></span><span id="Metronome::timeToPhase__floatC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a33f37b8cd1a0b4e957ea2ad90626955c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeToPhase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome11timeToPhaseEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Utility function to convert time to phase. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> – relative time in seconds </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the equivalent phase </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9Metronome3getEv">
-<span id="_CPPv3N9Metronome3getEv"></span><span id="_CPPv2N9Metronome3getEv"></span><span id="Metronome::get"></span><span class="target" id="classpq_1_1_digital_unit_1a1e84763649e8d23c99f05b5d80430b35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome3getEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns value as float (either 0.0 or 1.0). </p>
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome7setTimeEf">
+<span id="_CPPv3N9Metronome7setTimeEf"></span><span id="_CPPv2N9Metronome7setTimeEf"></span><span id="Metronome::setTime__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1af58280d0cea90a8b73286ec50d624d24"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome7setTimeEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Forces current time (in seconds). </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is disabled if <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome7addTimeEf">
+<span id="_CPPv3N9Metronome7addTimeEf"></span><span id="_CPPv2N9Metronome7addTimeEf"></span><span id="Metronome::addTime__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1adaa30519869dd5c7abc0ad3435ef8ed0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome7addTimeEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Adds time to current time (in seconds). </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is disabled if <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome9isRunningEv">
+<span id="_CPPv3NK9Metronome9isRunningEv"></span><span id="_CPPv2NK9Metronome9isRunningEv"></span><span id="Metronome::isRunningC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1aedb15d1a75dafc4536ca0d1339187091"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRunning</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome9isRunningEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the wave is currently running. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome9isForwardEv">
+<span id="_CPPv3NK9Metronome9isForwardEv"></span><span id="_CPPv2NK9Metronome9isForwardEv"></span><span id="Metronome::isForwardC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a74323dac8281666dd9ec11b681cbc76b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isForward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome9isForwardEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the wave is moving forward in time. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome10setForwardEb">
+<span id="_CPPv3N9Metronome10setForwardEb"></span><span id="_CPPv2N9Metronome10setForwardEb"></span><span id="Metronome::setForward__b"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a199e460c1c3a29a444fdda894dff7eaf"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setForward</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">isForward</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome10setForwardEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the direction of oscillation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>isForward</strong> – true iff the wave is moving forward in time </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome7forwardEv">
+<span id="_CPPv3N9Metronome7forwardEv"></span><span id="_CPPv2N9Metronome7forwardEv"></span><span id="Metronome::forward"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ab5d622c673d31c75da7798cb5278bbdb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome7forwardEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the direction of oscillation to move forward in time. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome7reverseEv">
+<span id="_CPPv3N9Metronome7reverseEv"></span><span id="_CPPv2N9Metronome7reverseEv"></span><span id="Metronome::reverse"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ad95ad0bc86d47b81b02f6cb3bd774d3b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome7reverseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the direction of oscillation to move backward in time. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome13toggleReverseEv">
+<span id="_CPPv3N9Metronome13toggleReverseEv"></span><span id="_CPPv2N9Metronome13toggleReverseEv"></span><span id="Metronome::toggleReverse"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a13b5ab191ad137ab0a6707f447553444"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleReverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome13toggleReverseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Toggles the direction of oscillation. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK9Metronome10randomnessEv">
+<span id="_CPPv3NK9Metronome10randomnessEv"></span><span id="_CPPv2NK9Metronome10randomnessEv"></span><span id="Metronome::randomnessC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomness</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome10randomnessEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the randomness level in [0, 1]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome9randomizeEf">
+<span id="_CPPv3N9Metronome9randomizeEf"></span><span id="_CPPv2N9Metronome9randomizeEf"></span><span id="Metronome::randomize__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a99e41da2ab03520522a0fa69e9e8c5ec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">randomness</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome9randomizeEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome11noRandomizeEv">
+<span id="_CPPv3N9Metronome11noRandomizeEv"></span><span id="_CPPv2N9Metronome11noRandomizeEv"></span><span id="Metronome::noRandomize"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ae2ca48814ea08585010ac52fc9450f01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noRandomize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome11noRandomizeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disables randomness. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5startEv">
+<span id="_CPPv3N9Metronome5startEv"></span><span id="_CPPv2N9Metronome5startEv"></span><span id="Metronome::start"></span><span class="target" id="classpq_1_1_timeable_1aee42bd50475fb58e843a680e3047069b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5startEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Starts/restarts the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome4stopEv">
+<span id="_CPPv3N9Metronome4stopEv"></span><span id="_CPPv2N9Metronome4stopEv"></span><span id="Metronome::stop"></span><span class="target" id="classpq_1_1_timeable_1a208dbebe3ec7df301d86769ea559fbee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome4stopEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Interrupts the chronometer and resets to zero. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome5pauseEv">
+<span id="_CPPv3N9Metronome5pauseEv"></span><span id="_CPPv2N9Metronome5pauseEv"></span><span id="Metronome::pause"></span><span class="target" id="classpq_1_1_timeable_1a06b24ccfc0910f3425ad81e49297c988"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome5pauseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Interrupts the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome6resumeEv">
+<span id="_CPPv3N9Metronome6resumeEv"></span><span id="_CPPv2N9Metronome6resumeEv"></span><span id="Metronome::resume"></span><span class="target" id="classpq_1_1_timeable_1a1fa89290faa8d8c63e88ea34e510897f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome6resumeEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resumes process. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome11togglePauseEv">
+<span id="_CPPv3N9Metronome11togglePauseEv"></span><span id="_CPPv2N9Metronome11togglePauseEv"></span><span id="Metronome::togglePause"></span><span class="target" id="classpq_1_1_timeable_1a11a02f24568960663d672b5064e2a09a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">togglePause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome11togglePauseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Toggles pause/unpause. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome15analogToDigitalEf">
+<span id="_CPPv3N9Metronome15analogToDigitalEf"></span><span id="_CPPv2N9Metronome15analogToDigitalEf"></span><span id="Metronome::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Metronome15digitalToAnalogEb">
+<span id="_CPPv3N9Metronome15digitalToAnalogEb"></span><span id="_CPPv2N9Metronome15digitalToAnalogEb"></span><span id="Metronome::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Metronome15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
 </div>
@@ -279,12 +597,12 @@
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a></p></li>
 <li><p><a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a></p></li>
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
-<li><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a></p></li>
+<li><p><a class="reference internal" href="Wave.html"><span class="doc">Wave</span></a></p></li>
 </ul>
 </section>
 </section>
@@ -294,7 +612,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Chronometer.html" class="btn btn-neutral float-left" title="Chronometer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Ramp.html" class="btn btn-neutral float-right" title="Ramp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="filters.html" class="btn btn-neutral float-right" title="Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

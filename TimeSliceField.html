@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TimeSliceField &mdash; Plaquette 0.7.0 documentation</title>
+  <title>TimeSliceField &mdash; Plaquette 0.8.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7.0
+                0.8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -81,13 +81,17 @@
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference external" href="http://sofapirate.github.io/Plaquette/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -242,6 +246,23 @@ is shifted by one value and it fires <code class="docutils literal notranslate">
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField6periodEf">
+<span id="_CPPv3N14TimeSliceField6periodEf"></span><span id="_CPPv2N14TimeSliceField6periodEf"></span><span id="TimeSliceField::period__float"></span><span class="target" id="classpq_1_1_time_slice_field_1ab49b58a4ae99b66eca289598a1c2d4a0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField6periodEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets period over which the time slice occurs. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>period</strong> – the new period (in seconds) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14TimeSliceField6periodEv">
+<span id="_CPPv3NK14TimeSliceField6periodEv"></span><span id="_CPPv2NK14TimeSliceField6periodEv"></span><span id="TimeSliceField::periodC"></span><span class="target" id="classpq_1_1_time_slice_field_1a3094253ace34df272c208515f7e63378"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14TimeSliceField6periodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns period. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField7atIndexE6size_t">
 <span id="_CPPv3N14TimeSliceField7atIndexE6size_t"></span><span id="_CPPv2N14TimeSliceField7atIndexE6size_t"></span><span id="TimeSliceField::atIndex__s"></span><span class="target" id="classpq_1_1_time_slice_field_1a5219c82054a58a1aed619a50d7e1a6fa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atIndex</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField7atIndexE6size_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value at given index. </p>
@@ -257,6 +278,12 @@ is shifted by one value and it fires <code class="docutils literal notranslate">
 <dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField7updatedEv">
 <span id="_CPPv3N14TimeSliceField7updatedEv"></span><span id="_CPPv2N14TimeSliceField7updatedEv"></span><span id="TimeSliceField::updated"></span><span class="target" id="classpq_1_1_time_slice_field_1a35a0a94dc303fb0cf230b0b1fd621ef1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updated</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField7updatedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if the field has been updated and is ready to be used. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14TimeSliceField6isFullEv">
+<span id="_CPPv3N14TimeSliceField6isFullEv"></span><span id="_CPPv2N14TimeSliceField6isFullEv"></span><span id="TimeSliceField::isFull"></span><span class="target" id="classpq_1_1_time_slice_field_1a5b74ca806a9467144e6e7a57db5ff1a3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFull</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14TimeSliceField6isFullEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the field is full. </p>
 </dd></dl>
 
 <dl class="cpp function">

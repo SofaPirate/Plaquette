@@ -1,24 +1,24 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regularizing Signals &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Regularizing Signals &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -31,16 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,9 +77,14 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -88,6 +92,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -103,8 +108,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Regularizing Signals</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Regularizing Signals</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -114,43 +119,44 @@
            <div itemprop="articleBody">
              
   <section id="regularizing-signals">
-<h1>Regularizing Signals<a class="headerlink" href="#regularizing-signals" title="Link to this heading"></a></h1>
+<h1>Regularizing Signals<a class="headerlink" href="#regularizing-signals" title="Permalink to this heading"></a></h1>
 <p>Plaquette provides expressive, automated, and robust ways to deal with signals
 for interactive design using <strong>regularization filters</strong> such as smoothing,
 min-max scaling, and normalization.</p>
 <section id="direct-input-to-output">
-<h2>Direct Input-to-Output<a class="headerlink" href="#direct-input-to-output" title="Link to this heading"></a></h2>
+<h2>Direct Input-to-Output<a class="headerlink" href="#direct-input-to-output" title="Permalink to this heading"></a></h2>
 <p>Let’s review briefly how to handle raw <a class="reference internal" href="inputs_outputs.html"><span class="doc">input and output</span></a> signals in Plaquette.
 We will be using an analog sensor such as a photoresistor for this example.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In order to build this circuit, you will need to create a simple
 <a class="reference external" href="https://learn.sparkfun.com/tutorials/voltage-dividers">voltage divider circuit</a>.
-Connect the photoresistor between the ground (GND) and the analog input pin (<cite>A0`</cite>). Then connect
+Connect the photoresistor between the ground (GND) and the analog input pin (<code class="docutils literal notranslate"><span class="pre">A0</span></code>). Then connect
 a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
 For example, for a 1k <span class="math notranslate nohighlight">\(\Omega\)</span> - 10k <span class="math notranslate nohighlight">\(\Omega\)</span> photoresistor you could use a fixed
 resistor of about 5.5k <span class="math notranslate nohighlight">\(\Omega\)</span>).</p>
+<img alt="_images/Plaquette-CircuitVoltageDivider.png" class="align-center" src="_images/Plaquette-CircuitVoltageDivider.png" />
 </div>
 <p>Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// The photocell analog pin.</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">photoCellPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">photoCellPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// The output analog LED pin.</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">ledPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ledPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Initialize pins.</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
-<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Read value from photocell (between 0 and 1023).</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">photoCellPin</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// Write value to LED (between 0 and 255).</span>
-<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>As explained in <a class="reference internal" href="why_plaquette.html"><span class="doc">Why Plaquette?</span></a> section, this simple code is made complicated by the fact
@@ -161,40 +167,40 @@ conditions such as the range of the ambient light.</p>
 outputs signals rather than meaningless raw numbers.</p>
 <p>To begin, we will re-implement the example above using Plaquette units.</p>
 <p>First, let’s define our input photocell on pin <code class="docutils literal notranslate"><span class="pre">A0</span></code> using an <a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> unit:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Then, let’s add an output analog LED on pin <cite>9</cite> using an <a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> unit:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If we want to directly control the value of the LED from the value of the
 photocell, all we need to do is to send the photocell’s value to the led. The
 easiest way to do so is by using the <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The complete Plaquette code will look like this:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="c1"> // include the Plaquette library</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="c1"> // include the Plaquette library</span><span class="cp"></span>
 
 <span class="c1">// Create input unit for photocell.</span>
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create output unit for LED.</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="c1">// Define frame-by-frame operations.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Send photocell value directly to the LED.</span>
-<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="getting-the-full-range-of-a-signal">
-<h2>Getting the Full Range of a Signal<a class="headerlink" href="#getting-the-full-range-of-a-signal" title="Link to this heading"></a></h2>
+<h2>Getting the Full Range of a Signal<a class="headerlink" href="#getting-the-full-range-of-a-signal" title="Permalink to this heading"></a></h2>
 <p>If we run this program, we will likely notice that the LED brightness will not
 span the full range from 0% to 100%. That’s because depending on ambient lighting
 conditions, the photocell’s values will not move across the full spectrum of
@@ -206,12 +212,12 @@ keeps track of the minimum and maximum values of the incoming signal over time
 (for example, 10% and 50%) and remaps them into a new interval of [0, 1] (ie., 0% to 100%).</p>
 <img alt="_images/Plaquette-MinMaxScaler.png" src="_images/Plaquette-MinMaxScaler.png" />
 <p>To use this approach, create the unit:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MinMaxScaler</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MinMaxScaler</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>… and then <em>insert it</em> in the pipeline between the incoming photocell signal and
 the output LED:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The above expression will do the following, in order:</p>
@@ -226,10 +232,10 @@ the output LED:</p>
 </div></blockquote>
 </section>
 <section id="reacting-to-signal-changes">
-<h2>Reacting to Signal Changes<a class="headerlink" href="#reacting-to-signal-changes" title="Link to this heading"></a></h2>
+<h2>Reacting to Signal Changes<a class="headerlink" href="#reacting-to-signal-changes" title="Permalink to this heading"></a></h2>
 <p>Remember our example from <a class="reference internal" href="why_plaquette.html"><span class="doc">ealier</span></a>, where we were trying to detect high-valued
 signals using arbitrary numbers?</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">716</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">716</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// do something</span>
 </pre></div>
 </div>
@@ -241,26 +247,26 @@ incoming signal (such as when someone points a light source towards the photocel
 above which we would react to the light source. Let’s say that we will react
 when the signal goes above 70%. The code of the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function now
 becomes:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.7</span><span class="p">)</span>
-<span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="w">  </span><span class="k">else</span>
-<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.7</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>… which can be more compactly rewritten by sending directly the conditional
 expression <code class="docutils literal notranslate"><span class="pre">(regularizer</span> <span class="pre">&gt;</span> <span class="pre">0.7)</span></code> to the output LED:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
-<span class="w">  </span><span class="p">(</span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">regularizer</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="adapting-to-changing-conditions">
-<h2>Adapting to Changing Conditions<a class="headerlink" href="#adapting-to-changing-conditions" title="Link to this heading"></a></h2>
+<h2>Adapting to Changing Conditions<a class="headerlink" href="#adapting-to-changing-conditions" title="Permalink to this heading"></a></h2>
 <p>So far so good. The number 0.7 is still a bit of an arbitrary, hand-picked number, but it makes
 more sense than 716 because it refers to a more human-understandable concept
 (70% instead of 716 / 1023). However, this approach will still be sensitive to changes in
@@ -273,15 +279,15 @@ adapt over a <strong>time window</strong>. This will allow our regularizer to sl
 what it has learned, and reprogram itself after a certain amount of time has passed.</p>
 <p>This can be accomplished by calling the <code class="docutils literal notranslate"><span class="pre">timeWindow(seconds)</span></code> function inside
 the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Allow regularizer to adapt over an approximate period of 1 hour (3600 s).</span>
-<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="normalizing-signals-to-spot-extreme-values">
-<h2>Normalizing Signals to Spot Extreme Values<a class="headerlink" href="#normalizing-signals-to-spot-extreme-values" title="Link to this heading"></a></h2>
+<h2>Normalizing Signals to Spot Extreme Values<a class="headerlink" href="#normalizing-signals-to-spot-extreme-values" title="Permalink to this heading"></a></h2>
 <p>The MinMaxScaler is a very useful unit for making sure signals stay within a
 [0, 1] range. However, it is not always the best for signal detection since it
 only accounts for extreme values (minimum and maximum), which makes it sensitive
@@ -292,15 +298,15 @@ by normalizing them around a target <strong>mean</strong> by taking into account
 Once the data is normalized, extreme <strong>outlier</strong> values can be more easily and robustly detected
 based on how much they diverge from the mean.</p>
 <p>Let’s replace our MinMaxScaler by a Normalizer unit:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Normalizer</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Normalizer</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>… and use the <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> function to find values that are higher
 than usual:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
-<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -315,37 +321,37 @@ still need to be hand-picked, they are much more robust than our 716 and even to
 our 0.7 number from earlier.</p>
 </div>
 <p>Here is a complete version of the code:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="c1"> // include the Plaquette library</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="c1"> // include the Plaquette library</span><span class="cp"></span>
 
 <span class="c1">// Create input unit for photocell.</span>
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">photoCell</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create output unit for LED.</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create regularization object.</span>
-<span class="n">Normalizer</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
+<span class="n">Normalizer</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Initialize everything.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Allow regularizer to adapt over an approximate period of 1 hour (3600 s).</span>
-<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">timeWindow</span><span class="p">(</span><span class="mf">3600.0f</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Define frame-by-frame operations.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Update regularizer with raw signal value.</span>
-<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span>
+<span class="w">  </span><span class="n">photoCell</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">regularizer</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// Detect outliers and send the value (1=true=outlier, 0=false=no outlier)</span>
 <span class="w">  </span><span class="c1">// directly to the LED.</span>
-<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">regularizer</span><span class="p">.</span><span class="n">isHighOutlier</span><span class="p">(</span><span class="n">photoCell</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="detecting-peaks">
-<h2>Detecting Peaks<a class="headerlink" href="#detecting-peaks" title="Link to this heading"></a></h2>
+<h2>Detecting Peaks<a class="headerlink" href="#detecting-peaks" title="Permalink to this heading"></a></h2>
 <p>The outlier detection method is useful to find extreme values. However, it also
 comes with an important limitation. The <code class="docutils literal notranslate"><span class="pre">isHighOutlier()</span></code> and <code class="docutils literal notranslate"><span class="pre">isOutlierLow()</span></code>
 methods return <code class="docutils literal notranslate"><span class="pre">true</span></code> <em>as long as</em> the received value is considered to be an
@@ -361,7 +367,7 @@ parameter).</p>
 <p>Building on the previous section for outlier detection, we will assign the PeakDetector’s
 <code class="docutils literal notranslate"><span class="pre">triggerThreshold</span></code> to the value above which a value is considered to be a high outlier,
 which can be obtained by calling the Normalizer’s function <code class="docutils literal notranslate"><span class="pre">highOutlierThreshold()</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PeakDetector</span><span class="w"> </span><span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">());</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PeakDetector</span><span class="w"> </span><span class="nf">detector</span><span class="p">(</span><span class="n">normalizer</span><span class="p">.</span><span class="n">highOutlierThreshold</span><span class="p">());</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -374,21 +380,21 @@ For example, <code class="docutils literal notranslate"><span class="pre">highOu
 </div>
 <p>Finally, let’s rewrite the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function with our new peak detector, so
 that only when a <strong>peak</strong> is detected will the LED change state:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Signal is normalized and sent to peak detector.</span>
-<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">normalizer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">normalizer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">detector</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// Toggle LED when peak detector triggers.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">detector</span><span class="p">)</span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">detector</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The PeakDetector unit offers many options to fine-tune the peak detection process.
 Please read the <a class="reference internal" href="PeakDetector.html"><span class="doc">full documentation of the unit</span></a> for details.</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading"></a></h2>
 <p>The Plaquette library simplifies signal processing for interactive design by abstracting low-level
 details and offering intuitive regularization tools like <a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> and <a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a>.
 Combined with <a class="reference internal" href="PeakDetector.html"><span class="doc">PeakDetector</span></a> opens the way to deploy precise event-driven behaviors.</p>

@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reference &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Reference &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,9 +67,14 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -78,6 +82,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -93,8 +98,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Reference</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Reference</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -104,9 +109,9 @@
            <div itemprop="articleBody">
              
   <section id="reference">
-<h1>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h1>
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h1>
 <section id="base-units">
-<h2>Base Units<a class="headerlink" href="#base-units" title="Link to this heading"></a></h2>
+<h2>Base Units<a class="headerlink" href="#base-units" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a> Reads analog input values between 0 and 1. Typically used for sensors that output a range of values, such as potentiometers or light sensors.</p></li>
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a> Writes analog output values between 0 and 1. Useful for controlling devices like dimmable LEDs or motor controllers.</p></li>
@@ -115,24 +120,22 @@
 </ul>
 </section>
 <section id="generators">
-<h2>Generators<a class="headerlink" href="#generators" title="Link to this heading"></a></h2>
+<h2>Generators<a class="headerlink" href="#generators" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="SineWave.html"><span class="doc">SineWave</span></a> Generates a smooth, periodic sine wave signal. Commonly used for oscillatory motion or smooth transitions.</p></li>
-<li><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a> Generates a periodic square wave signal, alternating between high and low states. Ideal for toggling signals like blinking LEDs.</p></li>
-<li><p><a class="reference internal" href="TriangleWave.html"><span class="doc">TriangleWave</span></a> Produces a periodic triangle wave signal with a linear rise and fall. Useful for generating smoother oscillatory patterns than square waves.</p></li>
+<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.</p></li>
+<li><p><a class="reference internal" href="Wave.html"><span class="doc">Wave</span></a> Generates a smooth, periodic wave signal with a square, triangle, or sine shape. Commonly used for oscillatory motion or smooth transitions.</p></li>
 </ul>
 </section>
 <section id="timing">
-<h2>Timing<a class="headerlink" href="#timing" title="Link to this heading"></a></h2>
+<h2>Timing<a class="headerlink" href="#timing" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> Triggers an event after a specified time duration. Can be used to schedule delays or time-based actions.</p></li>
 <li><p><a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a> Measures elapsed time since the start or reset. Useful for timing events or profiling system performance.</p></li>
 <li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> Produces a periodic tick at specified intervals. Often used in rhythmic applications such as sound or light pulses.</p></li>
-<li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a> Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.</p></li>
 </ul>
 </section>
 <section id="filters">
-<h2>Filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h2>
+<h2>Filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a> Scales signals to fit within a specified minimum and maximum range. Essential for normalizing input signals from diverse sources.</p></li>
 <li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a> Adjusts signals to have a zero mean and unit variance. Useful in signal processing pipelines where consistent scaling is required.</p></li>
@@ -140,8 +143,15 @@
 <li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.</p></li>
 </ul>
 </section>
+<section id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="PivotField.html"><span class="doc">PivotField</span></a> Generates a spatial response curve based on a pivot point around which the field transitions happens, making it ideal for creating animations such as VU-meters or fades on arrays of actuators such as LEDs or motors.</p></li>
+<li><p><a class="reference internal" href="TimeSliceField.html"><span class="doc">TimeSliceField</span></a> Collects values over time which can then be sampled spatially like an array accross a normalized range. Useful for plotting time-varying signals, such as mapping audio or sensor input onto an LED strip or a motor array.</p></li>
+</ul>
+</section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="mapFloat.html"><span class="doc">mapFloat()</span></a> Maps a float value from one range to another. Useful for adapting input ranges to the desired output domain.</p></li>
 <li><p><a class="reference internal" href="mapFrom01.html"><span class="doc">mapFrom01()</span></a> Maps a float value from the normalized [0,1] range to a custom range, such as [-10, 10].</p></li>
@@ -152,8 +162,9 @@
 </ul>
 </section>
 <section id="structure">
-<h2>Structure<a class="headerlink" href="#structure" title="Link to this heading"></a></h2>
+<h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading"></a></h2>
 <ul class="simple">
+<li><p><a class="reference internal" href="Engine.html"><span class="doc">Engine</span></a> A control structure managing an ensemble of units, handling their initialization, update, and timing, ensuring they remain synchronized.</p></li>
 <li><p><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a> Initializes the system, similar to Arduino’s <cite>setup()</cite> function. Sets up necessary configurations and prepares units for operation.</p></li>
 <li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a> Repeatedly called during the program’s execution, akin to Arduino’s <cite>loop()</cite> function. Drives the execution of the main logic.</p></li>
 <li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a> Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.</p></li>
@@ -162,7 +173,7 @@
 </ul>
 </section>
 <section id="extra">
-<h2>Extra<a class="headerlink" href="#extra" title="Link to this heading"></a></h2>
+<h2>Extra<a class="headerlink" href="#extra" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a> Provides easing functions for smooth and natural transitions between values. Commonly used in animations and motion design.</p></li>
 <li><p><a class="reference internal" href="ContinuousServoOut.html"><span class="doc">ContinuousServoOut</span></a> Controls a continuous rotation servo motor by setting its speed and direction. Ideal for robotics or mechanical motion control.</p></li>

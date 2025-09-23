@@ -55,4 +55,4 @@ alarm at random periods of time.
 - :doc:`Chronometer`
 - :doc:`Metronome`
 - :doc:`Ramp`
-- :doc:`SquareWave`
+- :doc:`Wave`

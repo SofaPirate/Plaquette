@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalizer &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Normalizer &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,10 +70,7 @@
 <li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Normalizer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv410Normalizer"><code class="docutils literal notranslate"><span class="pre">Normalizer</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -82,9 +78,14 @@
 <li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -92,6 +93,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -107,9 +109,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="filters.html">Filters</a></li>
-      <li class="breadcrumb-item active">Normalizer</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+      <li>Normalizer</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="normalizer">
-<h1>Normalizer<a class="headerlink" href="#normalizer" title="Link to this heading"></a></h1>
+<h1>Normalizer<a class="headerlink" href="#normalizer" title="Permalink to this heading"></a></h1>
 <p>This filtering unit regularizes incoming signals by normalizing them around a target mean and
 standard deviation. It works by computing the normal distribution of the incoming data (mean and
 standard variation) and uses this information to re-normalize the data according to a different
@@ -127,47 +129,47 @@ normal distribution (target mean and variance).</p>
 <p>By default, the unit computes the mean and variance over all the data ever received. However,
 it can instead compute over a time window using an <a class="reference external" href="https://www.investopedia.com/terms/e/ema.asp">exponential moving average</a>.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Uses a normalizer to analyze input sensor values and detect extreme values.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// Analog sensor (eg. photocell or microphone).</span>
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Creates a normalizer with mean 0 and standard deviation 1.</span>
-<span class="n">Normalizer</span><span class="w"> </span><span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Normalizer</span><span class="w"> </span><span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Output indicator LED.</span>
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Normalize value.</span>
-<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">normalizer</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">normalizer</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// Light led if value differs from mean by more</span>
 <span class="w">  </span><span class="c1">// than twice the standard deviation.</span>
-<span class="w">  </span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">normalizer</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">normalizer</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv410Normalizer">
-<span id="_CPPv310Normalizer"></span><span id="_CPPv210Normalizer"></span><span id="Normalizer"></span><span class="target" id="classpq_1_1_normalizer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingFilter</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingStats</span></span><a class="headerlink" href="#_CPPv410Normalizer" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv310Normalizer"></span><span id="_CPPv210Normalizer"></span><span id="Normalizer"></span><span class="target" id="classpq_1_1_normalizer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingFilter</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingStats</span></span><a class="headerlink" href="#_CPPv410Normalizer" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Adaptive normalizer: normalizes values on-the-run using exponential moving averages over mean and standard deviation. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerER6Engine">
-<span id="_CPPv3N10Normalizer10NormalizerER6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerER6Engine"></span><span id="Normalizer::Normalizer__EngineR"></span><span class="target" id="classpq_1_1_normalizer_1a3e8904317dc8762eaaaafcc96259174c"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerER6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10NormalizerER6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerER6Engine"></span><span id="Normalizer::Normalizer__EngineR"></span><span class="target" id="classpq_1_1_normalizer_1a3e8904317dc8762eaaaafcc96259174c"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerER6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Default constructor. </p>
 <p>Assigns infinite time window. Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
@@ -175,11 +177,11 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEfR6Engine">
-<span id="_CPPv3N10Normalizer10NormalizerEfR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfR6Engine"></span><span id="Normalizer::Normalizer__float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1adba75af98111a533966e186496abfc42"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10NormalizerEfR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfR6Engine"></span><span id="Normalizer::Normalizer__float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1adba75af98111a533966e186496abfc42"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with time window. </p>
 <p>Will renormalize data around a mean of 0.5 and a standard deviation of 0.15. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>timeWindow</strong> – the time window over which the normalization applies (in seconds) </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
@@ -190,10 +192,10 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEffR6Engine">
-<span id="_CPPv3N10Normalizer10NormalizerEffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEffR6Engine"></span><span id="Normalizer::Normalizer__float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1af9b631852ab27c0d8ce59699c884f519"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEffR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10NormalizerEffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEffR6Engine"></span><span id="Normalizer::Normalizer__float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1af9b631852ab27c0d8ce59699c884f519"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEffR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with infinite time window. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mean</strong> – the target mean </p></li>
 <li><p><strong>stdDev</strong> – the target standard deviation </p></li>
@@ -204,10 +206,10 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10NormalizerEfffR6Engine">
-<span id="_CPPv3N10Normalizer10NormalizerEfffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfffR6Engine"></span><span id="Normalizer::Normalizer__float.float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1afb5caaaa616e7dae259ac34412275398"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfffR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10NormalizerEfffR6Engine"></span><span id="_CPPv2N10Normalizer10NormalizerEfffR6Engine"></span><span id="Normalizer::Normalizer__float.float.float.EngineR"></span><span class="target" id="classpq_1_1_normalizer_1afb5caaaa616e7dae259ac34412275398"></span><span class="sig-name descname"><span class="n"><span class="pre">Normalizer</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10NormalizerEfffR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with time window. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mean</strong> – the target mean </p></li>
 <li><p><strong>stdDev</strong> – the target standard deviation </p></li>
@@ -219,10 +221,10 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10targetMeanEf">
-<span id="_CPPv3N10Normalizer10targetMeanEf"></span><span id="_CPPv2N10Normalizer10targetMeanEf"></span><span id="Normalizer::targetMean__float"></span><span class="target" id="classpq_1_1_normalizer_1a06e0ec523c879682db786fcfcfae4399"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetMean</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10targetMeanEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10targetMeanEf"></span><span id="_CPPv2N10Normalizer10targetMeanEf"></span><span id="Normalizer::targetMean__float"></span><span class="target" id="classpq_1_1_normalizer_1a06e0ec523c879682db786fcfcfae4399"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetMean</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10targetMeanEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets target mean of normalized values. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>mean</strong> – the target mean </p>
 </dd>
 </dl>
@@ -230,16 +232,16 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer10targetMeanEv">
-<span id="_CPPv3NK10Normalizer10targetMeanEv"></span><span id="_CPPv2NK10Normalizer10targetMeanEv"></span><span id="Normalizer::targetMeanC"></span><span class="target" id="classpq_1_1_normalizer_1a77ca82159d4a1217ce3022f0810373f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetMean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10targetMeanEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer10targetMeanEv"></span><span id="_CPPv2NK10Normalizer10targetMeanEv"></span><span id="Normalizer::targetMeanC"></span><span class="target" id="classpq_1_1_normalizer_1a77ca82159d4a1217ce3022f0810373f7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetMean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10targetMeanEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns target mean. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer12targetStdDevEf">
-<span id="_CPPv3N10Normalizer12targetStdDevEf"></span><span id="_CPPv2N10Normalizer12targetStdDevEf"></span><span id="Normalizer::targetStdDev__float"></span><span class="target" id="classpq_1_1_normalizer_1ab4b7f57842c3b5adf0905845bb620b22"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetStdDev</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer12targetStdDevEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer12targetStdDevEf"></span><span id="_CPPv2N10Normalizer12targetStdDevEf"></span><span id="Normalizer::targetStdDev__float"></span><span class="target" id="classpq_1_1_normalizer_1ab4b7f57842c3b5adf0905845bb620b22"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetStdDev</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer12targetStdDevEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets target standard deviation of normalized values. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>stdDev</strong> – the target standard deviation </p>
 </dd>
 </dl>
@@ -247,50 +249,50 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer12targetStdDevEv">
-<span id="_CPPv3NK10Normalizer12targetStdDevEv"></span><span id="_CPPv2NK10Normalizer12targetStdDevEv"></span><span id="Normalizer::targetStdDevC"></span><span class="target" id="classpq_1_1_normalizer_1aadebf02b4b792cc1e00d898e343e3f65"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetStdDev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12targetStdDevEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer12targetStdDevEv"></span><span id="_CPPv2NK10Normalizer12targetStdDevEv"></span><span id="Normalizer::targetStdDevC"></span><span class="target" id="classpq_1_1_normalizer_1aadebf02b4b792cc1e00d898e343e3f65"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">targetStdDev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12targetStdDevEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns target standard deviation. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer18infiniteTimeWindowEv">
-<span id="_CPPv3N10Normalizer18infiniteTimeWindowEv"></span><span id="_CPPv2N10Normalizer18infiniteTimeWindowEv"></span><span id="Normalizer::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_normalizer_1a8f74c0c7a55d94d40e12632fb723a36b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer18infiniteTimeWindowEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer18infiniteTimeWindowEv"></span><span id="_CPPv2N10Normalizer18infiniteTimeWindowEv"></span><span id="Normalizer::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_normalizer_1a8f74c0c7a55d94d40e12632fb723a36b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets time window to infinite. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10timeWindowEf">
-<span id="_CPPv3N10Normalizer10timeWindowEf"></span><span id="_CPPv2N10Normalizer10timeWindowEf"></span><span id="Normalizer::timeWindow__float"></span><span class="target" id="classpq_1_1_normalizer_1a8af87b014f450191746d99b957d2ce56"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10timeWindowEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer10timeWindowEf"></span><span id="_CPPv2N10Normalizer10timeWindowEf"></span><span id="Normalizer::timeWindow__float"></span><span class="target" id="classpq_1_1_normalizer_1a8af87b014f450191746d99b957d2ce56"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Changes the time window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer10timeWindowEv">
-<span id="_CPPv3NK10Normalizer10timeWindowEv"></span><span id="_CPPv2NK10Normalizer10timeWindowEv"></span><span id="Normalizer::timeWindowC"></span><span class="target" id="classpq_1_1_normalizer_1aff4693fabca9bab0ddd6bfe44bb24e75"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10timeWindowEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer10timeWindowEv"></span><span id="_CPPv2NK10Normalizer10timeWindowEv"></span><span id="Normalizer::timeWindowC"></span><span class="target" id="classpq_1_1_normalizer_1aff4693fabca9bab0ddd6bfe44bb24e75"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the time window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer20timeWindowIsInfiniteEv">
-<span id="_CPPv3NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="Normalizer::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_normalizer_1a5b1a2fbfe1b7ef59cfc523289e8274ae"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20timeWindowIsInfiniteEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="Normalizer::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_normalizer_1a5b1a2fbfe1b7ef59cfc523289e8274ae"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if time window is infinite. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5resetEv">
-<span id="_CPPv3N10Normalizer5resetEv"></span><span id="_CPPv2N10Normalizer5resetEv"></span><span id="Normalizer::reset"></span><span class="target" id="classpq_1_1_normalizer_1a3e97253f3dc73ed8489c7a7ba0a45b05"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5resetEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer5resetEv"></span><span id="_CPPv2N10Normalizer5resetEv"></span><span id="Normalizer::reset"></span><span class="target" id="classpq_1_1_normalizer_1a3e97253f3dc73ed8489c7a7ba0a45b05"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5resetEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Resets the statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer3putEf">
-<span id="_CPPv3N10Normalizer3putEf"></span><span id="_CPPv2N10Normalizer3putEf"></span><span id="Normalizer::put__float"></span><span class="target" id="classpq_1_1_normalizer_1a9c2a6da973bb004787faf889622815ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer3putEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer3putEf"></span><span id="_CPPv2N10Normalizer3putEf"></span><span id="Normalizer::put__float"></span><span class="target" id="classpq_1_1_normalizer_1a9c2a6da973bb004787faf889622815ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <p>If isRunning() is false the filter will not be updated but will just return the filtered value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -298,10 +300,10 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer19lowOutlierThresholdEf">
-<span id="_CPPv3NK10Normalizer19lowOutlierThresholdEf"></span><span id="_CPPv2NK10Normalizer19lowOutlierThresholdEf"></span><span id="Normalizer::lowOutlierThreshold__floatC"></span><span class="target" id="classpq_1_1_normalizer_1a504e1d3234598ea402beb2e7dcf97bce"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lowOutlierThreshold</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer19lowOutlierThresholdEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer19lowOutlierThresholdEf"></span><span id="_CPPv2NK10Normalizer19lowOutlierThresholdEf"></span><span id="Normalizer::lowOutlierThreshold__floatC"></span><span class="target" id="classpq_1_1_normalizer_1a504e1d3234598ea402beb2e7dcf97bce"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lowOutlierThreshold</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer19lowOutlierThresholdEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value above which value is considered to be a low outler (below average). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>nStdDev</strong> – the number of standard deviations (typically between 1 and 3); low values = more sensitive </p>
 </dd>
 </dl>
@@ -309,10 +311,10 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer20highOutlierThresholdEf">
-<span id="_CPPv3NK10Normalizer20highOutlierThresholdEf"></span><span id="_CPPv2NK10Normalizer20highOutlierThresholdEf"></span><span id="Normalizer::highOutlierThreshold__floatC"></span><span class="target" id="classpq_1_1_normalizer_1af8e3d9b651b93243e4cf31e41d5f5bdd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">highOutlierThreshold</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20highOutlierThresholdEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer20highOutlierThresholdEf"></span><span id="_CPPv2NK10Normalizer20highOutlierThresholdEf"></span><span id="Normalizer::highOutlierThreshold__floatC"></span><span class="target" id="classpq_1_1_normalizer_1af8e3d9b651b93243e4cf31e41d5f5bdd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">highOutlierThreshold</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20highOutlierThresholdEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value above which value is considered to be a high outler (above average). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>nStdDev</strong> – the number of standard deviations (typically between 1 and 3); low values = more sensitive </p>
 </dd>
 </dl>
@@ -320,17 +322,17 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer9isClampedEv">
-<span id="_CPPv3NK10Normalizer9isClampedEv"></span><span id="_CPPv2NK10Normalizer9isClampedEv"></span><span id="Normalizer::isClampedC"></span><span class="target" id="classpq_1_1_normalizer_1a9de0daea85111397cc41e4f26593f63e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isClamped</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9isClampedEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer9isClampedEv"></span><span id="_CPPv2NK10Normalizer9isClampedEv"></span><span id="Normalizer::isClampedC"></span><span class="target" id="classpq_1_1_normalizer_1a9de0daea85111397cc41e4f26593f63e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isClamped</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9isClampedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Return true iff the normalized value is clamped within reasonable range. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5clampEf">
-<span id="_CPPv3N10Normalizer5clampEf"></span><span id="_CPPv2N10Normalizer5clampEf"></span><span id="Normalizer::clamp__float"></span><span class="target" id="classpq_1_1_normalizer_1a3e7a9bd8722d508113a6e26656da78aa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clamp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NORMALIZER_DEFAULT_CLAMP_STDDEV</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5clampEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer5clampEf"></span><span id="_CPPv2N10Normalizer5clampEf"></span><span id="Normalizer::clamp__float"></span><span class="target" id="classpq_1_1_normalizer_1a3e7a9bd8722d508113a6e26656da78aa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clamp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NORMALIZER_DEFAULT_CLAMP_STDDEV</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5clampEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Assign clamping value. </p>
 <p>Values will then be clamped between reasonable range (<a class="reference internal" href="#classpq_1_1_normalizer_1a06e0ec523c879682db786fcfcfae4399"><span class="std std-ref">targetMean()</span></a> +/- nStdDev * <a class="reference internal" href="#classpq_1_1_normalizer_1ab4b7f57842c3b5adf0905845bb620b22"><span class="std std-ref">targetStdDev()</span></a>). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>nStdDev</strong> – the number of standard deviations (default: 3.333333333) </p>
 </dd>
 </dl>
@@ -338,53 +340,149 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer7noClampEv">
-<span id="_CPPv3N10Normalizer7noClampEv"></span><span id="_CPPv2N10Normalizer7noClampEv"></span><span id="Normalizer::noClamp"></span><span class="target" id="classpq_1_1_normalizer_1a36413f4cfac97d85a43075bd895e8efe"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noClamp</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer7noClampEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer7noClampEv"></span><span id="_CPPv2N10Normalizer7noClampEv"></span><span id="Normalizer::noClamp"></span><span class="target" id="classpq_1_1_normalizer_1a36413f4cfac97d85a43075bd895e8efe"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noClamp</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer7noClampEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Remove clamping. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5mapToEff">
-<span id="_CPPv3N10Normalizer5mapToEff"></span><span id="_CPPv2N10Normalizer5mapToEff"></span><span id="Normalizer::mapTo__float.float"></span><span class="target" id="classpq_1_1_normalizer_1a44dbcca93311af5d45de6866b4267f1b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5mapToEff" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer5mapToEff"></span><span id="_CPPv2N10Normalizer5mapToEff"></span><span id="Normalizer::mapTo__float.float"></span><span class="target" id="classpq_1_1_normalizer_1a44dbcca93311af5d45de6866b4267f1b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5mapToEff" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Maps value to new range. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer6cutoffEf">
+<span id="_CPPv3N10Normalizer6cutoffEf"></span><span id="_CPPv2N10Normalizer6cutoffEf"></span><span id="Normalizer::cutoff__float"></span><span class="target" id="classpq_1_1_moving_filter_1a2f096a172ebc8330ed2429e3bbc5ceee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6cutoffEv">
+<span id="_CPPv3NK10Normalizer6cutoffEv"></span><span id="_CPPv2NK10Normalizer6cutoffEv"></span><span id="Normalizer::cutoffC"></span><span class="target" id="classpq_1_1_moving_filter_1ac20f5ef861448efa733495b3dfbbee31"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer17resumeCalibratingEv">
-<span id="_CPPv3N10Normalizer17resumeCalibratingEv"></span><span id="_CPPv2N10Normalizer17resumeCalibratingEv"></span><span id="Normalizer::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer17resumeCalibratingEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer17resumeCalibratingEv"></span><span id="_CPPv2N10Normalizer17resumeCalibratingEv"></span><span id="Normalizer::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer17resumeCalibratingEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Switches to calibration mode (default). </p>
 <p>Calls to put(value) will return filtered value AND update the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer16pauseCalibratingEv">
-<span id="_CPPv3N10Normalizer16pauseCalibratingEv"></span><span id="_CPPv2N10Normalizer16pauseCalibratingEv"></span><span id="Normalizer::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer16pauseCalibratingEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer16pauseCalibratingEv"></span><span id="_CPPv2N10Normalizer16pauseCalibratingEv"></span><span id="Normalizer::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer16pauseCalibratingEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Switches to non-calibration mode: calls to put(value) will return filtered value without updating the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer17toggleCalibratingEv">
+<span id="_CPPv3N10Normalizer17toggleCalibratingEv"></span><span id="_CPPv2N10Normalizer17toggleCalibratingEv"></span><span id="Normalizer::toggleCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a5ffbcc93a69b25b861e8529d14aa4c06"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer17toggleCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Toggles calibration mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer13isCalibratingEv">
-<span id="_CPPv3NK10Normalizer13isCalibratingEv"></span><span id="_CPPv2NK10Normalizer13isCalibratingEv"></span><span id="Normalizer::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer13isCalibratingEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer13isCalibratingEv"></span><span id="_CPPv2NK10Normalizer13isCalibratingEv"></span><span id="Normalizer::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer13isCalibratingEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the moving filter is in calibration mode. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer3getEv">
-<span id="_CPPv3N10Normalizer3getEv"></span><span id="_CPPv2N10Normalizer3getEv"></span><span id="Normalizer::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer3getEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N10Normalizer3getEv"></span><span id="_CPPv2N10Normalizer3getEv"></span><span id="Normalizer::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer7secondsEv">
+<span id="_CPPv3NK10Normalizer7secondsEv"></span><span id="_CPPv2NK10Normalizer7secondsEv"></span><span id="Normalizer::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer12milliSecondsEv">
+<span id="_CPPv3NK10Normalizer12milliSecondsEv"></span><span id="_CPPv2NK10Normalizer12milliSecondsEv"></span><span id="Normalizer::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer12microSecondsEv">
+<span id="_CPPv3NK10Normalizer12microSecondsEv"></span><span id="_CPPv2NK10Normalizer12microSecondsEv"></span><span id="Normalizer::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6nStepsEv">
+<span id="_CPPv3NK10Normalizer6nStepsEv"></span><span id="_CPPv2NK10Normalizer6nStepsEv"></span><span id="Normalizer::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer10sampleRateEv">
+<span id="_CPPv3NK10Normalizer10sampleRateEv"></span><span id="_CPPv2NK10Normalizer10sampleRateEv"></span><span id="Normalizer::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer12samplePeriodEv">
+<span id="_CPPv3NK10Normalizer12samplePeriodEv"></span><span id="_CPPv2NK10Normalizer12samplePeriodEv"></span><span id="Normalizer::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10NormalizercvfEv">
+<span id="_CPPv3N10NormalizercvfEv"></span><span id="_CPPv2N10NormalizercvfEv"></span><span id="Normalizer::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10NormalizercvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10NormalizercvbEv">
+<span id="_CPPv3N10NormalizercvbEv"></span><span id="_CPPv2N10NormalizercvbEv"></span><span id="Normalizer::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10NormalizercvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer4meanEv">
+<span id="_CPPv3NK10Normalizer4meanEv"></span><span id="_CPPv2NK10Normalizer4meanEv"></span><span id="Normalizer::meanC"></span><span class="target" id="classpq_1_1_moving_stats_1abf1e5d912a11a585f4526aabefc1cd30"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer4meanEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns an exponential moving average of the samples. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer3varEv">
+<span id="_CPPv3NK10Normalizer3varEv"></span><span id="_CPPv2NK10Normalizer3varEv"></span><span id="Normalizer::varC"></span><span class="target" id="classpq_1_1_moving_stats_1a94d79b067fbd358a82fdd84e2368191d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">var</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer3varEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns an exponential moving variance of the samples. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6stdDevEv">
+<span id="_CPPv3NK10Normalizer6stdDevEv"></span><span id="_CPPv2NK10Normalizer6stdDevEv"></span><span id="Normalizer::stdDevC"></span><span class="target" id="classpq_1_1_moving_stats_1a3c5418040f16b0fa01ff8f7b7cf65782"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stdDev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6stdDevEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the standard deviation of the samples. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer9normalizeEf">
+<span id="_CPPv3NK10Normalizer9normalizeEf"></span><span id="_CPPv2NK10Normalizer9normalizeEf"></span><span id="Normalizer::normalize__floatC"></span><span class="target" id="classpq_1_1_moving_stats_1a245e2c160eee12988e74ba6c959b8961"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normalize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9normalizeEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the normalized value according N(0, 1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer9normalizeEfff">
+<span id="_CPPv3NK10Normalizer9normalizeEfff"></span><span id="_CPPv2NK10Normalizer9normalizeEfff"></span><span id="Normalizer::normalize__float.float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1abc2234caa144b795f3fb9096c80a213f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normalize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stdDev</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9normalizeEfff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the normalized value according to the computed statistics (mean and variance). </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer9isOutlierEff">
-<span id="_CPPv3NK10Normalizer9isOutlierEff"></span><span id="_CPPv2NK10Normalizer9isOutlierEff"></span><span id="Normalizer::isOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1a5fd05a5e0daf0a6c1efd383263e02fc7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9isOutlierEff" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer9isOutlierEff"></span><span id="_CPPv2NK10Normalizer9isOutlierEff"></span><span id="Normalizer::isOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1a5fd05a5e0daf0a6c1efd383263e02fc7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer9isOutlierEff" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if the value is considered an outlier. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – the raw value to be tested (non-normalized) </p></li>
 <li><p><strong>nStdDev</strong> – the number of standard deviations (typically between 1 and 3); low values = more sensitive </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>true if value is nStdDev number of standard deviations above or below mean </p>
 </dd>
 </dl>
@@ -392,16 +490,16 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer12isLowOutlierEff">
-<span id="_CPPv3NK10Normalizer12isLowOutlierEff"></span><span id="_CPPv2NK10Normalizer12isLowOutlierEff"></span><span id="Normalizer::isLowOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1ad6587f5384a90326899bed86bacdf753"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isLowOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12isLowOutlierEff" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer12isLowOutlierEff"></span><span id="_CPPv2NK10Normalizer12isLowOutlierEff"></span><span id="Normalizer::isLowOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1ad6587f5384a90326899bed86bacdf753"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isLowOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer12isLowOutlierEff" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if the value is considered a low outlier (below average). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – the raw value to be tested (non-normalized) </p></li>
 <li><p><strong>nStdDev</strong> – the number of standard deviations (typically between 1 and 3); low values = more sensitive </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>true if value is nStdDev number of standard deviations below mean </p>
 </dd>
 </dl>
@@ -409,19 +507,46 @@ it can instead compute over a time window using an <a class="reference external"
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer13isHighOutlierEff">
-<span id="_CPPv3NK10Normalizer13isHighOutlierEff"></span><span id="_CPPv2NK10Normalizer13isHighOutlierEff"></span><span id="Normalizer::isHighOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1a661bdad0331a6a7652a081fcf297dac6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isHighOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer13isHighOutlierEff" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK10Normalizer13isHighOutlierEff"></span><span id="_CPPv2NK10Normalizer13isHighOutlierEff"></span><span id="Normalizer::isHighOutlier__float.floatC"></span><span class="target" id="classpq_1_1_moving_stats_1a661bdad0331a6a7652a081fcf297dac6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isHighOutlier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nStdDev</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.5f</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer13isHighOutlierEff" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if the value is considered a high outlier (above average). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – the raw value to be tested (non-normalized) </p></li>
 <li><p><strong>nStdDev</strong> – the number of standard deviations (typically between 1 and 3); low values = more sensitive </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>true if value is nStdDev number of standard deviations above mean </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6stddevEv">
+<span id="_CPPv3NK10Normalizer6stddevEv"></span><span id="_CPPv2NK10Normalizer6stddevEv"></span><span id="Normalizer::stddevC"></span><span class="target" id="classpq_1_1_moving_stats_1afaccbcb37aa3e77efb8c37d4d8ce3c25"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stddev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6stddevEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Returns the standard deviation of the samples. </p>
+</dd></dl>
+
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer15analogToDigitalEf">
+<span id="_CPPv3N10Normalizer15analogToDigitalEf"></span><span id="_CPPv2N10Normalizer15analogToDigitalEf"></span><span id="Normalizer::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer15digitalToAnalogEb">
+<span id="_CPPv3N10Normalizer15digitalToAnalogEb"></span><span id="_CPPv2N10Normalizer15digitalToAnalogEb"></span><span id="Normalizer::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
 </div>
@@ -429,7 +554,7 @@ it can instead compute over a time window using an <a class="reference external"
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></p></li>
 <li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>

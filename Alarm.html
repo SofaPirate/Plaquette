@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alarm &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Alarm &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -69,22 +68,23 @@
 <li class="toctree-l1 current"><a class="reference internal" href="timing.html">Timing</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Alarm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv45Alarm"><code class="docutils literal notranslate"><span class="pre">Alarm</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Chronometer.html">Chronometer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Metronome.html">Metronome</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Ramp.html">Ramp</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -107,9 +108,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="timing.html">Timing</a></li>
-      <li class="breadcrumb-item active">Alarm</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="timing.html">Timing</a> &raquo;</li>
+      <li>Alarm</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,56 +120,56 @@
            <div itemprop="articleBody">
              
   <section id="alarm">
-<h1>Alarm<a class="headerlink" href="#alarm" title="Link to this heading"></a></h1>
+<h1>Alarm<a class="headerlink" href="#alarm" title="Permalink to this heading"></a></h1>
 <p>An alarm clock digital source unit. Counts time and becomes “on” when time is up.
 The alarm can be started, stopped, and resumed.</p>
 <p>When started, the alarm stays “off” until it reaches its timeout duration, after
 which it becomes “on”.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Uses an alarm to activate built-in LED. Button is used to reset the
 alarm at random periods of time.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">Alarm</span><span class="w"> </span><span class="nf">myAlarm</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// an alarm with 2 seconds duration</span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// start alarm</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Activate LED when alarm rings.</span>
 <span class="w">  </span><span class="n">myAlarm</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// the alarm will stay &quot;on&quot; until it is stopped or restarted</span>
 
 <span class="w">  </span><span class="c1">// Reset alarm when button is pushed.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myAlarm</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span>
-<span class="w">  </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myAlarm</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Restarts the alarm with a random duration between 1 and 5 seconds.</span>
-<span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">));</span>
-<span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">myAlarm</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv45Alarm">
-<span id="_CPPv35Alarm"></span><span id="_CPPv25Alarm"></span><span id="Alarm"></span><span class="target" id="classpq_1_1_alarm"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv45Alarm" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv35Alarm"></span><span id="_CPPv25Alarm"></span><span id="Alarm"></span><span class="target" id="classpq_1_1_alarm"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv45Alarm" title="Permalink to this definition"></a><br /></dt>
 <dd><p><a class="reference internal" href="Chronometer.html#classpq_1_1_chronometer"><span class="std std-ref">Chronometer</span></a> class which becomes “on” after a given duration. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5AlarmER6Engine">
-<span id="_CPPv3N5Alarm5AlarmER6Engine"></span><span id="_CPPv2N5Alarm5AlarmER6Engine"></span><span id="Alarm::Alarm__EngineR"></span><span class="target" id="classpq_1_1_alarm_1a3ff0a4e8c142f09c9d8c4737ecec7ec1"></span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5AlarmER6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5AlarmER6Engine"></span><span id="_CPPv2N5Alarm5AlarmER6Engine"></span><span id="Alarm::Alarm__EngineR"></span><span class="target" id="classpq_1_1_alarm_1a3ff0a4e8c142f09c9d8c4737ecec7ec1"></span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5AlarmER6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
@@ -176,10 +177,10 @@ alarm at random periods of time.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5AlarmEfR6Engine">
-<span id="_CPPv3N5Alarm5AlarmEfR6Engine"></span><span id="_CPPv2N5Alarm5AlarmEfR6Engine"></span><span id="Alarm::Alarm__float.EngineR"></span><span class="target" id="classpq_1_1_alarm_1abf43a1034d25818c0d1a76e63280a48c"></span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5AlarmEfR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5AlarmEfR6Engine"></span><span id="_CPPv2N5Alarm5AlarmEfR6Engine"></span><span id="Alarm::Alarm__float.EngineR"></span><span class="target" id="classpq_1_1_alarm_1abf43a1034d25818c0d1a76e63280a48c"></span><span class="sig-name descname"><span class="n"><span class="pre">Alarm</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5AlarmEfR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with duration. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>duration</strong> – duration of the alarm </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
@@ -190,134 +191,313 @@ alarm at random periods of time.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm8finishedEv">
-<span id="_CPPv3N5Alarm8finishedEv"></span><span id="_CPPv2N5Alarm8finishedEv"></span><span id="Alarm::finished"></span><span class="target" id="classpq_1_1_alarm_1a4b8e0ae524bb7b541b0142454a0a1671"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">finished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8finishedEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm8finishedEv"></span><span id="_CPPv2N5Alarm8finishedEv"></span><span id="Alarm::finished"></span><span class="target" id="classpq_1_1_alarm_1a4b8e0ae524bb7b541b0142454a0a1671"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">finished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8finishedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the alarm just finished its process this step. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm8onFinishE13EventCallback">
-<span id="_CPPv3N5Alarm8onFinishE13EventCallback"></span><span id="_CPPv2N5Alarm8onFinishE13EventCallback"></span><span id="Alarm::onFinish__EventCallback"></span><span class="target" id="classpq_1_1_alarm_1a57ad0993b78814bfadc0ee7ca6ec541c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFinish</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8onFinishE13EventCallback" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm8onFinishE13EventCallback"></span><span id="_CPPv2N5Alarm8onFinishE13EventCallback"></span><span id="Alarm::onFinish__EventCallback"></span><span class="target" id="classpq_1_1_alarm_1a57ad0993b78814bfadc0ee7ca6ec541c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFinish</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8onFinishE13EventCallback" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Registers event callback on finish event. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Alarm3setEf">
-<span id="_CPPv3N5Alarm3setEf"></span><span id="_CPPv2N5Alarm3setEf"></span><span id="Alarm::set__float"></span><span class="target" id="classpq_1_1_alarm_1a32acee375eb35354ccefcb08c37c8360"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3setEf" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm7setTimeEf">
+<span id="_CPPv3N5Alarm7setTimeEf"></span><span id="_CPPv2N5Alarm7setTimeEf"></span><span id="Alarm::setTime__float"></span><span class="target" id="classpq_1_1_alarm_1af48ae2932dddaf2cdc4098d1b2fb6364"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm7setTimeEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Set alarm at specific time. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm4isOnEv">
-<span id="_CPPv3N5Alarm4isOnEv"></span><span id="_CPPv2N5Alarm4isOnEv"></span><span id="Alarm::isOn"></span><span class="target" id="classpq_1_1_digital_source_1aa894fe9be99d8d5b103d880392b6098e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4isOnEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm4isOnEv"></span><span id="_CPPv2N5Alarm4isOnEv"></span><span id="Alarm::isOn"></span><span class="target" id="classpq_1_1_digital_source_1aa894fe9be99d8d5b103d880392b6098e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4isOnEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the input is “on”. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm5putOnEb">
+<span id="_CPPv3N5Alarm5putOnEb"></span><span id="_CPPv2N5Alarm5putOnEb"></span><span id="Alarm::putOn__b"></span><span class="target" id="classpq_1_1_digital_source_1a55e10c0f2fe1b81820302dbe9ba23e62"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">putOn</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5putOnEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm4roseEv">
+<span id="_CPPv3N5Alarm4roseEv"></span><span id="_CPPv2N5Alarm4roseEv"></span><span id="Alarm::rose"></span><span class="target" id="classpq_1_1_digital_source_1a6cbb4348dfc91336420d115eacd3c05e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rose</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4roseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the value rose. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm4fellEv">
+<span id="_CPPv3N5Alarm4fellEv"></span><span id="_CPPv2N5Alarm4fellEv"></span><span id="Alarm::fell"></span><span class="target" id="classpq_1_1_digital_source_1ad3e150bcaed83968c432abe239b8647f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fell</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4fellEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the value fell. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm7changedEv">
+<span id="_CPPv3N5Alarm7changedEv"></span><span id="_CPPv2N5Alarm7changedEv"></span><span id="Alarm::changed"></span><span class="target" id="classpq_1_1_digital_source_1a9a34d50955ca36321e40223835e62c53"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">changed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm7changedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the value changed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm6toggleEv">
+<span id="_CPPv3N5Alarm6toggleEv"></span><span id="_CPPv2N5Alarm6toggleEv"></span><span id="Alarm::toggle"></span><span class="target" id="classpq_1_1_digital_source_1a85eee8005e496b5fa4e7bda9273fa238"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6toggleEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switches between on and off. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm11changeStateEv">
+<span id="_CPPv3N5Alarm11changeStateEv"></span><span id="_CPPv2N5Alarm11changeStateEv"></span><span id="Alarm::changeState"></span><span class="target" id="classpq_1_1_digital_source_1a75205a0d0192f5c4514dd7a2a6817fb4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">changeState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm11changeStateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Difference between current and previous value of the unit. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm6onRiseE13EventCallback">
-<span id="_CPPv3N5Alarm6onRiseE13EventCallback"></span><span id="_CPPv2N5Alarm6onRiseE13EventCallback"></span><span id="Alarm::onRise__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1a5fa17c879632bb3265e09fb9fdaa3961"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onRise</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6onRiseE13EventCallback" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm6onRiseE13EventCallback"></span><span id="_CPPv2N5Alarm6onRiseE13EventCallback"></span><span id="Alarm::onRise__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1a5fa17c879632bb3265e09fb9fdaa3961"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onRise</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6onRiseE13EventCallback" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Registers event callback on rise event. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm6onFallE13EventCallback">
-<span id="_CPPv3N5Alarm6onFallE13EventCallback"></span><span id="_CPPv2N5Alarm6onFallE13EventCallback"></span><span id="Alarm::onFall__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1a62b4a97870c20690b40b30c9a003e653"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFall</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6onFallE13EventCallback" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm6onFallE13EventCallback"></span><span id="_CPPv2N5Alarm6onFallE13EventCallback"></span><span id="Alarm::onFall__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1a62b4a97870c20690b40b30c9a003e653"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFall</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6onFallE13EventCallback" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Registers event callback on fall event. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm8onChangeE13EventCallback">
-<span id="_CPPv3N5Alarm8onChangeE13EventCallback"></span><span id="_CPPv2N5Alarm8onChangeE13EventCallback"></span><span id="Alarm::onChange__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1aedb08432ce3ee47aed52a059d8ba8a08"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onChange</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8onChangeE13EventCallback" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm8onChangeE13EventCallback"></span><span id="_CPPv2N5Alarm8onChangeE13EventCallback"></span><span id="Alarm::onChange__EventCallback"></span><span class="target" id="classpq_1_1_digital_source_1aedb08432ce3ee47aed52a059d8ba8a08"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onChange</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8onChangeE13EventCallback" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Registers event callback on change event. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5isOffEv">
-<span id="_CPPv3N5Alarm5isOffEv"></span><span id="_CPPv2N5Alarm5isOffEv"></span><span id="Alarm::isOff"></span><span class="target" id="classpq_1_1_digital_unit_1ace23aca8df66cbe7a810aae87a6f8687"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5isOffEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5isOffEv"></span><span id="_CPPv2N5Alarm5isOffEv"></span><span id="Alarm::isOff"></span><span class="target" id="classpq_1_1_digital_unit_1ace23aca8df66cbe7a810aae87a6f8687"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5isOffEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the input is “off”. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm6getIntEv">
-<span id="_CPPv3N5Alarm6getIntEv"></span><span id="_CPPv2N5Alarm6getIntEv"></span><span id="Alarm::getInt"></span><span class="target" id="classpq_1_1_digital_unit_1a16967b70b9033d44c4c0e04c5dd36758"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6getIntEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm6getIntEv"></span><span id="_CPPv2N5Alarm6getIntEv"></span><span id="Alarm::getInt"></span><span class="target" id="classpq_1_1_digital_unit_1a16967b70b9033d44c4c0e04c5dd36758"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6getIntEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value as integer (0 or 1). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm3getEv">
-<span id="_CPPv3N5Alarm3getEv"></span><span id="_CPPv2N5Alarm3getEv"></span><span id="Alarm::get"></span><span class="target" id="classpq_1_1_digital_unit_1a1e84763649e8d23c99f05b5d80430b35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3getEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm3getEv"></span><span id="_CPPv2N5Alarm3getEv"></span><span id="Alarm::get"></span><span class="target" id="classpq_1_1_digital_unit_1a1e84763649e8d23c99f05b5d80430b35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value as float (either 0.0 or 1.0). </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm2onEv">
+<span id="_CPPv3N5Alarm2onEv"></span><span id="_CPPv2N5Alarm2onEv"></span><span id="Alarm::on"></span><span class="target" id="classpq_1_1_digital_unit_1ae30cc3b6a81ee19d1ecb61440c1c7959"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">on</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm2onEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets output to “on” (ie. true, 1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm3offEv">
+<span id="_CPPv3N5Alarm3offEv"></span><span id="_CPPv2N5Alarm3offEv"></span><span id="Alarm::off"></span><span class="target" id="classpq_1_1_digital_unit_1a56b70d2356df94b7f3829281326614ee"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3offEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets output to “off” (ie. false, 0). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm3putEf">
+<span id="_CPPv3N5Alarm3putEf"></span><span id="_CPPv2N5Alarm3putEf"></span><span id="Alarm::put__float"></span><span class="target" id="classpq_1_1_digital_unit_1ab6aee5c14addea2c5ba36424ff52612a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm5mapToEff">
+<span id="_CPPv3N5Alarm5mapToEff"></span><span id="_CPPv2N5Alarm5mapToEff"></span><span id="Alarm::mapTo__float.float"></span><span class="target" id="classpq_1_1_digital_unit_1a2531d9dbe8f12b52aee01a42ab463211"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5AlarmcvbEv">
+<span id="_CPPv3N5AlarmcvbEv"></span><span id="_CPPv2N5AlarmcvbEv"></span><span id="Alarm::castto-b-operator"></span><span class="target" id="classpq_1_1_digital_unit_1a5d142103212c63a0a063fcbe193117c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5AlarmcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm7secondsEv">
+<span id="_CPPv3NK5Alarm7secondsEv"></span><span id="_CPPv2NK5Alarm7secondsEv"></span><span id="Alarm::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm12milliSecondsEv">
+<span id="_CPPv3NK5Alarm12milliSecondsEv"></span><span id="_CPPv2NK5Alarm12milliSecondsEv"></span><span id="Alarm::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm12microSecondsEv">
+<span id="_CPPv3NK5Alarm12microSecondsEv"></span><span id="_CPPv2NK5Alarm12microSecondsEv"></span><span id="Alarm::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm6nStepsEv">
+<span id="_CPPv3NK5Alarm6nStepsEv"></span><span id="_CPPv2NK5Alarm6nStepsEv"></span><span id="Alarm::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm10sampleRateEv">
+<span id="_CPPv3NK5Alarm10sampleRateEv"></span><span id="_CPPv2NK5Alarm10sampleRateEv"></span><span id="Alarm::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm12samplePeriodEv">
+<span id="_CPPv3NK5Alarm12samplePeriodEv"></span><span id="_CPPv2NK5Alarm12samplePeriodEv"></span><span id="Alarm::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5startEv">
-<span id="_CPPv3N5Alarm5startEv"></span><span id="_CPPv2N5Alarm5startEv"></span><span id="Alarm::start"></span><span class="target" id="classpq_1_1_abstract_timer_1af50f92b60dbc887be34b87b10c6d8afb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5startEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5startEv"></span><span id="_CPPv2N5Alarm5startEv"></span><span id="Alarm::start"></span><span class="target" id="classpq_1_1_abstract_timer_1af50f92b60dbc887be34b87b10c6d8afb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5startEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5startEf">
-<span id="_CPPv3N5Alarm5startEf"></span><span id="_CPPv2N5Alarm5startEf"></span><span id="Alarm::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5startEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5startEf"></span><span id="_CPPv2N5Alarm5startEf"></span><span id="Alarm::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5startEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the chronometer with specific duration. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm8durationEf">
-<span id="_CPPv3N5Alarm8durationEf"></span><span id="_CPPv2N5Alarm8durationEf"></span><span id="Alarm::duration__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a1278f2208903d72d7b4414657b564d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8durationEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm8durationEf"></span><span id="_CPPv2N5Alarm8durationEf"></span><span id="Alarm::duration__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a1278f2208903d72d7b4414657b564d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm8durationEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the duration of the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm8durationEv">
-<span id="_CPPv3NK5Alarm8durationEv"></span><span id="_CPPv2NK5Alarm8durationEv"></span><span id="Alarm::durationC"></span><span class="target" id="classpq_1_1_abstract_timer_1adc25c02b7a2606cd74be8b7b8c6ca3e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8durationEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm8durationEv"></span><span id="_CPPv2NK5Alarm8durationEv"></span><span id="Alarm::durationC"></span><span class="target" id="classpq_1_1_abstract_timer_1adc25c02b7a2606cd74be8b7b8c6ca3e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8durationEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns duration. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm8progressEv">
-<span id="_CPPv3NK5Alarm8progressEv"></span><span id="_CPPv2NK5Alarm8progressEv"></span><span id="Alarm::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8progressEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm8progressEv"></span><span id="_CPPv2NK5Alarm8progressEv"></span><span id="Alarm::progressC"></span><span class="target" id="classpq_1_1_abstract_timer_1a853baae3f098000ae4410bf1029a661b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">progress</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm8progressEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The progress of the timer process (in %). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm10isFinishedEv">
-<span id="_CPPv3NK5Alarm10isFinishedEv"></span><span id="_CPPv2NK5Alarm10isFinishedEv"></span><span id="Alarm::isFinishedC"></span><span class="target" id="classpq_1_1_abstract_timer_1aace0be3e01259aba6629b9d19e0de1cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm10isFinishedEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm10isFinishedEv"></span><span id="_CPPv2NK5Alarm10isFinishedEv"></span><span id="Alarm::isFinishedC"></span><span class="target" id="classpq_1_1_abstract_timer_1aace0be3e01259aba6629b9d19e0de1cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isFinished</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm10isFinishedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer has finished its process. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Alarm4stopEv">
-<span id="_CPPv3N5Alarm4stopEv"></span><span id="_CPPv2N5Alarm4stopEv"></span><span id="Alarm::stop"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a962a1d064595e838fae0e6427668e4b2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4stopEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Interrupts the chronometer and resets to zero. </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm10isCompleteEv">
+<span id="_CPPv3NK5Alarm10isCompleteEv"></span><span id="_CPPv2NK5Alarm10isCompleteEv"></span><span id="Alarm::isCompleteC"></span><span class="target" id="classpq_1_1_abstract_timer_1ad1dad69f77428bf236af90a1ae484755"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isComplete</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm10isCompleteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd></dd></dl>
+
+</p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm5pauseEv">
-<span id="_CPPv3N5Alarm5pauseEv"></span><span id="_CPPv2N5Alarm5pauseEv"></span><span id="Alarm::pause"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a28dcf317e5cb96744505352681553013"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5pauseEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm5pauseEv"></span><span id="_CPPv2N5Alarm5pauseEv"></span><span id="Alarm::pause"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a28dcf317e5cb96744505352681553013"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm5pauseEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Interrupts the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Alarm6resumeEv">
-<span id="_CPPv3N5Alarm6resumeEv"></span><span id="_CPPv2N5Alarm6resumeEv"></span><span id="Alarm::resume"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ab5bda873743cfcc0d3dcbcb3548d925d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6resumeEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Alarm6resumeEv"></span><span id="_CPPv2N5Alarm6resumeEv"></span><span id="Alarm::resume"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ab5bda873743cfcc0d3dcbcb3548d925d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resume</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm6resumeEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Resumes process. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm7elapsedEv">
-<span id="_CPPv3NK5Alarm7elapsedEv"></span><span id="_CPPv2NK5Alarm7elapsedEv"></span><span id="Alarm::elapsedC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ae9012477635738450725b724749060e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm7elapsedEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm7elapsedEv"></span><span id="_CPPv2NK5Alarm7elapsedEv"></span><span id="Alarm::elapsedC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1ae9012477635738450725b724749060e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elapsed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm7elapsedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The time currently elapsed by the chronometer (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Alarm3addEf">
-<span id="_CPPv3N5Alarm3addEf"></span><span id="_CPPv2N5Alarm3addEf"></span><span id="Alarm::add__float"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a2df769a6bc6a95db867150e3de1ed5b6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">add</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm3addEf" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm9hasPassedEf">
+<span id="_CPPv3NK5Alarm9hasPassedEf"></span><span id="_CPPv2NK5Alarm9hasPassedEf"></span><span id="Alarm::hasPassed__floatC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a15f97c1ded3d997fe5014dbd249ade6b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasPassed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeout</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9hasPassedEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff elapsed time has passed given timeout. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm9hasPassedEfb">
+<span id="_CPPv3N5Alarm9hasPassedEfb"></span><span id="_CPPv2N5Alarm9hasPassedEfb"></span><span id="Alarm::hasPassed__float.b"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a84c191f6b3cf2c1e8ea002bdcea13771"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasPassed</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeout</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">restartIfPassed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm9hasPassedEfb" title="Permalink to this definition"></a><br /></dt>
+<dd><p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Returns true iff elapsed time has passed given timeout (optional argument to automatically restart if true). </p>
+</dd></dl>
+
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm7addTimeEf">
+<span id="_CPPv3N5Alarm7addTimeEf"></span><span id="_CPPv2N5Alarm7addTimeEf"></span><span id="Alarm::addTime__float"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a0bb9bb33bf7e2e5fc8980a96f935a8fc"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm7addTimeEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Adds/subtracts time to the chronometer. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Alarm9isRunningEv">
-<span id="_CPPv3NK5Alarm9isRunningEv"></span><span id="_CPPv2NK5Alarm9isRunningEv"></span><span id="Alarm::isRunningC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a02def4d157d903e2f9d724d01a57c8b0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRunning</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9isRunningEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK5Alarm9isRunningEv"></span><span id="_CPPv2NK5Alarm9isRunningEv"></span><span id="Alarm::isRunningC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a35cafa255acf2304c3ff8ddd922c4ec2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRunning</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9isRunningEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the chronometer is currently running. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Alarm9isStartedEv">
+<span id="_CPPv3NK5Alarm9isStartedEv"></span><span id="_CPPv2NK5Alarm9isStartedEv"></span><span id="Alarm::isStartedC"></span><span class="target" id="classpq_1_1_abstract_chronometer_1a190b9031878f7a4a40c50ee98da4574b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isStarted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Alarm9isStartedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd></dd></dl>
+
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm4stopEv">
+<span id="_CPPv3N5Alarm4stopEv"></span><span id="_CPPv2N5Alarm4stopEv"></span><span id="Alarm::stop"></span><span class="target" id="classpq_1_1_timeable_1a208dbebe3ec7df301d86769ea559fbee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm4stopEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Interrupts the chronometer and resets to zero. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm11togglePauseEv">
+<span id="_CPPv3N5Alarm11togglePauseEv"></span><span id="_CPPv2N5Alarm11togglePauseEv"></span><span id="Alarm::togglePause"></span><span class="target" id="classpq_1_1_timeable_1a11a02f24568960663d672b5064e2a09a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">togglePause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm11togglePauseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Toggles pause/unpause. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm15analogToDigitalEf">
+<span id="_CPPv3N5Alarm15analogToDigitalEf"></span><span id="_CPPv2N5Alarm15analogToDigitalEf"></span><span id="Alarm::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Alarm15digitalToAnalogEb">
+<span id="_CPPv3N5Alarm15digitalToAnalogEb"></span><span id="_CPPv2N5Alarm15digitalToAnalogEb"></span><span id="Alarm::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Alarm15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
 </div>
@@ -325,12 +505,12 @@ alarm at random periods of time.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Chronometer.html"><span class="doc">Chronometer</span></a></p></li>
 <li><p><a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a></p></li>
 <li><p><a class="reference internal" href="Ramp.html"><span class="doc">Ramp</span></a></p></li>
-<li><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a></p></li>
+<li><p><a class="reference internal" href="Wave.html"><span class="doc">Wave</span></a></p></li>
 </ul>
 </section>
 </section>

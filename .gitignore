@@ -1,5 +1,38 @@
+# Ignore base stuff.
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 *env/
+
+# Ignore Doxygen internal/cache files
+*.md5
+*.map
+
+# Ignore LaTeX, RTF, or other non-HTML outputs if generated
+latex/
+rtf/
+xml/
+man/
+rtfd/
+rtf/
+docbook/
+
+# Ignore intermediate/temporary files
+*.tmp
+*.log
+*.tag
+*.aux
+*.toc
+*.idx
+*.out
+*.ilg
+*.ind
+*.blg
+*.bbl
+*.dvi
+
+# Ignore backup files
+*~
+*.bak
+*.swp

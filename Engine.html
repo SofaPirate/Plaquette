@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engine &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Engine &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,15 +67,16 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Engine</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv46Engine"><code class="docutils literal notranslate"><span class="pre">Engine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-rate">Sample Rate</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -89,12 +89,17 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -110,9 +115,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="structure.html">Structure</a></li>
-      <li class="breadcrumb-item active">Engine</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="structure.html">Structure</a> &raquo;</li>
+      <li>Engine</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -122,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="engine">
-<h1>Engine<a class="headerlink" href="#engine" title="Link to this heading"></a></h1>
+<h1>Engine<a class="headerlink" href="#engine" title="Permalink to this heading"></a></h1>
 <p>A control structure that acts like the <strong>conductor of an orchestra</strong>, managing an ensemble of <strong>units</strong>.
 It handles their initialization, updates, and timing, ensuring that all components remain synchronized.</p>
 <p>By default, all units are automatically added to the <strong>primary engine</strong> which can be accessed using the
@@ -130,15 +135,13 @@ global object <code class="docutils literal notranslate"><span class="pre">Plaqu
 allowing for multi-tasking, grouping units, switching between ensembles of units, and save power by
 running engines at lower frequency.</p>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <p>To create and use an engine, simply declare it:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Engine</span><span class="w"> </span><span class="n">myEngine</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Engine</span><span class="w"> </span><span class="n">myEngine</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>You will need to call the engine’s <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function at initialization, and then its <code class="docutils literal notranslate"><span class="pre">step()</span></code> function
-at a regular pace.</p>
 <p>To assign units to a specific engine, add it as the last parameter at construction:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SquareWave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">myEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Use myEngine instead of the default</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">myEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Use myEngine instead of the default</span>
 </pre></div>
 </div>
 <p>Each engine provides its own time measurements:</p>
@@ -147,13 +150,49 @@ at a regular pace.</p>
 <span class="kt">uint64_t</span><span class="w"> </span><span class="n">us</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myEngine</span><span class="p">.</span><span class="n">microSeconds</span><span class="p">();</span><span class="w"> </span><span class="c1">// Time in microseconds</span>
 </pre></div>
 </div>
-<p>For more in-depth explanations and examples please read <a class="reference internal" href="advanced.html#secondary-engines"><span class="std std-ref">Using Secondary Engines</span></a>.</p>
+<p>You will need to call the engine’s <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function at initialization, and then its <code class="docutils literal notranslate"><span class="pre">step()</span></code> function
+at a regular pace.</p>
+<section id="sample-rate">
+<h3>Sample Rate<a class="headerlink" href="#sample-rate" title="Permalink to this heading"></a></h3>
+<p>The Engine <code class="docutils literal notranslate"><span class="pre">step()</span></code> function computes timings and peforms background update operations on units.
+It is possible to set a specific (target) sample rate using <code class="docutils literal notranslate"><span class="pre">sampleRate(rate)</span></code> to reduce computation load
+for operations that do not need to be performed as fast as possible.</p>
+<p>The engine’s <code class="docutils literal notranslate"><span class="pre">step()</span></code> function returns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the step has been fully performed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> if it is still waiting for the next “tick”</p></li>
+</ul>
+</div></blockquote>
+<p>As an example, if one sets a 100 Hz sample rate on engine <code class="docutils literal notranslate"><span class="pre">myEngine</span></code> by calling
+<code class="docutils literal notranslate"><span class="pre">myEngine.sampleRate(100)</span></code>, the <code class="docutils literal notranslate"><span class="pre">myEngine.step()</span></code> function should return <code class="docutils literal notranslate"><span class="pre">true</span></code> about 100 times
+per second and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<p>To fully support custom sample rates and avoid performing unnecessary operations on units, the
+<code class="docutils literal notranslate"><span class="pre">step()</span></code> function should be used as a <a class="reference external" href="https://en.wikipedia.org/wiki/Guard_(computer_science)">guard condition</a>
+in the main stepping loop.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">myEngine</span><span class="p">.</span><span class="n">sampleRate</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// Target sample rate: 100 Hz.</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">myEngine</span><span class="p">.</span><span class="n">step</span><span class="p">())</span><span class="w"> </span><span class="c1">// Guard condition.</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// Exit the loop.</span>
+
+<span class="w">  </span><span class="c1">// The operations below will be performed at ~100 Hz.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more in-depth explanations and examples please read <a class="reference internal" href="advanced.html#secondary-engines"><span class="std std-ref">Synchronizing Groups of Units with Secondary Engines</span></a>.</p>
+</section>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>This example demonstrates the use of a secondary engine on an Arduino Uno or Nano using
 timer2 interrupt.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">Engine</span><span class="w"> </span><span class="n">timerEngine</span><span class="p">;</span><span class="w"> </span><span class="c1">// The secondary timer engine.</span>
 
@@ -163,81 +202,118 @@ timer2 interrupt.</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">timerEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Built-in LED (timer engine).</span>
 
 <span class="c1">// Primary engine begin().</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">timerEngine</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="c1">// Begin timer engine.</span>
 <span class="w">  </span><span class="n">timerSetup</span><span class="p">();</span><span class="w">        </span><span class="c1">// Initialize timer interrupt timer2.</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Primary engine step().</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">serialMetro</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">serialMetro</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Timer2 interrupt: will be called at 1kHz frequency.</span>
-<span class="n">ISR</span><span class="p">(</span><span class="n">TIMER2_COMPA_vect</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">ISR</span><span class="p">(</span><span class="n">TIMER2_COMPA_vect</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">timerEngine</span><span class="p">.</span><span class="n">step</span><span class="p">();</span><span class="w"> </span><span class="c1">// Step engine.</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">toggleMetro</span><span class="p">)</span><span class="w"> </span><span class="c1">// Toggle LED on metro bang.</span>
-<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Timer2 setup for 1kHz on AVR.</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">timerSetup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">timerSetup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Stop Timer2</span>
-<span class="w">  </span><span class="n">TCCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="n">TCCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="n">TCNT2</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">TCCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">TCCR2B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">TCNT2</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">  </span><span class="c1">// Set compare match register for 1 kHz increments</span>
+<span class="w">  </span><span class="c1">// Set compare match register for 1 kHz increments.</span>
 <span class="w">  </span><span class="c1">// 16 MHz / (prescaler * 1000) - 1 = OCR2A</span>
-<span class="w">  </span><span class="n">OCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">124</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Try prescaler = 128 =&gt; OCR2A = (16e6 / (128 * 1000)) - 1 = ~124</span>
+<span class="w">  </span><span class="n">OCR2A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">124</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">TCCR2A</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">WGM21</span><span class="p">);</span><span class="w"> </span><span class="c1">// CTC mode (Clear Timer on Compare Match)</span>
-<span class="w">  </span><span class="n">TCCR2B</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CS22</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CS20</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set prescaler to 128</span>
-<span class="w">  </span><span class="n">TIMSK2</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">OCIE2A</span><span class="p">);</span><span class="w"> </span><span class="c1">// Enable Timer2 compare interrupt</span>
+<span class="w">  </span><span class="n">TCCR2A</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">WGM21</span><span class="p">);</span><span class="w"> </span><span class="c1">// CTC mode (Clear Timer on Compare Match).</span>
+<span class="w">  </span><span class="n">TCCR2B</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CS22</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CS20</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set prescaler to 128.</span>
+<span class="w">  </span><span class="n">TIMSK2</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">OCIE2A</span><span class="p">);</span><span class="w"> </span><span class="c1">// Enable Timer2 compare interrupt.</span>
 
-<span class="w">  </span><span class="n">sei</span><span class="p">();</span><span class="w"> </span><span class="c1">// Enable global interrupts</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">sei</span><span class="p">();</span><span class="w"> </span><span class="c1">// Enable global interrupts.</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv46Engine">
-<span id="_CPPv36Engine"></span><span id="_CPPv26Engine"></span><span id="Engine"></span><span class="target" id="classpq_1_1_engine"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Engine</span></span></span><a class="headerlink" href="#_CPPv46Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv36Engine"></span><span id="_CPPv26Engine"></span><span id="Engine"></span><span class="target" id="classpq_1_1_engine"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Engine</span></span></span><a class="headerlink" href="#_CPPv46Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The main Plaquette static class containing all the units. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine8preBeginEm">
+<span id="_CPPv3N6Engine8preBeginEm"></span><span id="_CPPv2N6Engine8preBeginEm"></span><span id="Engine::preBegin__unsigned-l"></span><span class="target" id="classpq_1_1_engine_1ac4da59764e8f3fc7473f408e3ae4a583"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preBegin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudrate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_SERIAL_BAUD_RATE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8preBeginEm" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initializes all components (calls begin() on all of them). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine9postBeginEv">
+<span id="_CPPv3N6Engine9postBeginEv"></span><span id="_CPPv2N6Engine9postBeginEv"></span><span id="Engine::postBegin"></span><span class="target" id="classpq_1_1_engine_1a9777126f3a019fc4eee4d5d7d4156d2d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">postBegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine9postBeginEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Performs additional tasks after the class to begin(). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine7preStepEv">
+<span id="_CPPv3N6Engine7preStepEv"></span><span id="_CPPv2N6Engine7preStepEv"></span><span id="Engine::preStep"></span><span class="target" id="classpq_1_1_engine_1a10a604b576ff5e5c209a22298236ce10"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preStep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine7preStepEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Updates all components (calls <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a> on all of them). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine8timeStepEv">
+<span id="_CPPv3N6Engine8timeStepEv"></span><span id="_CPPv2N6Engine8timeStepEv"></span><span id="Engine::timeStep"></span><span class="target" id="classpq_1_1_engine_1a3ce40d6bb6e1f4bc824af6a60b941493"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeStep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8timeStepEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Performs additional tasks after the class to <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true if the program should </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine5beginEm">
-<span id="_CPPv3N6Engine5beginEm"></span><span id="_CPPv2N6Engine5beginEm"></span><span id="Engine::begin__unsigned-l"></span><span class="target" id="classpq_1_1_engine_1ae2ad1f5d4704504715112894993b8539"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudrate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_SERIAL_BAUD_RATE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine5beginEm" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine5beginEm"></span><span id="_CPPv2N6Engine5beginEm"></span><span id="Engine::begin__unsigned-l"></span><span class="target" id="classpq_1_1_engine_1ae2ad1f5d4704504715112894993b8539"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudrate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_SERIAL_BAUD_RATE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine5beginEm" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Function to be used within the PlaquetteLib context (needs to be called at top of setup() method). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine4stepEv">
-<span id="_CPPv3N6Engine4stepEv"></span><span id="_CPPv2N6Engine4stepEv"></span><span id="Engine::step"></span><span class="target" id="classpq_1_1_engine_1a3582b5debc40a942a8ec627fa497513e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">step</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine4stepEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine4stepEv"></span><span id="_CPPv2N6Engine4stepEv"></span><span id="Engine::step"></span><span class="target" id="classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">step</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine4stepEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Function to be used within the PlaquetteLib context (needs to be called at top of loop() method). </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine3endEv">
+<span id="_CPPv3N6Engine3endEv"></span><span id="_CPPv2N6Engine3endEv"></span><span id="Engine::end"></span><span class="target" id="classpq_1_1_engine_1a7ac716e5a449faae3670b45c4a51e2b2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine3endEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Optional function to be used within the PlaquetteLib context. </p>
+<p>No need to call it if the program is looping indefinitely. Call if the program stops at some point. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine6nUnitsEv">
-<span id="_CPPv3N6Engine6nUnitsEv"></span><span id="_CPPv2N6Engine6nUnitsEv"></span><span id="Engine::nUnits"></span><span class="target" id="classpq_1_1_engine_1a315fcb51d86bc570acd59e6993f51e9c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nUnits</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine6nUnitsEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine6nUnitsEv"></span><span id="_CPPv2N6Engine6nUnitsEv"></span><span id="Engine::nUnits"></span><span class="target" id="classpq_1_1_engine_1a315fcb51d86bc570acd59e6993f51e9c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nUnits</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine6nUnitsEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the current number of units. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine7secondsEb">
-<span id="_CPPv3NK6Engine7secondsEb"></span><span id="_CPPv2NK6Engine7secondsEb"></span><span id="Engine::seconds__bC"></span><span class="target" id="classpq_1_1_engine_1a9872aa30482e432c749002fd302fa8f5"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine7secondsEb" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine7secondsEb"></span><span id="_CPPv2NK6Engine7secondsEb"></span><span id="Engine::seconds__bC"></span><span class="target" id="classpq_1_1_engine_1a9872aa30482e432c749002fd302fa8f5"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine7secondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in seconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a3582b5debc40a942a8ec627fa497513e"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the time in seconds </p>
 </dd>
 </dl>
@@ -245,14 +321,14 @@ timer2 interrupt.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine12milliSecondsEb">
-<span id="_CPPv3NK6Engine12milliSecondsEb"></span><span id="_CPPv2NK6Engine12milliSecondsEb"></span><span id="Engine::milliSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1ac465ccb8db3c58bd1b391a9b5e230c96"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12milliSecondsEb" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine12milliSecondsEb"></span><span id="_CPPv2NK6Engine12milliSecondsEb"></span><span id="Engine::milliSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1ac465ccb8db3c58bd1b391a9b5e230c96"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12milliSecondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in milliseconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a3582b5debc40a942a8ec627fa497513e"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the time in milliseconds </p>
 </dd>
 </dl>
@@ -260,14 +336,14 @@ timer2 interrupt.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine12microSecondsEb">
-<span id="_CPPv3NK6Engine12microSecondsEb"></span><span id="_CPPv2NK6Engine12microSecondsEb"></span><span id="Engine::microSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1a2d28032b50784937016f41667f1d6839"></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12microSecondsEb" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine12microSecondsEb"></span><span id="_CPPv2NK6Engine12microSecondsEb"></span><span id="Engine::microSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1a2d28032b50784937016f41667f1d6839"></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12microSecondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in microseconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a3582b5debc40a942a8ec627fa497513e"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the time in microseconds </p>
 </dd>
 </dl>
@@ -275,38 +351,77 @@ timer2 interrupt.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine6nStepsEv">
-<span id="_CPPv3NK6Engine6nStepsEv"></span><span id="_CPPv2NK6Engine6nStepsEv"></span><span id="Engine::nStepsC"></span><span class="target" id="classpq_1_1_engine_1adff9c4b9b3a646789ba702d1977979e4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine6nStepsEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine6nStepsEv"></span><span id="_CPPv2NK6Engine6nStepsEv"></span><span id="Engine::nStepsC"></span><span class="target" id="classpq_1_1_engine_1adff9c4b9b3a646789ba702d1977979e4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine6nStepsEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns number of steps. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6Engine17hasAutoSampleRateEv">
+<span id="_CPPv3NK6Engine17hasAutoSampleRateEv"></span><span id="_CPPv2NK6Engine17hasAutoSampleRateEv"></span><span id="Engine::hasAutoSampleRateC"></span><span class="target" id="classpq_1_1_engine_1addf9519321da7126c151cece1cc5c1c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasAutoSampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine17hasAutoSampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the auto sample rate mode is enabled (default). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine14autoSampleRateEv">
+<span id="_CPPv3N6Engine14autoSampleRateEv"></span><span id="_CPPv2N6Engine14autoSampleRateEv"></span><span id="Engine::autoSampleRate"></span><span class="target" id="classpq_1_1_engine_1a8aa59b7fc3d1e314513e123ff5aac0a5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">autoSampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine14autoSampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Enables auto sample rate mode (default). </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine10sampleRateEf">
-<span id="_CPPv3N6Engine10sampleRateEf"></span><span id="_CPPv2N6Engine10sampleRateEf"></span><span id="Engine::sampleRate__float"></span><span class="target" id="classpq_1_1_engine_1a8278c05cfc60c754a13e9b6c20b39828"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine10sampleRateEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine10sampleRateEf"></span><span id="_CPPv2N6Engine10sampleRateEf"></span><span id="Engine::sampleRate__float"></span><span class="target" id="classpq_1_1_engine_1a8278c05cfc60c754a13e9b6c20b39828"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine10sampleRateEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets sample rate to a fixed value, thus disabling auto sampling rate. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine12samplePeriodEf">
-<span id="_CPPv3N6Engine12samplePeriodEf"></span><span id="_CPPv2N6Engine12samplePeriodEf"></span><span id="Engine::samplePeriod__float"></span><span class="target" id="classpq_1_1_engine_1acc49c884835d6b49f55235b4324364cd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">samplePeriod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine12samplePeriodEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine12samplePeriodEf"></span><span id="_CPPv2N6Engine12samplePeriodEf"></span><span id="Engine::samplePeriod__float"></span><span class="target" id="classpq_1_1_engine_1acc49c884835d6b49f55235b4324364cd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">samplePeriod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine12samplePeriodEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets sample period to a fixed value, thus disabling auto sampling rate. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine10sampleRateEv">
-<span id="_CPPv3NK6Engine10sampleRateEv"></span><span id="_CPPv2NK6Engine10sampleRateEv"></span><span id="Engine::sampleRateC"></span><span class="target" id="classpq_1_1_engine_1a4f492a1bd7b55f0dc7dd0a94eb5bdd6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine10sampleRateEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine10sampleRateEv"></span><span id="_CPPv2NK6Engine10sampleRateEv"></span><span id="Engine::sampleRateC"></span><span class="target" id="classpq_1_1_engine_1a4f492a1bd7b55f0dc7dd0a94eb5bdd6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns sample rate. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine12samplePeriodEv">
-<span id="_CPPv3NK6Engine12samplePeriodEv"></span><span id="_CPPv2NK6Engine12samplePeriodEv"></span><span id="Engine::samplePeriodC"></span><span class="target" id="classpq_1_1_engine_1ab62ec483d80572cba819e77a2f44334c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12samplePeriodEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine12samplePeriodEv"></span><span id="_CPPv2NK6Engine12samplePeriodEv"></span><span id="Engine::samplePeriodC"></span><span class="target" id="classpq_1_1_engine_1ab62ec483d80572cba819e77a2f44334c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns sample period. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6Engine21deltaTimeMicroSecondsEv">
+<span id="_CPPv3NK6Engine21deltaTimeMicroSecondsEv"></span><span id="_CPPv2NK6Engine21deltaTimeMicroSecondsEv"></span><span id="Engine::deltaTimeMicroSecondsC"></span><span class="target" id="classpq_1_1_engine_1a73ed603aaf5234c9adb8213dfc61a75f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deltaTimeMicroSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine21deltaTimeMicroSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns time between steps (in microseconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6Engine31deltaTimeSecondsTimesFixed32MaxEv">
+<span id="_CPPv3NK6Engine31deltaTimeSecondsTimesFixed32MaxEv"></span><span id="_CPPv2NK6Engine31deltaTimeSecondsTimesFixed32MaxEv"></span><span id="Engine::deltaTimeSecondsTimesFixed32MaxC"></span><span class="target" id="classpq_1_1_engine_1a5ccb944ad6434fee9e9a54c6572a9366"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deltaTimeSecondsTimesFixed32Max</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine31deltaTimeSecondsTimesFixed32MaxEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns time between steps, expressed in fixed point propotion. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine9isPrimaryEv">
-<span id="_CPPv3NK6Engine9isPrimaryEv"></span><span id="_CPPv2NK6Engine9isPrimaryEv"></span><span id="Engine::isPrimaryC"></span><span class="target" id="classpq_1_1_engine_1a757f6d8e148a2b10e2e8c4882ff5b9ff"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPrimary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine9isPrimaryEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK6Engine9isPrimaryEv"></span><span id="_CPPv2NK6Engine9isPrimaryEv"></span><span id="Engine::isPrimaryC"></span><span class="target" id="classpq_1_1_engine_1a757f6d8e148a2b10e2e8c4882ff5b9ff"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPrimary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine9isPrimaryEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true if this <a class="reference internal" href="#classpq_1_1_engine"><span class="std std-ref">Engine</span></a> is the main. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine13randomTriggerEf">
+<span id="_CPPv3N6Engine13randomTriggerEf"></span><span id="_CPPv2N6Engine13randomTriggerEf"></span><span id="Engine::randomTrigger__float"></span><span class="target" id="classpq_1_1_engine_1a77a8ce2e8f310c3c2cc3e8bf832e2942"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomTrigger</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine13randomTriggerEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Randomly triggers an event about once per time window, on average. </p>
+<p>Call this function once in each <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>. It will occasionally return true, with the frequency adjusted so that you get roughly one event for each <code class="docutils literal notranslate"><span class="pre">timeWindow</span></code> period, no matter how fast your loop is running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeWindow</strong> – duration of the window (in seconds) </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true when an event occurs during this sample </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -314,7 +429,7 @@ timer2 interrupt.</p>
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine7primaryEv">
-<span id="_CPPv3N6Engine7primaryEv"></span><span id="_CPPv2N6Engine7primaryEv"></span><span id="Engine::primary"></span><span class="target" id="classpq_1_1_engine_1a45a0de76dadb5e62933ae5e29f2621d2"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">primary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine7primaryEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N6Engine7primaryEv"></span><span id="_CPPv2N6Engine7primaryEv"></span><span id="Engine::primary"></span><span class="target" id="classpq_1_1_engine_1a45a0de76dadb5e62933ae5e29f2621d2"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">primary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine7primaryEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the main instance of Plaquette. </p>
 </dd></dl>
 
@@ -323,12 +438,12 @@ timer2 interrupt.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a></p></li>
 <li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a></p></li>
 <li><p><a class="reference internal" href="seconds.html"><span class="doc">seconds()</span></a></p></li>
-<li><p><a class="reference internal" href="advanced.html#secondary-engines"><span class="std std-ref">Using Secondary Engines</span></a></p></li>
+<li><p><a class="reference internal" href="advanced.html#secondary-engines"><span class="std std-ref">Synchronizing Groups of Units with Secondary Engines</span></a></p></li>
 </ul>
 </section>
 </section>

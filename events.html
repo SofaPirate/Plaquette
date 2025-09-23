@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Managing Events &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Managing Events &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -76,9 +75,14 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -86,6 +90,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -101,8 +106,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Managing Events</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Managing Events</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -112,7 +117,7 @@
            <div itemprop="articleBody">
              
   <section id="managing-events">
-<h1>Managing Events<a class="headerlink" href="#managing-events" title="Link to this heading"></a></h1>
+<h1>Managing Events<a class="headerlink" href="#managing-events" title="Permalink to this heading"></a></h1>
 <p>Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
 an event occurs instead of constantly checking for changes with conditional statements such as <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(button.changed())</span></code>.
 In Plaquette, this is achieved by <strong>events</strong> and function <strong>callbacks</strong>.</p>
@@ -136,8 +141,17 @@ time is up, so you can take the cookies out.</p>
 </ul>
 <p>Let us explore how this works with practical examples.</p>
 <section id="supported-events">
-<h2>Supported Events<a class="headerlink" href="#supported-events" title="Link to this heading"></a></h2>
+<h2>Supported Events<a class="headerlink" href="#supported-events" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>Event:</strong></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">onRise()</span></code></p></td>
@@ -195,7 +209,7 @@ time is up, so you can take the cookies out.</p>
 <td><p>✔</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="SquareWave.html"><span class="doc">SquareWave</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="Wave.html"><span class="doc">Wave</span></a></p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
@@ -211,58 +225,66 @@ time is up, so you can take the cookies out.</p>
 <td></td>
 <td><p>✔</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="Wave.html"><span class="doc">Wave</span></a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>✔</p></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="reacting-to-an-event">
-<h2>Reacting to an Event<a class="headerlink" href="#reacting-to-an-event" title="Link to this heading"></a></h2>
+<h2>Reacting to an Event<a class="headerlink" href="#reacting-to-an-event" title="Permalink to this heading"></a></h2>
 <p>Let us take an example where we want to react to the push of a button by switching an LED on and off.</p>
 <p>First, let us create the units we will be working with:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
 </pre></div>
 </div>
 <p>In order to react to an event, we first need to create a callback function which will be called when
 the event will happen:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Callback function to toggle the LED.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Then, we need to register our callback to an event. In this case, we will register our function <code class="docutils literal notranslate"><span class="pre">toggleLed()</span></code>
 to the <code class="docutils literal notranslate"><span class="pre">onRise()</span></code> event of our button unit, which will trigger at the instant the button is pressed.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Enable debouncing to avoid multiple events</span>
 
 <span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In this case, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function can be left empty because the callback will take care of all the logic.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
+<p>In this case, since the callback will take care of all the logic, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function can be left empty!</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here!</span>
 </pre></div>
 </div>
 <p>Here is the final code for this example:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
 
 <span class="c1">// Callback function to toggle the LED.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Enable debouncing to avoid multiple events</span>
 
 <span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
 </pre></div>
@@ -271,103 +293,103 @@ to the <code class="docutils literal notranslate"><span class="pre">onRise()</sp
 between the button and the LED?</p>
 </section>
 <section id="managing-multiple-events">
-<h2>Managing Multiple Events<a class="headerlink" href="#managing-multiple-events" title="Link to this heading"></a></h2>
+<h2>Managing Multiple Events<a class="headerlink" href="#managing-multiple-events" title="Permalink to this heading"></a></h2>
 <p>It is possible to register multiple callbacks with the same event. Likewise, a single callback can be registered
 with many events.</p>
 <p>Example: Launch both <code class="docutils literal notranslate"><span class="pre">toggleLed()</span></code> and <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> on button press, registering <code class="docutils literal notranslate"><span class="pre">printButton()</span></code> to both
 press and release events.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED connected to built-in pin</span>
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w">  </span><span class="c1">// Button connected to pin 2</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to built-in pin</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
 
 <span class="c1">// Callback function to toggle the LED.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Callback function to print button state.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">printButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Button &quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">button</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;pressed&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;released&quot;</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">printButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Button &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">button</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;pressed&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;released&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w">  </span><span class="c1">// Enable debouncing to avoid multiple events</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Enable debouncing to avoid multiple events</span>
 
 <span class="w">  </span><span class="c1">// Register callbacks for button events.</span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
 
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print button state</span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onFall</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Same here</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
 </pre></div>
 </div>
 </section>
 <section id="coordinating-parallel-events-with-metronomes">
-<h2>Coordinating Parallel Events with Metronomes<a class="headerlink" href="#coordinating-parallel-events-with-metronomes" title="Link to this heading"></a></h2>
+<h2>Coordinating Parallel Events with Metronomes<a class="headerlink" href="#coordinating-parallel-events-with-metronomes" title="Permalink to this heading"></a></h2>
 <p>There are many applications for which things happen concurrently at different pace, making
 one wish there could be multiple looping functions similar to <code class="docutils literal notranslate"><span class="pre">step()</span></code> running in parallel at different
 rates. This is easy to achieve in Plaquette using event-driven coding. Metronomes tick at a specific
 period, generating “bang” events which can trigger callbacks by registering them to the <code class="docutils literal notranslate"><span class="pre">onBang()</span></code> event.</p>
 <p>In this example, two metronomes control two LEDs, one digital and one analog, each at a different
 interval. A ramp is used to fade the analog LED.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led1</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w">  </span><span class="c1">// First LED (digital) connected to built-in pin</span>
-<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// Second LED (PWM) connected to pin 9</span>
-<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Metronome with a one second period</span>
-<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Metronome with a 2 second period</span>
-<span class="n">Ramp</span><span class="w"> </span><span class="nf">rampLed</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Short ramp to control LED 2</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led1</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// First LED (digital) connected to built-in pin</span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">            </span><span class="c1">// Second LED (PWM) connected to pin 9</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">        </span><span class="c1">// Metronome with a 1 second period</span>
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w">        </span><span class="c1">// Metronome with a 2 seconds period</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">rampLed</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w">            </span><span class="c1">// Short ramp to control LED 2</span>
 
 <span class="c1">// Function to toggle the first LED.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Function to start the ramp on second LED.</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">pingLed2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Register callbacks for the metronomes.</span>
-<span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Toggle LED 1 every second</span>
-<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed2</span><span class="p">);</span><span class="w">  </span><span class="c1">// Fade in LED 2 every 2 seconds</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle LED 1 every second</span>
+<span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">(</span><span class="n">pingLed2</span><span class="p">);</span><span class="w"> </span><span class="c1">// Fade in LED 2 every 2 seconds</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ramp second LED from 100% to 0%</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="creating-on-the-fly-callbacks">
-<h2>Creating On-the-fly Callbacks<a class="headerlink" href="#creating-on-the-fly-callbacks" title="Link to this heading"></a></h2>
+<h2>Creating On-the-fly Callbacks<a class="headerlink" href="#creating-on-the-fly-callbacks" title="Permalink to this heading"></a></h2>
 <p>For simple, localized actions, you can define callback functions directly inline using
 an <strong>anonymous function</strong> (also called <strong>lambda function</strong>) which can be created with
 the following syntax:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Function content goes here.</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>It allows you to write concise code without defining separate named functions and is
 thus especially useful for short, self-contained actions, keeping the code clean and readable.</p>
 <p>For example, we could rewrite the callback registration from the example above in a shorter
 way, like this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Register callbacks for the metronomes.</span>
 <span class="w">  </span><span class="n">metro1</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">led1</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Toggle LED 1 every second</span>
 <span class="w">  </span><span class="n">metro2</span><span class="p">.</span><span class="n">onBang</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// Fade in LED 2 every 2 seconds</span>
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading"></a></h2>
 <p>Event-driven programming in Plaquette simplifies the process of reacting to changes and scheduling
 actions, allowing you to write modular, expressive, and efficient code. By using callbacks and event
 sources like buttons and metronomes, you can manage complex behaviors that happen concurrently and at

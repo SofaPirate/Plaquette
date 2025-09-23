@@ -1,23 +1,23 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ContinuousServoOut &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>ContinuousServoOut &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,15 +67,13 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="extra.html">Extra</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="easings.html">Easings</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ContinuousServoOut</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv418ContinuousServoOut"><code class="docutils literal notranslate"><span class="pre">ContinuousServoOut</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -86,12 +83,17 @@
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -107,9 +109,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="extra.html">Extra</a></li>
-      <li class="breadcrumb-item active">ContinuousServoOut</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="extra.html">Extra</a> &raquo;</li>
+      <li>ContinuousServoOut</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="continuousservoout">
-<h1>ContinuousServoOut<a class="headerlink" href="#continuousservoout" title="Link to this heading"></a></h1>
+<h1>ContinuousServoOut<a class="headerlink" href="#continuousservoout" title="Permalink to this heading"></a></h1>
 <p>A source unit that controls a continuous rotation servo-motor. A continuous
 servo-motor can move indefinitely forward or backwards.</p>
 <p>Servo motors have three wires: power, ground, and signal. The power wire is
@@ -132,56 +134,56 @@ probably need to power them from a separate supply (i.e. not the +5V pin on
 your Arduino). Be sure to connect the grounds of the Arduino and external power
 supply together.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Every time a button is pushed, the motor is stopped. Then upon button release it
 starts moving in the opposite direction.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;PqServo.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// The servo-motor output on pin 9.</span>
-<span class="n">ContinuousServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="n">ContinuousServoOut</span><span class="w"> </span><span class="nf">servo</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// The push-button.</span>
-<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Preserves the servo last speed value.</span>
-<span class="kt">float</span><span class="w"> </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Debounce button.</span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Starts the servo.</span>
-<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Save speed.</span>
-<span class="w">    </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">servo</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+<span class="w">    </span><span class="n">lastValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">servo</span><span class="p">.</span><span class="n">get</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Stop servo.</span>
-<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">fell</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">fell</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Reset speed.</span>
-<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">lastValue</span><span class="p">);</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">lastValue</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// ... then invert it.</span>
-<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="n">servo</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv418ContinuousServoOut">
-<span id="_CPPv318ContinuousServoOut"></span><span id="_CPPv218ContinuousServoOut"></span><span id="ContinuousServoOut"></span><span class="target" id="classpq_1_1_continuous_servo_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContinuousServoOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractServoOut</span></span><a class="headerlink" href="#_CPPv418ContinuousServoOut" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv318ContinuousServoOut"></span><span id="_CPPv218ContinuousServoOut"></span><span id="ContinuousServoOut"></span><span class="target" id="classpq_1_1_continuous_servo_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ContinuousServoOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractServoOut</span></span><a class="headerlink" href="#_CPPv418ContinuousServoOut" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Continuous servo-motor. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine">
-<span id="_CPPv3N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine"></span><span id="_CPPv2N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine"></span><span id="ContinuousServoOut::ContinuousServoOut__uint8_t.EngineR"></span><span class="target" id="classpq_1_1_continuous_servo_out_1ad785426007c66a816f7d779ef67c1016"></span><span class="sig-name descname"><span class="n"><span class="pre">ContinuousServoOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine"></span><span id="_CPPv2N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine"></span><span id="ContinuousServoOut::ContinuousServoOut__uint8_t.EngineR"></span><span class="target" id="classpq_1_1_continuous_servo_out_1ad785426007c66a816f7d779ef67c1016"></span><span class="sig-name descname"><span class="n"><span class="pre">ContinuousServoOut</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pin</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor for a continuous rotation servo-motor. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pin</strong> – the pin number </p>
 </dd>
 </dl>
@@ -189,25 +191,25 @@ starts moving in the opposite direction.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut4stopEv">
-<span id="_CPPv3N18ContinuousServoOut4stopEv"></span><span id="_CPPv2N18ContinuousServoOut4stopEv"></span><span id="ContinuousServoOut::stop"></span><span class="target" id="classpq_1_1_continuous_servo_out_1ad4a6c886903e97d72519c166bd360a62"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut4stopEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N18ContinuousServoOut4stopEv"></span><span id="_CPPv2N18ContinuousServoOut4stopEv"></span><span id="ContinuousServoOut::stop"></span><span class="target" id="classpq_1_1_continuous_servo_out_1ad4a6c886903e97d72519c166bd360a62"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut4stopEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Stops the servo-motor. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut7reverseEv">
-<span id="_CPPv3N18ContinuousServoOut7reverseEv"></span><span id="_CPPv2N18ContinuousServoOut7reverseEv"></span><span id="ContinuousServoOut::reverse"></span><span class="target" id="classpq_1_1_continuous_servo_out_1a9a8f16b597419732a8575c228af86eca"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut7reverseEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N18ContinuousServoOut7reverseEv"></span><span id="_CPPv2N18ContinuousServoOut7reverseEv"></span><span id="ContinuousServoOut::reverse"></span><span class="target" id="classpq_1_1_continuous_servo_out_1a9a8f16b597419732a8575c228af86eca"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reverse</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut7reverseEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sends servo-motor in reverse mode. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut3putEf">
-<span id="_CPPv3N18ContinuousServoOut3putEf"></span><span id="_CPPv2N18ContinuousServoOut3putEf"></span><span id="ContinuousServoOut::put__float"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a0697cd97c70230a0ef8f3f42bb21f857"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut3putEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N18ContinuousServoOut3putEf"></span><span id="_CPPv2N18ContinuousServoOut3putEf"></span><span id="ContinuousServoOut::put__float"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a0697cd97c70230a0ef8f3f42bb21f857"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -215,14 +217,101 @@ starts moving in the opposite direction.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut3pinEv">
-<span id="_CPPv3NK18ContinuousServoOut3pinEv"></span><span id="_CPPv2NK18ContinuousServoOut3pinEv"></span><span id="ContinuousServoOut::pinC"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a89692386faed8fb012ee6193c59f5f4c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut3pinEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK18ContinuousServoOut3pinEv"></span><span id="_CPPv2NK18ContinuousServoOut3pinEv"></span><span id="ContinuousServoOut::pinC"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a89692386faed8fb012ee6193c59f5f4c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut3pinEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the pin this servomotor is attached to. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut8activateEv">
+<span id="_CPPv3N18ContinuousServoOut8activateEv"></span><span id="_CPPv2N18ContinuousServoOut8activateEv"></span><span id="ContinuousServoOut::activate"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a710f1efadbbe855e15de5f46e8b7db66"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">activate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut8activateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Activates the servomotor (default). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut10deactivateEv">
+<span id="_CPPv3N18ContinuousServoOut10deactivateEv"></span><span id="_CPPv2N18ContinuousServoOut10deactivateEv"></span><span id="ContinuousServoOut::deactivate"></span><span class="target" id="classpq_1_1_abstract_servo_out_1ae39cabe094fbc2a0f1da7a69bc8d27ef"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deactivate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut10deactivateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Deactivates the servomotor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut8isActiveEv">
+<span id="_CPPv3N18ContinuousServoOut8isActiveEv"></span><span id="_CPPv2N18ContinuousServoOut8isActiveEv"></span><span id="ContinuousServoOut::isActive"></span><span class="target" id="classpq_1_1_abstract_servo_out_1adf66e20f291b5129214f51f1f75955d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut8isActiveEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the servomotor is active. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut3getEv">
-<span id="_CPPv3N18ContinuousServoOut3getEv"></span><span id="_CPPv2N18ContinuousServoOut3getEv"></span><span id="ContinuousServoOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut3getEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N18ContinuousServoOut3getEv"></span><span id="_CPPv2N18ContinuousServoOut3getEv"></span><span id="ContinuousServoOut::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut5mapToEff">
+<span id="_CPPv3N18ContinuousServoOut5mapToEff"></span><span id="_CPPv2N18ContinuousServoOut5mapToEff"></span><span id="ContinuousServoOut::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_source_1a2ee82196b5973d1c38cd0fb327233044"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut7secondsEv">
+<span id="_CPPv3NK18ContinuousServoOut7secondsEv"></span><span id="_CPPv2NK18ContinuousServoOut7secondsEv"></span><span id="ContinuousServoOut::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut12milliSecondsEv">
+<span id="_CPPv3NK18ContinuousServoOut12milliSecondsEv"></span><span id="_CPPv2NK18ContinuousServoOut12milliSecondsEv"></span><span id="ContinuousServoOut::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut12microSecondsEv">
+<span id="_CPPv3NK18ContinuousServoOut12microSecondsEv"></span><span id="_CPPv2NK18ContinuousServoOut12microSecondsEv"></span><span id="ContinuousServoOut::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut6nStepsEv">
+<span id="_CPPv3NK18ContinuousServoOut6nStepsEv"></span><span id="_CPPv2NK18ContinuousServoOut6nStepsEv"></span><span id="ContinuousServoOut::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut10sampleRateEv">
+<span id="_CPPv3NK18ContinuousServoOut10sampleRateEv"></span><span id="_CPPv2NK18ContinuousServoOut10sampleRateEv"></span><span id="ContinuousServoOut::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK18ContinuousServoOut12samplePeriodEv">
+<span id="_CPPv3NK18ContinuousServoOut12samplePeriodEv"></span><span id="_CPPv2NK18ContinuousServoOut12samplePeriodEv"></span><span id="ContinuousServoOut::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18ContinuousServoOut12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOutcvfEv">
+<span id="_CPPv3N18ContinuousServoOutcvfEv"></span><span id="_CPPv2N18ContinuousServoOutcvfEv"></span><span id="ContinuousServoOut::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOutcvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOutcvbEv">
+<span id="_CPPv3N18ContinuousServoOutcvbEv"></span><span id="_CPPv2N18ContinuousServoOutcvbEv"></span><span id="ContinuousServoOut::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOutcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut15analogToDigitalEf">
+<span id="_CPPv3N18ContinuousServoOut15analogToDigitalEf"></span><span id="_CPPv2N18ContinuousServoOut15analogToDigitalEf"></span><span id="ContinuousServoOut::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N18ContinuousServoOut15digitalToAnalogEb">
+<span id="_CPPv3N18ContinuousServoOut15digitalToAnalogEb"></span><span id="_CPPv2N18ContinuousServoOut15digitalToAnalogEb"></span><span id="ContinuousServoOut::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18ContinuousServoOut15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
 </div>
@@ -230,7 +319,7 @@ starts moving in the opposite direction.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogOut.html"><span class="doc">AnalogOut</span></a></p></li>
 <li><p><a class="reference internal" href="ServoOut.html"><span class="doc">ServoOut</span></a></p></li>

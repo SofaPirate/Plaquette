@@ -71,4 +71,4 @@ Sequentially ramps through different values.
 - :doc:`Chronometer`
 - :doc:`easings`
 - :doc:`Metronome`
-- :doc:`TriangleWave`
+- :doc:`Wave`

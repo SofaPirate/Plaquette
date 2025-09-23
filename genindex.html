@@ -1,22 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Index &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -27,16 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -65,9 +64,14 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -75,6 +79,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -90,8 +95,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -114,6 +119,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -121,19 +127,33 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Alarm.html#_CPPv45Alarm">Alarm (C++ class)</a>
 </li>
-      <li><a href="Alarm.html#_CPPv4N5Alarm3addEf">Alarm::add (C++ function)</a>
+      <li><a href="Alarm.html#_CPPv4N5Alarm7addTimeEf">Alarm::addTime (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm5AlarmER6Engine">Alarm::Alarm (C++ function)</a>, <a href="Alarm.html#_CPPv4N5Alarm5AlarmEfR6Engine">[1]</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm15analogToDigitalEf">Alarm::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm7changedEv">Alarm::changed (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm11changeStateEv">Alarm::changeState (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm15digitalToAnalogEb">Alarm::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm8durationEf">Alarm::duration (C++ function)</a>, <a href="Alarm.html#_CPPv4NK5Alarm8durationEv">[1]</a>
 </li>
       <li><a href="Alarm.html#_CPPv4NK5Alarm7elapsedEv">Alarm::elapsed (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm4fellEv">Alarm::fell (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm8finishedEv">Alarm::finished (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm3getEv">Alarm::get (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm6getIntEv">Alarm::getInt (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm9hasPassedEfb">Alarm::hasPassed (C++ function)</a>, <a href="Alarm.html#_CPPv4NK5Alarm9hasPassedEf">[1]</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm10isCompleteEv">Alarm::isComplete (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4NK5Alarm10isFinishedEv">Alarm::isFinished (C++ function)</a>
 </li>
@@ -143,6 +163,20 @@
 </li>
       <li><a href="Alarm.html#_CPPv4NK5Alarm9isRunningEv">Alarm::isRunning (C++ function)</a>
 </li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm9isStartedEv">Alarm::isStarted (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm5mapToEff">Alarm::mapTo (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm12microSecondsEv">Alarm::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm12milliSecondsEv">Alarm::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm6nStepsEv">Alarm::nSteps (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm3offEv">Alarm::off (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm2onEv">Alarm::on (C++ function)</a>
+</li>
       <li><a href="Alarm.html#_CPPv4N5Alarm8onChangeE13EventCallback">Alarm::onChange (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm6onFallE13EventCallback">Alarm::onFall (C++ function)</a>
@@ -151,55 +185,123 @@
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm6onRiseE13EventCallback">Alarm::onRise (C++ function)</a>
 </li>
+      <li><a href="Alarm.html#_CPPv4N5AlarmcvbEv">Alarm::operator bool (C++ function)</a>
+</li>
       <li><a href="Alarm.html#_CPPv4N5Alarm5pauseEv">Alarm::pause (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4NK5Alarm8progressEv">Alarm::progress (C++ function)</a>
 </li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm3putEf">Alarm::put (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm5putOnEb">Alarm::putOn (C++ function)</a>
+</li>
       <li><a href="Alarm.html#_CPPv4N5Alarm6resumeEv">Alarm::resume (C++ function)</a>
 </li>
-      <li><a href="Alarm.html#_CPPv4N5Alarm3setEf">Alarm::set (C++ function)</a>
+      <li><a href="Alarm.html#_CPPv4N5Alarm4roseEv">Alarm::rose (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm12samplePeriodEv">Alarm::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm10sampleRateEv">Alarm::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4NK5Alarm7secondsEv">Alarm::seconds (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm7setTimeEf">Alarm::setTime (C++ function)</a>
+</li>
       <li><a href="Alarm.html#_CPPv4N5Alarm5startEf">Alarm::start (C++ function)</a>, <a href="Alarm.html#_CPPv4N5Alarm5startEv">[1]</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm4stopEv">Alarm::stop (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm6toggleEv">Alarm::toggle (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Alarm.html#_CPPv4N5Alarm11togglePauseEv">Alarm::togglePause (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv48AnalogIn">AnalogIn (C++ class)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn8AnalogInE7uint8_tR6Engine">AnalogIn::AnalogIn (C++ function)</a>
 </li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIn15analogToDigitalEf">AnalogIn::analogToDigital (C++ function)</a>
+</li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn6cutoffEf">AnalogIn::cutoff (C++ function)</a>, <a href="AnalogIn.html#_CPPv4NK8AnalogIn6cutoffEv">[1]</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIn15digitalToAnalogEb">AnalogIn::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn3getEv">AnalogIn::get (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn5mapToEff">AnalogIn::mapTo (C++ function)</a>
 </li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn12microSecondsEv">AnalogIn::microSeconds (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn12milliSecondsEv">AnalogIn::milliSeconds (C++ function)</a>
+</li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn4modeE7uint8_t">AnalogIn::mode (C++ function)</a>, <a href="AnalogIn.html#_CPPv4NK8AnalogIn4modeEv">[1]</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn8noSmoothEv">AnalogIn::noSmooth (C++ function)</a>
 </li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn6nStepsEv">AnalogIn::nSteps (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIncvbEv">AnalogIn::operator bool (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIncvfEv">AnalogIn::operator float (C++ function)</a>
+</li>
       <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn3pinEv">AnalogIn::pin (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIn3putEf">AnalogIn::put (C++ function)</a>
 </li>
       <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn7rawReadEv">AnalogIn::rawRead (C++ function)</a>
 </li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn4readEv">AnalogIn::read (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn12samplePeriodEv">AnalogIn::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn10sampleRateEv">AnalogIn::sampleRate (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4NK8AnalogIn7secondsEv">AnalogIn::seconds (C++ function)</a>
+</li>
       <li><a href="AnalogIn.html#_CPPv4N8AnalogIn6smoothEf">AnalogIn::smooth (C++ function)</a>
+</li>
+      <li><a href="AnalogIn.html#_CPPv4N8AnalogIn10timeWindowEf">AnalogIn::timeWindow (C++ function)</a>, <a href="AnalogIn.html#_CPPv4NK8AnalogIn10timeWindowEv">[1]</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv49AnalogOut">AnalogOut (C++ class)</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut9AnalogOutE7uint8_t7uint8_tR6Engine">AnalogOut::AnalogOut (C++ function)</a>, <a href="AnalogOut.html#_CPPv4N9AnalogOut9AnalogOutE7uint8_tR6Engine">[1]</a>
 </li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOut15analogToDigitalEf">AnalogOut::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOut15digitalToAnalogEb">AnalogOut::digitalToAnalog (C++ function)</a>
+</li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut3getEv">AnalogOut::get (C++ function)</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut6invertEv">AnalogOut::invert (C++ function)</a>
 </li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOut5mapToEff">AnalogOut::mapTo (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut12microSecondsEv">AnalogOut::microSeconds (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut12milliSecondsEv">AnalogOut::milliSeconds (C++ function)</a>
+</li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut4modeE7uint8_t">AnalogOut::mode (C++ function)</a>, <a href="AnalogOut.html#_CPPv4NK9AnalogOut4modeEv">[1]</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut6nStepsEv">AnalogOut::nSteps (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOutcvbEv">AnalogOut::operator bool (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOutcvfEv">AnalogOut::operator float (C++ function)</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut3pinEv">AnalogOut::pin (C++ function)</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut3putEf">AnalogOut::put (C++ function)</a>
 </li>
       <li><a href="AnalogOut.html#_CPPv4N9AnalogOut8rawWriteEi">AnalogOut::rawWrite (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut12samplePeriodEv">AnalogOut::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut10sampleRateEv">AnalogOut::sampleRate (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4NK9AnalogOut7secondsEv">AnalogOut::seconds (C++ function)</a>
+</li>
+      <li><a href="AnalogOut.html#_CPPv4N9AnalogOut5writeEf">AnalogOut::write (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -209,21 +311,49 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Chronometer.html#_CPPv411Chronometer">Chronometer (C++ class)</a>
 </li>
-      <li><a href="Chronometer.html#_CPPv4N11Chronometer3addEf">Chronometer::add (C++ function)</a>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer7addTimeEf">Chronometer::addTime (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer15analogToDigitalEf">Chronometer::analogToDigital (C++ function)</a>
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer11ChronometerER6Engine">Chronometer::Chronometer (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer15digitalToAnalogEb">Chronometer::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Chronometer.html#_CPPv4NK11Chronometer7elapsedEv">Chronometer::elapsed (C++ function)</a>
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer3getEv">Chronometer::get (C++ function)</a>
 </li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer9hasPassedEfb">Chronometer::hasPassed (C++ function)</a>, <a href="Chronometer.html#_CPPv4NK11Chronometer9hasPassedEf">[1]</a>
+</li>
       <li><a href="Chronometer.html#_CPPv4NK11Chronometer9isRunningEv">Chronometer::isRunning (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer9isStartedEv">Chronometer::isStarted (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer5mapToEff">Chronometer::mapTo (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer12microSecondsEv">Chronometer::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer12milliSecondsEv">Chronometer::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer6nStepsEv">Chronometer::nSteps (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11ChronometercvbEv">Chronometer::operator bool (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11ChronometercvfEv">Chronometer::operator float (C++ function)</a>
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer5pauseEv">Chronometer::pause (C++ function)</a>
 </li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer3putEf">Chronometer::put (C++ function)</a>
+</li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer6resumeEv">Chronometer::resume (C++ function)</a>
 </li>
-      <li><a href="Chronometer.html#_CPPv4N11Chronometer3setEf">Chronometer::set (C++ function)</a>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer12samplePeriodEv">Chronometer::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer10sampleRateEv">Chronometer::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4NK11Chronometer7secondsEv">Chronometer::seconds (C++ function)</a>
+</li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer7setTimeEf">Chronometer::setTime (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -231,17 +361,47 @@
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer4stopEv">Chronometer::stop (C++ function)</a>
 </li>
+      <li><a href="Chronometer.html#_CPPv4N11Chronometer11togglePauseEv">Chronometer::togglePause (C++ function)</a>
+</li>
       <li><a href="ContinuousServoOut.html#_CPPv418ContinuousServoOut">ContinuousServoOut (C++ class)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut8activateEv">ContinuousServoOut::activate (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut15analogToDigitalEf">ContinuousServoOut::analogToDigital (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut18ContinuousServoOutE7uint8_tR6Engine">ContinuousServoOut::ContinuousServoOut (C++ function)</a>
 </li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut10deactivateEv">ContinuousServoOut::deactivate (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut15digitalToAnalogEb">ContinuousServoOut::digitalToAnalog (C++ function)</a>
+</li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut3getEv">ContinuousServoOut::get (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut8isActiveEv">ContinuousServoOut::isActive (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut5mapToEff">ContinuousServoOut::mapTo (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut12microSecondsEv">ContinuousServoOut::microSeconds (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut12milliSecondsEv">ContinuousServoOut::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut6nStepsEv">ContinuousServoOut::nSteps (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOutcvbEv">ContinuousServoOut::operator bool (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOutcvfEv">ContinuousServoOut::operator float (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut3pinEv">ContinuousServoOut::pin (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut3putEf">ContinuousServoOut::put (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut7reverseEv">ContinuousServoOut::reverse (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut12samplePeriodEv">ContinuousServoOut::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut10sampleRateEv">ContinuousServoOut::sampleRate (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut7secondsEv">ContinuousServoOut::seconds (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut4stopEv">ContinuousServoOut::stop (C++ function)</a>
 </li>
@@ -253,6 +413,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="DigitalIn.html#_CPPv49DigitalIn">DigitalIn (C++ class)</a>
 </li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn15analogToDigitalEf">DigitalIn::analogToDigital (C++ function)</a>
+</li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn7changedEv">DigitalIn::changed (C++ function)</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn11changeStateEv">DigitalIn::changeState (C++ function)</a>
@@ -262,6 +424,8 @@
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn12debounceModeE7uint8_t">DigitalIn::debounceMode (C++ function)</a>, <a href="DigitalIn.html#_CPPv4NK9DigitalIn12debounceModeEv">[1]</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn9DigitalInE7uint8_tR6Engine">DigitalIn::DigitalIn (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn15digitalToAnalogEb">DigitalIn::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn4fellEv">DigitalIn::fell (C++ function)</a>
 </li>
@@ -273,9 +437,23 @@
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn4isOnEv">DigitalIn::isOn (C++ function)</a>
 </li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn5mapToEff">DigitalIn::mapTo (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn12microSecondsEv">DigitalIn::microSeconds (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn12milliSecondsEv">DigitalIn::milliSeconds (C++ function)</a>
+</li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn4modeE7uint8_t">DigitalIn::mode (C++ function)</a>, <a href="DigitalIn.html#_CPPv4NK9DigitalIn4modeEv">[1]</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn10noDebounceEv">DigitalIn::noDebounce (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn8noSmoothEv">DigitalIn::noSmooth (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn6nStepsEv">DigitalIn::nSteps (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn3offEv">DigitalIn::off (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn2onEv">DigitalIn::on (C++ function)</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn8onChangeE13EventCallback">DigitalIn::onChange (C++ function)</a>
 </li>
@@ -283,21 +461,45 @@
 </li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn6onRiseE13EventCallback">DigitalIn::onRise (C++ function)</a>
 </li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIncvbEv">DigitalIn::operator bool (C++ function)</a>
+</li>
       <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn3pinEv">DigitalIn::pin (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn3putEf">DigitalIn::put (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn5putOnEb">DigitalIn::putOn (C++ function)</a>
 </li>
       <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn7rawReadEv">DigitalIn::rawRead (C++ function)</a>
 </li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn4readEv">DigitalIn::read (C++ function)</a>
+</li>
       <li><a href="DigitalIn.html#_CPPv4N9DigitalIn4roseEv">DigitalIn::rose (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn12samplePeriodEv">DigitalIn::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn10sampleRateEv">DigitalIn::sampleRate (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4NK9DigitalIn7secondsEv">DigitalIn::seconds (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn6smoothEf">DigitalIn::smooth (C++ function)</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn10timeWindowEf">DigitalIn::timeWindow (C++ function)</a>, <a href="DigitalIn.html#_CPPv4NK9DigitalIn10timeWindowEv">[1]</a>
+</li>
+      <li><a href="DigitalIn.html#_CPPv4N9DigitalIn6toggleEv">DigitalIn::toggle (C++ function)</a>
+</li>
       <li><a href="DigitalOut.html#_CPPv410DigitalOut">DigitalOut (C++ class)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOut15analogToDigitalEf">DigitalOut::analogToDigital (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut7changedEv">DigitalOut::changed (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut11changeStateEv">DigitalOut::changeState (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut10DigitalOutE7uint8_t7uint8_tR6Engine">DigitalOut::DigitalOut (C++ function)</a>, <a href="DigitalOut.html#_CPPv4N10DigitalOut10DigitalOutE7uint8_tR6Engine">[1]</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOut15digitalToAnalogEb">DigitalOut::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut4fellEv">DigitalOut::fell (C++ function)</a>
 </li>
@@ -309,7 +511,15 @@
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut4isOnEv">DigitalOut::isOn (C++ function)</a>
 </li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOut5mapToEff">DigitalOut::mapTo (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut12microSecondsEv">DigitalOut::microSeconds (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut12milliSecondsEv">DigitalOut::milliSeconds (C++ function)</a>
+</li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut4modeE7uint8_t">DigitalOut::mode (C++ function)</a>, <a href="DigitalOut.html#_CPPv4NK10DigitalOut4modeEv">[1]</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut6nStepsEv">DigitalOut::nSteps (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut3offEv">DigitalOut::off (C++ function)</a>
 </li>
@@ -321,15 +531,27 @@
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut6onRiseE13EventCallback">DigitalOut::onRise (C++ function)</a>
 </li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOutcvbEv">DigitalOut::operator bool (C++ function)</a>
+</li>
       <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut3pinEv">DigitalOut::pin (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut3putEf">DigitalOut::put (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOut5putOnEb">DigitalOut::putOn (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut8rawWriteEi">DigitalOut::rawWrite (C++ function)</a>
 </li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut4roseEv">DigitalOut::rose (C++ function)</a>
 </li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut12samplePeriodEv">DigitalOut::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut10sampleRateEv">DigitalOut::sampleRate (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4NK10DigitalOut7secondsEv">DigitalOut::seconds (C++ function)</a>
+</li>
       <li><a href="DigitalOut.html#_CPPv4N10DigitalOut6toggleEv">DigitalOut::toggle (C++ function)</a>
+</li>
+      <li><a href="DigitalOut.html#_CPPv4N10DigitalOut5writeEb">DigitalOut::write (C++ function)</a>, <a href="DigitalOut.html#_CPPv4N10DigitalOut5writeEf">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -339,7 +561,17 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Engine.html#_CPPv46Engine">Engine (C++ class)</a>
 </li>
+      <li><a href="Engine.html#_CPPv4N6Engine14autoSampleRateEv">Engine::autoSampleRate (C++ function)</a>
+</li>
       <li><a href="Engine.html#_CPPv4N6Engine5beginEm">Engine::begin (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4NK6Engine21deltaTimeMicroSecondsEv">Engine::deltaTimeMicroSeconds (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4NK6Engine31deltaTimeSecondsTimesFixed32MaxEv">Engine::deltaTimeSecondsTimesFixed32Max (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4N6Engine3endEv">Engine::end (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4NK6Engine17hasAutoSampleRateEv">Engine::hasAutoSampleRate (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4NK6Engine9isPrimaryEv">Engine::isPrimary (C++ function)</a>
 </li>
@@ -353,7 +585,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Engine.html#_CPPv4N6Engine6nUnitsEv">Engine::nUnits (C++ function)</a>
 </li>
+      <li><a href="Engine.html#_CPPv4N6Engine9postBeginEv">Engine::postBegin (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4N6Engine8preBeginEm">Engine::preBegin (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4N6Engine7preStepEv">Engine::preStep (C++ function)</a>
+</li>
       <li><a href="Engine.html#_CPPv4N6Engine7primaryEv">Engine::primary (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4N6Engine13randomTriggerEf">Engine::randomTrigger (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine12samplePeriodEf">Engine::samplePeriod (C++ function)</a>, <a href="Engine.html#_CPPv4NK6Engine12samplePeriodEv">[1]</a>
 </li>
@@ -363,6 +603,8 @@
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine4stepEv">Engine::step (C++ function)</a>
 </li>
+      <li><a href="Engine.html#_CPPv4N6Engine8timeStepEv">Engine::timeStep (C++ function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -371,7 +613,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Metronome.html#_CPPv49Metronome">Metronome (C++ class)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome7addTimeEf">Metronome::addTime (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome15analogToDigitalEf">Metronome::analogToDigital (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome3bpmEf">Metronome::bpm (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome3bpmEv">[1]</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome15digitalToAnalogEb">Metronome::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome7forwardEv">Metronome::forward (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome9frequencyEf">Metronome::frequency (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome9frequencyEv">[1]</a>
 </li>
@@ -379,21 +629,83 @@
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome6getIntEv">Metronome::getInt (C++ function)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome9isForwardEv">Metronome::isForward (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5isOffEv">Metronome::isOff (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome4isOnEv">Metronome::isOn (C++ function)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome9isRunningEv">Metronome::isRunning (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome5mapToEff">Metronome::mapTo (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome9MetronomeER6Engine">Metronome::Metronome (C++ function)</a>, <a href="Metronome.html#_CPPv4N9Metronome9MetronomeEfR6Engine">[1]</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome12microSecondsEv">Metronome::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome12milliSecondsEv">Metronome::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome11noRandomizeEv">Metronome::noRandomize (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome6nStepsEv">Metronome::nSteps (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome3offEv">Metronome::off (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome2onEv">Metronome::on (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome6onBangE13EventCallback">Metronome::onBang (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9MetronomecvbEv">Metronome::operator bool (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome5pauseEv">Metronome::pause (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome6periodEf">Metronome::period (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome6periodEv">[1]</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5phaseEf">Metronome::phase (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome5phaseEv">[1]</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome10phaseShiftEf">Metronome::phaseShift (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome10phaseShiftEv">[1]</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome3putEf">Metronome::put (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome5putOnEb">Metronome::putOn (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome9randomizeEf">Metronome::randomize (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome10randomnessEv">Metronome::randomness (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome6resumeEv">Metronome::resume (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome7reverseEv">Metronome::reverse (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome12samplePeriodEv">Metronome::samplePeriod (C++ function)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome10sampleRateEv">Metronome::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome7secondsEv">Metronome::seconds (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome10setForwardEb">Metronome::setForward (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome7setTimeEf">Metronome::setTime (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome5startEv">Metronome::start (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome4stopEv">Metronome::stop (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome11timeToPhaseEf">Metronome::timeToPhase (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome11togglePauseEv">Metronome::togglePause (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome13toggleReverseEv">Metronome::toggleReverse (C++ function)</a>
+</li>
       <li><a href="MinMaxScaler.html#_CPPv412MinMaxScaler">MinMaxScaler (C++ class)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler15analogToDigitalEf">MinMaxScaler::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler6cutoffEf">MinMaxScaler::cutoff (C++ function)</a>, <a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler6cutoffEv">[1]</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler15digitalToAnalogEb">MinMaxScaler::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler3getEv">MinMaxScaler::get (C++ function)</a>
 </li>
@@ -403,7 +715,21 @@
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler5mapToEff">MinMaxScaler::mapTo (C++ function)</a>
 </li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler8maxValueEv">MinMaxScaler::maxValue (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler12microSecondsEv">MinMaxScaler::microSeconds (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler12milliSecondsEv">MinMaxScaler::milliSeconds (C++ function)</a>
+</li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler12MinMaxScalerER6Engine">MinMaxScaler::MinMaxScaler (C++ function)</a>, <a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler12MinMaxScalerEfR6Engine">[1]</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler8minValueEv">MinMaxScaler::minValue (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler6nStepsEv">MinMaxScaler::nSteps (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScalercvbEv">MinMaxScaler::operator bool (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScalercvfEv">MinMaxScaler::operator float (C++ function)</a>
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler16pauseCalibratingEv">MinMaxScaler::pauseCalibrating (C++ function)</a>
 </li>
@@ -413,9 +739,17 @@
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler17resumeCalibratingEv">MinMaxScaler::resumeCalibrating (C++ function)</a>
 </li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler12samplePeriodEv">MinMaxScaler::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler10sampleRateEv">MinMaxScaler::sampleRate (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler7secondsEv">MinMaxScaler::seconds (C++ function)</a>
+</li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler10timeWindowEf">MinMaxScaler::timeWindow (C++ function)</a>, <a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler10timeWindowEv">[1]</a>
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv">MinMaxScaler::timeWindowIsInfinite (C++ function)</a>
+</li>
+      <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler17toggleCalibratingEv">MinMaxScaler::toggleCalibrating (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -425,7 +759,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Normalizer.html#_CPPv410Normalizer">Normalizer (C++ class)</a>
 </li>
+      <li><a href="Normalizer.html#_CPPv4N10Normalizer15analogToDigitalEf">Normalizer::analogToDigital (C++ function)</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer5clampEf">Normalizer::clamp (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4N10Normalizer6cutoffEf">Normalizer::cutoff (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer6cutoffEv">[1]</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4N10Normalizer15digitalToAnalogEb">Normalizer::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer3getEv">Normalizer::get (C++ function)</a>
 </li>
@@ -445,13 +785,27 @@
 </li>
       <li><a href="Normalizer.html#_CPPv4NK10Normalizer19lowOutlierThresholdEf">Normalizer::lowOutlierThreshold (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer5mapToEff">Normalizer::mapTo (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer4meanEv">Normalizer::mean (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer12microSecondsEv">Normalizer::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer12milliSecondsEv">Normalizer::milliSeconds (C++ function)</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer7noClampEv">Normalizer::noClamp (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEf">Normalizer::normalize (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEfff">[1]</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerER6Engine">Normalizer::Normalizer (C++ function)</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEfR6Engine">[1]</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEffR6Engine">[2]</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEfffR6Engine">[3]</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer6nStepsEv">Normalizer::nSteps (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4N10NormalizercvbEv">Normalizer::operator bool (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4N10NormalizercvfEv">Normalizer::operator float (C++ function)</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer16pauseCalibratingEv">Normalizer::pauseCalibrating (C++ function)</a>
 </li>
@@ -461,6 +815,16 @@
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer17resumeCalibratingEv">Normalizer::resumeCalibrating (C++ function)</a>
 </li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer12samplePeriodEv">Normalizer::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer10sampleRateEv">Normalizer::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer7secondsEv">Normalizer::seconds (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer6stdDevEv">Normalizer::stdDev (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer6stddevEv">Normalizer::stddev (C++ function)</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer10targetMeanEf">Normalizer::targetMean (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer10targetMeanEv">[1]</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer12targetStdDevEf">Normalizer::targetStdDev (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer12targetStdDevEv">[1]</a>
@@ -468,6 +832,10 @@
       <li><a href="Normalizer.html#_CPPv4N10Normalizer10timeWindowEf">Normalizer::timeWindow (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer10timeWindowEv">[1]</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4NK10Normalizer20timeWindowIsInfiniteEv">Normalizer::timeWindowIsInfinite (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4N10Normalizer17toggleCalibratingEv">Normalizer::toggleCalibrating (C++ function)</a>
+</li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer3varEv">Normalizer::var (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -477,37 +845,125 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PeakDetector.html#_CPPv412PeakDetector">PeakDetector (C++ class)</a>
 </li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector15analogToDigitalEf">PeakDetector::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector15digitalToAnalogEb">PeakDetector::digitalToAnalog (C++ function)</a>
+</li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector17fallbackToleranceEf">PeakDetector::fallbackTolerance (C++ function)</a>, <a href="PeakDetector.html#_CPPv4NK12PeakDetector17fallbackToleranceEv">[1]</a>
 </li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector3getEv">PeakDetector::get (C++ function)</a>
 </li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector6getIntEv">PeakDetector::getInt (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector5isOffEv">PeakDetector::isOff (C++ function)</a>
+</li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector4isOnEv">PeakDetector::isOn (C++ function)</a>
 </li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector5mapToEff">PeakDetector::mapTo (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector12microSecondsEv">PeakDetector::microSeconds (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector12milliSecondsEv">PeakDetector::milliSeconds (C++ function)</a>
+</li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector4modeE7uint8_t">PeakDetector::mode (C++ function)</a>, <a href="PeakDetector.html#_CPPv4NK12PeakDetector4modeEv">[1]</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector8modeApexEv">PeakDetector::modeApex (C++ function)</a>
 </li>
       <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector12modeCrossingEv">PeakDetector::modeCrossing (C++ function)</a>
 </li>
       <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector12modeInvertedEv">PeakDetector::modeInverted (C++ function)</a>
 </li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector6nStepsEv">PeakDetector::nSteps (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector3offEv">PeakDetector::off (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector2onEv">PeakDetector::on (C++ function)</a>
+</li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector6onBangE13EventCallback">PeakDetector::onBang (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetectorcvbEv">PeakDetector::operator bool (C++ function)</a>
 </li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector12PeakDetectorEf7uint8_tR6Engine">PeakDetector::PeakDetector (C++ function)</a>, <a href="PeakDetector.html#_CPPv4N12PeakDetector12PeakDetectorEfR6Engine">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector3putEf">PeakDetector::put (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4N12PeakDetector5putOnEb">PeakDetector::putOn (C++ function)</a>
 </li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector15reloadThresholdEf">PeakDetector::reloadThreshold (C++ function)</a>, <a href="PeakDetector.html#_CPPv4NK12PeakDetector15reloadThresholdEv">[1]</a>
 </li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector12samplePeriodEv">PeakDetector::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector10sampleRateEv">PeakDetector::sampleRate (C++ function)</a>
+</li>
+      <li><a href="PeakDetector.html#_CPPv4NK12PeakDetector7secondsEv">PeakDetector::seconds (C++ function)</a>
+</li>
       <li><a href="PeakDetector.html#_CPPv4N12PeakDetector16triggerThresholdEf">PeakDetector::triggerThreshold (C++ function)</a>, <a href="PeakDetector.html#_CPPv4NK12PeakDetector16triggerThresholdEv">[1]</a>
 </li>
-      <li><a href="mapFloat.html#_CPPv4N2pq8mapFloatEddddd7uint8_t">pq::mapFloat (C++ function)</a>
+      <li><a href="PivotField.html#_CPPv410PivotField">PivotField (C++ class)</a>
 </li>
-      <li><a href="mapFrom01.html#_CPPv4N2pq9mapFrom01Eddd7uint8_t">pq::mapFrom01 (C++ function)</a>
+      <li><a href="PivotField.html#_CPPv4N10PivotField15analogToDigitalEf">PivotField::analogToDigital (C++ function)</a>
 </li>
-      <li><a href="mapTo01.html#_CPPv4N2pq7mapTo01Eddd7uint8_t">pq::mapTo01 (C++ function)</a>
+      <li><a href="PivotField.html#_CPPv4N10PivotField2atEf">PivotField::at (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PivotField.html#_CPPv4N10PivotField9bumpWidthEf">PivotField::bumpWidth (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField9bumpWidthEv">[1]</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField6centerEf">PivotField::center (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField6centerEv">[1]</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField11clearEventsEv">PivotField::clearEvents (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField15digitalToAnalogEb">PivotField::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField6easingE15easing_function">PivotField::easing (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField3getEv">PivotField::get (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField5mapToEff">PivotField::mapTo (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField12microSecondsEv">PivotField::microSeconds (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField12milliSecondsEv">PivotField::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField4modeE14PivotFieldMode">PivotField::mode (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField4modeEv">[1]</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField8noEasingEv">PivotField::noEasing (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField11noRampWidthEv">PivotField::noRampWidth (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField6nStepsEv">PivotField::nSteps (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotFieldcvbEv">PivotField::operator bool (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotFieldcvfEv">PivotField::operator float (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField10PivotFieldEv">PivotField::PivotField (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4I0EN10PivotField8populateEvP1T6size_tb">PivotField::populate (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField3putEf">PivotField::put (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField9rampShiftEf">PivotField::rampShift (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField9rampShiftEv">[1]</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotField9rampWidthEf">PivotField::rampWidth (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField9rampWidthEv">[1]</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField12samplePeriodEv">PivotField::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField10sampleRateEv">PivotField::sampleRate (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4NK10PivotField7secondsEv">PivotField::seconds (C++ function)</a>
+</li>
+      <li><a href="PivotField.html#_CPPv4N10PivotFieldD0Ev">PivotField::~PivotField (C++ function)</a>
+</li>
+      <li><a href="mapFloat.html#_CPPv4N2pq8mapFloatEddddd7MapMode">pq::mapFloat (C++ function)</a>
+</li>
+      <li><a href="mapFrom01.html#_CPPv4N2pq9mapFrom01Eddd7MapMode">pq::mapFrom01 (C++ function)</a>
+</li>
+      <li><a href="mapTo01.html#_CPPv4N2pq7mapTo01Eddd7MapMode">pq::mapTo01 (C++ function)</a>
 </li>
       <li><a href="randomFloat.html#_CPPv4N2pq11randomFloatEf">pq::randomFloat (C++ function)</a>, <a href="randomFloat.html#_CPPv4N2pq11randomFloatEff">[1]</a>, <a href="randomFloat.html#_CPPv4N2pq11randomFloatEv">[2]</a>
+</li>
+      <li><a href="randomTrigger.html#_CPPv4N2pq13randomTriggerEf">pq::randomTrigger (C++ function)</a>, <a href="randomTrigger.html#_CPPv4N2pq13randomTriggerEff">[1]</a>
 </li>
       <li><a href="seconds.html#_CPPv4N2pq7secondsEb">pq::seconds (C++ function)</a>
 </li>
@@ -523,9 +979,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Ramp.html#_CPPv44Ramp">Ramp (C++ class)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp3addEf">Ramp::add (C++ function)</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp7addTimeEf">Ramp::addTime (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp15analogToDigitalEf">Ramp::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp15digitalToAnalogEb">Ramp::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[1]</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp15durationToSpeedEf">Ramp::durationToSpeed (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp6easingE15easing_function">Ramp::easing (C++ function)</a>
 </li>
@@ -541,9 +1003,21 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp2goEf15easing_function">Ramp::go (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp2goEff15easing_function">[1]</a>, <a href="Ramp.html#_CPPv4N4Ramp2goEfff15easing_function">[2]</a>
 </li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp9hasPassedEfb">Ramp::hasPassed (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp9hasPassedEf">[1]</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp10isCompleteEv">Ramp::isComplete (C++ function)</a>
+</li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp10isFinishedEv">Ramp::isFinished (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp9isRunningEv">Ramp::isRunning (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp9isStartedEv">Ramp::isStarted (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp5mapToEff">Ramp::mapTo (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp12microSecondsEv">Ramp::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp12milliSecondsEv">Ramp::milliSeconds (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -551,25 +1025,43 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8noEasingEv">Ramp::noEasing (C++ function)</a>
 </li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp6nStepsEv">Ramp::nSteps (C++ function)</a>
+</li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8onFinishE13EventCallback">Ramp::onFinish (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4RampcvbEv">Ramp::operator bool (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4RampcvfEv">Ramp::operator float (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp5pauseEv">Ramp::pause (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp8progressEv">Ramp::progress (C++ function)</a>
 </li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp3putEf">Ramp::put (C++ function)</a>
+</li>
       <li><a href="Ramp.html#_CPPv4N4Ramp4RampER6Engine">Ramp::Ramp (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp4RampEfR6Engine">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp6resumeEv">Ramp::resume (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp3setEf">Ramp::set (C++ function)</a>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp12samplePeriodEv">Ramp::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp10sampleRateEv">Ramp::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp7secondsEv">Ramp::seconds (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp7setTimeEf">Ramp::setTime (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp5speedEf">Ramp::speed (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp5speedEv">[1]</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp5startEf">Ramp::start (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEv">[1]</a>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp15speedToDurationEf">Ramp::speedToDuration (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp5startEf">Ramp::start (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEff15easing_function">[1]</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEfff15easing_function">[2]</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEv">[3]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp4stopEv">Ramp::stop (C++ function)</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp2toEf">Ramp::to (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp11togglePauseEv">Ramp::togglePause (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -579,11 +1071,33 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ServoOut.html#_CPPv48ServoOut">ServoOut (C++ class)</a>
 </li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut8activateEv">ServoOut::activate (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut15analogToDigitalEf">ServoOut::analogToDigital (C++ function)</a>
+</li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut6centerEv">ServoOut::center (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut10deactivateEv">ServoOut::deactivate (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut15digitalToAnalogEb">ServoOut::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut3getEv">ServoOut::get (C++ function)</a>
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut8getAngleEv">ServoOut::getAngle (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut8isActiveEv">ServoOut::isActive (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut5mapToEff">ServoOut::mapTo (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut12microSecondsEv">ServoOut::microSeconds (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut12milliSecondsEv">ServoOut::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut6nStepsEv">ServoOut::nSteps (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOutcvbEv">ServoOut::operator bool (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOutcvfEv">ServoOut::operator float (C++ function)</a>
 </li>
       <li><a href="ServoOut.html#_CPPv4NK8ServoOut3pinEv">ServoOut::pin (C++ function)</a>
 </li>
@@ -591,85 +1105,99 @@
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut8putAngleEf">ServoOut::putAngle (C++ function)</a>
 </li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut12samplePeriodEv">ServoOut::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut10sampleRateEv">ServoOut::sampleRate (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4NK8ServoOut7secondsEv">ServoOut::seconds (C++ function)</a>
+</li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut8ServoOutE7uint8_tR6Engine">ServoOut::ServoOut (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv48SineWave">SineWave (C++ class)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave9amplitudeEf">SineWave::amplitude (C++ function)</a>, <a href="SineWave.html#_CPPv4NK8SineWave9amplitudeEv">[1]</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave3bpmEf">SineWave::bpm (C++ function)</a>, <a href="SineWave.html#_CPPv4NK8SineWave3bpmEv">[1]</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave7forwardEv">SineWave::forward (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave9frequencyEf">SineWave::frequency (C++ function)</a>, <a href="SineWave.html#_CPPv4NK8SineWave9frequencyEv">[1]</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave3getEv">SineWave::get (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave5mapToEff">SineWave::mapTo (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave6periodEf">SineWave::period (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave5phaseEf">SineWave::phase (C++ function)</a>, <a href="SineWave.html#_CPPv4NK8SineWave5phaseEv">[1]</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave7reverseEv">SineWave::reverse (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave7shiftByEf">SineWave::shiftBy (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave13toggleReverseEv">SineWave::toggleReverse (C++ function)</a>
-</li>
-      <li><a href="SineWave.html#_CPPv4N8SineWave5widthEf">SineWave::width (C++ function)</a>, <a href="SineWave.html#_CPPv4NK8SineWave5widthEv">[1]</a>
 </li>
       <li><a href="Smoother.html#_CPPv48Smoother">Smoother (C++ class)</a>
 </li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother5alphaEffj">Smoother::alpha (C++ function)</a>, <a href="Smoother.html#_CPPv4NK8Smoother5alphaEf">[1]</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother11amendUpdateEfffb">Smoother::amendUpdate (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother15analogToDigitalEf">Smoother::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother16applyAmendUpdateERffff">Smoother::applyAmendUpdate (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother11applyUpdateERfff">Smoother::applyUpdate (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother13computeUpdateEfff">Smoother::computeUpdate (C++ function)</a>
+</li>
       <li><a href="Smoother.html#_CPPv4N8Smoother6cutoffEf">Smoother::cutoff (C++ function)</a>, <a href="Smoother.html#_CPPv4NK8Smoother6cutoffEv">[1]</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother15digitalToAnalogEb">Smoother::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother3getEv">Smoother::get (C++ function)</a>
 </li>
-      <li><a href="Smoother.html#_CPPv4N8Smoother3putEf">Smoother::put (C++ function)</a>
+      <li><a href="Smoother.html#_CPPv4N8Smoother18infiniteTimeWindowEv">Smoother::infiniteTimeWindow (C++ function)</a>
 </li>
-      <li><a href="Smoother.html#_CPPv4N8Smoother8SmootherER6Engine">Smoother::Smoother (C++ function)</a>, <a href="Smoother.html#_CPPv4N8Smoother8SmootherEfR6Engine">[1]</a>
+      <li><a href="Smoother.html#_CPPv4N8Smoother5mapToEff">Smoother::mapTo (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother12microSecondsEv">Smoother::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother12milliSecondsEv">Smoother::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother8nSamplesEv">Smoother::nSamples (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother6nStepsEv">Smoother::nSteps (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8SmoothercvbEv">Smoother::operator bool (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8SmoothercvfEv">Smoother::operator float (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother3putEf">Smoother::put (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Smoother.html#_CPPv4N8Smoother5resetEv">Smoother::reset (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother12samplePeriodEv">Smoother::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother10sampleRateEv">Smoother::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother7secondsEv">Smoother::seconds (C++ function)</a>
+</li>
+      <li><a href="Smoother.html#_CPPv4N8Smoother8SmootherER6Engine">Smoother::Smoother (C++ function)</a>, <a href="Smoother.html#_CPPv4N8Smoother8SmootherEfR6Engine">[1]</a>
+</li>
       <li><a href="Smoother.html#_CPPv4N8Smoother10timeWindowEf">Smoother::timeWindow (C++ function)</a>, <a href="Smoother.html#_CPPv4NK8Smoother10timeWindowEv">[1]</a>
 </li>
-      <li><a href="SquareWave.html#_CPPv410SquareWave">SquareWave (C++ class)</a>
+      <li><a href="Smoother.html#_CPPv4NK8Smoother20timeWindowIsInfiniteEv">Smoother::timeWindowIsInfinite (C++ function)</a>
 </li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave9amplitudeEf">SquareWave::amplitude (C++ function)</a>, <a href="SquareWave.html#_CPPv4NK10SquareWave9amplitudeEv">[1]</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave3bpmEf">SquareWave::bpm (C++ function)</a>, <a href="SquareWave.html#_CPPv4NK10SquareWave3bpmEv">[1]</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave7forwardEv">SquareWave::forward (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave9frequencyEf">SquareWave::frequency (C++ function)</a>, <a href="SquareWave.html#_CPPv4NK10SquareWave9frequencyEv">[1]</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave3getEv">SquareWave::get (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave5mapToEff">SquareWave::mapTo (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave6periodEf">SquareWave::period (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave5phaseEf">SquareWave::phase (C++ function)</a>, <a href="SquareWave.html#_CPPv4NK10SquareWave5phaseEv">[1]</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave7reverseEv">SquareWave::reverse (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave7shiftByEf">SquareWave::shiftBy (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave11shiftByIsOnEf">SquareWave::shiftByIsOn (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave10SquareWaveER6Engine">SquareWave::SquareWave (C++ function)</a>, <a href="SquareWave.html#_CPPv4N10SquareWave10SquareWaveEfR6Engine">[1]</a>, <a href="SquareWave.html#_CPPv4N10SquareWave10SquareWaveEffR6Engine">[2]</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave13toggleReverseEv">SquareWave::toggleReverse (C++ function)</a>
-</li>
-      <li><a href="SquareWave.html#_CPPv4N10SquareWave5widthEf">SquareWave::width (C++ function)</a>, <a href="SquareWave.html#_CPPv4NK10SquareWave5widthEv">[1]</a>
+      <li><a href="Smoother.html#_CPPv4N8Smoother6updateEffb">Smoother::update (C++ function)</a>
 </li>
       <li><a href="StreamIn.html#_CPPv48StreamIn">StreamIn (C++ class)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4N8StreamIn15analogToDigitalEf">StreamIn::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4N8StreamIn15digitalToAnalogEb">StreamIn::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="StreamIn.html#_CPPv4N8StreamIn3getEv">StreamIn::get (C++ function)</a>
 </li>
       <li><a href="StreamIn.html#_CPPv4N8StreamIn5mapToEff">StreamIn::mapTo (C++ function)</a>
 </li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12microSecondsEv">StreamIn::microSeconds (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12milliSecondsEv">StreamIn::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn6nStepsEv">StreamIn::nSteps (C++ function)</a>
+</li>
       <li><a href="StreamIn.html#_CPPv4N8StreamIn8onUpdateE13EventCallback">StreamIn::onUpdate (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4N8StreamIncvbEv">StreamIn::operator bool (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4N8StreamIncvfEv">StreamIn::operator float (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4N8StreamIn3putEf">StreamIn::put (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12samplePeriodEv">StreamIn::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn10sampleRateEv">StreamIn::sampleRate (C++ function)</a>
+</li>
+      <li><a href="StreamIn.html#_CPPv4NK8StreamIn7secondsEv">StreamIn::seconds (C++ function)</a>
 </li>
       <li><a href="StreamIn.html#_CPPv4N8StreamIn8StreamInER6Engine">StreamIn::StreamIn (C++ function)</a>, <a href="StreamIn.html#_CPPv4N8StreamIn8StreamInER6StreamR6Engine">[1]</a>
 </li>
@@ -677,11 +1205,33 @@
 </li>
       <li><a href="StreamOut.html#_CPPv49StreamOut">StreamOut (C++ class)</a>
 </li>
+      <li><a href="StreamOut.html#_CPPv4N9StreamOut15analogToDigitalEf">StreamOut::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4N9StreamOut15digitalToAnalogEb">StreamOut::digitalToAnalog (C++ function)</a>
+</li>
       <li><a href="StreamOut.html#_CPPv4N9StreamOut3getEv">StreamOut::get (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4N9StreamOut5mapToEff">StreamOut::mapTo (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12microSecondsEv">StreamOut::microSeconds (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12milliSecondsEv">StreamOut::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut6nStepsEv">StreamOut::nSteps (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4N9StreamOutcvbEv">StreamOut::operator bool (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4N9StreamOutcvfEv">StreamOut::operator float (C++ function)</a>
 </li>
       <li><a href="StreamOut.html#_CPPv4N9StreamOut9precisionE7uint8_t">StreamOut::precision (C++ function)</a>
 </li>
       <li><a href="StreamOut.html#_CPPv4N9StreamOut3putEf">StreamOut::put (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12samplePeriodEv">StreamOut::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut10sampleRateEv">StreamOut::sampleRate (C++ function)</a>
+</li>
+      <li><a href="StreamOut.html#_CPPv4NK9StreamOut7secondsEv">StreamOut::seconds (C++ function)</a>
 </li>
       <li><a href="StreamOut.html#_CPPv4N9StreamOut9StreamOutER6Engine">StreamOut::StreamOut (C++ function)</a>, <a href="StreamOut.html#_CPPv4N9StreamOut9StreamOutER6StreamR6Engine">[1]</a>
 </li>
@@ -691,33 +1241,165 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="TriangleWave.html#_CPPv412TriangleWave">TriangleWave (C++ class)</a>
+      <li><a href="TimeSliceField.html#_CPPv4I_6size_tE14TimeSliceField">TimeSliceField (C++ class)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave9amplitudeEf">TriangleWave::amplitude (C++ function)</a>, <a href="TriangleWave.html#_CPPv4NK12TriangleWave9amplitudeEv">[1]</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField15analogToDigitalEf">TimeSliceField::analogToDigital (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave3bpmEf">TriangleWave::bpm (C++ function)</a>, <a href="TriangleWave.html#_CPPv4NK12TriangleWave3bpmEv">[1]</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField2atEf">TimeSliceField::at (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave7forwardEv">TriangleWave::forward (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField7atIndexE6size_t">TimeSliceField::atIndex (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave9frequencyEf">TriangleWave::frequency (C++ function)</a>, <a href="TriangleWave.html#_CPPv4NK12TriangleWave9frequencyEv">[1]</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField11clearEventsEv">TimeSliceField::clearEvents (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave3getEv">TriangleWave::get (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField5countEv">TimeSliceField::count (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField15digitalToAnalogEb">TimeSliceField::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField3getEv">TimeSliceField::get (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField6isFullEv">TimeSliceField::isFull (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField9isRollingEv">TimeSliceField::isRolling (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField5mapToEff">TimeSliceField::mapTo (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField12microSecondsEv">TimeSliceField::microSeconds (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField12milliSecondsEv">TimeSliceField::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField9noRollingEv">TimeSliceField::noRolling (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField6nStepsEv">TimeSliceField::nSteps (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave5mapToEff">TriangleWave::mapTo (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField8onUpdateE13EventCallback">TimeSliceField::onUpdate (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave6periodEf">TriangleWave::period (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceFieldcvbEv">TimeSliceField::operator bool (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave5phaseEf">TriangleWave::phase (C++ function)</a>, <a href="TriangleWave.html#_CPPv4NK12TriangleWave5phaseEv">[1]</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceFieldcvfEv">TimeSliceField::operator float (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave7reverseEv">TriangleWave::reverse (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField6periodEf">TimeSliceField::period (C++ function)</a>, <a href="TimeSliceField.html#_CPPv4NK14TimeSliceField6periodEv">[1]</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave7shiftByEf">TriangleWave::shiftBy (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4I0EN14TimeSliceField8populateEvP1T6size_tb">TimeSliceField::populate (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave13toggleReverseEv">TriangleWave::toggleReverse (C++ function)</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField3putEf">TimeSliceField::put (C++ function)</a>
 </li>
-      <li><a href="TriangleWave.html#_CPPv4N12TriangleWave5widthEf">TriangleWave::width (C++ function)</a>, <a href="TriangleWave.html#_CPPv4NK12TriangleWave5widthEv">[1]</a>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField5resetEv">TimeSliceField::reset (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField7rollingEv">TimeSliceField::rolling (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField12samplePeriodEv">TimeSliceField::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField10sampleRateEv">TimeSliceField::sampleRate (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4NK14TimeSliceField7secondsEv">TimeSliceField::seconds (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField10setRollingEb">TimeSliceField::setRolling (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField14TimeSliceFieldEf">TimeSliceField::TimeSliceField (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceField7updatedEv">TimeSliceField::updated (C++ function)</a>
+</li>
+      <li><a href="TimeSliceField.html#_CPPv4N14TimeSliceFieldD0Ev">TimeSliceField::~TimeSliceField (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Wave.html#_CPPv44Wave">Wave (C++ class)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7addTimeEf">Wave::addTime (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave9amplitudeEf">Wave::amplitude (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave9amplitudeEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave15analogToDigitalEf">Wave::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7atPhaseEf">Wave::atPhase (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave3bpmEf">Wave::bpm (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave3bpmEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave15digitalToAnalogEb">Wave::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7forwardEv">Wave::forward (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave9frequencyEf">Wave::frequency (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave9frequencyEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave3getEv">Wave::get (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave9isForwardEv">Wave::isForward (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave9isRunningEv">Wave::isRunning (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5mapToEff">Wave::mapTo (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave12microSecondsEv">Wave::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave12milliSecondsEv">Wave::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave11noRandomizeEv">Wave::noRandomize (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave6nStepsEv">Wave::nSteps (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave6onBangE13EventCallback">Wave::onBang (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4WavecvbEv">Wave::operator bool (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4WavecvfEv">Wave::operator float (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5pauseEv">Wave::pause (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave6periodEf">Wave::period (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave6periodEv">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Wave.html#_CPPv4N4Wave5phaseEf">Wave::phase (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave5phaseEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave10phaseShiftEf">Wave::phaseShift (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave10phaseShiftEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave3putEf">Wave::put (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave9randomizeEf">Wave::randomize (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave10randomnessEv">Wave::randomness (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave6resumeEv">Wave::resume (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7reverseEv">Wave::reverse (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave12samplePeriodEv">Wave::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave10sampleRateEv">Wave::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave7secondsEv">Wave::seconds (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave10setForwardEb">Wave::setForward (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7setTimeEf">Wave::setTime (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5shapeE9WaveShape">Wave::shape (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave5shapeEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave7shiftByEf">Wave::shiftBy (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave11shiftByTimeEf">Wave::shiftByTime (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave4skewEf">Wave::skew (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave4skewEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5startEv">Wave::start (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave4stopEv">Wave::stop (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave11timeToPhaseEf">Wave::timeToPhase (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave11togglePauseEv">Wave::togglePause (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave13toggleReverseEv">Wave::toggleReverse (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave4WaveE9WaveShapeR6Engine">Wave::Wave (C++ function)</a>, <a href="Wave.html#_CPPv4N4Wave4WaveE9WaveShapefR6Engine">[1]</a>, <a href="Wave.html#_CPPv4N4Wave4WaveE9WaveShapeffR6Engine">[2]</a>, <a href="Wave.html#_CPPv4N4Wave4WaveEfR6Engine">[3]</a>, <a href="Wave.html#_CPPv4N4Wave4WaveEffR6Engine">[4]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5widthEf">Wave::width (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave5widthEv">[1]</a>
 </li>
   </ul></td>
 </tr></table>

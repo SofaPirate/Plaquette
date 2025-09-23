@@ -19,6 +19,10 @@ We will be using an analog sensor such as a photoresistor for this example.
   For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
   resistor of about 5.5k :math:`\Omega`).
 
+  .. image:: images/Plaquette-CircuitVoltageDivider.png
+      :align: center
+
+
 Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:
 
 .. code-block:: c++

@@ -20,14 +20,11 @@ To create and use an engine, simply declare it:
 
    Engine myEngine;
 
-You will need to call the engine's ``begin()`` function at initialization, and then its ``step()`` function
-at a regular pace.
-
 To assign units to a specific engine, add it as the last parameter at construction:
 
 .. code-block:: c++
 
-   SquareWave wave(1.0, 0.2, myEngine); // Use myEngine instead of the default
+   Wave wave(1.0, 0.2, myEngine); // Use myEngine instead of the default
 
 Each engine provides its own time measurements:
 
@@ -36,6 +33,45 @@ Each engine provides its own time measurements:
    float sec = myEngine.seconds();        // Time since engine started, in seconds
    uint32_t ms = myEngine.milliSeconds(); // Time in milliseconds
    uint64_t us = myEngine.microSeconds(); // Time in microseconds
+
+You will need to call the engine's ``begin()`` function at initialization, and then its ``step()`` function
+at a regular pace.
+
+Sample Rate
+~~~~~~~~~~~
+
+The Engine ``step()`` function computes timings and peforms background update operations on units.
+It is possible to set a specific (target) sample rate using ``sampleRate(rate)`` to reduce computation load
+for operations that do not need to be performed as fast as possible.
+
+The engine's ``step()`` function returns:
+
+ * ``true`` if the step has been fully performed
+ * ``false`` if it is still waiting for the next "tick"
+
+As an example, if one sets a 100 Hz sample rate on engine ``myEngine`` by calling
+``myEngine.sampleRate(100)``, the ``myEngine.step()`` function should return ``true`` about 100 times
+per second and ``false`` otherwise.
+
+To fully support custom sample rates and avoid performing unnecessary operations on units, the
+``step()`` function should be used as a `guard condition <https://en.wikipedia.org/wiki/Guard_(computer_science)>`__
+in the main stepping loop.
+
+.. code:: cpp
+
+  void begin() {
+    myEngine.sampleRate(100); // Target sample rate: 100 Hz.
+  }
+
+  void loop() {
+    if (!myEngine.step()) // Guard condition.
+      return; // Exit the loop.
+
+    // The operations below will be performed at ~100 Hz.
+    if (button)
+      wave >> led;
+    ...
+  }
 
 For more in-depth explanations and examples please read :ref:`secondary-engines`.
 

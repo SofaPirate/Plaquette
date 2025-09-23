@@ -1,27 +1,27 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smoother &mdash; Plaquette 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4bbc0f39" />
-
-  
+  <title>Smoother &mdash; Plaquette 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=fe7df9b0"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="next" title="Fields" href="fields.html" />
     <link rel="prev" title="PeakDetector" href="PeakDetector.html" /> 
 </head>
 
@@ -30,16 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Plaquette
-              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.8
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -73,18 +72,20 @@
 <li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Smoother</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv48Smoother"><code class="docutils literal notranslate"><span class="pre">Smoother</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLLEDStrip</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -92,6 +93,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -107,9 +109,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="filters.html">Filters</a></li>
-      <li class="breadcrumb-item active">Smoother</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+      <li>Smoother</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,27 +121,27 @@
            <div itemprop="articleBody">
              
   <section id="smoother">
-<h1>Smoother<a class="headerlink" href="#smoother" title="Link to this heading"></a></h1>
+<h1>Smoother<a class="headerlink" href="#smoother" title="Permalink to this heading"></a></h1>
 <p>Smooths the incoming signal by removing fast variations and noise (high frequencies).</p>
 <img alt="_images/Plaquette-Smooth.png" src="_images/Plaquette-Smooth.png" />
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Smooth a sensor over time.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Smooths over time window of 10 seconds.</span>
-<span class="n">Smoother</span><span class="w"> </span><span class="nf">smoother</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span>
+<span class="n">Smoother</span><span class="w"> </span><span class="nf">smoother</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span>
+<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Smooth value and send it to serial output.</span>
-<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">smoother</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">smoother</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -149,19 +151,19 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv48Smoother">
-<span id="_CPPv38Smoother"></span><span id="_CPPv28Smoother"></span><span id="Smoother"></span><span class="target" id="classpq_1_1_smoother"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingAverage</span></span><a class="headerlink" href="#_CPPv48Smoother" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv38Smoother"></span><span id="_CPPv28Smoother"></span><span id="Smoother"></span><span class="target" id="classpq_1_1_smoother"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingAverage</span></span><a class="headerlink" href="#_CPPv48Smoother" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Simple moving average transform filter. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother8SmootherER6Engine">
-<span id="_CPPv3N8Smoother8SmootherER6Engine"></span><span id="_CPPv2N8Smoother8SmootherER6Engine"></span><span id="Smoother::Smoother__EngineR"></span><span class="target" id="classpq_1_1_smoother_1a3358995634ea10fe395d8a6e5ffc0858"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherER6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother8SmootherER6Engine"></span><span id="_CPPv2N8Smoother8SmootherER6Engine"></span><span id="Smoother::Smoother__EngineR"></span><span class="target" id="classpq_1_1_smoother_1a3358995634ea10fe395d8a6e5ffc0858"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherER6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with default smoothing. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
@@ -169,10 +171,10 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother8SmootherEfR6Engine">
-<span id="_CPPv3N8Smoother8SmootherEfR6Engine"></span><span id="_CPPv2N8Smoother8SmootherEfR6Engine"></span><span id="Smoother::Smoother__float.EngineR"></span><span class="target" id="classpq_1_1_smoother_1a29da58e07e0c0d21ed6bbb7cc883b276"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothingWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEfR6Engine" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother8SmootherEfR6Engine"></span><span id="_CPPv2N8Smoother8SmootherEfR6Engine"></span><span id="Smoother::Smoother__float.EngineR"></span><span class="target" id="classpq_1_1_smoother_1a29da58e07e0c0d21ed6bbb7cc883b276"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothingWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEfR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with smoothing window. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>smoothingWindow</strong> – the time window over which the smoothing applies (in seconds) </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
@@ -183,13 +185,13 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother3putEf">
-<span id="_CPPv3N8Smoother3putEf"></span><span id="_CPPv2N8Smoother3putEf"></span><span id="Smoother::put__float"></span><span class="target" id="classpq_1_1_smoother_1a663bdf40ad70eb9fa4e4f13a18e25bc0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3putEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother3putEf"></span><span id="_CPPv2N8Smoother3putEf"></span><span id="Smoother::put__float"></span><span class="target" id="classpq_1_1_smoother_1a663bdf40ad70eb9fa4e4f13a18e25bc0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -197,32 +199,168 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother3getEv">
-<span id="_CPPv3N8Smoother3getEv"></span><span id="_CPPv2N8Smoother3getEv"></span><span id="Smoother::get"></span><span class="target" id="classpq_1_1_smoother_1a513d42c0f87eb8aeb43e10940cb8f2b6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3getEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother3getEv"></span><span id="_CPPv2N8Smoother3getEv"></span><span id="Smoother::get"></span><span class="target" id="classpq_1_1_smoother_1a513d42c0f87eb8aeb43e10940cb8f2b6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother3getEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns smoothed value. </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother7secondsEv">
+<span id="_CPPv3NK8Smoother7secondsEv"></span><span id="_CPPv2NK8Smoother7secondsEv"></span><span id="Smoother::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother12milliSecondsEv">
+<span id="_CPPv3NK8Smoother12milliSecondsEv"></span><span id="_CPPv2NK8Smoother12milliSecondsEv"></span><span id="Smoother::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother12microSecondsEv">
+<span id="_CPPv3NK8Smoother12microSecondsEv"></span><span id="_CPPv2NK8Smoother12microSecondsEv"></span><span id="Smoother::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother6nStepsEv">
+<span id="_CPPv3NK8Smoother6nStepsEv"></span><span id="_CPPv2NK8Smoother6nStepsEv"></span><span id="Smoother::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother10sampleRateEv">
+<span id="_CPPv3NK8Smoother10sampleRateEv"></span><span id="_CPPv2NK8Smoother10sampleRateEv"></span><span id="Smoother::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother12samplePeriodEv">
+<span id="_CPPv3NK8Smoother12samplePeriodEv"></span><span id="_CPPv2NK8Smoother12samplePeriodEv"></span><span id="Smoother::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8SmoothercvfEv">
+<span id="_CPPv3N8SmoothercvfEv"></span><span id="_CPPv2N8SmoothercvfEv"></span><span id="Smoother::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5mapToEff">
+<span id="_CPPv3N8Smoother5mapToEff"></span><span id="_CPPv2N8Smoother5mapToEff"></span><span id="Smoother::mapTo__float.float"></span><span class="target" id="classpq_1_1_chainable_1a5a8c57d4edc84dadaf764be3f4643e7f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+<p>This function guarantees that the value is within [toLow, toHigh]. If the unit’s values are unbounded, returns get() constrained to [toLow, toHigh]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8SmoothercvbEv">
+<span id="_CPPv3N8SmoothercvbEv"></span><span id="_CPPv2N8SmoothercvbEv"></span><span id="Smoother::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother18infiniteTimeWindowEv">
+<span id="_CPPv3N8Smoother18infiniteTimeWindowEv"></span><span id="_CPPv2N8Smoother18infiniteTimeWindowEv"></span><span id="Smoother::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_moving_average_1aecc1136923c82e2cfe45a70bfb919662"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets to “infinite” smoothing window. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother10timeWindowEf">
-<span id="_CPPv3N8Smoother10timeWindowEf"></span><span id="_CPPv2N8Smoother10timeWindowEf"></span><span id="Smoother::timeWindow__float"></span><span class="target" id="classpq_1_1_moving_average_1a52c72676771917bfd7d02170d0f6385d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother10timeWindowEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother10timeWindowEf"></span><span id="_CPPv2N8Smoother10timeWindowEf"></span><span id="Smoother::timeWindow__float"></span><span class="target" id="classpq_1_1_moving_average_1a52c72676771917bfd7d02170d0f6385d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Changes the smoothing window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8Smoother10timeWindowEv">
-<span id="_CPPv3NK8Smoother10timeWindowEv"></span><span id="_CPPv2NK8Smoother10timeWindowEv"></span><span id="Smoother::timeWindowC"></span><span class="target" id="classpq_1_1_moving_average_1a6826ef56a2026934126da5c5980d0f84"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother10timeWindowEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK8Smoother10timeWindowEv"></span><span id="_CPPv2NK8Smoother10timeWindowEv"></span><span id="Smoother::timeWindowC"></span><span class="target" id="classpq_1_1_moving_average_1a6826ef56a2026934126da5c5980d0f84"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the smoothing window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother20timeWindowIsInfiniteEv">
+<span id="_CPPv3NK8Smoother20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK8Smoother20timeWindowIsInfiniteEv"></span><span id="Smoother::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_moving_average_1a3fefef6a48714045cb94ef13907e404c"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if time window is infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother6cutoffEf">
-<span id="_CPPv3N8Smoother6cutoffEf"></span><span id="_CPPv2N8Smoother6cutoffEf"></span><span id="Smoother::cutoff__float"></span><span class="target" id="classpq_1_1_moving_average_1a852dc2e13debcfb32ae54247f4c7433e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother6cutoffEf" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother6cutoffEf"></span><span id="_CPPv2N8Smoother6cutoffEf"></span><span id="Smoother::cutoff__float"></span><span class="target" id="classpq_1_1_moving_average_1a852dc2e13debcfb32ae54247f4c7433e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother6cutoffEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Changes the smoothing window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8Smoother6cutoffEv">
-<span id="_CPPv3NK8Smoother6cutoffEv"></span><span id="_CPPv2NK8Smoother6cutoffEv"></span><span id="Smoother::cutoffC"></span><span class="target" id="classpq_1_1_moving_average_1af633b34d73d74978b5b1354c29441c4d"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother6cutoffEv" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3NK8Smoother6cutoffEv"></span><span id="_CPPv2NK8Smoother6cutoffEv"></span><span id="Smoother::cutoffC"></span><span class="target" id="classpq_1_1_moving_average_1af633b34d73d74978b5b1354c29441c4d"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother6cutoffEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the smoothing window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother5alphaEf">
+<span id="_CPPv3NK8Smoother5alphaEf"></span><span id="_CPPv2NK8Smoother5alphaEf"></span><span id="Smoother::alpha__floatC"></span><span class="target" id="classpq_1_1_moving_average_1a044585f209484066e8f57ddb6232e93b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alpha</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother5alphaEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the alpha value computed from given sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEv">
+<span id="_CPPv3N8Smoother5resetEv"></span><span id="_CPPv2N8Smoother5resetEv"></span><span id="Smoother::reset"></span><span class="target" id="classpq_1_1_moving_average_1ac02afd5497c644cd62a393e956c2f50c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the moving average. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother6updateEffb">
+<span id="_CPPv3N8Smoother6updateEffb"></span><span id="_CPPv2N8Smoother6updateEffb"></span><span id="Smoother::update__float.float.b"></span><span class="target" id="classpq_1_1_moving_average_1a55ad1aab81caaa351703fcf74e0b8e8c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">v</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">forceAlpha</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother6updateEffb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Updates the moving average with new value v# (also returns the current value). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8Smoother8nSamplesEv">
+<span id="_CPPv3NK8Smoother8nSamplesEv"></span><span id="_CPPv2NK8Smoother8nSamplesEv"></span><span id="Smoother::nSamplesC"></span><span class="target" id="classpq_1_1_moving_average_1ad8ed7e1aa017e378214550b486a6e750"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSamples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8Smoother8nSamplesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the number of samples processed since <a class="reference internal" href="#classpq_1_1_moving_average_1ac02afd5497c644cd62a393e956c2f50c"><span class="std std-ref">reset()</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother11amendUpdateEfffb">
+<span id="_CPPv3N8Smoother11amendUpdateEfffb"></span><span id="_CPPv2N8Smoother11amendUpdateEfffb"></span><span id="Smoother::amendUpdate__float.float.float.b"></span><span class="target" id="classpq_1_1_moving_average_1abc86a700ea15190c75db0be0a0ac9195"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">amendUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">previousValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">forceAlpha</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother11amendUpdateEfffb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Performs an amendment of latest update (needs to be called with same sampleRate# and forceAlpha# parameters). </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother15analogToDigitalEf">
+<span id="_CPPv3N8Smoother15analogToDigitalEf"></span><span id="_CPPv2N8Smoother15analogToDigitalEf"></span><span id="Smoother::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother15digitalToAnalogEb">
+<span id="_CPPv3N8Smoother15digitalToAnalogEb"></span><span id="_CPPv2N8Smoother15digitalToAnalogEb"></span><span id="Smoother::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5alphaEffj">
+<span id="_CPPv3N8Smoother5alphaEffj"></span><span id="_CPPv2N8Smoother5alphaEffj"></span><span id="Smoother::alpha__float.float.unsigned-i"></span><span class="target" id="classpq_1_1_moving_average_1a9d15e9a7799bd3aaed42eb7bd793b3d8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alpha</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sampleRate</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nSamples</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">UINT_MAX</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5alphaEffj" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the alpha value computed from given sample rate, time window, and number of samples. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother11applyUpdateERfff">
+<span id="_CPPv3N8Smoother11applyUpdateERfff"></span><span id="_CPPv2N8Smoother11applyUpdateERfff"></span><span id="Smoother::applyUpdate__floatR.float.float"></span><span class="target" id="classpq_1_1_moving_average_1a97d72ac2159d701999805082181b4799"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">applyUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">runningValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alpha</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother11applyUpdateERfff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Applies a single update on runningValue# with new sample newValue# and mixing factor <a class="reference internal" href="#classpq_1_1_moving_average_1a044585f209484066e8f57ddb6232e93b"><span class="std std-ref">alpha</span></a>#. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother16applyAmendUpdateERffff">
+<span id="_CPPv3N8Smoother16applyAmendUpdateERffff"></span><span id="_CPPv2N8Smoother16applyAmendUpdateERffff"></span><span id="Smoother::applyAmendUpdate__floatR.float.float.float"></span><span class="target" id="classpq_1_1_moving_average_1a857c47bd2cfc1bbc0b702c612b511c32"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">applyAmendUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">runningValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">previousValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alpha</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother16applyAmendUpdateERffff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Performs an amendment of latest update (needs to be called with same <a class="reference internal" href="#classpq_1_1_moving_average_1a044585f209484066e8f57ddb6232e93b"><span class="std std-ref">alpha</span></a># parameter). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother13computeUpdateEfff">
+<span id="_CPPv3N8Smoother13computeUpdateEfff"></span><span id="_CPPv2N8Smoother13computeUpdateEfff"></span><span id="Smoother::computeUpdate__float.float.float"></span><span class="target" id="classpq_1_1_moving_average_1accdaa3ddf3af049a8c76794ced75b02f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">computeUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">runningValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alpha</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother13computeUpdateEfff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Computes a single update on runningValue# with new sample newValue# and mixing factor <a class="reference internal" href="#classpq_1_1_moving_average_1a044585f209484066e8f57ddb6232e93b"><span class="std std-ref">alpha</span></a>#. </p>
 </dd></dl>
 
 </div>
@@ -230,7 +368,7 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="AnalogIn.html"><span class="doc">AnalogIn</span></a></p></li>
 <li><p><a class="reference internal" href="DigitalIn.html"><span class="doc">DigitalIn</span></a></p></li>
@@ -243,7 +381,7 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="PeakDetector.html" class="btn btn-neutral float-left" title="PeakDetector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="functions.html" class="btn btn-neutral float-right" title="Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fields.html" class="btn btn-neutral float-right" title="Fields" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
