@@ -202,4 +202,20 @@ once per step. This ensures consistent timing and avoids unintended side effects
 
 ---
 
+## Visual Identity
+
+- ❌ **Use only with approbation by the core developers**.
+- Color palette: #00ACFC (cyan-blue) and #FFFFFF (white)
+- Logo font: (OCR A Bold)[https://fonts.adobe.com/fonts/ocr-a]
+
+### Logo (no text)
+
+![Plaquette Logo (no text)](https://github.com/SofaPirate/Plaquette/blob/master/docs/images/Plaquette-Logo.png)
+
+### Logo (with text)
+
+![Plaquette Logo (with text)](https://github.com/SofaPirate/Plaquette/blob/master/docs/images/Plaquette-LogoText.png)
+
+---
+
 *Last updated: 2025-06-16*
