@@ -74,43 +74,45 @@ public:
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
   /**
-   * Sets the amplitude of the wave.
-   * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
-   */
-   virtual void amplitude(float amplitude);
+  * Sets the phase at % of period.
+  * @param phase the phase (in % of period)
+  */
+  virtual void phase(float phase);
 
-   /// Returns the amplitude of the wave.
-   virtual float amplitude() const { return fixed32ToFloat(_amplitude); }
+  /// Returns the phase (in % of period).
+  virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
 
-   /**
-    * Sets the phase (ie. the offset, in % of period).
-    * @param phase the phase (in % of period)
-    */
-   virtual void phase(float phase);
+  /**
+  * Sets the phase shift (ie. the offset, in % of period).
+  *
+  * @param phaseShift the phase shift (in % of period)
+  * @warning This function is disabled if randomness() > 0.
+  */
+  virtual void phaseShift(float phaseShift);
 
-   /// Returns the phase (in % of period).
-   virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
-
-   /**
-    * Sets the phase (ie. the offset, in % of period).
-    * @param phase the phase (in % of period)
-    */
-   virtual void phaseShift(float phaseShift);
-
-   /// Returns the phase (in % of period).
-   virtual float phaseShift() const { return _phaseShift; }
+  /**
+  * Returns the phase shift (ie. the offset, in % of period).
+  * @warning This function always returns 0 when randomness() > 0.
+  */
+  virtual float phaseShift() const;
 
    /**
     * Utility function to convert time to phase.
-    * @param t relative time in seconds
+    * @param time relative time in seconds
     * @return the equivalent phase
     */
   virtual float timeToPhase(float time) const;
 
-  /// Forces current time (in seconds).
+  /**
+   * Forces current time (in seconds).
+   * @warning This function is disabled if randomness() > 0.
+   */
   virtual void setTime(float time);
 
-  /// Forces current time (in seconds).
+  /**
+   * Adds time to current time (in seconds).
+   * @warning This function is disabled if randomness() > 0.
+   */
   virtual void addTime(float time);
 
   /// Returns true iff the wave is currently running.
@@ -134,13 +136,27 @@ public:
   /// Toggles the direction of oscillation.
   virtual void toggleReverse() { _isForward = !_isForward; }
 
+  /// Returns the randomness level in [0, 1].
+  virtual float randomness() const;
+
+  /// Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness).
+  virtual void randomize(float randomness=1.0f);
+
+  /// Disables randomness.
+  virtual void noRandomize() { randomize(0.0f); }
+
 protected:
+  // Perform step with under
+  void _stepPhase(float deltaTimeSecondsTimesFixed32Max);
 
   // Sets phase time.
   virtual void _setPhase32(q0_32u_t phase32);
 
   // Sets running state.
   virtual void _setRunning(bool isRunning);
+
+  // Picks next random frequency multiplier (for randomized oscillation).
+  void _randomPickNext();
 
   // Period (seconds).
   float _period;
@@ -150,15 +166,9 @@ protected:
   float _frequency;
 #endif
 
-  // Phase shift (in % of period).
-  float _phaseShift;
-
-  // Amplitude (in %).
-//  float _amplitude;
-  uint32_t _amplitude;
-
-  // Width of the signal.
-  q0_32u_t _skew32;
+  // Non-random mode: Phase shift (in % of period).
+  // Random mode: random frequency ratio (in % of frequency).
+  float _phaseShiftOrRandomFrequencyRatio = 0;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;
@@ -175,16 +185,8 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  // Current value.
-  bool _onValue : 1;
-
-  uint8_t data : 3;
-
-  // // Previous value, used to compute change state.
-  // bool _prevOnValue : 1;
-
-  // // The change state contained in the unit.
-  // int8_t _changeState : 2;
+  // Randomness level.
+  uint8_t _randomness : 4;
 };
 
 }

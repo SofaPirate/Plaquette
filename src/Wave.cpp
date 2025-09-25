@@ -40,7 +40,7 @@ void Wave::shape(WaveShape shape) {
 
 q0_32u_t Wave::_getFixed32(q0_32u_t t)
 {
-  static q0_32u_t (*WAVE_FORM_FUNCTIONS[N_SHAPES])(q0_32u_t, q0_32u_t) = {squareWave, triangleWave, sineWave};
+  static q0_32u_t (*WAVE_FORM_FUNCTIONS[N_SHAPES])(const q0_32u_t&, const q0_32u_t&) = {squareWave, triangleWave, sineWave};
   // Return appropriate wave function according to shape.
   return WAVE_FORM_FUNCTIONS[_shape](t, _skew32);
 }

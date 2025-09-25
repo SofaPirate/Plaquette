@@ -19,11 +19,16 @@
 
 #include "pq_random.h"
 #include "pq_fastmath.h"
+#include "pq_random32.h"
 
 namespace pq {
 
+#ifndef RANDOM_MAX
+#define	RANDOM_MAX 0x7FFFFFFF
+#endif
+
 float randomFloat() {
-  return (float)rand() / (float) RAND_MAX;
+  return (float)random32() / (float)RANDOM_32_MAX;
 }
 
 float randomFloat(float max) {

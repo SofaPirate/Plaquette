@@ -27,15 +27,15 @@ range, use the ``CONSTRAIN`` argument as the last parameter:
 See :doc:`mapFloat` for more details.
 
 |Example|
--------------
+---------
 
 .. code-block:: c++
 
    #include <Plaquette.h>
 
-   SineWave modulator(10.0);
+   Wave modulator(SINE, 10.0);
 
-   SquareWave oscillator(1.0);
+   Wave oscillator(SQUARE, 1.0);
 
    DigitalOut led(13);
 
@@ -55,7 +55,7 @@ See :doc:`mapFloat` for more details.
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFrom01(double, double, double, uint8_t)
+.. doxygenfunction:: mapFrom01(double, double, double, MapMode)
    :project: Plaquette
 
 |SeeAlso|

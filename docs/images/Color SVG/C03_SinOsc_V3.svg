@@ -5,6 +5,9 @@
    id="svg39"
    sodipodi:docname="C03_SinOsc_V3.svg"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="C03_SinOsc_V3.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -221,6 +224,6 @@
        id="text13"
        style="font-size:60px;font-family:Helvetica, Helvetica;fill:#000000;fill-opacity:1;stroke:none"
        x="236.20892"
-       y="182.72304">width (%)</text>
+       y="182.72304">skew (%)</text>
   </g>
 </svg>

@@ -54,8 +54,8 @@ master_doc = 'index'
 project = u'Plaquette'
 copyright = u'2015-2025, Plaquette'
 author = u'Sofian Audry & Thomas O. Fredericks'
-version = '0.7.0'
-release = '0.7.0'
+version = '0.8'
+release = '0.8.0'
 language = 'en'
 exclude_patterns = ['_build']
 pygments_style = 'sphinx'
@@ -71,5 +71,5 @@ latex_elements = {
 }
 latex_documents = [
   (master_doc, 'Plaquette.tex', u'Plaquette Manual',
-   u'Sofian Audry', 'manual'),
+   u'', 'manual'),
 ]

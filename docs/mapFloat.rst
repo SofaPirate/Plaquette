@@ -19,7 +19,7 @@ The function also handles negative numbers well, so that this example
 
 is also valid and works well.
 
-By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
+By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because
 out-of-range values are sometimes intended and useful. In order to constrain the return value within
 range, you can use one of the alternative modes:
 * the ``CONSTRAIN`` mode to simply keep the value within range by restricting extreme
@@ -32,7 +32,7 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
    mapFloat(x, 10.0, 50.0, 100.0, -100.0, WRAP);
 
 .. note::
-   The "lower bounds" (``fromLow`` and ``toLow``) of either range may be larger or smaller than the 
+   The "lower bounds" (``fromLow`` and ``toLow``) of either range may be larger or smaller than the
    "upper bounds" (``fromHigh`` and ``toHigh``) so the ``mapFloat()`` function may be used to reverse a
    range of numbers.
 
@@ -47,7 +47,7 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
 
    #include <Plaquette.h>
 
-   SquareWave oscillator(1.0);
+   Wave oscillator(1.0);
 
    DigitalOut led(13);
 
@@ -67,7 +67,7 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
 |Reference|
 -----------
 
-.. doxygenfunction:: mapFloat(double, double, double, double, double, uint8_t)
+.. doxygenfunction:: mapFloat(double, double, double, double, double, MapMode)
    :project: Plaquette
 
 |SeeAlso|

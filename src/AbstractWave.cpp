@@ -28,8 +28,9 @@ namespace pq {
 AbstractWave::AbstractWave(Engine& engine) : AbstractWave(1.0f, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, Engine& engine) : AbstractWave(period, 0.5f, engine) {}
 AbstractWave::AbstractWave(float period, float skew_, Engine& engine)
-: AnalogSource(engine), AbstractOscillator(period) {
+: AnalogSource(engine), AbstractOscillator(period), _amplitude(0) {
   skew(skew_);
+  amplitude(1.0f);
 }
 
 float AbstractWave::get() {
@@ -49,28 +50,10 @@ void AbstractWave::begin() {
 
 void AbstractWave::step() {
   // Update phase time.
-  if (isRunning())
-    _overflowed = phase32UpdateFixed32(_phase32, frequency(), engine()->deltaTimeSecondsTimesFixed32Max(), _isForward);
-  else
-    _overflowed = false;
+  _stepPhase(engine()->deltaTimeSecondsTimesFixed32Max());
 
   // Set flag to indicate value is out of sync.
   _valueNeedsUpdate = true;
-  // // Notice: this computation is not exact but manages naturally changes in the period without
-  // // inducing dephasings on Arduino boards.
-  // float relativeTime = seconds() - _startTime;
-  //
-  // // Check where we are.
-  // float progress = relativeTime / _period;
-  // if (progress >= 1) {
-  //   _value = 0;
-  //   _startTime = seconds();
-  // }
-  // else if (progress >= _skew32) _value = (1 - progress) / (1 - _skew32);
-  // else                         _value = progress / _skew32;
-  //
-  // // Amplify.
-  // _value = _amplitude * (_value - 0.5f) + 0.5f;
 }
 
 float AbstractWave::_getAmplified(q0_32u_t t) {
@@ -89,9 +72,22 @@ float AbstractWave::atPhase(float phase) {
   return _getAmplified(floatToPhase32(phase));
 }
 
+void AbstractWave::amplitude(float amplitude)  {
+  _amplitude = floatToFixed32(amplitude);
+}
+
 void AbstractWave::skew(float skew) {
   _skew32 = floatToFixed32(skew);
   _valueNeedsUpdate = true;
+}
+
+void AbstractWave::onBang(EventCallback callback) {
+  onEvent(callback, EVENT_BANG);
+}
+
+bool AbstractWave::eventTriggered(EventType eventType) {
+  if (eventType == EVENT_BANG) return _overflowed;
+  else return AnalogSource::eventTriggered(eventType);
 }
 
 // void AbstractWave::_setRunning(bool isRunning)

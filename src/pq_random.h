@@ -25,9 +25,6 @@
 #ifndef RANDOM_H_
 #define RANDOM_H_
 
-#include <limits.h>
-#include <stdlib.h>
-
 namespace pq {
 
 // Floating point random numbers.

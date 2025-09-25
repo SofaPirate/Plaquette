@@ -22,7 +22,7 @@ void begin() {
 
   // Apply easing function.
   // You can try with different easing functions. A full list is available at:
-  // http://sofapirate.github.io/Plaquette/easings.html
+  // http://plaquette.org/Plaquette/easings.html
   ramp.easing(easeInSine);
 
   // Start ramp.

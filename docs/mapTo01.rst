@@ -16,7 +16,7 @@ is equivalent to:
 
    mapFloat(x, fromLow, fromHigh, 0, 1)
 
-By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because 
+By default, does *not* constrain output to stay within the [``fromHigh``, ``toHigh``] range, because
 out-of-range values are sometimes intended and useful. In order to constrain the return value within
 range, use the ``CONSTRAIN`` argument as the last parameter:
 
@@ -50,7 +50,7 @@ See :doc:`mapFloat` for more details.
 |Reference|
 -----------
 
-.. doxygenfunction:: mapTo01(double, double, double, uint8_t)
+.. doxygenfunction:: mapTo01(double, double, double, MapMode)
    :project: Plaquette
 
 |SeeAlso|

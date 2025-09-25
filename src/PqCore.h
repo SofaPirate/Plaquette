@@ -32,6 +32,8 @@
 #include <stdint.h>
 #include <float.h>
 
+#include <limits.h>
+
 #include "HybridArrayList.h"
 #include "PqEvents.h"
 #include "pq_globals.h"

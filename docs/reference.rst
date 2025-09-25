@@ -12,9 +12,8 @@ Base Units
 Generators
 ----------
 
-* :doc:`SineWave` Generates a smooth, periodic sine wave signal. Commonly used for oscillatory motion or smooth transitions.
-* :doc:`SquareWave` Generates a periodic square wave signal, alternating between high and low states. Ideal for toggling signals like blinking LEDs.
-* :doc:`TriangleWave` Produces a periodic triangle wave signal with a linear rise and fall. Useful for generating smoother oscillatory patterns than square waves.
+* :doc:`Ramp` Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.
+* :doc:`Wave` Generates a smooth, periodic wave signal with a square, triangle, or sine shape. Commonly used for oscillatory motion or smooth transitions.
 
 Timing
 ------
@@ -22,7 +21,6 @@ Timing
 * :doc:`Alarm` Triggers an event after a specified time duration. Can be used to schedule delays or time-based actions.
 * :doc:`Chronometer` Measures elapsed time since the start or reset. Useful for timing events or profiling system performance.
 * :doc:`Metronome` Produces a periodic tick at specified intervals. Often used in rhythmic applications such as sound or light pulses.
-* :doc:`Ramp` Generates a linear ramp signal over time. Commonly used for smooth parameter transitions like fading lights or scaling values.
 
 Filters
 -------
@@ -31,6 +29,11 @@ Filters
 * :doc:`Normalizer` Adjusts signals to have a zero mean and unit variance. Useful in signal processing pipelines where consistent scaling is required.
 * :doc:`PeakDetector` Detects peaks (local maxima) in input signals, allowing for event-based processing such as edge detection.
 * :doc:`Smoother` Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.
+
+Fields
+------
+* :doc:`PivotField` Generates a spatial response curve based on a pivot point around which the field transitions happens, making it ideal for creating animations such as VU-meters or fades on arrays of actuators such as LEDs or motors.
+* :doc:`TimeSliceField` Collects values over time which can then be sampled spatially like an array accross a normalized range. Useful for plotting time-varying signals, such as mapping audio or sensor input onto an LED strip or a motor array.
 
 Functions
 ---------

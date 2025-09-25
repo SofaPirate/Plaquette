@@ -5,7 +5,7 @@ Inputs and Outputs
 When working with Plaquette, **inputs** and **outputs** allow you to interact with the physical
 world. Whether you are reading a sensor's value or controlling an actuator, Plaquette makes this
 process intuitive and efficient. This section introduces the basic concepts of digital and analog
-inputs and outputs, presents Plaquette's unique syntax for efficient and expressive code, explains 
+inputs and outputs, presents Plaquette's unique syntax for efficient and expressive code, explains
 how to clean noisy data, shows how to make decisions based on input values, and describes the
 different configuration modes of input and output units.
 
@@ -20,7 +20,7 @@ signals.
 - **Digital** signals represent binary states: ON vs OFF, HIGH vs LOW, 1 vs 0, true vs false. Examples of digital
   inputs include buttons and presence sensors, while digital outputs might control LEDs or relays.
 - **Analog** signals represent a continuous range of values. Think of a dimmer switch (potentiometer)
-  or a light sensor that measures brightness levels. Analog outputs control devices such as LEDs with 
+  or a light sensor that measures brightness levels. Analog outputs control devices such as LEDs with
   variable brightness and DC motors where the speed can vary.
 
 .. warning::
@@ -30,7 +30,7 @@ signals.
   and LOW, creating the illusion of a continuous analog voltage when averaged over time. While this
   works for controlling brightness in LEDs or speed in motors, it may not be suitable for applications
   requiring a steady, smooth signal.
-  
+
   For more information, visit the official Arduino documentation on
   `Pulse Width Modulation <https://www.arduino.cc/en/Tutorial/Foundations/PWM>`__.
 
@@ -62,8 +62,11 @@ Here's an example of how to control an LED:
 **Digital Inputs**
 ~~~~~~~~~~~~~~~~~~
 A :doc:`DigitalIn` unit reads binary states from devices like buttons or switches. The easiest way
-to connect a button or switch is to use the **internal pull-up** resistor on Arduino boards. One 
+to connect a button or switch is to use the **internal pull-up** resistor on Arduino boards. One
 leg of the  button should be connected to ground (GND) while the other should be connected to a digital pin.
+
+.. image:: images/Plaquette-CircuitButton.png
+   :align: center
 
 .. code-block:: cpp
 
@@ -94,6 +97,9 @@ example of dimming an LED. The cathode (short leg) of the LED should be connecte
 the anode (long leg) should be connected to a 300 :math:`\Omega` resistor, which in turn should be
 connected to an analog / PWM pin (eg. pin 9).
 
+.. image:: images/Plaquette-CircuitLedButton.png
+    :align: center
+
 .. code-block:: cpp
 
     #include <Plaquette.h>
@@ -110,12 +116,15 @@ connected to an analog / PWM pin (eg. pin 9).
 
 **Analog Inputs**
 ~~~~~~~~~~~~~~~~~
-An :doc:`AnalogIn` unit reads continuous values from sensors, such as potentiometers, light, 
+An :doc:`AnalogIn` unit reads continuous values from sensors, such as potentiometers, light,
 or temperature sensors.
 
 Let's use a potentiometer to control an LED's brightness. For this circuit, the center pin
 of the potentiometer should be connected to analog input pin (``A0``), the left pin to ground
 (GND) and the right pin to +5V (Vcc).
+
+.. image:: images/Plaquette-CircuitLedPotButton.png
+    :align: center
 
 .. code-block:: cpp
 
@@ -177,8 +186,8 @@ These simplifications make your code more expressive and emphasize the logic ove
 The Piping Operator (>>)
 ------------------------
 
-In Plaquette, the ``>>`` operator allows you to directly send or "pipe" the value of one unit to 
-another. This makes it incredibly simple to map inputs to outputs without extra variables or 
+In Plaquette, the ``>>`` operator allows you to directly send or "pipe" the value of one unit to
+another. This makes it incredibly simple to map inputs to outputs without extra variables or
 function calls.
 
 Let's revisit the potentiometer and LED example using the piping operator:
@@ -243,9 +252,12 @@ For analog signals, smoothing helps stabilize noisy data.
 Here's how you can smooth a light sensor (photoresistor). For this circuit, you will need to
 create a simple `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
 Connect the photoresistor between the ground (GND) and the analog input pin (``A0``). Then connect
-a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
-For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
+a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
+For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed
 resistor of about 5.5k :math:`\Omega`).
+
+.. image:: images/Plaquette-CircuitVoltageDivider.png
+    :align: center
 
 .. code-block:: cpp
 
@@ -275,7 +287,7 @@ Mapping Values to Different Ranges
 ----------------------------------
 
 Sometimes, the output of a sensor doesn't match the range needed for an actuator. Plaquette
-provides a simple **mapping function** ``mapTo(low, high)`` which maps the analog input value 
+provides a simple **mapping function** ``mapTo(low, high)`` which maps the analog input value
 to a specified range which is very useful for scaling sensor readings.
 
 **Example**: Controlling the blinking frequency of an LED based on the value of a light sensor.
@@ -286,7 +298,7 @@ to a specified range which is very useful for scaling sensor readings.
 
     AnalogIn lightSensor(A0);
     DigitalOut led(13);
-    SquareWave wave(1.0);
+    Wave wave(1.0);
 
     void begin() {}
 
@@ -351,7 +363,7 @@ Modes for Inputs and Outputs
 
 All input and output units in Plaquette support different modes, which allow you to adapt to various
 circuit configurations. You may already be familiar with the ``INTERNAL_PULLUP`` mode from
-:doc:`DigitalIn`, which provides a simple way to connect a button input. Let's explore how modes affect 
+:doc:`DigitalIn`, which provides a simple way to connect a button input. Let's explore how modes affect
 :doc:`DigitalIn`, :doc:`AnalogIn`, :doc:`DigitalOut`, and :doc:`AnalogOut` units.
 
 Understanding these modes helps you design stable and efficient circuits, whether you're reading
@@ -442,13 +454,13 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
 - **DIRECT** (default): The pin provides current when ON, suitable for devices like LEDs connected
   between the pin and ground.
 
-  **Example**: LED in direct mode. Connect the LED anode (long leg) to pin 9 and the cathode 
+  **Example**: LED in direct mode. Connect the LED anode (long leg) to pin 9 and the cathode
   (short leg) to ground, with a 330 :math:`\Omega` in series.
 
   .. code-block:: cpp
 
       AnalogOut led(9, DIRECT);
-      SineWave wave(1.0);
+      Wave wave(SINE, 1.0);
 
       void begin() {}
 
@@ -456,10 +468,10 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
         wave >> led;
       }
 
-- **INVERTED**: The pin emits zero volts (GND) when ON so the current "sinks" to the pin. Suitable for digital outputs 
+- **INVERTED**: The pin emits zero volts (GND) when ON so the current "sinks" to the pin. Suitable for digital outputs
   connected between a positive voltage and the pin.
 
-  **Example**: LED in inverted mode. Connect the LED anode (long leg) to +5V (Vcc) and the cathode to pin 9, with a 
+  **Example**: LED in inverted mode. Connect the LED anode (long leg) to +5V (Vcc) and the cathode to pin 9, with a
   330 :math:`\Omega` resistor in series.
 
   .. code-block:: cpp

@@ -19,7 +19,7 @@ Uses a chronometer to change the frequency a blinking LED. Restarts after 10 sec
 
    DigitalOut led(13);
 
-   SquareOsc osc(1.0); // a square oscillator
+   Wave osc(1.0); // a square oscillator
 
    void begin() {
      chrono.start(); // start chrono

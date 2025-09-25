@@ -1,1 +1,133 @@
-<svg id="graph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><style>.cls-1{fill:#fff;}.cls-2{font-size:60px;}.cls-2,.cls-3{font-family:Helvetica, Helvetica;}.cls-3{font-size:48px;}.cls-4,.cls-5,.cls-6{fill:none;stroke-miterlimit:10;}.cls-4{stroke:#1b66aa;stroke-width:7px;}.cls-5,.cls-6{stroke:#000;}.cls-5{stroke-width:10px;}.cls-6{stroke-width:5px;}</style></defs><title>Plaquette Diagrams</title><rect class="cls-1" x="22.63" y="25" width="1786.38" height="938"/><text class="cls-2" transform="translate(275 866.38)">period (s)</text><text class="cls-2" transform="translate(1549 871.38)">time (s)</text><text class="cls-2" transform="translate(112.7 654.04) rotate(-90)">value (%)</text><text class="cls-3" transform="translate(69 297)">1.0</text><text class="cls-3" transform="translate(95 819)">0.0</text><polyline class="cls-4" points="179 763 337 285 637 765"/><polyline class="cls-4" points="635 763 793 285 1093 765"/><polyline class="cls-4" points="1091 763 1249 285 1549 765"/><polyline class="cls-5" points="1719 766 173 766 173 288"/><line class="cls-6" x1="170.23" y1="244.21" x2="170.23" y2="267.3"/><line class="cls-6" x1="337.54" y1="245.62" x2="337.54" y2="268.71"/><line class="cls-6" x1="170.23" y1="256.93" x2="336.12" y2="256.93"/><line class="cls-6" x1="175.34" y1="781.54" x2="175.34" y2="804.64"/><line class="cls-6" x1="632.98" y1="781.54" x2="632.98" y2="804.64"/><line class="cls-6" x1="175" y1="794.27" x2="637" y2="794.27"/><polyline class="cls-5" points="1663.78 733.05 1718.62 767.54 1669.43 794.12 1663.78 796.95"/><text class="cls-2" transform="translate(170.23 201.53)">width (%)</text></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="graph"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   sodipodi:docname="C02_TriOsc1_V2.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="Skew PNGs\C02_TriOsc1_V2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.71574074"
+     inkscape:cx="829.21087"
+     inkscape:cy="540"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="graph" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#fff;}.cls-2{font-size:60px;}.cls-2,.cls-3{font-family:Helvetica, Helvetica;}.cls-3{font-size:48px;}.cls-4,.cls-5,.cls-6{fill:none;stroke-miterlimit:10;}.cls-4{stroke:#1b66aa;stroke-width:7px;}.cls-5,.cls-6{stroke:#000;}.cls-5{stroke-width:10px;}.cls-6{stroke-width:5px;}</style>
+  </defs>
+  <title
+     id="title1">Plaquette Diagrams</title>
+  <rect
+     class="cls-1"
+     x="22.63"
+     y="25"
+     width="1786.38"
+     height="938"
+     id="rect1" />
+  <text
+     class="cls-2"
+     transform="translate(275 866.38)"
+     id="text1">period (s)</text>
+  <text
+     class="cls-2"
+     transform="translate(1549 871.38)"
+     id="text2">time (s)</text>
+  <text
+     class="cls-2"
+     transform="translate(112.7 654.04) rotate(-90)"
+     id="text3">value (%)</text>
+  <text
+     class="cls-3"
+     transform="translate(69 297)"
+     id="text4">1.0</text>
+  <text
+     class="cls-3"
+     transform="translate(95 819)"
+     id="text5">0.0</text>
+  <polyline
+     class="cls-4"
+     points="179 763 337 285 637 765"
+     id="polyline5" />
+  <polyline
+     class="cls-4"
+     points="635 763 793 285 1093 765"
+     id="polyline6" />
+  <polyline
+     class="cls-4"
+     points="1091 763 1249 285 1549 765"
+     id="polyline7" />
+  <polyline
+     class="cls-5"
+     points="1719 766 173 766 173 288"
+     id="polyline8" />
+  <line
+     class="cls-6"
+     x1="170.23"
+     y1="244.21"
+     x2="170.23"
+     y2="267.3"
+     id="line8" />
+  <line
+     class="cls-6"
+     x1="337.54"
+     y1="245.62"
+     x2="337.54"
+     y2="268.71"
+     id="line9" />
+  <line
+     class="cls-6"
+     x1="170.23"
+     y1="256.93"
+     x2="336.12"
+     y2="256.93"
+     id="line10" />
+  <line
+     class="cls-6"
+     x1="175.34"
+     y1="781.54"
+     x2="175.34"
+     y2="804.64"
+     id="line11" />
+  <line
+     class="cls-6"
+     x1="632.98"
+     y1="781.54"
+     x2="632.98"
+     y2="804.64"
+     id="line12" />
+  <line
+     class="cls-6"
+     x1="175"
+     y1="794.27"
+     x2="637"
+     y2="794.27"
+     id="line13" />
+  <polyline
+     class="cls-5"
+     points="1663.78 733.05 1718.62 767.54 1669.43 794.12 1663.78 796.95"
+     id="polyline13" />
+  <text
+     class="cls-2"
+     transform="translate(170.23,201.53)"
+     id="text13">skew (%)</text>
+</svg>

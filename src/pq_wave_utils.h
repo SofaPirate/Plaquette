@@ -26,19 +26,19 @@
 
 namespace pq {
 
-inline q0_32u_t squareWave(q0_32u_t t, q0_32u_t skew)
+inline q0_32u_t squareWave(const q0_32u_t& t, const q0_32u_t& skew)
 {
   return (t <= skew) ? FIXED_32_MAX : 0;
 }
 
-inline q0_32u_t triangleWave(q0_32u_t t, q0_32u_t skew)
+inline q0_32u_t triangleWave(const q0_32u_t& t, const q0_32u_t& skew)
 {
   return (t <= skew) ?
             fixed32Divide(t, skew) :
             fixed32Divide(FIXED_32_MAX - t, FIXED_32_MAX - skew);
 }
 
-inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
+inline q0_32u_t sineWave(const q0_32u_t& t, const q0_32u_t& skew)
 {
 #if defined(PQ_ARCH_32BITS)
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
@@ -57,7 +57,7 @@ inline q0_32u_t sineWave(q0_32u_t t, q0_32u_t skew)
   // Falling part of sine wave.
   else
   {
-      phase32 = fixed32Divide(t - skew, FIXED_32_MAX - skew) / 2 + HALF_FIXED_MAX;
+      phase32 = fixed32Divide(t - skew, FIXED_32_MAX - skew) / 2 + HALF_FIXED_32_MAX;
   }
 
   return static_cast<uint32_t>(HALF_FIXED_32_MAX - cos32(phase32));
