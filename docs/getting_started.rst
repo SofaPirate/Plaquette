@@ -55,17 +55,17 @@ built-in LED:
     DigitalOut myLed(13);
 
 In this statement, ``DigitalOut`` is the **type** of unit that we are
-creating. There also exists other types of units, which will be described later.
+creating (there are other types of units, which we will describe later).
 ``DigitalOut`` is a type of software unit that can represent one of the many
-hardware pins for digital output on the Arduino board. One way to think about this is that
-the ``DigitalOut`` is a "virtual" version of the Arduino pin. These can be set to one of two
-states: ("on/off", "high/low", "1/0").
+hardware pins for digital output on the Arduino board. One way to think about
+this is that the ``DigitalOut`` is a "virtual" version of the Arduino pin.
+These can be set to one of two states: **on** or **off**.
 
 The word ``myLed`` is a **name** for the object we are creating.
 
 Finally, ``13`` is a **parameter** of the object ``myLed`` that specifies the hardware
 *pin* that it corresponds to on the board. In English, the statement would thus read
-as: "Create a unit named ``myLed`` of type ``DigitalOut`` on pin ``13``."
+as: "Create a unit of type ``DigitalOut`` named ``myLed`` on pin ``13``."
 
 .. tip::
   Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on
@@ -75,25 +75,30 @@ as: "Create a unit named ``myLed`` of type ``DigitalOut`` on pin ``13``."
 Create an input unit
 ~~~~~~~~~~~~~~~~~~~~
 
-We will now create another unit that will generate a signal which will
-be sent to the LED to make it blink. To this effect, we will use the
-``Wave`` unit type to generate a `square
-wave <https://en.wikipedia.org/wiki/Square_wave>`__ oscillating between
-"on/high/one" and "off/low/zero" at a regular period of 2.0 seconds:
+We will now create another unit which will generate a signal switching regularly
+from **on** to **off**. This signal will be sent to the LED to change its state, thus making
+it blink. To do so, we will use the ``Wave`` unit type to generate a `square
+wave <https://en.wikipedia.org/wiki/Square_wave>`__ oscillating between on and off
+at a regular period of 2 seconds:
 
 .. code:: cpp
 
     Wave myWave(2.0);
 
+.. note::
+  The **parameter** here is used not to specify a pin number (as for the ``DigitalOut``
+  unit) but rather to define the period of oscillation. Each object **type** provides a unique set
+  of parameter combinations and definitions specific to their usage.
+
 Create the begin() function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Each Plaquette sketch necessitates the declaration of two functions:
-``begin()`` and ``step()``.
+Each Plaquette sketch necessitates the declaration of two **functions**:
+``begin()`` and ``step()``. A function is a self-contained block of code that defines a
+series of operation.
 
-Function ``begin()`` is called only once at the beginning of the sketch
-(just like the
-`setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
+Function ``begin()`` is automatically called only once at the beginning of the sketch
+(just like the `setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
 function in Arduino). For our first program, we do not need to perform any
 special configuration at startup so we will leave the ``begin()`` function
 empty:
@@ -101,6 +106,11 @@ empty:
 .. code:: cpp
 
     void begin() {}
+
+.. note::
+  It is beyond the scope of this introduction to explain the keyword ``void``; all you need
+  to know for now is that you need it to declare functions ``begin()`` and ``step()``. If you
+  are curious, however, you can read the `Arduino documentation <https://docs.arduino.cc/language-reference/en/variables/data-types/void/>`__.
 
 Create the step() function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -153,27 +163,25 @@ Step 3 : Experiment!
 
 So far so good. Let's see if we can push this a bit further.
 
-Change initial parameters of a unit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``Wave`` unit type provides two parameters when it is created that allows
-you to configure the oscillator's behavior. Both are optional: if not specified, they will
-take default values.
+The ``Wave`` unit type provides two parameters that allows you to create a wide range of rhythmic patterns:
 
 .. code:: cpp
 
     Wave myWave(period, skew);
 
-- ``period`` can be any positive number representing the period of oscillation (in seconds)
-- ``skew`` can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
-  of the period during which the signal is "high" (ie. "on duty") (default: 0.5)
+- ``period`` (which we have already used) can be any positive number representing the period of oscillation (in seconds)
+- ``skew`` (optional) can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
+  of the period during which the signal is **on**. Default value: 0.5 (50%).
 
 .. note::
    We call this step the **construction** or **instantiation** of the object ``myWave``.
 
 .. image:: images/Plaquette-SquareWave.png
 
-Try changing the first parameter (period) in the square oscillator unit to change
+Adjust the period
+~~~~~~~~~~~~~~~~~
+
+Try changing the first parameter (``period`` in the square oscillator unit to change
 the period of oscillation.
 
 - ``Wave myWave(1.0);`` for a period of one second
@@ -184,7 +192,10 @@ the period of oscillation.
 .. important::
    Don't forget to re-upload the sketch after each change.
 
-Now try adding a second parameter (skew) to control the oscillator's
+Skew that wave!
+~~~~~~~~~~~~~~~
+
+Now try adding a second parameter (``skew``) to control the oscillator's
 `skew <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing
 the duty cycle to different percentages between 0.0 and 1.0.
 
@@ -202,7 +213,8 @@ What if we wanted to change the parameters of the oscillator during runtime rath
 just at the beginning? The ``Wave`` unit type allows real-time modification of
 its parameters by calling one of its functions using the :doc:`dot` operator.
 
-For example, to change the period, simply call the following inside the ``step()`` function:
+For example, to change the period, we would simply need call the following inside
+the ``step()`` function:
 
 .. code:: cpp
 
