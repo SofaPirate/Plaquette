@@ -76,7 +76,7 @@ The following program chains an analog input through a min-max scaling filter to
   void begin() {}
 
   void step() {
-    inputs >> scaler >> led;  // rescale to full range [0, 1] and send to LED
+    input >> scaler >> led;  // rescale to full range [0, 1] and send to LED
   }
 ```
 
