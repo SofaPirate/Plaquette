@@ -1,5 +1,5 @@
 ---
-title: "Plaquette: An Object-Oriented Framework for Real-Time Signal Processing on Microcontrollers"
+title: "Plaquette: An Object-Oriented Framework for Embedded Signal Processing in Interactive Media"
 tags:
   - Arduino
   - C++
