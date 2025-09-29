@@ -31,9 +31,9 @@ bibliography: paper.bib
 
 # Summary
 
-*Plaquette* is an open-source, object-oriented C++ framework for interactive design and experimentation on embedded microcontrollers, supporting a wide range of architectures including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex interactive sytems.
+*Plaquette* is an open-source, object-oriented C++ framework for interactive media experimentation and design on embedded microcontrollers, supporting a wide range of architectures including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex interactive sytems.
 
-Beyond its technical contributions, *Plaquette* serves as a bridge between scientific research and creative practice. Its applications to interdisciplinary projects involving affective biofeedback and robotic behaviors demonstrate the framework’s flexible and robust infrastructure in support of creativity and experimentation in interactive media.
+Beyond its technical contributions, *Plaquette* serves as a bridge between scientific research and creative practice. Its applications to interdisciplinary research-creation [Loveless2019-How] projects involving affective biofeedback and robotic behaviors demonstrate the framework’s flexible and robust infrastructure in support of creativity and experimentation in interactive media.
 
 # Statement of Need
 
@@ -49,7 +49,6 @@ The framework has already supported a number of public research projects. It was
 
 # Functionality and Design Overview
 
-
 The core of *Plaquette* is organized around two complementary abstractions called *units* and *engines* that provide a coherent structure for building complex, real-time interactive systems on microcontrollers. *Units* are modular building blocks that encapsulate behaviors such as sensing, generating, filtering, or actuating. *Engines* operate as conductors, managing initialization and timing of units so that they execute consistently without blocking or interruptions.
 
 All units implement a simple, unified interface consisting of a single input and a single output function. This design makes it possible to chain units together in a dataflow-like manner using a special piping operator (``>>``), where the output of one unit is sent as input to another unit. This signal-centric approach allows developers to think in terms of flows of information rather than low-level procedural code, similar to how artists and researchers work with dataflow software, but here optimized for resource-constrained hardware.
@@ -61,7 +60,7 @@ The framework includes a variety of unit types:
 - **Filters**: real-time signal transformations such as min-max scaling, normalizing, and detecting peaks.
 - **Fields**: spatial functions sampled at fractional positions to plot, shape, or transform signals across space.
 
-Engines and units are designed with a low memory footprint to accommodate microcontrollers with limited RAM and processing power. Memory can be typically assigned statically at compile time, avoiding dynamic allocation and fragmentation. For example, filters such as min-max scaling and normalizing implement efficient exponential moving averages rather than circular buffers, ensuring predictable memory usage.
+Engines and units have a low memory footprint, with static allocation at compile time to avoid dynamic allocation and fragmentation. In particular, signal-processing units such as min-max scaling and normalizing use exponential moving averages rather than circular buffers, ensuring low and predictable memory usage.
 
 # Examples
 
