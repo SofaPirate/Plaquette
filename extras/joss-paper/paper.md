@@ -31,27 +31,27 @@ bibliography: paper.bib
 
 # Summary
 
-*Plaquette* is an open-source, object-oriented C++ framework for interactive media experimentation and design on embedded microcontrollers, supporting a wide range of architectures including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex interactive sytems.
+*Plaquette* is an open-source, object-oriented C++ framework for interactive media on embedded systems, supporting a wide range of platforms including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex interactive systems.
 
-Beyond its technical contributions, *Plaquette* serves as a bridge between scientific research and creative practice. Its applications to interdisciplinary research-creation [Loveless2019-How] projects involving affective biofeedback and robotic behaviors demonstrate the framework’s flexible and robust infrastructure in support of creativity and experimentation in interactive media.
+Beyond its technical contributions, *Plaquette* serves as a bridge between scientific research and creative practice. Its applications to interdisciplinary projects involving affective biofeedback and robotic behaviors demonstrate the framework’s flexible and robust infrastructure in support of creativity and experimentation in interactive media.
 
 # Statement of Need
 
-*Plaquette* is targeted for research and creation in interactive media, digital lutherie, affective computing, and robotic art. These fields depend on microcontrollers to respond in real time to signal-based events. The open-source platform [Arduino](https://arduino.cc) is the one of the most popular tools used in these fields. Arduino has made microcontroller programming widely accessible to artists, makers, and researchers. Yet, its API is limited: it is not object-oriented, offers few abstractions for handling concurrent processes, and forces users to manipulate raw numerical values rather than focus on creative intentions.
+*Plaquette* is targeted for research—particularly practice-based research [Candy2018-PracticeBased] and research-creation [Loveless2019-How]—in embedded interactive media, including affective computing, digital lutherie, and robotic art. These fields depend on microcontrollers to respond in real time to signal-based events. The open-source platform [Arduino](https://arduino.cc) is one of the most popular tools used in these fields. Arduino has made microcontroller programming widely accessible to artists, makers, and researchers. However, its core library is not object-oriented, offers few abstractions for handling concurrent processes, and forces users to manipulate raw numerical values, all at the expense of expressivity.
 
-In contrast, dataflow softwares popular within creative and scientific communities working with real-time interactive media (e.g., Max, Pure Data, TouchDesigner) provide powerful models for composing with signals, but are computationally heavy and usually cannot run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time signal processing on embedded devices.
+In contrast, dataflow softwares popular within scientific and creative communities working with real-time interactive media (e.g., Max, Pure Data, TouchDesigner) provide powerful models for composing with signals, but are computationally heavy and can usually not run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time signal processing on embedded devices.
 
-*Plaquette* addresses these gaps by bringing the expressive power of dataflow signal-based programming into a lightweight, efficient, object-oriented C++ framework optimized for microcontrollers (i.e., requiring minimal CPU and memory usage). It enables intuitive handling of multiple signal and provides efficient implementations of core signal processing functions such as peak detection, normalization, scaling, and smoothing (low-pass). This design enables researchers in art and science, as well as creative practitioners, to focus on experimentation and expressivity while ensuring accurate and reliable real-time performance on resource-constrained platforms.
+*Plaquette* addresses these gaps by bringing the expressive power of dataflow signal-based programming into a lightweight, efficient, object-oriented C++ framework optimized for microcontrollers (i.e., requiring minimal CPU and memory usage). It enables intuitive handling of multiple signals and provides efficient implementations of core signal processing functions such as peak detection, normalization, scaling, and smoothing (low-pass). This design enables researchers in art and science to focus on experimentation and expressivity while ensuring accurate and reliable real-time performance on resource-constrained platforms.
 
-The framework constitutes strong foundation for workshop-based and participatory research-creation projects, where participants often have diverse levels of technical experience. Its accessibility ensures that beginners can quickly grasp and apply core concepts, while its efficient, expressive, and extensible architecture support the needs of intermediate and advanced users. This combination makes it particularly well-suited for collaborative prototyping in media arts, design, and human-computer interaction, where embodied and situated practices demand adaptable tools.
+The framework provides a strong foundation for workshop-based research-creation projects, where participants often have diverse levels of technical skills. Its accessibility ensures that beginners can quickly grasp and apply core concepts, while its efficient, expressive, and extensible architecture support the needs of intermediate and advanced users. This combination makes it particularly well-suited for collaborative prototyping in media arts, design, and human-computer interaction, where embodied and situated practices demand adaptable tools.
 
-The framework has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [Gee2023-BioSynth], and used in studies of electrodermal activity measurement [Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling researchers and practitionners to explore object behaviors from artistic and scientific perspectives [Bianchini2015-Misbehavioral]. It was also employed for signal processing and LED-based robotic expression in the artwork *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [Audry2020-Behaviour,Audry2024-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary exploration.
+The framework has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [Gee2023-BioSynth], and used in studies of electrodermal activity measurement [Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling research on object behaviors [Bianchini2015-Misbehavioral]. It was also employed for signal processing and robotic expression in *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [Audry2020-Behaviour,Audry2024-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary research.
 
 # Functionality and Design Overview
 
 The core of *Plaquette* is organized around two complementary abstractions called *units* and *engines* that provide a coherent structure for building complex, real-time interactive systems on microcontrollers. *Units* are modular building blocks that encapsulate behaviors such as sensing, generating, filtering, or actuating. *Engines* operate as conductors, managing initialization and timing of units so that they execute consistently without blocking or interruptions.
 
-All units implement a simple, unified interface consisting of a single input and a single output function. This design makes it possible to chain units together in a dataflow-like manner using a special piping operator (``>>``), where the output of one unit is sent as input to another unit. This signal-centric approach allows developers to think in terms of flows of information rather than low-level procedural code, similar to how artists and researchers work with dataflow software, but here optimized for resource-constrained hardware.
+All units implement a simple, unified interface consisting of a single input and a single output function. This design makes it possible to chain units together in a dataflow-like manner using a special piping operator (``>>``), where the output of one unit is sent as input to another unit. This signal-centric approach allows developers to think in terms of flows of information rather than low-level procedural code, similar to how artists and researchers work with dataflow softwares, but here optimized for resource-constrained hardware.
 
 The framework includes a variety of unit types:
 - **Base units**: basic analog and binary input/output.
@@ -90,7 +90,7 @@ sliding time window, adapting to slow changes in the input.
   AnalogIn input{A0};          // analog input on pin A0
   ServoOut servo{9};           // servomotor connected on pin 9
   Normalizer normalizer{0, 1}; // re-normalizes to N(0, 1)
-  PeakDetector peak{1.5};      // triggers when detecting outliers at 1.5 stddev
+  PeakDetector peak{1.5};      // detects outliers at 1.5 times the standard deviation
   Ramp ramp{2.0};              // ramp with duration of 2 seconds (by default: ramps from 0 to 1)
 
   void begin() {
@@ -98,9 +98,9 @@ sliding time window, adapting to slow changes in the input.
   }
 
   void step() {
-    inputs >> normalizer >> peak; // process input signal
-    if (peak) ramp.start();       // on peak detection: restart ramp
-    ramp >> servo;                // send ramp value to servo motor
+    input >> normalizer >> peak; // process input signal
+    if (peak) ramp.start();      // on peak detection: restart ramp
+    ramp >> servo;               // send ramp value to servo motor
   }
 ```
 
