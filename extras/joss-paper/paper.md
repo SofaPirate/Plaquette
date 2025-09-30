@@ -8,6 +8,7 @@ tags:
   - Embedded Systems
   - Interactive Media
   - Signal Processing
+  - Physical Computing
   - Research-Creation
 authors:
   - name: Sofian Audry
@@ -31,13 +32,13 @@ bibliography: paper.bib
 
 # Summary
 
-*Plaquette* is an object-oriented C++ framework for interactive media on embedded systems, supporting a wide range of platforms including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex interactive systems.
+*Plaquette* is an object-oriented C++ framework for interactive media on embedded systems, supporting a wide range of platforms including AVR, SAMD, STM32, and ESP32. It provides a signal-centric architecture and a suite of modular abstractions (oscillators, filters, units, and scheduling engines) that simplify the design of time-based behaviors. Its expressive syntax allows fast prototyping with multiple sensors, actuators, and real-time processes, enabling researchers and creative practitioners to experiment and design with complex physical computing systems.
 
 Beyond its technical contributions, *Plaquette* serves as a bridge between scientific research and creative practice. Its applications to interdisciplinary projects involving affective biofeedback and robotic behaviors demonstrate the framework’s flexible and robust infrastructure in support of creativity and experimentation in interactive media.
 
 # Statement of Need
 
-*Plaquette* is designed for research—particularly practice-based research [Candy2018-PracticeBased] and research-creation [Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform [Arduino](https://arduino.cc) [Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet its core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
+*Plaquette* is designed for research—particularly practice-based research [Candy2018-PracticeBased] and research-creation [Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform for physical computing [Arduino](https://arduino.cc) [Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
 
 In contrast, dataflow softwares popular within scientific and creative communities working with interactive media such as Pure Data, Max, and TouchDesigner provide powerful models for composing with signals, but are too memory and CPU intensive to run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time processing on embedded devices.
 
