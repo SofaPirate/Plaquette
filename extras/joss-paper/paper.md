@@ -38,7 +38,7 @@ Beyond its technical contributions, *Plaquette* serves as a bridge between scien
 
 # Statement of Need
 
-*Plaquette* is designed for research—particularly practice-based research [Candy2018-PracticeBased] and research-creation [Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform for physical computing [Arduino](https://arduino.cc) [Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
+*Plaquette* is designed for research—particularly practice-based research [@Candy2018-PracticeBased] and research-creation [@Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform for physical computing [Arduino](https://arduino.cc) [@Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
 
 In contrast, dataflow softwares popular within scientific and creative communities working with interactive media such as Pure Data, Max, and TouchDesigner provide powerful models for composing with signals, but are too memory and CPU intensive to run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time processing on embedded devices.
 
@@ -46,7 +46,7 @@ In contrast, dataflow softwares popular within scientific and creative communiti
 
 The framework provides a strong foundation for workshop-based research-creation projects, where participants often have diverse levels of technical skills. Its accessibility ensures that beginners can quickly grasp and apply core concepts, while its efficient, expressive, and extensible architecture support the needs of advanced users. This makes it particularly well-suited for collaborative prototyping in media arts, design, and human-computer interaction, where embodied and situated practices require adaptable tools.
 
-*Plaquette* has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [Gee2023-BioSynth], and used in studies of electrodermal activity [Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling research on object behaviors [Bianchini2015-Misbehavioral]. It was also employed for signal processing and robotic expression in *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [Audry2020-Behaviour,Audry2024-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary research.
+*Plaquette* has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [@Gee2023-BioSynth], and used in studies of electrodermal activity [@Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling research on object behaviors [@Bianchini2015-Misbehavioral]. It was also employed for signal processing and robotic expression in *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [@Audry2020-Behaviour,@Audry2024-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary research.
 
 # Functionality and Design Overview
 
@@ -55,6 +55,7 @@ The core of *Plaquette* is organized around two complementary abstractions calle
 All units implement a unified interface consisting of a single input and a single output function. This design makes it possible to chain units together in a dataflow-like manner using a piping operator (``>>``), where the output of one unit is sent as input to another. This signal-centric approach allows developers to work with flows of information rather than low-level procedural code.
 
 The framework includes a set of core unit types:
+
 - **Base units**: basic analog and binary input/output.
 - **Generators**: generative source signals such as square, triangle, and sine waves, as well as ramps.
 - **Timing units**: scheduling and temporal control such as timers and metronomes.
@@ -80,7 +81,7 @@ then uses the value to influence the period ofoscillation of an LED using a sine
 
   void step() {
     input >> scaler;         // rescale to full range [0, 1]
-    oscillator.period(scaler.mapTo(0.5, 10)); // set period between 0.5 and 10 seconds
+    oscillator.period(scaler.mapTo(1, 10)); // set period from 1 to 10 seconds
     oscillator >> led;       // send oscillator value to LED
   }
 ```
@@ -95,11 +96,11 @@ sliding time window, adapting to slow changes in the input.
   AnalogIn input{A0};          // analog input on pin A0
   ServoOut servo{9};           // servomotor connected on pin 9
   Normalizer normalizer{0, 1}; // re-normalizes to N(0, 1)
-  PeakDetector peak{1.5};      // detects outliers at 1.5 times the standard deviation
-  Ramp ramp{2.0};              // ramp with duration of 2 seconds (by default: ramps from 0 to 1)
+  PeakDetector peak{1.5};      // detects outliers at 1.5 times stddev
+  Ramp ramp{2.0};              // ramp with duration of 2 seconds
 
   void begin() {
-    normalizer.timeWindow(60); // calibration sliding time window of 60 seconds
+    normalizer.timeWindow(60); // calibration sliding time window (60 seconds)
   }
 
   void step() {
