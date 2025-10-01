@@ -12,7 +12,7 @@ tags:
   - Research-Creation
 authors:
   - name: Sofian Audry
-    orcid: 0000-0002-6340-2550
+    orcid: 0000-0001-6621-6427
     equal-contrib: true
     affiliation: 1
   - name: Thomas Ouellet Fredericks
