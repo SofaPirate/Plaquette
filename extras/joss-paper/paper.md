@@ -40,7 +40,7 @@ Beyond its technical contributions, *Plaquette* serves as a bridge between scien
 
 *Plaquette* is designed for research—particularly practice-based research [@Candy2018-PracticeBased] and research-creation [@Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform for physical computing [Arduino](https://arduino.cc) [@Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
 
-In contrast, dataflow softwares popular within scientific and creative communities working with interactive media such as Pure Data, Max, and TouchDesigner provide powerful models for composing with signals, but are too memory and CPU intensive to run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time processing on embedded devices.
+In contrast, dataflow software popular within scientific and creative communities working with interactive media such as Pure Data, Max, and TouchDesigner provide powerful models for composing with signals, but are too memory and CPU intensive to run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time processing on embedded devices.
 
 *Plaquette* addresses these gaps by bringing the expressive power of dataflow signal-based programming into a lightweight object-oriented framework optimized for microcontrollers (i.e., requiring minimal CPU and memory usage). It enables intuitive handling of signals, providing efficient implementations of core data processing functions such as peak detection, normalization, scaling, and smoothing (low-pass). This enables researchers in art and science to focus on experimentation and expressivity while ensuring accurate and reliable real-time performance on resource-constrained platforms.
 
@@ -113,3 +113,6 @@ sliding time window, adapting to slow changes in the input.
 # Acknowledgements
 
 This work was partially supported by the Natural Sciences and Engineering Research Council of Canada, the Social Sciences and Humanities Research Council of Canada, the Fonds de Recherche du Québec — Société et Culture, and the Canada Council for the Arts. We thank our collaborators and colleagues for supporting the project, in particular Erin Gee, Luana Belinsky, and Chris Salter.
+
+# References
+
