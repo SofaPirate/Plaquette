@@ -104,7 +104,7 @@ sliding time window, adapting to slow changes in the input.
   }
 
   void step() {
-    input >> normalizer >> peak; // process input signal
+    input >> normalizer >> peak; // chain-process input signal
     if (peak) ramp.start();      // on peak detection: restart ramp
     ramp >> servo;               // send ramp value to servo motor
   }
