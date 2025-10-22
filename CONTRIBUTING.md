@@ -9,58 +9,46 @@ thank you for helping make Plaquette better.
 
 ---
 
-## How to Contribute
+### Reporting and Requesting
 
-### 1. Reporting Bugs
+If you notice a problem, have an idea, or need help, the best way to reach us is through the
+[issue tracker](https://github.com/SofaPirate/Plaquette/issues).
 
-Before filing a new issue:
-- Search the [existing issues](https://github.com/SofaPirate/Plaquette/issues) to see if the problem has
-  already been reported or discussed.
-- If not, open a **Bug Report** issue using the provided template.
-- Include steps to reproduce, system details, and any relevant logs or screenshots.
+Before opening a new issue, please take a moment to:
+- Search through existing issues to see if your topic already exists.
+- If not, open a new issue and choose the most fitting category.
 
-Bug reports are most useful when they are **clear, reproducible, and focused** on a specific problem.
+You’ll find friendly templates that make it easy to start:
 
----
+| 🐞 **Bug report**   | Something isn’t working as expected.          |
+| 💡 **Feature idea** | Suggest a new capability or improvement.      |
+| 🙋 **Help needed**  | Ask a question or get unstuck.                |
+| ✏️ **Quick note**   | Share feedback, thoughts, or small glitches.  |
 
-### 2. Requesting Features
-
-If you have an idea that could improve Plaquette:
-- Check whether a similar suggestion already exists in the issue tracker.
-- If not, open a **Feature Request** using the appropriate template.
-- Explain what problem your idea solves, who benefits, and (optionally) how it could be implemented.
-
-For larger or experimental ideas, open an issue first to discuss feasibility and design.
+When writing your issue:
+- Be as clear and specific as you can.
+- Include minimal examples, screenshots, or error messages if helpful.
+- For bugs, mention your board, toolchain, and Plaquette version if known.
 
 ---
 
-### 3. Seeking Support
-
-If you encounter trouble using Plaquette or its examples:
-- Open a **Support Question** issue on GitHub.
-- Describe what you tried, what you expected, and what happened.
-- Include your operating system, hardware, and relevant code snippets.
-
-Support questions help us identify documentation gaps and improve usability.
-
----
-
-### 4. Making Code Contributions
+### Making Code Contributions
 
 We welcome pull requests for bug fixes, documentation, and new features.
 
 Please:
-1. Follow the coding and formatting conventions below.
-2. Keep pull requests focused — one topic per PR.
-3. Write clear commit messages describing your change.
+1. Follow the coding and formatting conventions described below.
+2. Keep each pull request focused — one topic per PR.
+3. Write clear commit messages describing what your change does.
 4. Include tests when appropriate.
 
-For **major changes** (new features or refactors), open an issue first to discuss your idea.
-For **small fixes** or documentation tweaks, you may submit a PR directly.
+For **major changes** (new features or refactors), it’s best to open an issue first to discuss the
+idea and direction.
+For **small fixes** or documentation tweaks, you can open a PR directly.
 
 ---
 
-### 5. Communication and Collaboration
+### Communication and Collaboration
 
 All interactions on the Plaquette GitHub repository are governed by the
 [Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/main/CODE_OF_CONDUCT.md).
@@ -70,7 +58,7 @@ Please:
 - Assume good intent and ask clarifying questions before judging others’ work.
 - Credit and thank contributors whenever you build upon their ideas.
 
-Our goal is to make contributing to Plaquette a positive, creative, and collaborative experience.
+We aim to make contributing to Plaquette a positive, creative, and collaborative experience.
 
 ---
 
