@@ -61,6 +61,7 @@ Related Info
 
    Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
+   community
    credits
    license
    Doxygen Documentation <http://plaquette.org/Plaquette/doxygen/>
