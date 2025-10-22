@@ -1,0 +1,37 @@
+name: "💡 Idea / feature"
+description: Suggest an improvement or new capability
+title: "[Feature] <short summary>"
+labels: ["enhancement", "triage"]
+assignees: []
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Short summary
+      placeholder: "e.g., Add a simple envelope generator"
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What’s the idea?
+      description: Say what you want to achieve. Keep it simple.
+      placeholder: |
+        I wish I could...
+        This would help me...
+    validations:
+      required: true
+
+  - type: textarea
+    id: optional_sketch
+    attributes:
+      label: Optional sketch / API shape
+      description: If you have a rough API or code snippet, drop it here.
+      render: cpp
+      placeholder: |
+        // Example:
+        // Envelope env(attack, decay);
+        // env.trigger();
+    validations:
+      required: false

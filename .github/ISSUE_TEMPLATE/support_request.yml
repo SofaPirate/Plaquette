@@ -1,0 +1,36 @@
+name: "🙋 Help needed"
+description: Ask a simple question and get unstuck
+title: "[Support] <short summary>"
+labels: ["question", "support", "triage"]
+assignees: []
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Short summary
+      placeholder: "e.g., How do I debounce a digital input?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What do you need help with?
+      description: Tell us what you’re trying to do and where you’re stuck.
+      placeholder: |
+        I’m trying to...
+        I expected...
+        I’m seeing...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Optional context
+      description: Tiny code snippet or setup details (if useful).
+      render: cpp
+      placeholder: |
+        // minimal snippet (if any)
+    validations:
+      required: false
