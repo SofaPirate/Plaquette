@@ -34,8 +34,8 @@ You can help by:
 * Fixing typos, improving examples, or clarifying documentation.
 * Sharing creative projects that use Plaquette.
 
-All contribution details and coding conventions are described in
-`CONTRIBUTING.md <https://github.com/SofaPirate/Plaquette/blob/master/CONTRIBUTING.md>`_.
+All contribution instructions and coding conventions are described in our
+`Contribution Guidelines <https://github.com/SofaPirate/Plaquette/blob/master/CONTRIBUTING.md>`_.
 
 Reporting Bugs and Requesting Features
 --------------------------------------
@@ -68,4 +68,4 @@ License and Attribution
 -----------------------
 
 Plaquette is free software under the **GNU GPL v3 or later** license.
-See the `LICENSE <https://github.com/SofaPirate/Plaquette/blob/master/LICENSE>`_ file for details.
+See the `LICENSE <https://github.com/SofaPirate/Plaquette/blob/master/LICENSE.md>`_ file for details.
