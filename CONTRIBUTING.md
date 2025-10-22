@@ -20,6 +20,8 @@ Before opening a new issue, please take a moment to:
 
 You’ll find friendly templates that make it easy to start:
 
+| Issue Type          | Description                                   |
+|---------------------|-----------------------------------------------|
 | 🐞 **Bug report**   | Something isn’t working as expected.          |
 | 💡 **Feature idea** | Suggest a new capability or improvement.      |
 | 🙋 **Help needed**  | Ask a question or get unstuck.                |
