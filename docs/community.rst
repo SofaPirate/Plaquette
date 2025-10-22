@@ -4,7 +4,7 @@ Community Guidelines
 ====================
 
 Plaquette is an open-source software used by artists, makers, researchers, and developers interested
-in creative computation. The goal of these guidelines is to help everyone collaborate and
+in creative tangible computing. The goal of these guidelines is to help everyone collaborate and
 communicate in a friendly and inclusive way, whether you are reporting a bug, suggesting a
 feature, or sharing your ideas.
 
@@ -51,17 +51,18 @@ To make it easier for everyone:
   - **Quick note** for a short comment, idea, or thought.
 
 All discussions happen transparently on the
-`issues tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
+`issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
 
 Getting Support
 ---------------
 
-If you need help using Plaquette:
+If you need help using Plaquette please start by browsing the `documentation <https://plaquette.org>`_.
 
-* Start by browsing the documentation at https://plaquette.org/
-* If you still have trouble, open a **Help needed** issue on GitHub and describe what you’re trying to
-  do.
+You can also look at examples on `GitHub <https://github.com/SofaPirate/Plaquette/tree/master/examples>`_
+or directly from the Arduino application in menu **File > Examples > Plaquette**.
 
+If you still have trouble, open a **Help needed** issue on the
+`issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_ and describe what you’re trying to do.
 There’s no wrong question!
 
 License and Attribution
