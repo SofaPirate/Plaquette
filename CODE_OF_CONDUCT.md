@@ -2,7 +2,7 @@
 
 Plaquette is an open-source software library that brings together artists, makers, researchers, and
 developers interested in creative computation. This Code of Conduct outlines the standards we expect from
-everyone who interacts with the Plaquette project — through its code, documentation, or discussions — to
+everyone who interacts with the Plaquette project (through its code, documentation, or discussions) to
 help us build a respectful and inclusive environment as the community grows.
 
 This document is adapted from the [Contributor Covenant v3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct.html)
