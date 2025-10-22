@@ -45,10 +45,10 @@ To make it easier for everyone:
 * First, check the existing issues on GitHub to see if your topic already exists.
 * If not, open a new issue and choose one of these forms:
 
-  - **Bug report** — something isn’t working.
-  - **Feature idea** — you’d like to suggest an improvement.
-  - **Help needed** — you’re stuck and need a hand.
-  - **Quick note** — a short comment, idea, or thought.
+  - **Bug report** if something isn’t working.
+  - **Feature idea** if you’d like to suggest an improvement.
+  - **Help needed** if you’re stuck and need a hand.
+  - **Quick note** for a short comment, idea, or thought.
 
 All discussions happen transparently on the
 `issues tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
