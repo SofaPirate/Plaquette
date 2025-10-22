@@ -10,7 +10,7 @@ Essentials
    why_plaquette
    features
    reference
-   community
+   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
 
 Guide
 =====
@@ -61,7 +61,7 @@ Related Info
 
    Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
-   PDF manual <https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf>
+   community
    credits
    license
    Doxygen Documentation <http://plaquette.org/Plaquette/doxygen/>
