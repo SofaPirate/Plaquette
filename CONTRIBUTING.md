@@ -1,4 +1,80 @@
-# Plaquette Coding Conventions
+# Contributing to Plaquette
+
+Plaquette is an open-source software library that brings together artists, makers, researchers, and
+developers interested in creative computation. This document explains both **how to contribute** to the
+project and **how to write code** that follows Plaquette’s conventions.
+
+Whether you are fixing a typo, reporting a bug, improving documentation, or implementing a new feature,
+thank you for helping make Plaquette better.
+
+---
+
+## How to Contribute
+
+### 1. Reporting Bugs
+
+Before filing a new issue:
+- Search the [existing issues](https://github.com/SofaPirate/Plaquette/issues) to see if the problem has
+  already been reported or discussed.
+- If not, open a **Bug Report** issue using the provided template.
+- Include steps to reproduce, system details, and any relevant logs or screenshots.
+
+Bug reports are most useful when they are **clear, reproducible, and focused** on a specific problem.
+
+---
+
+### 2. Requesting Features
+
+If you have an idea that could improve Plaquette:
+- Check whether a similar suggestion already exists in the issue tracker.
+- If not, open a **Feature Request** using the appropriate template.
+- Explain what problem your idea solves, who benefits, and (optionally) how it could be implemented.
+
+For larger or experimental ideas, open an issue first to discuss feasibility and design.
+
+---
+
+### 3. Seeking Support
+
+If you encounter trouble using Plaquette or its examples:
+- Open a **Support Question** issue on GitHub.
+- Describe what you tried, what you expected, and what happened.
+- Include your operating system, hardware, and relevant code snippets.
+
+Support questions help us identify documentation gaps and improve usability.
+
+---
+
+### 4. Making Code Contributions
+
+We welcome pull requests for bug fixes, documentation, and new features.
+
+Please:
+1. Follow the coding and formatting conventions below.
+2. Keep pull requests focused — one topic per PR.
+3. Write clear commit messages describing your change.
+4. Include tests when appropriate.
+
+For **major changes** (new features or refactors), open an issue first to discuss your idea.
+For **small fixes** or documentation tweaks, you may submit a PR directly.
+
+---
+
+### 5. Communication and Collaboration
+
+All interactions on the Plaquette GitHub repository are governed by the
+[Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/main/CODE_OF_CONDUCT.md).
+
+Please:
+- Be respectful and constructive in discussions and reviews.
+- Assume good intent and ask clarifying questions before judging others’ work.
+- Credit and thank contributors whenever you build upon their ideas.
+
+Our goal is to make contributing to Plaquette a positive, creative, and collaborative experience.
+
+---
+
+# Coding Conventions
 
 ## Overview
 
