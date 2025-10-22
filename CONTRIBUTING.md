@@ -272,7 +272,7 @@ once per step. This ensures consistent timing and avoids unintended side effects
 
 - ❌ **Use only with approbation by the core developers**.
 - Color palette: #00ACFC (cyan-blue) and #FFFFFF (white)
-- Logo font: (OCR A Bold)[https://fonts.adobe.com/fonts/ocr-a]
+- Logo font: [OCR A Bold](https://fonts.adobe.com/fonts/ocr-a)
 
 ### Logo (no text)
 
