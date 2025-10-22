@@ -1,4 +1,4 @@
-name: "🐞 Quick bug report"
+name: "🐞 Bug report"
 description: Report something that doesn't work as expected
 title: "[Bug] <short summary>"
 labels: ["bug", "triage"]
