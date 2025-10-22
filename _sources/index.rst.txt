@@ -64,4 +64,4 @@ Related Info
    community
    credits
    license
-   Doxygen Documentation <http://plaquette.org/Plaquette/doxygen/>
+   Doxygen Documentation <http://plaquette.org/doxygen/>

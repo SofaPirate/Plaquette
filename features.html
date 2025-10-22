@@ -49,7 +49,13 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#be-respectful-and-inclusive">Be Respectful and Inclusive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#reporting-bugs-and-requesting-features">Reporting Bugs and Requesting Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#getting-support">Getting Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#license-and-attribution">License and Attribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#thank-you">Thank You ❤️</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul>
@@ -80,6 +86,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
@@ -111,7 +118,7 @@
   <section id="features">
 <h1>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h1>
 <p>Plaquette is an <a class="reference internal" href="#object-oriented">object-oriented</a>, <a class="reference internal" href="#user-friendly">user-friendly</a>, <a class="reference internal" href="#signal-centric">signal-centric</a> framework that
-facilitates <a class="reference internal" href="#signal-filtering">signal filtering</a> in <a class="reference internal" href="#real-time">real-time</a>. It is fully <a class="reference internal" href="#compatible-with-arduino">compatible with Arduino</a>.</p>
+facilitates <a href="#id7"><span class="problematic" id="id8">`signal filtering`_</span></a> in <a class="reference internal" href="#real-time">real-time</a>. It is fully <a class="reference internal" href="#compatible-with-arduino">compatible with Arduino</a>.</p>
 <section id="object-oriented">
 <span id="id1"></span><h2>Object-oriented<a class="headerlink" href="#object-oriented" title="Permalink to this heading"></a></h2>
 <p>Plaquette is designed using input, output, and filtering units that are easily
@@ -207,8 +214,8 @@ conversions on integer values.</p>
 </tbody>
 </table>
 </section>
-<section id="signal-filtering">
-<span id="id4"></span><h2>Signal Filtering<a class="headerlink" href="#signal-filtering" title="Permalink to this heading"></a></h2>
+<section id="data-flow">
+<span id="id4"></span><h2>Data-flow<a class="headerlink" href="#data-flow" title="Permalink to this heading"></a></h2>
 <p>Plaquette provides simple yet powerful data filtering tools for debouncing,
 smoothing, and normalizing data. Removing noise in input signals can be as simple as
 calling a function such as <code class="docutils literal notranslate"><span class="pre">debounce()</span></code> or <code class="docutils literal notranslate"><span class="pre">smooth()</span></code>. Rather than guessing the right threshold
@@ -233,7 +240,7 @@ to another.</p>
 <tbody>
 <tr class="row-even"><td colspan="2"><p><em>Set LED to ON when button is pressed:</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">digitalWrite(12,</span> <span class="pre">digitalRead(2)/4);</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">digitalWrite(12,</span> <span class="pre">digitalRead(2));</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">button</span> <span class="pre">&gt;&gt;</span> <span class="pre">led;</span></code></p></td>
 </tr>
 <tr class="row-even"><td colspan="2"><p><em>Set LED to ON when input sensor is high:</em></p></td>

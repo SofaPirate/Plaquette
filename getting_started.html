@@ -67,7 +67,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#step-3-experiment">Step 3 : Experiment!</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#change-initial-parameters-of-a-unit">Change initial parameters of a unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjust-the-period">Adjust the period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skew-that-wave">Skew that wave!</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#change-parameters-of-a-unit-during-runtime">Change parameters of a unit during runtime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#use-a-button">Use a button</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Full code</a></li>
@@ -107,9 +108,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -175,15 +177,15 @@ built-in LED:</p>
 </pre></div>
 </div>
 <p>In this statement, <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is the <strong>type</strong> of unit that we are
-creating. There also exists other types of units, which will be described later.
+creating (there are other types of units, which we will describe later).
 <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a type of software unit that can represent one of the many
-hardware pins for digital output on the Arduino board. One way to think about this is that
-the <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a “virtual” version of the Arduino pin. These can be set to one of two
-states: (“on/off”, “high/low”, “1/0”).</p>
+hardware pins for digital output on the Arduino board. One way to think about
+this is that the <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> is a “virtual” version of the Arduino pin.
+These can be set to one of two states: <strong>on</strong> or <strong>off</strong>.</p>
 <p>The word <code class="docutils literal notranslate"><span class="pre">myLed</span></code> is a <strong>name</strong> for the object we are creating.</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">13</span></code> is a <strong>parameter</strong> of the object <code class="docutils literal notranslate"><span class="pre">myLed</span></code> that specifies the hardware
 <em>pin</em> that it corresponds to on the board. In English, the statement would thus read
-as: “Create a unit named <code class="docutils literal notranslate"><span class="pre">myLed</span></code> of type <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> on pin <code class="docutils literal notranslate"><span class="pre">13</span></code>.”</p>
+as: “Create a unit of type <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code> named <code class="docutils literal notranslate"><span class="pre">myLed</span></code> on pin <code class="docutils literal notranslate"><span class="pre">13</span></code>.”</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Most Arduino boards have a pin connected to an on-board LED in series with a resistor and on
@@ -193,27 +195,39 @@ the number of the pin to which the on-board LED is connected.</p>
 </section>
 <section id="create-an-input-unit">
 <h3>Create an input unit<a class="headerlink" href="#create-an-input-unit" title="Permalink to this heading"></a></h3>
-<p>We will now create another unit that will generate a signal which will
-be sent to the LED to make it blink. To this effect, we will use the
-<code class="docutils literal notranslate"><span class="pre">Wave</span></code> unit type to generate a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
-wave</a> oscillating between
-“on/high/one” and “off/low/zero” at a regular period of 2.0 seconds:</p>
+<p>We will now create another unit which will generate a signal switching regularly
+from <strong>on</strong> to <strong>off</strong>. This signal will be sent to the LED to change its state, thus making
+it blink. To do so, we will use the <code class="docutils literal notranslate"><span class="pre">Wave</span></code> unit type to generate a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square
+wave</a> oscillating between on and off
+at a regular period of 2 seconds:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Wave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>parameter</strong> here is used not to specify a pin number (as for the <code class="docutils literal notranslate"><span class="pre">DigitalOut</span></code>
+unit) but rather to define the period of oscillation. Each object <strong>type</strong> provides a unique set
+of parameter combinations and definitions specific to their usage.</p>
 </div>
 </section>
 <section id="create-the-begin-function">
 <h3>Create the begin() function<a class="headerlink" href="#create-the-begin-function" title="Permalink to this heading"></a></h3>
-<p>Each Plaquette sketch necessitates the declaration of two functions:
-<code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code>.</p>
-<p>Function <code class="docutils literal notranslate"><span class="pre">begin()</span></code> is called only once at the beginning of the sketch
-(just like the
-<a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/setup/">setup()</a>
+<p>Each Plaquette sketch necessitates the declaration of two <strong>functions</strong>:
+<code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code>. A function is a self-contained block of code that defines a
+series of operation.</p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">begin()</span></code> is automatically called only once at the beginning of the sketch
+(just like the <a class="reference external" href="https://www.arduino.cc/reference/en/language/structure/sketch/setup/">setup()</a>
 function in Arduino). For our first program, we do not need to perform any
 special configuration at startup so we will leave the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function
 empty:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is beyond the scope of this introduction to explain the keyword <code class="docutils literal notranslate"><span class="pre">void</span></code>; all you need
+to know for now is that you need it to declare functions <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code>. If you
+are curious, however, you can read the <a class="reference external" href="https://docs.arduino.cc/language-reference/en/variables/data-types/void/">Arduino documentation</a>.</p>
 </div>
 </section>
 <section id="create-the-step-function">
@@ -259,25 +273,23 @@ board <strong>blinking once every two seconds at a regular pace</strong>.</p>
 <section id="step-3-experiment">
 <h2>Step 3 : Experiment!<a class="headerlink" href="#step-3-experiment" title="Permalink to this heading"></a></h2>
 <p>So far so good. Let’s see if we can push this a bit further.</p>
-<section id="change-initial-parameters-of-a-unit">
-<h3>Change initial parameters of a unit<a class="headerlink" href="#change-initial-parameters-of-a-unit" title="Permalink to this heading"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Wave</span></code> unit type provides two parameters when it is created that allows
-you to configure the oscillator’s behavior. Both are optional: if not specified, they will
-take default values.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Wave</span></code> unit type provides two parameters that allows you to create a wide range of rhythmic patterns:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Wave</span><span class="w"> </span><span class="nf">myWave</span><span class="p">(</span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">skew</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code> can be any positive number representing the period of oscillation (in seconds)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">skew</span></code> can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
-of the period during which the signal is “high” (ie. “on duty”) (default: 0.5)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code> (which we have already used) can be any positive number representing the period of oscillation (in seconds)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew</span></code> (optional) can be any number between 0.0 (0%) and 1.0 (100%), and represents the proportion
+of the period during which the signal is <strong>on</strong>. Default value: 0.5 (50%).</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We call this step the <strong>construction</strong> or <strong>instantiation</strong> of the object <code class="docutils literal notranslate"><span class="pre">myWave</span></code>.</p>
 </div>
 <img alt="_images/Plaquette-SquareWave.png" src="_images/Plaquette-SquareWave.png" />
-<p>Try changing the first parameter (period) in the square oscillator unit to change
+<section id="adjust-the-period">
+<h3>Adjust the period<a class="headerlink" href="#adjust-the-period" title="Permalink to this heading"></a></h3>
+<p>Try changing the first parameter (<code class="docutils literal notranslate"><span class="pre">period</span></code> in the square oscillator unit to change
 the period of oscillation.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Wave</span> <span class="pre">myWave(1.0);</span></code> for a period of one second</p></li>
@@ -289,7 +301,10 @@ the period of oscillation.</p>
 <p class="admonition-title">Important</p>
 <p>Don’t forget to re-upload the sketch after each change.</p>
 </div>
-<p>Now try adding a second parameter (skew) to control the oscillator’s
+</section>
+<section id="skew-that-wave">
+<h3>Skew that wave!<a class="headerlink" href="#skew-that-wave" title="Permalink to this heading"></a></h3>
+<p>Now try adding a second parameter (<code class="docutils literal notranslate"><span class="pre">skew</span></code>) to control the oscillator’s
 <a class="reference external" href="https://en.wikipedia.org/wiki/Duty_cycle">skew</a>. For a fixed period, try changing
 the duty cycle to different percentages between 0.0 and 1.0.</p>
 <ul class="simple">
@@ -305,7 +320,8 @@ the duty cycle to different percentages between 0.0 and 1.0.</p>
 <p>What if we wanted to change the parameters of the oscillator during runtime rather than
 just at the beginning? The <code class="docutils literal notranslate"><span class="pre">Wave</span></code> unit type allows real-time modification of
 its parameters by calling one of its functions using the <a class="reference internal" href="dot.html"><span class="doc">. (dot)</span></a> operator.</p>
-<p>For example, to change the period, simply call the following inside the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function:</p>
+<p>For example, to change the period, we would simply need call the following inside
+the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">myWave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">newPeriod</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="n">myWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">myLed</span><span class="p">;</span><span class="w"></span>
@@ -436,7 +452,7 @@ from the Arduino software in <strong>File &gt; Examples &gt; Plaquette</strong> 
 </section>
 <section id="the-plaquette-reference">
 <h3>The Plaquette Reference<a class="headerlink" href="#the-plaquette-reference" title="Permalink to this heading"></a></h3>
-<p>The online reference can be accessed <a class="reference internal" href="reference.html"><span class="doc">here</span></a> or directly from the sidebar of the <a class="reference external" href="http://plaquette.org/Plaquette">Plaquette website</a>.
+<p>The online reference can be accessed <a class="reference internal" href="reference.html"><span class="doc">here</span></a> or directly from the sidebar of the <a class="reference external" href="http://plaquette.org/">Plaquette website</a>.
 It provides detailed technical documentation for every available unit and function in Plaquette. This reference
 serves as a go-to resource for understanding the specifics of each component, including their parameters, methods,
 and behavior.</p>
