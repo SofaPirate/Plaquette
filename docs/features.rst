@@ -76,10 +76,10 @@ conversions on integer values.
 | ``if (analogRead(A0) >= 716)``                 | ``if (sensor >= 0.7)``                         |
 +------------------------------------------------+------------------------------------------------+
 
-.. _signal filtering:
+.. _data flow:
 
-Signal Filtering
-----------------
+Data-flow
+---------
 
 Plaquette provides simple yet powerful data filtering tools for debouncing,
 smoothing, and normalizing data. Removing noise in input signals can be as simple as
