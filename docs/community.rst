@@ -51,8 +51,8 @@ To make it easier for everyone:
 * First, check the existing issues on GitHub to see if your topic already exists.
 * If not, open a new issue and choose one of these forms:
 
-  - **🐞 Quick bug report** — something isn’t working.
-  - **💡 Idea / feature** — you’d like to suggest an improvement.
+  - **🐞 Bug report** — something isn’t working.
+  - **💡 Feature idea** — you’d like to suggest an improvement.
   - **🙋 Help needed** — you’re stuck and need a hand.
   - **✏️ Quick note** — a short comment, idea, or thought.
 
