@@ -1,17 +1,9 @@
 name: "🐞 Bug report"
 description: Report something that doesn't work as expected
 title: "[Bug] <short summary>"
-labels: ["bug", "triage"]
+labels: ["bug"]
 assignees: []
 body:
-  - type: input
-    id: summary
-    attributes:
-      label: Short summary
-      placeholder: "e.g., Timer stops updating after 5 seconds"
-    validations:
-      required: true
-
   - type: textarea
     id: what_happened
     attributes:
@@ -38,18 +30,18 @@ body:
       required: false
 
   - type: input
-    id: version
-    attributes:
-      label: Plaquette version / commit (optional)
-      placeholder: "e.g., v0.5.0 or commit SHA"
-    validations:
-      required: false
-
-  - type: input
     id: platform
     attributes:
       label: Board / toolchain (optional)
       placeholder: "e.g., Teensy 4.1 with Arduino IDE 2.3"
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Plaquette version / commit (optional)
+      placeholder: "e.g., v0.5.0 or commit SHA"
     validations:
       required: false
 

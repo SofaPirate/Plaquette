@@ -1,7 +1,7 @@
 name: "🙋 Help needed"
 description: Ask a simple question and get unstuck
 title: "[Support] <short summary>"
-labels: ["question", "support", "triage"]
+labels: ["question"]
 assignees: []
 body:
   - type: input

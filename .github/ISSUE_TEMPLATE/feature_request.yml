@@ -1,7 +1,7 @@
 name: "💡 Feature idea"
 description: Suggest an improvement or new capability
 title: "[Feature] <short summary>"
-labels: ["enhancement", "triage"]
+labels: ["enhancement"]
 assignees: []
 body:
   - type: input
