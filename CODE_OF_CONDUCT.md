@@ -33,7 +33,7 @@ Unacceptable behavior includes:
 ## Our Responsibilities
 
 Project maintainers are responsible for clarifying and enforcing this Code of Conduct.
-They may take any appropriate action to maintain a safe, respectful environment — including moderating
+They may take any appropriate action to maintain a safe, respectful environment, including moderating
 comments, closing discussions, or restricting participation.
 
 ---
