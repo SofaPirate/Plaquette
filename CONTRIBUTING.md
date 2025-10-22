@@ -53,7 +53,7 @@ For **small fixes** or documentation tweaks, you can open a PR directly.
 ### Communication and Collaboration
 
 All interactions on the Plaquette GitHub repository are governed by the
-[Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/main/CODE_OF_CONDUCT.md).
+[Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/master/CODE_OF_CONDUCT.md).
 
 Please:
 - Be respectful and constructive in discussions and reviews.

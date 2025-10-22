@@ -18,7 +18,7 @@ Everyone is welcome, regardless of experience level, background, or identity.
 We ask that you be kind, patient, and supportive of others’ learning processes.
 
 All interactions on GitHub are covered by the
-`Code of Conduct <https://github.com/SofaPirate/Plaquette/blob/main/CODE_OF_CONDUCT.md>`_.
+`Code of Conduct <https://github.com/SofaPirate/Plaquette/blob/master/CODE_OF_CONDUCT.md>`_.
 
 If you ever experience or witness behavior that makes you uncomfortable, please reach out to the
 maintainers directly.
@@ -35,7 +35,7 @@ You can help by:
 * Sharing creative projects that use Plaquette.
 
 All contribution details and coding conventions are described in
-`CONTRIBUTING.md <https://github.com/SofaPirate/Plaquette/blob/main/CONTRIBUTING.md>`_.
+`CONTRIBUTING.md <https://github.com/SofaPirate/Plaquette/blob/master/CONTRIBUTING.md>`_.
 
 Reporting Bugs and Requesting Features
 --------------------------------------
@@ -68,4 +68,4 @@ License and Attribution
 -----------------------
 
 Plaquette is free software under the **GNU GPL v3 or later** license.
-See the `LICENSE <https://github.com/SofaPirate/Plaquette/blob/main/LICENSE>`_ file for details.
+See the `LICENSE <https://github.com/SofaPirate/Plaquette/blob/master/LICENSE>`_ file for details.
