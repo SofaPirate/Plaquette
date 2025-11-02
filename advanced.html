@@ -49,13 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#be-respectful-and-inclusive">Be Respectful and Inclusive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#reporting-bugs-and-requesting-features">Reporting Bugs and Requesting Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#getting-support">Getting Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#license-and-attribution">License and Attribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#thank-you">Thank You ❤️</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul class="current">
@@ -96,10 +90,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -222,7 +216,7 @@ instead of the Plaquette style.</p>
 builtin <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">step()</span></code> functions, or they may want to include Plaquette’s
 self-updating loop in a timer interrupt function. It is possible to do so by
 including the file <code class="docutils literal notranslate"><span class="pre">PlaquetteLib.h</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Plaquette.h</span></code>.</p>
-<p>After this step, you is then responsible for calling <code class="docutils literal notranslate"><span class="pre">Plaquette.begin()</span></code> at the beginning of the
+<p>After this step, you are responsible for calling <code class="docutils literal notranslate"><span class="pre">Plaquette.begin()</span></code> at the beginning of the
 <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function, and also to call <code class="docutils literal notranslate"><span class="pre">Plaquette.step()</span></code> at the beginning of the
 <code class="docutils literal notranslate"><span class="pre">loop()</span></code> function, or inside the interrupt.</p>
 <p>Here is an example of our blinking code rewritten by using this feature:</p>

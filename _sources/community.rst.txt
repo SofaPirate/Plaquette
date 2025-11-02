@@ -51,7 +51,7 @@ To make it easier for everyone:
   - **Quick note** for a short comment, idea, or thought.
 
 All discussions happen transparently on the
-`issues tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
+`issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_.
 
 Getting Support
 ---------------
@@ -62,7 +62,7 @@ You can also look at examples on `GitHub <https://github.com/SofaPirate/Plaquett
 or directly from the Arduino application in menu **File > Examples > Plaquette**.
 
 If you still have trouble, open a **Help needed** issue on the
-`issues tracker <https://github.com/SofaPirate/Plaquette/issues>`_ and describe what you’re trying to do.
+`issue tracker <https://github.com/SofaPirate/Plaquette/issues>`_ and describe what you’re trying to do.
 There’s no wrong question!
 
 License and Attribution

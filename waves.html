@@ -50,13 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#be-respectful-and-inclusive">Be Respectful and Inclusive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#contributing">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#reporting-bugs-and-requesting-features">Reporting Bugs and Requesting Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#getting-support">Getting Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#license-and-attribution">License and Attribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="community.html#thank-you">Thank You ❤️</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guide</span></p>
 <ul class="current">
@@ -107,10 +101,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/Plaquette/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
 </ul>
 
         </div>
@@ -226,17 +220,17 @@ creating natural, flowing transitions, such as smooth dimming or speed control.<
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="c1">// Three wave types.</span>
-<span class="n">Wave</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">SQUARE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
-<span class="n">Wave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
-<span class="n">Wave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">squareWave</span><span class="p">(</span><span class="n">SQUARE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">triangleWave</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">sineWave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Print all wave values separated by spaces</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">square</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sine</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">squareWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">triangleWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sineWave</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -408,7 +402,7 @@ per minute.</p>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">heartBeat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">primary</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">secondary</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Combine and normalize waves</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">heartBeat</span><span class="p">);</span><span class="w">  </span><span class="c1">// Drive LED with combined signal</span>
+<span class="w">  </span><span class="n">heartBeat</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">  </span><span class="c1">// Drive LED with combined signal</span>
 <span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">heartBeat</span><span class="p">);</span><span class="w">  </span><span class="c1">// Stream the combined wave for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>

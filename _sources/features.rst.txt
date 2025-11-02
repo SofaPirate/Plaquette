@@ -2,7 +2,7 @@ Features
 ========
 
 Plaquette is an object-oriented_, user-friendly_, signal-centric_ framework that
-facilitates `signal filtering`_ in real-time_. It is fully `compatible with Arduino`_.
+facilitates `data processing <data flow_>`_ in real-time_. It is fully `compatible with Arduino`_.
 
 .. _object-oriented:
 

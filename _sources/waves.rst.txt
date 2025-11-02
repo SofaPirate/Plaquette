@@ -111,17 +111,17 @@ You can visualize these waves on the Serial Plotter by streaming their values.
     #include <Plaquette.h>
 
     // Three wave types.
-    Wave square(SQUARE, 1.0);
-    Wave triangle(TRIANGLE, 1.0);
-    Wave sine(SINE, 1.0);
+    Wave squareWave(SQUARE, 1.0);
+    Wave triangleWave(TRIANGLE, 1.0);
+    Wave sineWave(SINE, 1.0);
 
     void begin() {}
 
     void step() {
       // Print all wave values separated by spaces
-      print(square); print(" ");
-      print(triangle); print(" ");
-      println(sine);
+      print(squareWave); print(" ");
+      print(triangleWave); print(" ");
+      println(sineWave);
     }
 
 Wave Properties
@@ -306,7 +306,7 @@ per minute.
 
     void step() {
       float heartBeat = (primary + secondary) / 2; // Combine and normalize waves
-      led.put(heartBeat);  // Drive LED with combined signal
+      heartBeat >> led;  // Drive LED with combined signal
       println(heartBeat);  // Stream the combined wave for visualization
     }
 
