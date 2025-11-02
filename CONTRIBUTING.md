@@ -1,4 +1,70 @@
-# Plaquette Coding Conventions
+# Contributing to Plaquette
+
+Plaquette is an open-source software library that brings together artists, makers, researchers, and
+developers interested in creative computation. This document explains both **how to contribute** to the
+project and **how to write code** that follows Plaquette’s conventions.
+
+Whether you are fixing a typo, reporting a bug, improving documentation, or implementing a new feature,
+thank you for helping make Plaquette better.
+
+---
+
+### Reporting and Requesting
+
+If you notice a problem, have an idea, or need help, the best way to reach us is through the
+[issue tracker](https://github.com/SofaPirate/Plaquette/issues).
+
+Before opening a new issue, please take a moment to:
+- Search through existing issues to see if your topic already exists.
+- If not, open a new issue and choose the most fitting category.
+
+You’ll find friendly templates that make it easy to start:
+
+| Issue Type          | Description                                   |
+|---------------------|-----------------------------------------------|
+| 🐞 **Bug report**   | Something isn’t working as expected.          |
+| 💡 **Feature idea** | Suggest a new capability or improvement.      |
+| 🙋 **Help needed**  | Ask a question or get unstuck.                |
+| ✏️ **Quick note**   | Share feedback, thoughts, or small glitches.  |
+
+When writing your issue:
+- Be as clear and specific as you can.
+- Include minimal examples, screenshots, or error messages if helpful.
+- For bugs, mention your board, toolchain, and Plaquette version if known.
+
+---
+
+### Making Code Contributions
+
+We welcome pull requests for bug fixes, documentation, and new features.
+
+Please:
+1. Follow the coding and formatting conventions described below.
+2. Keep each pull request focused — one topic per PR.
+3. Write clear commit messages describing what your change does.
+4. Include tests when appropriate.
+
+For **major changes** (new features or refactors), it’s best to open an issue first to discuss the
+idea and direction.
+For **small fixes** or documentation tweaks, you can open a PR directly.
+
+---
+
+### Communication and Collaboration
+
+All interactions on the Plaquette GitHub repository are governed by the
+[Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/master/CODE_OF_CONDUCT.md).
+
+Please:
+- Be respectful and constructive in discussions and reviews.
+- Assume good intent and ask clarifying questions before judging others’ work.
+- Credit and thank contributors whenever you build upon their ideas.
+
+We aim to make contributing to Plaquette a positive, creative, and collaborative experience.
+
+---
+
+# Coding Conventions
 
 ## Overview
 
@@ -206,7 +272,7 @@ once per step. This ensures consistent timing and avoids unintended side effects
 
 - ❌ **Use only with approbation by the core developers**.
 - Color palette: #00ACFC (cyan-blue) and #FFFFFF (white)
-- Logo font: (OCR A Bold)[https://fonts.adobe.com/fonts/ocr-a]
+- Logo font: [OCR A Bold](https://fonts.adobe.com/fonts/ocr-a)
 
 ### Logo (no text)
 

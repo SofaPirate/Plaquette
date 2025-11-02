@@ -13,4 +13,12 @@ Plaquette allows you to:
  * Automatically calibrate sensors to generate stable interactions in changing environments.
  * Design complex interactive behaviors by seamlessly combining powerful effects such as ramps and oscillators.
 
-Please visit official website for installation instructions and more: https://plaquette.org/Plaquette/
+### Project Links
+
+* [Online Documentation](https://plaquette.org)
+* [Contribution Guidelines](https://github.com/SofaPirate/Plaquette/blob/master/CONTRIBUTING.md)
+* [Code of Conduct](https://github.com/SofaPirate/Plaquette/blob/master/CODE_OF_CONDUCT.md)
+* [License](https://github.com/SofaPirate/Plaquette/blob/master/LICENSE.md)
+* [Changelog](https://github.com/SofaPirate/Plaquette/blob/master/CHANGELOG.md)
+
+

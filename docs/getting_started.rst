@@ -367,7 +367,7 @@ from the Arduino software in **File > Examples > Plaquette** including:
 The Plaquette Reference
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The online reference can be accessed :doc:`here <reference>` or directly from the sidebar of the `Plaquette website <http://plaquette.org/Plaquette>`__.
+The online reference can be accessed :doc:`here <reference>` or directly from the sidebar of the `Plaquette website <http://plaquette.org/>`__.
 It provides detailed technical documentation for every available unit and function in Plaquette. This reference
 serves as a go-to resource for understanding the specifics of each component, including their parameters, methods,
 and behavior.

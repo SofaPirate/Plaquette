@@ -11,7 +11,7 @@ Finally, we will look at how to use randomness to generate noisy waveforms that 
 .. note::
   To follow along with the examples, set up a simple circuit:
 
-  - A **potentiometer** connected to ``A0`` to control proprties dynamically.
+  - A **potentiometer** connected to ``A0`` to control properties dynamically.
   - A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
   - An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
 
@@ -111,17 +111,17 @@ You can visualize these waves on the Serial Plotter by streaming their values.
     #include <Plaquette.h>
 
     // Three wave types.
-    Wave square(SQUARE, 1.0);
-    Wave triangle(TRIANGLE, 1.0);
-    Wave sine(SINE, 1.0);
+    Wave squareWave(SQUARE, 1.0);
+    Wave triangleWave(TRIANGLE, 1.0);
+    Wave sineWave(SINE, 1.0);
 
     void begin() {}
 
     void step() {
       // Print all wave values separated by spaces
-      print(square); print(" ");
-      print(triangle); print(" ");
-      println(sine);
+      print(squareWave); print(" ");
+      print(triangleWave); print(" ");
+      println(sineWave);
     }
 
 Wave Properties
@@ -306,7 +306,7 @@ per minute.
 
     void step() {
       float heartBeat = (primary + secondary) / 2; // Combine and normalize waves
-      led.put(heartBeat);  // Drive LED with combined signal
+      heartBeat >> led;  // Drive LED with combined signal
       println(heartBeat);  // Stream the combined wave for visualization
     }
 

@@ -1,0 +1,15 @@
+name: "✏️ Quick note"
+description: Leave a quick thought, glitch, idea, or question
+title: "[Note] <short summary>"
+labels: []
+assignees: []
+body:
+  - type: textarea
+    id: note
+    attributes:
+      label: What's on your mind?
+      description: Anything is fine. We’ll help categorize it.
+      placeholder: |
+        Write anything here (bug, idea, question, feedback).
+    validations:
+      required: true

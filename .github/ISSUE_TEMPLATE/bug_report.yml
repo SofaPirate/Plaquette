@@ -1,0 +1,54 @@
+name: "🐞 Bug report"
+description: Report something that doesn't work as expected
+title: "[Bug] <short summary>"
+labels: ["bug"]
+assignees: []
+body:
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: Tell us what you did and what you expected vs. what you saw.
+      placeholder: |
+        What I did:
+        What I expected:
+        What I saw:
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps (optional)
+      description: If it helps, list simple steps or a tiny sketch.
+      render: cpp
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: false
+
+  - type: input
+    id: platform
+    attributes:
+      label: Board / toolchain (optional)
+      placeholder: "e.g., Teensy 4.1 with Arduino IDE 2.3"
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Plaquette version / commit (optional)
+      placeholder: "e.g., v0.5.0 or commit SHA"
+    validations:
+      required: false
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Anything else? (optional)
+      description: Logs, screenshots, or links.
+    validations:
+      required: false

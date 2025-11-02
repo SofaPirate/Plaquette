@@ -13,7 +13,7 @@ you can create precise, dynamic, creative projects that respond in real-time to 
 .. note::
   To follow along with the examples, set up a simple circuit:
 
-  - A **potentiometer** connected to ``A0`` to control proprties dynamically.
+  - A **potentiometer** connected to ``A0`` to control properties dynamically.
   - A **button** connected to pin ``2`` with an internal pull-up resistor to trigger actions.
   - An **LED** connected to pin ``9`` (PWM capable) through a 330 :math:`\Omega` resistor.
 
