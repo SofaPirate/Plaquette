@@ -10,15 +10,15 @@ AnalogIn   analogIn(A0);
 AnalogOut  analogOut(9);
 DigitalIn  digitalIn(0);
 DigitalOut digitalOut(10);
-Wave  square(0.5);
-Wave tri(TRIANGLE, 0.5);
+Wave squareWave(0.5);
+Wave triangleWave(TRIANGLE, 0.5);
 Metronome      metro(0.5);
 
 #define N_UNITS 7
 Unit* units[N_UNITS] = {
   (Unit*)&analogIn,  (Unit*)&analogOut,
   (Unit*)&digitalIn,  (Unit*)&digitalOut,
-  (Unit*)&tri,  (Unit*)&square,
+  (Unit*)&triangleWave,  (Unit*)&squareWave,
   (Unit*)&metro
 };
 
@@ -110,8 +110,8 @@ class TestPiping: public TestAgain {
     void testAnalog() {
       testPiping(metro, digitalOut);
       testPiping(analogIn, analogOut);
-      testPiping(square, analogOut);
-      testPiping(tri, analogOut);
+      testPiping(squareWave, analogOut);
+      testPiping(triangleWave, analogOut);
       testPiping(metro, analogOut);
     }
 

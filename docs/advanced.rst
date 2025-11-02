@@ -99,7 +99,7 @@ builtin ``begin()`` and ``step()`` functions, or they may want to include Plaque
 self-updating loop in a timer interrupt function. It is possible to do so by
 including the file ``PlaquetteLib.h`` instead of ``Plaquette.h``.
 
-After this step, you is then responsible for calling ``Plaquette.begin()`` at the beginning of the
+After this step, you are responsible for calling ``Plaquette.begin()`` at the beginning of the
 ``setup()`` function, and also to call ``Plaquette.step()`` at the beginning of the
 ``loop()`` function, or inside the interrupt.
 
