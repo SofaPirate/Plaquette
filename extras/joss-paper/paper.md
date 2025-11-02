@@ -71,7 +71,7 @@ Engines and units have a low memory footprint, with static allocation at compile
 # Examples
 
 The following program chains an analog input through a min-max scaling filter to bring it to full range,
-then uses the value to influence the period ofoscillation of an LED using a sine wave.
+then uses the value to influence the period of oscillation of an LED using a sine wave.
 
 ```cpp
   #include <Plaquette.h>
