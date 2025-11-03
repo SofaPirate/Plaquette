@@ -38,7 +38,7 @@ Beyond its technical contributions, *Plaquette* serves as a bridge between scien
 
 # Statement of Need
 
-*Plaquette* is designed for research—particularly practice-based research [@Candy2018-PracticeBased] and research-creation [@Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The open-source platform for physical computing [Arduino](https://arduino.cc) [@Banzi2022-Getting] anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
+*Plaquette* is designed for research—particularly practice-based research [@Candy2018-PracticeBased] and research-creation [@Loveless2019-How]—in embedded interactive media, with applications ranging from affective computing and digital lutherie to robotic art, interactive installation, connected objects, and performance. The [Arduino](https://arduino.cc) [@Banzi2022-Getting] open-source platform for physical computing anchors a large and active ecosystem, and remains the go-to environment for artists, makers, and researchers working with embedded interactive media. Its accessibility, community, libraries, and hardware options have made it the most popular microcontroller platform worldwide. Yet, Arduino's core library is not optimized for real-time signal processing: it lacks an object-oriented design, has few abstractions for managing concurrent events, and often requires manipulating raw numerical values, making interaction design unintuitive and hindering expressive experimentation.
 
 In contrast, dataflow software popular within scientific and creative communities working with interactive media such as Pure Data, Max, and TouchDesigner provide powerful models for composing with signals, but are too memory and CPU intensive to run on constrained hardware. Similarly, scientific tools such as Python’s NumPy/SciPy, Matlab, or R, while offering rich signal analysis tools, are not designed for real-time processing on embedded devices.
 
@@ -50,7 +50,7 @@ such as advanced data filtering and event management, can be implemented as exte
 
 The framework provides a strong foundation for workshop-based research-creation projects, where participants often have diverse levels of technical skills. Its accessibility ensures that beginners can quickly grasp and apply core concepts, while its efficient, expressive, and extensible architecture support the needs of advanced users. This makes it particularly well-suited for collaborative prototyping in media arts, design, and human-computer interaction, where embodied and situated practices require adaptable tools.
 
-*Plaquette* has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [@Gee2023-BioSynth], and used in studies of electrodermal activity [@Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling research on object behaviors [@Bianchini2015-Misbehavioral]. It was also employed for signal processing and robotic expression in *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [@Audry2020-Behaviour,@Audry2023-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary research.
+*Plaquette* has already supported a number of public research projects. It was used to improve real-time physiological signal processing as part of the [BioData](https://github.com/eringee/BioData) library for affective biofeedback, supporting creative applications in music and performance [@Gee2023-BioSynth], and used in studies of electrodermal activity [@Hagler2022-Flexible]. It was integrated at the core of the [MisBKit](https://misbkit.ensadlab.fr), a robotic kit enabling research on object behaviors [@Bianchini2015-Misbehavioral]. It was also employed for signal processing and robotic expression in *Morphosis*, an installation featuring three spheroid robots that learn in real-time using reinforcement learning [@Audry2020-Behaviour; @Audry2023-Choreomata]. These examples illustrate the framework’s role not only as a technical tool but also as a catalyst for interdisciplinary research.
 
 # Functionality and Design Overview
 
@@ -60,11 +60,11 @@ All units implement a unified interface consisting of a single input and a singl
 
 The framework includes a set of core unit types:
 
-- **Base units**: basic analog and binary input/output.
-- **Generators**: generative source signals such as square, triangle, and sine waves, as well as ramps.
-- **Timing units**: scheduling and temporal control such as timers and metronomes.
-- **Filters**: real-time signal transformations such as min-max scaling, normalizing, and detecting peaks.
-- **Fields**: spatial functions sampled at fractional positions to plot, shape, or transform signals across space.
+- **Base units**: basic analog and binary input/output
+- **Generators**: generative source signals such as square, triangle, and sine waves, as well as ramps
+- **Timing units**: scheduling and temporal control such as timers and metronomes
+- **Filters**: real-time signal transformations such as min-max scaling, normalizing, and detecting peaks
+- **Fields**: spatial functions sampled at fractional positions to plot, shape, or transform signals across space
 
 Engines and units have a low memory footprint, with static allocation at compile time to avoid dynamic allocation and fragmentation. In particular, signal-processing units such as min-max scaling and normalizing use exponential moving averages rather than circular buffers, ensuring low and predictable memory usage.
 
