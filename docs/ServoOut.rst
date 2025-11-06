@@ -23,7 +23,6 @@ Sweeps the shaft of a servo motor back and forth across 180 degrees.
 .. code-block:: c++
 
   #include <Plaquette.h>
-  #include <PqServo.h>
 
   // The servo-motor output on pin 9.
   ServoOut servo(9);

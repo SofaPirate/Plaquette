@@ -2,7 +2,7 @@
  * ServoRamp
  *
  * Use ramps to move the position of a RC servo motor with your Arduino and a potentiometer.
- * 
+ *
  * Circuit:
  *
  * Servo motors have three wires: power, ground, and signal. The power wire is
@@ -23,7 +23,6 @@
  * https://www.arduino.cc/en/Tutorial/Sweep
  */
 #include <Plaquette.h>
-#include <PqServo.h>
 
 // The metronome will launch a new ramp every 5 seconds.
 Metronome metro(5.0);
@@ -45,7 +44,7 @@ void step() {
   if (metro)
     // Ramp to random position.
     ramp.go(randomFloat(180));
-  
+
   // Send value of ramp to servo (as an angle between 0 and 180 degrees).
   servo.putAngle(ramp);
 }

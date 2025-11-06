@@ -17,7 +17,6 @@
  * https://www.arduino.cc/en/Tutorial/Sweep
  */
 #include <Plaquette.h>
-#include <PqServo.h>
 
 // Triangular wave source.
 Wave osc(TRIANGLE, 5.0); // period = 5 seconds
