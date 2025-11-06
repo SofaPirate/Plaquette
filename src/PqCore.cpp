@@ -138,8 +138,8 @@ void Engine::add(Unit* component) {
   // If there are no units yet, insert it at the end.
   else {
     allUnits.add(component);
-    _unitsBeginIndex = allUnits.size()-1;
-    _unitsEndIndex = _unitsBeginIndex+1;
+    _unitsBeginIndex = allUnits.size() - 1;
+    _unitsEndIndex = _unitsBeginIndex + 1;
   }
 
   // Assign parent engine.
