@@ -25,7 +25,6 @@ starts moving in the opposite direction.
 .. code-block:: c++
 
   #include <Plaquette.h>
-  #include <PqServo.h>
 
   // The servo-motor output on pin 9.
   ContinuousServoOut servo(9);
