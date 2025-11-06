@@ -87,7 +87,7 @@ The following program chains an analog input through a min-max scaling filter to
   }
 ```
 
-This program reacts to peaks in the incoming signal by triggering a sudden movement (ramp) in a servo motor. The peak detector reacts to outliers after signal normalization. The normalization is calibrated over a sliding time window, smoothly re-calibrating itself in response to changes in the input signal over time.
+This program reacts to peaks in the incoming signal by triggering a sudden movement (ramp) in a servo motor. The peak detector triggers in response to outliers after signal normalization, using an event callback to start the ramp. The normalization is calibrated over a sliding time window, smoothly re-calibrating itself in response to changes in the input signal over time.
 
 ```cpp
   #include <Plaquette.h>
