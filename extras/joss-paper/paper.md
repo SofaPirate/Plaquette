@@ -100,11 +100,11 @@ This program reacts to peaks in the incoming signal by triggering a sudden movem
 
   void begin() {
     normalizer.timeWindow(60);   // 60 seconds calibration sliding time window
+    peak.onBang([](){ ramp.start(); }); // on peak detection: restart ramp
   }
 
   void step() {
     input >> normalizer >> peak; // chain-process input signal
-    if (peak) ramp.start();      // on peak detection: restart ramp
     ramp >> servo;               // send ramp value to servo motor
   }
 ```
