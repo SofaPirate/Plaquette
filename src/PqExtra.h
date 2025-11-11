@@ -30,6 +30,7 @@
 #include "MinMaxScaler.h"
 #include "Normalizer.h"
 #include "PeakDetector.h"
+#include "Scaler.h"
 #include "Smoother.h"
 
 // Stream.
