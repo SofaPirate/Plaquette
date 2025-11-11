@@ -25,7 +25,7 @@ namespace pq {
 StreamIn::StreamIn(Engine& engine) : StreamIn(Serial, engine) {}
 
 StreamIn::StreamIn(Stream& stream, Engine& engine) :
-   AnalogSource(),
+   AnalogSource(engine),
   _nextValue(0),
   _nextFraction(1),
   _nextIsValid(false),

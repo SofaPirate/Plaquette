@@ -21,7 +21,11 @@
 
 namespace pq {
 
-PivotField::PivotField() : _mode(PIVOT_FALLING), _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _center(0),_easing(easeNone) {
+PivotField::PivotField(Engine& engine) :
+  AbstractField(engine),
+  _mode(PIVOT_FALLING),
+  _value(0), _rampWidth(-1), _rampShift(-1), _halfBumpWidth(-1), _center(0),
+  _easing(easeNone) {
   rampWidth(0);
   rampShift(0.5f);
   bumpWidth(0.25f);

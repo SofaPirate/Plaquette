@@ -36,7 +36,7 @@ class PivotField : public AbstractField
 {
 public:
   /// Constructor.
-  PivotField();
+  PivotField(Engine& engine = Engine::primary());
   virtual ~PivotField() {}
 
   /**
