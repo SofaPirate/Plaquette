@@ -105,7 +105,7 @@ float MovingAverage::computeUpdate(float runningValue, float newValue, float alp
 
 float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
     if (smoothTime < 0) // INIFINITE_WINDOW
-    return 1.0f / ((float)nSamples+1);
+    return 1.0f / ((float)nSamples+1.0f);
   else {
     // Approximative number of samples in time window.
     float nSamplesTarget = smoothTime * sampleRate;
@@ -118,7 +118,7 @@ float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSam
       // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
       // Formula used is standard formula: 2 /(nSamplesTarget+1) -- while setting maximum alpha to 1
       return (nSamplesTarget > 1.0f ?
-                2.0f / (nSamplesTarget + 1) : 
+                2.0f / (nSamplesTarget + 1) :
                 1.0f);
 
     }
