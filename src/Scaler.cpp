@@ -7,6 +7,8 @@
 namespace pq {
 
 #define SCALER_DEFAULT_SPAN 0.99f
+#define SCALER_MINIMUM_QUANTILE_LEVEL 1e-4f
+#define SCALER_MINIMUM_ETA_SCALE 1e-5f
 
 Scaler::Scaler(Engine& engine) : Scaler(MOVING_FILTER_INFINITE_TIME_WINDOW, engine) {}
 
@@ -17,7 +19,7 @@ Scaler::Scaler(float timeWindow_, float span, Engine& engine)
     _currentValueStep(0)
 {
   timeWindow(timeWindow_);
-  _quantileLevel = max(0.5f * (1 - constrain01(span)), 0.0001f);
+  _quantileLevel = max(0.5f * (1 - constrain01(span)), SCALER_MINIMUM_QUANTILE_LEVEL);
   reset();
 }
 
@@ -40,23 +42,23 @@ void Scaler::reset() {
   _lowQuantile = FLT_MAX;
   _highQuantile = -FLT_MAX;
 
-  _value = _meanValue = 0.5f;
+  _value = 0.5f;
 
   _currentValueStep = 0;
   _nValuesStep = 0;
   _nSamples = 0;
 }
 
-void Scaler::updateQuantile(float& q, float alpha, float eta, float x) {
-  float indicator = (x <= q) ? 1.0f : 0.0f;
-  q += eta * (alpha - indicator);
+void Scaler::_updateQuantile(float& q, float level, float eta, float x) {
+  // Stochastic update rule for quantile (Robbins–Monro).
+  q += eta * (level - (x <= q ? 1.0f : 0.0f));
 }
 
 float Scaler::put(float value) {
   if (isCalibrating()) {
 
     if (_nSamples == 0) {
-      _lowQuantile = _highQuantile = _meanValue = value;
+      _lowQuantile = _highQuantile = value;
     }
 
     // Increment n. values.
@@ -79,9 +81,7 @@ float Scaler::put(float value) {
   return _value;
 }
 
-constexpr float ONE_PLUS_FLT_MIN = 1 + FLT_MIN;
-#define MINIMUM_ETA_SCALE 1e-5f
-
+constexpr float ONE_PLUS_SMALL_VALUE = 1.0001f;
 void Scaler::step() {
 
     // If no values were added during this step, update using previous value.
@@ -91,21 +91,49 @@ void Scaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
+    // Compute an adaptive scale factor for the Robbins–Monro updates.
     //
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+    // The goal is to estimate the "total range" of the underlying signal using
+    // only q_low, q_high, and the current value x.  Normally, when x lies between
+    // the two quantiles, we can approximate the full range as:
+    //
+    //      range_est ≈ (q_high - q_low) / (1 - 2*quantileLevel)
+    //
+    // The division by (1 - 2*quantileLevel) is used to spread the range from
+    // |q_high - q_low| to |q_100 - q_0|.
+    //
+    // However, if the quantiles are almost equal (as is the case at startup) this estimate
+    // is extremely small and causes the RM updates to converge very slowly.
+    //
+    // To avoid this, if the new sample x lies *outside* the current quantile band,
+    // we use the distance from x to the opposite quantile as a proxy for the
+    // missing range.  This immediately "inflates" the scale when a new extreme
+    // value appears, allowing q_low and q_high to separate quickly.
+    //
+    // Summary:
+    //    - If x > q_high:    range = (x -  q_low) / (1 - 1.5*quantileLevel)  (upper excursion)
+    //    - If x < q_low:     range = (q_high - x) / (1 - 1.5*quantileLevel) (lower excursion)
+    //    - Else:             range = range_est (normal quantile-based update)
+    float range;
+    if (_currentValueStep > _highQuantile)
+      range = (_currentValueStep - _lowQuantile) / (ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
 
-    // Update average value.
-    MovingAverage::applyUpdate(_meanValue, _currentValueStep, alpha);
+    else if (_currentValueStep < _lowQuantile)
+      range = (_highQuantile - _currentValueStep) / (ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
 
-    // Compute range: absolute range between high and low quantiles, rescaled from quantile level to full range.
-    float scale = (abs(_highQuantile - _meanValue) + abs(_meanValue - _lowQuantile)) /
-                    (ONE_PLUS_FLT_MIN - 2*_quantileLevel);
+    else
+      range = (_highQuantile - _lowQuantile) / (ONE_PLUS_SMALL_VALUE - 2*_quantileLevel);
 
-    float scaledAlpha = alpha * max(scale, MINIMUM_ETA_SCALE);
+    // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
+    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples) * range;
 
     // Update quantiles (Robbins–Monro online).
-    updateQuantile(_lowQuantile,      _quantileLevel, scaledAlpha, _currentValueStep);
-    updateQuantile(_highQuantile, 1 - _quantileLevel, scaledAlpha, _currentValueStep);
+    _updateQuantile(_lowQuantile,      _quantileLevel, eta, _currentValueStep);
+    _updateQuantile(_highQuantile, 1 - _quantileLevel, eta, _currentValueStep);
+
+    // Clamp quantiles to avoid inversions.
+    if (_lowQuantile > _highQuantile)
+      _lowQuantile = _highQuantile = (_lowQuantile + _highQuantile) * 0.5f;
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)

@@ -74,23 +74,25 @@ public:
 protected:
   virtual void step();
 
-  // Internal quantile update (Robbins–Monro)
-  inline void updateQuantile(float& q, float alpha, float eta, float x);
+  // Internal quantile update (Robbins–Monro).
+  inline void _updateQuantile(float& q, float level, float eta, float x);
 
-//protected:
+protected:
 public:
+  // Time window (in seconds).
   float _timeWindow;
 
+  // Low quantile level (in [0, 0.5]).
   float _quantileLevel;
 
-  float _lowQuantile;
-  float _highQuantile;
-
-  float _meanValue;
+  // Quantile estimators.
+  float _lowQuantile;  // q_low
+  float _highQuantile; // q_high
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentValueStep;
 
+  // Number of samples since last reset.
   uint32_t _nSamples;
 };
 
