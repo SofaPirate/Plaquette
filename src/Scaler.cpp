@@ -1,14 +1,39 @@
+/*
+ * Scaler.cpp
+ *
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * (c) 2025 Sofian Audry
+ *
+ * Adaptive quantile-based scaler using Robbins–Monro updates.
+ */
+
 #include "Scaler.h"
 #include "MovingAverage.h"
-#include "pq_map.h"
-#include "float.h"
-#include <math.h>
 
 namespace pq {
 
+// Default low quantile level (corresponds to 1% coverage of value in [0, 1]).
 #define SCALER_DEFAULT_SPAN 0.99f
+
+// Minimum quantile level to avoid ill-defined zero quantile.
 #define SCALER_MINIMUM_QUANTILE_LEVEL 1e-4f
-#define SCALER_MINIMUM_ETA_SCALE 1e-5f
+
+// Internal use to avoid division by zero.
+#define SCALER_ONE_PLUS_SMALL_VALUE 1.0001f
 
 Scaler::Scaler(Engine& engine) : Scaler(MOVING_FILTER_INFINITE_TIME_WINDOW, engine) {}
 
@@ -81,7 +106,7 @@ float Scaler::put(float value) {
   return _value;
 }
 
-constexpr float ONE_PLUS_SMALL_VALUE = 1.0001f;
+
 void Scaler::step() {
 
     // If no values were added during this step, update using previous value.
@@ -116,13 +141,13 @@ void Scaler::step() {
     //    - Else:             range = range_est (normal quantile-based update)
     float range;
     if (_currentValueStep > _highQuantile)
-      range = (_currentValueStep - _lowQuantile) / (ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
+      range = (_currentValueStep - _lowQuantile)  / (SCALER_ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
 
     else if (_currentValueStep < _lowQuantile)
-      range = (_highQuantile - _currentValueStep) / (ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
+      range = (_highQuantile - _currentValueStep) / (SCALER_ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
 
     else
-      range = (_highQuantile - _lowQuantile) / (ONE_PLUS_SMALL_VALUE - 2*_quantileLevel);
+      range = (_highQuantile - _lowQuantile)      / (SCALER_ONE_PLUS_SMALL_VALUE - 2*_quantileLevel);
 
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
     float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples) * range;
