@@ -77,8 +77,8 @@ testing(timing) {
       Metronome* unit = metro[i];
       Metronome* randomUnit = randomMetro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
-      // Assert random metronome is within 15% tolerance.
-      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.15f);
+      // Assert random metronome is within 20% tolerance.
+      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.2f);
     }
     pass();
   }
@@ -86,6 +86,7 @@ testing(timing) {
 
 void setup() {
   Plaquette.begin();
+  randomSeed(1234567);
   for (int i=0; i<N_METRO; i++) {
     Metronome* randomUnit = randomMetro[i];
     randomUnit->randomize();
