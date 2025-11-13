@@ -64,11 +64,11 @@ testing(timing) {
     }
   }
 
-  if (Plaquette.seconds() <= TEST_RAMP_MAX) {
+  if (Plaquette.seconds() - startTime <= TEST_RAMP_DURATION) {
     assertMoreOrEqual(testRampDuration.get(), 0.0f);
     assertLessOrEqual(testRampDuration.get(), 100.0f);
 
-    assertNear(testRampDuration.get(), mapFrom01((Plaquette.seconds()-startTime)/TEST_RAMP_DURATION, 0, TEST_RAMP_MAX), 2.0f);
+    assertNear(testRampDuration.get(), mapFrom01((Plaquette.seconds()-startTime)/TEST_RAMP_DURATION, 0, TEST_RAMP_MAX), 1.0f);
     assertEqual(testRampDuration.get(), testRampSpeed.get());
   }
 
