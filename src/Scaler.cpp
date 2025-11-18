@@ -186,6 +186,11 @@ void Scaler::step() {
       _highQuantile = min(_highQuantile, _currentValueStep);
     }
 
+    // Decay quantiles.
+    if (!timeWindowIsInfinite()) {
+      MovingAverage::applyUpdate(_lowQuantile,  midQuantile,  alpha);
+      MovingAverage::applyUpdate(_highQuantile, midQuantile,  alpha);
+    }
 
     // Clamp quantiles to avoid inversions.
     if (_lowQuantile > _highQuantile)
