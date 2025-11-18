@@ -30,6 +30,9 @@ namespace pq {
 #define SCALER_MINIMUM_QUANTILE_LEVEL 1e-4f
 #define SCALER_MAXIMUM_QUANTILE_LEVEL 0.5f
 
+// Number of standard deviations to cover full range.
+#define SCALER_STDDEV_TO_RANGE 6.0f
+
 float lowQuantileLevelToSpan(float level) {
   return level <= SCALER_MINIMUM_QUANTILE_LEVEL ? 1.0f : 1 - 2 * level;
  }
@@ -142,15 +145,47 @@ void Scaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
+    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+
     // Unbiased estimate of standard deviation of the signal using current value.
-    float scale = abs(_currentValueStep - 0.5f * (_lowQuantile + _highQuantile));
+    float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
+    float deviation = abs(_currentValueStep - midQuantile);
+
+    if (_nSamples == 0)
+      _stddev = deviation;
+    else
+      MovingAverage::applyUpdate(_stddev, deviation, alpha);
 
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
-    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples) * scale;
+    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+    eta *= SCALER_STDDEV_TO_RANGE * _stddev; // rescale to full range
+
+    // Precompute: eta x quantile level
+    float etaLevel = eta * _quantileLevel;
 
     // Update quantiles (Robbins–Monro online).
-    _updateQuantile(_lowQuantile,      _quantileLevel, eta, _currentValueStep);
-    _updateQuantile(_highQuantile, 1 - _quantileLevel, eta, _currentValueStep);
+    if (_currentValueStep <= _lowQuantile) { // smaller than both quantiles
+      _lowQuantile  -= eta - etaLevel; // decrease
+      _highQuantile -= etaLevel;       // decrease
+      // Prevent overshooting.
+      _lowQuantile  = max(_lowQuantile,  _currentValueStep);
+      _highQuantile = max(_highQuantile, _currentValueStep);
+    }
+    else if (_currentValueStep <= _highQuantile) { // in between
+      _lowQuantile  += etaLevel;       // increase
+      _highQuantile -= etaLevel;       // decrease
+      // Prevent overshooting.
+      _lowQuantile  = min(_lowQuantile,  _currentValueStep);
+      _highQuantile = max(_highQuantile, _currentValueStep);
+    }
+    else { // larger than both quantiles
+      _lowQuantile  += etaLevel;       // increase
+      _highQuantile += eta - etaLevel; // increase
+      // Prevent overshooting.
+      _lowQuantile  = min(_lowQuantile,  _currentValueStep);
+      _highQuantile = min(_highQuantile, _currentValueStep);
+    }
+
 
     // Clamp quantiles to avoid inversions.
     if (_lowQuantile > _highQuantile)
