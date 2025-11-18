@@ -89,7 +89,7 @@ void setup() {
   randomSeed(1234567);
   for (int i=0; i<N_METRO; i++) {
     Metronome* randomUnit = randomMetro[i];
-    randomUnit->randomize();
+    randomUnit->jitter(1.0f);
     Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);

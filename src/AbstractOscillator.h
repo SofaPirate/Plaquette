@@ -96,6 +96,12 @@ public:
   */
   virtual float phaseShift() const;
 
+  /// Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter).
+  virtual void jitter(float jitterLevel);
+
+    /// Returns the randomness level in [0, 1].
+  virtual float randomness() const;
+
    /**
     * Utility function to convert time to phase.
     * @param time relative time in seconds
@@ -135,15 +141,6 @@ public:
 
   /// Toggles the direction of oscillation.
   virtual void toggleReverse() { _isForward = !_isForward; }
-
-  /// Returns the randomness level in [0, 1].
-  virtual float randomness() const;
-
-  /// Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness).
-  virtual void randomize(float randomness=1.0f);
-
-  /// Disables randomness.
-  virtual void noRandomize() { randomize(0.0f); }
 
 protected:
   // Perform step with under
@@ -185,8 +182,8 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  // Randomness level.
-  uint8_t _randomness : 4;
+  // Jittering level.
+  uint8_t _jitterLevel : 4;
 };
 
 }

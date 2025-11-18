@@ -33,12 +33,12 @@ AbstractOscillator::AbstractOscillator(float period_)
   _frequency(FLT_MAX),
 #endif
   _phaseShiftOrRandomFrequencyRatio(0),
-  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _randomness(0) {
+  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _jitterLevel(0) {
   period(period_);
 }
 
-#define RANDOM_MAX_PERIOD_RATIO 32.0f
-constexpr float RANDOM_MIN_PERIOD_RATIO = 1.0f / RANDOM_MAX_PERIOD_RATIO;
+#define JITTER_MAX_PERIOD_RATIO 32.0f
+constexpr float JITTER_MIN_PERIOD_RATIO = 1.0f / JITTER_MAX_PERIOD_RATIO;
 
 void AbstractOscillator::_randomPickNext() {
   // Pick random period ratio for this interval using Poisson distribution.
@@ -51,29 +51,29 @@ void AbstractOscillator::_randomPickNext() {
 #endif
 
   // clamping to avoid extreme ratios (rare outliers).
-  periodRatio = constrain(periodRatio, RANDOM_MIN_PERIOD_RATIO, RANDOM_MAX_PERIOD_RATIO);
+  periodRatio = constrain(periodRatio, JITTER_MIN_PERIOD_RATIO, JITTER_MAX_PERIOD_RATIO);
 
   // Apply random mixing factor between periodRatio and 1.0
   // = 1 / ( (1-r) * 1 + r x ratio )
   _phaseShiftOrRandomFrequencyRatio = 1.0f / (1 + randomness() * (periodRatio - 1));
 }
 
-#define RANDOMNESS_MAX 15
-constexpr float INV_RANDOMNESS_MAX = 1.0f / RANDOMNESS_MAX;
+#define JITTER_LEVEL_MAX 15
+constexpr float INV_JITTER_LEVEL_MAX = 1.0f / JITTER_LEVEL_MAX;
 float AbstractOscillator::randomness() const {
-  return fixedToFloatInv(_randomness, INV_RANDOMNESS_MAX);
+  return fixedToFloatInv(_jitterLevel, INV_JITTER_LEVEL_MAX);
 }
 
-void AbstractOscillator::randomize(float randomness) {
-  bool wasRandom = (_randomness != 0);
-  _randomness = floatToFixed(randomness, RANDOMNESS_MAX);
+void AbstractOscillator::jitter(float jitterLevel) {
+  bool wasJittering = (_jitterLevel != 0);
+  _jitterLevel = floatToFixed(jitterLevel, JITTER_LEVEL_MAX);
 
   // If randomness is larger than zero (even slightly), set random level to at least 1.
-  if (randomness > 0)
-    _randomness = max(_randomness, 1);
+  if (jitterLevel > 0)
+    _jitterLevel = max(_jitterLevel, 1);
 
   // If we are switching mode, reset phase-shift / frequency ratio to zero.
-  if (wasRandom ^ (_randomness != 0))
+  if (wasJittering ^ (_jitterLevel != 0))
     _phaseShiftOrRandomFrequencyRatio = 0;
 }
 
@@ -83,7 +83,7 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
     _overflowed = false;
   }
 
-  else if (!_randomness) {
+  else if (!_jitterLevel) {
     // Deterministic path (unchanged)
     _overflowed = phase32UpdateFixed32(_phase32, frequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
@@ -156,7 +156,7 @@ void AbstractOscillator::phase(float phase) {
 }
 
 void AbstractOscillator::phaseShift(float phaseShift) {
-  if (!_randomness && _phaseShiftOrRandomFrequencyRatio != phaseShift) {
+  if (!_jitterLevel && _phaseShiftOrRandomFrequencyRatio != phaseShift) {
     // Need to readjust phase time.
     _setPhase32(phase32AddPhase(_phase32, _phaseShiftOrRandomFrequencyRatio - phaseShift));
     _phaseShiftOrRandomFrequencyRatio = phaseShift;
@@ -164,13 +164,13 @@ void AbstractOscillator::phaseShift(float phaseShift) {
 }
 
 float AbstractOscillator::phaseShift() const {
-  return (_randomness ? 0 : _phaseShiftOrRandomFrequencyRatio);
+  return (_jitterLevel ? 0 : _phaseShiftOrRandomFrequencyRatio);
 }
 
 float AbstractOscillator::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
 void AbstractOscillator::setTime(float time) {
-  if (!_randomness) {
+  if (!_jitterLevel) {
     // Reset phase time to beginning.
     _setPhase32( phase32AddTime(_phaseShiftOrRandomFrequencyRatio, _period, time) );
   }
@@ -178,7 +178,7 @@ void AbstractOscillator::setTime(float time) {
 
 void AbstractOscillator::addTime(float time) {
   // Perform calculation iff time needs to be added.
-  if (!_randomness && time > 0)
+  if (!_jitterLevel && time > 0)
     _setPhase32( phase32AddTime(_phase32, _period, time) );
 }
 
