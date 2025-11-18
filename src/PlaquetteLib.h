@@ -34,6 +34,7 @@
 // Plaquette builtin functions.
 #include "pq_constrain.h"
 #include "pq_map.h"
+#include "pq_plot.h"
 #include "pq_print.h"
 #include "pq_random.h"
 #include "pq_wrap.h"
