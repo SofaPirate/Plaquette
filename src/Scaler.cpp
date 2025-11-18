@@ -26,30 +26,41 @@
 
 namespace pq {
 
-// Default low quantile level (corresponds to 1% coverage of value in [0, 1]).
-#define SCALER_DEFAULT_SPAN 0.99f
-
 // Minimum quantile level to avoid ill-defined zero quantile.
 #define SCALER_MINIMUM_QUANTILE_LEVEL 1e-4f
+#define SCALER_MAXIMUM_QUANTILE_LEVEL 0.5f
 
-// Internal use to avoid division by zero.
-#define SCALER_ONE_PLUS_SMALL_VALUE 1.0001f
+float lowQuantileLevelToSpan(float level) {
+  return level <= SCALER_MINIMUM_QUANTILE_LEVEL ? 1.0f : 1 - 2 * level;
+ }
 
-Scaler::Scaler(Engine& engine) : Scaler(MOVING_FILTER_INFINITE_TIME_WINDOW, engine) {}
+float spanToLowQuantileLevel(float span) {
+  return max( mapFrom01(1-span, 0, SCALER_MAXIMUM_QUANTILE_LEVEL), SCALER_MINIMUM_QUANTILE_LEVEL);
+}
+
+Scaler::Scaler(Engine& engine) : MovingFilter(engine) {
+  infiniteTimeWindow();
+  span(SCALER_DEFAULT_SPAN);
+  reset();
+}
 
 Scaler::Scaler(float timeWindow, Engine& engine) : Scaler(timeWindow, SCALER_DEFAULT_SPAN, engine) {}
 
-Scaler::Scaler(float timeWindow_, float span, Engine& engine)
+Scaler::Scaler(float timeWindow_, float span_, Engine& engine)
   : MovingFilter(engine),
     _currentValueStep(0)
 {
   timeWindow(timeWindow_);
-  _quantileLevel = max(0.5f * (1 - constrain01(span)), SCALER_MINIMUM_QUANTILE_LEVEL);
+  span(span_);
   reset();
 }
 
 void Scaler::infiniteTimeWindow() {
   _timeWindow = MOVING_FILTER_INFINITE_TIME_WINDOW;
+}
+
+bool Scaler::timeWindowIsInfinite() const {
+  return _timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW;
 }
 
 void Scaler::timeWindow(float seconds) {
@@ -58,9 +69,23 @@ void Scaler::timeWindow(float seconds) {
 
 float Scaler::timeWindow() const { return _timeWindow; }
 
-bool Scaler::timeWindowIsInfinite() const {
-  return _timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW;
+void Scaler::span(float span) {
+  _quantileLevel = spanToLowQuantileLevel(constrain01(span));
 }
+
+float Scaler::span() const {
+  return lowQuantileLevelToSpan(_quantileLevel);
+}
+
+void Scaler::lowQuantileLevel(float level) {
+  level = constrain(level, 0.0f, SCALER_MAXIMUM_QUANTILE_LEVEL);
+  span(lowQuantileLevelToSpan(level));
+}
+
+void Scaler::highQuantileLevel(float level) {
+  lowQuantileLevel(1 - level);
+}
+
 void Scaler::reset() {
   MovingFilter::reset();
 
@@ -82,9 +107,6 @@ void Scaler::_updateQuantile(float& q, float level, float eta, float x) {
 float Scaler::put(float value) {
   if (isCalibrating()) {
 
-    if (_nSamples == 0) {
-      _lowQuantile = _highQuantile = value;
-    }
 
     // Increment n. values.
     if (_nValuesStep < 128)
@@ -100,12 +122,16 @@ float Scaler::put(float value) {
     }
   }
 
+  // Initialize.
+  if (_nSamples == 0) {
+    _lowQuantile = _highQuantile = _currentValueStep;
+  }
+
   // Compute rescaled value.
   _value = mapTo01(value, _lowQuantile, _highQuantile, CONSTRAIN);
 
   return _value;
 }
-
 
 void Scaler::step() {
 
@@ -116,41 +142,11 @@ void Scaler::step() {
     // Reset (but keep _currentValueStep).
     _nValuesStep = 0;
 
-    // Compute an adaptive scale factor for the Robbins–Monro updates.
-    //
-    // The goal is to estimate the "total range" of the underlying signal using
-    // only q_low, q_high, and the current value x.  Normally, when x lies between
-    // the two quantiles, we can approximate the full range as:
-    //
-    //      range_est ≈ (q_high - q_low) / (1 - 2*quantileLevel)
-    //
-    // The division by (1 - 2*quantileLevel) is used to spread the range from
-    // |q_high - q_low| to |q_100 - q_0|.
-    //
-    // However, if the quantiles are almost equal (as is the case at startup) this estimate
-    // is extremely small and causes the RM updates to converge very slowly.
-    //
-    // To avoid this, if the new sample x lies *outside* the current quantile band,
-    // we use the distance from x to the opposite quantile as a proxy for the
-    // missing range.  This immediately "inflates" the scale when a new extreme
-    // value appears, allowing q_low and q_high to separate quickly.
-    //
-    // Summary:
-    //    - If x > q_high:    range = (x -  q_low) / (1 - 1.5*quantileLevel)  (upper excursion)
-    //    - If x < q_low:     range = (q_high - x) / (1 - 1.5*quantileLevel) (lower excursion)
-    //    - Else:             range = range_est (normal quantile-based update)
-    float range;
-    if (_currentValueStep > _highQuantile)
-      range = (_currentValueStep - _lowQuantile)  / (SCALER_ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
-
-    else if (_currentValueStep < _lowQuantile)
-      range = (_highQuantile - _currentValueStep) / (SCALER_ONE_PLUS_SMALL_VALUE - 1.5f*_quantileLevel);
-
-    else
-      range = (_highQuantile - _lowQuantile)      / (SCALER_ONE_PLUS_SMALL_VALUE - 2*_quantileLevel);
+    // Unbiased estimate of standard deviation of the signal using current value.
+    float scale = abs(_currentValueStep - 0.5f * (_lowQuantile + _highQuantile));
 
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
-    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples) * range;
+    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples) * scale;
 
     // Update quantiles (Robbins–Monro online).
     _updateQuantile(_lowQuantile,      _quantileLevel, eta, _currentValueStep);
@@ -158,7 +154,7 @@ void Scaler::step() {
 
     // Clamp quantiles to avoid inversions.
     if (_lowQuantile > _highQuantile)
-      _lowQuantile = _highQuantile = (_lowQuantile + _highQuantile) * 0.5f;
+      _lowQuantile = _highQuantile = 0.5f * (_lowQuantile + _highQuantile);
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)

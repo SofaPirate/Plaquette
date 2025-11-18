@@ -29,6 +29,9 @@
 
 namespace pq {
 
+// Default low quantile level (corresponds to 1% coverage of value in [0, 1]).
+#define SCALER_DEFAULT_SPAN 0.99f
+
 /// Regularizes signal into [0,1] using adaptive quantile tracking (robust to outliers).
 class Scaler : public MovingFilter {
 public:
@@ -62,6 +65,24 @@ public:
   /// Returns the current time window.
   virtual float timeWindow() const;
 
+  /// Sets the span (in [0, 1]) of the quantile to track.
+  virtual void span(float span);
+
+  /// Returns the current span.
+  virtual float span() const;
+
+  /// Sets the low quantile level (in [0, 0.5]). Low quantile will automatically be set to 1 - low.
+  virtual void lowQuantileLevel(float level);
+
+  /// Returns the current low quantile level.
+  virtual float lowQuantileLevel() const { return _quantileLevel; }
+
+  /// Sets the high quantile level (in [0.5, 1]). Low quantile will automatically be set to 1 - high.
+  virtual void highQuantileLevel(float level);
+
+  /// Returns the current high quantile level.
+  virtual float highQuantileLevel() const { return (1 - _quantileLevel); }
+
   /// Resets the filter state.
   virtual void reset();
 
@@ -78,7 +99,6 @@ protected:
   inline void _updateQuantile(float& q, float level, float eta, float x);
 
 protected:
-public:
   // Time window (in seconds).
   float _timeWindow;
 
