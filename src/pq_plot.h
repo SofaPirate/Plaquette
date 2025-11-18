@@ -24,20 +24,24 @@
 
 #include "pq_print.h"
 
+#ifndef PLOT_TOKEN_SIZE
+#define PLOT_TOKEN_SIZE 4
+#endif
+
 namespace pq {
 
-enum PlotSeparator {
+enum PlotToken {
   LABEL = 0,
   ITEM = 1,
   BEGIN = 2,
   END = 3
 };
 
-/// Sets the separator used for a given plot boundary.
-void plotSeparator(PlotSeparator type, const char* separator);
+/// Sets the Token used for a given plot boundary.
+void plotToken(PlotToken type, const char* token);
 
-/// Returns the separator for the given plot boundary.
-const char* plotSeparator(PlotSeparator type);
+/// Returns the Token for the given plot boundary.
+const char* plotToken(PlotToken type);
 
 /// Sets the numeric precision for printed values.
 void plotPrecision(int digits);

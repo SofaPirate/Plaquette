@@ -23,9 +23,7 @@
 
 namespace pq {
 
-#define PLOT_SEPARATOR_SIZE 8
-
-char separators [][PLOT_SEPARATOR_SIZE] = {":", ",", "", "\n"};
+char tokens [][PLOT_TOKEN_SIZE] = {":", ",", "", "\n"};
 int precision = 2;
 
 bool rowStarted = false;
@@ -33,10 +31,10 @@ bool rowStarted = false;
 size_t _checkStart() {
   if (!rowStarted) {
     rowStarted = true;
-    return print(separators[BEGIN]);
+    return print(tokens[BEGIN]);
   }
   else
-    return print(separators[ITEM]);
+    return print(tokens[ITEM]);
 }
 
 size_t _plotValue(double value) {
@@ -44,17 +42,17 @@ size_t _plotValue(double value) {
 }
 
 size_t _postLabelPlotValue(double value) {
-  size_t n = print(plotSeparator(LABEL));
+  size_t n = print(plotToken(LABEL));
   n += _plotValue(value);
   return n;
 }
 
-void plotSeparator(PlotSeparator type, const char *separator) {
-  memcpy(separators[(int)type], separator, PLOT_SEPARATOR_SIZE);
+void plotToken(PlotToken type, const char *token) {
+  memcpy(tokens[(int)type], token, PLOT_TOKEN_SIZE);
 }
 
-const char* plotSeparator(PlotSeparator type) {
-  return separators[(int)type];
+const char* plotToken(PlotToken type) {
+  return tokens[(int)type];
 }
 
 void plotPrecision(int digits) {
@@ -97,7 +95,7 @@ size_t plot(const String &label, double value) {
 
 size_t plotln() {
   rowStarted = false;
-  return print(plotSeparator(END));
+  return print(plotToken(END));
 }
 
 }
