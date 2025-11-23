@@ -89,17 +89,81 @@ void Scaler::highQuantileLevel(float level) {
   lowQuantileLevel(1 - level);
 }
 
+// Cheap inverse normal approximation for 0<p<1 (float, AVR/ESP32 friendly)
+static float normalQuantileFast(float p)
+{
+  if (p <= 0.0f) return -6.0f;  // "far tail enough"
+  if (p >= 1.0f) return  6.0f;
+
+  float x  = 2.0f * p - 1.0f;   // map to [-1..1]
+  float x2 = x * x;
+  return 1.4142f * x * (1.0f + 0.147f * x2);  // ≈ Φ⁻¹
+}
+
+void Scaler::_initializeRange(float minValue, float maxValue)
+{
+  // Swap if user accidentally inverted bounds
+  if (minValue > maxValue) {
+    float tmp = minValue;
+    minValue  = maxValue;
+    maxValue  = tmp;
+  }
+
+  // Degenerate case: collapse to a single value
+  if (minValue == maxValue) {
+    _lowQuantile  = _highQuantile = minValue;
+    return;
+  }
+
+  // --- Gaussian Prior Assumption ------------------------------------
+  // The provided range [min,max] corresponds to ±3σ around the mean μ.
+  //    μ = (min + max)/2
+  //    σ = (max - min)/6
+
+  const float mean    = 0.5f * (minValue + maxValue);
+  const float stddev = (maxValue - minValue) / 6.0f;
+
+  // --- Convert user's quantile level (τ) to a truncated Gaussian quantile
+  // We map τ into [Φ(-3), Φ(3)] and compute a Z-score using a fast approximation.
+  constexpr float PHI_NEGATIVE_3 = 0.001349898f;  // Φ(-3)
+  constexpr float PHI_POSITIVE_3 = 0.998650102f;  // Φ(3)
+
+  // Map τ onto truncated support
+  const float pLow = PHI_NEGATIVE_3 + _quantileLevel * (PHI_POSITIVE_3 - PHI_NEGATIVE_3);
+  const float zLow = normalQuantileFast(pLow);  // lightweight probit
+
+  // Symmetric poles (τ and 1−τ)
+  const float variation = stddev * zLow;
+  _lowQuantile  = mean + variation;
+  _highQuantile = mean - variation;
+}
+
 void Scaler::reset() {
   MovingFilter::reset();
 
-  _lowQuantile = FLT_MAX;
-  _highQuantile = -FLT_MAX;
+  _lowQuantile = _highQuantile = 0.5f;
 
   _value = 0.5f;
+  _stddev = 0.0f;
 
   _currentValueStep = 0;
-  _nValuesStep = 0;
   _nSamples = 0;
+}
+
+void Scaler::reset(float estimatedMeanValue) {
+  reset();
+
+  _lowQuantile = _highQuantile = estimatedMeanValue;
+  _isPreInitialized = true;
+}
+
+
+void Scaler::reset(float estimatedMinValue, float estimatedMaxValue) {
+  reset();
+
+  _initializeRange(estimatedMinValue, estimatedMaxValue);
+  _stddev = (estimatedMaxValue - estimatedMinValue) / SCALER_STDDEV_TO_RANGE;
+  _isPreInitialized = true;
 }
 
 void Scaler::_updateQuantile(float& q, float level, float eta, float x) {
@@ -110,24 +174,15 @@ void Scaler::_updateQuantile(float& q, float level, float eta, float x) {
 float Scaler::put(float value) {
   if (isCalibrating()) {
 
-
     // Increment n. values.
-    if (_nValuesStep < 128)
+    if (_nValuesStep <= MOVING_FILTER_N_VALUES_STEP_MAX) {
       _nValuesStep++;
-
-    if (_nValuesStep == 1) {
-      // Save current value.
-      _currentValueStep = value;
+      _currentValueStep += value;
     }
     else {
-      // Update current step average value.
-      MovingAverage::applyUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
+      // Add one value in proportion to the previous value.
+      _currentValueStep = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentValueStep + value);
     }
-  }
-
-  // Initialize.
-  if (_nSamples == 0) {
-    _lowQuantile = _highQuantile = _currentValueStep;
   }
 
   // Compute rescaled value.
@@ -138,27 +193,31 @@ float Scaler::put(float value) {
 
 void Scaler::step() {
 
-    // If no values were added during this step, update using previous value.
-  if (_nValuesStep > 0 ||      // if at least one value was recorded this step ...
-      _lowQuantile != FLT_MAX) {  // ... or at least one value was ever recorded since reset
+  // If no values were added during this step, update using previous value.
+  if (_nValuesStep > 0) {
 
-    // Reset (but keep _currentValueStep).
+    // Reset.
+    _currentValueStep /= _nValuesStep;
     _nValuesStep = 0;
-
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
 
     // Unbiased estimate of standard deviation of the signal using current value.
     float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
     float deviation = abs(_currentValueStep - midQuantile);
 
-    if (_nSamples == 0)
+    // Compute base alpha.
+    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples, isPreInitialized());
+
+    if (!isPreInitialized() && _nSamples == 0) {
       _stddev = deviation;
+      _lowQuantile = _highQuantile = _currentValueStep;
+    }
     else
+      // Adjust standard deviation.
       MovingAverage::applyUpdate(_stddev, deviation, alpha);
 
+
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
-    float eta = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-    eta *= SCALER_STDDEV_TO_RANGE * _stddev; // rescale to full range
+    float eta = alpha * SCALER_STDDEV_TO_RANGE * _stddev; // rescale to full range
 
     // Precompute: eta x quantile level
     float etaLevel = eta * _quantileLevel;

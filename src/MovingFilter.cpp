@@ -40,6 +40,8 @@ float MovingFilter::cutoff() const {
 }
 
 void MovingFilter::reset() {
+  _isCalibrating = true;
+  _isPreInitialized = false;
   _nValuesStep = 0;
 }
 

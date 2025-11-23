@@ -65,6 +65,12 @@ public:
   /// Resets the moving filter.
   virtual void reset();
 
+  /// Resets the filter with a prior estimate of the mean value.
+  virtual void reset(float estimatedMeanValue);
+
+  /// Resets the moving filter with a prior estimate of the min and max values.
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue);
+
   /**
    * Pushes value into the unit. If isRunning() is false the filter will not be
    * updated but will just return the filtered value.
@@ -73,7 +79,7 @@ public:
    */
   virtual float put(float value);
 
-protected:
+public:
   virtual void step();
 
   // Time window (in seconds).
@@ -93,9 +99,6 @@ protected:
 
   // Number of samples that have been processed thus far.
   unsigned int _nSamples;
-  
-  // Variables used to compute current value average during a step (in case of multiple calls to put()).
-  float _currentValueStep;
 };
 
 }

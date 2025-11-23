@@ -27,16 +27,14 @@
 namespace pq {
 
 MinMaxScaler::MinMaxScaler(Engine& engine)
-  : MovingFilter(engine),
-    _currentValueStep(0)
+  : MovingFilter(engine)
 {
   infiniteTimeWindow();
   reset();
 }
 
 MinMaxScaler::MinMaxScaler(float timeWindow_, Engine& engine)
-  : MovingFilter(engine),
-    _currentValueStep(0)
+  : MovingFilter(engine)
 {
   timeWindow(timeWindow_);
   reset();
@@ -58,19 +56,37 @@ bool MinMaxScaler::timeWindowIsInfinite() const {
 
 void MinMaxScaler::reset() {
   MovingFilter::reset();
+
   _minValue =  FLT_MAX;
   _maxValue = -FLT_MAX;
   _smoothedMinValue = 0.5f;
   _smoothedMaxValue = 0.5f;
+
   _value = 0.5f;
-  _currentValueStep = 0;
-  _nValuesStep = 0;
+
   _nSamples = 0;
+}
+
+void MinMaxScaler::reset(float estimatedMeanValue) {
+  reset();
+
+  _minValue = _maxValue = _smoothedMinValue = _smoothedMaxValue = estimatedMeanValue;
+  _isPreInitialized = true;
+}
+
+void MinMaxScaler::reset(float estimatedMinValue, float estimatedMaxValue) {
+  reset();
+
+  _minValue = _smoothedMinValue = estimatedMinValue;
+  _maxValue = _smoothedMaxValue = estimatedMaxValue;
+  _isPreInitialized = true;
 }
 
 float MinMaxScaler::put(float value)
 {
   if (isCalibrating()) {
+
+    // TODO: make work in step(), with the current value step
 
     // Update min. value.
     if (value < _minValue) {
@@ -85,19 +101,6 @@ float MinMaxScaler::put(float value)
       if (_nSamples == 0)
         _smoothedMaxValue = _maxValue;
     }
-
-    // Increment n. values.
-    if (_nValuesStep < 128)
-      _nValuesStep++;
-
-    if (_nValuesStep == 1) {
-      // Save current value.
-      _currentValueStep = value;
-    }
-    else {
-      // Update current step average value.
-      MovingAverage::applyUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
-    }
   }
 
   // Compute rescaled value.
@@ -106,26 +109,77 @@ float MinMaxScaler::put(float value)
   return _value;
 }
 
+#define TOLERANCE 1e-6
+#define SMOOTHED_MIN_MAX_TIME_PROPORTION 0.1
+constexpr float MIN_MAX_TIME_PROPORTION = 1.0f - SMOOTHED_MIN_MAX_TIME_PROPORTION;
+
+constexpr float MIN_MAX_TIME_PROPORTION_INV = 1.0f / MIN_MAX_TIME_PROPORTION;
+constexpr float SMOOTHED_MIN_MAX_TIME_PROPORTION_INV = 1.0f / SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
 void MinMaxScaler::step() {
   // If no values were added during this step, update using previous value.
-  if (_nValuesStep > 0 ||      // if at least one value was recorded this step ...
-      _minValue != FLT_MAX) {  // ... or at least one value was ever recorded since reset
+  if (true) {
+  // if (_nValuesStep > 0 ||      // if at least one value was recorded this step ...
+  //     _minValue != FLT_MAX) {  // ... or at least one value was ever recorded since reset
 
     // Reset (but keep _currentValueStep).
-    _nValuesStep = 0;
+    // _nValuesStep = 0;
 
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+    // Compute alpha to slowly move min and max values towards current value.
+    float alpha = 0;
+    float alphaMinMax = 0;
+    float alphaSmoothed = 0;
+    bool finiteTimeWindow = !timeWindowIsInfinite();
 
-    // Apply decay on min and max values.
-    if (!timeWindowIsInfinite()) {
-      MovingAverage::applyUpdate(_minValue, _currentValueStep, alpha);
-      MovingAverage::applyUpdate(_maxValue, _currentValueStep, alpha);
+    float midValue = (_minValue + _maxValue) * 0.5f;
+
+    // Apply decay on smoothed value until it reaches min/max value.
+    // Then both values slowly decay towards current value.
+
+    // Smoothed value has reached min.
+    if (_smoothedMinValue == _minValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
+        abs(_smoothedMinValue - _minValue) < TOLERANCE) {
+
+      // Smoothed value has reached min: open to decaying.
+      _smoothedMinValue = _minValue;
+
+      // Decay min value towards mid value.
+      if (finiteTimeWindow) {
+        alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+        alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION_INV;
+        MovingAverage::applyUpdate(_minValue, midValue, alphaMinMax);
+      }
+    }
+    // Smoothed min value is still above min value: adjust smoothed min towards min.
+    else {
+      alpha = alpha ? alpha : MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+      alphaSmoothed = alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION_INV;
+
+      MovingAverage::applyUpdate(_smoothedMinValue, _minValue, alphaSmoothed);
     }
 
-    // Smooth out min and max values.
-    MovingAverage::applyUpdate(_smoothedMinValue, _minValue, alpha);
-    MovingAverage::applyUpdate(_smoothedMaxValue, _maxValue, alpha);
+    // Smoothed value has reached max..
+    if (_smoothedMaxValue == _maxValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
+      abs(_smoothedMaxValue - _maxValue) < TOLERANCE) {
+
+      // Smoothed value has reached max: open to decaying.
+      _smoothedMaxValue = _maxValue;
+
+      // Decay max value towards mid value.
+      if (finiteTimeWindow) {
+        if (!alpha) {
+          alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+          alphaMinMax = alpha *MIN_MAX_TIME_PROPORTION_INV;
+        }
+        MovingAverage::applyUpdate(_maxValue, midValue, alphaMinMax);
+      }
+    }
+    // Smoothed max value is still above max value: adjust smoothed max towards max.
+    else {
+      alpha = alpha ? alpha : MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
+      alphaSmoothed = alphaSmoothed ? alphaSmoothed : alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION_INV;
+      MovingAverage::applyUpdate(_smoothedMaxValue, _maxValue, alphaSmoothed);
+    }
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)

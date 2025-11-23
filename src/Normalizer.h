@@ -28,7 +28,8 @@
 namespace pq {
 
 #define NORMALIZER_DEFAULT_MEAN   0.5f
-#define NORMALIZER_DEFAULT_STDDEV 0.15f
+#define NORMALIZER_DEFAULT_STDDEV 0.2f
+constexpr float NORMALIZER_N_STDDEV_RANGE = 6.0f;
 
 // sum_i x_i^2 = stddev^2 + (sum_i x_i)^2
 constexpr float NORMALIZER_DEFAULT_MEAN2 = (NORMALIZER_DEFAULT_STDDEV*NORMALIZER_DEFAULT_STDDEV) + (NORMALIZER_DEFAULT_MEAN*NORMALIZER_DEFAULT_MEAN);
@@ -109,6 +110,12 @@ public:
   /// Resets the statistics.
   virtual void reset();
 
+  /// Resets the filter with a prior estimate of the mean value.
+  virtual void reset(float estimatedMeanValue);
+
+  /// Resets the moving filter with a prior estimate of the min and max values.
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue);
+
   /**
    * Pushes value into the unit. If isRunning() is false the filter will not be
    * updated but will just return the filtered value.
@@ -148,7 +155,7 @@ public:
 protected:
   virtual void step();
   virtual float update(float value, float sampleRate=1);
-  
+
   // Helper function for constructors.
   void _init(float mean, float stdDev);
 

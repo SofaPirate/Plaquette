@@ -46,6 +46,12 @@ void MovingStats::reset() {
   _mean2 = 0;
 }
 
+
+void MovingStats::reset(float initMean, float initStdDev) {
+  _avg.reset(initMean);
+  _mean2 = sq(initStdDev) + sq(initMean);
+}
+
 float MovingStats::update(float value, float sampleRate)
  {
   // Get alpha.

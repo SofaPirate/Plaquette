@@ -23,6 +23,8 @@
 #include "PqCore.h"
 
 #define MOVING_FILTER_INFINITE_TIME_WINDOW (-1)
+#define MOVING_FILTER_N_VALUES_STEP_MAX 63
+constexpr float MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION = MOVING_FILTER_N_VALUES_STEP_MAX / (MOVING_FILTER_N_VALUES_STEP_MAX + 1.0f);
 
 namespace pq {
 
@@ -55,17 +57,23 @@ public:
   /// Returns the time window cutoff frequency (expressed in Hz).
   virtual float cutoff() const;
 
-  /// Resets the moving filter.
+  /// Resets the filter.
   virtual void reset();
 
+  /// Resets the filter with a prior estimate of the mean value.
+  virtual void reset(float estimatedMeanValue) = 0;
+
+  /// Resets the moving filter with a prior estimate of the min and max values.
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue) = 0;
+
   /**
-   * Switches to calibration mode (default). Calls to put(value) will return filtered 
+   * Switches to calibration mode (default). Calls to put(value) will return filtered
    * value AND update the normalization statistics.
    */
   virtual void resumeCalibrating();
 
   /**
-   * Switches to non-calibration mode: calls to put(value) will return filtered value 
+   * Switches to non-calibration mode: calls to put(value) will return filtered value
    * without updating the normalization statistics.
    */
   virtual void pauseCalibrating();
@@ -76,10 +84,17 @@ public:
   /// Returns true iff the moving filter is in calibration mode.
   virtual bool isCalibrating() const;
 
+  /// Returns true if the moving filter has been initialized with a starting range at reset.
+  virtual bool isPreInitialized() const { return _isPreInitialized; }
+
 protected:
+
   // Start/stop calibration flag.
-  bool    _isCalibrating : 1;
-  uint8_t _nValuesStep   : 7;
+  bool    _isCalibrating    : 1;
+  bool    _isPreInitialized : 1;
+  uint8_t _nValuesStep      : 7;
+
+  float _timeWindow;
 };
 
 }

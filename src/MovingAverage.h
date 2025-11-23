@@ -66,6 +66,9 @@ public:
   /// Resets the moving average.
   void reset();
 
+  /// Resets the moving average with initial value.
+  void reset(float initialValue);
+
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
 
@@ -95,7 +98,10 @@ public:
   static float computeUpdate(float runningValue, float newValue, float alpha);
 
   /// Returns the alpha value computed from given sample rate, time window, and number of samples.
-  static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
+  static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX, bool preInitialized=false);
+
+  /// Returns true if the moving average has been initialized with a starting value at startup.
+  bool isPreInitialized() const { return _preInitialized; }
 
 protected:
   // The smoothing window (in seconds).
@@ -106,6 +112,9 @@ protected:
 
   // Number of samples that have been processed thus far.
   unsigned int _nSamples;
+
+  // True iff the moving average has been initialized with a starting value at startup.
+  bool _preInitialized;
 };
 
 } // namespace pq

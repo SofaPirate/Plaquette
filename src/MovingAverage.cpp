@@ -31,12 +31,12 @@ namespace pq {
 
 #define INFINITE_WINDOW (-1)
 
-MovingAverage::MovingAverage() : _value(0) {
+MovingAverage::MovingAverage() {
   infiniteTimeWindow();
   reset();
 }
 
-MovingAverage::MovingAverage(float timeWindow_) : _value(0) {
+MovingAverage::MovingAverage(float timeWindow_) {
   timeWindow(timeWindow_);
   reset();
 }
@@ -66,17 +66,25 @@ bool MovingAverage::timeWindowIsInfinite() const {
 }
 
 float MovingAverage::alpha(float sampleRate) const {
-  return alpha(sampleRate, _smoothTime, _nSamples);
+  return alpha(sampleRate, _smoothTime, _nSamples, _preInitialized);
 }
 
 void MovingAverage::reset() {
+  _value = 0;
   _nSamples = 0;
+  _preInitialized = false;
+}
+
+void MovingAverage::reset(float initialValue) {
+  _value = initialValue;
+  _nSamples = 0;
+  _preInitialized = true;
 }
 
 float MovingAverage::update(float v, float sampleRate, bool forceAlpha) {
 
   // Exponential moving average.
-  applyUpdate(_value, v,forceAlpha ? sampleRate : alpha(sampleRate));
+  applyUpdate(_value, v, forceAlpha ? sampleRate : alpha(sampleRate, _nSamples));
 
   // Increase number of samples.
   if (_nSamples < UINT_MAX)
@@ -102,25 +110,47 @@ float MovingAverage::computeUpdate(float runningValue, float newValue, float alp
   return runningValue;
 }
 
+#define PRE_INITIALIZED_STABILIZATION_TIME 60.0f
 
-float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples) {
-    if (smoothTime < 0) // INIFINITE_WINDOW
-    return 1.0f / ((float)nSamples+1.0f);
-  else {
-    // Approximative number of samples in time window.
-    float nSamplesTarget = smoothTime * sampleRate;
+float smoothAlpha(float nSamples) {
+  // Formula used is standard formula: 2 /(nSamplesTarget+1); set maximum alpha to 1.
+  return (nSamples > 1.0f ?
+            2.0f / (nSamples + 1) :
+            1.0f);
+}
 
-    if (nSamples < nSamplesTarget-1) {
-      return 1.0f / ((float)nSamples+1);
+float averageAlpha(float nSamples) {
+  return 1.0f / ((float)nSamples + 1.0f);
+}
+
+float MovingAverage::alpha(float sampleRate, float smoothTime, unsigned int nSamples, bool preInitialized) {
+  bool infiniteSmoothWindow = (smoothTime < 0);
+  if (preInitialized) {
+
+    if (infiniteSmoothWindow) {
+      unsigned int nSamplesStabilized = (unsigned int)(sampleRate * PRE_INITIALIZED_STABILIZATION_TIME);
+      // If number of samples is less than stabilization time, use average alpha.
+      if (nSamples <= nSamplesStabilized)
+        return smoothAlpha(nSamplesStabilized);
+      else
+        return averageAlpha(nSamples);
     }
+  }
+
+  else {
+    if (infiniteSmoothWindow)
+      return averageAlpha(nSamples);
     else {
+      // Approximative number of samples in time window.
+      float nSamplesTarget = smoothTime * sampleRate;
+
       // In order to do a smooth transition and prevent first values to take too much weight compared to
       // later values, we start by averaging using a non-moving average for the first nSamplesTarget values.
-      // Formula used is standard formula: 2 /(nSamplesTarget+1) -- while setting maximum alpha to 1
-      return (nSamplesTarget > 1.0f ?
-                2.0f / (nSamplesTarget + 1) :
-                1.0f);
-
+      float nSamplesPlusOne = nSamples + 1.0f;
+      if (nSamplesPlusOne < nSamplesTarget)
+        return 1.0f / nSamplesPlusOne;
+      else
+        return smoothAlpha(nSamplesTarget);
     }
   }
 }

@@ -62,47 +62,69 @@ bool Normalizer::timeWindowIsInfinite() const {
 }
 
 void Normalizer::reset() {
-  MovingStats::reset();
   MovingFilter::reset();
+  MovingStats::reset();
+}
+
+void Normalizer::reset(float estimatedMeanValue) {
+  MovingFilter::reset();
+  MovingStats::reset(estimatedMeanValue, 0.0f);
+}
+
+void Normalizer::reset(float estimatedMinValue, float estimatedMaxValue) {
+  MovingFilter::reset();
+
+  float mean = 0.5f * (estimatedMinValue + estimatedMaxValue);
+  float stddev = abs(estimatedMaxValue - estimatedMinValue) / NORMALIZER_N_STDDEV_RANGE;
+  MovingStats::reset(mean, stddev);
 }
 
 float Normalizer::put(float value) {
-  // Increment n. values.
-  if (_nValuesStep < 128)
-    _nValuesStep++;
-
   // First time put() is called this step.
   if (isCalibrating()) {
 
-    if (_nValuesStep == 1) {
-      // Update moving average.
-      _value = update(value, sampleRate());
+    float alpha = _avg.alpha(sampleRate());
+    float value2 = sq(value);
+
+    // Increment n. values.
+    if (_nValuesStep <= MOVING_FILTER_N_VALUES_STEP_MAX) {
+      _currentMeanStep += value;
+      _currentMean2Step += value2;
     }
-    // If put() is called more than one time in same step, readjust moving average.
     else {
-      // Save previous value.
-      float prevValueStep = _currentMeanStep;
-      float prevValue2Step = _currentMean2Step;
-
-      // Update current step average value.
-      float stepValuesAlpha = 1.0f/_nValuesStep;
-      MovingAverage::applyUpdate(_currentMeanStep, value, stepValuesAlpha);
-      MovingAverage::applyUpdate(_currentMean2Step, sq(value), stepValuesAlpha);
-
-      // Update moving average: replace previous value with new value averaged over step.
-      float alpha = _avg.alpha(sampleRate());
-      _avg.amendUpdate(prevValueStep, _currentMeanStep, alpha, true);
-      MovingAverage::applyAmendUpdate(_mean2, prevValue2Step, _currentMean2Step, alpha);
-
-      _value = normalize(value);
+      // Add one value in proportion to the previous value.
+      _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
+      _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
     }
+
+    // if (_nValuesStep == 1) {
+    //     // Update moving average.
+    //     _avg.update(value, alpha, true); // force alpha
+    //     _currentMeanStep = value;
+
+    //     // Update variance.
+    //     _currentMean2Step = sq(value);
+    //     MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
+    // }
+    // // If put() is called more than one time in same step, readjust moving average.
+    // else {
+    //   // Save previous value.
+    //   float prevValueStep = _currentMeanStep;
+    //   float prevValue2Step = _currentMean2Step;
+
+    //   // Update current step average value.
+    //   float stepValuesAlpha = 1.0f/_nValuesStep;
+    //   MovingAverage::applyUpdate(_currentMeanStep, value, stepValuesAlpha);
+    //   MovingAverage::applyUpdate(_currentMean2Step, sq(value), stepValuesAlpha);
+
+    //   // Update moving average: replace previous value with new value averaged over step.
+    //   _avg.amendUpdate(prevValueStep, _currentMeanStep, alpha, true);
+    //   MovingAverage::applyAmendUpdate(_mean2, prevValue2Step, _currentMean2Step, alpha);
+    // }
   }
 
-  else
-    _value = normalize(value);
-
   // Normalize value to target normal.
-  _value = _value * _targetStdDev + _targetMean;
+  _value = normalize(value, _targetMean, _targetStdDev);
 
   // Check for clamp.
   if (isClamped())
@@ -114,14 +136,18 @@ float Normalizer::put(float value) {
 void Normalizer::step() {
   // If no values were added during this step, update using previous value.
   // In other words: repeat update with previous value.
-  if (_nValuesStep == 0) {
-    float alpha = _avg.alpha(sampleRate());
-    _avg.update(_currentMeanStep, alpha, true);
-    MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
-  }
-  // Otherwise: reset (but keep _currentMeanStep).
-  else
+  if (_nValuesStep > 0) {
+    _currentMeanStep  /= _nValuesStep;
+    _currentMean2Step /= _nValuesStep;
     _nValuesStep = 0;
+  }
+
+  // Compute base alpha.
+  float alpha = MovingAverage::alpha(sampleRate(), _avg.timeWindow(), _avg.nSamples(), isPreInitialized());
+
+  // Update statistics.
+  _avg.update(_currentMeanStep, alpha, true);
+  MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
 }
 
 float Normalizer::update(float value, float sampleRate)

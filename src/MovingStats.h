@@ -66,6 +66,9 @@ public:
   /// Resets the statistics.
   virtual void reset();
 
+  /// Resets the filter with a prior estimate mean and standard deviation.
+  virtual void reset(float initMean, float initStdDev);
+
   /// Adds a value to the statistics (returns the mean).
   virtual float update(float value, float sampleRate=1);
 

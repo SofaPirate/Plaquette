@@ -83,8 +83,14 @@ public:
   /// Returns the current high quantile level.
   virtual float highQuantileLevel() const { return (1 - _quantileLevel); }
 
-  /// Resets the filter state.
+  /// Resets the filter.
   virtual void reset();
+
+  /// Resets the filter with a prior estimate of the mean value.
+  virtual void reset(float estimatedMeanValue);
+
+  /// Resets the moving filter with a prior estimate of the min and max values.
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue);
 
   /// Returns value of scaler.
   virtual float get() { return _value; }
@@ -98,7 +104,10 @@ protected:
   // Internal quantile update (Robbins–Monro).
   inline void _updateQuantile(float& q, float level, float eta, float x);
 
+  void _initializeRange(float minValue, float maxValue);
+
 protected:
+public:
   // Time window (in seconds).
   float _timeWindow;
 
