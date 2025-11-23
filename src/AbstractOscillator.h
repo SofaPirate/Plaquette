@@ -100,7 +100,7 @@ public:
   virtual void jitter(float jitterLevel);
 
     /// Returns the randomness level in [0, 1].
-  virtual float randomness() const;
+  virtual float jitter() const;
 
    /**
     * Utility function to convert time to phase.
@@ -165,7 +165,7 @@ protected:
 
   // Non-random mode: Phase shift (in % of period).
   // Random mode: random frequency ratio (in % of frequency).
-  float _phaseShiftOrRandomFrequencyRatio = 0;
+  float _phaseShiftOrRandomFrequencyRatio;
 
   // Internal use: holds current phase time.
   q0_32u_t _phase32;

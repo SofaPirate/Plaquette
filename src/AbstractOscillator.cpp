@@ -55,12 +55,12 @@ void AbstractOscillator::_randomPickNext() {
 
   // Apply random mixing factor between periodRatio and 1.0
   // = 1 / ( (1-r) * 1 + r x ratio )
-  _phaseShiftOrRandomFrequencyRatio = 1.0f / (1 + randomness() * (periodRatio - 1));
+  _phaseShiftOrRandomFrequencyRatio = 1.0f / (1 + jitter() * (periodRatio - 1));
 }
 
 #define JITTER_LEVEL_MAX 15
 constexpr float INV_JITTER_LEVEL_MAX = 1.0f / JITTER_LEVEL_MAX;
-float AbstractOscillator::randomness() const {
+float AbstractOscillator::jitter() const {
   return fixedToFloatInv(_jitterLevel, INV_JITTER_LEVEL_MAX);
 }
 
@@ -92,30 +92,13 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
   // Running scheduled random path.
   else {
 
-      // if (_randScaleQ12 == 0) _randomPickNext();
-
-    // const float k = (float)_randScaleQ12 * (1.0f / 1024.0f);
-    // const float feff = frequency() * k;
-
-    // _overflowed = phase32UpdateFixed32(_phase32, _randomFrequencyMultiplier,
-    //                                    deltaTimeSecondsTimesFixed32Max, _isForward);
-
-    // if (_overflowed) _randomPickNext();
-
-    // --- Stochastic "speed-driven" path ---
-    // Ensure we have an effective frequency for the current interval
-  //  _randomFrequencyMultiplier = (float)_randScaleQ12 * KINV;
-    if (!_phaseShiftOrRandomFrequencyRatio) {
-      _randomPickNext();
-    }
-
     // Advance phase using the instantaneous frequency for THIS interval
     _overflowed = phase32UpdateFixed32(_phase32, _phaseShiftOrRandomFrequencyRatio*frequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // Overflowed: schedule next.
     if (_overflowed) {
-      _phaseShiftOrRandomFrequencyRatio = 0.0f;
+      _randomPickNext();
     }
   }
 }
