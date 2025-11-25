@@ -45,22 +45,10 @@ public:
   virtual ~MinMaxScaler() {}
 
   /// Returns the current min. value.
-  float minValue() const { return _minValue; }
+  float minValue() const { return _smoothedMinValue; }
 
   /// Returns the current max. value.
-  float maxValue() const { return _maxValue; }
-
-  /// Sets time window to infinite.
-  virtual void infiniteTimeWindow();
-
-  /// Changes the time window (expressed in seconds).
-  virtual void timeWindow(float seconds);
-
-  /// Returns the time window (expressed in seconds).
-  virtual float timeWindow() const;
-
-  /// Returns true if time window is infinite.
-  virtual bool timeWindowIsInfinite() const;
+  float maxValue() const { return _smoothedMaxValue; }
 
   /// Resets the moving filter.
   virtual void reset();
@@ -96,9 +84,6 @@ public:
 
   // Smoothed minimum value.
   float _smoothedMaxValue;
-
-  // Number of samples that have been processed thus far.
-  unsigned int _nSamples;
 };
 
 }

@@ -22,7 +22,7 @@
 
 #include "float.h"
 #include "pq_map.h"
-#include "MovingAverage.h"
+#include "pq_moving_average.h"
 
 namespace pq {
 
@@ -38,20 +38,6 @@ MinMaxScaler::MinMaxScaler(float timeWindow_, Engine& engine)
 {
   timeWindow(timeWindow_);
   reset();
-}
-
-void MinMaxScaler::infiniteTimeWindow() {
-  _timeWindow = MOVING_FILTER_INFINITE_TIME_WINDOW;
-}
-
-void MinMaxScaler::timeWindow(float seconds) {
-  _timeWindow = max(seconds, 0.0f); // make sure it is positive
-}
-
-float MinMaxScaler::timeWindow() const { return _timeWindow; }
-
-bool MinMaxScaler::timeWindowIsInfinite() const {
-  return _timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW;
 }
 
 void MinMaxScaler::reset() {
@@ -102,6 +88,14 @@ float MinMaxScaler::put(float value)
         _smoothedMaxValue = _maxValue;
     }
   }
+      // Serial.print("new min value: "); Serial.println(_minValue);
+      // Serial.print("new smoothed min value: "); Serial.println(_smoothedMinValue);
+      // Serial.print("new max value: "); Serial.println(_maxValue);
+      // Serial.print("new smoothed max value: "); Serial.println(_smoothedMaxValue);
+      // Serial.println(_nSamples);
+
+  // _smoothedMinValue = _minValue;
+  // _smoothedMaxValue = _maxValue;
 
   // Compute rescaled value.
   _value = mapTo01(value, _smoothedMinValue, _smoothedMaxValue, CONSTRAIN);
@@ -109,7 +103,7 @@ float MinMaxScaler::put(float value)
   return _value;
 }
 
-#define TOLERANCE 1e-6
+#define TOLERANCE 1e-3
 #define SMOOTHED_MIN_MAX_TIME_PROPORTION 0.1
 constexpr float MIN_MAX_TIME_PROPORTION = 1.0f - SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
@@ -117,6 +111,8 @@ constexpr float MIN_MAX_TIME_PROPORTION_INV = 1.0f / MIN_MAX_TIME_PROPORTION;
 constexpr float SMOOTHED_MIN_MAX_TIME_PROPORTION_INV = 1.0f / SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
 void MinMaxScaler::step() {
+  if (isCalibrating()) {
+
   // If no values were added during this step, update using previous value.
   if (true) {
   // if (_nValuesStep > 0 ||      // if at least one value was recorded this step ...
@@ -124,6 +120,12 @@ void MinMaxScaler::step() {
 
     // Reset (but keep _currentValueStep).
     // _nValuesStep = 0;
+
+      //     Serial.print("-----new min value: "); Serial.println(_minValue);
+      // Serial.print("new smoothed min value: "); Serial.println(_smoothedMinValue);
+      // Serial.print("new max value: "); Serial.println(_maxValue);
+      // Serial.print("new smoothed max value: "); Serial.println(_smoothedMaxValue);
+      // Serial.println(_nSamples);
 
     // Compute alpha to slowly move min and max values towards current value.
     float alpha = 0;
@@ -133,34 +135,37 @@ void MinMaxScaler::step() {
 
     float midValue = (_minValue + _maxValue) * 0.5f;
 
+    float range = abs(_maxValue - _minValue);
+    float tolerance = range * TOLERANCE;
+
     // Apply decay on smoothed value until it reaches min/max value.
     // Then both values slowly decay towards current value.
 
     // Smoothed value has reached min.
     if (_smoothedMinValue == _minValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
-        abs(_smoothedMinValue - _minValue) < TOLERANCE) {
+        abs(_smoothedMinValue - _minValue) < tolerance) {
 
       // Smoothed value has reached min: open to decaying.
       _smoothedMinValue = _minValue;
 
       // Decay min value towards mid value.
       if (finiteTimeWindow) {
-        alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-        alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION_INV;
-        MovingAverage::applyUpdate(_minValue, midValue, alphaMinMax);
+        alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
+        alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION;
+        applyMovingAverageUpdate(_minValue, midValue, alphaMinMax);
       }
     }
     // Smoothed min value is still above min value: adjust smoothed min towards min.
     else {
-      alpha = alpha ? alpha : MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-      alphaSmoothed = alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION_INV;
+      alpha = alpha ? alpha : movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
+      alphaSmoothed = alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
-      MovingAverage::applyUpdate(_smoothedMinValue, _minValue, alphaSmoothed);
+      applyMovingAverageUpdate(_smoothedMinValue, _minValue, alphaSmoothed);
     }
 
     // Smoothed value has reached max..
     if (_smoothedMaxValue == _maxValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
-      abs(_smoothedMaxValue - _maxValue) < TOLERANCE) {
+      abs(_smoothedMaxValue - _maxValue) < tolerance) {
 
       // Smoothed value has reached max: open to decaying.
       _smoothedMaxValue = _maxValue;
@@ -168,23 +173,32 @@ void MinMaxScaler::step() {
       // Decay max value towards mid value.
       if (finiteTimeWindow) {
         if (!alpha) {
-          alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-          alphaMinMax = alpha *MIN_MAX_TIME_PROPORTION_INV;
+          alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
+          alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION;
         }
-        MovingAverage::applyUpdate(_maxValue, midValue, alphaMinMax);
+        applyMovingAverageUpdate(_maxValue, midValue, alphaMinMax);
       }
     }
-    // Smoothed max value is still above max value: adjust smoothed max towards max.
+    // Smoothed max value is still below max value: adjust smoothed max towards max.
     else {
-      alpha = alpha ? alpha : MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples);
-      alphaSmoothed = alphaSmoothed ? alphaSmoothed : alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION_INV;
-      MovingAverage::applyUpdate(_smoothedMaxValue, _maxValue, alphaSmoothed);
+      alpha = alpha ? alpha : movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
+      alphaSmoothed = alphaSmoothed ? alphaSmoothed : alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION;
+      applyMovingAverageUpdate(_smoothedMaxValue, _maxValue, alphaSmoothed);
     }
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)
       _nSamples++;
-  }
+
+      // Serial.print("||||new min value: "); Serial.println(_minValue);
+      // Serial.print("new smoothed min value: "); Serial.println(_smoothedMinValue);
+      // Serial.print("new max value: "); Serial.println(_maxValue);
+      // Serial.print("new smoothed max value: "); Serial.println(_smoothedMaxValue);
+      // Serial.print("alpha: "); Serial.println(alpha);
+      // Serial.print("alpha smooth: "); Serial.println(alphaSmoothed);
+      // Serial.println(_nSamples);
+    }
+}
 }
 
 }
