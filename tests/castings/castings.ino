@@ -62,7 +62,7 @@ class TestPiping: public TestAgain {
     }
 
     void testValuePipingTo(Unit& node) {
-      float value = randomUniform();
+      float value = randomFloat();
       value >> node;
       assertEqual(value, node.get());
     }
@@ -128,7 +128,7 @@ class TestPiping: public TestAgain {
       // testValuePipingFrom(analogOut);
       // (analogOut + 1) / 2 >> analogOut;
       // testValuePipingFrom(analogOut);
-      // (analogOut * randomUniform()) >> analogOut;
+      // (analogOut * randomFloat()) >> analogOut;
       // testValuePipingFrom(analogOut);
 
       assertEqual(analogOut + 1, analogOut.get() + 1);
