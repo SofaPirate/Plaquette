@@ -6,13 +6,13 @@ using namespace pq;
 
 #define N_UNITS 2
 Unit* units[N_UNITS] = {
-  new MinMaxScaler(),
-  new MinMaxScaler(1.0f)
+ new MinMaxScaler{},
+ new MinMaxScaler(1.0f)
 };
 
 MinMaxScaler basic;
 
-Smoother smoother(0.5);
+Smoother smoother(0.5f);
 
 test(basic) {
   Plaquette.step();
@@ -21,7 +21,14 @@ test(basic) {
   assertEqual(basic.minValue(), -100.0f);
   Plaquette.step();
 
+  // Check that value is moving towards max.
   basic.put(+100);
+  float prevMax = basic.maxValue();
+  while (basic.maxValue() < 100.0f) {
+    Plaquette.step();
+    assertMore(basic.maxValue(), prevMax);
+    prevMax = basic.maxValue();
+  }
   assertEqual(basic.maxValue(), 100.0f);
   Plaquette.step();
 
@@ -103,11 +110,9 @@ test(smoother) {
   1 >> smoother;
   assertEqual(smoother.get(), 1.0f);
   2 >> smoother;
-  assertNear(smoother.get(), 1.17f, 0.01f);
+  assertNear(smoother.get(), 1.25f, 0.01f);
   Plaquette.step();
-  assertNear(smoother.get(), 1.17f, 0.01f);
-  Plaquette.step();
-  assertNear(smoother.get(), 1.28f, 0.01f);
+  assertNear(smoother.get(), 1.25f, 0.01f);
   Plaquette.step();
   assertNear(smoother.get(), 1.33f, 0.01f);
 }

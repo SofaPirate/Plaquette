@@ -10,8 +10,8 @@ float randomNormal(float mean=0, float stdv=1) {
   static float normal_y;
   static float normal_rho;
   if (!normal_is_valid) {
-    normal_x = randomUniform();
-    normal_y = randomUniform();
+    normal_x = randomFloat();
+    normal_y = randomFloat();
     normal_rho = sqrt(-2. * log(1.0 - normal_y));
     normal_is_valid = true;
   } else
@@ -85,12 +85,15 @@ testing(matchRandomNormal) {
     unit->put(randomValue);
     unit->put(-randomValue);
   }
+
   if (millis() - startTime > 5000) {
     for (int i=0; i<N_UNITS; i++) {
       Normalizer* unit =(Normalizer*) units[i];
+
       unit->noClamp();
       assertNear(unit->mean(), 0.0f, 0.2f);
-      assertNear(unit->stddev(), 1.0f, 0.2f);
+      assertNear(unit->stdDev(), 1.0f, 0.2f);
+
       unit->clamp();
       unit->targetMean(NORMALIZER_DEFAULT_MEAN);
       unit->targetStdDev(NORMALIZER_DEFAULT_STDDEV);
