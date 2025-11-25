@@ -18,7 +18,7 @@
  */
 
 #include "MovingStats.h"
-
+#include "pq_moving_average.h"
 #include <float.h>
 
 #define USE_FAST_SQRT 1
@@ -30,16 +30,6 @@
 namespace pq {
 
 MovingStats::MovingStats() : _avg(), _mean2(0) { }
-MovingStats::MovingStats(float timeWindow) : _avg(timeWindow), _mean2(0) { }
-
-void MovingStats::timeWindow(float seconds) {
-  _avg.timeWindow(seconds);
-}
-
-// Keep this commented out to prevent confusion with MovingFilter::cutoff().
-// void MovingStats::cutoff(float hz) {
-//   _avg.cutoff(hz);
-// }
 
 void MovingStats::reset() {
   _avg.reset();
@@ -52,16 +42,13 @@ void MovingStats::reset(float initMean, float initStdDev) {
   _mean2 = sq(initStdDev) + sq(initMean);
 }
 
-float MovingStats::update(float value, float sampleRate)
+float MovingStats::update(float value, float alpha)
  {
-  // Get alpha.
-  float alpha = _avg.alpha(sampleRate);
-
   // Update average.
-  _avg.update(value, alpha, true); // force alpha
+  _avg.update(value, alpha); // force alpha
 
   // Update mean of squares.
-  MovingAverage::applyUpdate(_mean2, sq(value), alpha);
+  applyMovingAverageUpdate(_mean2, sq(value), alpha);
 
   return normalize(value);
 }

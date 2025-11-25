@@ -1,13 +1,7 @@
 /*
- * MovingAverage.cpp
+ * TimeWindowable.cpp
  *
- * Tool for moving averages.
- *
- * This file is part of Qualia https://github.com/sofian/qualia
- *
- * (c) 2011 Sofian Audry -- info(@)sofianaudry(.)com
- * Inspired by code by Karsten Kutza
- * http://www.ip-atlas.com/pub/nap/nn-src/bpn.txt
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,28 +17,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "MovingAverage.h"
+ #include "TimeWindowable.h"
 
-namespace pq {
+ namespace pq {
 
-MovingAverage::MovingAverage() {
-  reset();
+void TimeWindowable::infiniteTimeWindow() {
+  _timeWindow = INFINITE_TIME_WINDOW;
 }
 
-void MovingAverage::reset() {
-  _value = 0;
+void TimeWindowable::noTimeWindow() {
+  _timeWindow = NO_TIME_WINDOW;
 }
 
-void MovingAverage::reset(float initialValue) {
-  _value = initialValue;
+void TimeWindowable::timeWindow(float seconds) {
+  if (seconds < 0)
+    infiniteTimeWindow();
+  else
+    _timeWindow = seconds;
 }
 
-float MovingAverage::update(float v, float alpha) {
-
-  // Exponential moving average.
-  applyMovingAverageUpdate(_value, v, alpha);
-
-  return _value;
+void TimeWindowable::cutoff(float hz) {
+  if (hz <= 0)
+    infiniteTimeWindow();
+  else
+    timeWindow(1.0f/hz);
 }
 
-} // namespace pq
+float TimeWindowable::cutoff() const {
+  return (timeWindowIsInfinite() ? 0 : 1.0f/timeWindow());
+}
+
+}

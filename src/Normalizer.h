@@ -27,16 +27,16 @@
 
 namespace pq {
 
-#define NORMALIZER_DEFAULT_MEAN   0.5f
-#define NORMALIZER_DEFAULT_STDDEV 0.2f
-constexpr float NORMALIZER_N_STDDEV_RANGE = 6.0f;
-
+// Default mean and standard deviation.
+constexpr float NORMALIZER_DEFAULT_MEAN   = 0.5f;
+constexpr float NORMALIZER_DEFAULT_STDDEV = 1.0f / MOVING_FILTER_N_STDDEV_RANGE;
 // sum_i x_i^2 = stddev^2 + (sum_i x_i)^2
-constexpr float NORMALIZER_DEFAULT_MEAN2 = (NORMALIZER_DEFAULT_STDDEV*NORMALIZER_DEFAULT_STDDEV) + (NORMALIZER_DEFAULT_MEAN*NORMALIZER_DEFAULT_MEAN);
+constexpr float NORMALIZER_DEFAULT_MEAN2 = sq(NORMALIZER_DEFAULT_STDDEV) + sq(NORMALIZER_DEFAULT_MEAN);
 
 // This is so that the basic normalizer will stay within range [0, 1].
-constexpr float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f / NORMALIZER_DEFAULT_STDDEV - FLT_MIN;
+constexpr float NORMALIZER_DEFAULT_CLAMP_STDDEV = MOVING_FILTER_N_STDDEV_RANGE - FLT_MIN;
 
+// Label for no clamping.
 #define NORMALIZER_NO_CLAMP 0
 
 /**
@@ -95,17 +95,6 @@ public:
   /// Returns target standard deviation.
   float targetStdDev() const { return _targetStdDev; }
 
-  /// Sets time window to infinite.
-  virtual void infiniteTimeWindow();
-
-  /// Changes the time window (expressed in seconds).
-  virtual void timeWindow(float seconds);
-
-  /// Returns the time window (expressed in seconds).
-  virtual float timeWindow() const;
-
-  /// Returns true if time window is infinite.
-  virtual bool timeWindowIsInfinite() const;
 
   /// Resets the statistics.
   virtual void reset();
@@ -154,7 +143,6 @@ public:
 
 protected:
   virtual void step();
-  virtual float update(float value, float sampleRate=1);
 
   // Helper function for constructors.
   void _init(float mean, float stdDev);

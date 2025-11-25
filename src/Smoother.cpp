@@ -19,56 +19,62 @@
  */
 
 #include "MovingAverage.h"
+#include "pq_moving_average.h"
 #include "Smoother.h"
 
 namespace pq {
 
-Smoother::Smoother(Engine& engine) : Smoother(PLAQUETTE_DEFAULT_SMOOTH_WINDOW, engine) {}
+Smoother::Smoother(Engine& engine)
+  : MovingFilter(engine),
+    _currentValueStep(0)
+{
+  infiniteTimeWindow();
+}
 
-Smoother::Smoother(float timeWindow, Engine& engine)
-  : Unit(engine),
-    MovingAverage(timeWindow),
-    _currentValueStep(0),
-    _nValuesStep(0)
- {
+Smoother::Smoother(float timeWindow_, Engine& engine)
+  : MovingFilter(engine),
+    _currentValueStep(0)
+{
+  timeWindow(timeWindow_);
 }
 
 float Smoother::put(float value) {
-  // Increment n. values.
-  if (_nValuesStep < 255)
-    _nValuesStep++;
+  if (isCalibrating()) {
 
-  // First time put() is called this step.
-  if (_nValuesStep == 1) {
-    // Save current value.
-    _currentValueStep = value;
+    if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX)
+      _nValuesStep++;
 
-    // Update moving average.
-    update(value, sampleRate());
-  }
-  // If put() is called more than one time in same step, readjust moving average.
-  else {
-    // Save previous value.
-    float prevValueStep = _currentValueStep;
+    if (_nValuesStep == 1) {
+      _currentValueStep = value;
+      applyMovingAverageUpdate(_value, _currentValueStep, alpha());
+    }
+    else {
+      // Save previous value.
+      float prevValueStep = _currentValueStep;
 
-    // Update current step average value.
-    MovingAverage::applyUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
+      // Update current step average value.
+      applyMovingAverageUpdate(_currentValueStep, value, 1.0f/_nValuesStep);
 
-    // Update moving average: replace previous value with new value averaged over step.
-    amendUpdate(prevValueStep, _currentValueStep, sampleRate());
+      // Update moving average: replace previous value with new value averaged over step.
+      amendMovingAverageUpdate(_value, prevValueStep, _currentValueStep, alpha());
+    }
+
   }
 
-  // Return smoothed value.
-  return get();
+  return _value;
 }
 
 void Smoother::step() {
   // If no values were added during this step, update using previous value.
   if (_nValuesStep == 0)
-    update(_currentValueStep, sampleRate()); // in other words: repeat update with previous value
+    applyMovingAverageUpdate(_value, _currentValueStep, alpha());
   // Otherwise: reset (but keep _currentValueStep).
   else
     _nValuesStep = 0;
+
+  // Increase number of samples.
+  if (_nSamples < UINT_MAX)
+    _nSamples++;
 }
 
 }

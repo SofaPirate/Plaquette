@@ -25,21 +25,23 @@
 
 namespace pq {
 
-Smoothable::Smoothable() : _avg(PLAQUETTE_NO_SMOOTH_WINDOW) {}
+Smoothable::Smoothable() {}
 
 void Smoothable::_begin() {
   _avg.reset();
+  _nSamples = 0;
 }
 
 void Smoothable::_step() {
-  _avg.update( _read(), _avg.alpha( _sampleRate() ), true );
+  _avg.update( _read(), movingAverageAlpha(_sampleRate(), _timeWindow, _nSamples));
+  _nSamples++;
 }
 
 #define DEBOUNCED_STATE 0x01
 #define UNSTABLE_STATE  0x02
 #define CHANGED_STATE   0x04
 
-Debounceable::Debounceable() : _interval(0), _startTime(0), _state(0) {
+Debounceable::Debounceable() : _startTime(0), _state(0) {
    debounceMode(DEBOUNCE_STABLE);
  }
 
@@ -57,7 +59,7 @@ void Debounceable::_step() {
   bool currentState = _isOn();
 
   // No debouncing case.
-  if (_interval) {
+  if (_timeWindow > 0) {
 
     float currentTime = _time();
 
@@ -73,7 +75,7 @@ void Debounceable::_step() {
       // We have passed the threshold time, so the input is now stable
       // If it is different from last state, set the STATE_CHANGED flag
       else if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
-               currentTime - _startTime >= _interval) {
+               currentTime - _startTime >= _timeWindow) {
         _startTime = currentTime;
         _changeState();
       }
@@ -82,7 +84,7 @@ void Debounceable::_step() {
     else if (_debounceMode == DEBOUNCE_LOCK_OUT) {
       // Ignore everything if we are locked out
       if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
-           currentTime - _startTime >= _interval) {
+           currentTime - _startTime >= _timeWindow) {
         _startTime = currentTime;
          _changeState();
       }
@@ -90,7 +92,7 @@ void Debounceable::_step() {
 
     else  { // debounce mode : DEBOUNCE_PROMPT_DETECT
       if (currentState != _getStateFlag(DEBOUNCED_STATE) &&
-          currentTime - _startTime >= _interval) {
+          currentTime - _startTime >= _timeWindow) {
         // We have passed the time threshold, so a new change of state is allowed.
         // set the STATE_CHANGED flag and the new DEBOUNCED_STATE.
         // This will be prompt as long as there has been greater than interval_misllis ms since last change of input.
@@ -108,7 +110,7 @@ void Debounceable::_step() {
     }
   }
 
-  // No debouncing.
+  // No debouncing (or infinite time window).
   else if (currentState != _getStateFlag(DEBOUNCED_STATE)) {
     _changeState();
   }
@@ -134,7 +136,7 @@ AnalogIn::AnalogIn(uint8_t pin, uint8_t mode, Engine& engine)
 {}
 
 float AnalogIn::_read() {
-  return (_mode == DIRECT) ? read() : 1.0F - read();
+  return (_mode == DIRECT) ? read() : 1.0f - read();
 }
 
 void AnalogIn::begin() {

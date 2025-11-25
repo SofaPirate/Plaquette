@@ -22,7 +22,7 @@
  */
 
 #include "Scaler.h"
-#include "MovingAverage.h"
+#include "pq_moving_average.h"
 
 namespace pq {
 
@@ -57,20 +57,6 @@ Scaler::Scaler(float timeWindow_, float span_, Engine& engine)
   span(span_);
   reset();
 }
-
-void Scaler::infiniteTimeWindow() {
-  _timeWindow = MOVING_FILTER_INFINITE_TIME_WINDOW;
-}
-
-bool Scaler::timeWindowIsInfinite() const {
-  return _timeWindow == MOVING_FILTER_INFINITE_TIME_WINDOW;
-}
-
-void Scaler::timeWindow(float seconds) {
-  _timeWindow = max(seconds, 0.0f); // make sure it is positive
-}
-
-float Scaler::timeWindow() const { return _timeWindow; }
 
 void Scaler::span(float span) {
   _quantileLevel = spanToLowQuantileLevel(constrain01(span));
@@ -157,7 +143,6 @@ void Scaler::reset(float estimatedMeanValue) {
   _isPreInitialized = true;
 }
 
-
 void Scaler::reset(float estimatedMinValue, float estimatedMaxValue) {
   reset();
 
@@ -175,9 +160,9 @@ float Scaler::put(float value) {
   if (isCalibrating()) {
 
     // Increment n. values.
-    if (_nValuesStep <= MOVING_FILTER_N_VALUES_STEP_MAX) {
-      _nValuesStep++;
+    if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
       _currentValueStep += value;
+      _nValuesStep++;
     }
     else {
       // Add one value in proportion to the previous value.
@@ -193,28 +178,30 @@ float Scaler::put(float value) {
 
 void Scaler::step() {
 
-  // If no values were added during this step, update using previous value.
-  if (_nValuesStep > 0) {
+  if (isCalibrating()) {
 
     // Reset.
-    _currentValueStep /= _nValuesStep;
-    _nValuesStep = 0;
+    // If no values were added during this step, update using previous value.
+    if (_nValuesStep > 0) {
+      _currentValueStep /= _nValuesStep;
+      _nValuesStep = 0;
+    }
 
     // Unbiased estimate of standard deviation of the signal using current value.
     float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
     float deviation = abs(_currentValueStep - midQuantile);
 
     // Compute base alpha.
-    float alpha = MovingAverage::alpha(sampleRate(), _timeWindow, _nSamples, isPreInitialized());
+    float alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples, isPreInitialized());
 
+    // Assign initial values.
     if (!isPreInitialized() && _nSamples == 0) {
       _stddev = deviation;
       _lowQuantile = _highQuantile = _currentValueStep;
     }
     else
       // Adjust standard deviation.
-      MovingAverage::applyUpdate(_stddev, deviation, alpha);
-
+      applyMovingAverageUpdate(_stddev, deviation, alpha);
 
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
     float eta = alpha * SCALER_STDDEV_TO_RANGE * _stddev; // rescale to full range
@@ -247,8 +234,8 @@ void Scaler::step() {
 
     // Decay quantiles.
     if (!timeWindowIsInfinite()) {
-      MovingAverage::applyUpdate(_lowQuantile,  midQuantile,  alpha);
-      MovingAverage::applyUpdate(_highQuantile, midQuantile,  alpha);
+      applyMovingAverageUpdate(_lowQuantile,  midQuantile,  alpha);
+      applyMovingAverageUpdate(_highQuantile, midQuantile,  alpha);
     }
 
     // Clamp quantiles to avoid inversions.

@@ -53,18 +53,6 @@ public:
 
   virtual ~Scaler() {}
 
-    /// Sets time window to infinite.
-  virtual void infiniteTimeWindow();
-
-  /// Returns true if time window is infinite.
-  virtual bool timeWindowIsInfinite() const;
-
-  /// Sets the adaptation time window (in seconds).
-  virtual void timeWindow(float seconds);
-
-  /// Returns the current time window.
-  virtual float timeWindow() const;
-
   /// Sets the span (in [0, 1]) of the quantile to track.
   virtual void span(float span);
 

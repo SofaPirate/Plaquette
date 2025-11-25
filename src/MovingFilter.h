@@ -21,14 +21,21 @@
 #define MOVING_FILTER_H_
 
 #include "PqCore.h"
-
-#define MOVING_FILTER_INFINITE_TIME_WINDOW (-1)
-#define MOVING_FILTER_N_VALUES_STEP_MAX 63
-constexpr float MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION = MOVING_FILTER_N_VALUES_STEP_MAX / (MOVING_FILTER_N_VALUES_STEP_MAX + 1.0f);
+#include "TimeWindowable.h"
+#include "pq_moving_average.h"
 
 namespace pq {
 
-class MovingFilter : public AnalogSource {
+// Max value of _nValuesStep.
+#define MOVING_FILTER_N_VALUES_STEP_MAX 63
+
+// Precomputed proportion to add one value to _nValuesStep when it has reached MOVING_FILTER_N_VALUES_STEP_MAX.
+constexpr float MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION = MOVING_FILTER_N_VALUES_STEP_MAX / (MOVING_FILTER_N_VALUES_STEP_MAX + 1.0f);
+
+// N. standard deviations considered in full range.
+#define MOVING_FILTER_N_STDDEV_RANGE 5.0f
+
+class MovingFilter : public AnalogSource, public TimeWindowable {
 protected:
   /**
    * Constructor.
@@ -39,32 +46,15 @@ protected:
   virtual ~MovingFilter() {}
 
 public:
-  /// Sets time window to infinite.
-  virtual void infiniteTimeWindow() = 0;
-
-  /// Changes the time window (expressed in seconds).
-  virtual void timeWindow(float seconds) = 0;
-
-  /// Returns the time window (expressed in seconds).
-  virtual float timeWindow() const = 0;
-
-  /// Returns true if time window is infinite.
-  virtual bool timeWindowIsInfinite() const = 0;
-
-  /// Changes the time window cutoff frequency (expressed in Hz).
-  virtual void cutoff(float hz);
-
-  /// Returns the time window cutoff frequency (expressed in Hz).
-  virtual float cutoff() const;
 
   /// Resets the filter.
   virtual void reset();
 
   /// Resets the filter with a prior estimate of the mean value.
-  virtual void reset(float estimatedMeanValue) = 0;
+  virtual void reset(float estimatedMeanValue);
 
   /// Resets the moving filter with a prior estimate of the min and max values.
-  virtual void reset(float estimatedMinValue, float estimatedMaxValue) = 0;
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue);
 
   /**
    * Switches to calibration mode (default). Calls to put(value) will return filtered
@@ -84,17 +74,26 @@ public:
   /// Returns true iff the moving filter is in calibration mode.
   virtual bool isCalibrating() const;
 
+  /// Returns the number of samples that have been processed thus far.
+  unsigned int nSamples() const { return _nSamples; }
+
   /// Returns true if the moving filter has been initialized with a starting range at reset.
   virtual bool isPreInitialized() const { return _isPreInitialized; }
 
 protected:
 
+  // Returns the instantaneous moving average alpha for this filter.
+  virtual float alpha() const {
+    return movingAverageAlpha(sampleRate(), timeWindow(), nSamples(), isPreInitialized());
+  }
+
   // Start/stop calibration flag.
   bool    _isCalibrating    : 1;
   bool    _isPreInitialized : 1;
-  uint8_t _nValuesStep      : 7;
+  uint8_t _nValuesStep      : 6;
 
-  float _timeWindow;
+  // Number of samples that have been processed thus far.
+  unsigned int _nSamples;
 };
 
 }
