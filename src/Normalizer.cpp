@@ -53,7 +53,7 @@ void Normalizer::reset() {
 
 void Normalizer::reset(float estimatedMeanValue) {
   MovingFilter::reset();
-  MovingStats::reset(estimatedMeanValue, 0.0f);
+  MovingStats::reset(estimatedMeanValue, 1.0f);
 }
 
 void Normalizer::reset(float estimatedMinValue, float estimatedMaxValue) {
@@ -71,6 +71,10 @@ float Normalizer::put(float value) {
     float value2 = sq(value);
 
     // Increment n. values.
+    if (_nValuesStep == 0) {
+      _currentMeanStep  = _currentMean2Step = 0;
+    }
+
     if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
       _currentMeanStep  += value;
       _currentMean2Step += value2;
@@ -81,6 +85,12 @@ float Normalizer::put(float value) {
       _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
       _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
     }
+
+    // Serial.println("-=------");
+    // Serial.print("value: "); Serial.println(value);
+    // Serial.print("value2: "); Serial.println(value2);
+    // Serial.print("currentMeanStep: "); Serial.println(_currentMeanStep);
+    // Serial.print("currentMean2Step: "); Serial.println(_currentMean2Step);
 
     // if (_nValuesStep == 1) {
     //     // Update moving average.
@@ -111,6 +121,7 @@ float Normalizer::put(float value) {
   // Normalize value to target normal.
   _value = normalize(value, _targetMean, _targetStdDev);
 
+
   // Check for clamp.
   if (isClamped())
     _value = _clamp(_value);
@@ -135,6 +146,10 @@ void Normalizer::step() {
     // Update statistics.
     _avg.update(_currentMeanStep, a);
     applyMovingAverageUpdate(_mean2, _currentMean2Step, a);
+
+    // Increase number of samples.
+    if (_nSamples < UINT_MAX)
+      _nSamples++;
   }
 }
 
@@ -161,8 +176,8 @@ void Normalizer::noClamp() {
 void Normalizer::_init(float mean, float stdDev) {
   _value = mean;
 
-  _currentMeanStep = mean;
-  _currentMean2Step = sq(stdDev) - sq(mean);
+  _currentMeanStep  = mean;
+  _currentMean2Step = sq(stdDev) + sq(mean);
 
   targetMean(mean);
   targetStdDev(stdDev);

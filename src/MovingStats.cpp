@@ -33,7 +33,7 @@ MovingStats::MovingStats() : _avg(), _mean2(0) { }
 
 void MovingStats::reset() {
   _avg.reset();
-  _mean2 = 0;
+  _mean2 = 1.0f;
 }
 
 

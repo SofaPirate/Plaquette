@@ -34,7 +34,7 @@ constexpr float NORMALIZER_DEFAULT_STDDEV = 1.0f / MOVING_FILTER_N_STDDEV_RANGE;
 constexpr float NORMALIZER_DEFAULT_MEAN2 = sq(NORMALIZER_DEFAULT_STDDEV) + sq(NORMALIZER_DEFAULT_MEAN);
 
 // This is so that the basic normalizer will stay within range [0, 1].
-constexpr float NORMALIZER_DEFAULT_CLAMP_STDDEV = MOVING_FILTER_N_STDDEV_RANGE - FLT_MIN;
+constexpr float NORMALIZER_DEFAULT_CLAMP_STDDEV = 0.5f * MOVING_FILTER_N_STDDEV_RANGE - FLT_MIN;
 
 // Label for no clamping.
 #define NORMALIZER_NO_CLAMP 0
