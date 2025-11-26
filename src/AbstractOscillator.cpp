@@ -40,6 +40,14 @@ AbstractOscillator::AbstractOscillator(float period_)
 #define JITTER_MAX_PERIOD_RATIO 32.0f
 constexpr float JITTER_MIN_PERIOD_RATIO = 1.0f / JITTER_MAX_PERIOD_RATIO;
 
+void AbstractOscillator::start() {
+  Timeable::start();
+
+  // Reset random jitter.
+  if (_jitterLevel)
+    _randomPickNext();
+}
+
 void AbstractOscillator::_randomPickNext() {
   // Pick random period ratio for this interval using Poisson distribution.
   const float u = max(randomFloat(), FLT_MIN); // (0,1]
@@ -66,14 +74,18 @@ float AbstractOscillator::jitter() const {
 
 void AbstractOscillator::jitter(float jitterLevel) {
   bool wasJittering = (_jitterLevel != 0);
+  bool isJittering  = (jitterLevel != 0);
+
   _jitterLevel = floatToFixed(jitterLevel, JITTER_LEVEL_MAX);
 
   // If randomness is larger than zero (even slightly), set random level to at least 1.
   if (jitterLevel > 0)
     _jitterLevel = max(_jitterLevel, 1);
 
-  // If we are switching mode, reset phase-shift / frequency ratio to zero.
-  if (wasJittering ^ (_jitterLevel != 0))
+  // If we are switching mode, reset phase-shift / frequency ratio.
+  if (isJittering && !wasJittering)
+    _randomPickNext();
+  else if (!isJittering && wasJittering)
     _phaseShiftOrRandomFrequencyRatio = 0;
 }
 

@@ -40,6 +40,9 @@ public:
 
   virtual ~AbstractOscillator() {}
 
+  /// Starts/restarts the oscillator.
+  virtual void start();
+
   /**
    * Sets the period (in seconds).
    * @param period the period of oscillation (in seconds)
