@@ -25,16 +25,17 @@ namespace pq {
 
 /// Abstract class for time-based objects.
 class Timeable {
-public:
+protected:
   Timeable() {}
 
-  /// Starts/restarts the chronometer.
+public:
+  /// Starts/restarts.
   virtual void start();
 
-  /// Interrupts the chronometer and resets to zero.
+  /// Interrupts and resets to zero.
   virtual void stop();
 
-  /// Interrupts the chronometer.
+  /// Interrupts process.
   virtual void pause();
 
   /// Resumes process.
@@ -46,7 +47,7 @@ public:
   /// Forces current time (in seconds).
   virtual void setTime(float time) = 0;
 
-  /// Adds/subtracts time to the chronometer.
+  /// Adds/subtracts time.
   virtual void addTime(float time) = 0;
 
   /// Returns true iff currently running.
