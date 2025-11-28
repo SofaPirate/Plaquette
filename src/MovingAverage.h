@@ -46,6 +46,12 @@ public:
   /// Updates the moving average with new value #v# (also returns the current value).
   virtual float update(float v, float alpha);
 
+  /// Amends the moving average latest update (needs to be called with same #alpha# parameter).
+  virtual float amend(float previousValue, float newValue, float alpha) ;
+
+  /// Applies a moving average step directly using a delta value.
+  virtual float delta(float d);
+
   /// Returns the value of the moving average. This is undefined if isValid() == false.
   float get() { return _value; }
   float constGet() const { return _value; }

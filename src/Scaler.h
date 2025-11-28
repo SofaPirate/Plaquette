@@ -26,6 +26,7 @@
 
 #include "PqCore.h"
 #include "MovingFilter.h"
+#include "MovingAverage.h"
 
 namespace pq {
 
@@ -107,10 +108,10 @@ public:
   float _highQuantile; // q_high
 
   // Stddev estimator.
-  float _stddev;
+  MovingAverage _stdDev;
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
-  float _currentValueStep;
+  float _currentStdDevStep;
 
   // Number of samples since last reset.
   uint32_t _nSamples;

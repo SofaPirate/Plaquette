@@ -28,6 +28,7 @@ namespace pq {
 
 // Max value of _nValuesStep.
 #define MOVING_FILTER_N_VALUES_STEP_MAX 63
+constexpr float MOVING_FILTER_N_VALUES_STEP_MAX_MINUS_ONE = MOVING_FILTER_N_VALUES_STEP_MAX - 1;
 
 // Precomputed proportion to add one value to _nValuesStep when it has reached MOVING_FILTER_N_VALUES_STEP_MAX.
 constexpr float MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION = MOVING_FILTER_N_VALUES_STEP_MAX / (MOVING_FILTER_N_VALUES_STEP_MAX + 1.0f);
@@ -46,7 +47,6 @@ protected:
   virtual ~MovingFilter() {}
 
 public:
-
   /// Resets the filter.
   virtual void reset();
 
@@ -81,6 +81,7 @@ public:
   virtual bool isPreInitialized() const { return _isPreInitialized; }
 
 protected:
+  virtual void begin();
 
   // Returns the instantaneous moving average alpha for this filter.
   virtual float alpha() const {

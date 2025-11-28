@@ -40,11 +40,15 @@ void MovingAverage::reset(float initialValue) {
 }
 
 float MovingAverage::update(float v, float alpha) {
+  return applyMovingAverageUpdate(_value, v, alpha);
+}
 
-  // Exponential moving average.
-  applyMovingAverageUpdate(_value, v, alpha);
+float MovingAverage::amend(float previousValue, float newValue, float alpha) {
+  return amendMovingAverageUpdate(_value, previousValue, newValue, alpha);
+}
 
-  return _value;
+float MovingAverage::delta(float d) {
+  return applyMovingAverageDelta(_value, d);
 }
 
 } // namespace pq

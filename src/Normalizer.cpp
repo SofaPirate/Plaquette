@@ -69,58 +69,43 @@ float Normalizer::put(float value) {
   if (isCalibrating()) {
 
     float value2 = sq(value);
+    float a = alpha();
 
-    // Increment n. values.
+    // First time put() is called this step: simple update.
     if (_nValuesStep == 0) {
-      _currentMeanStep  = _currentMean2Step = 0;
+      _currentMeanStep = value;
+      _currentMean2Step = value2;
+      _nValuesStep = 1;
+      _mean. update(value, a);
+      _mean2.update(value2, a);
     }
 
-    if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
-      _currentMeanStep  += value;
-      _currentMean2Step += value2;
-      _nValuesStep++;
-    }
+    // This code is executed if put() is called more than one time in same step.
+    // Readjust moving average: replace previous value with new value averaged over step.
     else {
-      // Add one value in proportion to the previous value.
-      _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
-      _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
+      // Update values. Variable _currentValueStep is used to accumlate values as a sum.
+      float prevNValuesStep;
+      if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
+        _currentMeanStep += value;
+        _currentMean2Step += value2;
+        prevNValuesStep = _nValuesStep;
+        _nValuesStep++;
+      }
+      else {
+        // Add one value in proportion to the previous value.
+        _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
+        _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
+      }
+
+      // This is based on an expansion of the moving average formula.
+      float adjustFactor = a / (prevNValuesStep * _nValuesStep);
+      _mean. delta(adjustFactor * (_nValuesStep * value  - _currentMeanStep));
+      _mean2.delta(adjustFactor * (_nValuesStep * value2 - _currentMean2Step));
     }
-
-    // Serial.println("-=------");
-    // Serial.print("value: "); Serial.println(value);
-    // Serial.print("value2: "); Serial.println(value2);
-    // Serial.print("currentMeanStep: "); Serial.println(_currentMeanStep);
-    // Serial.print("currentMean2Step: "); Serial.println(_currentMean2Step);
-
-    // if (_nValuesStep == 1) {
-    //     // Update moving average.
-    //     _avg.update(value, alpha, true); // force alpha
-    //     _currentMeanStep = value;
-
-    //     // Update variance.
-    //     _currentMean2Step = sq(value);
-    //     applyMovingAverageUpdate(_mean2, _currentMean2Step, alpha);
-    // }
-    // // If put() is called more than one time in same step, readjust moving average.
-    // else {
-    //   // Save previous value.
-    //   float prevValueStep = _currentMeanStep;
-    //   float prevValue2Step = _currentMean2Step;
-
-    //   // Update current step average value.
-    //   float stepValuesAlpha = 1.0f/_nValuesStep;
-    //   applyMovingAverageUpdate(_currentMeanStep, value, stepValuesAlpha);
-    //   applyMovingAverageUpdate(_currentMean2Step, sq(value), stepValuesAlpha);
-
-    //   // Update moving average: replace previous value with new value averaged over step.
-    //   _avg.amendUpdate(prevValueStep, _currentMeanStep, alpha, true);
-    //   MovingAverage::applyAmendUpdate(_mean2, prevValue2Step, _currentMean2Step, alpha);
-    // }
   }
 
   // Normalize value to target normal.
   _value = normalize(value, _targetMean, _targetStdDev);
-
 
   // Check for clamp.
   if (isClamped())
@@ -144,8 +129,8 @@ void Normalizer::step() {
     float a = alpha();
 
     // Update statistics.
-    _avg.update(_currentMeanStep, a);
-    applyMovingAverageUpdate(_mean2, _currentMean2Step, a);
+    _mean.update(_currentMeanStep, a);
+    _mean2.update(_currentMean2Step, a);
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)

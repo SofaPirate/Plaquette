@@ -30,10 +30,10 @@ namespace pq {
 class MovingStats {
 public:
   // Moving average over values (ie. mean).
-  MovingAverage _avg;
+  MovingAverage _mean;
 
-  // Moving average of variance.
-  float _mean2;
+  // Moving average of squared values.
+  MovingAverage _mean2;
 
   /// Default constructor (infinite time window).
   MovingStats();
@@ -50,10 +50,10 @@ public:
   virtual float update(float value, float alpha);
 
   /// Returns an exponential moving average of the samples.
-  virtual float mean() const { return _avg.constGet(); }
+  virtual float mean() const { return _mean.constGet(); }
 
   /// Returns an exponential moving variance of the samples.
-  virtual float var() const { return (_mean2 - sq(mean())); }
+  virtual float var() const { return (_mean2.constGet() - sq(mean())); }
 
   /// Returns the standard deviation of the samples.
   virtual float stdDev() const;

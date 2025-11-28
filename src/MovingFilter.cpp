@@ -62,4 +62,8 @@ bool MovingFilter::isCalibrating() const {
   return _isCalibrating;
 }
 
+void MovingFilter::begin() {
+  reset();
+}
+
 }

@@ -29,26 +29,25 @@
 
 namespace pq {
 
-MovingStats::MovingStats() : _avg(), _mean2(0) { }
+MovingStats::MovingStats() { }
 
 void MovingStats::reset() {
-  _avg.reset();
-  _mean2 = 1.0f;
+  _mean.reset(0.0f);
+  _mean2.reset(1.0f);
 }
 
-
 void MovingStats::reset(float initMean, float initStdDev) {
-  _avg.reset(initMean);
-  _mean2 = sq(initStdDev) + sq(initMean);
+  _mean.reset(initMean);
+  _mean2.reset(sq(initStdDev) + sq(initMean));
 }
 
 float MovingStats::update(float value, float alpha)
  {
   // Update average.
-  _avg.update(value, alpha); // force alpha
+  _mean.update(value, alpha); // force alpha
 
   // Update mean of squares.
-  applyMovingAverageUpdate(_mean2, sq(value), alpha);
+  _mean2.update(sq(value), alpha);
 
   return normalize(value);
 }

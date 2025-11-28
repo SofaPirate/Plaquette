@@ -49,9 +49,7 @@ Scaler::Scaler(Engine& engine) : MovingFilter(engine) {
 
 Scaler::Scaler(float timeWindow, Engine& engine) : Scaler(timeWindow, SCALER_DEFAULT_SPAN, engine) {}
 
-Scaler::Scaler(float timeWindow_, float span_, Engine& engine)
-  : MovingFilter(engine),
-    _currentValueStep(0)
+Scaler::Scaler(float timeWindow_, float span_, Engine& engine): MovingFilter(engine)
 {
   timeWindow(timeWindow_);
   span(span_);
@@ -130,9 +128,8 @@ void Scaler::reset() {
   _lowQuantile = _highQuantile = 0.5f;
 
   _value = 0.5f;
-  _stddev = 0.0f;
 
-  _currentValueStep = 0;
+  _currentStdDevStep = 0;
   _nSamples = 0;
 }
 
@@ -147,7 +144,7 @@ void Scaler::reset(float estimatedMinValue, float estimatedMaxValue) {
   reset();
 
   _initializeRange(estimatedMinValue, estimatedMaxValue);
-  _stddev = (estimatedMaxValue - estimatedMinValue) / SCALER_STDDEV_TO_RANGE;
+  _stdDev.reset((estimatedMaxValue - estimatedMinValue) / SCALER_STDDEV_TO_RANGE);
   _isPreInitialized = true;
 }
 
@@ -159,15 +156,76 @@ void Scaler::_updateQuantile(float& q, float level, float eta, float x) {
 float Scaler::put(float value) {
   if (isCalibrating()) {
 
-    // Increment n. values.
-    if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
-      _currentValueStep += value;
-      _nValuesStep++;
+    float a = alpha();
+
+    // Assign initial values.
+    if (!isPreInitialized() && _nSamples == 0) {
+      _lowQuantile = _highQuantile = value;
     }
+
+    // Unbiased estimate of standard deviation of the signal using current value.
+    float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
+    float deviation = abs(value - midQuantile);
+
+    // First time put() is called this step: simple update.
+    if (_nValuesStep == 0) {
+      _currentStdDevStep = deviation;
+      _nValuesStep = 1;
+      _stdDev.update(deviation, a);
+    }
+
+    // This code is executed if put() is called more than one time in same step.
+    // Readjust moving average: replace previous value with new value averaged over step.
     else {
-      // Add one value in proportion to the previous value.
-      _currentValueStep = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentValueStep + value);
+      // Update values. Variable _currentValueStep is used to accumlate values as a sum.
+      float prevNValuesStep;
+      if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
+        _currentStdDevStep += value;
+        prevNValuesStep = _nValuesStep;
+        _nValuesStep++;
+      }
+      else {
+        // Add one value in proportion to the previous value.
+        _currentStdDevStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentStdDevStep  + deviation);
+      }
+
+      // This is based on an expansion of the moving average formula.
+      float adjustFactor = a / (prevNValuesStep * _nValuesStep);
+      _stdDev.delta(adjustFactor * (_nValuesStep * value  - _currentStdDevStep));
     }
+
+    // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
+    float eta = a * SCALER_STDDEV_TO_RANGE * _stdDev.get(); // rescale to full range
+
+    // Precompute: eta x quantile level
+    float etaLevel = eta * _quantileLevel;
+
+    // Update quantiles (Robbins–Monro online).
+    if (value <= _lowQuantile) { // smaller than both quantiles
+      _lowQuantile  -= eta - etaLevel; // decrease
+      _highQuantile -= etaLevel;       // decrease
+      // Prevent overshooting.
+      _lowQuantile  = max(_lowQuantile,  value);
+      _highQuantile = max(_highQuantile, value);
+    }
+    else if (value <= _highQuantile) { // in between
+      _lowQuantile  += etaLevel;       // increase
+      _highQuantile -= etaLevel;       // decrease
+      // Prevent overshooting.
+      _lowQuantile  = min(_lowQuantile,  value);
+      _highQuantile = max(_highQuantile, value);
+    }
+    else { // larger than both quantiles
+      _lowQuantile  += etaLevel;       // increase
+      _highQuantile += eta - etaLevel; // increase
+      // Prevent overshooting.
+      _lowQuantile  = min(_lowQuantile,  value);
+      _highQuantile = min(_highQuantile, value);
+    }
+
+    // Clamp quantiles to avoid inversions.
+    if (_lowQuantile > _highQuantile)
+      _lowQuantile = _highQuantile = 0.5f * (_lowQuantile + _highQuantile);
   }
 
   // Compute rescaled value.
@@ -180,67 +238,25 @@ void Scaler::step() {
 
   if (isCalibrating()) {
 
-    // Reset.
+    float a = alpha();
+
     // If no values were added during this step, update using previous value.
+    // In other words: repeat update with previous value.
     if (_nValuesStep > 0) {
-      _currentValueStep /= _nValuesStep;
+      _currentStdDevStep  /= _nValuesStep;
       _nValuesStep = 0;
     }
 
-    // Unbiased estimate of standard deviation of the signal using current value.
-    float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
-    float deviation = abs(_currentValueStep - midQuantile);
-
-    // Compute base alpha.
-    float alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples, isPreInitialized());
-
-    // Assign initial values.
-    if (!isPreInitialized() && _nSamples == 0) {
-      _stddev = deviation;
-      _lowQuantile = _highQuantile = _currentValueStep;
-    }
-    else
-      // Adjust standard deviation.
-      applyMovingAverageUpdate(_stddev, deviation, alpha);
-
-    // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
-    float eta = alpha * SCALER_STDDEV_TO_RANGE * _stddev; // rescale to full range
-
-    // Precompute: eta x quantile level
-    float etaLevel = eta * _quantileLevel;
-
-    // Update quantiles (Robbins–Monro online).
-    if (_currentValueStep <= _lowQuantile) { // smaller than both quantiles
-      _lowQuantile  -= eta - etaLevel; // decrease
-      _highQuantile -= etaLevel;       // decrease
-      // Prevent overshooting.
-      _lowQuantile  = max(_lowQuantile,  _currentValueStep);
-      _highQuantile = max(_highQuantile, _currentValueStep);
-    }
-    else if (_currentValueStep <= _highQuantile) { // in between
-      _lowQuantile  += etaLevel;       // increase
-      _highQuantile -= etaLevel;       // decrease
-      // Prevent overshooting.
-      _lowQuantile  = min(_lowQuantile,  _currentValueStep);
-      _highQuantile = max(_highQuantile, _currentValueStep);
-    }
-    else { // larger than both quantiles
-      _lowQuantile  += etaLevel;       // increase
-      _highQuantile += eta - etaLevel; // increase
-      // Prevent overshooting.
-      _lowQuantile  = min(_lowQuantile,  _currentValueStep);
-      _highQuantile = min(_highQuantile, _currentValueStep);
-    }
-
     // Decay quantiles.
+    float midQuantile = 0.5f * (_lowQuantile + _highQuantile);
     if (!timeWindowIsInfinite()) {
-      applyMovingAverageUpdate(_lowQuantile,  midQuantile,  alpha);
-      applyMovingAverageUpdate(_highQuantile, midQuantile,  alpha);
+      applyMovingAverageUpdate(_lowQuantile,  midQuantile,  a);
+      applyMovingAverageUpdate(_highQuantile, midQuantile,  a);
     }
 
-    // Clamp quantiles to avoid inversions.
-    if (_lowQuantile > _highQuantile)
-      _lowQuantile = _highQuantile = 0.5f * (_lowQuantile + _highQuantile);
+    // // Clamp quantiles to avoid inversions.
+    // if (_lowQuantile > _highQuantile)
+    //   _lowQuantile = _highQuantile = 0.5f * (_lowQuantile + _highQuantile);
 
     // Increase number of samples.
     if (_nSamples < UINT_MAX)

@@ -30,23 +30,37 @@ namespace pq {
 // In other words: we presume that the pre-initialized value as if it had been stabilized over that amount of time.
 constexpr float PRE_INITIALIZED_STABILIZATION_TIME = 60.0f;
 
+/// Returns the value of a single update on #runningValue# with new sample #newValue# and mixing factor #alpha#.
+inline float computeMovingAverageUpdate(float runningValue, float newValue, float alpha) {
+  return runningValue + alpha * (newValue - runningValue);
+}
+
+/// Returns the value of a single update on #runningValue# with new sample #newValue# and mixing factor #alpha#.
+inline float computeMovingAverageDelta(float runningValue, float delta) {
+  return runningValue + delta;
+}
+
+/// Returns the value of an amendment of latest update (needs to be called with same #alpha# parameter).
+inline float computeAmendMovingAverageUpdate(float runningValue, float previousValue, float newValue, float alpha) {
+  return runningValue + alpha * (newValue - previousValue);
+}
+
 /**
  * Applies a single update on #runningValue# with new sample #newValue# and mixing
  * factor #alpha#.
  */
-inline void applyMovingAverageUpdate(float& runningValue, float newValue, float alpha) {
-  runningValue += alpha * (newValue - runningValue);
+inline float applyMovingAverageUpdate(float& runningValue, float newValue, float alpha) {
+  return runningValue = computeMovingAverageUpdate(runningValue, newValue, alpha);
+}
+
+/// Applies a moving average step directly using a delta value.
+inline float applyMovingAverageDelta(float& runningValue, float delta) {
+  return runningValue = computeMovingAverageDelta(runningValue, delta);
 }
 
 /// Performs an amendment of latest update (needs to be called with same #alpha# parameter).
-inline void amendMovingAverageUpdate(float& runningValue, float previousValue, float newValue, float alpha) {
-  runningValue += alpha * (newValue - previousValue);
-}
-
-/// Returns the value of a single update on #runningValue# with new sample #newValue# and mixing factor #alpha#.
-inline float computeMovingAverageUpdate(float runningValue, float newValue, float alpha) {
-  applyMovingAverageUpdate(runningValue, newValue, alpha);
-  return runningValue;
+inline float amendMovingAverageUpdate(float& runningValue, float previousValue, float newValue, float alpha) {
+  return runningValue = computeAmendMovingAverageUpdate(runningValue, previousValue, newValue, alpha);
 }
 
 /// Returns the alpha value computed from given number of samples.

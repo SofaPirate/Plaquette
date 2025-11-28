@@ -50,7 +50,7 @@ public:
    */
   virtual float put(float value);
 
-  protected:
+protected:
   virtual void step();
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
