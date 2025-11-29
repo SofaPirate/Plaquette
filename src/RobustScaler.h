@@ -1,5 +1,5 @@
 /*
- * Scaler.h
+ * RobustScaler.h
  *
  * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  *
@@ -31,28 +31,28 @@
 namespace pq {
 
 // Default low quantile level (corresponds to 1% coverage of value in [0, 1]).
-#define SCALER_DEFAULT_SPAN 0.99f
+#define ROBUST_SCALER_DEFAULT_SPAN 0.99f
 
 /// Regularizes signal into [0,1] using adaptive quantile tracking (robust to outliers).
-class Scaler : public MovingFilter {
+class RobustScaler : public MovingFilter {
 public:
   /// Default constructor.
-  Scaler(Engine& engine = Engine::primary());
+  RobustScaler(Engine& engine = Engine::primary());
 
   /**
    * Constructor with custom quantile levels and time window.
    * @param timeWindow The adaptation window in seconds.
    */
-  Scaler(float timeWindow, Engine& engine = Engine::primary());
+  RobustScaler(float timeWindow, Engine& engine = Engine::primary());
 
   /**
    * Constructor with custom quantile levels and time window.
    * @param timeWindow The adaptation window in seconds.
    * @param span Corresponds to percentage coverage of value in [0, 1].
    */
-  Scaler(float timeWindow, float span, Engine& engine = Engine::primary());
+  RobustScaler(float timeWindow, float span, Engine& engine = Engine::primary());
 
-  virtual ~Scaler() {}
+  virtual ~RobustScaler() {}
 
   /// Sets the span (in [0, 1]) of the quantile to track.
   virtual void span(float span);
