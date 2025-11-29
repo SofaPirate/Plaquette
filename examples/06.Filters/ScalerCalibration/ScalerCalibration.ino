@@ -1,7 +1,11 @@
 /**
- * RescaleSignal
+ * ScalerCalibration
  *
- * Rescales an analog input using the min-max scaler.
+ * Rescales an analog input using a scaler unit, with a calibration period at the beginning.
+ *
+ * The program will calibrate itself for the first 30 seconds, after which it will
+ * stay stable. Upon program launch, try different light conditions (eg. switch
+ * interior lights on/off, cover photocell, etc.) during the calibration period.
  *
  * The circuit:
  * - A photoresistor connected to analog pin and to +5V
@@ -9,6 +13,7 @@
  * - LED cathode (short leg) attached to ground
  * - LED anode (long leg) attached to 220-330 Ohm resistor
  * - resistor attached to analog (PWM) output 9
+ *
  *
  * Created in 2025 by Sofian Audry
  *
@@ -19,6 +24,9 @@
  */
 #include <Plaquette.h>
 
+// Calibration time in seconds.
+const float CALIBRATION_TIME = 30.0f;
+
 // The LED.
 AnalogOut led(9); // PWM pin 9
 
@@ -28,17 +36,14 @@ AnalogIn in(A0);
 // This unit will rescale signal to full range [0, 1].
 RobustScaler scaler;
 
-void begin() {
-  // Set a time window of 1 minute (60 seconds) on scaler.
-  // This will allow the scaler to slowly readjust itself
-  // if the lighting conditions change.
-  scaler.timeWindow(60.0f);
-}
+void begin() {}
 
 void step() {
+  // After 30 seconds, stop calibration. The scaler will still rescale
+  // values but will stop updating its .
+  if (scaler.isCalibrating() && seconds() >= CALIBRATION_TIME)
+    scaler.pauseCalibrating(); // stop calibration
+
 	// Analog input is rescaled then sent as LED value.
 	in >> scaler >> led;
-
-  // Prints raw and rescaled values, for comparison using the Serial plotter.
-  print(in); print(" "); println(scaler);
 }
