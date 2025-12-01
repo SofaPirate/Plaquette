@@ -129,7 +129,6 @@ void RobustScaler::reset() {
   _value = 0.5f;
 
   _currentStdDevStep = 0;
-  _nSamples = 0;
 }
 
 void RobustScaler::reset(float estimatedMeanValue) {

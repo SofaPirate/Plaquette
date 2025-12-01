@@ -112,9 +112,6 @@ public:
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentStdDevStep;
-
-  // Number of samples since last reset.
-  uint32_t _nSamples;
 };
 
 }
