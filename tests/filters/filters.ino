@@ -7,9 +7,12 @@ using namespace pq;
 #define N_UNITS 2
 Unit* units[N_UNITS] = {
  new MinMaxScaler{},
- new MinMaxScaler(1.0f)
+ new MinMaxScaler(1.0f),
 };
 
+#define N_ROBUST_SCALERS 8
+RobustScaler* robusts[N_ROBUST_SCALERS];
+float quantileLevels[N_ROBUST_SCALERS/2] = { 0.01, 0.1, 0.25, 0.4 };
 MinMaxScaler basic;
 
 Smoother smoother(0.5f);
@@ -47,6 +50,25 @@ test(basic) {
 //   if (nSteps > 100) pass();
 // }
 
+#define N_RANDOM_NUMBERS 1000000UL
+test(robustScaler) {
+  Plaquette.step();
+  // robust.reset(0, 1);
+  for (uint32_t i=0; i<N_RANDOM_NUMBERS; i++) {
+    float randomValue = randomFloat();
+    for (int i=0; i<N_ROBUST_SCALERS; i++) {
+      robusts[i]->put(randomValue);
+    }
+    Plaquette.step();
+  }
+  // Serial.println(robust.stdDev());
+
+  for (int i=0; i<N_ROBUST_SCALERS; i++) {
+    assertNear(robusts[i]->lowQuantile(), robusts[i]->lowQuantileLevel(), 0.05f);
+    assertNear(robusts[i]->highQuantile(), robusts[i]->highQuantileLevel(), 0.05f);
+  }
+}
+
 testing(valuesIn01) {
   static unsigned long startTime = millis();
 
@@ -54,9 +76,8 @@ testing(valuesIn01) {
   float randomValue = randomFloat(-100, 100);
 
   for (int i=0; i<N_UNITS; i++) {
-    MinMaxScaler* unit =(MinMaxScaler*) units[i];
-    float value = unit->put(randomValue);
-    // Serial.printf("val=%f min=%f max=%f ==> %f\n", randomValue, unit->min(), unit->max(), value );
+    Unit* filter = units[i];
+    float value = filter->put(randomValue);
     assertMoreOrEqual(value, 0.0f);
     assertLessOrEqual(value, 1.0f);
   }
@@ -89,8 +110,6 @@ testing(smoothing) {
       assertMoreOrEqual(unit->minValue(), -100.0f);
       assertLessOrEqual(unit->maxValue(),  100.0f);
 
-//      assertLess(abs(unit->maxValue() + unit->minValue()), 50.0f);
-
       if (!unit->timeWindowIsInfinite() &&
           t >= unit->timeWindow()*2) {
         assertMoreOrEqual(unit->minValue(),  -50.0f);
@@ -119,6 +138,12 @@ test(smoother) {
 
 void setup() {
   Plaquette.begin();
+  for (int i=0; i<N_ROBUST_SCALERS; i+=2) {
+    robusts[i] = new RobustScaler();
+    robusts[i+1] = new RobustScaler(0.5f);
+    robusts[i]->lowQuantileLevel(quantileLevels[i]);
+    robusts[i+1]->lowQuantileLevel(quantileLevels[i]);
+  }
 }
 
 void loop() {
