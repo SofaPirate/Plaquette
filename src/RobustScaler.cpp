@@ -193,7 +193,7 @@ float RobustScaler::put(float value) {
     }
 
     // Compute eta for Robbins–Monro updates, rescaled using range adjustment.
-    float eta = a * ROBUST_SCALER_STDDEV_TO_RANGE * _stdDev.get(); // rescale to full range
+    float eta = max(a, ROBUST_SCALER_MIN_ETA) * ROBUST_SCALER_STDDEV_TO_RANGE * _stdDev.get(); // rescale to full range
 
     // Precompute: eta x quantile level
     float etaLevel = eta * _quantileLevel;

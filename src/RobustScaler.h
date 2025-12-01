@@ -33,6 +33,9 @@ namespace pq {
 // Default low quantile level (corresponds to 1% coverage of value in [0, 1]).
 #define ROBUST_SCALER_DEFAULT_SPAN 0.99f
 
+// Minimum value of base eta.
+#define ROBUST_SCALER_MIN_ETA 1e-4f
+
 /// Regularizes signal into [0,1] using adaptive quantile tracking (robust to outliers).
 class RobustScaler : public MovingFilter {
 public:
