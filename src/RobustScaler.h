@@ -75,6 +75,15 @@ public:
   /// Returns the current high quantile level.
   virtual float highQuantileLevel() const { return (1 - _quantileLevel); }
 
+  /// Returns the current low quantile.
+  virtual float lowQuantile() const { return _lowQuantile; }
+
+  /// Returns the current high quantile.
+  virtual float highQuantile() const { return _highQuantile; }
+
+  /// Returns the current standard deviation.
+  virtual float stdDev() const { return _stdDev.constGet(); }
+
   /// Resets the filter.
   virtual void reset();
 
