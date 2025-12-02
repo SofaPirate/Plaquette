@@ -113,10 +113,7 @@ float Normalizer::filter(float value) {
   value = normalize(value, _targetMean, _targetStdDev);
 
   // Check for clamp.
-  if (isClamped())
-    value = _clamp(_value);
-
-  return value;
+  return (isClamped() ? _clamp(value) : value);
 }
 
 void Normalizer::step() {
