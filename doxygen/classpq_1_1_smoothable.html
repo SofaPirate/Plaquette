@@ -113,9 +113,11 @@ Inheritance diagram for pq::Smoothable:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpq_1_1_smoothable__inherit__graph.png" border="0" usemap="#apq_1_1_smoothable_inherit__map" alt="Inheritance graph"/></div>
 <map name="apq_1_1_smoothable_inherit__map" id="apq_1_1_smoothable_inherit__map">
-<area shape="rect" title="Superclass for components that can be smoothed." alt="" coords="5,5,119,31"/>
-<area shape="rect" href="classpq_1_1_analog_in.html" title="A generic class representing a simple analog input." alt="" coords="15,79,109,104"/>
-<area shape="poly" title=" " alt="" coords="65,44,65,79,59,79,59,44"/>
+<area shape="rect" title="Superclass for components that can be smoothed." alt="" coords="21,79,134,104"/>
+<area shape="rect" href="classpq_1_1_analog_in.html" title="A generic class representing a simple analog input." alt="" coords="30,152,125,177"/>
+<area shape="poly" title=" " alt="" coords="80,118,80,152,75,152,75,118"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="5,5,149,31"/>
+<area shape="poly" title=" " alt="" coords="80,44,80,79,75,79,75,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -123,9 +125,11 @@ Collaboration diagram for pq::Smoothable:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpq_1_1_smoothable__coll__graph.png" border="0" usemap="#apq_1_1_smoothable_coll__map" alt="Collaboration graph"/></div>
 <map name="apq_1_1_smoothable_coll__map" id="apq_1_1_smoothable_coll__map">
-<area shape="rect" title="Superclass for components that can be smoothed." alt="" coords="16,93,129,119"/>
-<area shape="rect" href="classpq_1_1_moving_average.html" title="An exponential moving average class." alt="" coords="5,5,140,31"/>
-<area shape="poly" title=" " alt="" coords="75,45,75,93,70,93,70,45"/>
+<area shape="rect" title="Superclass for components that can be smoothed." alt="" coords="102,93,215,119"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="5,5,149,31"/>
+<area shape="poly" title=" " alt="" coords="100,39,149,91,145,95,96,43"/>
+<area shape="rect" href="classpq_1_1_moving_average.html" title="An exponential moving average class." alt="" coords="174,5,309,31"/>
+<area shape="poly" title=" " alt="" coords="223,43,172,95,168,91,219,39"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -139,22 +143,34 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>smooth</b> (f
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noSmooth</b> ()</td></tr>
 <tr class="memdesc:a3de9ee4afb0b3d1b31ae0efc18e6cffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove smoothing. <br /></td></tr>
 <tr class="separator:a3de9ee4afb0b3d1b31ae0efc18e6cffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a127525e900f2769a5a4aabacc74a1961" id="r_a127525e900f2769a5a4aabacc74a1961"><td class="memItemLeft" align="right" valign="top"><a id="a127525e900f2769a5a4aabacc74a1961" name="a127525e900f2769a5a4aabacc74a1961"></a>
+<tr class="memitem:ae70831c02cb9ac2ed4633fb2612b2654" id="r_ae70831c02cb9ac2ed4633fb2612b2654"><td class="memItemLeft" align="right" valign="top"><a id="ae70831c02cb9ac2ed4633fb2612b2654" name="ae70831c02cb9ac2ed4633fb2612b2654"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>infiniteTimeWindow</b> ()</td></tr>
+<tr class="memdesc:ae70831c02cb9ac2ed4633fb2612b2654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to infinite. <br /></td></tr>
+<tr class="separator:ae70831c02cb9ac2ed4633fb2612b2654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973b709e6d620ba95e811dac73835fd6" id="r_a973b709e6d620ba95e811dac73835fd6"><td class="memItemLeft" align="right" valign="top"><a id="a973b709e6d620ba95e811dac73835fd6" name="a973b709e6d620ba95e811dac73835fd6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noTimeWindow</b> ()</td></tr>
+<tr class="memdesc:a973b709e6d620ba95e811dac73835fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to no time window. <br /></td></tr>
+<tr class="separator:a973b709e6d620ba95e811dac73835fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200edba5991b4ea779a6848f654aceb5" id="r_a200edba5991b4ea779a6848f654aceb5"><td class="memItemLeft" align="right" valign="top"><a id="a200edba5991b4ea779a6848f654aceb5" name="a200edba5991b4ea779a6848f654aceb5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float seconds)</td></tr>
-<tr class="memdesc:a127525e900f2769a5a4aabacc74a1961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a127525e900f2769a5a4aabacc74a1961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad62ea6b25d0129cd09067afce23ae751" id="r_ad62ea6b25d0129cd09067afce23ae751"><td class="memItemLeft" align="right" valign="top"><a id="ad62ea6b25d0129cd09067afce23ae751" name="ad62ea6b25d0129cd09067afce23ae751"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
-<tr class="memdesc:ad62ea6b25d0129cd09067afce23ae751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:ad62ea6b25d0129cd09067afce23ae751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7f309d4ceeb9778d187befd67478b13" id="r_aa7f309d4ceeb9778d187befd67478b13"><td class="memItemLeft" align="right" valign="top"><a id="aa7f309d4ceeb9778d187befd67478b13" name="aa7f309d4ceeb9778d187befd67478b13"></a>
+<tr class="memdesc:a200edba5991b4ea779a6848f654aceb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a200edba5991b4ea779a6848f654aceb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5047b025a686298b85dba2c162175914" id="r_a5047b025a686298b85dba2c162175914"><td class="memItemLeft" align="right" valign="top"><a id="a5047b025a686298b85dba2c162175914" name="a5047b025a686298b85dba2c162175914"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
+<tr class="memdesc:a5047b025a686298b85dba2c162175914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a5047b025a686298b85dba2c162175914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef904a094f19d393062c61f06e510a6c" id="r_aef904a094f19d393062c61f06e510a6c"><td class="memItemLeft" align="right" valign="top"><a id="aef904a094f19d393062c61f06e510a6c" name="aef904a094f19d393062c61f06e510a6c"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindowIsInfinite</b> () const</td></tr>
+<tr class="memdesc:aef904a094f19d393062c61f06e510a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if time window is infinite. <br /></td></tr>
+<tr class="separator:aef904a094f19d393062c61f06e510a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e6b52e05e0cc21a4f693a708f7b466a" id="r_a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memItemLeft" align="right" valign="top"><a id="a7e6b52e05e0cc21a4f693a708f7b466a" name="a7e6b52e05e0cc21a4f693a708f7b466a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> (float hz)</td></tr>
-<tr class="memdesc:aa7f309d4ceeb9778d187befd67478b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:aa7f309d4ceeb9778d187befd67478b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc0c7526c182c479ddb7710a759fd721" id="r_acc0c7526c182c479ddb7710a759fd721"><td class="memItemLeft" align="right" valign="top"><a id="acc0c7526c182c479ddb7710a759fd721" name="acc0c7526c182c479ddb7710a759fd721"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
-<tr class="memdesc:acc0c7526c182c479ddb7710a759fd721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:acc0c7526c182c479ddb7710a759fd721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d75f1b738c6666f4ada0a54fdd9dba" id="r_aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memItemLeft" align="right" valign="top"><a id="aa5d75f1b738c6666f4ada0a54fdd9dba" name="aa5d75f1b738c6666f4ada0a54fdd9dba"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
+<tr class="memdesc:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -179,6 +195,12 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ac5135af26656b41a993bb0ef4be00d72" id="r_ac5135af26656b41a993bb0ef4be00d72"><td class="memItemLeft" align="right" valign="top"><a id="ac5135af26656b41a993bb0ef4be00d72" name="ac5135af26656b41a993bb0ef4be00d72"></a>
 <a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_avg</b></td></tr>
 <tr class="separator:ac5135af26656b41a993bb0ef4be00d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d5f186ed28e8611d87e66cbb8f1c5df" id="r_a3d5f186ed28e8611d87e66cbb8f1c5df"><td class="memItemLeft" align="right" valign="top"><a id="a3d5f186ed28e8611d87e66cbb8f1c5df" name="a3d5f186ed28e8611d87e66cbb8f1c5df"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>_nSamples</b></td></tr>
+<tr class="separator:a3d5f186ed28e8611d87e66cbb8f1c5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1bb0f62cfeb9b5fd909a9c6cadc320" id="r_a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memItemLeft" align="right" valign="top"><a id="a0e1bb0f62cfeb9b5fd909a9c6cadc320" name="a0e1bb0f62cfeb9b5fd909a9c6cadc320"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td></tr>
+<tr class="separator:a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Superclass for components that can be smoothed. </p>
@@ -192,7 +214,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_smoothable.html">Smoothable</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['_7ehybridarraylist_0',['~HybridArrayList',['../class_hybrid_array_list.html#ac93f05369693072447886c94b2189f07',1,'HybridArrayList']]]
+  ['wave_0',['wave',['../classpq_1_1_wave.html#a2a62ce1082ff0966257952aaec28ac17',1,'pq::Wave::Wave(float period, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_wave.html#ae7190196da74379c969bd7b5a3aec3f4',1,'pq::Wave::Wave(WaveShape shape, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_wave.html#a3ec8d0da443f4cf4e183b4add0e7754d',1,'pq::Wave::Wave(float period, float skew, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_wave.html#a981759e292ccc94e5713a5adad87ddf2',1,'pq::Wave::Wave(WaveShape shape, float period, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_wave.html#a95e6fc4ad6e87e64593f5ebdb3935be9',1,'pq::Wave::Wave(WaveShape shape, float period, float skew, Engine &amp;engine=Engine::primary())']]],
+  ['width_1',['width',['../classpq_1_1_abstract_wave.html#a4981286dcabd30e461141459af64902d',1,'pq::AbstractWave::width(float width)'],['../classpq_1_1_abstract_wave.html#ac352b24bcc48f86705caffa3068196c0',1,'pq::AbstractWave::width() const']]],
+  ['write_2',['write',['../classpq_1_1_analog_out.html#af4d20d160483bbacf4b9626e415d2e99',1,'pq::AnalogOut::write()'],['../classpq_1_1_digital_out.html#ac1d930e7824a4f77be58b1f725920aed',1,'pq::DigitalOut::write(bool value)'],['../classpq_1_1_digital_out.html#a41cccbf1127f8c0ad94671658769f5e0',1,'pq::DigitalOut::write(float value)']]]
 ];

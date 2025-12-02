@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RobustScaler &mdash; Plaquette 0.8.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Smoother" href="Smoother.html" />
+    <link rel="prev" title="PeakDetector" href="PeakDetector.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.8
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MinMaxScaler.html">MinMaxScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Normalizer.html">Normalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RobustScaler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adjusting-robustness">Adjusting Robustness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intuition">Intuition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+      <li>RobustScaler</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="robustscaler">
+<h1>RobustScaler<a class="headerlink" href="#robustscaler" title="Permalink to this heading"></a></h1>
+<p>This filtering unit regularizes incoming signals by focusing on what the signal does
+<em>most of the time</em> instead of reacting to rare extreme values. It does this by keeping
+track of two boundaries:</p>
+<ul class="simple">
+<li><p>a <strong>lower boundary</strong> (low quantile), below which the signal almost never goes, and</p></li>
+<li><p>an <strong>upper boundary</strong> (high quantile), above which the signal almost never goes.</p></li>
+</ul>
+<p>You can think of these as “typical low” and “typical high” values. Once these
+boundaries are known, the signal is rescaled so that the lower boundary becomes 0
+and the upper boundary becomes 1.</p>
+<p>Because it pays attention to the typical behaviour of the signal, while ignoring rare
+spikes or sudden jumps, the <code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code> is a good choice for noisy sensors,
+biological signals, or any data that behaves unpredictably.</p>
+<section id="adjusting-robustness">
+<h2>Adjusting Robustness<a class="headerlink" href="#adjusting-robustness" title="Permalink to this heading"></a></h2>
+<p>The <strong>span</strong> controls how much of your data is considered “typical” and placed
+between the two boundaries.</p>
+<ul class="simple">
+<li><p>A span of 0.8 (80%) means that the scaler tries to place about 80% of the most
+common values between its lower and upper boundaries.</p></li>
+<li><p>A span of 0.95 (95%) means it tries to place about 95% of values there, and so on.</p></li>
+</ul>
+<p>You can set it in code like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RobustScaler</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span><span class="w"></span>
+<span class="n">scaler</span><span class="p">.</span><span class="n">span</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span><span class="w">  </span><span class="c1">// Keep about 80% of values between 0 and 1.</span>
+</pre></div>
+</div>
+</section>
+<section id="intuition">
+<h2>Intuition<a class="headerlink" href="#intuition" title="Permalink to this heading"></a></h2>
+<p>A good way to understand the span is to imagine a <strong>corridor</strong> in which your
+signal is allowed to move. The span controls how wide that corridor is.</p>
+<ul class="simple">
+<li><p><strong>Higher span (e.g. 0.9 or 0.95)</strong>
+This corresponds to a <strong>wide corridor</strong>: most of the signal’s behaviour fits
+comfortably inside it. The scaler becomes more resistant to spikes or sudden
+jumps, but extreme values will simply hit the corridor walls and stay clamped
+near 0 or 1.</p></li>
+<li><p><strong>Lower span (e.g. 0.6 or 0.7)</strong>
+This corresponds to a <strong>narrow corridor</strong>: the scaler pays attention to a
+smaller core of typical values. It reacts more strongly to changes, but even
+moderate deviations may be treated as if they were already “far out.”</p></li>
+</ul>
+<p>Choosing a span is therefore a balance between <em>robustness</em> (wide corridor,
+large span) and <em>sensitivity</em> (narrow corridor, small span).</p>
+<img alt="_images/Plaquette-RobustScaler.png" src="_images/Plaquette-RobustScaler.png" />
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>Filters input values from a noisy sensor. The scaler adapts to the usual behaviour
+of the signal but ignores occasional spikes. An LED turns on when the signal goes
+beyond the upper “typical” range.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Example: noisy analog sensor.</span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Creates a robust scaler.</span>
+<span class="n">RobustScaler</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// Simple square wave.</span>
+<span class="n">Wave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// LED output.</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Sets span to 90%.</span>
+<span class="w">  </span><span class="n">scaler</span><span class="p">.</span><span class="n">span</span><span class="p">(</span><span class="mf">0.9</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Rescale value based on typical low/high ranges.</span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Adjust period based on rescaled value.</span>
+<span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">scaler</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Blink LED.</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For readers familiar with statistics: the <code class="docutils literal notranslate"><span class="pre">RobustScaler</span></code> functions by
+estimating two quantiles of the incoming signal. If the span is <code class="docutils literal notranslate"><span class="pre">s</span></code>,
+the scaler computes:</p>
+<ul class="simple">
+<li><p>a lower quantile at <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">-</span> <span class="pre">s)</span> <span class="pre">/</span> <span class="pre">2</span></code>, and</p></li>
+<li><p>an upper quantile at <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">s)</span> <span class="pre">/</span> <span class="pre">2</span></code>.</p></li>
+</ul>
+<p>For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">span(0.8)</span></code> → lower = 10th percentile, upper = 90th percentile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">span(0.9)</span></code> → lower = 5th percentile, upper = 95th percentile</p></li>
+</ul>
+<p>The incoming value is then linearly mapped between these two quantiles.</p>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv412RobustScaler">
+<span id="_CPPv312RobustScaler"></span><span id="_CPPv212RobustScaler"></span><span id="RobustScaler"></span><span class="target" id="classpq_1_1_robust_scaler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RobustScaler</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">MovingFilter</span></span><a class="headerlink" href="#_CPPv412RobustScaler" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Regularizes signal into [0,1] using adaptive quantile tracking (robust to outliers). </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler12RobustScalerER6Engine">
+<span id="_CPPv3N12RobustScaler12RobustScalerER6Engine"></span><span id="_CPPv2N12RobustScaler12RobustScalerER6Engine"></span><span id="RobustScaler::RobustScaler__EngineR"></span><span class="target" id="classpq_1_1_robust_scaler_1a3993f25f45c430ae034ea78c14dd83fc"></span><span class="sig-name descname"><span class="n"><span class="pre">RobustScaler</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler12RobustScalerER6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler12RobustScalerEfR6Engine">
+<span id="_CPPv3N12RobustScaler12RobustScalerEfR6Engine"></span><span id="_CPPv2N12RobustScaler12RobustScalerEfR6Engine"></span><span id="RobustScaler::RobustScaler__float.EngineR"></span><span class="target" id="classpq_1_1_robust_scaler_1acc638cc27897c2d74a45d1331bdd3a24"></span><span class="sig-name descname"><span class="n"><span class="pre">RobustScaler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler12RobustScalerEfR6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Constructor with custom quantile levels and time window. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeWindow</strong> – The adaptation window in seconds. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler12RobustScalerEffR6Engine">
+<span id="_CPPv3N12RobustScaler12RobustScalerEffR6Engine"></span><span id="_CPPv2N12RobustScaler12RobustScalerEffR6Engine"></span><span id="RobustScaler::RobustScaler__float.float.EngineR"></span><span class="target" id="classpq_1_1_robust_scaler_1af27ae3d8bb4ee0e837f82132705a0d45"></span><span class="sig-name descname"><span class="n"><span class="pre">RobustScaler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">span</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler12RobustScalerEffR6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Constructor with custom quantile levels and time window. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeWindow</strong> – The adaptation window in seconds. </p></li>
+<li><p><strong>span</strong> – Corresponds to percentage coverage of value in [0, 1]. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler4spanEf">
+<span id="_CPPv3N12RobustScaler4spanEf"></span><span id="_CPPv2N12RobustScaler4spanEf"></span><span id="RobustScaler::span__float"></span><span class="target" id="classpq_1_1_robust_scaler_1a11d9263fd97e72201854446cbebd8837"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler4spanEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the span (in [0, 1]) of the quantile to track. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler4spanEv">
+<span id="_CPPv3NK12RobustScaler4spanEv"></span><span id="_CPPv2NK12RobustScaler4spanEv"></span><span id="RobustScaler::spanC"></span><span class="target" id="classpq_1_1_robust_scaler_1ace669cb368ffff7ba57b16bf62d7009d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler4spanEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current span. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler16lowQuantileLevelEf">
+<span id="_CPPv3N12RobustScaler16lowQuantileLevelEf"></span><span id="_CPPv2N12RobustScaler16lowQuantileLevelEf"></span><span id="RobustScaler::lowQuantileLevel__float"></span><span class="target" id="classpq_1_1_robust_scaler_1ad7140e7f442648b47879bc463f56505c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lowQuantileLevel</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">level</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler16lowQuantileLevelEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the low quantile level (in [0, 0.5]). Low quantile will automatically be set to 1 - low. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler16lowQuantileLevelEv">
+<span id="_CPPv3NK12RobustScaler16lowQuantileLevelEv"></span><span id="_CPPv2NK12RobustScaler16lowQuantileLevelEv"></span><span id="RobustScaler::lowQuantileLevelC"></span><span class="target" id="classpq_1_1_robust_scaler_1aa299e6f12fcebfcaae5a97a5fb954b9d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lowQuantileLevel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler16lowQuantileLevelEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current low quantile level. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler17highQuantileLevelEf">
+<span id="_CPPv3N12RobustScaler17highQuantileLevelEf"></span><span id="_CPPv2N12RobustScaler17highQuantileLevelEf"></span><span id="RobustScaler::highQuantileLevel__float"></span><span class="target" id="classpq_1_1_robust_scaler_1a54d051c6e08c5b965eac02d7f710b1d1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">highQuantileLevel</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">level</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler17highQuantileLevelEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the high quantile level (in [0.5, 1]). Low quantile will automatically be set to 1 - high. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler17highQuantileLevelEv">
+<span id="_CPPv3NK12RobustScaler17highQuantileLevelEv"></span><span id="_CPPv2NK12RobustScaler17highQuantileLevelEv"></span><span id="RobustScaler::highQuantileLevelC"></span><span class="target" id="classpq_1_1_robust_scaler_1a22664dfc724ad3309ca68a3f07b9105e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">highQuantileLevel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler17highQuantileLevelEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current high quantile level. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler11lowQuantileEv">
+<span id="_CPPv3NK12RobustScaler11lowQuantileEv"></span><span id="_CPPv2NK12RobustScaler11lowQuantileEv"></span><span id="RobustScaler::lowQuantileC"></span><span class="target" id="classpq_1_1_robust_scaler_1a7928ba142c762602fb8268cda9fa750b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lowQuantile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler11lowQuantileEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current low quantile. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler12highQuantileEv">
+<span id="_CPPv3NK12RobustScaler12highQuantileEv"></span><span id="_CPPv2NK12RobustScaler12highQuantileEv"></span><span id="RobustScaler::highQuantileC"></span><span class="target" id="classpq_1_1_robust_scaler_1a902471acb5453532e7d8bbc86ca15cfd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">highQuantile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler12highQuantileEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current high quantile. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler6stdDevEv">
+<span id="_CPPv3NK12RobustScaler6stdDevEv"></span><span id="_CPPv2NK12RobustScaler6stdDevEv"></span><span id="RobustScaler::stdDevC"></span><span class="target" id="classpq_1_1_robust_scaler_1abfcabec30407320d78903fcbc54ecba7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stdDev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler6stdDevEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the current standard deviation. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler5resetEv">
+<span id="_CPPv3N12RobustScaler5resetEv"></span><span id="_CPPv2N12RobustScaler5resetEv"></span><span id="RobustScaler::reset"></span><span class="target" id="classpq_1_1_robust_scaler_1a5c84fd1f770988eec2e1cede7c8012c1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the filter. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler5resetEf">
+<span id="_CPPv3N12RobustScaler5resetEf"></span><span id="_CPPv2N12RobustScaler5resetEf"></span><span id="RobustScaler::reset__float"></span><span class="target" id="classpq_1_1_robust_scaler_1a48a57eb41f5562f87f6b8f8f5ba5f2ce"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler5resetEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the filter with a prior estimate of the mean value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler5resetEff">
+<span id="_CPPv3N12RobustScaler5resetEff"></span><span id="_CPPv2N12RobustScaler5resetEff"></span><span id="RobustScaler::reset__float.float"></span><span class="target" id="classpq_1_1_robust_scaler_1aecc509fc20ec12ee951e72e939ade194"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler5resetEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the moving filter with a prior estimate of the min and max values. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler3getEv">
+<span id="_CPPv3N12RobustScaler3getEv"></span><span id="_CPPv2N12RobustScaler3getEv"></span><span id="RobustScaler::get"></span><span class="target" id="classpq_1_1_robust_scaler_1ab8e4f95d0366e2e0e75f87a0f62a1956"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value of scaler. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler3putEf">
+<span id="_CPPv3N12RobustScaler3putEf"></span><span id="_CPPv2N12RobustScaler3putEf"></span><span id="RobustScaler::put__float"></span><span class="target" id="classpq_1_1_robust_scaler_1a5ce7a6b441819f53bdd60beb50e4734d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes a new value and returns the scaled output. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler17resumeCalibratingEv">
+<span id="_CPPv3N12RobustScaler17resumeCalibratingEv"></span><span id="_CPPv2N12RobustScaler17resumeCalibratingEv"></span><span id="RobustScaler::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler17resumeCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switches to calibration mode (default). </p>
+<p>Calls to put(value) will return filtered value AND update the normalization statistics. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler16pauseCalibratingEv">
+<span id="_CPPv3N12RobustScaler16pauseCalibratingEv"></span><span id="_CPPv2N12RobustScaler16pauseCalibratingEv"></span><span id="RobustScaler::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler16pauseCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Switches to non-calibration mode: calls to put(value) will return filtered value without updating the normalization statistics. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler17toggleCalibratingEv">
+<span id="_CPPv3N12RobustScaler17toggleCalibratingEv"></span><span id="_CPPv2N12RobustScaler17toggleCalibratingEv"></span><span id="RobustScaler::toggleCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a5ffbcc93a69b25b861e8529d14aa4c06"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler17toggleCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Toggles calibration mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler13isCalibratingEv">
+<span id="_CPPv3NK12RobustScaler13isCalibratingEv"></span><span id="_CPPv2NK12RobustScaler13isCalibratingEv"></span><span id="RobustScaler::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler13isCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true iff the moving filter is in calibration mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler8nSamplesEv">
+<span id="_CPPv3NK12RobustScaler8nSamplesEv"></span><span id="_CPPv2NK12RobustScaler8nSamplesEv"></span><span id="RobustScaler::nSamplesC"></span><span class="target" id="classpq_1_1_moving_filter_1aef1287b234e6ff879aeff99fe09e61c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSamples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler8nSamplesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the number of samples that have been processed thus far. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler16isPreInitializedEv">
+<span id="_CPPv3NK12RobustScaler16isPreInitializedEv"></span><span id="_CPPv2NK12RobustScaler16isPreInitializedEv"></span><span id="RobustScaler::isPreInitializedC"></span><span class="target" id="classpq_1_1_moving_filter_1ab6fa87a82028128f861011646e09d81e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPreInitialized</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler16isPreInitializedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the moving filter has been initialized with a starting range at reset. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler5mapToEff">
+<span id="_CPPv3N12RobustScaler5mapToEff"></span><span id="_CPPv2N12RobustScaler5mapToEff"></span><span id="RobustScaler::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_source_1a2ee82196b5973d1c38cd0fb327233044"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler7secondsEv">
+<span id="_CPPv3NK12RobustScaler7secondsEv"></span><span id="_CPPv2NK12RobustScaler7secondsEv"></span><span id="RobustScaler::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler12milliSecondsEv">
+<span id="_CPPv3NK12RobustScaler12milliSecondsEv"></span><span id="_CPPv2NK12RobustScaler12milliSecondsEv"></span><span id="RobustScaler::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler12microSecondsEv">
+<span id="_CPPv3NK12RobustScaler12microSecondsEv"></span><span id="_CPPv2NK12RobustScaler12microSecondsEv"></span><span id="RobustScaler::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler6nStepsEv">
+<span id="_CPPv3NK12RobustScaler6nStepsEv"></span><span id="_CPPv2NK12RobustScaler6nStepsEv"></span><span id="RobustScaler::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler10sampleRateEv">
+<span id="_CPPv3NK12RobustScaler10sampleRateEv"></span><span id="_CPPv2NK12RobustScaler10sampleRateEv"></span><span id="RobustScaler::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler12samplePeriodEv">
+<span id="_CPPv3NK12RobustScaler12samplePeriodEv"></span><span id="_CPPv2NK12RobustScaler12samplePeriodEv"></span><span id="RobustScaler::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScalercvfEv">
+<span id="_CPPv3N12RobustScalercvfEv"></span><span id="_CPPv2N12RobustScalercvfEv"></span><span id="RobustScaler::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScalercvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScalercvbEv">
+<span id="_CPPv3N12RobustScalercvbEv"></span><span id="_CPPv2N12RobustScalercvbEv"></span><span id="RobustScaler::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScalercvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler18infiniteTimeWindowEv">
+<span id="_CPPv3N12RobustScaler18infiniteTimeWindowEv"></span><span id="_CPPv2N12RobustScaler18infiniteTimeWindowEv"></span><span id="RobustScaler::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1ae70831c02cb9ac2ed4633fb2612b2654"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler12noTimeWindowEv">
+<span id="_CPPv3N12RobustScaler12noTimeWindowEv"></span><span id="_CPPv2N12RobustScaler12noTimeWindowEv"></span><span id="RobustScaler::noTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1a973b709e6d620ba95e811dac73835fd6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler12noTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to no time window. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler10timeWindowEf">
+<span id="_CPPv3N12RobustScaler10timeWindowEf"></span><span id="_CPPv2N12RobustScaler10timeWindowEf"></span><span id="RobustScaler::timeWindow__float"></span><span class="target" id="classpq_1_1_time_windowable_1a200edba5991b4ea779a6848f654aceb5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler10timeWindowEv">
+<span id="_CPPv3NK12RobustScaler10timeWindowEv"></span><span id="_CPPv2NK12RobustScaler10timeWindowEv"></span><span id="RobustScaler::timeWindowC"></span><span class="target" id="classpq_1_1_time_windowable_1a5047b025a686298b85dba2c162175914"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler20timeWindowIsInfiniteEv">
+<span id="_CPPv3NK12RobustScaler20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK12RobustScaler20timeWindowIsInfiniteEv"></span><span id="RobustScaler::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_time_windowable_1aef904a094f19d393062c61f06e510a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if time window is infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler6cutoffEf">
+<span id="_CPPv3N12RobustScaler6cutoffEf"></span><span id="_CPPv2N12RobustScaler6cutoffEf"></span><span id="RobustScaler::cutoff__float"></span><span class="target" id="classpq_1_1_time_windowable_1a7e6b52e05e0cc21a4f693a708f7b466a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12RobustScaler6cutoffEv">
+<span id="_CPPv3NK12RobustScaler6cutoffEv"></span><span id="_CPPv2NK12RobustScaler6cutoffEv"></span><span id="RobustScaler::cutoffC"></span><span class="target" id="classpq_1_1_time_windowable_1aa5d75f1b738c6666f4ada0a54fdd9dba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12RobustScaler6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler15analogToDigitalEf">
+<span id="_CPPv3N12RobustScaler15analogToDigitalEf"></span><span id="_CPPv2N12RobustScaler15analogToDigitalEf"></span><span id="RobustScaler::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12RobustScaler15digitalToAnalogEb">
+<span id="_CPPv3N12RobustScaler15digitalToAnalogEb"></span><span id="_CPPv2N12RobustScaler15digitalToAnalogEb"></span><span id="RobustScaler::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12RobustScaler15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></p></li>
+<li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></p></li>
+<li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PeakDetector.html" class="btn btn-neutral float-left" title="PeakDetector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Smoother.html" class="btn btn-neutral float-right" title="Smoother" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

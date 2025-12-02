@@ -1,6 +1,6 @@
 var classpq_1_1_digital_unit =
 [
-    [ "DigitalUnit", "classpq_1_1_digital_unit.html#a012649ea8296d41cb30f97650ea166d1", null ],
+    [ "DigitalUnit", "classpq_1_1_digital_unit.html#a72f44843d37759a163bd0ab47ff01fbc", null ],
     [ "engine", "classpq_1_1_digital_unit.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
     [ "eventTriggered", "classpq_1_1_digital_unit.html#a8beada08e61f4151fd30d888341390b7", null ],
     [ "get", "classpq_1_1_digital_unit.html#a1e84763649e8d23c99f05b5d80430b35", null ],

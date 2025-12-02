@@ -143,14 +143,14 @@ Inheritance diagram for pq::Timeable:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aee42bd50475fb58e843a680e3047069b" id="r_aee42bd50475fb58e843a680e3047069b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#aee42bd50475fb58e843a680e3047069b">start</a> ()</td></tr>
-<tr class="memdesc:aee42bd50475fb58e843a680e3047069b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts/restarts the chronometer.  <br /></td></tr>
+<tr class="memdesc:aee42bd50475fb58e843a680e3047069b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts/restarts.  <br /></td></tr>
 <tr class="separator:aee42bd50475fb58e843a680e3047069b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a208dbebe3ec7df301d86769ea559fbee" id="r_a208dbebe3ec7df301d86769ea559fbee"><td class="memItemLeft" align="right" valign="top"><a id="a208dbebe3ec7df301d86769ea559fbee" name="a208dbebe3ec7df301d86769ea559fbee"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="memdesc:a208dbebe3ec7df301d86769ea559fbee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the chronometer and resets to zero. <br /></td></tr>
+<tr class="memdesc:a208dbebe3ec7df301d86769ea559fbee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts and resets to zero. <br /></td></tr>
 <tr class="separator:a208dbebe3ec7df301d86769ea559fbee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06b24ccfc0910f3425ad81e49297c988" id="r_a06b24ccfc0910f3425ad81e49297c988"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a06b24ccfc0910f3425ad81e49297c988">pause</a> ()</td></tr>
-<tr class="memdesc:a06b24ccfc0910f3425ad81e49297c988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the chronometer.  <br /></td></tr>
+<tr class="memdesc:a06b24ccfc0910f3425ad81e49297c988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts process.  <br /></td></tr>
 <tr class="separator:a06b24ccfc0910f3425ad81e49297c988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fa89290faa8d8c63e88ea34e510897f" id="r_a1fa89290faa8d8c63e88ea34e510897f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a1fa89290faa8d8c63e88ea34e510897f">resume</a> ()</td></tr>
 <tr class="memdesc:a1fa89290faa8d8c63e88ea34e510897f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes process.  <br /></td></tr>
@@ -163,7 +163,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>togglePause</
 <tr class="memdesc:a73e8886227ef61682b6bda3335c4db09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces current time (in seconds).  <br /></td></tr>
 <tr class="separator:a73e8886227ef61682b6bda3335c4db09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97b69d3f8009ea2e1a291315ce690099" id="r_a97b69d3f8009ea2e1a291315ce690099"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a97b69d3f8009ea2e1a291315ce690099">addTime</a> (float time)=0</td></tr>
-<tr class="memdesc:a97b69d3f8009ea2e1a291315ce690099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds/subtracts time to the chronometer.  <br /></td></tr>
+<tr class="memdesc:a97b69d3f8009ea2e1a291315ce690099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds/subtracts time.  <br /></td></tr>
 <tr class="separator:a97b69d3f8009ea2e1a291315ce690099"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50b0745e0f347dd2384aee12d78c9fcf" id="r_a50b0745e0f347dd2384aee12d78c9fcf"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a50b0745e0f347dd2384aee12d78c9fcf">isRunning</a> () const =0</td></tr>
 <tr class="memdesc:a50b0745e0f347dd2384aee12d78c9fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true iff currently running.  <br /></td></tr>
@@ -202,7 +202,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_setRunning</
 </table>
 </div><div class="memdoc">
 
-<p>Adds/subtracts time to the chronometer. </p>
+<p>Adds/subtracts time. </p>
 
 <p>Implemented in <a class="el" href="classpq_1_1_abstract_chronometer.html#a0bb9bb33bf7e2e5fc8980a96f935a8fc">pq::AbstractChronometer</a>, and <a class="el" href="classpq_1_1_abstract_oscillator.html#adaa30519869dd5c7abc0ad3435ef8ed0">pq::AbstractOscillator</a>.</p>
 
@@ -260,7 +260,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_setRunning</
 </table>
 </div><div class="memdoc">
 
-<p>Interrupts the chronometer. </p>
+<p>Interrupts process. </p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_abstract_chronometer.html#a28dcf317e5cb96744505352681553013">pq::AbstractChronometer</a>.</p>
 
@@ -348,9 +348,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_setRunning</
 </table>
 </div><div class="memdoc">
 
-<p>Starts/restarts the chronometer. </p>
+<p>Starts/restarts. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_abstract_timer.html#af50f92b60dbc887be34b87b10c6d8afb">pq::AbstractTimer</a>, and <a class="el" href="classpq_1_1_ramp.html#aead9fb134ed0e30782a6704bf9606e4f">pq::Ramp</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_abstract_oscillator.html#ab6477b28acf7a0d405ace017b5a810b6">pq::AbstractOscillator</a>, <a class="el" href="classpq_1_1_abstract_timer.html#af50f92b60dbc887be34b87b10c6d8afb">pq::AbstractTimer</a>, and <a class="el" href="classpq_1_1_ramp.html#aead9fb134ed0e30782a6704bf9606e4f">pq::Ramp</a>.</p>
 
 </div>
 </div>
@@ -364,7 +364,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_setRunning</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_timeable.html">Timeable</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,22 +1,14 @@
 var searchData=
 [
-  ['pause_0',['pause',['../classpq_1_1_abstract_chronometer.html#a28dcf317e5cb96744505352681553013',1,'pq::AbstractChronometer::pause()'],['../classpq_1_1_timeable.html#a06b24ccfc0910f3425ad81e49297c988',1,'pq::Timeable::pause()']]],
-  ['pausecalibrating_1',['pauseCalibrating',['../classpq_1_1_moving_filter.html#aa1b012a27c3ea7c5ddb034e17ae4e960',1,'pq::MovingFilter']]],
-  ['peakdetector_2',['peakdetector',['../classpq_1_1_peak_detector.html',1,'pq::PeakDetector'],['../classpq_1_1_peak_detector.html#af3f427c2239cc1e558f1d0282be46ca0',1,'pq::PeakDetector::PeakDetector(float triggerThreshold, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_peak_detector.html#a580e6c263867d5f177e9d2de63242fa7',1,'pq::PeakDetector::PeakDetector(float triggerThreshold, uint8_t mode, Engine &amp;engine=Engine::primary())']]],
-  ['period_3',['period',['../classpq_1_1_time_slice_field.html#a3094253ace34df272c208515f7e63378',1,'pq::TimeSliceField::period() const'],['../classpq_1_1_time_slice_field.html#ab49b58a4ae99b66eca289598a1c2d4a0',1,'pq::TimeSliceField::period(float period)'],['../classpq_1_1_abstract_oscillator.html#a11dc9d509dd43e35d50f9d1717a83389',1,'pq::AbstractOscillator::period() const'],['../classpq_1_1_abstract_oscillator.html#af3f7d4f52906d754e4261ee115ce7377',1,'pq::AbstractOscillator::period(float period)']]],
-  ['phase_4',['phase',['../classpq_1_1_abstract_oscillator.html#ac12947cffc82d85599f89b8b1f9d3f7b',1,'pq::AbstractOscillator::phase(float phase)'],['../classpq_1_1_abstract_oscillator.html#a6daf1f996dfa36646616547b4e486420',1,'pq::AbstractOscillator::phase() const']]],
-  ['phaseshift_5',['phaseshift',['../classpq_1_1_abstract_oscillator.html#abd9cd1f4a0890cba74be0db6aacbeca5',1,'pq::AbstractOscillator::phaseShift(float phaseShift)'],['../classpq_1_1_abstract_oscillator.html#a18632ddb4f0b021a1ef9adbc3049ee7b',1,'pq::AbstractOscillator::phaseShift() const']]],
-  ['pin_6',['pin',['../classpq_1_1_pin_config.html#a2cad820bc4dcf9005f1aeb0b987333bd',1,'pq::PinConfig::pin()'],['../classpq_1_1_abstract_servo_out.html#a89692386faed8fb012ee6193c59f5f4c',1,'pq::AbstractServoOut::pin()']]],
-  ['pinconfig_7',['PinConfig',['../classpq_1_1_pin_config.html',1,'pq']]],
-  ['pivotfield_8',['pivotfield',['../classpq_1_1_pivot_field.html',1,'pq::PivotField'],['../classpq_1_1_pivot_field.html#a0d428799f95a2701e6fc02203c978774',1,'pq::PivotField::PivotField()']]],
-  ['populate_9',['populate',['../classpq_1_1_abstract_field.html#a531408928251e4cd7a03fc3a53ccb46f',1,'pq::AbstractField']]],
-  ['postbegin_10',['postBegin',['../classpq_1_1_engine.html#a9777126f3a019fc4eee4d5d7d4156d2d',1,'pq::Engine']]],
-  ['prebegin_11',['preBegin',['../classpq_1_1_engine.html#ac4da59764e8f3fc7473f408e3ae4a583',1,'pq::Engine']]],
-  ['precision_12',['precision',['../classpq_1_1_stream_out.html#a37edbe0f70e34182c9ce252daab6be12',1,'pq::StreamOut']]],
-  ['prestep_13',['preStep',['../classpq_1_1_engine.html#a10a604b576ff5e5c209a22298236ce10',1,'pq::Engine']]],
-  ['primary_14',['primary',['../classpq_1_1_engine.html#a45a0de76dadb5e62933ae5e29f2621d2',1,'pq::Engine']]],
-  ['progress_15',['progress',['../classpq_1_1_abstract_timer.html#a853baae3f098000ae4410bf1029a661b',1,'pq::AbstractTimer']]],
-  ['put_16',['put',['../classpq_1_1_digital_unit.html#ab6aee5c14addea2c5ba36424ff52612a',1,'pq::DigitalUnit::put()'],['../classpq_1_1_time_slice_field.html#af7fd9a0d0fe4a901ddc85bd5bb508113',1,'pq::TimeSliceField::put()'],['../classpq_1_1_stream_out.html#aad28e81e72333bc0a2125311342ce820',1,'pq::StreamOut::put()'],['../classpq_1_1_smoother.html#a663bdf40ad70eb9fa4e4f13a18e25bc0',1,'pq::Smoother::put()'],['../classpq_1_1_ramp.html#a21daa569cd4c58909dc2e596dfb11d21',1,'pq::Ramp::put()'],['../classpq_1_1_abstract_servo_out.html#a0697cd97c70230a0ef8f3f42bb21f857',1,'pq::AbstractServoOut::put()'],['../classpq_1_1_analog_out.html#a9f5d2f056bef08b373cc78604d8aa31b',1,'pq::AnalogOut::put()'],['../classpq_1_1_chainable.html#aa29ab780effb0eb1430c30ff33d2498c',1,'pq::Chainable::put()'],['../classpq_1_1_pivot_field.html#a1856cf976a67c520ba9d50f91d0a4ced',1,'pq::PivotField::put()'],['../classpq_1_1_peak_detector.html#a26b87ccd1659a14d9b903f7c382909cb',1,'pq::PeakDetector::put()'],['../classpq_1_1_normalizer.html#a9c2a6da973bb004787faf889622815ef',1,'pq::Normalizer::put()'],['../classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef',1,'pq::MinMaxScaler::put()'],['../classpq_1_1_chronometer.html#aabe4072d283b95e176f42f4d2eacc616',1,'pq::Chronometer::put()']]],
-  ['putangle_17',['putAngle',['../classpq_1_1_servo_out.html#a4043b2c2ba53b61a0ac28d5cd591e2be',1,'pq::ServoOut']]],
-  ['puton_18',['puton',['../classpq_1_1_digital_unit.html#a15b86734a86bd076bc2d63045f2eb807',1,'pq::DigitalUnit::putOn()'],['../classpq_1_1_digital_source.html#a55e10c0f2fe1b81820302dbe9ba23e62',1,'pq::DigitalSource::putOn()']]]
+  ['off_0',['off',['../classpq_1_1_digital_unit.html#a56b70d2356df94b7f3829281326614ee',1,'pq::DigitalUnit']]],
+  ['on_1',['on',['../classpq_1_1_digital_unit.html#ae30cc3b6a81ee19d1ecb61440c1c7959',1,'pq::DigitalUnit']]],
+  ['onbang_2',['onbang',['../classpq_1_1_abstract_wave.html#a621214b240ce5fdf1314ebda6d2fd354',1,'pq::AbstractWave::onBang()'],['../classpq_1_1_metronome.html#a567e30fecc027d01e5785b27c6aa1fa5',1,'pq::Metronome::onBang()'],['../classpq_1_1_peak_detector.html#a8e998b600a528b7b0c4440303537da36',1,'pq::PeakDetector::onBang()']]],
+  ['onchange_3',['onChange',['../classpq_1_1_digital_source.html#aedb08432ce3ee47aed52a059d8ba8a08',1,'pq::DigitalSource']]],
+  ['onevent_4',['onEvent',['../classpq_1_1_unit.html#a85d4925dfb2341565c63c554ca0a8ce2',1,'pq::Unit']]],
+  ['onfall_5',['onFall',['../classpq_1_1_digital_source.html#a62b4a97870c20690b40b30c9a003e653',1,'pq::DigitalSource']]],
+  ['onfinish_6',['onfinish',['../classpq_1_1_alarm.html#a57ad0993b78814bfadc0ee7ca6ec541c',1,'pq::Alarm::onFinish()'],['../classpq_1_1_ramp.html#a0bb78b45722a3a3bfa5c07d0ab2ee98a',1,'pq::Ramp::onFinish()']]],
+  ['onrise_7',['onRise',['../classpq_1_1_digital_source.html#a5fa17c879632bb3265e09fb9fdaa3961',1,'pq::DigitalSource']]],
+  ['onupdate_8',['onupdate',['../classpq_1_1_stream_in.html#ae0cfe8888cb9b85ccb9922e5bfb45b36',1,'pq::StreamIn::onUpdate()'],['../classpq_1_1_time_slice_field.html#aee752f0174eff1c9f3250dd163fb0344',1,'pq::TimeSliceField::onUpdate()']]],
+  ['operator_20bool_9',['operator bool',['../classpq_1_1_chainable.html#a71ebff10aa760a007055852768535e3f',1,'pq::Chainable::operator bool()'],['../classpq_1_1_digital_unit.html#a5d142103212c63a0a063fcbe193117c8',1,'pq::DigitalUnit::operator bool()']]],
+  ['operator_20float_10',['operator float',['../classpq_1_1_chainable.html#ab8dd6554f3d7f8c298f0c600f54de6b5',1,'pq::Chainable']]]
 ];

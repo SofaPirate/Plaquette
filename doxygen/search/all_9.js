@@ -1,7 +1,7 @@
 var searchData=
 [
   ['indexof_0',['indexOf',['../class_hybrid_array_list.html#a2e1995aac79783ba5caa808651a30d46',1,'HybridArrayList']]],
-  ['infinitetimewindow_1',['infinitetimewindow',['../classpq_1_1_min_max_scaler.html#a290bc065189a7a3b16d6425723870b95',1,'pq::MinMaxScaler::infiniteTimeWindow()'],['../classpq_1_1_moving_average.html#aecc1136923c82e2cfe45a70bfb919662',1,'pq::MovingAverage::infiniteTimeWindow()'],['../classpq_1_1_moving_filter.html#a16607e752323b356bfadeb664a7bc512',1,'pq::MovingFilter::infiniteTimeWindow()'],['../classpq_1_1_moving_stats.html#a82682a04e6153235dfd845d9543e3981',1,'pq::MovingStats::infiniteTimeWindow()'],['../classpq_1_1_normalizer.html#a8f74c0c7a55d94d40e12632fb723a36b',1,'pq::Normalizer::infiniteTimeWindow()']]],
+  ['infinitetimewindow_1',['infiniteTimeWindow',['../classpq_1_1_time_windowable.html#ae70831c02cb9ac2ed4633fb2612b2654',1,'pq::TimeWindowable']]],
   ['insert_2',['insert',['../class_hybrid_array_list.html#a2faa57acef00e4e2fe99ca8852923170',1,'HybridArrayList']]],
   ['invert_3',['invert',['../classpq_1_1_analog_out.html#a96398d0fd733795e23f700eee606d9ac',1,'pq::AnalogOut']]],
   ['isactive_4',['isActive',['../classpq_1_1_abstract_servo_out.html#adf66e20f291b5129214f51f1f75955d6',1,'pq::AbstractServoOut']]],
@@ -16,8 +16,9 @@ var searchData=
   ['isoff_13',['isOff',['../classpq_1_1_digital_unit.html#ace23aca8df66cbe7a810aae87a6f8687',1,'pq::DigitalUnit']]],
   ['ison_14',['ison',['../classpq_1_1_metronome.html#a8d7308318559f8ef98b31dc7d21d9cc5',1,'pq::Metronome::isOn()'],['../classpq_1_1_peak_detector.html#aac1a8a24d9c093021b90dbce72a5ceaf',1,'pq::PeakDetector::isOn()'],['../classpq_1_1_digital_unit.html#a96e4d0671ed93e6a7f4dc79cb5a9a635',1,'pq::DigitalUnit::isOn()'],['../classpq_1_1_digital_source.html#aa894fe9be99d8d5b103d880392b6098e',1,'pq::DigitalSource::isOn()']]],
   ['isoutlier_15',['isOutlier',['../classpq_1_1_moving_stats.html#a5fd05a5e0daf0a6c1efd383263e02fc7',1,'pq::MovingStats']]],
-  ['isprimary_16',['isPrimary',['../classpq_1_1_engine.html#a757f6d8e148a2b10e2e8c4882ff5b9ff',1,'pq::Engine']]],
-  ['isrolling_17',['isRolling',['../classpq_1_1_time_slice_field.html#a9d6f3d8e75d98b9442f970fb9cf8950b',1,'pq::TimeSliceField']]],
-  ['isrunning_18',['isrunning',['../classpq_1_1_abstract_chronometer.html#a35cafa255acf2304c3ff8ddd922c4ec2',1,'pq::AbstractChronometer::isRunning()'],['../classpq_1_1_abstract_oscillator.html#aedb15d1a75dafc4536ca0d1339187091',1,'pq::AbstractOscillator::isRunning()'],['../classpq_1_1_timeable.html#a50b0745e0f347dd2384aee12d78c9fcf',1,'pq::Timeable::isRunning()']]],
-  ['isstarted_19',['isStarted',['../classpq_1_1_abstract_chronometer.html#a190b9031878f7a4a40c50ee98da4574b',1,'pq::AbstractChronometer']]]
+  ['ispreinitialized_16',['isPreInitialized',['../classpq_1_1_moving_filter.html#ab6fa87a82028128f861011646e09d81e',1,'pq::MovingFilter']]],
+  ['isprimary_17',['isPrimary',['../classpq_1_1_engine.html#a757f6d8e148a2b10e2e8c4882ff5b9ff',1,'pq::Engine']]],
+  ['isrolling_18',['isRolling',['../classpq_1_1_time_slice_field.html#a9d6f3d8e75d98b9442f970fb9cf8950b',1,'pq::TimeSliceField']]],
+  ['isrunning_19',['isrunning',['../classpq_1_1_abstract_chronometer.html#a35cafa255acf2304c3ff8ddd922c4ec2',1,'pq::AbstractChronometer::isRunning()'],['../classpq_1_1_abstract_oscillator.html#aedb15d1a75dafc4536ca0d1339187091',1,'pq::AbstractOscillator::isRunning()'],['../classpq_1_1_timeable.html#a50b0745e0f347dd2384aee12d78c9fcf',1,'pq::Timeable::isRunning()']]],
+  ['isstarted_20',['isStarted',['../classpq_1_1_abstract_chronometer.html#a190b9031878f7a4a40c50ee98da4574b',1,'pq::AbstractChronometer']]]
 ];

@@ -97,7 +97,6 @@ $(document).ready(function(){initNavTree('classpq_1_1_moving_average.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classpq_1_1_moving_average-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">pq::MovingAverage Class Reference</div></div>
@@ -108,16 +107,6 @@ $(document).ready(function(){initNavTree('classpq_1_1_moving_average.html',''); 
  <a href="classpq_1_1_moving_average.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_moving_average_8h_source.html">MovingAverage.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for pq::MovingAverage:</div>
-<div class="dyncontent">
-<div class="center"><img src="classpq_1_1_moving_average__inherit__graph.png" border="0" usemap="#apq_1_1_moving_average_inherit__map" alt="Inheritance graph"/></div>
-<map name="apq_1_1_moving_average_inherit__map" id="apq_1_1_moving_average_inherit__map">
-<area shape="rect" title="An exponential moving average class." alt="" coords="5,5,140,31"/>
-<area shape="rect" href="classpq_1_1_smoother.html" title="Simple moving average transform filter." alt="" coords="23,79,123,104"/>
-<area shape="poly" title=" " alt="" coords="75,44,75,79,70,79,70,44"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -125,46 +114,26 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MovingAverage</b> ()</td></tr>
 <tr class="memdesc:a3f9b287ba446447dd615c7e2e340c2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (infinite time window). <br /></td></tr>
 <tr class="separator:a3f9b287ba446447dd615c7e2e340c2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7639f24d38f6b362ce49aaf4847195fa" id="r_a7639f24d38f6b362ce49aaf4847195fa"><td class="memItemLeft" align="right" valign="top"><a id="a7639f24d38f6b362ce49aaf4847195fa" name="a7639f24d38f6b362ce49aaf4847195fa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MovingAverage</b> (float <a class="el" href="classpq_1_1_moving_average.html#a52c72676771917bfd7d02170d0f6385d">timeWindow</a>)</td></tr>
-<tr class="memdesc:a7639f24d38f6b362ce49aaf4847195fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (finite time window). <br /></td></tr>
-<tr class="separator:a7639f24d38f6b362ce49aaf4847195fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecc1136923c82e2cfe45a70bfb919662" id="r_aecc1136923c82e2cfe45a70bfb919662"><td class="memItemLeft" align="right" valign="top"><a id="aecc1136923c82e2cfe45a70bfb919662" name="aecc1136923c82e2cfe45a70bfb919662"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>infiniteTimeWindow</b> ()</td></tr>
-<tr class="memdesc:aecc1136923c82e2cfe45a70bfb919662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets to "infinite" smoothing window. <br /></td></tr>
-<tr class="separator:aecc1136923c82e2cfe45a70bfb919662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52c72676771917bfd7d02170d0f6385d" id="r_a52c72676771917bfd7d02170d0f6385d"><td class="memItemLeft" align="right" valign="top"><a id="a52c72676771917bfd7d02170d0f6385d" name="a52c72676771917bfd7d02170d0f6385d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float seconds)</td></tr>
-<tr class="memdesc:a52c72676771917bfd7d02170d0f6385d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a52c72676771917bfd7d02170d0f6385d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6826ef56a2026934126da5c5980d0f84" id="r_a6826ef56a2026934126da5c5980d0f84"><td class="memItemLeft" align="right" valign="top"><a id="a6826ef56a2026934126da5c5980d0f84" name="a6826ef56a2026934126da5c5980d0f84"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
-<tr class="memdesc:a6826ef56a2026934126da5c5980d0f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a6826ef56a2026934126da5c5980d0f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fefef6a48714045cb94ef13907e404c" id="r_a3fefef6a48714045cb94ef13907e404c"><td class="memItemLeft" align="right" valign="top"><a id="a3fefef6a48714045cb94ef13907e404c" name="a3fefef6a48714045cb94ef13907e404c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindowIsInfinite</b> () const</td></tr>
-<tr class="memdesc:a3fefef6a48714045cb94ef13907e404c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if time window is infinite. <br /></td></tr>
-<tr class="separator:a3fefef6a48714045cb94ef13907e404c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a852dc2e13debcfb32ae54247f4c7433e" id="r_a852dc2e13debcfb32ae54247f4c7433e"><td class="memItemLeft" align="right" valign="top"><a id="a852dc2e13debcfb32ae54247f4c7433e" name="a852dc2e13debcfb32ae54247f4c7433e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> (float hz)</td></tr>
-<tr class="memdesc:a852dc2e13debcfb32ae54247f4c7433e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:a852dc2e13debcfb32ae54247f4c7433e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af633b34d73d74978b5b1354c29441c4d" id="r_af633b34d73d74978b5b1354c29441c4d"><td class="memItemLeft" align="right" valign="top"><a id="af633b34d73d74978b5b1354c29441c4d" name="af633b34d73d74978b5b1354c29441c4d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
-<tr class="memdesc:af633b34d73d74978b5b1354c29441c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:af633b34d73d74978b5b1354c29441c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a044585f209484066e8f57ddb6232e93b" id="r_a044585f209484066e8f57ddb6232e93b"><td class="memItemLeft" align="right" valign="top"><a id="a044585f209484066e8f57ddb6232e93b" name="a044585f209484066e8f57ddb6232e93b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>alpha</b> (float sampleRate) const</td></tr>
-<tr class="memdesc:a044585f209484066e8f57ddb6232e93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the alpha value computed from given sample rate. <br /></td></tr>
-<tr class="separator:a044585f209484066e8f57ddb6232e93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac02afd5497c644cd62a393e956c2f50c" id="r_ac02afd5497c644cd62a393e956c2f50c"><td class="memItemLeft" align="right" valign="top"><a id="ac02afd5497c644cd62a393e956c2f50c" name="ac02afd5497c644cd62a393e956c2f50c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
 <tr class="memdesc:ac02afd5497c644cd62a393e956c2f50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the moving average. <br /></td></tr>
 <tr class="separator:ac02afd5497c644cd62a393e956c2f50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55ad1aab81caaa351703fcf74e0b8e8c" id="r_a55ad1aab81caaa351703fcf74e0b8e8c"><td class="memItemLeft" align="right" valign="top"><a id="a55ad1aab81caaa351703fcf74e0b8e8c" name="a55ad1aab81caaa351703fcf74e0b8e8c"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float v, float sampleRate=1, bool forceAlpha=false)</td></tr>
-<tr class="memdesc:a55ad1aab81caaa351703fcf74e0b8e8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the moving average with new value v# (also returns the current value). <br /></td></tr>
-<tr class="separator:a55ad1aab81caaa351703fcf74e0b8e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37025bc024cb961f7dc59ca9134f0fe0" id="r_a37025bc024cb961f7dc59ca9134f0fe0"><td class="memItemLeft" align="right" valign="top"><a id="a37025bc024cb961f7dc59ca9134f0fe0" name="a37025bc024cb961f7dc59ca9134f0fe0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> (float initialValue)</td></tr>
+<tr class="memdesc:a37025bc024cb961f7dc59ca9134f0fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the moving average with initial value. <br /></td></tr>
+<tr class="separator:a37025bc024cb961f7dc59ca9134f0fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13574f02f4645d9dcfdc80c6efa2383" id="r_ac13574f02f4645d9dcfdc80c6efa2383"><td class="memItemLeft" align="right" valign="top"><a id="ac13574f02f4645d9dcfdc80c6efa2383" name="ac13574f02f4645d9dcfdc80c6efa2383"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float v, float alpha)</td></tr>
+<tr class="memdesc:ac13574f02f4645d9dcfdc80c6efa2383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the moving average with new value v# (also returns the current value). <br /></td></tr>
+<tr class="separator:ac13574f02f4645d9dcfdc80c6efa2383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af811088f8275e9180d94efd521a8f42f" id="r_af811088f8275e9180d94efd521a8f42f"><td class="memItemLeft" align="right" valign="top"><a id="af811088f8275e9180d94efd521a8f42f" name="af811088f8275e9180d94efd521a8f42f"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>amend</b> (float previousValue, float newValue, float alpha)</td></tr>
+<tr class="memdesc:af811088f8275e9180d94efd521a8f42f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amends the moving average latest update (needs to be called with same #alpha# parameter). <br /></td></tr>
+<tr class="separator:af811088f8275e9180d94efd521a8f42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93fdd06d8b3ca2249758e975b8cbe868" id="r_a93fdd06d8b3ca2249758e975b8cbe868"><td class="memItemLeft" align="right" valign="top"><a id="a93fdd06d8b3ca2249758e975b8cbe868" name="a93fdd06d8b3ca2249758e975b8cbe868"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>delta</b> (float d)</td></tr>
+<tr class="memdesc:a93fdd06d8b3ca2249758e975b8cbe868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a moving average step directly using a delta value. <br /></td></tr>
+<tr class="separator:a93fdd06d8b3ca2249758e975b8cbe868"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4681529b652668e3bdbdc03fe2505504" id="r_a4681529b652668e3bdbdc03fe2505504"><td class="memItemLeft" align="right" valign="top"><a id="a4681529b652668e3bdbdc03fe2505504" name="a4681529b652668e3bdbdc03fe2505504"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
 <tr class="memdesc:a4681529b652668e3bdbdc03fe2505504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of the moving average. This is undefined if isValid() == false. <br /></td></tr>
@@ -172,45 +141,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
 <tr class="memitem:af5945ce30950e0d31e6bb1f6afd03afd" id="r_af5945ce30950e0d31e6bb1f6afd03afd"><td class="memItemLeft" align="right" valign="top"><a id="af5945ce30950e0d31e6bb1f6afd03afd" name="af5945ce30950e0d31e6bb1f6afd03afd"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>constGet</b> () const</td></tr>
 <tr class="separator:af5945ce30950e0d31e6bb1f6afd03afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8ed7e1aa017e378214550b486a6e750" id="r_ad8ed7e1aa017e378214550b486a6e750"><td class="memItemLeft" align="right" valign="top"><a id="ad8ed7e1aa017e378214550b486a6e750" name="ad8ed7e1aa017e378214550b486a6e750"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nSamples</b> () const</td></tr>
-<tr class="memdesc:ad8ed7e1aa017e378214550b486a6e750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of samples processed since <a class="el" href="classpq_1_1_moving_average.html#ac02afd5497c644cd62a393e956c2f50c" title="Resets the moving average.">reset()</a>. <br /></td></tr>
-<tr class="separator:ad8ed7e1aa017e378214550b486a6e750"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc86a700ea15190c75db0be0a0ac9195" id="r_abc86a700ea15190c75db0be0a0ac9195"><td class="memItemLeft" align="right" valign="top"><a id="abc86a700ea15190c75db0be0a0ac9195" name="abc86a700ea15190c75db0be0a0ac9195"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>amendUpdate</b> (float previousValue, float newValue, float sampleRate=1, bool forceAlpha=false)</td></tr>
-<tr class="memdesc:abc86a700ea15190c75db0be0a0ac9195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an amendment of latest update (needs to be called with same sampleRate# and forceAlpha# parameters). <br /></td></tr>
-<tr class="separator:abc86a700ea15190c75db0be0a0ac9195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a97d72ac2159d701999805082181b4799" id="r_a97d72ac2159d701999805082181b4799"><td class="memItemLeft" align="right" valign="top"><a id="a97d72ac2159d701999805082181b4799" name="a97d72ac2159d701999805082181b4799"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>applyUpdate</b> (float &amp;runningValue, float newValue, float <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b">alpha</a>)</td></tr>
-<tr class="memdesc:a97d72ac2159d701999805082181b4799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a single update on runningValue# with new sample newValue# and mixing factor <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b" title="Returns the alpha value computed from given sample rate.">alpha</a>#. <br /></td></tr>
-<tr class="separator:a97d72ac2159d701999805082181b4799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a857c47bd2cfc1bbc0b702c612b511c32" id="r_a857c47bd2cfc1bbc0b702c612b511c32"><td class="memItemLeft" align="right" valign="top"><a id="a857c47bd2cfc1bbc0b702c612b511c32" name="a857c47bd2cfc1bbc0b702c612b511c32"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>applyAmendUpdate</b> (float &amp;runningValue, float previousValue, float newValue, float <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b">alpha</a>)</td></tr>
-<tr class="memdesc:a857c47bd2cfc1bbc0b702c612b511c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an amendment of latest update (needs to be called with same <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b" title="Returns the alpha value computed from given sample rate.">alpha</a># parameter). <br /></td></tr>
-<tr class="separator:a857c47bd2cfc1bbc0b702c612b511c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accdaa3ddf3af049a8c76794ced75b02f" id="r_accdaa3ddf3af049a8c76794ced75b02f"><td class="memItemLeft" align="right" valign="top"><a id="accdaa3ddf3af049a8c76794ced75b02f" name="accdaa3ddf3af049a8c76794ced75b02f"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>computeUpdate</b> (float runningValue, float newValue, float <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b">alpha</a>)</td></tr>
-<tr class="memdesc:accdaa3ddf3af049a8c76794ced75b02f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a single update on runningValue# with new sample newValue# and mixing factor <a class="el" href="classpq_1_1_moving_average.html#a044585f209484066e8f57ddb6232e93b" title="Returns the alpha value computed from given sample rate.">alpha</a>#. <br /></td></tr>
-<tr class="separator:accdaa3ddf3af049a8c76794ced75b02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d15e9a7799bd3aaed42eb7bd793b3d8" id="r_a9d15e9a7799bd3aaed42eb7bd793b3d8"><td class="memItemLeft" align="right" valign="top"><a id="a9d15e9a7799bd3aaed42eb7bd793b3d8" name="a9d15e9a7799bd3aaed42eb7bd793b3d8"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>alpha</b> (float sampleRate, float <a class="el" href="classpq_1_1_moving_average.html#a52c72676771917bfd7d02170d0f6385d">timeWindow</a>, unsigned int <a class="el" href="classpq_1_1_moving_average.html#ad8ed7e1aa017e378214550b486a6e750">nSamples</a>=UINT_MAX)</td></tr>
-<tr class="memdesc:a9d15e9a7799bd3aaed42eb7bd793b3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the alpha value computed from given sample rate, time window, and number of samples. <br /></td></tr>
-<tr class="separator:a9d15e9a7799bd3aaed42eb7bd793b3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a1326504a1aba9d607205757b237915cd" id="r_a1326504a1aba9d607205757b237915cd"><td class="memItemLeft" align="right" valign="top"><a id="a1326504a1aba9d607205757b237915cd" name="a1326504a1aba9d607205757b237915cd"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_smoothTime</b></td></tr>
-<tr class="separator:a1326504a1aba9d607205757b237915cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb50965cef0d16898a83af0c610adc8c" id="r_abb50965cef0d16898a83af0c610adc8c"><td class="memItemLeft" align="right" valign="top"><a id="abb50965cef0d16898a83af0c610adc8c" name="abb50965cef0d16898a83af0c610adc8c"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 <tr class="separator:abb50965cef0d16898a83af0c610adc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85d8ba5b005cb4df36ce53103df420c6" id="r_a85d8ba5b005cb4df36ce53103df420c6"><td class="memItemLeft" align="right" valign="top"><a id="a85d8ba5b005cb4df36ce53103df420c6" name="a85d8ba5b005cb4df36ce53103df420c6"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>_nSamples</b></td></tr>
-<tr class="separator:a85d8ba5b005cb4df36ce53103df420c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An exponential moving average class. </p>
@@ -224,7 +160,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>_nSamples</b>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

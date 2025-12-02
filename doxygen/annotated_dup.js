@@ -34,6 +34,7 @@ var annotated_dup =
       [ "PinConfig", "classpq_1_1_pin_config.html", "classpq_1_1_pin_config" ],
       [ "PivotField", "classpq_1_1_pivot_field.html", "classpq_1_1_pivot_field" ],
       [ "Ramp", "classpq_1_1_ramp.html", "classpq_1_1_ramp" ],
+      [ "RobustScaler", "classpq_1_1_robust_scaler.html", "classpq_1_1_robust_scaler" ],
       [ "ServoOut", "classpq_1_1_servo_out.html", "classpq_1_1_servo_out" ],
       [ "SineWave", "classpq_1_1_sine_wave.html", "classpq_1_1_sine_wave" ],
       [ "Smoothable", "classpq_1_1_smoothable.html", "classpq_1_1_smoothable" ],
@@ -43,6 +44,7 @@ var annotated_dup =
       [ "StreamOut", "classpq_1_1_stream_out.html", "classpq_1_1_stream_out" ],
       [ "Timeable", "classpq_1_1_timeable.html", "classpq_1_1_timeable" ],
       [ "TimeSliceField", "classpq_1_1_time_slice_field.html", "classpq_1_1_time_slice_field" ],
+      [ "TimeWindowable", "classpq_1_1_time_windowable.html", "classpq_1_1_time_windowable" ],
       [ "TriangleWave", "classpq_1_1_triangle_wave.html", "classpq_1_1_triangle_wave" ],
       [ "Unit", "classpq_1_1_unit.html", "classpq_1_1_unit" ],
       [ "Wave", "classpq_1_1_wave.html", "classpq_1_1_wave" ]

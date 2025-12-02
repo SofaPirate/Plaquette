@@ -123,6 +123,8 @@ Inheritance diagram for pq::AnalogIn:</div>
 <area shape="poly" title=" " alt="" coords="169,118,169,152,163,152,163,118"/>
 <area shape="rect" href="classpq_1_1_smoothable.html" title="Superclass for components that can be smoothed." alt="" coords="241,79,355,104"/>
 <area shape="poly" title=" " alt="" coords="266,113,189,154,186,149,264,108"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="226,5,370,31"/>
+<area shape="poly" title=" " alt="" coords="301,44,301,79,295,79,295,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -139,8 +141,10 @@ Collaboration diagram for pq::AnalogIn:</div>
 <area shape="poly" title=" " alt="" coords="169,133,169,168,163,168,163,133"/>
 <area shape="rect" href="classpq_1_1_smoothable.html" title="Superclass for components that can be smoothed." alt="" coords="241,93,355,119"/>
 <area shape="poly" title=" " alt="" coords="266,128,188,170,186,165,264,123"/>
-<area shape="rect" href="classpq_1_1_moving_average.html" title="An exponential moving average class." alt="" coords="231,5,365,31"/>
-<area shape="poly" title=" " alt="" coords="301,45,301,93,295,93,295,45"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="179,5,323,31"/>
+<area shape="poly" title=" " alt="" coords="266,41,294,92,289,94,262,44"/>
+<area shape="rect" href="classpq_1_1_moving_average.html" title="An exponential moving average class." alt="" coords="348,5,483,31"/>
+<area shape="poly" title=" " alt="" coords="390,41,316,95,312,91,387,37"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -223,22 +227,34 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>smooth</b> (f
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noSmooth</b> ()</td></tr>
 <tr class="memdesc:a3de9ee4afb0b3d1b31ae0efc18e6cffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove smoothing. <br /></td></tr>
 <tr class="separator:a3de9ee4afb0b3d1b31ae0efc18e6cffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a127525e900f2769a5a4aabacc74a1961" id="r_a127525e900f2769a5a4aabacc74a1961"><td class="memItemLeft" align="right" valign="top"><a id="a127525e900f2769a5a4aabacc74a1961" name="a127525e900f2769a5a4aabacc74a1961"></a>
+<tr class="memitem:ae70831c02cb9ac2ed4633fb2612b2654" id="r_ae70831c02cb9ac2ed4633fb2612b2654"><td class="memItemLeft" align="right" valign="top"><a id="ae70831c02cb9ac2ed4633fb2612b2654" name="ae70831c02cb9ac2ed4633fb2612b2654"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>infiniteTimeWindow</b> ()</td></tr>
+<tr class="memdesc:ae70831c02cb9ac2ed4633fb2612b2654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to infinite. <br /></td></tr>
+<tr class="separator:ae70831c02cb9ac2ed4633fb2612b2654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973b709e6d620ba95e811dac73835fd6" id="r_a973b709e6d620ba95e811dac73835fd6"><td class="memItemLeft" align="right" valign="top"><a id="a973b709e6d620ba95e811dac73835fd6" name="a973b709e6d620ba95e811dac73835fd6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noTimeWindow</b> ()</td></tr>
+<tr class="memdesc:a973b709e6d620ba95e811dac73835fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to no time window. <br /></td></tr>
+<tr class="separator:a973b709e6d620ba95e811dac73835fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200edba5991b4ea779a6848f654aceb5" id="r_a200edba5991b4ea779a6848f654aceb5"><td class="memItemLeft" align="right" valign="top"><a id="a200edba5991b4ea779a6848f654aceb5" name="a200edba5991b4ea779a6848f654aceb5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float <a class="el" href="classpq_1_1_unit.html#a2db7ca8446197ce97f6123996912eb50">seconds</a>)</td></tr>
-<tr class="memdesc:a127525e900f2769a5a4aabacc74a1961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a127525e900f2769a5a4aabacc74a1961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad62ea6b25d0129cd09067afce23ae751" id="r_ad62ea6b25d0129cd09067afce23ae751"><td class="memItemLeft" align="right" valign="top"><a id="ad62ea6b25d0129cd09067afce23ae751" name="ad62ea6b25d0129cd09067afce23ae751"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
-<tr class="memdesc:ad62ea6b25d0129cd09067afce23ae751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:ad62ea6b25d0129cd09067afce23ae751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7f309d4ceeb9778d187befd67478b13" id="r_aa7f309d4ceeb9778d187befd67478b13"><td class="memItemLeft" align="right" valign="top"><a id="aa7f309d4ceeb9778d187befd67478b13" name="aa7f309d4ceeb9778d187befd67478b13"></a>
+<tr class="memdesc:a200edba5991b4ea779a6848f654aceb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a200edba5991b4ea779a6848f654aceb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5047b025a686298b85dba2c162175914" id="r_a5047b025a686298b85dba2c162175914"><td class="memItemLeft" align="right" valign="top"><a id="a5047b025a686298b85dba2c162175914" name="a5047b025a686298b85dba2c162175914"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
+<tr class="memdesc:a5047b025a686298b85dba2c162175914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a5047b025a686298b85dba2c162175914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef904a094f19d393062c61f06e510a6c" id="r_aef904a094f19d393062c61f06e510a6c"><td class="memItemLeft" align="right" valign="top"><a id="aef904a094f19d393062c61f06e510a6c" name="aef904a094f19d393062c61f06e510a6c"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindowIsInfinite</b> () const</td></tr>
+<tr class="memdesc:aef904a094f19d393062c61f06e510a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if time window is infinite. <br /></td></tr>
+<tr class="separator:aef904a094f19d393062c61f06e510a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e6b52e05e0cc21a4f693a708f7b466a" id="r_a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memItemLeft" align="right" valign="top"><a id="a7e6b52e05e0cc21a4f693a708f7b466a" name="a7e6b52e05e0cc21a4f693a708f7b466a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> (float hz)</td></tr>
-<tr class="memdesc:aa7f309d4ceeb9778d187befd67478b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:aa7f309d4ceeb9778d187befd67478b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc0c7526c182c479ddb7710a759fd721" id="r_acc0c7526c182c479ddb7710a759fd721"><td class="memItemLeft" align="right" valign="top"><a id="acc0c7526c182c479ddb7710a759fd721" name="acc0c7526c182c479ddb7710a759fd721"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
-<tr class="memdesc:acc0c7526c182c479ddb7710a759fd721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window cutoff frequency (expressed in Hz). <br /></td></tr>
-<tr class="separator:acc0c7526c182c479ddb7710a759fd721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d75f1b738c6666f4ada0a54fdd9dba" id="r_aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memItemLeft" align="right" valign="top"><a id="aa5d75f1b738c6666f4ada0a54fdd9dba" name="aa5d75f1b738c6666f4ada0a54fdd9dba"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
+<tr class="memdesc:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -293,6 +309,12 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_mode</b></td></tr
 <tr class="memitem:ac5135af26656b41a993bb0ef4be00d72" id="r_ac5135af26656b41a993bb0ef4be00d72"><td class="memItemLeft" align="right" valign="top"><a id="ac5135af26656b41a993bb0ef4be00d72" name="ac5135af26656b41a993bb0ef4be00d72"></a>
 <a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_avg</b></td></tr>
 <tr class="separator:ac5135af26656b41a993bb0ef4be00d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d5f186ed28e8611d87e66cbb8f1c5df" id="r_a3d5f186ed28e8611d87e66cbb8f1c5df"><td class="memItemLeft" align="right" valign="top"><a id="a3d5f186ed28e8611d87e66cbb8f1c5df" name="a3d5f186ed28e8611d87e66cbb8f1c5df"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>_nSamples</b></td></tr>
+<tr class="separator:a3d5f186ed28e8611d87e66cbb8f1c5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1bb0f62cfeb9b5fd909a9c6cadc320" id="r_a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memItemLeft" align="right" valign="top"><a id="a0e1bb0f62cfeb9b5fd909a9c6cadc320" name="a0e1bb0f62cfeb9b5fd909a9c6cadc320"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td></tr>
+<tr class="separator:a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic class representing a simple analog input. </p>
@@ -578,7 +600,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_mode</b></td></tr
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the new value of the unit </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_chronometer.html#aabe4072d283b95e176f42f4d2eacc616">pq::Chronometer</a>, <a class="el" href="classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef">pq::MinMaxScaler</a>, <a class="el" href="classpq_1_1_normalizer.html#a9c2a6da973bb004787faf889622815ef">pq::Normalizer</a>, <a class="el" href="classpq_1_1_peak_detector.html#a26b87ccd1659a14d9b903f7c382909cb">pq::PeakDetector</a>, <a class="el" href="classpq_1_1_digital_unit.html#ab6aee5c14addea2c5ba36424ff52612a">pq::DigitalUnit</a>, <a class="el" href="classpq_1_1_analog_out.html#a9f5d2f056bef08b373cc78604d8aa31b">pq::AnalogOut</a>, <a class="el" href="classpq_1_1_abstract_servo_out.html#a0697cd97c70230a0ef8f3f42bb21f857">pq::AbstractServoOut</a>, <a class="el" href="classpq_1_1_ramp.html#a21daa569cd4c58909dc2e596dfb11d21">pq::Ramp</a>, <a class="el" href="classpq_1_1_smoother.html#a663bdf40ad70eb9fa4e4f13a18e25bc0">pq::Smoother</a>, <a class="el" href="classpq_1_1_stream_out.html#aad28e81e72333bc0a2125311342ce820">pq::StreamOut</a>, <a class="el" href="classpq_1_1_pivot_field.html#a1856cf976a67c520ba9d50f91d0a4ced">pq::PivotField</a>, and <a class="el" href="classpq_1_1_time_slice_field.html#af7fd9a0d0fe4a901ddc85bd5bb508113">pq::TimeSliceField&lt; COUNT &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_chronometer.html#aabe4072d283b95e176f42f4d2eacc616">pq::Chronometer</a>, <a class="el" href="classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef">pq::MinMaxScaler</a>, <a class="el" href="classpq_1_1_normalizer.html#a9c2a6da973bb004787faf889622815ef">pq::Normalizer</a>, <a class="el" href="classpq_1_1_peak_detector.html#a26b87ccd1659a14d9b903f7c382909cb">pq::PeakDetector</a>, <a class="el" href="classpq_1_1_digital_unit.html#ab6aee5c14addea2c5ba36424ff52612a">pq::DigitalUnit</a>, <a class="el" href="classpq_1_1_analog_out.html#a9f5d2f056bef08b373cc78604d8aa31b">pq::AnalogOut</a>, <a class="el" href="classpq_1_1_abstract_servo_out.html#a0697cd97c70230a0ef8f3f42bb21f857">pq::AbstractServoOut</a>, <a class="el" href="classpq_1_1_ramp.html#a21daa569cd4c58909dc2e596dfb11d21">pq::Ramp</a>, <a class="el" href="classpq_1_1_robust_scaler.html#a5ce7a6b441819f53bdd60beb50e4734d">pq::RobustScaler</a>, <a class="el" href="classpq_1_1_smoother.html#a663bdf40ad70eb9fa4e4f13a18e25bc0">pq::Smoother</a>, <a class="el" href="classpq_1_1_stream_out.html#aad28e81e72333bc0a2125311342ce820">pq::StreamOut</a>, <a class="el" href="classpq_1_1_pivot_field.html#a1856cf976a67c520ba9d50f91d0a4ced">pq::PivotField</a>, and <a class="el" href="classpq_1_1_time_slice_field.html#af7fd9a0d0fe4a901ddc85bd5bb508113">pq::TimeSliceField&lt; COUNT &gt;</a>.</p>
 
 </div>
 </div>
@@ -619,7 +641,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_mode</b></td></tr
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_analog_in.html">AnalogIn</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

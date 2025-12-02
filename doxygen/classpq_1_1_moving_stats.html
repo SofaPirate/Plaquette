@@ -117,9 +117,9 @@ Collaboration diagram for pq::MovingStats:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpq_1_1_moving_stats__coll__graph.png" border="0" usemap="#apq_1_1_moving_stats_coll__map" alt="Collaboration graph"/></div>
 <map name="apq_1_1_moving_stats_coll__map" id="apq_1_1_moving_stats_coll__map">
-<area shape="rect" title=" " alt="" coords="14,93,131,119"/>
+<area shape="rect" title=" " alt="" coords="14,108,131,133"/>
 <area shape="rect" href="classpq_1_1_moving_average.html" title="An exponential moving average class." alt="" coords="5,5,140,31"/>
-<area shape="poly" title=" " alt="" coords="75,45,75,93,70,93,70,45"/>
+<area shape="poly" title=" " alt="" coords="75,45,75,108,70,108,70,45"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -129,32 +129,16 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MovingStats</b> ()</td></tr>
 <tr class="memdesc:abe80e57b914bbaa49cb2d48bc7225c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (infinite time window). <br /></td></tr>
 <tr class="separator:abe80e57b914bbaa49cb2d48bc7225c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad735fe75c97c6877a638d63e7cff235a" id="r_ad735fe75c97c6877a638d63e7cff235a"><td class="memItemLeft" align="right" valign="top"><a id="ad735fe75c97c6877a638d63e7cff235a" name="ad735fe75c97c6877a638d63e7cff235a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MovingStats</b> (float <a class="el" href="classpq_1_1_moving_stats.html#a5e4713c16cce3ba4a209c09f2682be0c">timeWindow</a>)</td></tr>
-<tr class="memdesc:ad735fe75c97c6877a638d63e7cff235a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (finite time window). <br /></td></tr>
-<tr class="separator:ad735fe75c97c6877a638d63e7cff235a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82682a04e6153235dfd845d9543e3981" id="r_a82682a04e6153235dfd845d9543e3981"><td class="memItemLeft" align="right" valign="top"><a id="a82682a04e6153235dfd845d9543e3981" name="a82682a04e6153235dfd845d9543e3981"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>infiniteTimeWindow</b> ()</td></tr>
-<tr class="memdesc:a82682a04e6153235dfd845d9543e3981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets to "infinite" smoothing window. <br /></td></tr>
-<tr class="separator:a82682a04e6153235dfd845d9543e3981"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4713c16cce3ba4a209c09f2682be0c" id="r_a5e4713c16cce3ba4a209c09f2682be0c"><td class="memItemLeft" align="right" valign="top"><a id="a5e4713c16cce3ba4a209c09f2682be0c" name="a5e4713c16cce3ba4a209c09f2682be0c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float seconds)</td></tr>
-<tr class="memdesc:a5e4713c16cce3ba4a209c09f2682be0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a5e4713c16cce3ba4a209c09f2682be0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69c7ec72ce936ca229acd8c73088b600" id="r_a69c7ec72ce936ca229acd8c73088b600"><td class="memItemLeft" align="right" valign="top"><a id="a69c7ec72ce936ca229acd8c73088b600" name="a69c7ec72ce936ca229acd8c73088b600"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
-<tr class="memdesc:a69c7ec72ce936ca229acd8c73088b600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smoothing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a69c7ec72ce936ca229acd8c73088b600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63826dbc3cad4f6ba2a87a541fd9fe57" id="r_a63826dbc3cad4f6ba2a87a541fd9fe57"><td class="memItemLeft" align="right" valign="top"><a id="a63826dbc3cad4f6ba2a87a541fd9fe57" name="a63826dbc3cad4f6ba2a87a541fd9fe57"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindowIsInfinite</b> () const</td></tr>
-<tr class="memdesc:a63826dbc3cad4f6ba2a87a541fd9fe57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if time window is infinite. <br /></td></tr>
-<tr class="separator:a63826dbc3cad4f6ba2a87a541fd9fe57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cda846c08ee53dbc9cf30061f00b97c" id="r_a6cda846c08ee53dbc9cf30061f00b97c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_moving_stats.html#a6cda846c08ee53dbc9cf30061f00b97c">reset</a> ()</td></tr>
 <tr class="memdesc:a6cda846c08ee53dbc9cf30061f00b97c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the statistics.  <br /></td></tr>
 <tr class="separator:a6cda846c08ee53dbc9cf30061f00b97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a4777880c1202f6af62ba2f6152929f" id="r_a8a4777880c1202f6af62ba2f6152929f"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_moving_stats.html#a8a4777880c1202f6af62ba2f6152929f">update</a> (float value, float sampleRate=1)</td></tr>
-<tr class="memdesc:a8a4777880c1202f6af62ba2f6152929f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the statistics (returns the mean).  <br /></td></tr>
-<tr class="separator:a8a4777880c1202f6af62ba2f6152929f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f67e1e4d5f09307a833f7d0285502e0" id="r_a7f67e1e4d5f09307a833f7d0285502e0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_moving_stats.html#a7f67e1e4d5f09307a833f7d0285502e0">reset</a> (float initMean, float initStdDev)</td></tr>
+<tr class="memdesc:a7f67e1e4d5f09307a833f7d0285502e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the filter with a prior estimate mean and standard deviation.  <br /></td></tr>
+<tr class="separator:a7f67e1e4d5f09307a833f7d0285502e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f820235502485a1dec566d5a54f2f27" id="r_a9f820235502485a1dec566d5a54f2f27"><td class="memItemLeft" align="right" valign="top"><a id="a9f820235502485a1dec566d5a54f2f27" name="a9f820235502485a1dec566d5a54f2f27"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float value, float alpha)</td></tr>
+<tr class="memdesc:a9f820235502485a1dec566d5a54f2f27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a value to the statistics (returns the mean). <br /></td></tr>
+<tr class="separator:a9f820235502485a1dec566d5a54f2f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1e5d912a11a585f4526aabefc1cd30" id="r_abf1e5d912a11a585f4526aabefc1cd30"><td class="memItemLeft" align="right" valign="top"><a id="abf1e5d912a11a585f4526aabefc1cd30" name="abf1e5d912a11a585f4526aabefc1cd30"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>mean</b> () const</td></tr>
 <tr class="memdesc:abf1e5d912a11a585f4526aabefc1cd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an exponential moving average of the samples. <br /></td></tr>
@@ -189,12 +173,12 @@ virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>normalize</b
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a644e785b58aea3a7c415930616e236bf" id="r_a644e785b58aea3a7c415930616e236bf"><td class="memItemLeft" align="right" valign="top"><a id="a644e785b58aea3a7c415930616e236bf" name="a644e785b58aea3a7c415930616e236bf"></a>
-<a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_avg</b></td></tr>
-<tr class="separator:a644e785b58aea3a7c415930616e236bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1d7080d76e0d93ad897a4af6cf2f95b" id="r_ac1d7080d76e0d93ad897a4af6cf2f95b"><td class="memItemLeft" align="right" valign="top"><a id="ac1d7080d76e0d93ad897a4af6cf2f95b" name="ac1d7080d76e0d93ad897a4af6cf2f95b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
-<tr class="separator:ac1d7080d76e0d93ad897a4af6cf2f95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a228aa23a7e938fc92178b578424fc05f" id="r_a228aa23a7e938fc92178b578424fc05f"><td class="memItemLeft" align="right" valign="top"><a id="a228aa23a7e938fc92178b578424fc05f" name="a228aa23a7e938fc92178b578424fc05f"></a>
+<a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_mean</b></td></tr>
+<tr class="separator:a228aa23a7e938fc92178b578424fc05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37f3a536ed39792c1f63cbe5bd0f03bf" id="r_a37f3a536ed39792c1f63cbe5bd0f03bf"><td class="memItemLeft" align="right" valign="top"><a id="a37f3a536ed39792c1f63cbe5bd0f03bf" name="a37f3a536ed39792c1f63cbe5bd0f03bf"></a>
+<a class="el" href="classpq_1_1_moving_average.html">MovingAverage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
+<tr class="separator:a37f3a536ed39792c1f63cbe5bd0f03bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a661bdad0331a6a7652a081fcf297dac6" name="a661bdad0331a6a7652a081fcf297dac6"></a>
@@ -336,7 +320,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
 </div>
 </div>
 <a id="a6cda846c08ee53dbc9cf30061f00b97c" name="a6cda846c08ee53dbc9cf30061f00b97c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6cda846c08ee53dbc9cf30061f00b97c">&#9670;&#160;</a></span>reset()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cda846c08ee53dbc9cf30061f00b97c">&#9670;&#160;</a></span>reset() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,6 +345,46 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
 <p>Resets the statistics. </p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_normalizer.html#a3e97253f3dc73ed8489c7a7ba0a45b05">pq::Normalizer</a>.</p>
+
+</div>
+</div>
+<a id="a7f67e1e4d5f09307a833f7d0285502e0" name="a7f67e1e4d5f09307a833f7d0285502e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f67e1e4d5f09307a833f7d0285502e0">&#9670;&#160;</a></span>reset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pq::MovingStats::reset </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>initMean</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>initStdDev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the filter with a prior estimate mean and standard deviation. </p>
+
+<p>Reimplemented in <a class="el" href="classpq_1_1_normalizer.html#aff923982f54c36dab6dd4881c509dbf2">pq::Normalizer</a>.</p>
 
 </div>
 </div>
@@ -390,46 +414,6 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
 
 </div>
 </div>
-<a id="a8a4777880c1202f6af62ba2f6152929f" name="a8a4777880c1202f6af62ba2f6152929f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a4777880c1202f6af62ba2f6152929f">&#9670;&#160;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float pq::MovingStats::update </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>sampleRate</em> = <code>1</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Adds a value to the statistics (returns the mean). </p>
-
-<p>Reimplemented in <a class="el" href="classpq_1_1_normalizer.html#a9f6af019b63399e9f4d6abcd86d08eb1">pq::Normalizer</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/tats/Documents/workspace/Plaquette/src/<a class="el" href="_moving_stats_8h_source.html">MovingStats.h</a></li>
 <li>/home/tats/Documents/workspace/Plaquette/src/<b>MovingStats.cpp</b></li>
@@ -440,7 +424,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_mean2</b></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_moving_stats.html">MovingStats</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

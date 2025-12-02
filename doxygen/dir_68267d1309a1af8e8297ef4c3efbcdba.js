@@ -27,7 +27,9 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "pq_globals.h", "pq__globals_8h_source.html", null ],
     [ "pq_map.h", "pq__map_8h_source.html", null ],
     [ "pq_math.h", "pq__math_8h_source.html", null ],
+    [ "pq_moving_average.h", "pq__moving__average_8h_source.html", null ],
     [ "pq_phase_utils.h", "pq__phase__utils_8h_source.html", null ],
+    [ "pq_plot.h", "pq__plot_8h_source.html", null ],
     [ "pq_print.h", "pq__print_8h_source.html", null ],
     [ "pq_random.h", "pq__random_8h_source.html", null ],
     [ "pq_random32.h", "pq__random32_8h_source.html", null ],
@@ -41,6 +43,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "PqOutputs.h", "_pq_outputs_8h_source.html", null ],
     [ "PqServo.h", "_pq_servo_8h_source.html", null ],
     [ "Ramp.h", "_ramp_8h_source.html", null ],
+    [ "RobustScaler.h", "_robust_scaler_8h_source.html", null ],
     [ "SineWave.h", "_sine_wave_8h_source.html", null ],
     [ "Smoother.h", "_smoother_8h_source.html", null ],
     [ "SquareWave.h", "_square_wave_8h_source.html", null ],
@@ -48,6 +51,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "StreamOut.h", "_stream_out_8h_source.html", null ],
     [ "Timeable.h", "_timeable_8h_source.html", null ],
     [ "TimeSliceField.h", "_time_slice_field_8h_source.html", null ],
+    [ "TimeWindowable.h", "_time_windowable_8h_source.html", null ],
     [ "TriangleWave.h", "_triangle_wave_8h_source.html", null ],
     [ "Wave.h", "_wave_8h_source.html", null ]
 ];

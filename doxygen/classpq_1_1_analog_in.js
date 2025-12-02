@@ -1,17 +1,19 @@
 var classpq_1_1_analog_in =
 [
     [ "AnalogIn", "classpq_1_1_analog_in.html#a83a3539b789d7699db323c9d80e96969", null ],
-    [ "cutoff", "classpq_1_1_analog_in.html#acc0c7526c182c479ddb7710a759fd721", null ],
-    [ "cutoff", "classpq_1_1_analog_in.html#aa7f309d4ceeb9778d187befd67478b13", null ],
+    [ "cutoff", "classpq_1_1_analog_in.html#aa5d75f1b738c6666f4ada0a54fdd9dba", null ],
+    [ "cutoff", "classpq_1_1_analog_in.html#a7e6b52e05e0cc21a4f693a708f7b466a", null ],
     [ "engine", "classpq_1_1_analog_in.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
     [ "eventTriggered", "classpq_1_1_analog_in.html#a8beada08e61f4151fd30d888341390b7", null ],
     [ "get", "classpq_1_1_analog_in.html#ad4d580d122fa1478390aaa79e04a51a2", null ],
+    [ "infiniteTimeWindow", "classpq_1_1_analog_in.html#ae70831c02cb9ac2ed4633fb2612b2654", null ],
     [ "mapTo", "classpq_1_1_analog_in.html#ab1bdaf6fe154b6fa7153d2e482565860", null ],
     [ "microSeconds", "classpq_1_1_analog_in.html#a22d31f34ba07507c76a24aff601a463b", null ],
     [ "milliSeconds", "classpq_1_1_analog_in.html#a16ffc521dfdabf26fd06fa92be2bf760", null ],
     [ "mode", "classpq_1_1_analog_in.html#aa456cf53a9c6608c848e89455eb0725b", null ],
     [ "mode", "classpq_1_1_analog_in.html#a9415186df8846118109345c0534ea3c3", null ],
     [ "noSmooth", "classpq_1_1_analog_in.html#a3de9ee4afb0b3d1b31ae0efc18e6cffb", null ],
+    [ "noTimeWindow", "classpq_1_1_analog_in.html#a973b709e6d620ba95e811dac73835fd6", null ],
     [ "nSteps", "classpq_1_1_analog_in.html#a34737444936b8e70d3950e7d196a9b6d", null ],
     [ "onEvent", "classpq_1_1_analog_in.html#a85d4925dfb2341565c63c554ca0a8ce2", null ],
     [ "operator bool", "classpq_1_1_analog_in.html#a71ebff10aa760a007055852768535e3f", null ],
@@ -24,6 +26,7 @@ var classpq_1_1_analog_in =
     [ "sampleRate", "classpq_1_1_analog_in.html#abf7a83ac1dedb8f05b21fe68ec587209", null ],
     [ "seconds", "classpq_1_1_analog_in.html#a2db7ca8446197ce97f6123996912eb50", null ],
     [ "smooth", "classpq_1_1_analog_in.html#a0cacf6b4229157c5f184354936a1e7a6", null ],
-    [ "timeWindow", "classpq_1_1_analog_in.html#ad62ea6b25d0129cd09067afce23ae751", null ],
-    [ "timeWindow", "classpq_1_1_analog_in.html#a127525e900f2769a5a4aabacc74a1961", null ]
+    [ "timeWindow", "classpq_1_1_analog_in.html#a5047b025a686298b85dba2c162175914", null ],
+    [ "timeWindow", "classpq_1_1_analog_in.html#a200edba5991b4ea779a6848f654aceb5", null ],
+    [ "timeWindowIsInfinite", "classpq_1_1_analog_in.html#aef904a094f19d393062c61f06e510a6c", null ]
 ];

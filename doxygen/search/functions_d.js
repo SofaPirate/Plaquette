@@ -1,14 +1,17 @@
 var searchData=
 [
-  ['off_0',['off',['../classpq_1_1_digital_unit.html#a56b70d2356df94b7f3829281326614ee',1,'pq::DigitalUnit']]],
-  ['on_1',['on',['../classpq_1_1_digital_unit.html#ae30cc3b6a81ee19d1ecb61440c1c7959',1,'pq::DigitalUnit']]],
-  ['onbang_2',['onbang',['../classpq_1_1_abstract_wave.html#a621214b240ce5fdf1314ebda6d2fd354',1,'pq::AbstractWave::onBang()'],['../classpq_1_1_metronome.html#a567e30fecc027d01e5785b27c6aa1fa5',1,'pq::Metronome::onBang()'],['../classpq_1_1_peak_detector.html#a8e998b600a528b7b0c4440303537da36',1,'pq::PeakDetector::onBang()']]],
-  ['onchange_3',['onChange',['../classpq_1_1_digital_source.html#aedb08432ce3ee47aed52a059d8ba8a08',1,'pq::DigitalSource']]],
-  ['onevent_4',['onEvent',['../classpq_1_1_unit.html#a85d4925dfb2341565c63c554ca0a8ce2',1,'pq::Unit']]],
-  ['onfall_5',['onFall',['../classpq_1_1_digital_source.html#a62b4a97870c20690b40b30c9a003e653',1,'pq::DigitalSource']]],
-  ['onfinish_6',['onfinish',['../classpq_1_1_alarm.html#a57ad0993b78814bfadc0ee7ca6ec541c',1,'pq::Alarm::onFinish()'],['../classpq_1_1_ramp.html#a0bb78b45722a3a3bfa5c07d0ab2ee98a',1,'pq::Ramp::onFinish()']]],
-  ['onrise_7',['onRise',['../classpq_1_1_digital_source.html#a5fa17c879632bb3265e09fb9fdaa3961',1,'pq::DigitalSource']]],
-  ['onupdate_8',['onupdate',['../classpq_1_1_stream_in.html#ae0cfe8888cb9b85ccb9922e5bfb45b36',1,'pq::StreamIn::onUpdate()'],['../classpq_1_1_time_slice_field.html#aee752f0174eff1c9f3250dd163fb0344',1,'pq::TimeSliceField::onUpdate()']]],
-  ['operator_20bool_9',['operator bool',['../classpq_1_1_chainable.html#a71ebff10aa760a007055852768535e3f',1,'pq::Chainable::operator bool()'],['../classpq_1_1_digital_unit.html#a5d142103212c63a0a063fcbe193117c8',1,'pq::DigitalUnit::operator bool()']]],
-  ['operator_20float_10',['operator float',['../classpq_1_1_chainable.html#ab8dd6554f3d7f8c298f0c600f54de6b5',1,'pq::Chainable']]]
+  ['noclamp_0',['noClamp',['../classpq_1_1_normalizer.html#a36413f4cfac97d85a43075bd895e8efe',1,'pq::Normalizer']]],
+  ['nodebounce_1',['noDebounce',['../classpq_1_1_debounceable.html#a43663e1302c24792f483780aed337ea8',1,'pq::Debounceable']]],
+  ['noeasing_2',['noeasing',['../classpq_1_1_pivot_field.html#a3be46051d1d2ad151d2d7e617f544912',1,'pq::PivotField::noEasing()'],['../classpq_1_1_ramp.html#a8b973e9f7e7318320fad41349e9902c1',1,'pq::Ramp::noEasing()'],['../classpq_1_1_triangle_wave.html#ab21e593bef5df8a6bf3d35bf0f135bbe',1,'pq::TriangleWave::noEasing()']]],
+  ['nofalleasing_3',['noFallEasing',['../classpq_1_1_triangle_wave.html#a89e2050e19f2869789a6983d958299a7',1,'pq::TriangleWave']]],
+  ['norampwidth_4',['noRampWidth',['../classpq_1_1_pivot_field.html#a6022851359f04dba974318ba4401f4da',1,'pq::PivotField']]],
+  ['noriseeasing_5',['noRiseEasing',['../classpq_1_1_triangle_wave.html#aab28fa14bae64608a6e5f7348be2af99',1,'pq::TriangleWave']]],
+  ['normalize_6',['normalize',['../classpq_1_1_moving_stats.html#a245e2c160eee12988e74ba6c959b8961',1,'pq::MovingStats::normalize(float value) const'],['../classpq_1_1_moving_stats.html#abc2234caa144b795f3fb9096c80a213f',1,'pq::MovingStats::normalize(float value, float mean, float stdDev) const']]],
+  ['normalizer_7',['normalizer',['../classpq_1_1_normalizer.html#adba75af98111a533966e186496abfc42',1,'pq::Normalizer::Normalizer(float timeWindow, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_normalizer.html#afb5caaaa616e7dae259ac34412275398',1,'pq::Normalizer::Normalizer(float mean, float stdDev, float timeWindow, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_normalizer.html#af9b631852ab27c0d8ce59699c884f519',1,'pq::Normalizer::Normalizer(float mean, float stdDev, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_normalizer.html#a3e8904317dc8762eaaaafcc96259174c',1,'pq::Normalizer::Normalizer(Engine &amp;engine=Engine::primary())']]],
+  ['norolling_8',['noRolling',['../classpq_1_1_time_slice_field.html#abad127c030442725269732ada209c643',1,'pq::TimeSliceField']]],
+  ['nosmooth_9',['nosmooth',['../classpq_1_1_smoothable.html#a3de9ee4afb0b3d1b31ae0efc18e6cffb',1,'pq::Smoothable::noSmooth()'],['../classpq_1_1_debounceable.html#a772d33b1c313869ebc260972c336e5a8',1,'pq::Debounceable::noSmooth()']]],
+  ['notimewindow_10',['noTimeWindow',['../classpq_1_1_time_windowable.html#a973b709e6d620ba95e811dac73835fd6',1,'pq::TimeWindowable']]],
+  ['nsamples_11',['nSamples',['../classpq_1_1_moving_filter.html#aef1287b234e6ff879aeff99fe09e61c8',1,'pq::MovingFilter']]],
+  ['nsteps_12',['nsteps',['../classpq_1_1_engine.html#adff9c4b9b3a646789ba702d1977979e4',1,'pq::Engine::nSteps()'],['../classpq_1_1_unit.html#a34737444936b8e70d3950e7d196a9b6d',1,'pq::Unit::nSteps()']]],
+  ['nunits_13',['nUnits',['../classpq_1_1_engine.html#a315fcb51d86bc570acd59e6993f51e9c',1,'pq::Engine']]]
 ];

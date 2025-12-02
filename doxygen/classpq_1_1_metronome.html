@@ -223,6 +223,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>sampleRate</b> () co
 float&#160;</td><td class="memItemRight" valign="bottom"><b>samplePeriod</b> () const</td></tr>
 <tr class="memdesc:ab17e40c0391f5c5fb115974d7b75646c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns enginesample period. <br /></td></tr>
 <tr class="separator:ab17e40c0391f5c5fb115974d7b75646c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6477b28acf7a0d405ace017b5a810b6" id="r_ab6477b28acf7a0d405ace017b5a810b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_oscillator.html#ab6477b28acf7a0d405ace017b5a810b6">start</a> ()</td></tr>
+<tr class="memdesc:ab6477b28acf7a0d405ace017b5a810b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts/restarts the oscillator.  <br /></td></tr>
+<tr class="separator:ab6477b28acf7a0d405ace017b5a810b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3f7d4f52906d754e4261ee115ce7377" id="r_af3f7d4f52906d754e4261ee115ce7377"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_oscillator.html#af3f7d4f52906d754e4261ee115ce7377">period</a> (float period)</td></tr>
 <tr class="memdesc:af3f7d4f52906d754e4261ee115ce7377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the period (in seconds).  <br /></td></tr>
 <tr class="separator:af3f7d4f52906d754e4261ee115ce7377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -257,6 +260,14 @@ virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>phase</b> ()
 <tr class="memitem:a18632ddb4f0b021a1ef9adbc3049ee7b" id="r_a18632ddb4f0b021a1ef9adbc3049ee7b"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_oscillator.html#a18632ddb4f0b021a1ef9adbc3049ee7b">phaseShift</a> () const</td></tr>
 <tr class="memdesc:a18632ddb4f0b021a1ef9adbc3049ee7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the phase shift (ie.  <br /></td></tr>
 <tr class="separator:a18632ddb4f0b021a1ef9adbc3049ee7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d4eb0091145778ebbb1e45a9a394cd" id="r_a29d4eb0091145778ebbb1e45a9a394cd"><td class="memItemLeft" align="right" valign="top"><a id="a29d4eb0091145778ebbb1e45a9a394cd" name="a29d4eb0091145778ebbb1e45a9a394cd"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>jitter</b> (float jitterLevel)</td></tr>
+<tr class="memdesc:a29d4eb0091145778ebbb1e45a9a394cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter). <br /></td></tr>
+<tr class="separator:a29d4eb0091145778ebbb1e45a9a394cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d4b9df74d5e2cca19eabbcc3a5347b" id="r_a04d4b9df74d5e2cca19eabbcc3a5347b"><td class="memItemLeft" align="right" valign="top"><a id="a04d4b9df74d5e2cca19eabbcc3a5347b" name="a04d4b9df74d5e2cca19eabbcc3a5347b"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>jitter</b> () const</td></tr>
+<tr class="memdesc:a04d4b9df74d5e2cca19eabbcc3a5347b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the randomness level in [0, 1]. <br /></td></tr>
+<tr class="separator:a04d4b9df74d5e2cca19eabbcc3a5347b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f37b8cd1a0b4e957ea2ad90626955c" id="r_a33f37b8cd1a0b4e957ea2ad90626955c"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_oscillator.html#a33f37b8cd1a0b4e957ea2ad90626955c">timeToPhase</a> (float time) const</td></tr>
 <tr class="memdesc:a33f37b8cd1a0b4e957ea2ad90626955c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to convert time to phase.  <br /></td></tr>
 <tr class="separator:a33f37b8cd1a0b4e957ea2ad90626955c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,27 +299,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>reverse</b> (
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleReverse</b> ()</td></tr>
 <tr class="memdesc:a13b5ab191ad137ab0a6707f447553444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles the direction of oscillation. <br /></td></tr>
 <tr class="separator:a13b5ab191ad137ab0a6707f447553444"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a020d58bcd10ad012edd0f575300621ff" id="r_a020d58bcd10ad012edd0f575300621ff"><td class="memItemLeft" align="right" valign="top"><a id="a020d58bcd10ad012edd0f575300621ff" name="a020d58bcd10ad012edd0f575300621ff"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>randomness</b> () const</td></tr>
-<tr class="memdesc:a020d58bcd10ad012edd0f575300621ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the randomness level in [0, 1]. <br /></td></tr>
-<tr class="separator:a020d58bcd10ad012edd0f575300621ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99e41da2ab03520522a0fa69e9e8c5ec" id="r_a99e41da2ab03520522a0fa69e9e8c5ec"><td class="memItemLeft" align="right" valign="top"><a id="a99e41da2ab03520522a0fa69e9e8c5ec" name="a99e41da2ab03520522a0fa69e9e8c5ec"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>randomize</b> (float <a class="el" href="classpq_1_1_abstract_oscillator.html#a020d58bcd10ad012edd0f575300621ff">randomness</a>=1.0f)</td></tr>
-<tr class="memdesc:a99e41da2ab03520522a0fa69e9e8c5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness). <br /></td></tr>
-<tr class="separator:a99e41da2ab03520522a0fa69e9e8c5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2ca48814ea08585010ac52fc9450f01" id="r_ae2ca48814ea08585010ac52fc9450f01"><td class="memItemLeft" align="right" valign="top"><a id="ae2ca48814ea08585010ac52fc9450f01" name="ae2ca48814ea08585010ac52fc9450f01"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noRandomize</b> ()</td></tr>
-<tr class="memdesc:ae2ca48814ea08585010ac52fc9450f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables randomness. <br /></td></tr>
-<tr class="separator:ae2ca48814ea08585010ac52fc9450f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee42bd50475fb58e843a680e3047069b" id="r_aee42bd50475fb58e843a680e3047069b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#aee42bd50475fb58e843a680e3047069b">start</a> ()</td></tr>
-<tr class="memdesc:aee42bd50475fb58e843a680e3047069b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts/restarts the chronometer.  <br /></td></tr>
-<tr class="separator:aee42bd50475fb58e843a680e3047069b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a208dbebe3ec7df301d86769ea559fbee" id="r_a208dbebe3ec7df301d86769ea559fbee"><td class="memItemLeft" align="right" valign="top"><a id="a208dbebe3ec7df301d86769ea559fbee" name="a208dbebe3ec7df301d86769ea559fbee"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="memdesc:a208dbebe3ec7df301d86769ea559fbee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the chronometer and resets to zero. <br /></td></tr>
+<tr class="memdesc:a208dbebe3ec7df301d86769ea559fbee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts and resets to zero. <br /></td></tr>
 <tr class="separator:a208dbebe3ec7df301d86769ea559fbee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06b24ccfc0910f3425ad81e49297c988" id="r_a06b24ccfc0910f3425ad81e49297c988"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a06b24ccfc0910f3425ad81e49297c988">pause</a> ()</td></tr>
-<tr class="memdesc:a06b24ccfc0910f3425ad81e49297c988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the chronometer.  <br /></td></tr>
+<tr class="memdesc:a06b24ccfc0910f3425ad81e49297c988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts process.  <br /></td></tr>
 <tr class="separator:a06b24ccfc0910f3425ad81e49297c988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fa89290faa8d8c63e88ea34e510897f" id="r_a1fa89290faa8d8c63e88ea34e510897f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_timeable.html#a1fa89290faa8d8c63e88ea34e510897f">resume</a> ()</td></tr>
 <tr class="memdesc:a1fa89290faa8d8c63e88ea34e510897f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes process.  <br /></td></tr>
@@ -367,7 +363,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_period</b></td></tr
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_frequency</b></td></tr>
 <tr class="separator:a49851e380e29ef62eeacd01ec514b88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6706d6a64ac8a564caccc0eeccfde05" id="r_af6706d6a64ac8a564caccc0eeccfde05"><td class="memItemLeft" align="right" valign="top"><a id="af6706d6a64ac8a564caccc0eeccfde05" name="af6706d6a64ac8a564caccc0eeccfde05"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_phaseShiftOrRandomFrequencyRatio</b> = 0</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_phaseShiftOrRandomFrequencyRatio</b></td></tr>
 <tr class="separator:af6706d6a64ac8a564caccc0eeccfde05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5043721dd22f14c07386d85154f6fcd8" id="r_a5043721dd22f14c07386d85154f6fcd8"><td class="memItemLeft" align="right" valign="top"><a id="a5043721dd22f14c07386d85154f6fcd8" name="a5043721dd22f14c07386d85154f6fcd8"></a>
 q0_32u_t&#160;</td><td class="memItemRight" valign="bottom"><b>_phase32</b></td></tr>
@@ -384,9 +380,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isForward</b>: 1</td
 <tr class="memitem:ace599b136de7d7f2afac5b5882f88a56" id="r_ace599b136de7d7f2afac5b5882f88a56"><td class="memItemLeft" align="right" valign="top"><a id="ace599b136de7d7f2afac5b5882f88a56" name="ace599b136de7d7f2afac5b5882f88a56"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_valueNeedsUpdate</b>: 1</td></tr>
 <tr class="separator:ace599b136de7d7f2afac5b5882f88a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a684f6eece71157f9b216deebe4bbc54d" id="r_a684f6eece71157f9b216deebe4bbc54d"><td class="memItemLeft" align="right" valign="top"><a id="a684f6eece71157f9b216deebe4bbc54d" name="a684f6eece71157f9b216deebe4bbc54d"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4</td></tr>
-<tr class="separator:a684f6eece71157f9b216deebe4bbc54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb8685d58075566a6321e8f6a85c2f1" id="r_a2bb8685d58075566a6321e8f6a85c2f1"><td class="memItemLeft" align="right" valign="top"><a id="a2bb8685d58075566a6321e8f6a85c2f1" name="a2bb8685d58075566a6321e8f6a85c2f1"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_jitterLevel</b>: 4</td></tr>
+<tr class="separator:a2bb8685d58075566a6321e8f6a85c2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classpq_1_1_chronometer.html">Chronometer</a> digital unit which emits 1/true/"on" for one frame, at a regular pace. </p>
@@ -508,7 +504,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 </div><div class="memdoc">
 
 <p>Adds time to current time (in seconds). </p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if <a class="el" href="classpq_1_1_abstract_oscillator.html#a020d58bcd10ad012edd0f575300621ff" title="Returns the randomness level in [0, 1].">randomness()</a> &gt; 0. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if randomness() &gt; 0. </dd></dl>
 
 <p>Implements <a class="el" href="classpq_1_1_timeable.html#a97b69d3f8009ea2e1a291315ce690099">pq::Timeable</a>.</p>
 
@@ -789,7 +785,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 </table>
 </div><div class="memdoc">
 
-<p>Interrupts the chronometer. </p>
+<p>Interrupts process. </p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_abstract_chronometer.html#a28dcf317e5cb96744505352681553013">pq::AbstractChronometer</a>.</p>
 
@@ -887,7 +883,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 </div><div class="memdoc">
 
 <p>Returns the phase shift (ie. </p>
-<p>the offset, in % of period). </p><dl class="section warning"><dt>Warning</dt><dd>This function always returns 0 when <a class="el" href="classpq_1_1_abstract_oscillator.html#a020d58bcd10ad012edd0f575300621ff" title="Returns the randomness level in [0, 1].">randomness()</a> &gt; 0. </dd></dl>
+<p>the offset, in % of period). </p><dl class="section warning"><dt>Warning</dt><dd>This function always returns 0 when randomness() &gt; 0. </dd></dl>
 
 </div>
 </div>
@@ -923,7 +919,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if <a class="el" href="classpq_1_1_abstract_oscillator.html#a020d58bcd10ad012edd0f575300621ff" title="Returns the randomness level in [0, 1].">randomness()</a> &gt; 0. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if randomness() &gt; 0. </dd></dl>
 
 </div>
 </div>
@@ -1091,14 +1087,14 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 </div><div class="memdoc">
 
 <p>Forces current time (in seconds). </p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if <a class="el" href="classpq_1_1_abstract_oscillator.html#a020d58bcd10ad012edd0f575300621ff" title="Returns the randomness level in [0, 1].">randomness()</a> &gt; 0. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function is disabled if randomness() &gt; 0. </dd></dl>
 
 <p>Implements <a class="el" href="classpq_1_1_timeable.html#a73e8886227ef61682b6bda3335c4db09">pq::Timeable</a>.</p>
 
 </div>
 </div>
-<a id="aee42bd50475fb58e843a680e3047069b" name="aee42bd50475fb58e843a680e3047069b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee42bd50475fb58e843a680e3047069b">&#9670;&#160;</a></span>start()</h2>
+<a id="ab6477b28acf7a0d405ace017b5a810b6" name="ab6477b28acf7a0d405ace017b5a810b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6477b28acf7a0d405ace017b5a810b6">&#9670;&#160;</a></span>start()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1107,7 +1103,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void pq::Timeable::start </td>
+          <td class="memname">void pq::AbstractOscillator::start </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1120,9 +1116,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 </table>
 </div><div class="memdoc">
 
-<p>Starts/restarts the chronometer. </p>
+<p>Starts/restarts the oscillator. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_abstract_timer.html#af50f92b60dbc887be34b87b10c6d8afb">pq::AbstractTimer</a>, and <a class="el" href="classpq_1_1_ramp.html#aead9fb134ed0e30782a6704bf9606e4f">pq::Ramp</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_timeable.html#aee42bd50475fb58e843a680e3047069b">pq::Timeable</a>.</p>
 
 </div>
 </div>
@@ -1198,7 +1194,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_randomness</b>: 4
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_metronome.html">Metronome</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

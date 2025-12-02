@@ -127,6 +127,8 @@ Inheritance diagram for pq::DigitalIn:</div>
 <area shape="poly" title=" " alt="" coords="205,264,205,299,200,299,200,264"/>
 <area shape="rect" href="classpq_1_1_debounceable.html" title="Superclass for components that can be debounced." alt="" coords="278,225,405,251"/>
 <area shape="poly" title=" " alt="" coords="308,259,227,301,224,296,306,254"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="269,152,413,177"/>
+<area shape="poly" title=" " alt="" coords="344,191,344,225,339,225,339,191"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -147,6 +149,8 @@ Collaboration diagram for pq::DigitalIn:</div>
 <area shape="poly" title=" " alt="" coords="205,264,205,299,200,299,200,264"/>
 <area shape="rect" href="classpq_1_1_debounceable.html" title="Superclass for components that can be debounced." alt="" coords="278,225,405,251"/>
 <area shape="poly" title=" " alt="" coords="308,259,227,301,224,296,306,254"/>
+<area shape="rect" href="classpq_1_1_time_windowable.html" title="Abstract class for time&#45;based objects." alt="" coords="269,152,413,177"/>
+<area shape="poly" title=" " alt="" coords="344,191,344,225,339,225,339,191"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -282,22 +286,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>debounce</b> 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noDebounce</b> ()</td></tr>
 <tr class="memdesc:a43663e1302c24792f483780aed337ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove smoothing. <br /></td></tr>
 <tr class="separator:a43663e1302c24792f483780aed337ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1acd7c18a3212eaae413d0154a8850cb" id="r_a1acd7c18a3212eaae413d0154a8850cb"><td class="memItemLeft" align="right" valign="top"><a id="a1acd7c18a3212eaae413d0154a8850cb" name="a1acd7c18a3212eaae413d0154a8850cb"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>smooth</b> (float smoothTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW)</td></tr>
-<tr class="memdesc:a1acd7c18a3212eaae413d0154a8850cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deprecated. Left for backwards compatibility. <br /></td></tr>
+<tr class="memitem:a1acd7c18a3212eaae413d0154a8850cb" id="r_a1acd7c18a3212eaae413d0154a8850cb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_debounceable.html#a1acd7c18a3212eaae413d0154a8850cb">smooth</a> (float smoothTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW)</td></tr>
+<tr class="memdesc:a1acd7c18a3212eaae413d0154a8850cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deprecated.  <br /></td></tr>
 <tr class="separator:a1acd7c18a3212eaae413d0154a8850cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a772d33b1c313869ebc260972c336e5a8" id="r_a772d33b1c313869ebc260972c336e5a8"><td class="memItemLeft" align="right" valign="top"><a id="a772d33b1c313869ebc260972c336e5a8" name="a772d33b1c313869ebc260972c336e5a8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noSmooth</b> ()</td></tr>
-<tr class="memdesc:a772d33b1c313869ebc260972c336e5a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove smoothing. <br /></td></tr>
+<tr class="memitem:a772d33b1c313869ebc260972c336e5a8" id="r_a772d33b1c313869ebc260972c336e5a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_debounceable.html#a772d33b1c313869ebc260972c336e5a8">noSmooth</a> ()</td></tr>
+<tr class="memdesc:a772d33b1c313869ebc260972c336e5a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove smoothing.  <br /></td></tr>
 <tr class="separator:a772d33b1c313869ebc260972c336e5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79ee45b94588174f0bb423e3222a75c0" id="r_a79ee45b94588174f0bb423e3222a75c0"><td class="memItemLeft" align="right" valign="top"><a id="a79ee45b94588174f0bb423e3222a75c0" name="a79ee45b94588174f0bb423e3222a75c0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float seconds)</td></tr>
-<tr class="memdesc:a79ee45b94588174f0bb423e3222a75c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the debouncing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a79ee45b94588174f0bb423e3222a75c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2567640409693996874bcdcf35a8e1ac" id="r_a2567640409693996874bcdcf35a8e1ac"><td class="memItemLeft" align="right" valign="top"><a id="a2567640409693996874bcdcf35a8e1ac" name="a2567640409693996874bcdcf35a8e1ac"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
-<tr class="memdesc:a2567640409693996874bcdcf35a8e1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the debouncing window (expressed in seconds). <br /></td></tr>
-<tr class="separator:a2567640409693996874bcdcf35a8e1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8e1406fb68b32cb88e97d4d5aa5e814" id="r_ab8e1406fb68b32cb88e97d4d5aa5e814"><td class="memItemLeft" align="right" valign="top"><a id="ab8e1406fb68b32cb88e97d4d5aa5e814" name="ab8e1406fb68b32cb88e97d4d5aa5e814"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>debounceMode</b> () const</td></tr>
 <tr class="memdesc:ab8e1406fb68b32cb88e97d4d5aa5e814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the debounce mode. <br /></td></tr>
@@ -305,6 +299,34 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>debounceMode</b> (
 <tr class="memitem:a3636a5f531b7d502be21fe2d29815a02" id="r_a3636a5f531b7d502be21fe2d29815a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_debounceable.html#a3636a5f531b7d502be21fe2d29815a02">debounceMode</a> (uint8_t <a class="el" href="classpq_1_1_digital_in.html#a875b2533a92a8b384057700fdfe3194c">mode</a>)</td></tr>
 <tr class="memdesc:a3636a5f531b7d502be21fe2d29815a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets debounce mode.  <br /></td></tr>
 <tr class="separator:a3636a5f531b7d502be21fe2d29815a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70831c02cb9ac2ed4633fb2612b2654" id="r_ae70831c02cb9ac2ed4633fb2612b2654"><td class="memItemLeft" align="right" valign="top"><a id="ae70831c02cb9ac2ed4633fb2612b2654" name="ae70831c02cb9ac2ed4633fb2612b2654"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>infiniteTimeWindow</b> ()</td></tr>
+<tr class="memdesc:ae70831c02cb9ac2ed4633fb2612b2654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to infinite. <br /></td></tr>
+<tr class="separator:ae70831c02cb9ac2ed4633fb2612b2654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973b709e6d620ba95e811dac73835fd6" id="r_a973b709e6d620ba95e811dac73835fd6"><td class="memItemLeft" align="right" valign="top"><a id="a973b709e6d620ba95e811dac73835fd6" name="a973b709e6d620ba95e811dac73835fd6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>noTimeWindow</b> ()</td></tr>
+<tr class="memdesc:a973b709e6d620ba95e811dac73835fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time window to no time window. <br /></td></tr>
+<tr class="separator:a973b709e6d620ba95e811dac73835fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200edba5991b4ea779a6848f654aceb5" id="r_a200edba5991b4ea779a6848f654aceb5"><td class="memItemLeft" align="right" valign="top"><a id="a200edba5991b4ea779a6848f654aceb5" name="a200edba5991b4ea779a6848f654aceb5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> (float seconds)</td></tr>
+<tr class="memdesc:a200edba5991b4ea779a6848f654aceb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a200edba5991b4ea779a6848f654aceb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5047b025a686298b85dba2c162175914" id="r_a5047b025a686298b85dba2c162175914"><td class="memItemLeft" align="right" valign="top"><a id="a5047b025a686298b85dba2c162175914" name="a5047b025a686298b85dba2c162175914"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindow</b> () const</td></tr>
+<tr class="memdesc:a5047b025a686298b85dba2c162175914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window (expressed in seconds). <br /></td></tr>
+<tr class="separator:a5047b025a686298b85dba2c162175914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef904a094f19d393062c61f06e510a6c" id="r_aef904a094f19d393062c61f06e510a6c"><td class="memItemLeft" align="right" valign="top"><a id="aef904a094f19d393062c61f06e510a6c" name="aef904a094f19d393062c61f06e510a6c"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>timeWindowIsInfinite</b> () const</td></tr>
+<tr class="memdesc:aef904a094f19d393062c61f06e510a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if time window is infinite. <br /></td></tr>
+<tr class="separator:aef904a094f19d393062c61f06e510a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e6b52e05e0cc21a4f693a708f7b466a" id="r_a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memItemLeft" align="right" valign="top"><a id="a7e6b52e05e0cc21a4f693a708f7b466a" name="a7e6b52e05e0cc21a4f693a708f7b466a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> (float hz)</td></tr>
+<tr class="memdesc:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:a7e6b52e05e0cc21a4f693a708f7b466a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d75f1b738c6666f4ada0a54fdd9dba" id="r_aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memItemLeft" align="right" valign="top"><a id="aa5d75f1b738c6666f4ada0a54fdd9dba" name="aa5d75f1b738c6666f4ada0a54fdd9dba"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>cutoff</b> () const</td></tr>
+<tr class="memdesc:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time window cutoff frequency (expressed in Hz). <br /></td></tr>
+<tr class="separator:aa5d75f1b738c6666f4ada0a54fdd9dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -389,9 +411,6 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_pin</b></td></tr>
 <tr class="memitem:a203e55aadd4bfde78ded054298d17a81" id="r_a203e55aadd4bfde78ded054298d17a81"><td class="memItemLeft" align="right" valign="top"><a id="a203e55aadd4bfde78ded054298d17a81" name="a203e55aadd4bfde78ded054298d17a81"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_mode</b></td></tr>
 <tr class="separator:a203e55aadd4bfde78ded054298d17a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a984f4983165e16ac89c81abe2313c140" id="r_a984f4983165e16ac89c81abe2313c140"><td class="memItemLeft" align="right" valign="top"><a id="a984f4983165e16ac89c81abe2313c140" name="a984f4983165e16ac89c81abe2313c140"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_interval</b></td></tr>
-<tr class="separator:a984f4983165e16ac89c81abe2313c140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a855c3d2495b964458204c7ab844e5e6f" id="r_a855c3d2495b964458204c7ab844e5e6f"><td class="memItemLeft" align="right" valign="top"><a id="a855c3d2495b964458204c7ab844e5e6f" name="a855c3d2495b964458204c7ab844e5e6f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_startTime</b></td></tr>
 <tr class="separator:a855c3d2495b964458204c7ab844e5e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -401,6 +420,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_state</b></td></t
 <tr class="memitem:a2183c0b3c70e4e155dc0a8935b5d6336" id="r_a2183c0b3c70e4e155dc0a8935b5d6336"><td class="memItemLeft" align="right" valign="top"><a id="a2183c0b3c70e4e155dc0a8935b5d6336" name="a2183c0b3c70e4e155dc0a8935b5d6336"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_debounceMode</b></td></tr>
 <tr class="separator:a2183c0b3c70e4e155dc0a8935b5d6336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1bb0f62cfeb9b5fd909a9c6cadc320" id="r_a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memItemLeft" align="right" valign="top"><a id="a0e1bb0f62cfeb9b5fd909a9c6cadc320" name="a0e1bb0f62cfeb9b5fd909a9c6cadc320"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td></tr>
+<tr class="separator:a0e1bb0f62cfeb9b5fd909a9c6cadc320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic class representing a simple digital input. </p>
@@ -718,6 +740,34 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_debounceMode</b><
 
 </div>
 </div>
+<a id="a772d33b1c313869ebc260972c336e5a8" name="a772d33b1c313869ebc260972c336e5a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a772d33b1c313869ebc260972c336e5a8">&#9670;&#160;</a></span>noSmooth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void pq::Debounceable::noSmooth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove smoothing. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Deprecated:</a></b></dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="ab6aee5c14addea2c5ba36424ff52612a" name="ab6aee5c14addea2c5ba36424ff52612a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab6aee5c14addea2c5ba36424ff52612a">&#9670;&#160;</a></span>put()</h2>
 
@@ -794,6 +844,35 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_debounceMode</b><
 
 </div>
 </div>
+<a id="a1acd7c18a3212eaae413d0154a8850cb" name="a1acd7c18a3212eaae413d0154a8850cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1acd7c18a3212eaae413d0154a8850cb">&#9670;&#160;</a></span>smooth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void pq::Debounceable::smooth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>smoothTime</em> = <code>PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deprecated. </p>
+<p>Left for backwards compatibility. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Deprecated:</a></b></dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a47cb26a759cf20126b354e9d2e44ab48" name="a47cb26a759cf20126b354e9d2e44ab48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47cb26a759cf20126b354e9d2e44ab48">&#9670;&#160;</a></span>step()</h2>
 
@@ -831,7 +910,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>_debounceMode</b><
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_digital_in.html">DigitalIn</a></li>
-    <li class="footer">Generated on Thu Nov 6 2025 12:47:55 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
