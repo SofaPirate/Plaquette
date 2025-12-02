@@ -105,6 +105,7 @@ protected:
   // Internal quantile update (Robbins–Monro).
   inline void _updateQuantile(float& q, float level, float eta, float x);
 
+  // Helper function to initialize range.
   void _initializeRange(float minValue, float maxValue);
 
 protected:
