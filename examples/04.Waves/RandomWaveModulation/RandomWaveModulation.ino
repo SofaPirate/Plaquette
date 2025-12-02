@@ -20,8 +20,8 @@ Wave lfo(SINE, 20.0); // 20 seconds period
 void begin() {}
 
 void step() {
-  // Modulate randomization level.
-  osc.randomize(lfo);
+  // Modulate jittering level.
+  osc.jitter(lfo);
 
   // Send to serial output.
   print(osc); print(" "); println(lfo);

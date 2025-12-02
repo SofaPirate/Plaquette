@@ -25,9 +25,8 @@
 #ifndef MOVINGAVERAGE_H_
 #define MOVINGAVERAGE_H_
 
-#include <Arduino.h>
-#include <limits.h>
-#include <float.h>
+#include "PqCore.h"
+#include "pq_moving_average.h"
 
 namespace pq {
 
@@ -36,78 +35,32 @@ class MovingAverage {
 public:
   /// Default constructor (infinite time window).
   MovingAverage();
-
-  /// Default constructor (finite time window).
-  MovingAverage(float timeWindow);
-
   virtual ~MovingAverage() {}
-
-  /// Sets to "infinite" smoothing window.
-  void infiniteTimeWindow();
-
-  /// Changes the smoothing window (expressed in seconds).
-  void timeWindow(float seconds);
-
-  /// Returns the smoothing window (expressed in seconds).
-  float timeWindow() const { return _smoothTime; }
-
-  /// Returns true if time window is infinite.
-  bool timeWindowIsInfinite() const;
-
-  /// Changes the smoothing window cutoff frequency (expressed in Hz).
-  void cutoff(float hz);
-
-  /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const;
-
-  /// Returns the alpha value computed from given sample rate.
-  float alpha(float sampleRate) const;
 
   /// Resets the moving average.
   void reset();
 
+  /// Resets the moving average with initial value.
+  void reset(float initialValue);
+
   /// Updates the moving average with new value #v# (also returns the current value).
-  virtual float update(float v, float sampleRate=1, bool forceAlpha=false);
+  virtual float update(float v, float alpha);
+
+  /// Amends the moving average latest update (needs to be called with same #alpha# parameter).
+  virtual float amend(float previousValue, float newValue, float alpha) ;
+
+  /// Applies a moving average step directly using a delta value.
+  virtual float delta(float d);
 
   /// Returns the value of the moving average. This is undefined if isValid() == false.
   float get() { return _value; }
   float constGet() const { return _value; }
 
-  /// Returns the number of samples processed since reset().
-  unsigned int nSamples() const { return _nSamples; }
-
-  /// Performs an amendment of latest update (needs to be called with same #sampleRate# and #forceAlpha# parameters).
-  void amendUpdate(float previousValue, float newValue, float sampleRate=1, bool forceAlpha=false);
-
-  /**
-   * Applies a single update on #runningValue# with new sample #newValue# and mixing
-   * factor #alpha#.
-   */
-  static void applyUpdate(float& runningValue, float newValue, float alpha);
-
-  /// Performs an amendment of latest update (needs to be called with same #alpha# parameter).
-  static void applyAmendUpdate(float& runningValue, float previousValue, float newValue, float alpha);
-
-  /**
-   * Computes a single update on #runningValue# with new sample #newValue# and mixing
-   * factor #alpha#.
-   */
-  static float computeUpdate(float runningValue, float newValue, float alpha);
-
-  /// Returns the alpha value computed from given sample rate, time window, and number of samples.
-  static float alpha(float sampleRate, float timeWindow, unsigned int nSamples=UINT_MAX);
-
 protected:
-  // The smoothing window (in seconds).
-  float _smoothTime;
-
   // The current value of the exponential moving average.
   float _value;
-
-  // Number of samples that have been processed thus far.
-  unsigned int _nSamples;
 };
 
 } // namespace pq
 
-#endif /* MOVINGAVERAGE_H_ */
+#endif

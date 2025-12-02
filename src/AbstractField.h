@@ -27,7 +27,7 @@ namespace pq {
 
 class AbstractField : public Unit {
 public:
-  AbstractField() {}
+  AbstractField(Engine& engine) : Unit(engine) {}
   virtual ~AbstractField() {}
 
 public:

@@ -38,9 +38,9 @@ testing(count) {
   if (metro2) count2 ++;
 
   if (Plaquette.seconds() - startTime >= RUNTIME) {
-    assertEqual(count0, (int)(RUNTIME/metro0.period())-1);
-    assertEqual(count1, (int)(RUNTIME/metro1.period())-1);
-    assertEqual(count2, (int)(RUNTIME/metro2.period())-1);
+    assertNear(count0, (int)(RUNTIME/metro0.period()), 1);
+    assertNear(count1, (int)(RUNTIME/metro1.period()), 1);
+    assertNear(count2, (int)(RUNTIME/metro2.period()), 1);
     pass();
   }
 

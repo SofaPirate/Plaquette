@@ -54,3 +54,28 @@
       max-width: 1000px;
   }
 }
+
+/* Wrap cells in tables */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+/* Prevents bullet point items to be too big */
+.rst-content table.docutils td li p,
+.rst-content table.docutils th li p,
+.rst-content table.field-list td li p,
+.rst-content table.field-list th li p,
+.wy-table td li p,
+.wy-table th li p{
+  font-size:100%;
+}
+
+/* Pushes bullet points to the left in tables */
+.rst-content table.docutils td li ,
+.rst-content table.docutils th li ,
+.rst-content table.field-list td li ,
+.rst-content table.field-list th li ,
+.wy-table td li ,
+.wy-table th li {
+  margin-left: 16px;
+}

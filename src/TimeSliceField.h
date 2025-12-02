@@ -36,7 +36,7 @@ public:
    * Constructor.
    * @param period the period in seconds
    */
-  TimeSliceField(float period) : _period(period), _full(false), _rolling(false), _changed(false) {
+  TimeSliceField(float period, Engine& engine = Engine::primary()) : AbstractField(engine), _period(period), _full(false), _rolling(false), _changed(false) {
     reset();
   }
   virtual ~TimeSliceField() {}

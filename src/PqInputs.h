@@ -23,6 +23,7 @@
 
 #include "PqCore.h"
 #include "MovingAverage.h"
+#include "TimeWindowable.h"
 
 namespace pq {
 
@@ -40,27 +41,16 @@ enum {
 #define ANALOG_INVERTED   INVERTED
 
 /// Superclass for components that can be smoothed.
-class Smoothable {
-public:
+class Smoothable : public TimeWindowable {
+protected:
   Smoothable();
 
+public:
   /// Apply smoothing to object.
   virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_SMOOTH_WINDOW) { timeWindow(smoothTime); }
 
   /// Remove smoothing.
-  virtual void noSmooth() { smooth(PLAQUETTE_NO_SMOOTH_WINDOW); }
-
-  /// Changes the smoothing window (expressed in seconds).
-  virtual void timeWindow(float seconds) { _avg.timeWindow(seconds); }
-
-  /// Returns the smoothing window (expressed in seconds).
-  float timeWindow() const { return _avg.timeWindow(); }
-
-  /// Changes the smoothing window cutoff frequency (expressed in Hz).
-  virtual void cutoff(float hz) { _avg.cutoff(hz); }
-
-  /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  float cutoff() const { return _avg.cutoff(); }
+  virtual void noSmooth() { noTimeWindow(); }
 
 protected:
   // Raw read function.
@@ -80,30 +70,32 @@ protected:
 
   // The moving average.
   MovingAverage _avg;
+
+  // The number of samples to average.
+  unsigned int _nSamples;
 };
 
 /// Superclass for components that can be debounced.
-class Debounceable {
-public:
+class Debounceable : public TimeWindowable {
+protected:
   Debounceable();
 
+public:
   /// Apply smoothing to object.
   virtual void debounce(float debounceTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { timeWindow(debounceTime); }
 
   /// Remove smoothing.
-  virtual void noDebounce() { debounce(PLAQUETTE_NO_DEBOUNCE_WINDOW); }
+  virtual void noDebounce() { noTimeWindow(); }
 
   /// Deprecated. Left for backwards compatibility.
+  /// @deprecated
+  [[deprecated("Use debounce() instead")]]
   virtual void smooth(float smoothTime=PLAQUETTE_DEFAULT_DEBOUNCE_WINDOW) { debounce(smoothTime); }
 
   /// Remove smoothing.
+  /// @deprecated
+  [[deprecated("Use noDebounce() instead")]]
   virtual void noSmooth() { noDebounce(); }
-
-  /// Changes the debouncing window (expressed in seconds).
-  virtual void timeWindow(float seconds) { _interval = seconds; }
-
-  /// Returns the debouncing window (expressed in seconds).
-  float timeWindow() const { return _interval; }
 
   /// Returns the debounce mode.
   uint8_t debounceMode() const { return _debounceMode; }
@@ -130,6 +122,7 @@ protected:
   // Returns debounced value.
   virtual bool _debounced();
 
+  // Flag helper functions.
   inline void _changeState();
   inline void _setStateFlag(const uint8_t flag)    { _state |= flag; }
   inline void _unsetStateFlag(const uint8_t flag)  { _state &= ~flag; }
@@ -137,7 +130,6 @@ protected:
   inline bool _getStateFlag(const uint8_t flag)    { return((_state & flag) != 0); }
 
   // The moving average.
-  float _interval;
   float _startTime;
   uint8_t _state;
   uint8_t _debounceMode;

@@ -22,11 +22,12 @@
 #define SMOOTHER_H_
 
 #include "PqCore.h"
+#include "MovingFilter.h"
 
 namespace pq {
-  
+
 /// Simple moving average transform filter.
-class Smoother : public Unit, public MovingAverage {
+class Smoother : public MovingFilter {
 public:
   /**
    * Constructor with default smoothing.
@@ -49,15 +50,11 @@ public:
    */
   virtual float put(float value);
 
-  /// Returns smoothed value.
-  virtual float get() { return MovingAverage::get(); }
-
 protected:
   virtual void step();
 
   // Variables used to compute current value average during a step (in case of multiple calls to put()).
   float _currentValueStep;
-  uint8_t _nValuesStep;
 };
 
 }

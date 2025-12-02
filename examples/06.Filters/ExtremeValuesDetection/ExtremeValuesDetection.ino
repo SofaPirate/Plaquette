@@ -1,10 +1,9 @@
 /**
- * NormalizeSignalDetection
+ * ExtremeValuesDetection
  *
- * Shows how to normalize an analog signal in order to detect
- * outliers. In order to do so we use a Normalizer object to
- * to produce a normalized value. We use it to detect outlier
- * values based on deviation from mean.
+ * Shows how to normalize an analog signal in order to detect extreme values
+ * (aka outliers). In order to do so we use a Normalizer object to to produce
+ * a normalized value. We use it to detect outlier values based on deviation from mean.
  *
  * The circuit:
  * - A photoresistor connected to analog pin and to +5V.
@@ -14,7 +13,7 @@
  * that's attached to pin 13, so no hardware is needed for this example.
  *
  * Created in 2018 by Sofian Audry
- * Modified in 2022 by Sofian Audry
+ * Modified in 2022 and 2025 by Sofian Audry
  *
  * This example code is in the public domain.
  */

@@ -12,18 +12,18 @@ Let's review briefly how to handle raw :doc:`input and output <inputs_outputs>` 
 We will be using an analog sensor such as a photoresistor for this example.
 
 .. note::
-  In order to build this circuit, you will need to create a simple 
+  In order to build this circuit, you will need to create a simple
   `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
   Connect the photoresistor between the ground (GND) and the analog input pin (``A0``). Then connect
-  a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
-  For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
+  a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
+  For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed
   resistor of about 5.5k :math:`\Omega`).
 
   .. image:: images/Plaquette-CircuitVoltageDivider.png
       :align: center
 
 
-Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:
+Here is a basic Arduino sketch that allows changing the value of an output LED using an input photocell:
 
 .. code-block:: c++
 
@@ -47,15 +47,15 @@ Here is a simple Arduino code that allows one to change the value of an output L
      analogWrite(ledPin, value / 4);
    }
 
-As explained in :doc:`why_plaquette` section, this simple code is made complicated by the fact
-that the programmer needs to remember low-level information concerning the ranges
-of raw number values (1023, 255, ...) Furthermore, this code fails to adapt to changing
-conditions such as the range of the ambient light.
+As explained in :doc:`why_plaquette` section, this code forces the programmer needs to
+remember low-level information concerning the ranges of raw number values (1023, 255, ...)
+Furthermore, it fails to adapt to changing conditions such as the range of the ambient light,
+which might evolve over the course of the day.
 
 Let's see how Plaquette can help us to create more expressive code by using inputs and
 outputs signals rather than meaningless raw numbers.
 
-To begin, we will re-implement the example above using Plaquette units. 
+To begin, we will re-implement the example above using Plaquette units.
 
 First, let's define our input photocell on pin ``A0`` using an :doc:`AnalogIn` unit:
 
@@ -77,7 +77,7 @@ easiest way to do so is by using the :doc:`>> <pipe>` operator:
 
    photoCell >> led;
 
-The complete Plaquette code will look like this:
+The complete Plaquette code looks like this:
 
 .. code-block:: c++
 
@@ -133,6 +133,44 @@ The above expression will do the following, in order:
  #. The ``regularizer`` unit updates itself if the value is a new extreme value (minimum or maximum).
  #. The ``regularizer`` then remaps the raw photocell value to the full range of [0, 1] and sends it to the ``led`` unit.
  #. The ``led`` unit takes the input value in [0, 1] and applies it to the intensity of the LED.
+
+Handling Noisy or Unpredictable Signals
+---------------------------------------
+
+The :doc:`MinMaxScaler` is great when your signal behaves in a fairly stable way. It
+learns the smallest and largest values it has ever seen, then stretches everything
+into a clean [0, 1] range. However, some sensors behave in a much more irregular way.
+They might produce short spikes, sudden jumps, or occasional “glitches.” These rare
+events can throw off the MinMaxScaler by forcing it to update its minimum or maximum
+too aggressively.
+
+For such situations, Plaquette provides the :doc:`RobustScaler`. Instead of focusing
+on *extreme* values, the RobustScaler concentrates on what the signal is doing *most
+of the time*. It keeps track of a "typical low" and a "typical high" value, ignoring
+rare spikes, and maps the signal between 0 and 1 based on this typical span.
+
+.. image:: images/Plaquette-RobustScaler.png
+
+You can create a RobustScaler the same way as a MinMaxScaler:
+
+.. code-block:: c++
+
+   RobustScaler regularizer;
+
+Then:
+
+.. code-block:: c++
+
+   void step() {
+     photoCell >> regularizer >> led;
+   }
+
+The output still stays within [0, 1], but the regularizer behaves more calmly and is
+less affected by sudden unexpected events.
+
+If needed, you can adjust how tolerant it is to spikes by setting its ``span()``. A
+larger span makes it more robust but also clamps extreme values more strongly. A
+smaller span makes it more sensitive but less stable.
 
 Reacting to Signal Changes
 --------------------------
@@ -271,6 +309,113 @@ Here is a complete version of the code:
      regularizer.isHighOutlier(photoCell) >> led;
    }
 
+Choosing the Right Regularizer for the Job
+------------------------------------------
+
+In creative media, each regularizer offers a different way of interpreting the same
+signal. A simple way to choose between them is to think about the kind of behaviour
+you want:
+
+- Use **MinMaxScaler** when you want to **use the full expressive range** of the
+  signal exactly as it occurs. It is a good choice when the signal’s lowest and
+  highest values are *meaningful* (not accidental glitches), and when you want
+  outliers to have a noticeable effect. This makes it ideal for direct mappings
+  where the natural span of the sensor should translate into the full motion of a
+  parameter such as brightness, speed, position, or size.
+
+- Use **RobustScaler** when you want **stable behaviour** even in the presence of
+  noise, glitches, or unpredictable input. It focuses on the “typical” range of the
+  signal and ignores rare spikes, making it suitable for real-world sensors with
+  variability, jitter, or unpredictable environmental conditions.
+
+- Use **Normalizer** when you want to understand **how far the signal deviates
+  from its typical behaviour**, rather than how big or small it is in absolute
+  terms. This is useful for detecting unusual events, bursts of activity, or
+  expressive gestures that stand out relative to the usual pattern of the sensor.
+
+Thinking about your signal in terms of **expressive range**, **stability**, or
+**deviation** will help you select the regularizer that best supports the
+interaction you are designing.
+
+The table below summarizes when and why you would use each unit, and gives examples
+of typical signals where each is a good fit.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 14 32 30 24
+
+   * - Regularizer
+     - Best Used When…
+     - Pros / Cons
+     - Example Signals
+
+   * - :doc:`MinMaxScaler`
+
+     - Your signal has **clear, stable limits** and you want to remap it
+       cleanly into the full **[0, 1]** range, often for direct control
+       (sensor → brightness, speed, position, etc.).
+
+     - **Pros:**
+
+       - Very simple and intuitive
+       - Great for direct, continuous mappings
+       - Easy to reason about visually (“full sweep = 0% to 100%”)
+
+       **Cons:**
+
+       - Very sensitive to spikes and rare extreme values (outliers)
+       - Sudden glitches can distort the usable range
+
+     - - Photocells in controlled lighting
+       - Distance sensors with bounded ranges
+       - Knobs, sliders, faders
+       - Flex sensors over limited movement arcs
+
+   * - :doc:`RobustScaler`
+
+     - Your signal is **noisy, erratic, or unpredictable**, and you want
+       a stable result even when rare spikes occur. You care more about
+       the “typical” range than about extremes.
+
+     - **Pros:**
+
+       - Tolerant to outliers
+       - Ignores occasional glitches
+       - Produces a stable [0, 1] range
+       - ``span()`` adjusts robustness vs. sensitivity
+
+       **Cons:**
+
+       - Very extreme values may be clamped
+       - Adapts more slowly than MinMaxScaler
+
+     - - Physiological / biosignals (heart-rate, EMG, GSR, EEG amplitude)
+       - Noisy microphones or piezo discs
+       - Jittery accelerometers
+       - Environmental sensors in public spaces
+
+   * - :doc:`Normalizer`
+
+     - You want to understand a signal in terms of **how much it differs from its
+       own average behaviour**. Works best when the signal naturally clusters around
+       a single central value (a “bell-shaped” or roughly normal distribution).
+
+     - **Pros:**
+
+       - Provides a clear measure of relative deviation from the mean
+       - Tolerant to outliers
+       - Very effective for identifying outliers or unusual events
+
+       **Cons:**
+
+       - Output is not limited to [0, 1]
+       - Less suited for direct sensor → output mappings
+       - Can be misleading for signals with multiple distinct operating states (e.g., empty room vs. crowded room)
+
+     - - Photocells where the goal is to detect departures from normal light levels
+       - Microphones used to detect unusual loudness relative to ambient noise
+       - Motion sensors where gestures stand out against small baseline movement
+
 Detecting Peaks
 ---------------
 
@@ -325,10 +470,10 @@ Please read the :doc:`full documentation of the unit <PeakDetector>` for details
 Conclusion
 ----------
 
-The Plaquette library simplifies signal processing for interactive design by abstracting low-level 
+The Plaquette library simplifies signal processing for interactive design by abstracting low-level
 details and offering intuitive regularization tools like :doc:`MinMaxScaler` and :doc:`Normalizer`.
 Combined with :doc:`PeakDetector` opens the way to deploy precise event-driven behaviors.
 
-Plaquette's ability to adapt to changing conditions ensures dynamic, robust systems while keeping code 
-concise and expressive. By leveraging its modular architecture, users can streamline signal 
+Plaquette's ability to adapt to changing conditions ensures dynamic, robust systems while keeping code
+concise and expressive. By leveraging its modular architecture, users can streamline signal
 handling, improve scalability, and focus on innovation in signal-driven creative applications.

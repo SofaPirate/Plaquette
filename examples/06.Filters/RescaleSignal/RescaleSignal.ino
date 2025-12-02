@@ -10,12 +10,7 @@
  * - LED anode (long leg) attached to 220-330 Ohm resistor
  * - resistor attached to analog (PWM) output 9
  *
- * The program will calibrate itself for the first 30 seconds,
- * after which it will stay stable. Upon program launch, try different
- * light conditions (eg. switch interior lights on/off, cover photocell, etc.)
- * during the calibration period.
- *
- * Created in 2022 by Sofian Audry
+ * Created in 2025 by Sofian Audry
  *
  * This example code is in the public domain.
  *
@@ -30,17 +25,22 @@ AnalogOut led(9); // PWM pin 9
 // The analog input.
 AnalogIn in(A0);
 
-// This object will rescale according to min and max values.
+// This unit will rescale signal to full range [0, 1].
+// TIP: Try replacing the min-max scaler with a robust scaler or a normalizer, which are
+// more robust to outliers. Just replace MinMaxScaler with RobustScaler or Normalizer.
 MinMaxScaler scaler;
 
-void begin() {}
+void begin() {
+  // Set a time window of 1 minute (60 seconds) on scaler.
+  // This will allow the scaler to slowly readjust itself
+  // if the lighting conditions change.
+  scaler.timeWindow(60.0f);
+}
 
 void step() {
-  // After 30 seconds, stop calibration. The scaler will still rescale
-  // values but will stop updating its min. and max. values.
-  if (scaler.isCalibrating() && seconds() >= 30.0f)
-    scaler.pauseCalibrating(); // stop calibration
-
 	// Analog input is rescaled then sent as LED value.
 	in >> scaler >> led;
+
+  // Prints raw and rescaled values, for comparison using the Serial plotter.
+  print(in); print(" "); println(scaler);
 }

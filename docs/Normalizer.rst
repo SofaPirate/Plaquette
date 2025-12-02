@@ -23,7 +23,7 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
    // Analog sensor (eg. photocell or microphone).
    AnalogIn sensor(A0);
 
-   // Creates a normalizer with mean 0 and standard deviation 1.
+   // Normalizer with mean 0 and standard deviation 1.
    Normalizer normalizer(0, 1);
 
    // Output indicator LED.
@@ -50,4 +50,5 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
 |SeeAlso|
 ---------
 - :doc:`MinMaxScaler`
+- :doc:`RobustScaler`
 - :doc:`Smoother`

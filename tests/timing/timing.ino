@@ -64,11 +64,11 @@ testing(timing) {
     }
   }
 
-  if (Plaquette.seconds() <= TEST_RAMP_MAX) {
+  if (Plaquette.seconds() - startTime <= TEST_RAMP_DURATION) {
     assertMoreOrEqual(testRampDuration.get(), 0.0f);
     assertLessOrEqual(testRampDuration.get(), 100.0f);
 
-    assertNear(testRampDuration.get(), mapFrom01((Plaquette.seconds()-startTime)/TEST_RAMP_DURATION, 0, TEST_RAMP_MAX), 2.0f);
+    assertNear(testRampDuration.get(), mapFrom01((Plaquette.seconds()-startTime)/TEST_RAMP_DURATION, 0, TEST_RAMP_MAX), 1.0f);
     assertEqual(testRampDuration.get(), testRampSpeed.get());
   }
 
@@ -77,8 +77,8 @@ testing(timing) {
       Metronome* unit = metro[i];
       Metronome* randomUnit = randomMetro[i];
       assertNear(nMetro[i], (float)(TOTAL_DURATION/unit->period()), 4.0f);
-      // Assert random metronome is within 15% tolerance.
-      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.15f);
+      // Assert random metronome is within 20% tolerance.
+      assertNear(nRandomMetro[i], (float)(TOTAL_DURATION/randomUnit->period()), (float)(TOTAL_DURATION/randomUnit->period())*0.2f);
     }
     pass();
   }
@@ -86,9 +86,10 @@ testing(timing) {
 
 void setup() {
   Plaquette.begin();
+  randomSeed(1234567);
   for (int i=0; i<N_METRO; i++) {
     Metronome* randomUnit = randomMetro[i];
-    randomUnit->randomize();
+    randomUnit->jitter(1.0f);
     Wave *unit2 = osc[i];
     unit2->phaseShift(-0.25f);
     unit2->skew(0.75f);

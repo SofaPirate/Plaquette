@@ -1,0 +1,3 @@
+{
+  "ignoreCommitPattern": "^(.*(docs|doc|documentation|rst|svg|png|image)).*$"
+}

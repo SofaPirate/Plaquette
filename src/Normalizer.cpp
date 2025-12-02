@@ -18,91 +18,94 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "MovingStats.h"
 #include "Normalizer.h"
+#include "MovingStats.h"
+#include "pq_moving_average.h"
 
 namespace pq {
 
 Normalizer::Normalizer(Engine& engine)
-  : MovingFilter(engine), MovingStats()
-{
-  _init(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV);
-}
+  : Normalizer(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV, engine)
+{}
 
 Normalizer::Normalizer(float timeWindow, Engine& engine)
-  : MovingFilter(engine), MovingStats(timeWindow)
-{
-  _init(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV);
-}
+  : Normalizer(NORMALIZER_DEFAULT_MEAN, NORMALIZER_DEFAULT_STDDEV, timeWindow, engine)
+{}
 
 Normalizer::Normalizer(float mean, float stdDev, Engine& engine)
   : MovingFilter(engine), MovingStats()
 {
+  infiniteTimeWindow();
   _init(mean, stdDev);
 }
 
-Normalizer::Normalizer(float mean, float stdDev, float timeWindow, Engine& engine)
-  : MovingFilter(engine), MovingStats(timeWindow)
+Normalizer::Normalizer(float mean, float stdDev, float timeWindow_, Engine& engine)
+  : MovingFilter(engine), MovingStats()
 {
+  timeWindow(timeWindow_);
   _init(mean, stdDev);
-}
-
-void Normalizer::infiniteTimeWindow() {
-  MovingStats::infiniteTimeWindow();
-}
-
-void Normalizer::timeWindow(float seconds) {
-  MovingStats::timeWindow(seconds);
-}
-
-float Normalizer::timeWindow() const { return MovingStats::timeWindow(); }
-
-bool Normalizer::timeWindowIsInfinite() const {
-  return MovingStats::timeWindowIsInfinite();
 }
 
 void Normalizer::reset() {
-  MovingStats::reset();
   MovingFilter::reset();
+  MovingStats::reset();
+}
+
+void Normalizer::reset(float estimatedMeanValue) {
+  MovingFilter::reset();
+  MovingStats::reset(estimatedMeanValue, 1.0f);
+}
+
+void Normalizer::reset(float estimatedMinValue, float estimatedMaxValue) {
+  MovingFilter::reset();
+
+  float mean = 0.5f * (estimatedMinValue + estimatedMaxValue);
+  float stddev = abs(estimatedMaxValue - estimatedMinValue) / MOVING_FILTER_N_STDDEV_RANGE;
+  MovingStats::reset(mean, stddev);
 }
 
 float Normalizer::put(float value) {
-  // Increment n. values.
-  if (_nValuesStep < 128)
-    _nValuesStep++;
-
   // First time put() is called this step.
   if (isCalibrating()) {
 
-    if (_nValuesStep == 1) {
-      // Update moving average.
-      _value = update(value, sampleRate());
+    float value2 = sq(value);
+    float a = alpha();
+
+    // First time put() is called this step: simple update.
+    if (_nValuesStep == 0) {
+      _currentMeanStep = value;
+      _currentMean2Step = value2;
+      _nValuesStep = 1;
+      _mean. update(value, a);
+      _mean2.update(value2, a);
     }
-    // If put() is called more than one time in same step, readjust moving average.
+
+    // This code is executed if put() is called more than one time in same step.
+    // Readjust moving average: replace previous value with new value averaged over step.
     else {
-      // Save previous value.
-      float prevValueStep = _currentMeanStep;
-      float prevValue2Step = _currentMean2Step;
+      // Update values. Variable _currentValueStep is used to accumlate values as a sum.
+      float prevNValuesStep;
+      if (_nValuesStep < MOVING_FILTER_N_VALUES_STEP_MAX) {
+        _currentMeanStep += value;
+        _currentMean2Step += value2;
+        prevNValuesStep = _nValuesStep;
+        _nValuesStep++;
+      }
+      else {
+        // Add one value in proportion to the previous value.
+        _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
+        _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
+      }
 
-      // Update current step average value.
-      float stepValuesAlpha = 1.0f/_nValuesStep;
-      MovingAverage::applyUpdate(_currentMeanStep, value, stepValuesAlpha);
-      MovingAverage::applyUpdate(_currentMean2Step, sq(value), stepValuesAlpha);
-
-      // Update moving average: replace previous value with new value averaged over step.
-      float alpha = _avg.alpha(sampleRate());
-      _avg.amendUpdate(prevValueStep, _currentMeanStep, alpha, true);
-      MovingAverage::applyAmendUpdate(_mean2, prevValue2Step, _currentMean2Step, alpha);
-
-      _value = normalize(value);
+      // This is based on an expansion of the moving average formula.
+      float adjustFactor = a / (prevNValuesStep * _nValuesStep);
+      _mean. delta(adjustFactor * (_nValuesStep * value  - _currentMeanStep));
+      _mean2.delta(adjustFactor * (_nValuesStep * value2 - _currentMean2Step));
     }
   }
 
-  else
-    _value = normalize(value);
-
   // Normalize value to target normal.
-  _value = _value * _targetStdDev + _targetMean;
+  _value = normalize(value, _targetMean, _targetStdDev);
 
   // Check for clamp.
   if (isClamped())
@@ -112,32 +115,27 @@ float Normalizer::put(float value) {
 }
 
 void Normalizer::step() {
-  // If no values were added during this step, update using previous value.
-  // In other words: repeat update with previous value.
-  if (_nValuesStep == 0) {
-    float alpha = _avg.alpha(sampleRate());
-    _avg.update(_currentMeanStep, alpha, true);
-    MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
+  if (isCalibrating()) {
+
+    // If no values were added during this step, update using previous value.
+    // In other words: repeat update with previous value.
+    if (_nValuesStep > 0) {
+      _currentMeanStep  /= _nValuesStep;
+      _currentMean2Step /= _nValuesStep;
+      _nValuesStep = 0;
+    }
+
+    // Compute base alpha.
+    float a = alpha();
+
+    // Update statistics.
+    _mean.update(_currentMeanStep, a);
+    _mean2.update(_currentMean2Step, a);
+
+    // Increase number of samples.
+    if (_nSamples < UINT_MAX)
+      _nSamples++;
   }
-  // Otherwise: reset (but keep _currentMeanStep).
-  else
-    _nValuesStep = 0;
-}
-
-float Normalizer::update(float value, float sampleRate)
-{
-  // Get alpha.
-  float alpha = _avg.alpha(sampleRate);
-
-  // Update average.
-  _avg.update(value, alpha, true); // force alpha
-  _currentMeanStep = value;
-
-  // Update variance.
-  _currentMean2Step = sq(value);
-  MovingAverage::applyUpdate(_mean2, _currentMean2Step, alpha);
-
-  return normalize(value);
 }
 
 float Normalizer::lowOutlierThreshold(float nStdDev) const {
@@ -163,8 +161,8 @@ void Normalizer::noClamp() {
 void Normalizer::_init(float mean, float stdDev) {
   _value = mean;
 
-  _currentMeanStep = mean;
-  _currentMean2Step = sq(stdDev) - sq(mean);
+  _currentMeanStep  = mean;
+  _currentMean2Step = sq(stdDev) + sq(mean);
 
   targetMean(mean);
   targetStdDev(stdDev);
@@ -174,9 +172,7 @@ void Normalizer::_init(float mean, float stdDev) {
 
 float Normalizer::_clamp(float value) const {
   float absStdDevOutlier = _clampStdDev * targetStdDev();
-  float minValue = _targetMean - absStdDevOutlier;
-  float maxValue = _targetMean + absStdDevOutlier;
-  return constrain(value, minValue, maxValue);
+  return constrain(value, _targetMean - absStdDevOutlier, _targetMean + absStdDevOutlier);
 }
 
 float Normalizer::mapTo(float toLow, float toHigh) {

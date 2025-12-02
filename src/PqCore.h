@@ -364,7 +364,7 @@ public:
 
 protected:
   /// Constructor.
-  Unit(Engine& engine = Engine::primary());
+  Unit(Engine& engine);
   virtual ~Unit();
 
   /// Returns true iff an event of a certain type has been triggered.
@@ -386,7 +386,7 @@ protected:
 class DigitalUnit : public Unit {
 protected:
   /// Constructor.
-  DigitalUnit(Engine& engine = Engine::primary()) : Unit(engine) {}
+  DigitalUnit(Engine& engine) : Unit(engine) {}
 
 public:
   /// Returns true iff the input is "on".
@@ -444,8 +444,8 @@ public:
 class AnalogSource : public Unit {
 public:
   /// Constructor.
-  AnalogSource(Engine& engine = Engine::primary()) : AnalogSource(0, engine) {}
-  AnalogSource(float initialValue, Engine& engine = Engine::primary()) : Unit(engine) { _value = constrain01(initialValue); }
+  AnalogSource(Engine& engine) : AnalogSource(0, engine) {}
+  AnalogSource(float initialValue, Engine& engine) : Unit(engine) { _value = constrain01(initialValue); }
   virtual ~AnalogSource() {}
 
   /// Returns value in [0, 1].
@@ -462,8 +462,8 @@ protected:
 class DigitalSource : public DigitalUnit {
 public:
   /// Constructor.
-  DigitalSource(Engine& engine = Engine::primary()) : DigitalSource(false, engine) {}
-  DigitalSource(bool initialValue, Engine& engine = Engine::primary()) : DigitalUnit(engine), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
+  DigitalSource(Engine& engine) : DigitalSource(false, engine) {}
+  DigitalSource(bool initialValue, Engine& engine) : DigitalUnit(engine), _onValue(initialValue), _prevOnValue(initialValue), _changeState(0) {}
 
   /// Returns true iff the input is "on".
   virtual bool isOn() { return _onValue; }

@@ -30,50 +30,30 @@ namespace pq {
 class MovingStats {
 public:
   // Moving average over values (ie. mean).
-  MovingAverage _avg;
+  MovingAverage _mean;
 
-  // Moving average of variance.
-  float _mean2;
+  // Moving average of squared values.
+  MovingAverage _mean2;
 
   /// Default constructor (infinite time window).
   MovingStats();
 
-  /// Default constructor (finite time window).
-  MovingStats(float timeWindow);
-
   virtual ~MovingStats() {}
-
-  /// Sets to "infinite" smoothing window.
-  void infiniteTimeWindow() { _avg.infiniteTimeWindow(); }
-
-  /// Changes the smoothing window (expressed in seconds).
-  void timeWindow(float seconds);
-
-  /// Returns the smoothing window (expressed in seconds).
-  float timeWindow() const { return _avg.timeWindow(); }
-
-  /// Returns true if time window is infinite.
-  bool timeWindowIsInfinite() const { return _avg.timeWindowIsInfinite(); }
-
-  // Keep this commented out to prevent confusion with MovingFilter::cutoff().
-  //
-  // /// Changes the smoothing window cutoff frequency (expressed in Hz).
-  // void cutoff(float hz);
-
-  // /// Returns the smoothing window cutoff frequency (expressed in Hz).
-  // float cutoff() const { return _avg.cutoff(); }
 
   /// Resets the statistics.
   virtual void reset();
 
+  /// Resets the filter with a prior estimate mean and standard deviation.
+  virtual void reset(float initMean, float initStdDev);
+
   /// Adds a value to the statistics (returns the mean).
-  virtual float update(float value, float sampleRate=1);
+  virtual float update(float value, float alpha);
 
   /// Returns an exponential moving average of the samples.
-  virtual float mean() const { return _avg.constGet(); }
+  virtual float mean() const { return _mean.constGet(); }
 
   /// Returns an exponential moving variance of the samples.
-  virtual float var() const { return (_mean2 - sq(mean())); }
+  virtual float var() const { return (_mean2.constGet() - sq(mean())); }
 
   /// Returns the standard deviation of the samples.
   virtual float stdDev() const;

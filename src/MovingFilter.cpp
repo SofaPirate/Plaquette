@@ -28,19 +28,22 @@ MovingFilter::MovingFilter(Engine& engine)
 {
 }
 
-void MovingFilter::cutoff(float hz) {
-  if (hz <= 0)
-    infiniteTimeWindow();
-  else
-    timeWindow(1.0f/hz);
-}
-
-float MovingFilter::cutoff() const {
-  return (timeWindowIsInfinite() ? 0 : 1.0f/timeWindow());
-}
-
 void MovingFilter::reset() {
+  _isCalibrating = true;
+  _isPreInitialized = false;
   _nValuesStep = 0;
+  _nSamples = 0;
+}
+
+void MovingFilter::reset(float estimatedMeanValue) {
+  MovingFilter::reset();
+  _value = estimatedMeanValue;
+  _isPreInitialized = true;
+}
+
+void MovingFilter::reset(float estimatedMinValue, float estimatedMaxValue) {
+  reset(0.5f * (estimatedMinValue + estimatedMaxValue));
+  _isPreInitialized = true;
 }
 
 void MovingFilter::resumeCalibrating() {
@@ -57,6 +60,10 @@ void MovingFilter::toggleCalibrating() {
 
 bool MovingFilter::isCalibrating() const {
   return _isCalibrating;
+}
+
+void MovingFilter::begin() {
+  reset();
 }
 
 }
