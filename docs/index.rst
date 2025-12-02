@@ -59,9 +59,9 @@ Related Info
    :caption: Related Info
    :titlesonly:
 
-   Video tutorials <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>
    GitHub repository <https://github.com/SofaPirate/Plaquette/>
    community
    credits
    license
    Doxygen Documentation <http://plaquette.org/doxygen/>
+   JOSS paper <https://joss.theoj.org/papers/10.21105/joss.09144>
