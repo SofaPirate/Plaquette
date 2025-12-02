@@ -12,18 +12,18 @@ Let's review briefly how to handle raw :doc:`input and output <inputs_outputs>` 
 We will be using an analog sensor such as a photoresistor for this example.
 
 .. note::
-  In order to build this circuit, you will need to create a simple 
+  In order to build this circuit, you will need to create a simple
   `voltage divider circuit <https://learn.sparkfun.com/tutorials/voltage-dividers>`__.
   Connect the photoresistor between the ground (GND) and the analog input pin (``A0``). Then connect
-  a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc). 
-  For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed 
+  a fixed resistor with value matching your photoresistor between analog input pin and +5V (Vcc).
+  For example, for a 1k :math:`\Omega` - 10k :math:`\Omega` photoresistor you could use a fixed
   resistor of about 5.5k :math:`\Omega`).
 
   .. image:: images/Plaquette-CircuitVoltageDivider.png
       :align: center
 
 
-Here is a simple Arduino code that allows one to change the value of an output LED using an input photocell:
+Here is a basic Arduino sketch that allows changing the value of an output LED using an input photocell:
 
 .. code-block:: c++
 
@@ -47,15 +47,15 @@ Here is a simple Arduino code that allows one to change the value of an output L
      analogWrite(ledPin, value / 4);
    }
 
-As explained in :doc:`why_plaquette` section, this simple code is made complicated by the fact
-that the programmer needs to remember low-level information concerning the ranges
-of raw number values (1023, 255, ...) Furthermore, this code fails to adapt to changing
-conditions such as the range of the ambient light.
+As explained in :doc:`why_plaquette` section, this code forces the programmer needs to
+remember low-level information concerning the ranges of raw number values (1023, 255, ...)
+Furthermore, it fails to adapt to changing conditions such as the range of the ambient light,
+which might evolve over the course of the day.
 
 Let's see how Plaquette can help us to create more expressive code by using inputs and
 outputs signals rather than meaningless raw numbers.
 
-To begin, we will re-implement the example above using Plaquette units. 
+To begin, we will re-implement the example above using Plaquette units.
 
 First, let's define our input photocell on pin ``A0`` using an :doc:`AnalogIn` unit:
 
@@ -77,7 +77,7 @@ easiest way to do so is by using the :doc:`>> <pipe>` operator:
 
    photoCell >> led;
 
-The complete Plaquette code will look like this:
+The complete Plaquette code looks like this:
 
 .. code-block:: c++
 
