@@ -1,5 +1,5 @@
 /**
- * ScalerSpan
+ * RobustScalerSpan
  *
  * Shows the usage of the "span" parameter of the Scaler unit.
  * Simulates a noisy signal using a sine wave and adding noise.

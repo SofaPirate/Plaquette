@@ -19,9 +19,6 @@ AnalogIn in(A0); // defaults on pin A0
 // The normalization unit.
 Normalizer normalizer;
 
-// The serial output.
-StreamOut out;
-
 void begin() {}
 
 void step() {

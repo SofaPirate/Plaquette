@@ -26,7 +26,9 @@ AnalogOut led(9); // PWM pin 9
 AnalogIn in(A0);
 
 // This unit will rescale signal to full range [0, 1].
-RobustScaler scaler;
+// TIP: Try replacing the min-max scaler with a robust scaler or a normalizer, which are
+// more robust to outliers. Just replace MinMaxScaler with RobustScaler or Normalizer.
+MinMaxScaler scaler;
 
 void begin() {
   // Set a time window of 1 minute (60 seconds) on scaler.
