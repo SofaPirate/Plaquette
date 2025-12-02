@@ -86,10 +86,12 @@ float MinMaxScaler::put(float value)
     }
   }
 
-  // Compute rescaled value.
-  _value = mapTo01(value, _smoothedMinValue, _smoothedMaxValue, CONSTRAIN);
+  return (_value = filter(value));
+}
 
-  return _value;
+float MinMaxScaler::filter(float value) {
+  // Compute rescaled value.
+  return mapTo01(value, _smoothedMinValue, _smoothedMaxValue, CONSTRAIN);
 }
 
 #define MIN_MAX_SCALER_TOLERANCE 1e-3

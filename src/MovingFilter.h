@@ -80,6 +80,9 @@ public:
   /// Returns true if the moving filter has been initialized with a starting range at reset.
   virtual bool isPreInitialized() const { return _isPreInitialized; }
 
+  /// Returns the filtered value (without calibrating).
+  virtual float filter(float value) = 0;
+
 protected:
   virtual void begin();
 

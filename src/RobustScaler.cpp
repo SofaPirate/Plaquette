@@ -226,10 +226,11 @@ float RobustScaler::put(float value) {
       _lowQuantile = _highQuantile = 0.5f * (_lowQuantile + _highQuantile);
   }
 
-  // Compute rescaled value.
-  _value = mapTo01(value, _lowQuantile, _highQuantile, CONSTRAIN);
+  return (_value = filter(value));
+}
 
-  return _value;
+float RobustScaler::filter(float value) {
+  return mapTo01(value, _lowQuantile, _highQuantile, CONSTRAIN);
 }
 
 void RobustScaler::step() {

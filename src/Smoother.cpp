@@ -73,6 +73,11 @@ float Smoother::put(float value) {
   return _value;
 }
 
+float Smoother::filter(float value) {
+  // Performs one step of moving average.
+  return computeMovingAverageUpdate(_value, value, alpha());
+}
+
 void Smoother::step() {
   if (isCalibrating()) {
 

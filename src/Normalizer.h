@@ -113,6 +113,9 @@ public:
    */
   virtual float put(float value);
 
+  /// Returns the filtered value (without calibrating).
+  virtual float filter(float value);
+
   /**
    * Returns value above which value is considered to be a low outler (below average).
    * @param nStdDev the number of standard deviations (typically between 1 and 3); low values = more sensitive

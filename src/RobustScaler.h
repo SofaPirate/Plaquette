@@ -99,6 +99,9 @@ public:
   /// Pushes a new value and returns the scaled output.
   virtual float put(float value);
 
+  /// Returns the filtered value (without calibrating).
+  virtual float filter(float value);
+
 protected:
   virtual void step();
 

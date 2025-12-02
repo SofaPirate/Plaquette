@@ -67,6 +67,9 @@ public:
    */
   virtual float put(float value);
 
+  /// Returns the filtered value (without calibrating).
+  virtual float filter(float value);
+
 public:
   virtual void step();
 

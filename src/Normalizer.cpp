@@ -105,13 +105,18 @@ float Normalizer::put(float value) {
   }
 
   // Normalize value to target normal.
-  _value = normalize(value, _targetMean, _targetStdDev);
+  return (_value = filter(value));
+}
+
+float Normalizer::filter(float value) {
+  // Normalize value to target normal.
+  value = normalize(value, _targetMean, _targetStdDev);
 
   // Check for clamp.
   if (isClamped())
-    _value = _clamp(_value);
+    value = _clamp(_value);
 
-  return _value;
+  return value;
 }
 
 void Normalizer::step() {
