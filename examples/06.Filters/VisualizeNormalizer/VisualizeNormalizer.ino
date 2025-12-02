@@ -28,18 +28,18 @@ const float TIME_WINDOW = 60.0; // try changing this to see the effect
 AnalogIn sensor(A0);
 
 // The robust scaler with a
-Normalizer scaler(TIME_WINDOW);
+Normalizer normalizer(TIME_WINDOW);
 
 void begin() {}
 
 void step() {
 
   // Send sensor value to scaler.
-  sensor >> scaler;
+  sensor >> normalizer;
 
   // Prints values for comparison using the Serial plotter.
-  print("sensor:"); print(sensor); print(" ");
-  print("scaler:"); print(scaler); print(" ");
-  print("mean:");   print(scaler.mean()); print(" ");
-  print("stddev:"); print(scaler.stdDev()); println();
+  print("sensor:");     print(sensor); print(" ");
+  print("normalizer:"); print(normalizer); print(" ");
+  print("mean:");       print(normalizer.mean()); print(" ");
+  print("stddev:");     print(normalizer.stdDev()); println();
 }
