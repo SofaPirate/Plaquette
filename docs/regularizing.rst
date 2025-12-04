@@ -342,11 +342,11 @@ of typical signals where each is a good fit.
 
 .. list-table::
    :header-rows: 1
-   :widths: 14 32 30 24
+   :widths: 10 30 30 30
 
    * - Regularizer
-     - Best Used When…
-     - Pros / Cons
+     - Best Used When ...
+     - Pros & Cons
      - Example Signals
 
    * - :doc:`MinMaxScaler`
