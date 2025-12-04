@@ -20,7 +20,7 @@ Parameters
 Randomization
 -------------
 
-Metronomes can also be used to generated **randomozed patterns** using the ``randomize()`` function.
+Metronomes can also be used to generated **randomized patterns** using the ``jitter()`` function.
 This makes their ticks feel less mechanical and closer to natural rhythms such as raindrops falling,
 typing on a keyboard, or the reactions of a living entity. When activating randomization, the metronome does
 not trigger at perfectly regular intervals anymore. Instead, the length of each cycle is perturbed according
@@ -88,7 +88,7 @@ with irregular spacing:
    Metronome metro(1.0); // base period of 1 second
 
    void begin() {
-     metro.randomize(); // 100% randomness (default)
+     metro.jitter(1.0); // 100% jittering level
    }
 
    void step() {

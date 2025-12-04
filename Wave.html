@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wave &mdash; Plaquette 0.8.1 documentation</title>
+  <title>Wave &mdash; Plaquette 0.8.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -95,12 +95,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
 </ul>
 
         </div>
@@ -150,11 +150,8 @@ Each wave type behaves slightly differently with this parameter, which will be d
 <li><p><strong>bpm()</strong>: Alternative way to set the frequency using beats per minute (BPM).</p></li>
 <li><p><strong>phase()</strong>: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).</p></li>
 <li><p><strong>amplitude()</strong>: Sets the peak level of the wave (as % of max) (in range [0, 1]).</p></li>
+<li><p><strong>jitter()</strong>: Sets the <a class="reference internal" href="#wave-randomization"><span class="std std-ref">jittering level</span></a> of oscillation (in range [0, 1]) (0: no jitter, 1: maximum jitter).</p></li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>In addition, it is possible to <a class="reference internal" href="#wave-randomization"><span class="std std-ref">add randomness</span></a> to a wave’s period using function <code class="docutils literal notranslate"><span class="pre">randomize()</span></code>.</p>
-</div>
 </section>
 <section id="square-wave">
 <span id="id2"></span><h2>Square Wave<a class="headerlink" href="#square-wave" title="Permalink to this heading"></a></h2>
@@ -573,6 +570,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave5startEv">
+<span id="_CPPv3N4Wave5startEv"></span><span id="_CPPv2N4Wave5startEv"></span><span id="Wave::start"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ab6477b28acf7a0d405ace017b5a810b6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5startEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Starts/restarts the oscillator. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave6periodEf">
 <span id="_CPPv3N4Wave6periodEf"></span><span id="_CPPv2N4Wave6periodEf"></span><span id="Wave::period__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1af3f7d4f52906d754e4261ee115ce7377"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">period</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6periodEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the period (in seconds). </p>
@@ -647,7 +650,7 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <p>the offset, in % of period).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This function is disabled if <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+<p>This function is disabled if randomness() &gt; 0. </p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -663,8 +666,20 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <p>the offset, in % of period). </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This function always returns 0 when <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+<p>This function always returns 0 when randomness() &gt; 0. </p>
 </div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave6jitterEf">
+<span id="_CPPv3N4Wave6jitterEf"></span><span id="_CPPv2N4Wave6jitterEf"></span><span id="Wave::jitter__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a29d4eb0091145778ebbb1e45a9a394cd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">jitterLevel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6jitterEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave6jitterEv">
+<span id="_CPPv3NK4Wave6jitterEv"></span><span id="_CPPv2NK4Wave6jitterEv"></span><span id="Wave::jitterC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave6jitterEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the randomness level in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -687,7 +702,7 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <dd><p>Forces current time (in seconds). </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This function is disabled if <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+<p>This function is disabled if randomness() &gt; 0. </p>
 </div>
 </dd></dl>
 
@@ -697,7 +712,7 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <dd><p>Adds time to current time (in seconds). </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This function is disabled if <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"><span class="std std-ref">randomness()</span></a> &gt; 0. </p>
+<p>This function is disabled if randomness() &gt; 0. </p>
 </div>
 </dd></dl>
 
@@ -743,39 +758,15 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK4Wave10randomnessEv">
-<span id="_CPPv3NK4Wave10randomnessEv"></span><span id="_CPPv2NK4Wave10randomnessEv"></span><span id="Wave::randomnessC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a020d58bcd10ad012edd0f575300621ff"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomness</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave10randomnessEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns the randomness level in [0, 1]. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave9randomizeEf">
-<span id="_CPPv3N4Wave9randomizeEf"></span><span id="_CPPv2N4Wave9randomizeEf"></span><span id="Wave::randomize__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a99e41da2ab03520522a0fa69e9e8c5ec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">randomness</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave9randomizeEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the randomness level in [0, 1] (0: no randomness, 1: full randomness). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave11noRandomizeEv">
-<span id="_CPPv3N4Wave11noRandomizeEv"></span><span id="_CPPv2N4Wave11noRandomizeEv"></span><span id="Wave::noRandomize"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ae2ca48814ea08585010ac52fc9450f01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noRandomize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave11noRandomizeEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Disables randomness. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave5startEv">
-<span id="_CPPv3N4Wave5startEv"></span><span id="_CPPv2N4Wave5startEv"></span><span id="Wave::start"></span><span class="target" id="classpq_1_1_timeable_1aee42bd50475fb58e843a680e3047069b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5startEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Starts/restarts the chronometer. </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave4stopEv">
 <span id="_CPPv3N4Wave4stopEv"></span><span id="_CPPv2N4Wave4stopEv"></span><span id="Wave::stop"></span><span class="target" id="classpq_1_1_timeable_1a208dbebe3ec7df301d86769ea559fbee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave4stopEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Interrupts the chronometer and resets to zero. </p>
+<dd><p>Interrupts and resets to zero. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave5pauseEv">
 <span id="_CPPv3N4Wave5pauseEv"></span><span id="_CPPv2N4Wave5pauseEv"></span><span id="Wave::pause"></span><span class="target" id="classpq_1_1_timeable_1a06b24ccfc0910f3425ad81e49297c988"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pause</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5pauseEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Interrupts the chronometer. </p>
+<dd><p>Interrupts process. </p>
 </dd></dl>
 
 <dl class="cpp function">

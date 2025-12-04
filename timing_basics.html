@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working with Time &mdash; Plaquette 0.8.1 documentation</title>
+  <title>Working with Time &mdash; Plaquette 0.8.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -96,12 +96,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
 </ul>
 
         </div>
@@ -343,10 +343,11 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can make a metronome feel more natural by adding randomness.  Simply call <code class="docutils literal notranslate"><span class="pre">randomize(amount)</span></code>
+<p>You can make a metronome feel more natural by adding randomness.  Simply call <code class="docutils literal notranslate"><span class="pre">jitter(amount)</span></code>
 where <code class="docutils literal notranslate"><span class="pre">amount</span></code> is between <code class="docutils literal notranslate"><span class="pre">0</span></code> (perfectly regular) and <code class="docutils literal notranslate"><span class="pre">1</span></code> (highly irregular). This is useful when
 you want a rhythm that feels organic rather than mechanical, like breathing, footsteps, or blinking
 lights in nature. See the <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> unit documentation for more information.</p>
+<img alt="_images/Plaquette-Metronome-Randomize.png" src="_images/Plaquette-Metronome-Randomize.png" />
 </div>
 </section>
 <section id="creating-smooth-transitions-with-ramp">

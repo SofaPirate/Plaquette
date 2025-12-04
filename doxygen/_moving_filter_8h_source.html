@@ -162,31 +162,34 @@ $(document).ready(function(){initNavTree('_moving_filter_8h_source.html',''); in
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classpq_1_1_moving_filter.html#ab6fa87a82028128f861011646e09d81e">   81</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classpq_1_1_moving_filter.html#ab6fa87a82028128f861011646e09d81e">isPreInitialized</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _isPreInitialized; }</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">   84</a></span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">filter</a>(<span class="keywordtype">float</span> value) = 0;</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">// Returns the instantaneous moving average alpha for this filter.</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> alpha()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> movingAverageAlpha(sampleRate(), <a class="code hl_function" href="classpq_1_1_time_windowable.html#a5047b025a686298b85dba2c162175914">timeWindow</a>(), <a class="code hl_function" href="classpq_1_1_moving_filter.html#aef1287b234e6ff879aeff99fe09e61c8">nSamples</a>(), <a class="code hl_function" href="classpq_1_1_moving_filter.html#ab6fa87a82028128f861011646e09d81e">isPreInitialized</a>());</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="comment">// Start/stop calibration flag.</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordtype">bool</span>    _isCalibrating    : 1;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keywordtype">bool</span>    _isPreInitialized : 1;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  uint8_t _nValuesStep      : 6;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// Number of samples that have been processed thus far.</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _nSamples;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// Returns the instantaneous moving average alpha for this filter.</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> alpha()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> movingAverageAlpha(<a class="code hl_function" href="classpq_1_1_unit.html#abf7a83ac1dedb8f05b21fe68ec587209">sampleRate</a>(), <a class="code hl_function" href="classpq_1_1_time_windowable.html#a5047b025a686298b85dba2c162175914">timeWindow</a>(), <a class="code hl_function" href="classpq_1_1_moving_filter.html#aef1287b234e6ff879aeff99fe09e61c8">nSamples</a>(), <a class="code hl_function" href="classpq_1_1_moving_filter.html#ab6fa87a82028128f861011646e09d81e">isPreInitialized</a>());</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">// Start/stop calibration flag.</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keywordtype">bool</span>    _isCalibrating    : 1;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordtype">bool</span>    _isPreInitialized : 1;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  uint8_t _nValuesStep      : 6;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="comment">// Number of samples that have been processed thus far.</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _nSamples;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
 </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclasspq_1_1_analog_source_html"><div class="ttname"><a href="classpq_1_1_analog_source.html">pq::AnalogSource</a></div><div class="ttdoc">An analog analog source that contains a value constrained to a finite range (typically in [0,...</div><div class="ttdef"><b>Definition</b> PqCore.h:444</div></div>
 <div class="ttc" id="aclasspq_1_1_engine_html"><div class="ttname"><a href="classpq_1_1_engine.html">pq::Engine</a></div><div class="ttdoc">The main Plaquette static class containing all the units.</div><div class="ttdef"><b>Definition</b> PqCore.h:60</div></div>
 <div class="ttc" id="aclasspq_1_1_engine_html_a45a0de76dadb5e62933ae5e29f2621d2"><div class="ttname"><a href="classpq_1_1_engine.html#a45a0de76dadb5e62933ae5e29f2621d2">pq::Engine::primary</a></div><div class="ttdeci">static Engine &amp; primary()</div><div class="ttdoc">Returns the main instance of Plaquette.</div><div class="ttdef"><b>Definition</b> PqCore.cpp:31</div></div>
 <div class="ttc" id="aclasspq_1_1_moving_filter_html"><div class="ttname"><a href="classpq_1_1_moving_filter.html">pq::MovingFilter</a></div><div class="ttdef"><b>Definition</b> MovingFilter.h:39</div></div>
+<div class="ttc" id="aclasspq_1_1_moving_filter_html_a1515032c268f679e29914ed20fc16f73"><div class="ttname"><a href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">pq::MovingFilter::filter</a></div><div class="ttdeci">virtual float filter(float value)=0</div><div class="ttdoc">Returns the filtered value (without calibrating).</div></div>
 <div class="ttc" id="aclasspq_1_1_moving_filter_html_a21e2769136726fe7c4b60445fb7f7cd3"><div class="ttname"><a href="classpq_1_1_moving_filter.html#a21e2769136726fe7c4b60445fb7f7cd3">pq::MovingFilter::resumeCalibrating</a></div><div class="ttdeci">virtual void resumeCalibrating()</div><div class="ttdoc">Switches to calibration mode (default).</div><div class="ttdef"><b>Definition</b> MovingFilter.cpp:49</div></div>
 <div class="ttc" id="aclasspq_1_1_moving_filter_html_a57c34ac9ba77c7e866f0271ff089fb33"><div class="ttname"><a href="classpq_1_1_moving_filter.html#a57c34ac9ba77c7e866f0271ff089fb33">pq::MovingFilter::isCalibrating</a></div><div class="ttdeci">virtual bool isCalibrating() const</div><div class="ttdoc">Returns true iff the moving filter is in calibration mode.</div><div class="ttdef"><b>Definition</b> MovingFilter.cpp:61</div></div>
 <div class="ttc" id="aclasspq_1_1_moving_filter_html_a5ffbcc93a69b25b861e8529d14aa4c06"><div class="ttname"><a href="classpq_1_1_moving_filter.html#a5ffbcc93a69b25b861e8529d14aa4c06">pq::MovingFilter::toggleCalibrating</a></div><div class="ttdeci">virtual void toggleCalibrating()</div><div class="ttdoc">Toggles calibration mode.</div><div class="ttdef"><b>Definition</b> MovingFilter.cpp:57</div></div>
@@ -197,13 +200,14 @@ $(document).ready(function(){initNavTree('_moving_filter_8h_source.html',''); in
 <div class="ttc" id="aclasspq_1_1_time_windowable_html"><div class="ttname"><a href="classpq_1_1_time_windowable.html">pq::TimeWindowable</a></div><div class="ttdoc">Abstract class for time-based objects.</div><div class="ttdef"><b>Definition</b> TimeWindowable.h:28</div></div>
 <div class="ttc" id="aclasspq_1_1_time_windowable_html_a5047b025a686298b85dba2c162175914"><div class="ttname"><a href="classpq_1_1_time_windowable.html#a5047b025a686298b85dba2c162175914">pq::TimeWindowable::timeWindow</a></div><div class="ttdeci">virtual float timeWindow() const</div><div class="ttdoc">Returns the time window (expressed in seconds).</div><div class="ttdef"><b>Definition</b> TimeWindowable.h:43</div></div>
 <div class="ttc" id="aclasspq_1_1_unit_html_a9a8f1b541423b8e12f08f99141ec32a2"><div class="ttname"><a href="classpq_1_1_unit.html#a9a8f1b541423b8e12f08f99141ec32a2">pq::Unit::engine</a></div><div class="ttdeci">Engine * engine() const</div><div class="ttdoc">Returns the engine that owns this unit.</div><div class="ttdef"><b>Definition</b> PqCore.h:382</div></div>
+<div class="ttc" id="aclasspq_1_1_unit_html_abf7a83ac1dedb8f05b21fe68ec587209"><div class="ttname"><a href="classpq_1_1_unit.html#abf7a83ac1dedb8f05b21fe68ec587209">pq::Unit::sampleRate</a></div><div class="ttdeci">float sampleRate() const</div><div class="ttdoc">Returns engine sample rate.</div><div class="ttdef"><b>Definition</b> PqCore.h:360</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>MovingFilter.h</b></li>
-    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

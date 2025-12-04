@@ -38,10 +38,13 @@ automatically adapt to incoming sensor values.
 
    #include <Plaquette.h>
 
+   // Analog sensor (eg. photocell or microphone).
    AnalogIn sensor(A0);
 
+   // Min-max scaler.
    MinMaxScaler scaler;
 
+   // Output indicator LED.
    DigitalOut led(13);
 
    void begin() {}
@@ -64,4 +67,5 @@ automatically adapt to incoming sensor values.
 |SeeAlso|
 ---------
 - :doc:`Normalizer`
+- :doc:`RobustScaler`
 - :doc:`Smoother`

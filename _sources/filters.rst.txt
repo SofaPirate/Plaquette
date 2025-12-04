@@ -9,4 +9,5 @@ Filtering units for real-time signal processing.
    MinMaxScaler
    Normalizer
    PeakDetector
+   RobustScaler
    Smoother

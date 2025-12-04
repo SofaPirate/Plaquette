@@ -7,6 +7,7 @@ var classpq_1_1_robust_scaler =
     [ "cutoff", "classpq_1_1_robust_scaler.html#a7e6b52e05e0cc21a4f693a708f7b466a", null ],
     [ "engine", "classpq_1_1_robust_scaler.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
     [ "eventTriggered", "classpq_1_1_robust_scaler.html#a8beada08e61f4151fd30d888341390b7", null ],
+    [ "filter", "classpq_1_1_robust_scaler.html#a9994c703c9a8be922a35963d0095d5af", null ],
     [ "get", "classpq_1_1_robust_scaler.html#ab8e4f95d0366e2e0e75f87a0f62a1956", null ],
     [ "highQuantile", "classpq_1_1_robust_scaler.html#a902471acb5453532e7d8bbc86ca15cfd", null ],
     [ "highQuantileLevel", "classpq_1_1_robust_scaler.html#a22664dfc724ad3309ca68a3f07b9105e", null ],

@@ -6,6 +6,7 @@ var classpq_1_1_min_max_scaler =
     [ "cutoff", "classpq_1_1_min_max_scaler.html#a7e6b52e05e0cc21a4f693a708f7b466a", null ],
     [ "engine", "classpq_1_1_min_max_scaler.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
     [ "eventTriggered", "classpq_1_1_min_max_scaler.html#a8beada08e61f4151fd30d888341390b7", null ],
+    [ "filter", "classpq_1_1_min_max_scaler.html#ad96d05e5bc0344be9431320fa38a07c6", null ],
     [ "get", "classpq_1_1_min_max_scaler.html#a3ce78aafe60140b632dd1e14f035f475", null ],
     [ "infiniteTimeWindow", "classpq_1_1_min_max_scaler.html#ae70831c02cb9ac2ed4633fb2612b2654", null ],
     [ "isCalibrating", "classpq_1_1_min_max_scaler.html#a57c34ac9ba77c7e866f0271ff089fb33", null ],

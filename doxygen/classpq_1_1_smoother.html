@@ -157,6 +157,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a663bdf40ad70eb9fa4e4f13a18e25bc0" id="r_a663bdf40ad70eb9fa4e4f13a18e25bc0"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_smoother.html#a663bdf40ad70eb9fa4e4f13a18e25bc0">put</a> (float value)</td></tr>
 <tr class="memdesc:a663bdf40ad70eb9fa4e4f13a18e25bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes value into the unit.  <br /></td></tr>
 <tr class="separator:a663bdf40ad70eb9fa4e4f13a18e25bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47142f73faecf38262efa7fe2d0bfc88" id="r_a47142f73faecf38262efa7fe2d0bfc88"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_smoother.html#a47142f73faecf38262efa7fe2d0bfc88">filter</a> (float value)</td></tr>
+<tr class="memdesc:a47142f73faecf38262efa7fe2d0bfc88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the filtered value (without calibrating).  <br /></td></tr>
+<tr class="separator:a47142f73faecf38262efa7fe2d0bfc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67b686057794bc7b65b6a441fa5dc39a" id="r_a67b686057794bc7b65b6a441fa5dc39a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_moving_filter.html#a67b686057794bc7b65b6a441fa5dc39a">reset</a> ()</td></tr>
 <tr class="memdesc:a67b686057794bc7b65b6a441fa5dc39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the filter.  <br /></td></tr>
 <tr class="separator:a67b686057794bc7b65b6a441fa5dc39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -439,6 +442,36 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td>
 
 </div>
 </div>
+<a id="a47142f73faecf38262efa7fe2d0bfc88" name="a47142f73faecf38262efa7fe2d0bfc88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47142f73faecf38262efa7fe2d0bfc88">&#9670;&#160;</a></span>filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float pq::Smoother::filter </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the filtered value (without calibrating). </p>
+
+<p>Implements <a class="el" href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">pq::MovingFilter</a>.</p>
+
+</div>
+</div>
 <a id="a3ce78aafe60140b632dd1e14f035f475" name="a3ce78aafe60140b632dd1e14f035f475"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ce78aafe60140b632dd1e14f035f475">&#9670;&#160;</a></span>get()</h2>
 
@@ -713,7 +746,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_smoother.html">Smoother</a></li>
-    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

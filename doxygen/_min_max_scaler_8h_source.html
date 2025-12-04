@@ -147,35 +147,38 @@ $(document).ready(function(){initNavTree('_min_max_scaler_8h_source.html',''); i
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef">put</a>(<span class="keywordtype">float</span> value);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> step();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classpq_1_1_min_max_scaler.html#ad96d05e5bc0344be9431320fa38a07c6">filter</a>(<span class="keywordtype">float</span> value);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="comment">// Time window (in seconds).</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">float</span> _timeWindow;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> step();</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// Minimum value ever put (decays over time if time window is finite).</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">float</span> _minValue;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// Time window (in seconds).</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">float</span> _timeWindow;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">// Maximum value ever put (decays over time if time window is finite).</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">float</span> _maxValue;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">// Minimum value ever put (decays over time if time window is finite).</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">float</span> _minValue;</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// Smoothed minimum value.</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordtype">float</span> _smoothedMinValue;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// Maximum value ever put (decays over time if time window is finite).</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordtype">float</span> _maxValue;</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// Smoothed minimum value.</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">float</span> _smoothedMaxValue;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">float</span> _smoothedMinValue;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="comment">// Smoothed minimum value.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">float</span> _smoothedMaxValue;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
 </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclasspq_1_1_engine_html"><div class="ttname"><a href="classpq_1_1_engine.html">pq::Engine</a></div><div class="ttdoc">The main Plaquette static class containing all the units.</div><div class="ttdef"><b>Definition</b> PqCore.h:60</div></div>
 <div class="ttc" id="aclasspq_1_1_engine_html_a45a0de76dadb5e62933ae5e29f2621d2"><div class="ttname"><a href="classpq_1_1_engine.html#a45a0de76dadb5e62933ae5e29f2621d2">pq::Engine::primary</a></div><div class="ttdeci">static Engine &amp; primary()</div><div class="ttdoc">Returns the main instance of Plaquette.</div><div class="ttdef"><b>Definition</b> PqCore.cpp:31</div></div>
 <div class="ttc" id="aclasspq_1_1_min_max_scaler_html"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html">pq::MinMaxScaler</a></div><div class="ttdoc">Regularizes signal into [0,1] by rescaling it using the min and max values.</div><div class="ttdef"><b>Definition</b> MinMaxScaler.h:30</div></div>
 <div class="ttc" id="aclasspq_1_1_min_max_scaler_html_a836ea30c0043357953b1a6ba16dc6b15"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html#a836ea30c0043357953b1a6ba16dc6b15">pq::MinMaxScaler::maxValue</a></div><div class="ttdeci">float maxValue() const</div><div class="ttdoc">Returns the current max. value.</div><div class="ttdef"><b>Definition</b> MinMaxScaler.h:51</div></div>
 <div class="ttc" id="aclasspq_1_1_min_max_scaler_html_a91f9cc4e2cbae82d6858b9d011c7cb42"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html#a91f9cc4e2cbae82d6858b9d011c7cb42">pq::MinMaxScaler::minValue</a></div><div class="ttdeci">float minValue() const</div><div class="ttdoc">Returns the current min. value.</div><div class="ttdef"><b>Definition</b> MinMaxScaler.h:48</div></div>
 <div class="ttc" id="aclasspq_1_1_min_max_scaler_html_aa61fda0b6a0cc07e0238d8ca99f088ef"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef">pq::MinMaxScaler::put</a></div><div class="ttdeci">virtual float put(float value)</div><div class="ttdoc">Pushes value into the unit.</div><div class="ttdef"><b>Definition</b> MinMaxScaler.cpp:71</div></div>
+<div class="ttc" id="aclasspq_1_1_min_max_scaler_html_ad96d05e5bc0344be9431320fa38a07c6"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html#ad96d05e5bc0344be9431320fa38a07c6">pq::MinMaxScaler::filter</a></div><div class="ttdeci">virtual float filter(float value)</div><div class="ttdoc">Returns the filtered value (without calibrating).</div><div class="ttdef"><b>Definition</b> MinMaxScaler.cpp:92</div></div>
 <div class="ttc" id="aclasspq_1_1_min_max_scaler_html_af60aac47e64d63386d4f61cfb64207fd"><div class="ttname"><a href="classpq_1_1_min_max_scaler.html#af60aac47e64d63386d4f61cfb64207fd">pq::MinMaxScaler::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Resets the moving filter.</div><div class="ttdef"><b>Definition</b> MinMaxScaler.cpp:43</div></div>
 <div class="ttc" id="aclasspq_1_1_moving_filter_html"><div class="ttname"><a href="classpq_1_1_moving_filter.html">pq::MovingFilter</a></div><div class="ttdef"><b>Definition</b> MovingFilter.h:39</div></div>
 <div class="ttc" id="aclasspq_1_1_time_windowable_html_a5047b025a686298b85dba2c162175914"><div class="ttname"><a href="classpq_1_1_time_windowable.html#a5047b025a686298b85dba2c162175914">pq::TimeWindowable::timeWindow</a></div><div class="ttdeci">virtual float timeWindow() const</div><div class="ttdoc">Returns the time window (expressed in seconds).</div><div class="ttdef"><b>Definition</b> TimeWindowable.h:43</div></div>
@@ -186,7 +189,7 @@ $(document).ready(function(){initNavTree('_min_max_scaler_8h_source.html',''); i
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>MinMaxScaler.h</b></li>
-    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

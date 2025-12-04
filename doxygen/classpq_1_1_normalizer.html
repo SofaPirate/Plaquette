@@ -193,6 +193,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>targetStdDev</b> () 
 <tr class="memitem:a9c2a6da973bb004787faf889622815ef" id="r_a9c2a6da973bb004787faf889622815ef"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_normalizer.html#a9c2a6da973bb004787faf889622815ef">put</a> (float value)</td></tr>
 <tr class="memdesc:a9c2a6da973bb004787faf889622815ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes value into the unit.  <br /></td></tr>
 <tr class="separator:a9c2a6da973bb004787faf889622815ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa52ca3a859bf3455cfbc10c799f95ce7" id="r_aa52ca3a859bf3455cfbc10c799f95ce7"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_normalizer.html#aa52ca3a859bf3455cfbc10c799f95ce7">filter</a> (float value)</td></tr>
+<tr class="memdesc:aa52ca3a859bf3455cfbc10c799f95ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the filtered value (without calibrating).  <br /></td></tr>
+<tr class="separator:aa52ca3a859bf3455cfbc10c799f95ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a504e1d3234598ea402beb2e7dcf97bce" id="r_a504e1d3234598ea402beb2e7dcf97bce"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_normalizer.html#a504e1d3234598ea402beb2e7dcf97bce">lowOutlierThreshold</a> (float nStdDev=1.5f) const</td></tr>
 <tr class="memdesc:a504e1d3234598ea402beb2e7dcf97bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns value above which value is considered to be a low outler (below average).  <br /></td></tr>
 <tr class="separator:a504e1d3234598ea402beb2e7dcf97bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -661,6 +664,36 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td>
 <p>Returns true iff an event of a certain type has been triggered. </p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_abstract_wave.html#ae25cc5c41e6bb2db1d5d9e185e87ee9a">pq::AbstractWave</a>, <a class="el" href="classpq_1_1_alarm.html#a5b72daba0836513a9edc87a0a1c6f573">pq::Alarm</a>, <a class="el" href="classpq_1_1_metronome.html#a1053f3b737b25acf47af81836749375b">pq::Metronome</a>, <a class="el" href="classpq_1_1_peak_detector.html#a8b90410ddd0d61528d4b1a8a25403dd4">pq::PeakDetector</a>, <a class="el" href="classpq_1_1_digital_source.html#a29c8a619c6b6a70b1ffc33767cb1211d">pq::DigitalSource</a>, <a class="el" href="classpq_1_1_ramp.html#a535e28fddce54c497a735b21227d6279">pq::Ramp</a>, <a class="el" href="classpq_1_1_stream_in.html#a35c47f5e6eb0ed9a59ffeb5185725dde">pq::StreamIn</a>, and <a class="el" href="classpq_1_1_time_slice_field.html#a307d3401b9d71dad4c14b71d8077696e">pq::TimeSliceField&lt; COUNT &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aa52ca3a859bf3455cfbc10c799f95ce7" name="aa52ca3a859bf3455cfbc10c799f95ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa52ca3a859bf3455cfbc10c799f95ce7">&#9670;&#160;</a></span>filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float pq::Normalizer::filter </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the filtered value (without calibrating). </p>
+
+<p>Implements <a class="el" href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">pq::MovingFilter</a>.</p>
 
 </div>
 </div>
@@ -1236,7 +1269,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_timeWindow</b></td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_normalizer.html">Normalizer</a></li>
-    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

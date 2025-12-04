@@ -46,9 +46,9 @@ var NAVTREEINDEX =
 "_abstract_chronometer_8h_source.html",
 "classpq_1_1_analog_in.html#a0cacf6b4229157c5f184354936a1e7a6",
 "classpq_1_1_digital_unit.html",
-"classpq_1_1_peak_detector.html#a26b87ccd1659a14d9b903f7c382909cb",
-"classpq_1_1_smoother.html#a3358995634ea10fe395d8a6e5ffc0858",
-"classpq_1_1_wave.html#a18632ddb4f0b021a1ef9adbc3049ee7b"
+"classpq_1_1_peak_detector.html#a1e84763649e8d23c99f05b5d80430b35",
+"classpq_1_1_smoother.html#a22d31f34ba07507c76a24aff601a463b",
+"classpq_1_1_wave.html#a0e40de2d50e0b16a81d159b7b0502203"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

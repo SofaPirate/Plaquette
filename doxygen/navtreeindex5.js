@@ -1,5 +1,10 @@
 var NAVTREEINDEX5 =
 {
+"classpq_1_1_wave.html#a0e40de2d50e0b16a81d159b7b0502203":[1,0,0,46,8],
+"classpq_1_1_wave.html#a11a02f24568960663d672b5064e2a09a":[1,0,0,46,53],
+"classpq_1_1_wave.html#a11dc9d509dd43e35d50f9d1717a83389":[1,0,0,46,30],
+"classpq_1_1_wave.html#a13b5ab191ad137ab0a6707f447553444":[1,0,0,46,54],
+"classpq_1_1_wave.html#a16ffc521dfdabf26fd06fa92be2bf760":[1,0,0,46,23],
 "classpq_1_1_wave.html#a18632ddb4f0b021a1ef9adbc3049ee7b":[1,0,0,46,34],
 "classpq_1_1_wave.html#a199e460c1c3a29a444fdda894dff7eaf":[1,0,0,46,42],
 "classpq_1_1_wave.html#a1fa89290faa8d8c63e88ea34e510897f":[1,0,0,46,37],

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnalogIn &mdash; Plaquette 0.8.1 documentation</title>
+  <title>AnalogIn &mdash; Plaquette 0.8.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -89,12 +89,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
 </ul>
 
         </div>
@@ -296,27 +296,45 @@ the board, etc.).</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn18infiniteTimeWindowEv">
+<span id="_CPPv3N8AnalogIn18infiniteTimeWindowEv"></span><span id="_CPPv2N8AnalogIn18infiniteTimeWindowEv"></span><span id="AnalogIn::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1ae70831c02cb9ac2ed4633fb2612b2654"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn12noTimeWindowEv">
+<span id="_CPPv3N8AnalogIn12noTimeWindowEv"></span><span id="_CPPv2N8AnalogIn12noTimeWindowEv"></span><span id="AnalogIn::noTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1a973b709e6d620ba95e811dac73835fd6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn12noTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to no time window. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn10timeWindowEf">
-<span id="_CPPv3N8AnalogIn10timeWindowEf"></span><span id="_CPPv2N8AnalogIn10timeWindowEf"></span><span id="AnalogIn::timeWindow__float"></span><span class="target" id="classpq_1_1_smoothable_1a127525e900f2769a5a4aabacc74a1961"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Changes the smoothing window (expressed in seconds). </p>
+<span id="_CPPv3N8AnalogIn10timeWindowEf"></span><span id="_CPPv2N8AnalogIn10timeWindowEf"></span><span id="AnalogIn::timeWindow__float"></span><span class="target" id="classpq_1_1_time_windowable_1a200edba5991b4ea779a6848f654aceb5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn10timeWindowEv">
-<span id="_CPPv3NK8AnalogIn10timeWindowEv"></span><span id="_CPPv2NK8AnalogIn10timeWindowEv"></span><span id="AnalogIn::timeWindowC"></span><span class="target" id="classpq_1_1_smoothable_1ad62ea6b25d0129cd09067afce23ae751"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns the smoothing window (expressed in seconds). </p>
+<span id="_CPPv3NK8AnalogIn10timeWindowEv"></span><span id="_CPPv2NK8AnalogIn10timeWindowEv"></span><span id="AnalogIn::timeWindowC"></span><span class="target" id="classpq_1_1_time_windowable_1a5047b025a686298b85dba2c162175914"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn20timeWindowIsInfiniteEv">
+<span id="_CPPv3NK8AnalogIn20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK8AnalogIn20timeWindowIsInfiniteEv"></span><span id="AnalogIn::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_time_windowable_1aef904a094f19d393062c61f06e510a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if time window is infinite. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8AnalogIn6cutoffEf">
-<span id="_CPPv3N8AnalogIn6cutoffEf"></span><span id="_CPPv2N8AnalogIn6cutoffEf"></span><span id="AnalogIn::cutoff__float"></span><span class="target" id="classpq_1_1_smoothable_1aa7f309d4ceeb9778d187befd67478b13"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6cutoffEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Changes the smoothing window cutoff frequency (expressed in Hz). </p>
+<span id="_CPPv3N8AnalogIn6cutoffEf"></span><span id="_CPPv2N8AnalogIn6cutoffEf"></span><span id="AnalogIn::cutoff__float"></span><span class="target" id="classpq_1_1_time_windowable_1a7e6b52e05e0cc21a4f693a708f7b466a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8AnalogIn6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8AnalogIn6cutoffEv">
-<span id="_CPPv3NK8AnalogIn6cutoffEv"></span><span id="_CPPv2NK8AnalogIn6cutoffEv"></span><span id="AnalogIn::cutoffC"></span><span class="target" id="classpq_1_1_smoothable_1acc0c7526c182c479ddb7710a759fd721"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn6cutoffEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns the smoothing window cutoff frequency (expressed in Hz). </p>
+<span id="_CPPv3NK8AnalogIn6cutoffEv"></span><span id="_CPPv2NK8AnalogIn6cutoffEv"></span><span id="AnalogIn::cutoffC"></span><span class="target" id="classpq_1_1_time_windowable_1aa5d75f1b738c6666f4ada0a54fdd9dba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8AnalogIn6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 </div>

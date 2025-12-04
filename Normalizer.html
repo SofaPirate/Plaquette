@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalizer &mdash; Plaquette 0.8.1 documentation</title>
+  <title>Normalizer &mdash; Plaquette 0.8.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -75,6 +75,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="PeakDetector.html">PeakDetector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RobustScaler.html">RobustScaler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Smoother.html">Smoother</a></li>
 </ul>
 </li>
@@ -89,12 +90,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip">Video tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
 </ul>
 
         </div>
@@ -137,7 +138,7 @@ it can instead compute over a time window using an <a class="reference external"
 <span class="c1">// Analog sensor (eg. photocell or microphone).</span>
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 
-<span class="c1">// Creates a normalizer with mean 0 and standard deviation 1.</span>
+<span class="c1">// Normalizer with mean 0 and standard deviation 1.</span>
 <span class="n">Normalizer</span><span class="w"> </span><span class="nf">normalizer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Output indicator LED.</span>
@@ -255,33 +256,21 @@ it can instead compute over a time window using an <a class="reference external"
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer18infiniteTimeWindowEv">
-<span id="_CPPv3N10Normalizer18infiniteTimeWindowEv"></span><span id="_CPPv2N10Normalizer18infiniteTimeWindowEv"></span><span id="Normalizer::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_normalizer_1a8f74c0c7a55d94d40e12632fb723a36b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets time window to infinite. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10timeWindowEf">
-<span id="_CPPv3N10Normalizer10timeWindowEf"></span><span id="_CPPv2N10Normalizer10timeWindowEf"></span><span id="Normalizer::timeWindow__float"></span><span class="target" id="classpq_1_1_normalizer_1a8af87b014f450191746d99b957d2ce56"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Changes the time window (expressed in seconds). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer10timeWindowEv">
-<span id="_CPPv3NK10Normalizer10timeWindowEv"></span><span id="_CPPv2NK10Normalizer10timeWindowEv"></span><span id="Normalizer::timeWindowC"></span><span class="target" id="classpq_1_1_normalizer_1aff4693fabca9bab0ddd6bfe44bb24e75"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns the time window (expressed in seconds). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer20timeWindowIsInfiniteEv">
-<span id="_CPPv3NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="Normalizer::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_normalizer_1a5b1a2fbfe1b7ef59cfc523289e8274ae"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns true if time window is infinite. </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5resetEv">
 <span id="_CPPv3N10Normalizer5resetEv"></span><span id="_CPPv2N10Normalizer5resetEv"></span><span id="Normalizer::reset"></span><span class="target" id="classpq_1_1_normalizer_1a3e97253f3dc73ed8489c7a7ba0a45b05"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5resetEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Resets the statistics. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5resetEf">
+<span id="_CPPv3N10Normalizer5resetEf"></span><span id="_CPPv2N10Normalizer5resetEf"></span><span id="Normalizer::reset__float"></span><span class="target" id="classpq_1_1_normalizer_1a9f3e93fe6de28840a7a5ff874f895626"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5resetEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the filter with a prior estimate of the mean value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer5resetEff">
+<span id="_CPPv3N10Normalizer5resetEff"></span><span id="_CPPv2N10Normalizer5resetEff"></span><span id="Normalizer::reset__float.float"></span><span class="target" id="classpq_1_1_normalizer_1aff923982f54c36dab6dd4881c509dbf2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer5resetEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the moving filter with a prior estimate of the min and max values. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -297,6 +286,12 @@ it can instead compute over a time window using an <a class="reference external"
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer6filterEf">
+<span id="_CPPv3N10Normalizer6filterEf"></span><span id="_CPPv2N10Normalizer6filterEf"></span><span id="Normalizer::filter__float"></span><span class="target" id="classpq_1_1_normalizer_1aa52ca3a859bf3455cfbc10c799f95ce7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer6filterEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the filtered value (without calibrating). </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -352,18 +347,6 @@ it can instead compute over a time window using an <a class="reference external"
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer6cutoffEf">
-<span id="_CPPv3N10Normalizer6cutoffEf"></span><span id="_CPPv2N10Normalizer6cutoffEf"></span><span id="Normalizer::cutoff__float"></span><span class="target" id="classpq_1_1_moving_filter_1a2f096a172ebc8330ed2429e3bbc5ceee"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer6cutoffEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6cutoffEv">
-<span id="_CPPv3NK10Normalizer6cutoffEv"></span><span id="_CPPv2NK10Normalizer6cutoffEv"></span><span id="Normalizer::cutoffC"></span><span class="target" id="classpq_1_1_moving_filter_1ac20f5ef861448efa733495b3dfbbee31"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6cutoffEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N10Normalizer17resumeCalibratingEv">
 <span id="_CPPv3N10Normalizer17resumeCalibratingEv"></span><span id="_CPPv2N10Normalizer17resumeCalibratingEv"></span><span id="Normalizer::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer17resumeCalibratingEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Switches to calibration mode (default). </p>
@@ -386,6 +369,18 @@ it can instead compute over a time window using an <a class="reference external"
 <dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer13isCalibratingEv">
 <span id="_CPPv3NK10Normalizer13isCalibratingEv"></span><span id="_CPPv2NK10Normalizer13isCalibratingEv"></span><span id="Normalizer::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer13isCalibratingEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns true iff the moving filter is in calibration mode. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer8nSamplesEv">
+<span id="_CPPv3NK10Normalizer8nSamplesEv"></span><span id="_CPPv2NK10Normalizer8nSamplesEv"></span><span id="Normalizer::nSamplesC"></span><span class="target" id="classpq_1_1_moving_filter_1aef1287b234e6ff879aeff99fe09e61c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSamples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer8nSamplesEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the number of samples that have been processed thus far. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer16isPreInitializedEv">
+<span id="_CPPv3NK10Normalizer16isPreInitializedEv"></span><span id="_CPPv2NK10Normalizer16isPreInitializedEv"></span><span id="Normalizer::isPreInitializedC"></span><span class="target" id="classpq_1_1_moving_filter_1ab6fa87a82028128f861011646e09d81e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPreInitialized</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer16isPreInitializedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the moving filter has been initialized with a starting range at reset. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -440,6 +435,54 @@ it can instead compute over a time window using an <a class="reference external"
 <dt class="sig sig-object cpp" id="_CPPv4N10NormalizercvbEv">
 <span id="_CPPv3N10NormalizercvbEv"></span><span id="_CPPv2N10NormalizercvbEv"></span><span id="Normalizer::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10NormalizercvbEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer18infiniteTimeWindowEv">
+<span id="_CPPv3N10Normalizer18infiniteTimeWindowEv"></span><span id="_CPPv2N10Normalizer18infiniteTimeWindowEv"></span><span id="Normalizer::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1ae70831c02cb9ac2ed4633fb2612b2654"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer12noTimeWindowEv">
+<span id="_CPPv3N10Normalizer12noTimeWindowEv"></span><span id="_CPPv2N10Normalizer12noTimeWindowEv"></span><span id="Normalizer::noTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1a973b709e6d620ba95e811dac73835fd6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer12noTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets time window to no time window. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer10timeWindowEf">
+<span id="_CPPv3N10Normalizer10timeWindowEf"></span><span id="_CPPv2N10Normalizer10timeWindowEf"></span><span id="Normalizer::timeWindow__float"></span><span class="target" id="classpq_1_1_time_windowable_1a200edba5991b4ea779a6848f654aceb5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer10timeWindowEv">
+<span id="_CPPv3NK10Normalizer10timeWindowEv"></span><span id="_CPPv2NK10Normalizer10timeWindowEv"></span><span id="Normalizer::timeWindowC"></span><span class="target" id="classpq_1_1_time_windowable_1a5047b025a686298b85dba2c162175914"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window (expressed in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer20timeWindowIsInfiniteEv">
+<span id="_CPPv3NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK10Normalizer20timeWindowIsInfiniteEv"></span><span id="Normalizer::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_time_windowable_1aef904a094f19d393062c61f06e510a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if time window is infinite. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer6cutoffEf">
+<span id="_CPPv3N10Normalizer6cutoffEf"></span><span id="_CPPv2N10Normalizer6cutoffEf"></span><span id="Normalizer::cutoff__float"></span><span class="target" id="classpq_1_1_time_windowable_1a7e6b52e05e0cc21a4f693a708f7b466a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10Normalizer6cutoffEv">
+<span id="_CPPv3NK10Normalizer6cutoffEv"></span><span id="_CPPv2NK10Normalizer6cutoffEv"></span><span id="Normalizer::cutoffC"></span><span class="target" id="classpq_1_1_time_windowable_1aa5d75f1b738c6666f4ada0a54fdd9dba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Normalizer6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Normalizer6updateEff">
+<span id="_CPPv3N10Normalizer6updateEff"></span><span id="_CPPv2N10Normalizer6updateEff"></span><span id="Normalizer::update__float.float"></span><span class="target" id="classpq_1_1_moving_stats_1a9f820235502485a1dec566d5a54f2f27"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alpha</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Normalizer6updateEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Adds a value to the statistics (returns the mean). </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -558,6 +601,7 @@ it can instead compute over a time window using an <a class="reference external"
 <h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="MinMaxScaler.html"><span class="doc">MinMaxScaler</span></a></p></li>
+<li><p><a class="reference internal" href="RobustScaler.html"><span class="doc">RobustScaler</span></a></p></li>
 <li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a></p></li>
 </ul>
 </section>

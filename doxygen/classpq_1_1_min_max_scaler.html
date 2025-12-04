@@ -175,6 +175,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> () cons
 <tr class="memitem:aa61fda0b6a0cc07e0238d8ca99f088ef" id="r_aa61fda0b6a0cc07e0238d8ca99f088ef"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_min_max_scaler.html#aa61fda0b6a0cc07e0238d8ca99f088ef">put</a> (float value)</td></tr>
 <tr class="memdesc:aa61fda0b6a0cc07e0238d8ca99f088ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes value into the unit.  <br /></td></tr>
 <tr class="separator:aa61fda0b6a0cc07e0238d8ca99f088ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad96d05e5bc0344be9431320fa38a07c6" id="r_ad96d05e5bc0344be9431320fa38a07c6"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_min_max_scaler.html#ad96d05e5bc0344be9431320fa38a07c6">filter</a> (float value)</td></tr>
+<tr class="memdesc:ad96d05e5bc0344be9431320fa38a07c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the filtered value (without calibrating).  <br /></td></tr>
+<tr class="separator:ad96d05e5bc0344be9431320fa38a07c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa223fe3a028c0bcfe4db5cfcefe9cf6a" id="r_aa223fe3a028c0bcfe4db5cfcefe9cf6a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_min_max_scaler.html#aa223fe3a028c0bcfe4db5cfcefe9cf6a">step</a> ()</td></tr>
 <tr class="separator:aa223fe3a028c0bcfe4db5cfcefe9cf6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21e2769136726fe7c4b60445fb7f7cd3" id="r_a21e2769136726fe7c4b60445fb7f7cd3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_moving_filter.html#a21e2769136726fe7c4b60445fb7f7cd3">resumeCalibrating</a> ()</td></tr>
@@ -460,6 +463,36 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 
 </div>
 </div>
+<a id="ad96d05e5bc0344be9431320fa38a07c6" name="ad96d05e5bc0344be9431320fa38a07c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad96d05e5bc0344be9431320fa38a07c6">&#9670;&#160;</a></span>filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float pq::MinMaxScaler::filter </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the filtered value (without calibrating). </p>
+
+<p>Implements <a class="el" href="classpq_1_1_moving_filter.html#a1515032c268f679e29914ed20fc16f73">pq::MovingFilter</a>.</p>
+
+</div>
+</div>
 <a id="a3ce78aafe60140b632dd1e14f035f475" name="a3ce78aafe60140b632dd1e14f035f475"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ce78aafe60140b632dd1e14f035f475">&#9670;&#160;</a></span>get()</h2>
 
@@ -734,7 +767,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_min_max_scaler.html">MinMaxScaler</a></li>
-    <li class="footer">Generated on Tue Dec 2 2025 14:43:52 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

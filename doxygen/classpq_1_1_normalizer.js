@@ -9,6 +9,7 @@ var classpq_1_1_normalizer =
     [ "cutoff", "classpq_1_1_normalizer.html#a7e6b52e05e0cc21a4f693a708f7b466a", null ],
     [ "engine", "classpq_1_1_normalizer.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
     [ "eventTriggered", "classpq_1_1_normalizer.html#a8beada08e61f4151fd30d888341390b7", null ],
+    [ "filter", "classpq_1_1_normalizer.html#aa52ca3a859bf3455cfbc10c799f95ce7", null ],
     [ "get", "classpq_1_1_normalizer.html#a3ce78aafe60140b632dd1e14f035f475", null ],
     [ "highOutlierThreshold", "classpq_1_1_normalizer.html#af8e3d9b651b93243e4cf31e41d5f5bdd", null ],
     [ "infiniteTimeWindow", "classpq_1_1_normalizer.html#ae70831c02cb9ac2ed4633fb2612b2654", null ],
