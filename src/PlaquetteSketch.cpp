@@ -1,7 +1,7 @@
 /*
- * Plaquette.h
+ * PlaquetteSketch.cpp
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
  * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,27 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
-
-#include "PlaquetteLib.h"
 #include "PlaquetteSketch.h"
 
-using namespace pq;
+void settings() {}
 
-// Plaquette redefines setup() and loop() based on begin() and step().
-void setup() {
-  settings();
-  Plaquette.preBegin();
-  begin();
-  Plaquette.postBegin();
-}
+void begin() {}
 
-void loop() {
-  if (Plaquette.timeStep()) {
-    Plaquette.preStep();
-    step();
-  }
-}
-
-#endif
+void step() {}
