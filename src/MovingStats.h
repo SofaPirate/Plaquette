@@ -52,6 +52,9 @@ public:
   /// Returns an exponential moving average of the samples.
   virtual float mean() const { return _mean.constGet(); }
 
+  /// Return an exponential moving variance of the squared samples.
+  virtual float meanSquared() const { return _mean2.constGet(); }
+
   /// Returns an exponential moving variance of the samples.
   virtual float var() const { return (_mean2.constGet() - sq(mean())); }
 
