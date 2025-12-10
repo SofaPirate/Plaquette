@@ -166,6 +166,10 @@ public:
    */
   bool randomTrigger(float timeWindow);
 
+  /// @brief Sets base function returning microseconds. Default: micros().
+  /// @param microSecondsFunction pointer to a function returning microseconds
+  void microSecondsFunction(unsigned long (*microSecondsFunction)()) { _microSecondsFunction = microSecondsFunction; }
+
 private:
   /// Adds a component to Plaquette.
   void add(Unit* component);
@@ -176,8 +180,11 @@ private:
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
 
+  // Returns micros().
+  unsigned long _micros() const { return _microSecondsFunction ? _microSecondsFunction() : micros(); }
+
   // Internal use, needs to be called periodically. Updates _totalGlobalMicroSeconds.
-  static micro_seconds_t _updateGlobalMicroSeconds();
+  micro_seconds_t _updateGlobalMicroSeconds() const;
 
 private:
   // Shared static container containing all units. Static because it is shared between all engines.
@@ -239,7 +246,10 @@ private:
   EventManager _eventManager;
 
   // Global time in microseconds.
-  static micro_seconds_t _totalGlobalMicroSeconds;
+  mutable micro_seconds_t _totalGlobalMicroSeconds;
+
+  // Functions that return time in microseconds (default: micros()).
+  unsigned long (*_microSecondsFunction)();
 
 private:
   // Prevent copy-construction and assignment.

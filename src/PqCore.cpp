@@ -46,7 +46,9 @@ Engine::Engine()
     _autoSampleRate(true),
     _beginCompleted(false),
     _firstRun(true),
-    _eventManager() // default constructed
+    _eventManager(),
+    _totalGlobalMicroSeconds({0}),
+    _microSecondsFunction(0)
 {}
 
 Engine::~Engine() {
@@ -170,11 +172,9 @@ void Engine::remove(Unit* component) {
   units().removeItem(component);
 }
 
-micro_seconds_t Engine::_totalGlobalMicroSeconds = { 0 };
-
-micro_seconds_t Engine::_updateGlobalMicroSeconds() {
+micro_seconds_t Engine::_updateGlobalMicroSeconds() const {
   // Get current global time.
-  uint32_t us = micros();
+  uint32_t us = _micros();
   uint32_t prevUs = _totalGlobalMicroSeconds.micros32.base;
 
   // Detect overflow.
