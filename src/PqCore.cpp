@@ -18,7 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "PqCore.h"
-
 #include <float.h>
 
 namespace pq {
@@ -54,10 +53,10 @@ Engine::Engine()
 Engine::~Engine() {
 }
 
-void Engine::preBegin(unsigned long baudrate) {
+void Engine::preBegin() {
   // Initialize serial.
-  if (isPrimary() && baudrate)
-    beginSerial(baudrate);
+  if (isPrimary())
+    beginSerial();
 
   // Initialize variables.
   _sampleRate = _samplePeriod = _targetSampleRate = 0;
@@ -230,15 +229,6 @@ void samplePeriod(float samplePeriod) { Plaquette.samplePeriod(samplePeriod); }
 float sampleRate() { return Plaquette.sampleRate(); }
 float samplePeriod() { return Plaquette.samplePeriod(); }
 bool randomTrigger(float timeWindow) { return Plaquette.randomTrigger(timeWindow); }
-
-void beginSerial(unsigned long baudRate) {
-  // Wait for last transmitted data to be sent.
-  Serial.flush();
-  // Start serial with new baudrate.
-  Serial.begin(baudRate);
-  // Empty  out possible garbage from input buffer.
-  while (Serial.available()) Serial.read();
-}
 
 Unit::Unit(Engine& engineRef) : _engine(0) {
   engineRef.add(this);

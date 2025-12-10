@@ -23,13 +23,29 @@
 #ifndef PQ_PRINT_H_
 #define PQ_PRINT_H_
 
+#include "pq_globals.h"
+
 #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
 #include <Arduino.h>
 #else
 #include <WProgram.h>
 #endif
 
+#if defined(EPOXY_DUINO)
+#define SERIAL_CLASS_NAME StdioSerial
+#else
+#define SERIAL_CLASS_NAME HardwareSerial
+#endif
+
 namespace pq {
+
+/// Restarts main serial. This method will make sure to flush data from the pipeline.
+void beginSerial();
+void beginSerial(unsigned long baudRate);
+
+void defaultSerial(SERIAL_CLASS_NAME& serial);
+void defaultSerial(SERIAL_CLASS_NAME& serial, unsigned long baudRate);
+void defaultSerial(unsigned long baudRate);
 
 size_t print(const __FlashStringHelper *);
 size_t print(const String &);

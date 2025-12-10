@@ -40,6 +40,7 @@
 #include "pq_constrain.h"
 #include "pq_map.h"
 #include "pq_phase_utils.h"
+#include "pq_print.h"
 #include "pq_random.h"
 #include "pq_time.h"
 
@@ -65,7 +66,7 @@ public:
   ~Engine();
 
   /// Initializes all components (calls begin() on all of them).
-  void preBegin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
+  void preBegin();
 
   /// Performs additional tasks after the class to begin().
   void postBegin();
@@ -80,7 +81,7 @@ public:
   inline bool timeStep();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of setup() method).
-  inline void begin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE);
+  inline void begin();
 
   /// Function to be used within the PlaquetteLib context (needs to be called at top of loop() method).
   inline bool step();
@@ -296,9 +297,6 @@ float samplePeriod();
  * @return true when an event occurs during this sample
  */
 bool randomTrigger(float timeWindow);
-
-/// Restarts main serial. This method will make sure to flush data from the pipeline.
-void beginSerial(unsigned long baudRate);
 
 class Chainable {
   private:
@@ -750,8 +748,8 @@ bool Engine::timeStep() {
   return true;
 }
 
-void Engine::begin(unsigned long baudrate) {
-  preBegin(baudrate);
+void Engine::begin() {
+  preBegin();
 }
 
 bool Engine::step() {
