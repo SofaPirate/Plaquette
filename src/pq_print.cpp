@@ -24,28 +24,31 @@
 
 namespace pq {
 
-SERIAL_CLASS_NAME& defaultSerialInstance = Serial;
+PlaquetteSerialType* defaultSerialInstance = &Serial;
 unsigned long defaultSerialBaudRate = PLAQUETTE_SERIAL_BAUD_RATE;
 
 void beginSerial() {
-  beginSerial(defaultSerialBaudRate);
+  // Wait for last transmitted data to be sent.
+  defaultSerialInstance->flush();
+  // Start serial with new baudrate.
+  defaultSerialInstance->begin(defaultSerialBaudRate);
+  // Empty  out possible garbage from input buffer.
+  while (defaultSerialInstance->available()) defaultSerialInstance->read();
 }
 
 void beginSerial(unsigned long baudRate) {
-  // Wait for last transmitted data to be sent.
-  defaultSerialInstance.flush();
-  // Start serial with new baudrate.
-  defaultSerialInstance.begin(baudRate);
-  // Empty  out possible garbage from input buffer.
-  while (defaultSerialInstance.available()) defaultSerialInstance.read();
+  // Make sure to set default baudrate if not set.
+  defaultSerial(baudRate);
+  // Start serial.
+  beginSerial();
 }
 
-void defaultSerial(SERIAL_CLASS_NAME& serial) {
-  defaultSerialInstance = serial;
+void defaultSerial(PlaquetteSerialType& serial) {
+  defaultSerialInstance = &serial;
 }
 
-void defaultSerial(SERIAL_CLASS_NAME& serial, unsigned long baudRate) {
-  defaultSerialInstance = serial;
+void defaultSerial(PlaquetteSerialType& serial, unsigned long baudRate) {
+  defaultSerialInstance = &serial;
   defaultSerialBaudRate = baudRate;
 }
 
@@ -55,117 +58,117 @@ void defaultSerial(unsigned long baudRate) {
 
 size_t print(const __FlashStringHelper *ifsh)
 {
-  return defaultSerialInstance.print(ifsh);
+  return defaultSerialInstance->print(ifsh);
 }
 
 size_t print(const String &s)
 {
-  return defaultSerialInstance.print(s);
+  return defaultSerialInstance->print(s);
 }
 
 size_t print(const char str[])
 {
-  return defaultSerialInstance.print(str);
+  return defaultSerialInstance->print(str);
 }
 
 size_t print(char c)
 {
-  return defaultSerialInstance.print(c);
+  return defaultSerialInstance->print(c);
 }
 
 size_t print(unsigned char b, int base)
 {
-  return defaultSerialInstance.print(b, base);
+  return defaultSerialInstance->print(b, base);
 }
 
 size_t print(int n, int base)
 {
-  return defaultSerialInstance.print(n, base);
+  return defaultSerialInstance->print(n, base);
 }
 
 size_t print(unsigned int n, int base)
 {
-  return defaultSerialInstance.print(n, base);
+  return defaultSerialInstance->print(n, base);
 }
 
 size_t print(long n, int base)
 {
-  return defaultSerialInstance.print(n, base);
+  return defaultSerialInstance->print(n, base);
 }
 
 size_t print(unsigned long n, int base)
 {
-  return defaultSerialInstance.print(n, base);
+  return defaultSerialInstance->print(n, base);
 }
 
 size_t print(double n, int digits)
 {
-  return defaultSerialInstance.print(n, digits);
+  return defaultSerialInstance->print(n, digits);
 }
 
 size_t println(const __FlashStringHelper *ifsh)
 {
-  return defaultSerialInstance.println(ifsh);
+  return defaultSerialInstance->println(ifsh);
 }
 
 size_t print(const Printable& x)
 {
-  return defaultSerialInstance.println(x);
+  return defaultSerialInstance->println(x);
 }
 
 size_t println(void)
 {
-  return defaultSerialInstance.println();
+  return defaultSerialInstance->println();
 }
 
 size_t println(const String &s)
 {
-  return defaultSerialInstance.println(s);
+  return defaultSerialInstance->println(s);
 }
 
 size_t println(const char c[])
 {
-  return defaultSerialInstance.println(c);
+  return defaultSerialInstance->println(c);
 }
 
 size_t println(char c)
 {
-  return defaultSerialInstance.println(c);
+  return defaultSerialInstance->println(c);
 }
 
 size_t println(unsigned char b, int base)
 {
-  return defaultSerialInstance.println(b, base);
+  return defaultSerialInstance->println(b, base);
 }
 
 size_t println(int num, int base)
 {
-  return defaultSerialInstance.println(num, base);
+  return defaultSerialInstance->println(num, base);
 }
 
 size_t println(unsigned int num, int base)
 {
-  return defaultSerialInstance.println(num, base);
+  return defaultSerialInstance->println(num, base);
 }
 
 size_t println(long num, int base)
 {
-  return defaultSerialInstance.println(num, base);
+  return defaultSerialInstance->println(num, base);
 }
 
 size_t println(unsigned long num, int base)
 {
-  return defaultSerialInstance.println(num, base);
+  return defaultSerialInstance->println(num, base);
 }
 
 size_t println(double num, int digits)
 {
-  return defaultSerialInstance.println(num, digits);
+  return defaultSerialInstance->println(num, digits);
 }
 
 size_t println(const Printable& x)
 {
-  return defaultSerialInstance.println(x);
+  return defaultSerialInstance->println(x);
 }
 
 } // namespace pq

@@ -31,20 +31,31 @@
 #include <WProgram.h>
 #endif
 
-#if defined(EPOXY_DUINO)
-#define SERIAL_CLASS_NAME StdioSerial
-#else
-#define SERIAL_CLASS_NAME HardwareSerial
-#endif
-
 namespace pq {
+
+// Platform-dependent typedef for PlaquetteSerialType.
+#if defined(ARDUINO_ARCH_AVR)
+  #if defined(USBCON)
+    typedef Serial_ PlaquetteSerialType;  // Leonardo, Micro (USB CDC)
+  #else
+    typedef HardwareSerial PlaquetteSerialType;  // Uno, Mega, Nano
+  #endif
+#elif defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
+  typedef HardwareSerial PlaquetteSerialType;
+#elif defined(ARDUINO_ARCH_SAMD)
+  typedef Uart PlaquetteSerialType;
+#elif defined(EPOXY_DUINO)
+  typedef StdioSerial PlaquetteSerialType;
+#else
+  typedef HardwareSerial PlaquetteSerialType;  // Fallback
+#endif
 
 /// Restarts main serial. This method will make sure to flush data from the pipeline.
 void beginSerial();
 void beginSerial(unsigned long baudRate);
 
-void defaultSerial(SERIAL_CLASS_NAME& serial);
-void defaultSerial(SERIAL_CLASS_NAME& serial, unsigned long baudRate);
+void defaultSerial(PlaquetteSerialType& serial);
+void defaultSerial(PlaquetteSerialType& serial, unsigned long baudRate);
 void defaultSerial(unsigned long baudRate);
 
 size_t print(const __FlashStringHelper *);
