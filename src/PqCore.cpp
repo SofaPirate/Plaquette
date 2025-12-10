@@ -48,7 +48,7 @@ Engine::Engine()
     _firstRun(true),
     _eventManager(),
     _totalGlobalMicroSeconds({0}),
-    _microSecondsFunction(0)
+    _clockFunction(0)
 {}
 
 Engine::~Engine() {
@@ -174,7 +174,7 @@ void Engine::remove(Unit* component) {
 
 micro_seconds_t Engine::_updateGlobalMicroSeconds() const {
   // Get current global time.
-  uint32_t us = _micros();
+  uint32_t us = _clock();
   uint32_t prevUs = _totalGlobalMicroSeconds.micros32.base;
 
   // Detect overflow.
@@ -214,6 +214,14 @@ bool Engine::randomTrigger(float timeWindow) {
   return pq::randomTrigger(timeWindow, samplePeriod());
 }
 
+void Engine::referenceClock(unsigned long (*clockFunction)()) {
+  _clockFunction = clockFunction;
+  if (_beginCompleted) {
+    begin(); // redo the begin with the new time function
+  }
+}
+
+void referenceClock(unsigned long (*clockFunction)()) { Plaquette.referenceClock(clockFunction); }
 unsigned long nSteps() { return Plaquette.nSteps(); }
 bool hasAutoSampleRate() { return Plaquette.hasAutoSampleRate(); }
 void autoSampleRate() { Plaquette.autoSampleRate(); }

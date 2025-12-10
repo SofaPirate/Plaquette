@@ -167,8 +167,8 @@ public:
   bool randomTrigger(float timeWindow);
 
   /// @brief Sets base function returning microseconds. Default: micros().
-  /// @param microSecondsFunction pointer to a function returning microseconds
-  void microSecondsFunction(unsigned long (*microSecondsFunction)()) { _microSecondsFunction = microSecondsFunction; }
+  /// @param clockFunction pointer to a function returning microseconds
+  void referenceClock(unsigned long (*clockFunction)());
 
 private:
   /// Adds a component to Plaquette.
@@ -180,8 +180,8 @@ private:
   // Internal use. Sets sample rate and sample period.
   inline void _setSampleRate(float sampleRate);
 
-  // Returns micros().
-  unsigned long _micros() const { return _microSecondsFunction ? _microSecondsFunction() : micros(); }
+  // Returns current reference time in microseconds.
+  unsigned long _clock() const { return _clockFunction ? _clockFunction() : micros(); }
 
   // Internal use, needs to be called periodically. Updates _totalGlobalMicroSeconds.
   micro_seconds_t _updateGlobalMicroSeconds() const;
@@ -249,7 +249,7 @@ private:
   mutable micro_seconds_t _totalGlobalMicroSeconds;
 
   // Functions that return time in microseconds (default: micros()).
-  unsigned long (*_microSecondsFunction)();
+  unsigned long (*_clockFunction)();
 
 private:
   // Prevent copy-construction and assignment.
@@ -259,6 +259,9 @@ private:
 
 /// The Plaquette main.
 extern Engine& Plaquette;
+
+/// Sets base function returning microseconds of primary engine. Default: micros().
+void referenceClock(unsigned long (*clockFunction)());
 
 /// Returns number of steps of primary engine.
 unsigned long nSteps();
