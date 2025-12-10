@@ -43,6 +43,15 @@ public:
   Smoother(float smoothingWindow, Engine& engine = Engine::primary());
   virtual ~Smoother() {}
 
+  /// Resets the filter.
+  virtual void reset();
+
+  /// Resets the filter with a prior estimate of the mean value.
+  virtual void reset(float estimatedMeanValue);
+
+  /// Resets the moving filter with a prior estimate of the min and max values.
+  virtual void reset(float estimatedMinValue, float estimatedMaxValue);
+
   /**
    * Pushes value into the unit.
    * @param value the value sent to the unit

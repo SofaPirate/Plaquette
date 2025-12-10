@@ -49,19 +49,25 @@ Normalizer::Normalizer(float mean, float stdDev, float timeWindow_, Engine& engi
 void Normalizer::reset() {
   MovingFilter::reset();
   MovingStats::reset();
+  _currentMeanStep = mean();
+  _currentMean2Step = meanSquared();
 }
 
 void Normalizer::reset(float estimatedMeanValue) {
   MovingFilter::reset();
   MovingStats::reset(estimatedMeanValue, 1.0f);
+  _currentMeanStep = mean();
+  _currentMean2Step = meanSquared();
 }
 
 void Normalizer::reset(float estimatedMinValue, float estimatedMaxValue) {
   MovingFilter::reset();
 
-  float mean = 0.5f * (estimatedMinValue + estimatedMaxValue);
+  float average = 0.5f * (estimatedMinValue + estimatedMaxValue);
   float stddev = abs(estimatedMaxValue - estimatedMinValue) / MOVING_FILTER_N_STDDEV_RANGE;
-  MovingStats::reset(mean, stddev);
+  MovingStats::reset(average, stddev);
+  _currentMeanStep = mean();
+  _currentMean2Step = meanSquared();
 }
 
 float Normalizer::put(float value) {

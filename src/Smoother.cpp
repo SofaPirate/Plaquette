@@ -38,6 +38,22 @@ Smoother::Smoother(float timeWindow_, Engine& engine)
   timeWindow(timeWindow_);
 }
 
+
+void Smoother::reset() {
+  MovingFilter::reset();
+  _currentValueStep = _value;
+}
+
+void Smoother::reset(float estimatedMeanValue) {
+  MovingFilter::reset(estimatedMeanValue);
+  _currentValueStep = _value;
+}
+
+void Smoother::reset(float estimatedMinValue, float estimatedMaxValue) {
+  MovingFilter::reset(estimatedMinValue, estimatedMaxValue);
+  _currentValueStep = _value;
+}
+
 float Smoother::put(float value) {
   if (isCalibrating()) {
     float a = alpha();
