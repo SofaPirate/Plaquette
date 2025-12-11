@@ -68,9 +68,12 @@ void step() {
     intervalChrono.start();
   }
 
-  // Update micros.
-  customMicros += (microSeconds() - prevStepMicros) / intervalSmoother; // adjust microseconds update to true_interval_micros / interval_seconds
+  // Compute time interval between steps (in "true" time).
+  float trueMicrosInterval = microSeconds() - prevStepMicros;
   prevStepMicros = microSeconds();
+
+  // Adjust microseconds update to true_interval_micros / interval_seconds
+  customMicros += trueMicrosInterval / intervalSmoother;
 
   // Step custom engine.
   customClockEngineStep();
