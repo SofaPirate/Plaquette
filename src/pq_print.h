@@ -50,13 +50,17 @@ namespace pq {
   typedef HardwareSerial PlaquetteSerialType;  // Fallback
 #endif
 
-/// Restarts main serial. This method will make sure to flush data from the pipeline.
-void beginSerial();
-void beginSerial(unsigned long baudRate);
+// Starts console.
+void consoleBegin();
+void consoleBegin(unsigned long baudRate);
 
-void defaultSerial(PlaquetteSerialType& serial);
-void defaultSerial(PlaquetteSerialType& serial, unsigned long baudRate);
-void defaultSerial(unsigned long baudRate);
+/// Sets the output device for console output.
+void consoleOutput(Print& console);
+void consoleOutput(PlaquetteSerialType& console);
+void consoleOutput(PlaquetteSerialType& console, unsigned long baudRate);
+void consoleOutput(unsigned long baudRate);
+
+// Print functions.
 
 size_t print(const __FlashStringHelper *);
 size_t print(const String &);

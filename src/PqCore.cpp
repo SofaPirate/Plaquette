@@ -54,9 +54,9 @@ Engine::~Engine() {
 }
 
 void Engine::preBegin() {
-  // Initialize serial.
+  // Initialize console.
   if (isPrimary())
-    beginSerial();
+    consoleBegin();
 
   // Initialize variables.
   _sampleRate = _samplePeriod = _targetSampleRate = 0;
@@ -72,7 +72,7 @@ void Engine::preBegin() {
   _setSampleRate(FLT_MAX);
 
   // Initialize all components.
-  for (size_t i=_unitsBeginIndex; i != _unitsEndIndex; i++) {
+  for (size_t i = _unitsBeginIndex; i != _unitsEndIndex; i++) {
     units()[i]->begin();
   }
 

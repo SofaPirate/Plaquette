@@ -50,7 +50,8 @@ hasAutoSampleRate  KEYWORD2
 sampleRate  KEYWORD2
 samplePeriod  KEYWORD2
 seconds  KEYWORD2
-beginSerial KEYWORD2
+consoleBegin KEYWORD2
+consoleOutput KEYWORD2
 
 # Utils
 mapFloat	KEYWORD2
