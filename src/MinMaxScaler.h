@@ -73,9 +73,6 @@ public:
 public:
   virtual void step();
 
-  // Time window (in seconds).
-  float _timeWindow;
-
   // Minimum value ever put (decays over time if time window is finite).
   float _minValue;
 
