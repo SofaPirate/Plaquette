@@ -29,14 +29,12 @@ namespace pq {
 MinMaxScaler::MinMaxScaler(Engine& engine)
   : MovingFilter(engine)
 {
-  infiniteTimeWindow();
   reset();
 }
 
-MinMaxScaler::MinMaxScaler(float timeWindow_, Engine& engine)
-  : MovingFilter(engine)
+MinMaxScaler::MinMaxScaler(float timeWindow, Engine& engine)
+  : MovingFilter(timeWindow, engine)
 {
-  timeWindow(timeWindow_);
   reset();
 }
 

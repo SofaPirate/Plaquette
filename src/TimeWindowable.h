@@ -27,7 +27,9 @@ namespace pq {
 /// Abstract class for time-based objects.
 class TimeWindowable {
 protected:
-  TimeWindowable() {}
+  TimeWindowable();
+  TimeWindowable(float timeWindow);
+  virtual ~TimeWindowable() {}
 
 public:
   /// Sets time window to infinite.

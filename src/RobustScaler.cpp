@@ -42,16 +42,14 @@ float spanToLowQuantileLevel(float span) {
 }
 
 RobustScaler::RobustScaler(Engine& engine) : MovingFilter(engine) {
-  infiniteTimeWindow();
   span(ROBUST_SCALER_DEFAULT_SPAN);
   reset();
 }
 
 RobustScaler::RobustScaler(float timeWindow, Engine& engine) : RobustScaler(timeWindow, ROBUST_SCALER_DEFAULT_SPAN, engine) {}
 
-RobustScaler::RobustScaler(float timeWindow_, float span_, Engine& engine): MovingFilter(engine)
+RobustScaler::RobustScaler(float timeWindow, float span_, Engine& engine): MovingFilter(timeWindow, engine)
 {
-  timeWindow(timeWindow_);
   span(span_);
   reset();
 }

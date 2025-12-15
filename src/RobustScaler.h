@@ -112,10 +112,6 @@ protected:
   void _initializeRange(float minValue, float maxValue);
 
 protected:
-public:
-  // Time window (in seconds).
-  float _timeWindow;
-
   // Low quantile level (in [0, 0.5]).
   float _quantileLevel;
 

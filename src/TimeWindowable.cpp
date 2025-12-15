@@ -21,6 +21,14 @@
 
  namespace pq {
 
+TimeWindowable::TimeWindowable() {
+  infiniteTimeWindow();
+}
+
+TimeWindowable::TimeWindowable(float timeWindow_) {
+  timeWindow(timeWindow_);
+}
+
 void TimeWindowable::infiniteTimeWindow() {
   _timeWindow = INFINITE_TIME_WINDOW;
 }

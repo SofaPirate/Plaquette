@@ -27,16 +27,12 @@ namespace pq {
 Smoother::Smoother(Engine& engine)
   : MovingFilter(engine),
     _currentValueStep(0)
-{
-  infiniteTimeWindow();
-}
+{}
 
 Smoother::Smoother(float timeWindow_, Engine& engine)
-  : MovingFilter(engine),
+  : MovingFilter(timeWindow_, engine),
     _currentValueStep(0)
-{
-  timeWindow(timeWindow_);
-}
+{}
 
 
 void Smoother::reset() {

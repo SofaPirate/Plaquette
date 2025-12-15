@@ -35,14 +35,12 @@ Normalizer::Normalizer(float timeWindow, Engine& engine)
 Normalizer::Normalizer(float mean, float stdDev, Engine& engine)
   : MovingFilter(engine), MovingStats()
 {
-  infiniteTimeWindow();
   _init(mean, stdDev);
 }
 
-Normalizer::Normalizer(float mean, float stdDev, float timeWindow_, Engine& engine)
-  : MovingFilter(engine), MovingStats()
+Normalizer::Normalizer(float mean, float stdDev, float timeWindow, Engine& engine)
+  : MovingFilter(timeWindow, engine), MovingStats()
 {
-  timeWindow(timeWindow_);
   _init(mean, stdDev);
 }
 

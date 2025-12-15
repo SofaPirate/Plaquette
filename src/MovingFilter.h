@@ -44,6 +44,13 @@ protected:
    */
   MovingFilter(Engine& engine = Engine::primary());
 
+  /**
+   * Constructor with time window.
+   * @param timeWindow the time window (in seconds)
+   * @param engine the engine running this unit
+   */
+  MovingFilter(float timeWindow, Engine& engine = Engine::primary());
+
   virtual ~MovingFilter() {}
 
 public:

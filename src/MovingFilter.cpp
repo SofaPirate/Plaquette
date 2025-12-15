@@ -23,6 +23,15 @@ namespace pq {
 
 MovingFilter::MovingFilter(Engine& engine)
   : AnalogSource(engine),
+    TimeWindowable(),
+    _isCalibrating(true),
+    _nValuesStep(0)
+{
+}
+
+MovingFilter::MovingFilter(float timeWindow, Engine& engine)
+  : AnalogSource(engine),
+    TimeWindowable(timeWindow),
     _isCalibrating(true),
     _nValuesStep(0)
 {
