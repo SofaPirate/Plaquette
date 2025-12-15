@@ -73,9 +73,6 @@ public:
 public:
   virtual void step();
 
-  float _alphaMinMax() const;
-  float _alphaSmoothed(float finiteTimeWindow) const;
-
   // Minimum value ever put (decays over time if time window is finite).
   float _minValue;
 
@@ -87,6 +84,12 @@ public:
 
   // Smoothed minimum value.
   float _smoothedMaxValue;
+
+private:
+  // Internal use: Helper functions used to compute alpha values.
+  float _alphaMinMax() const;
+  float _alphaSmoothed(bool finiteTimeWindow) const;
+  float _smoothedTimeWindow(bool finiteTimeWindow) const;
 };
 
 }

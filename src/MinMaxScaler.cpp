@@ -101,27 +101,20 @@ constexpr float SMOOTHED_MIN_MAX_TIME_PROPORTION_INV = 1.0f / SMOOTHED_MIN_MAX_T
 
 #define SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW 10.0f
 
-float MinMaxScaler::_alphaMinMax() const {
-  return movingAverageAlpha(sampleRate(), MIN_MAX_TIME_PROPORTION*_timeWindow);
-}
-
-float MinMaxScaler::_alphaSmoothed(float finiteTimeWindow) const {
-  return movingAverageAlpha(sampleRate(), finiteTimeWindow ? SMOOTHED_MIN_MAX_TIME_PROPORTION*_timeWindow : SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW, _nSamples);
-}
-
 void MinMaxScaler::step() {
   if (isCalibrating()) {
 
     if (_nSamples > 0) {
-      // Compute alpha to slowly move min and max values towards current value.
+      // Alpha values for updating min-max and smoothed min-max values.
       float alphaMinMax = 0;
       float alphaSmoothed = 0;
-      bool finiteTimeWindow = !timeWindowIsInfinite();
 
+      // Precomputed values.
+      bool finiteTimeWindow = !timeWindowIsInfinite();
       float midValue = 0.5f *(_minValue + _maxValue);
 
-      float range = abs(_maxValue - _minValue);
-      float tolerance = range * MIN_MAX_SCALER_TOLERANCE;
+      // Tolerance to consider that smoothed value has reach min-max value (based on absolute range).
+      float tolerance = (_maxValue - _minValue) * MIN_MAX_SCALER_TOLERANCE;
 
       // Apply decay on smoothed value until it reaches min/max value.
       // Then both values slowly decay towards current value.
@@ -166,6 +159,21 @@ void MinMaxScaler::step() {
     // Increase number of samples.
     if (_nSamples < UINT_MAX)
       _nSamples++;
-    }
   }
 }
+
+float MinMaxScaler::_alphaMinMax() const {
+  float minMaxTimeWindow = max(_timeWindow - _smoothedTimeWindow(true), 0);
+  return movingAverageAlpha(sampleRate(), minMaxTimeWindow);
+}
+
+float MinMaxScaler::_alphaSmoothed(bool finiteTimeWindow) const {
+  return movingAverageAlpha(sampleRate(), _smoothedTimeWindow(finiteTimeWindow), _nSamples);
+}
+
+float MinMaxScaler::_smoothedTimeWindow(bool finiteTimeWindow) const {
+  return finiteTimeWindow ? min(SMOOTHED_MIN_MAX_TIME_PROPORTION*_timeWindow, SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW) : SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW;
+}
+
+}
+
