@@ -73,6 +73,9 @@ public:
 public:
   virtual void step();
 
+  float _alphaMinMax() const;
+  float _alphaSmoothed(float finiteTimeWindow) const;
+
   // Minimum value ever put (decays over time if time window is finite).
   float _minValue;
 

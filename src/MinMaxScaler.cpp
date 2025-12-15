@@ -92,19 +92,28 @@ float MinMaxScaler::filter(float value) {
   return mapTo01(value, _smoothedMinValue, _smoothedMaxValue, CONSTRAIN);
 }
 
-#define MIN_MAX_SCALER_TOLERANCE 1e-3
+#define MIN_MAX_SCALER_TOLERANCE 0.01
 #define SMOOTHED_MIN_MAX_TIME_PROPORTION 0.1
 constexpr float MIN_MAX_TIME_PROPORTION = 1.0f - SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
 constexpr float MIN_MAX_TIME_PROPORTION_INV = 1.0f / MIN_MAX_TIME_PROPORTION;
 constexpr float SMOOTHED_MIN_MAX_TIME_PROPORTION_INV = 1.0f / SMOOTHED_MIN_MAX_TIME_PROPORTION;
 
+#define SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW 10.0f
+
+float MinMaxScaler::_alphaMinMax() const {
+  return movingAverageAlpha(sampleRate(), MIN_MAX_TIME_PROPORTION*_timeWindow);
+}
+
+float MinMaxScaler::_alphaSmoothed(float finiteTimeWindow) const {
+  return movingAverageAlpha(sampleRate(), finiteTimeWindow ? SMOOTHED_MIN_MAX_TIME_PROPORTION*_timeWindow : SMOOTHED_MIN_MAX_MAXIMUM_TIME_WINDOW, _nSamples);
+}
+
 void MinMaxScaler::step() {
   if (isCalibrating()) {
 
     if (_nSamples > 0) {
       // Compute alpha to slowly move min and max values towards current value.
-      float alpha = 0;
       float alphaMinMax = 0;
       float alphaSmoothed = 0;
       bool finiteTimeWindow = !timeWindowIsInfinite();
@@ -117,62 +126,41 @@ void MinMaxScaler::step() {
       // Apply decay on smoothed value until it reaches min/max value.
       // Then both values slowly decay towards current value.
 
-      // Serial.println("------");
-      // Serial.print("min: "); Serial.println(_minValue);
-      // Serial.print("max: "); Serial.println(_maxValue);
-      // Serial.print("smoothed min: "); Serial.println(_smoothedMinValue);
-      // Serial.print("smoothed max: "); Serial.println(_smoothedMaxValue);
-
       // Smoothed value has reached min.
       if (_smoothedMinValue == _minValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
-          abs(_smoothedMinValue - _minValue) < tolerance) {
+          _smoothedMinValue - _minValue < tolerance) {
 
         // Smoothed value has reached min: open to decaying.
         _smoothedMinValue = _minValue;
 
         // Decay min value towards mid value.
         if (finiteTimeWindow) {
-          alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
-          alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION;
+          alphaMinMax = _alphaMinMax();
           applyMovingAverageUpdate(_minValue, midValue, alphaMinMax);
         }
       }
       // Smoothed min value is still above min value: adjust smoothed min towards min.
       else {
-        alpha = alpha ? alpha : movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
-        alphaSmoothed = alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION;
-
+        alphaSmoothed = _alphaSmoothed(finiteTimeWindow);
         applyMovingAverageUpdate(_smoothedMinValue, _minValue, alphaSmoothed);
       }
 
       // Smoothed value has reached max..
       if (_smoothedMaxValue == _maxValue || // <-- keep this: it avoids unnecessary computation of tolerance condition
-        abs(_smoothedMaxValue - _maxValue) < tolerance) {
+          _maxValue - _smoothedMaxValue < tolerance) {
 
         // Smoothed value has reached max: open to decaying.
         _smoothedMaxValue = _maxValue;
 
         // Decay max value towards mid value.
         if (finiteTimeWindow) {
-          if (!alpha) {
-            alpha = movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
-            alphaMinMax = alpha * MIN_MAX_TIME_PROPORTION;
-          }
-          applyMovingAverageUpdate(_maxValue, midValue, alphaMinMax);
+          applyMovingAverageUpdate(_maxValue, midValue, alphaMinMax ? alphaMinMax : _alphaMinMax());
         }
       }
       // Smoothed max value is still below max value: adjust smoothed max towards max.
       else {
-        alpha = alpha ? alpha : movingAverageAlpha(sampleRate(), _timeWindow, _nSamples);
-        alphaSmoothed = alphaSmoothed ? alphaSmoothed : alpha * SMOOTHED_MIN_MAX_TIME_PROPORTION;
-        applyMovingAverageUpdate(_smoothedMaxValue, _maxValue, alphaSmoothed);
+        applyMovingAverageUpdate(_smoothedMaxValue, _maxValue, alphaSmoothed ? alphaSmoothed : _alphaSmoothed(finiteTimeWindow));
       }
-
-      //     Serial.println("---->>>");
-      // Serial.print("min: "); Serial.println(_minValue);
-      // Serial.print("max: "); Serial.println(_maxValue);
-      // Serial.print("smoothed min: "); Serial.println(_smoothedMinValue);
-      // Serial.print("smoothed max: "); Serial.println(_smoothedMaxValue);
     }
 
     // Increase number of samples.
