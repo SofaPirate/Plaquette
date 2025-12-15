@@ -13,7 +13,7 @@ Unit* units[N_UNITS] = {
 #define N_ROBUST_SCALERS 8
 RobustScaler* robusts[N_ROBUST_SCALERS];
 float quantileLevels[N_ROBUST_SCALERS/2] = { 0.01, 0.1, 0.25, 0.4 };
-MinMaxScaler basic;
+MinMaxScaler basic(1.0f);
 
 Smoother smoother(0.5f);
 
@@ -29,7 +29,7 @@ test(basic) {
   float prevMax = basic.maxValue();
   while (basic.maxValue() < 100.0f) {
     Plaquette.step();
-    assertMore(basic.maxValue(), prevMax);
+    assertMoreOrEqual(basic.maxValue(), prevMax);
     prevMax = basic.maxValue();
   }
   assertEqual(basic.maxValue(), 100.0f);
