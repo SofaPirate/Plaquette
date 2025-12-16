@@ -3,12 +3,6 @@ Getting started
 
 This short introduction will guide you through the first steps of using Plaquette.
 
-We also recommend watching our introductory `video tutorial series <https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip>`_.
-
-.. image:: https://img.youtube.com/vi/1H_lj-bvPNc/maxresdefault.jpg
-    :alt: Introduction to Plaquette video tutorial series
-    :target: https://www.youtube.com/playlist?list=PLO0YogNIPwXwEsNsoQSKeCdYlepWFrYip
-
 Step 1: Install Plaquette
 --------------------------
 
