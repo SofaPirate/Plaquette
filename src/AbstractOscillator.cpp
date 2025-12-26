@@ -89,29 +89,29 @@ void AbstractOscillator::jitter(float jitterLevel) {
     _phaseShiftOrRandomFrequencyRatio = 0;
 }
 
+float AbstractOscillator::jitteredFrequency() const {
+  return (!_jitterLevel ? frequency() : frequency() * _phaseShiftOrRandomFrequencyRatio);
+}
+
+float AbstractOscillator::jitteredPeriod() const {
+  // NOTE: _phaseShiftOrRandomFrequencyRatio is always > 0
+  return (!_jitterLevel ? period() : period() / _phaseShiftOrRandomFrequencyRatio);
+}
+
 void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
 
   if (!isRunning()) {
     _overflowed = false;
   }
 
-  else if (!_jitterLevel) {
-    // Deterministic path (unchanged)
-    _overflowed = phase32UpdateFixed32(_phase32, frequency(),
-                                       deltaTimeSecondsTimesFixed32Max, _isForward);
-  }
-
-  // Running scheduled random path.
   else {
-
-    // Advance phase using the instantaneous frequency for THIS interval
-    _overflowed = phase32UpdateFixed32(_phase32, _phaseShiftOrRandomFrequencyRatio*frequency(),
+    // Update phase.
+    _overflowed = phase32UpdateFixed32(_phase32, jitteredFrequency(),
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // Overflowed: schedule next.
-    if (_overflowed) {
+    if (_overflowed && _jitterLevel)
       _randomPickNext();
-    }
   }
 }
 

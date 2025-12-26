@@ -102,8 +102,24 @@ public:
   /// Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter).
   virtual void jitter(float jitterLevel);
 
-    /// Returns the randomness level in [0, 1].
+  /// Returns the randomness level in [0, 1].
   virtual float jitter() const;
+
+  /**
+   * Returns the period actually used for the current cycle.
+   *
+   * When jitter() == 0, this is identical to period(). When jitter() > 0,
+   * this returns the stochastic (jittered) period currently in effect.
+   */
+  virtual float jitteredPeriod() const;
+
+  /**
+   * Returns the frequency actually used for the current cycle.
+   *
+   * When jitter() == 0, this is identical to frequency(). When jitter() > 0,
+   * this returns the stochastic (jittered) frequency currently in effect.
+   */
+  virtual float jitteredFrequency() const;
 
    /**
     * Utility function to convert time to phase.
