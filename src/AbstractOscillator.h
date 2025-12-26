@@ -105,6 +105,9 @@ public:
   /// Returns the randomness level in [0, 1].
   virtual float jitter() const;
 
+  /// Disables jittering.
+  virtual void noJitter() { jitter(0); }
+
   /**
    * Returns the period actually used for the current cycle.
    *
