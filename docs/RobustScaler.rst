@@ -3,9 +3,9 @@
 RobustScaler
 ============
 
-This filtering unit regularizes incoming signals by focusing on what the signal does
-*most of the time* instead of reacting to rare extreme values. It does this by keeping
-track of two boundaries:
+This filtering unit regularizes incoming signals by remapping them into a new interval of [0, 1].
+It focuses on what the signal does *most of the time* instead of reacting to rare extreme values.
+It does this by keeping track of two boundaries:
 
 - a **lower boundary** (low quantile), below which the signal almost never goes, and
 - an **upper boundary** (high quantile), above which the signal almost never goes.
