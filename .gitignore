@@ -261,3 +261,4 @@ docs/html
 docs/_static
 .vscode/*
 !.vscode/settings.json
+scripts/
