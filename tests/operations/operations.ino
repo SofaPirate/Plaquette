@@ -130,6 +130,11 @@ test(math) {
   assertEqual(sq(1.5), 2.25);
 }
 
+test(fixedMath) {
+  assertEqual(fixed32ToFloat(0), 0.0f);
+  assertEqual(fixed32ToFloat(FIXED_32_MAX), 1.0f);
+}
+
 void setup() {
   Plaquette.begin();
 }
