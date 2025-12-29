@@ -322,7 +322,7 @@ class Chainable {
    * @param value the value sent to the unit
    * @return the new value of the unit
    */
-  virtual float put(float value) { return get(); } // do nothing by default (read-only)
+  virtual float put([[maybe_unused]] float value) { return get(); } // do nothing by default (read-only)
 
   /// Converts analog (float) value to digital (bool) value.
   static bool  analogToDigital(float f) { return (f >= 0.5); }
@@ -379,7 +379,7 @@ protected:
   virtual ~Unit();
 
   /// Returns true iff an event of a certain type has been triggered.
-  virtual bool eventTriggered(EventType eventType) { return false; }
+  virtual bool eventTriggered([[maybe_unused]] EventType eventType) { return false; }
 
   /// Registers event callback.
   virtual void onEvent(EventCallback callback, EventType eventType);
@@ -432,7 +432,7 @@ public:
    * @param value the value sent to the unit
    * @return the new value of the unit
    */
-  virtual bool putOn(bool value) { return isOn(); } // do nothing by default (read-only)
+  virtual bool putOn([[maybe_unused]] bool value) { return isOn(); } // do nothing by default (read-only)
 
   /// Maps value to new range.
   virtual float mapTo(float toLow, float toHigh) { return isOn() ? toHigh : toLow; }
