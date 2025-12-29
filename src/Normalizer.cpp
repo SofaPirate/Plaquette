@@ -99,6 +99,7 @@ float Normalizer::put(float value) {
         // Add one value in proportion to the previous value.
         _currentMeanStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMeanStep  + value);
         _currentMean2Step = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentMean2Step + value2);
+        prevNValuesStep = MOVING_FILTER_N_VALUES_STEP_MAX_MINUS_ONE;
       }
 
       // This is based on an expansion of the moving average formula.

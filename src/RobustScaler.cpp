@@ -183,6 +183,7 @@ float RobustScaler::put(float value) {
       else {
         // Add one value in proportion to the previous value.
         _currentStdDevStep  = MOVING_FILTER_VALUES_STEP_ADD_ONE_PROPORTION * (_currentStdDevStep  + deviation);
+        prevNValuesStep = MOVING_FILTER_N_VALUES_STEP_MAX_MINUS_ONE;
       }
 
       // This is based on an expansion of the moving average formula.
