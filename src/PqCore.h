@@ -337,6 +337,31 @@ public:
   explicit operator bool() { return Chainable::analogToDigital(get()); }
 };
 
+template <class Obj>
+class ParameterSlot : public Chainable {
+public:
+  using Setter = void (Obj::*)(float);
+  using Getter = float (Obj::*)() const;
+
+  ParameterSlot(Obj* obj, Setter set, Getter get)
+  : _obj(obj), _set(set), _get(get) {}
+
+  float get() override {
+    return (_obj->*_get)();
+  }
+
+  float put(float v) override {
+    (_obj->*_set)(v);
+    return get();
+  }
+
+private:
+  Obj* _obj;
+  Setter _set;
+  Getter _get; // optional; can be compiled out if you make two types
+};
+
+
 /**
  * A generic class representing a unit in the system.
  * Main class for components to be added to Plaquette.
