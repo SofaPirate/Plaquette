@@ -541,63 +541,98 @@ protected:
 
 // Value to unit operators ///////////////////////////////////////
 
+// Ensures math functions work safely when mixing types (e.g. int and float).
+#if defined(__has_include) && __has_include(<type_traits>)
+#include <type_traits>
+
+template <typename T>
+using is_integral = std::is_integral<T>;
+
+// template <bool B, typename T = void>
+// using enable_if_t = std::enable_if_t<B, T>;
+
+#else
+// Minimal is_integral (AVR-safe)
+template <typename T> struct is_integral { static const bool value = false; };
+
+template <> struct is_integral<bool> { static const bool value = true; };
+template <> struct is_integral<char> { static const bool value = true; };
+template <> struct is_integral<signed char> { static const bool value = true; };
+template <> struct is_integral<unsigned char> { static const bool value = true; };
+template <> struct is_integral<short> { static const bool value = true; };
+template <> struct is_integral<unsigned short> { static const bool value = true; };
+template <> struct is_integral<int> { static const bool value = true; };
+template <> struct is_integral<unsigned int> { static const bool value = true; };
+template <> struct is_integral<long> { static const bool value = true; };
+template <> struct is_integral<unsigned long> { static const bool value = true; };
+template <> struct is_integral<long long> { static const bool value = true; };
+template <> struct is_integral<unsigned long long> { static const bool value = true; };
+
+#endif
+
+// C++11-compatible enable_if_t
+template <bool B, typename T = void>
+struct enable_if { };
+
+template <typename T>
+struct enable_if<true, T> { typedef T type; };
+
+template <bool B, typename T = void>
+using enable_if_t = typename enable_if<B, T>::type;
+
+
 // Base value to unit operator.
-inline Chainable& operator>>(float value, Chainable& unit) {
-  unit.put(value);
-  return unit;
+inline float operator>>(float value, Chainable& unit) {
+  return unit.put(value);
 }
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Chainable&)).
-inline Chainable& operator>>(Chainable& source, Chainable& sink) {
+inline float operator>>(Chainable& source, Chainable& sink) {
   return pq::operator>>(source.get(), sink);
 }
 
-inline Chainable& operator>>(double value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+inline float operator>>(double value, Chainable& unit) {
+  return pq::operator>>(static_cast<float>(value), unit);
 }
 
-inline Chainable& operator>>(bool value, Chainable& unit) {
+inline float operator>>(bool value, Chainable& unit) {
   return pq::operator>>(Chainable::digitalToAnalog(value), unit);
 }
 
-// This code is needed on the Curie and ARM chips.
-// Otherwise it causes an ambiguous operator error.
-#if defined(__arc__) || defined(__arm__)
-inline Chainable& operator>>(int value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-#endif
 
-inline Chainable& operator>>(int8_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// 1) float -> temporary Chainable sink (e.g., parameter slot)
+inline float operator>>(float v, Chainable&& dst) {
+  return dst.put(v);
 }
 
-inline Chainable& operator>>(uint8_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// 2) Chainable -> temporary Chainable sink
+inline float operator>>(Chainable& src, Chainable&& dst) {
+  return dst.put(src.get());
 }
 
-inline Chainable& operator>>(int16_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// (Optional) const Chainable source
+inline float operator>>(const Chainable& src, Chainable&& dst) {
+  return dst.put(const_cast<Chainable&>(src).get()); // or change get() const if you can
 }
 
-inline Chainable& operator>>(uint16_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// // This code is needed on the Curie and ARM chips.
+// // Otherwise it causes an ambiguous operator error.
+// #if defined(__arc__) || defined(__arm__)
+// inline Chainable& operator>>(int value, Chainable& unit) {
+//   return pq::operator>>((float)value, unit);
+// }
+// #endif
+
+// Integral -> lvalue sink
+template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
+inline float operator>>(I value, Chainable& unit) {
+  return unit.put(static_cast<float>(value));
 }
 
-inline Chainable& operator>>(int32_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(uint32_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(int64_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(uint64_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// Integral -> rvalue sink (for inline chainables such as parameter slots)
+template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
+inline float operator>>(I value, Chainable&& unit) {
+  return unit.put(static_cast<float>(value));
 }
 
 // // Unit to value operators ///////////////////////////////////////
