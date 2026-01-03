@@ -53,14 +53,17 @@ public:
   /// Returns the pin this servomotor is attached to.
   uint8_t pin() const { return _pin; }
 
-  /// Activates the servomotor (default).
-  virtual void activate() { attach(_pin); }
-
-  /// Deactivates the servomotor.
-  virtual void deactivate() { detach(); }
-
   /// Returns true if the servomotor is active.
   virtual bool isActive() { return attached(); }
+
+  /// Activates or deactivates the servomotor.
+  virtual void setIsActive(bool active);
+
+  /// Activates the servomotor (default).
+  virtual void activate() { setIsActive(true); }
+
+  /// Deactivates the servomotor.
+  virtual void deactivate() { setIsActive(false); }
 
 protected:
   virtual void begin();
@@ -87,9 +90,6 @@ public:
 
   /// Return the current angular angle in [0, 180].
   virtual float getAngle();
-
-  /// Re-centers the servo-motor.
-  virtual void center() { put(0.5); }
 };
 
 /// Continuous servo-motor.
@@ -104,8 +104,8 @@ public:
   /// Stops the servo-motor.
   virtual void stop();
 
-  /// Sends servo-motor in reverse mode.
-  virtual void reverse();
+  /// Sends servomotor in opposite direction.
+  virtual void invert();
 
 protected:
   virtual void begin();

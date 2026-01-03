@@ -37,6 +37,15 @@ float AbstractServoOut::put(float value)
   return _value;
 }
 
+void AbstractServoOut::setIsActive(bool active) {
+  if (isActive() != active) {
+    if (active)
+      attach(_pin);
+    else
+      detach();
+  }
+}
+
 void AbstractServoOut::begin() {
   activate();
 }
@@ -66,7 +75,7 @@ void ContinuousServoOut::stop()
   Servo::write(90); // to be sure
 }
 
-void ContinuousServoOut::reverse()
+void ContinuousServoOut::invert()
 {
   put( 1 - get() );
 }
