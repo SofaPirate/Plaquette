@@ -148,14 +148,19 @@ constexpr T sq(T x) { return x * x; }
 
 } // namespace pq
 
-// --- Legacy Arduino names for backwards compatibility -----
-#define min(a,b)         (::pq::min((a),(b)))
-#define max(a,b)         (::pq::max((a),(b)))
-#define abs(x)           (::pq::abs((x)))
-#define constrain(x,l,h) (::pq::constrain((x),(l),(h)))
-#define round(x)         (::pq::round((x)))
-#define radians(d)       (::pq::radians((d)))
-#define degrees(r)       (::pq::degrees((r)))
-#define sq(x)            (::pq::sq((x)))
+// // --- Legacy Arduino names for backwards compatibility -----
+
+// NOTE: This section was commented out because it would break builds in some cases.
+// It is technically possible that some Arduino libraries will be affected although
+// the probability is very low.
+
+// #define min(a,b)         (::pq::min((a),(b)))
+// #define max(a,b)         (::pq::max((a),(b)))
+// #define abs(x)           (::pq::abs((x)))
+// #define constrain(x,l,h) (::pq::constrain((x),(l),(h)))
+// #define round(x)         (::pq::round((x)))
+// #define radians(d)       (::pq::radians((d)))
+// #define degrees(r)       (::pq::degrees((r)))
+// #define sq(x)            (::pq::sq((x)))
 
 #endif
