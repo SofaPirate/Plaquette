@@ -299,14 +299,14 @@ float samplePeriod();
 bool randomTrigger(float timeWindow);
 
 class Chainable {
-  private:
+private:
     // Prevents assignation operations by making them private.
   Chainable& operator=(bool);
   Chainable& operator=(int);
   Chainable& operator=(float);
   Chainable& operator=(Chainable&);
 
-  public:
+public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
   virtual float get() { return 0.0f; }
 
