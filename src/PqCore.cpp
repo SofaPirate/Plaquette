@@ -54,10 +54,6 @@ Engine::~Engine() {
 }
 
 void Engine::preBegin() {
-  // Initialize console.
-  if (isPrimary())
-    consoleBegin();
-
   // Initialize variables.
   _sampleRate = _samplePeriod = _targetSampleRate = 0;
   _microSeconds.micros64 = microSeconds(false);
