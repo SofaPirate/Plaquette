@@ -20,12 +20,16 @@
 #ifndef HYBRID_ARRAY_LIST_H_
 #define HYBRID_ARRAY_LIST_H_
 
+#include "pq_math.h"
+
 #define HYBRID_ARRAY_LIST_DEFAULT_STATIC_CAPACITY 8
 #define HYBRID_ARRAY_LIST_DYNAMIC_GROWTH_FACTOR 1.5
 
+namespace pq {
+
 /**
  * @brief A hybrid array list that starts with a static array and switches to dynamic allocation when full.
- * 
+ *
  * @tparam T The type of elements stored in the list.
  * @tparam STATIC_CAPACITY The initial static size of the array.
  */
@@ -48,7 +52,7 @@ public:
 
     /**
      * Adds an element to the end of the list.
-     * 
+     *
      * @param element The element to be added.
      */
     void add(const T& item) {
@@ -58,7 +62,7 @@ public:
         // Adding in the static array.
         if (_size < STATIC_CAPACITY) {
             _staticArray[_size] = item;
-        } 
+        }
         // Adding in the dynamic array.
         else {
             _dynamicArray[_size - STATIC_CAPACITY] = item;
@@ -68,7 +72,7 @@ public:
 
     /**
      * Inserts an element at the specified position in the list.
-     * 
+     *
      * @param index The position at which the element should be inserted.
      * @param element The element to insert.
      */
@@ -79,7 +83,7 @@ public:
         }
 
         // Ensure there's room for one more element.
-        _ensureCapacity(); 
+        _ensureCapacity();
 
         // Inserting within the static array.
         if (index < STATIC_CAPACITY) {
@@ -92,7 +96,7 @@ public:
                 }
                 // Add item.
                 _staticArray[index] = item;
-            } 
+            }
             // Affects both static and dynamic arrays.
             else {
                 // Last element of static array moves to dynamic array.
@@ -121,7 +125,7 @@ public:
 
     /**
      * Finds the first occurrence of the specified element in this list.
-     * 
+     *
      * @param item The element to search for.
      * @return The index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
      */
@@ -144,7 +148,7 @@ public:
 
     /**
      * Removes the first occurrence of the specified element from this list, if it is present.
-     * 
+     *
      * @param item The element to be removed from this list, if present.
      */
     bool removeItem(const T& item) {
@@ -162,7 +166,7 @@ public:
 
     /**
      * Removes the element at the specified position in the list.
-     * 
+     *
      * @param index The position of the element to remove.
      */
      void remove(int index) {
@@ -184,7 +188,7 @@ public:
                 }
             }
         }
-        // Index is within dynamic array. 
+        // Index is within dynamic array.
         else {
             // Shift dynamic array to the left.
             for (size_t i = index - STATIC_CAPACITY; i < _size - STATIC_CAPACITY - 1; i++) {
@@ -209,7 +213,7 @@ public:
 
     /**
      * Retrieves the element at the specified position in the list.
-     * 
+     *
      * @param index The position of the element to retrieve.
      * @return The element at the specified position.
      */
@@ -266,5 +270,7 @@ private:
         }
   }
 };
+
+}
 
 #endif // HYBRID_ARRAY_LIST_H_
