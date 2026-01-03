@@ -17,7 +17,7 @@ There are three potential wave types that can be set using the ``shape`` paramet
 .. image:: images/Plaquette-TriangleWave.png
   :width: 33%
 
-.. image:: images/Plaquette-SineWave-noSkew.png
+.. image:: images/Plaquette-SineWave.png
   :width: 33%
 
 Parameters
