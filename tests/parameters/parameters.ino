@@ -6,9 +6,27 @@ using namespace pq;
 
 Wave squareWave(SQUARE);
 
+Ramp ramp(10);
+AbstractTimer* timer = &ramp;
+
 test(parameters) {
   10 >> squareWave.period();
   assertEqual(10.0f, squareWave.period());
+}
+
+test(virtualParameters) {
+  2 >> ramp.duration();
+  assertEqual(2.0f, ramp.duration());
+  assertEqual(ramp.mode(), RAMP_DURATION);
+
+  2 >> ramp.speed();
+  assertEqual(2.0f, ramp.speed());
+  assertEqual(ramp.mode(), RAMP_SPEED);
+
+  2 >> timer->duration();
+  assertEqual(2.0f, ramp.duration());
+  assertEqual(2.0f, timer->duration());
+  assertEqual(ramp.mode(), RAMP_DURATION);
 }
 
 test(reference) {
