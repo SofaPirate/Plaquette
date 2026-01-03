@@ -50,15 +50,16 @@ namespace pq {
   typedef HardwareSerial PlaquetteSerialType;  // Fallback
 #endif
 
-// Starts console.
-void consoleBegin();
-void consoleBegin(unsigned long baudRate);
+/// Starts monitor.
+void monitorBegin(unsigned long baudRate);
+void monitorBegin(PlaquetteSerialType& monitor, unsigned long baudRate);
+void monitorBegin(Print& monitor);
 
-/// Sets the output device for console output.
-void consoleOutput(Print& console);
-void consoleOutput(PlaquetteSerialType& console);
-void consoleOutput(PlaquetteSerialType& console, unsigned long baudRate);
-void consoleOutput(unsigned long baudRate);
+// Disable monitor.
+void monitorEnd();
+
+// Returns monitor output device.
+Print& monitor();
 
 // Print functions.
 
