@@ -27,6 +27,9 @@
 namespace pq {
 
 class AbstractTimer : public AbstractChronometer {
+public:
+  typedef ParameterSlot<AbstractTimer> Parameter;
+
 protected:
   AbstractTimer(float duration);
   virtual ~AbstractTimer() {}
@@ -43,6 +46,9 @@ public:
 
   /// Returns duration.
   virtual float duration() const { return _duration; }
+
+  /// Returns duration as a parameter.
+  virtual Parameter duration() { return Parameter(this, &AbstractTimer::duration, &AbstractTimer::duration); }
 
   /// The progress of the timer process (in %).
   virtual float progress() const;

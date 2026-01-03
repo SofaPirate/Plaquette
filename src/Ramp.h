@@ -39,6 +39,8 @@ enum {
  */
 class Ramp : public Unit, public AbstractTimer {
 public:
+  typedef ParameterSlot<Ramp> Parameter;
+
   /**
    * Constructor.
    * @param engine the engine running this unit
@@ -75,11 +77,17 @@ public:
   /// Remove easing function (linear/no easing).
   void noEasing() { easing(easeNone); }
 
+  /// Returns destination value of the ramp,
+  virtual float to() const { return _to; }
+
   /**
-   * Assign final value of the ramp starting from current value.
+   * Assigns destination value of the ramp, starting from current value.
    * @param to the final value
    */
   virtual void to(float to);
+
+  /// Returns initial value of the ramp.
+  virtual float from() const { return _from; }
 
   /**
    * Assign initial value of the ramp.
@@ -94,17 +102,20 @@ public:
    */
   virtual void fromTo(float from, float to);
 
-  /// Sets the duration of the chronometer.
-  virtual void duration(float duration);
+  // Inherited.
+  using AbstractTimer::duration;
 
-  /// Returns duration.
-  virtual float duration() const { return AbstractTimer::duration(); }
+  /// Sets the duration of the chronometer.
+  void duration(float duration) override;
 
   /// Sets the speed (rate of change) of the ramp in change-per-second.
   virtual void speed(float speed);
 
   /// Returns speed (rate of change) of the ramp in change-per-second.
   virtual float speed() const;
+
+  /// Returns speed (rate of change) as a parameter.
+  Parameter speed() { return Parameter(this, &Ramp::speed, &Ramp::speed); }
 
   /// Starts/restarts the ramp. Will repeat the last ramp.
   virtual void start();
@@ -152,7 +163,7 @@ public:
   /// Returns speed based on duration.
   float durationToSpeed(float duration) const;
 
-    /// Returns duration based on speed.
+  /// Returns duration based on speed.
   float speedToDuration(float speed) const;
 
   /// @deprecated
