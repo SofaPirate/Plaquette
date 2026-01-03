@@ -59,12 +59,12 @@ static inline int16_t saturate16(int32_t val)
 	int16_t out;
 	int32_t tmp;
 	asm volatile("ssat %0, %1, %2" : "=r" (tmp) : "I" (16), "r" (val) );
-	out = (int16_t) (tmp);
+	out = static_cast<int16_t> (tmp);
 	return out;
 #else
     if (val > 32767) val = 32767;
     else if (val < -32768) val = -32768;
-    return val;
+    return static_cast<int16_t>(val);
 #endif
 }
 
@@ -77,7 +77,7 @@ static inline int32_t signed_multiply_32x16b(int32_t a, uint32_t b)
 	asm volatile("smulwb %0, %1, %2" : "=r" (out) : "r" (a), "r" (b));
 	return out;
 #else
-	return ((int64_t)a * (int16_t)(b & 0xFFFF)) >> 16;
+	return (static_cast<int64_t>(a) * static_cast<int16_t>(b & 0xFFFF)) >> 16;
 #endif
 }
 
@@ -90,7 +90,7 @@ static inline int32_t signed_multiply_32x16t(int32_t a, uint32_t b)
 	asm volatile("smulwt %0, %1, %2" : "=r" (out) : "r" (a), "r" (b));
 	return out;
 #else
-	return ((int64_t)a * (int16_t)(b >> 16)) >> 16;
+	return (static_cast<int64_t>(a) * static_cast<int16_t>(b >> 16)) >> 16;
 #endif
 }
 
@@ -103,7 +103,7 @@ static inline int32_t multiply_32x32_rshift32(int32_t a, int32_t b)
 	asm volatile("smmul %0, %1, %2" : "=r" (out) : "r" (a), "r" (b));
 	return out;
 #else
-	return ((int64_t)a * (int64_t)b) >> 32;
+	return (static_cast<int64_t>(a) * static_cast<int64_t>(b)) >> 32;
 #endif
 }
 
@@ -116,7 +116,7 @@ static inline int32_t multiply_32x32_rshift32_rounded(int32_t a, int32_t b)
 	asm volatile("smmulr %0, %1, %2" : "=r" (out) : "r" (a), "r" (b));
 	return out;
 #else
-    return (((int64_t)a * (int64_t)b) + 0x80000000) >> 32;
+    return ((static_cast<int64_t>(a) * static_cast<int64_t>(b)) + 0x80000000) >> 32;
 #endif
 }
 
@@ -129,7 +129,7 @@ static inline int32_t multiply_accumulate_32x32_rshift32_rounded(int32_t sum, in
 	asm volatile("smmlar %0, %2, %3, %1" : "=r" (out) : "r" (sum), "r" (a), "r" (b));
 	return out;
 #else
-	return sum + ((((int64_t)a * (int64_t)b) + 0x80000000) >> 32);
+	return sum + (((static_cast<int64_t>(a) * static_cast<int64_t>(b)) + 0x80000000) >> 32);
 #endif
 }
 
@@ -142,7 +142,7 @@ static inline int32_t multiply_subtract_32x32_rshift32_rounded(int32_t sum, int3
 	asm volatile("smmlsr %0, %2, %3, %1" : "=r" (out) : "r" (sum), "r" (a), "r" (b));
 	return out;
 #else
-	return sum - ((((int64_t)a * (int64_t)b) + 0x80000000) >> 32);
+	return sum - (((static_cast<int64_t>(a) * static_cast<int64_t>(b)) + 0x80000000) >> 32);
 #endif
 }
 
@@ -156,7 +156,7 @@ static inline uint32_t pack_16t_16t(int32_t a, int32_t b)
 	asm volatile("pkhtb %0, %1, %2, asr #16" : "=r" (out) : "r" (a), "r" (b));
 	return out;
 #else
-	return (a & 0xFFFF0000) | ((uint32_t)b >> 16);
+	return (a & 0xFFFF0000) | (static_cast<uint32_t>(b) >> 16);
 #endif
 }
 
@@ -189,7 +189,7 @@ static inline uint32_t pack_16b_16b(int32_t a, int32_t b)
 // computes ((a[31:0] << 32) / b[31:0])
 static inline uint32_t divide_32div32(uint32_t a, uint32_t b) __attribute__((always_inline, unused));
 static inline uint32_t divide_32div32(uint32_t a, uint32_t b) {
-	return b ? (uint64_t(a) << 32) / b : 0xFFFFFFFF /* 2^32-1 UINT32_MAX */;
+	return b ? (static_cast<uint64_t>(a) << 32) / b : 0xFFFFFFFF /* 2^32-1 UINT32_MAX */;
 }
 
 } // namespace pq
