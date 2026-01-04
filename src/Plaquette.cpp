@@ -27,15 +27,18 @@ void step() {}
 
 // Plaquette redefines setup() and loop() based on begin() and step().
 void setup() {
-  settings();
+  if (settings)
+    settings();
   Plaquette.preBegin();
-  begin();
+  if (begin)
+    begin();
   Plaquette.postBegin();
 }
 
 void loop() {
   if (Plaquette.timeStep()) {
     Plaquette.preStep();
-    step();
+    if (step)
+      step();
   }
 }
