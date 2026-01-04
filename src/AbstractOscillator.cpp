@@ -33,7 +33,9 @@ AbstractOscillator::AbstractOscillator(float period_)
   _frequency(FLT_MAX),
 #endif
   _phaseShiftOrRandomFrequencyRatio(0),
-  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _jitter(0) {
+  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true),
+  _preSkew(false), _passedSkew(false),
+  _jitter(0) {
   period(period_);
 }
 

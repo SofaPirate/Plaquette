@@ -38,6 +38,7 @@ float AbstractWave::get() {
   if (_valueNeedsUpdate) {
       // Compute next value.
     _value = _getAmplified(_phase32);
+
     _valueNeedsUpdate = false; // reset flag
   }
 
@@ -46,11 +47,14 @@ float AbstractWave::get() {
 
 void AbstractWave::begin() {
   start();
+  _preSkew = _isPreSkew();
 }
 
 void AbstractWave::step() {
   // Update phase time.
   _stepPhase(engine()->deltaTimeSecondsTimesFixed32Max());
+
+  _updatePassedSkew();
 
   // Set flag to indicate value is out of sync.
   _valueNeedsUpdate = true;
@@ -78,15 +82,22 @@ void AbstractWave::amplitude(float amplitude)  {
 
 void AbstractWave::skew(float skew) {
   _skew32 = floatToFixed32(skew);
+  _updatePassedSkew();
   _valueNeedsUpdate = true;
 }
 
-void AbstractWave::onBang(EventCallback callback) {
-  onEvent(callback, EVENT_BANG);
+
+void AbstractWave::onPassPeriod(EventCallback callback) {
+  onEvent(callback, EVENT_CUSTOM_1);
+}
+
+void AbstractWave::onPassSkew(EventCallback callback) {
+  onEvent(callback, EVENT_CUSTOM_2);
 }
 
 bool AbstractWave::eventTriggered(EventType eventType) {
-  if (eventType == EVENT_BANG) return _overflowed;
+  if (eventType == EVENT_CUSTOM_1) return passedPeriod();
+  else if (eventType == EVENT_CUSTOM_2) return passedSkew();
   else return AnalogSource::eventTriggered(eventType);
 }
 

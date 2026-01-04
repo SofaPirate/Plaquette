@@ -207,8 +207,12 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
-  // Subclasses usage. Used to keep track of state.
-  uint8_t _state : 4;
+  // AbstractWave subclass usage. Used to keep track of state.
+  bool _preSkew    : 1;
+  bool _passedSkew : 1;
+
+  // Extra data.
+  uint8_t _data : 2;
 
   // Jittering level.
   float _jitter;

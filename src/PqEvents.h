@@ -30,14 +30,18 @@ class Unit;
 typedef void (*EventCallback)();
 
 /// Event types.
-enum EventType {  
-  EVENT_NONE,    // no event
-  EVENT_CHANGE,  // value changed
-  EVENT_RISE,    // value rose
-  EVENT_FALL,    // value fell
-  EVENT_BANG,    // single trigger
-  EVENT_FINISH,  // process/timer finished
-  EVENT_UPDATE,  // unit updated and ready to be read/used
+enum EventType {
+  EVENT_NONE,     // no event
+  EVENT_CHANGE,   // value changed
+  EVENT_RISE,     // value rose
+  EVENT_FALL,     // value fell
+  EVENT_BANG,     // single trigger
+  EVENT_FINISH,   // process/timer finished
+  EVENT_UPDATE,   // unit updated and ready to be read/used
+  EVENT_CUSTOM_1, // custom event 1
+  EVENT_CUSTOM_2, // custom event 2
+  EVENT_CUSTOM_3, // custom event 3
+  EVENT_CUSTOM_4, // custom event 4
 };
 
 /// Manages event listeners for Plaquette units.
@@ -52,13 +56,13 @@ private:
 
     Listener() : unit(NULL), callback(NULL), eventType(EVENT_NONE) {}
 
-    Listener(Unit* unit, EventCallback callback, EventType eventType) : 
+    Listener(Unit* unit, EventCallback callback, EventType eventType) :
       unit(unit), callback(callback), eventType(eventType) {
     }
 
     bool operator==(const Listener& other) const {
-      return unit == other.unit && 
-             callback == other.callback && 
+      return unit == other.unit &&
+             callback == other.callback &&
              eventType == other.eventType;
     }
   };

@@ -115,8 +115,17 @@ public:
   [[deprecated("Use skew() instead.")]]
   virtual float width() const { return skew(); }
 
-  /// Registers event callback on wave end-of-period ("bang") event.
-  virtual void onBang(EventCallback callback);
+  /// Returns true on the step where the wave passed the period (end cycle).
+  virtual bool passedPeriod() const { return _overflowed; }
+
+  /// Returns true on the step where the wave passed the skew point.
+  virtual bool passedSkew() const { return _passedSkew; }
+
+  /// Registers event callback on wave pass period event.
+  virtual void onPassPeriod(EventCallback callback);
+
+  /// Registers event callback on wave pass skew point event.
+  virtual void onPassSkew(EventCallback callback);
 
 protected:
   // Core Plaquette methods.
@@ -131,6 +140,16 @@ protected:
 
   // Returns amplified version of _get(t).
   virtual float _getAmplified(q0_32u_t t);
+
+  bool _isPreSkew() const {
+    return (_phase32 <= _skew32);
+  }
+
+  // Call after a change.
+  bool _updatePassedSkew() {
+    bool newPreSkew = _isPreSkew();
+    _passedSkew = (_preSkew != newPreSkew); // check change
+  }
 
   // Amplitude (in %).
   q0_32u_t _amplitude;
