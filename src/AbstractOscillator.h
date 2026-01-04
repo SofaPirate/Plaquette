@@ -100,7 +100,7 @@ public:
   virtual float phaseShift() const;
 
   /// Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter).
-  virtual void jitter(float jitterLevel);
+  virtual void jitter(float jitter);
 
   /// Returns the randomness level in [0, 1].
   virtual float jitter() const;
@@ -165,6 +165,9 @@ public:
   virtual void toggleReverse() { _isForward = !_isForward; }
 
 protected:
+  // Returns true iff jittering is enabled.
+  bool _hasJitter() const { return bool(_jitter); }
+
   // Perform step with under
   void _stepPhase(float deltaTimeSecondsTimesFixed32Max);
 
@@ -204,8 +207,11 @@ protected:
   // Flag that makes sure the value is updated only on a need basis.
   bool _valueNeedsUpdate : 1;
 
+  // Subclasses usage. Used to keep track of state.
+  uint8_t _state : 4;
+
   // Jittering level.
-  uint8_t _jitterLevel : 4;
+  float _jitter;
 };
 
 }

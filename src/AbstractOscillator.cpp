@@ -28,12 +28,12 @@ namespace pq {
 
 AbstractOscillator::AbstractOscillator(float period_)
 : Timeable(),
-  _period(period_+1), // makes sure period is different and will be adjusted
+  _period(period_ + 1), // makes sure period is different and will be adjusted when calling period(period_)
 #if PQ_OPTIMIZE_FOR_CPU
   _frequency(FLT_MAX),
 #endif
   _phaseShiftOrRandomFrequencyRatio(0),
-  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _jitterLevel(0) {
+  _overflowed(false), _isRunning(false), _isForward(true), _valueNeedsUpdate(true), _jitter(0) {
   period(period_);
 }
 
@@ -44,7 +44,7 @@ void AbstractOscillator::start() {
   Timeable::start();
 
   // Reset random jitter.
-  if (_jitterLevel)
+  if (_hasJitter())
     _randomPickNext();
 }
 
@@ -66,21 +66,16 @@ void AbstractOscillator::_randomPickNext() {
   _phaseShiftOrRandomFrequencyRatio = 1.0f / (1 + jitter() * (periodRatio - 1));
 }
 
-#define JITTER_LEVEL_MAX 15
-constexpr float INV_JITTER_LEVEL_MAX = 1.0f / JITTER_LEVEL_MAX;
 float AbstractOscillator::jitter() const {
-  return fixedToFloatInv(_jitterLevel, INV_JITTER_LEVEL_MAX);
+  return _jitter;
 }
 
-void AbstractOscillator::jitter(float jitterLevel) {
-  bool wasJittering = (_jitterLevel != 0);
-  bool isJittering  = (jitterLevel != 0);
+void AbstractOscillator::jitter(float jitter_) {
+  bool wasJittering = _hasJitter();
 
-  _jitterLevel = floatToFixed(jitterLevel, JITTER_LEVEL_MAX);
-
-  // If randomness is larger than zero (even slightly), set random level to at least 1.
-  if (jitterLevel > 0)
-    _jitterLevel = max(_jitterLevel, 1);
+  // Assign jitter.
+  _jitter = max(jitter_, 0);
+  bool isJittering  = _hasJitter();
 
   // If we are switching mode, reset phase-shift / frequency ratio.
   if (isJittering && !wasJittering)
@@ -90,12 +85,12 @@ void AbstractOscillator::jitter(float jitterLevel) {
 }
 
 float AbstractOscillator::jitteredFrequency() const {
-  return (!_jitterLevel ? frequency() : frequency() * _phaseShiftOrRandomFrequencyRatio);
+  return (!_hasJitter() ? frequency() : frequency() * _phaseShiftOrRandomFrequencyRatio);
 }
 
 float AbstractOscillator::jitteredPeriod() const {
   // NOTE: _phaseShiftOrRandomFrequencyRatio is always > 0
-  return (!_jitterLevel ? period() : period() / _phaseShiftOrRandomFrequencyRatio);
+  return (!_hasJitter() ? period() : period() / _phaseShiftOrRandomFrequencyRatio);
 }
 
 void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
@@ -110,7 +105,7 @@ void AbstractOscillator::_stepPhase(float deltaTimeSecondsTimesFixed32Max) {
                                        deltaTimeSecondsTimesFixed32Max, _isForward);
 
     // Overflowed: schedule next.
-    if (_overflowed && _jitterLevel)
+    if (_overflowed && _hasJitter())
       _randomPickNext();
   }
 }
@@ -151,7 +146,7 @@ void AbstractOscillator::phase(float phase) {
 }
 
 void AbstractOscillator::phaseShift(float phaseShift) {
-  if (!_jitterLevel && _phaseShiftOrRandomFrequencyRatio != phaseShift) {
+  if (!_jitter && _phaseShiftOrRandomFrequencyRatio != phaseShift) {
     // Need to readjust phase time.
     _setPhase32(phase32AddPhase(_phase32, _phaseShiftOrRandomFrequencyRatio - phaseShift));
     _phaseShiftOrRandomFrequencyRatio = phaseShift;
@@ -159,13 +154,13 @@ void AbstractOscillator::phaseShift(float phaseShift) {
 }
 
 float AbstractOscillator::phaseShift() const {
-  return (_jitterLevel ? 0 : _phaseShiftOrRandomFrequencyRatio);
+  return (_hasJitter() ? 0 : _phaseShiftOrRandomFrequencyRatio);
 }
 
 float AbstractOscillator::timeToPhase(float time) const { return pq::timeToPhase(_period, time); }
 
 void AbstractOscillator::setTime(float time) {
-  if (!_jitterLevel) {
+  if (!_hasJitter()) {
     // Reset phase time to beginning.
     _setPhase32( phase32AddTime(_phaseShiftOrRandomFrequencyRatio, _period, time) );
   }
@@ -173,7 +168,7 @@ void AbstractOscillator::setTime(float time) {
 
 void AbstractOscillator::addTime(float time) {
   // Perform calculation iff time needs to be added.
-  if (!_jitterLevel && time > 0)
+  if (!_hasJitter() && time > 0)
     _setPhase32( phase32AddTime(_phase32, _period, time) );
 }
 
