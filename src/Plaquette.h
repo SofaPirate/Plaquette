@@ -22,23 +22,18 @@
 #define PLAQUETTE_H_
 
 #include "PlaquetteLib.h"
-#include "PlaquetteSketch.h"
 
-using namespace pq;
+// Plaquette builtin runtime functions (to be defined in sketch).
+// All functions are optional.
+void settings() __attribute__((weak));
+void begin()    __attribute__((weak));
+void step()     __attribute__((weak));
 
 // Plaquette redefines setup() and loop() based on begin() and step().
-void setup() {
-  settings();
-  Plaquette.preBegin();
-  begin();
-  Plaquette.postBegin();
-}
+void setup();
 
-void loop() {
-  if (Plaquette.timeStep()) {
-    Plaquette.preStep();
-    step();
-  }
-}
+void loop();
+
+using namespace pq;
 
 #endif
