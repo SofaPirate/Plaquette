@@ -25,13 +25,12 @@
 
 // Plaquette builtin runtime functions (to be defined in sketch).
 // All functions are optional.
-void settings() __attribute__((weak));
-void begin()    __attribute__((weak));
-void step()     __attribute__((weak));
+void settings();
+void begin();
+void step();
 
 // Plaquette redefines setup() and loop() based on begin() and step().
 void setup();
-
 void loop();
 
 using namespace pq;

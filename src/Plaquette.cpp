@@ -21,24 +21,20 @@
 #include "Plaquette.h"
 
 // Default definitions.
-void settings() {}
-void begin() {}
-void step() {}
+__attribute__((weak)) void settings() {}
+__attribute__((weak)) void begin() {}
+__attribute__((weak)) void step() {}
 
 // Plaquette redefines setup() and loop() based on begin() and step().
 void setup() {
-  if (settings)
-    settings();
+  settings();
   Plaquette.preBegin();
-  if (begin)
-    begin();
   Plaquette.postBegin();
 }
 
 void loop() {
   if (Plaquette.timeStep()) {
     Plaquette.preStep();
-    if (step)
-      step();
+    step();
   }
 }
