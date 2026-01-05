@@ -23,36 +23,20 @@
 #ifndef PQ_PRINT_H_
 #define PQ_PRINT_H_
 
-#include "pq_globals.h"
-
 #if (defined(ARDUINO) && ARDUINO >= 100) || defined(EPOXY_DUINO)
 #include <Arduino.h>
 #else
 #include <WProgram.h>
 #endif
 
-namespace pq {
+#include "pq_globals.h"
+#include "pq_serial.h"
 
-// Platform-dependent typedef for PlaquetteSerialType.
-#if defined(ARDUINO_ARCH_AVR)
-  #if defined(USBCON)
-    typedef Serial_ PlaquetteSerialType;  // Leonardo, Micro (USB CDC)
-  #else
-    typedef HardwareSerial PlaquetteSerialType;  // Uno, Mega, Nano
-  #endif
-#elif defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
-  typedef HardwareSerial PlaquetteSerialType;
-#elif defined(ARDUINO_ARCH_SAMD)
-  typedef Uart PlaquetteSerialType;
-#elif defined(EPOXY_DUINO)
-  typedef StdioSerial PlaquetteSerialType;
-#else
-  typedef HardwareSerial PlaquetteSerialType;  // Fallback
-#endif
+namespace pq {
 
 /// Starts monitor.
 void monitorBegin(unsigned long baudRate);
-void monitorBegin(PlaquetteSerialType& monitor, unsigned long baudRate);
+void monitorBegin(SerialType& monitor, unsigned long baudRate);
 void monitorBegin(Print& monitor);
 
 // Disable monitor.

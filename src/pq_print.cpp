@@ -46,7 +46,7 @@ void monitorBegin(unsigned long baudRate) {
   monitorInstance.baudRate = baudRate;
 
   if (monitorInstance.isSerial) {
-    PlaquetteSerialType* serial = static_cast<PlaquetteSerialType*>(monitorInstance.device);
+    SerialType* serial = static_cast<SerialType*>(monitorInstance.device);
     // Wait for last transmitted data to be sent.
     serial->flush();
     // Start serial with new baudrate.
@@ -56,7 +56,7 @@ void monitorBegin(unsigned long baudRate) {
   }
 }
 
-void monitorBegin(PlaquetteSerialType& monitor, unsigned long baudRate) {
+void monitorBegin(SerialType& monitor, unsigned long baudRate) {
   monitorInstance.device = &monitor;
   monitorInstance.isSerial = true;
   monitorBegin(baudRate);
