@@ -44,6 +44,9 @@
 #include "PqInputs.h"
 #include "PqOutputs.h"
 
+// Monitor.
+#include "Monitor.h"
+
 // Basic set of extra components.
 #include "PqExtra.h"
 
