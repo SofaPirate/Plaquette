@@ -115,10 +115,10 @@ test(math) {
   assertEqual(constrain(2.5, 3.0, 0.0), 3.0); // strange but consistent with Arduino's version
 
   // --- round ---
-  assertEqual(round(2.3f), 2L);
-  assertEqual(round(2.7f), 3L);
-  assertEqual(round(-2.3f), -2L);
-  assertEqual(round(-2.7f), -3L);
+  assertEqual((int)round(2.3f), 2);
+  assertEqual((int)round(2.7f), 3);
+  assertEqual((int)round(-2.3f), -2);
+  assertEqual((int)round(-2.7f), -3);
 
   // --- radians / degrees ---
   assertEqual(radians(180.0), PI); // crude check
