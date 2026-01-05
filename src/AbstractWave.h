@@ -146,7 +146,7 @@ protected:
   }
 
   // Call after a change.
-  bool _updatePassedSkew() {
+  void _updatePassedSkew() {
     bool newPreSkew = _isPreSkew();
     _passedSkew = (_preSkew != newPreSkew); // check change
   }
