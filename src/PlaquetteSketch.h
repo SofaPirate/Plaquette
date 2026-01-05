@@ -1,8 +1,8 @@
 /*
- * Plaquette.h
+ * PlaquetteSketch.h
  *
- * (c) 2015 Sofian Audry        :: info(@)sofianaudry(.)com
- * (c) 2015 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2025 Thomas O Fredericks :: tof(@)t-o-f(.)info
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,28 +17,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PLAQUETTE_H_
-#define PLAQUETTE_H_
+#ifndef PLAQUETTE_SKETCH_H_
+#define PLAQUETTE_SKETCH_H_
 
 #include "PlaquetteLib.h"
-#include "PlaquetteSketch.h"
 
-// Use namespace.
-using namespace pq;
+// Declaration of base sketch functions.
 
-// Plaquette redefines setup() and loop() based on begin() and step().
-void setup() {
-  settings();
-  Plaquette.preBegin();
-  begin();
-  Plaquette.postBegin();
-}
-
-void loop() {
-  if (Plaquette.timeStep()) {
-    Plaquette.preStep();
-    step();
-  }
-}
+// IMPORTANT: These functions are declared with __attribute__((weak)) in the source
+// file. This allows the user to override them only optionnaly.
+void settings();
+void begin();
+void step();
 
 #endif
