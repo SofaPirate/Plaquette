@@ -146,10 +146,7 @@ protected:
   }
 
   // Call after a change.
-  void _updatePassedSkew() {
-    bool newPreSkew = _isPreSkew();
-    _passedSkew = (_preSkew != newPreSkew); // check change
-  }
+  void _updatePassedSkew();
 
   // Amplitude (in %).
   q0_32u_t _amplitude;

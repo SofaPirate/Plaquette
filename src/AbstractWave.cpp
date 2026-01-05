@@ -48,13 +48,17 @@ float AbstractWave::get() {
 void AbstractWave::begin() {
   start();
   _preSkew = _isPreSkew();
+  _passedSkew = false;
 }
 
 void AbstractWave::step() {
   // Update phase time.
   _stepPhase(engine()->deltaTimeSecondsTimesFixed32Max());
 
+  // Serial.printf("pre:%i passed:%i over:%i\n", _preSkew, _passedSkew, _overflowed);
+  // Update passed-skew flag.
   _updatePassedSkew();
+  // Serial.printf("--> pre:%i passed:%i over:%i\n", _preSkew, _passedSkew, _overflowed);
 
   // Set flag to indicate value is out of sync.
   _valueNeedsUpdate = true;
@@ -62,6 +66,17 @@ void AbstractWave::step() {
 
 float AbstractWave::_getAmplified(q0_32u_t t) {
   return fixed32ToFloat( amplifyFixed32(_getFixed32(t), _amplitude) );
+}
+
+void AbstractWave::_updatePassedSkew() {
+  // Check if we moved from pre to post or vice versa.
+  bool newPreSkew = _isPreSkew();
+  // _passedSkew = (_preSkew != newPreSkew && !_overflowed); // check change
+  if (_skew32 == 0 ||_skew32 == FIXED_32_MAX) // skew() == 0 || skew() == 1
+    _passedSkew = _overflowed;
+  else
+    _passedSkew = (_isForward ? (_preSkew && !newPreSkew) : (!_preSkew && newPreSkew)); // check change
+  _preSkew = newPreSkew; // set new value
 }
 
 float AbstractWave::shiftBy(float phaseShift) {
