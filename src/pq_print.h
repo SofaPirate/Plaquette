@@ -34,19 +34,33 @@
 
 namespace pq {
 
-/// Starts monitor.
-void monitorBegin(unsigned long baudRate);
-void monitorBegin(SerialType& monitor, unsigned long baudRate);
-void monitorBegin(Print& monitor);
+/**
+ * @brief Sets the global/default device used by pq::print()/pq::println().
+ *
+ * This function does not start Serial or perform any I/O initialization.
+ * Device initialization belongs to higher-level objects (e.g. pq::Monitor).
+ */
+void defaultPrintDevice(Print& device);
 
-// Disable monitor.
-void monitorEnd();
+/**
+ * @brief Disables pq::print()/pq::println() output by routing to a null sink.
+ */
+void noDefaultPrintDevice();
 
-// Returns monitor output device.
-Print& monitor();
+/**
+ * @brief Returns the current global/default print device.
+ *
+ * If no device has been assigned (or output has been disabled), this returns
+ * an internal null sink that discards output.
+ */
+Print& defaultPrintDevice();
+
+/**
+ * @brief Returns true if pq::print()/pq::println() output is enabled.
+ */
+bool hasDefaultPrintDevice();
 
 // Print functions.
-
 size_t print(const __FlashStringHelper *);
 size_t print(const String &);
 size_t print(const char[]);

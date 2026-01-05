@@ -19,6 +19,7 @@
  */
 
 #include "Monitor.h"
+#include "pq_print.h"
 #include "pq_serial.h"
 
 namespace pq {
@@ -76,6 +77,11 @@ void Monitor::begin() {
     while (!Serial) {}
   }
 
+  // Assign as default device.
+  if (!hasDefaultPrintDevice())
+    defaultPrintDevice(*this);
+
+  // Flag begin.
   _begun = true;
 }
 
