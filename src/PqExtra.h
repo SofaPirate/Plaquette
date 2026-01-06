@@ -53,6 +53,9 @@
 #include "TriangleWave.h"
 #include "Wave.h"
 
+// Serial.
+#include "Plotter.h"
+
 // Servo motors.
 #include <PqServo.h>
 
