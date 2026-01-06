@@ -41,7 +41,7 @@ public:
   /**
    * @brief Construct a Monitor using the default Serial device.
    */
-  explicit Monitor(unsigned long baudRate = 115200,
+  explicit Monitor(unsigned long baudRate,
                    Engine& engine = Engine::primary());
 
   /**
@@ -69,11 +69,14 @@ public:
   uint8_t precision() const { return _digits; }
 
   /**
-   * @brief Plaquette sink: receive a float via `>>`.
-   *
-   * Default behavior is to print the value followed by a newline.
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
    */
-  virtual float put(float value) override;
+  float put(float value) override;
+
+  /// Returns value (last value that was put()).
+  float get() override { return _value; }
 
   /**
    * @brief Core Print override.
@@ -82,7 +85,8 @@ public:
    */
   virtual size_t write(uint8_t b) override;
 
-  using Print::write;
+  // // This is to support all the Print methods
+  // using Print::write;
 
 protected:
   /**
@@ -98,6 +102,8 @@ protected:
   uint8_t _digits    : 6;
 
   unsigned long _baudRate = 0;
+
+  float _value;
 };
 
 } // namespace pq

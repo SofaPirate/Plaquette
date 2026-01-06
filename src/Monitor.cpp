@@ -38,7 +38,8 @@ Monitor::Monitor(SerialType& device, unsigned long baudRate, Engine& engine)
     _isSerial(true),
     _begun(false),
     _baudRate(baudRate),
-    _digits(PRINT_DEFAULT_DIGITS)
+    _digits(PRINT_DEFAULT_DIGITS),
+    _value(0)
 {}
 
 Monitor::Monitor(Print& device, Engine& engine)
@@ -48,7 +49,8 @@ Monitor::Monitor(Print& device, Engine& engine)
     _isSerial(false),
     _begun(false),
     _baudRate(0),
-    _digits(PRINT_DEFAULT_DIGITS)
+    _digits(PRINT_DEFAULT_DIGITS),
+    _value(0)
 {}
 
 void Monitor::begin() {
@@ -101,7 +103,9 @@ float Monitor::put(float value) {
     _device->print(static_cast<double>(value), _digits);
   }
 
-  return value;
+  _value = value;
+
+  return _value;
 }
 
 } // namespace pq
