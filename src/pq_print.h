@@ -30,9 +30,11 @@
 #endif
 
 #include "pq_globals.h"
-#include "pq_serial.h"
 
 namespace pq {
+
+// Declare class here to prevent circular include issue.
+class Monitor;
 
 /**
  * @brief Sets the global/default device used by pq::print()/pq::println().
@@ -41,6 +43,14 @@ namespace pq {
  * Device initialization belongs to higher-level objects (e.g. pq::Monitor).
  */
 void defaultPrintDevice(Print& device);
+
+/**
+ * @brief Sets the global/default device used by pq::print()/pq::println().
+ *
+ * This function does not start Serial or perform any I/O initialization.
+ * Device initialization belongs to higher-level objects (e.g. pq::Monitor).
+ */
+void defaultPrintDevice(Monitor& device);
 
 /**
  * @brief Disables pq::print()/pq::println() output by routing to a null sink.
@@ -70,7 +80,8 @@ size_t print(int, int = DEC);
 size_t print(unsigned int, int = DEC);
 size_t print(long, int = DEC);
 size_t print(unsigned long, int = DEC);
-size_t print(double, int = 2);
+size_t print(double);
+size_t print(double, int);
 size_t print(const Printable&);
 
 size_t println(const __FlashStringHelper *);
@@ -82,7 +93,8 @@ size_t println(int, int = DEC);
 size_t println(unsigned int, int = DEC);
 size_t println(long, int = DEC);
 size_t println(unsigned long, int = DEC);
-size_t println(double, int = 2);
+size_t println(double);
+size_t println(double, int);
 size_t println(const Printable&);
 size_t println(void);
 

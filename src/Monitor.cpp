@@ -24,7 +24,7 @@
 
 namespace pq {
 
-static constexpr uint8_t PRINT_DEFAULT_DIGITS = 4;
+static constexpr uint8_t PRINT_DEFAULT_DIGITS = 2;
 static constexpr uint8_t PRINT_MAX_DIGITS = 6;
 
 Monitor::Monitor(unsigned long baudRate, Engine& engine)
@@ -89,6 +89,14 @@ void Monitor::begin() {
 
 size_t Monitor::write(uint8_t b) {
   return _device ? _device->write(b) : 0;
+}
+
+size_t Monitor::print(double v) {
+  return Print::print(v, _digits);
+}
+
+size_t Monitor::println(double v) {
+  return Print::println(v, _digits);
 }
 
 void Monitor::precision(uint8_t digits) {

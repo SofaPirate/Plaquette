@@ -22,6 +22,7 @@
 #define PQ_MONITOR_H_
 
 #include "PqCore.h"
+#include "pq_serial.h"
 
 namespace pq {
 
@@ -84,6 +85,9 @@ public:
    * All print()/println() calls funnel through this method.
    */
   virtual size_t write(uint8_t b) override;
+
+  size_t print(double v);
+  size_t println(double v);
 
   // // This is to support all the Print methods
   // using Print::write;

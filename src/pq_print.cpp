@@ -21,6 +21,7 @@
  */
 
 #include "pq_print.h"
+#include "Monitor.h"
 
 namespace pq {
 
@@ -31,9 +32,16 @@ public:
 
 static NullPrint nullPrint;
 static Print* defaultPrintDeviceInstance = &nullPrint;
+static bool defaultPrintDeviceIsMonitor = false;
 
 void defaultPrintDevice(Print& device) {
   defaultPrintDeviceInstance = &device;
+  defaultPrintDeviceIsMonitor = true;
+}
+
+void defaultPrintDevice(Monitor& device) {
+  defaultPrintDeviceInstance  = &device;
+  defaultPrintDeviceIsMonitor = true;
 }
 
 void noDefaultPrintDevice() {
@@ -91,6 +99,14 @@ size_t print(long n, int base)
 size_t print(unsigned long n, int base)
 {
   return defaultPrintDeviceInstance->print(n, base);
+}
+
+size_t print(double n)
+{
+  if (defaultPrintDeviceIsMonitor)
+    return static_cast<Monitor*>(defaultPrintDeviceInstance)->print(n);
+  else
+    return defaultPrintDeviceInstance->print(n);
 }
 
 size_t print(double n, int digits)
@@ -151,6 +167,14 @@ size_t println(long num, int base)
 size_t println(unsigned long num, int base)
 {
   return defaultPrintDeviceInstance->println(num, base);
+}
+
+size_t println(double n)
+{
+  if (defaultPrintDeviceIsMonitor)
+    return static_cast<Monitor*>(defaultPrintDeviceInstance)->println(n);
+  else
+    return defaultPrintDeviceInstance->println(n);
 }
 
 size_t println(double num, int digits)
