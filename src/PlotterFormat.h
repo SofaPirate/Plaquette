@@ -50,7 +50,11 @@ public:
   const char* separator = " ";
 
   /// Template for each element (e.g., "{value}" or "\"{label}\":{value}").
-  const char* element = "{value}";
+  const char* element = "$v";
+
+  /// Fallback string used when $k (key/label) is unavailable. Can use $i and $v.
+  /// Example: "" (default), "x", "?".
+  const char* keyFallback = "";
 
   /**
    * If true, prints separator after every element (including the last).
@@ -65,9 +69,12 @@ public:
             const char* end_,
             const char* sep_,
             const char* element_,
+            const char* keyFallback_,
             bool trailingSep = false)
-    : begin(begin_), end(end_), separator(sep_), element(element_),
-      trailingSeparator(trailingSep) {}
+    : begin(begin_), end(end_), separator(sep_),
+      element(element_), keyFallback(keyFallback_),
+      trailingSeparator(trailingSep)
+    {}
 
   /**
    * @brief Print begin token.
@@ -121,7 +128,10 @@ private:
   static bool _eq(const char* a, const char* b, uint8_t n);
 
   /// Print a LabelView as raw bytes (since it is not necessarily null-terminated).
-  static void _writeLabel(Print& out, LabelView label);
+  static void _writeKey(Print& out,
+                        LabelView label,
+                        uint16_t index,
+                        const char* fallback);
 
   /**
    * @brief Expand and print a template.
@@ -134,7 +144,8 @@ private:
                              uint16_t index,
                              LabelView label,
                              float value,
-                             uint8_t digits);
+                             uint8_t digits,
+                             const char* fallback = nullptr);
 };
 
 /**

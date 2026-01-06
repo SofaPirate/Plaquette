@@ -16,7 +16,7 @@ void RowFormat::elementOut(Print& out,
                            bool isLast) const
 {
   // 1) Expand and print the element template (e.g. "{value}" or "\"{label}\":{value}")
-  _writeTemplate(out, element, index, label, value, digits);
+  _writeTemplate(out, element, index, label, value, digits, keyFallback);
 
   // 2) Separator policy:
   //    - trailingSeparator: always print separator after each element.
@@ -37,10 +37,18 @@ bool RowFormat::_eq(const char* a, const char* b, uint8_t n) {
   return true;
 }
 
-void RowFormat::_writeLabel(Print& out, LabelView label) {
-  // LabelView is not necessarily null-terminated, so we write raw bytes.
-  if (label.empty()) return;
-  out.write(reinterpret_cast<const uint8_t*>(label.ptr), label.len);
+void RowFormat::_writeKey(Print& out,
+                          LabelView label,
+                          uint16_t index,
+                          const char* fallback) {
+  // If we have a real label, write it as raw bytes (not necessarily null-terminated).
+  if (!label.empty()) {
+    out.write(reinterpret_cast<const uint8_t*>(label.ptr), label.len);
+  }
+  // Otherwise print fallback (if any).
+  else if (fallback && *fallback) {
+    _writeTemplate(out, fallback, index, label, 0, 0);
+  }
 }
 
 void RowFormat::_writeTemplate(Print& out,
@@ -48,70 +56,59 @@ void RowFormat::_writeTemplate(Print& out,
                                uint16_t index,
                                LabelView label,
                                float value,
-                               uint8_t digits)
+                               uint8_t digits,
+                               const char* fallback)
 {
-  // Defensive: null template means "print nothing".
   if (!templ) return;
 
-  // One-pass parser. This keeps code size and RAM usage low.
   const char* p = templ;
 
   while (*p) {
     const char c = *p++;
 
-    // Backslash escapes:
-    //  - \{ prints '{'
-    //  - \} prints '}'
-    //  - \\ prints '\'
-    //  - Any other "\X" prints "X"
+    // Backslash escape: "\$" prints '$', "\X" prints 'X' (existing behavior).
     if (c == '\\' && *p) {
       out.write(static_cast<uint8_t>(*p++));
       continue;
     }
 
-    // Regular characters pass through.
-    if (c != '{') {
+    // Regular characters.
+    if (c != '$') {
       out.write(static_cast<uint8_t>(c));
       continue;
     }
 
-    // We encountered '{' -> parse a key until '}'.
-    const char* keyStart = p;
-    while (*p && *p != '}') p++;
-
-    // If no closing brace, treat '{' as a literal.
-    if (*p != '}') {
-      out.write(static_cast<uint8_t>('{'));
-      p = keyStart; // rewind so characters after '{' are processed normally
-      continue;
+    // '$' introduces a token.
+    if (!*p) {
+      // Trailing '$' -> print literally.
+      out.write(static_cast<uint8_t>('$'));
+      break;
     }
 
-    // Now [keyStart, keyEnd) is the key name (not null-terminated).
-    const char* keyEnd = p; // points at '}'
-    p++;                    // skip the '}'
-    const uint8_t len = static_cast<uint8_t>(keyEnd - keyStart);
+    const char t = *p++;
 
-    // Recognize known keys by (length, content) to avoid strcmp / allocations.
-    if (len == 5 && _eq(keyStart, "value", 5)) {
-      // Print numeric value with Arduino Print's float formatting.
-      // `digits` is digits after decimal.
+    if (t == 'v') {
+      // Value (float)
       out.print(static_cast<double>(value), digits);
     }
-    else if (len == 5 && _eq(keyStart, "label", 5)) {
-      // Print label slice (may be empty).
-      _writeLabel(out, label);
-    }
-    else if (len == 5 && _eq(keyStart, "index", 5)) {
-      // Print index (0-based).
+    else if (t == 'i') {
+      // Index (0-based)
       out.print(static_cast<unsigned long>(index));
     }
+    else if (t == 'k') {
+      // Key/label with fallback
+      if (fallback)
+        _writeKey(out, label, index, fallback);
+      else
+        out.print("$k");
+    }
     else {
-      // Unknown key -> print literally "{key}" so the user can see the mistake.
-      out.write(static_cast<uint8_t>('{'));
-      while (keyStart < keyEnd) out.write(static_cast<uint8_t>(*keyStart++));
-      out.write(static_cast<uint8_t>('}'));
+      // Unknown token -> print literally as "$<t>"
+      out.write(static_cast<uint8_t>('$'));
+      out.write(static_cast<uint8_t>(t));
     }
   }
 }
+
 
 } // namespace pq

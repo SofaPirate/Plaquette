@@ -13,13 +13,23 @@ namespace pq {
 static PlotterFormat defaultPlotterFormat() {
   // Default: Arduino Serial Plotter friendly: space-separated values, newline rows.
   PlotterFormat fmt;
-  fmt.row = RowFormat("", "\r\n", ",", "{value}", false);
+  fmt.row = RowFormat("", "\r\n", ",", "$k:$v", "value-_$i", false);
 
   // Header uses same separator by default; disabled unless enabled by user.
-  fmt.header = RowFormat("", "\r\n", " ", "{label}", false);
-  fmt.useHeader = false;
+  fmt.header = RowFormat("", "\r\n", " ", "$k", "value-_$i", false);
+  fmt.useHeader = true;
 
   return fmt;
+
+  // // Default: Arduino Serial Plotter friendly: space-separated values, newline rows.
+  // PlotterFormat fmt;
+  // fmt.row = RowFormat("", "\r\n", ",", "$v", "", false);
+
+  // // Header uses same separator by default; disabled unless enabled by user.
+  // fmt.header = RowFormat("", "\r\n", " ", "%k", "value_$i", false);
+  // fmt.useHeader = false;
+
+  // return fmt;
 }
 
 Plotter::Plotter(unsigned long baudRate, const char* labels, Engine& engine)
@@ -178,7 +188,8 @@ void Plotter::_ensureHeader() {
     const LabelView lab = _labelAt(i);
     if (lab.empty()) break;
 
-    if (i > 0) _format.header.sep(*_out);
+    if (i > 0)
+      _format.header.sep(*_out);
     _format.header.elementOut(*_out, i, lab, 0.0f, 0, /*isLast=*/true);
     i++;
   }
