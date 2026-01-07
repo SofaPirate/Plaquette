@@ -31,7 +31,6 @@ public:
                    PlotterMode mode = PLOTTER_DEFAULT,
                    Engine& engine = Engine::primary());
 
-  // --- Configuration ---
   void labels(const char* labelsSchema);
   const char* labels() const { return _labels; }
 
@@ -41,16 +40,22 @@ public:
   void precision(uint8_t digits) { _digits = digits; }
   uint8_t precision() const { return _digits; }
 
-  /// Manually ends the current row (prints rowEnd if a row is open).
-  void endRow();
+  /// Returns reference to format so that it can be edited.
+  PlotterFormat& format() { return _format; }
 
-  // --- Unit overrides ---
+  // Unit overrides
   float put(float value) override;
   float get() override { return _lastValue; }
 
+  /// Begins new plot.
+  void beginPlot();
+
+  /// Ends current plot.
+  void endPlot();
+
+protected:
   void begin() override;
-  void step() override { endRow(); }
-  void end();
+  void step() override;
 
 private:
   // Output backend
@@ -77,12 +82,20 @@ private:
   uint16_t _valueIndex = 0;
   float _lastValue = 0.0f;
 
+  bool _plotOpen = true;
+  bool _scheduleEndRow = false;
+
 private:
+  // Manually ends the current row (prints rowEnd if a row is open).
+  void _endRow();
+
   // Internal helpers
   void _rebuildFormat();
   void _ensureHeader();
   void _openRowIfNeeded();
-  void _closeRowIfOpen();
+  void _closeRowIfOpen(bool printEndRow);
+
+  void _printValue(float value);
 
   // Label parsing helpers (comma-separated schema)
   static bool _isSpace(char c);

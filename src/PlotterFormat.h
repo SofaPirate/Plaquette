@@ -42,6 +42,8 @@ struct LabelView {
  */
 struct PlotterFormat {
   // Row framing (shared by values and header, if any).
+  const char* plotBegin = "";
+  const char* plotEnd   = "";
   const char* rowBegin  = "";
   const char* rowEnd    = "\r\n";
   const char* separator = ",";
@@ -58,6 +60,7 @@ struct PlotterFormat {
   // If true, prints separator after every element (including the last).
   // If false, prints separator only between elements.
   bool trailingSeparator = false;
+  bool trailingRowEnd = true;
 
   // Fallback string used when $k is requested but no label exists for this index
   // (labels missing entirely, labels shorter than value count, empty token, etc.).
@@ -66,12 +69,19 @@ struct PlotterFormat {
 
   // ---- Convenience helpers used by Plotter (short and inline) ----
 
-  void beginRow(Print& out) const { if (rowBegin && *rowBegin) out.print(rowBegin); }
-  void endRow(Print& out)   const {
-    if (trailingSeparator) sep(out);
-    if (rowEnd && *rowEnd) out.print(rowEnd);
+  static void printString(Print& out, const char* str) {
+    if (str && *str) out.print(str);
   }
-  void sep(Print& out)      const { if (separator && *separator) out.print(separator); }
+
+  void beginPlot(Print& out) const { printString(out, plotBegin); }
+  void endPlot(Print& out) const {
+    printString(out, plotEnd);
+  }
+  void beginRow(Print& out) const { printString(out, rowBegin); }
+  void endRow(Print& out)   const {
+    printString(out, rowEnd);
+  }
+  void sep(Print& out)      const { printString(out, separator); }
 
   /**
    * @brief Print one element for a normal (value) row.

@@ -1,5 +1,9 @@
 #include "Plotter.h"
 
+#include <math.h>
+
+#define PLOTTER_PADDING_VALUE NAN
+
 namespace pq {
 
 static PlotterFormat makePlotterFormat(PlotterMode mode, const char* labelsSchema) {
@@ -19,13 +23,17 @@ static PlotterFormat makePlotterFormat(PlotterMode mode, const char* labelsSchem
       break;
 
     case PLOTTER_JSON:
+      fmt.plotBegin = "[\r\n";
+      fmt.trailingRowEnd = false;
       if (hasLabels) {
+        fmt.plotEnd = "}\r\n]";
         fmt.rowBegin = "{";
-        fmt.rowEnd = "}\r\n";
+        fmt.rowEnd = "},\r\n";
         fmt.valueTemplate = "\"$k\":$v";
       } else {
+        fmt.plotEnd = "]\r\n]";
         fmt.rowBegin = "[";
-        fmt.rowEnd = "]\r\n";
+        fmt.rowEnd = "],\r\n";
         fmt.valueTemplate = "$v";
       }
       break;
@@ -99,52 +107,69 @@ void Plotter::mode(PlotterMode mode) {
   _rebuildFormat();
 }
 
-void Plotter::endRow() {
-  _closeRowIfOpen();
+void Plotter::beginPlot() {
+  _headerPrinted = false;
+  _rowOpen = false;
+  _valueIndex = 0;
+
+  _plotOpen = true;
+
+  _format.beginPlot(*_out);
+}
+
+void Plotter::endPlot() {
+  if (!_plotOpen) return;
+
+  // End-of-engine-step finalization.
+  // if (_format.trailingRowEnd)
+    // _closeRowIfOpen();
+  _closeRowIfOpen(_format.trailingRowEnd);
+
+  _format.endPlot(*_out);
+  _plotOpen = false;
 }
 
 // --- Unit lifecycle ---
 
 void Plotter::begin() {
+  // Safely start serial.
   if (_serial && _baudRate > 0) {
-    _serial->begin(_baudRate);
+    beginSerial(*_serial, _baudRate);
   }
 
-  _headerPrinted = false;
-  _rowOpen = false;
-  _valueIndex = 0;
+  beginPlot();
 }
 
-void Plotter::end() {
-  // End-of-engine-step finalization.
-  _closeRowIfOpen();
+void Plotter::step() {
+  if (_plotOpen) {
+    if (_format.trailingRowEnd) {
+      _closeRowIfOpen(_format.trailingRowEnd);
+    }
+    else {
+      _scheduleEndRow = true;
+    }
+  }
+    // _endRow();
 }
+
 
 // --- Streaming values ---
 
 float Plotter::put(float value) {
-  if (!_out) return value;
+  if (!_out || !_plotOpen) return value;
+
+  if (_scheduleEndRow) {
+    _closeRowIfOpen(true);
+    _scheduleEndRow = false;
+  }
 
   _lastValue = value;
 
   _ensureHeader();
   _openRowIfNeeded();
 
-  const uint16_t idx = _valueIndex;
+  _printValue(value);
 
-  // Render element immediately.
-  const LabelView label = _labelAt(idx);
-
-  // We pass isLast=true to prevent PlotterFormat from printing separators;
-  // separator policy is handled here (prefix).
-  _format.printValueElement(*_out,
-                            idx,
-                            label,
-                            value,
-                            _digits,
-                            idx == 0);
-
-  _valueIndex++;
   return value;
 }
 
@@ -196,16 +221,44 @@ void Plotter::_openRowIfNeeded() {
   _valueIndex = 0;
 }
 
-void Plotter::_closeRowIfOpen() {
+void Plotter::_closeRowIfOpen(bool printEndRow) {
   if (!_rowOpen || !_out) return;
 
-  _format.endRow(*_out);
+  // Pad with values.
+  while (_valueIndex < _labelCount)
+    _printValue(PLOTTER_PADDING_VALUE);
+
+  if (printEndRow)
+    _format.endRow(*_out);
 
   _rowOpen = false;
   _valueIndex = 0;
 }
 
-// --- Label parsing (comma-separated schema) ---
+void Plotter::_printValue(float value) {
+  const uint16_t idx = _valueIndex;
+
+  // Print if:
+  // - headers are not enabled
+  // - there are no labels
+  // - index is within label counts
+  if (!_format.headerEnabled || !_labelCount || idx < _labelCount) {
+    // Render element immediately.
+    const LabelView label = _labelAt(idx);
+
+    // We pass isLast=true to prevent PlotterFormat from printing separators;
+    // separator policy is handled here (prefix).
+    _format.printValueElement(*_out,
+                              idx,
+                              label,
+                              value,
+                              _digits,
+                              idx == 0);
+  _valueIndex++;
+  }
+}
+
+  // --- Label parsing (comma-separated schema) ---
 
 bool Plotter::_isSpace(char c) {
   return (c == ' ' || c == '\t' || c == '\r' || c == '\n');

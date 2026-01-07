@@ -43,6 +43,21 @@ namespace pq {
 #else
   using SerialType = HardwareSerial;  // Fallback
 #endif
+
+/// Safely starts serial.
+static inline void beginSerial(SerialType& serial, unsigned long baudrate) {
+    // Wait for last transmitted data to be sent.
+    serial.flush();
+
+    // Start serial with baudrate.
+    if (baudrate > 0) {
+      serial.begin(baudrate);
+    }
+
+    // Wait until serial is ready.
+    while (!serial) {}
+}
+
 }
 
 #endif
