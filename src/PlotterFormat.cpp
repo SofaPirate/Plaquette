@@ -1,63 +1,67 @@
 /*
  * PlotterFormat.cpp
  *
- * Implements RowFormat template expansion without printf and without allocation.
+ * Implements PlotterFormat template expansion without printf and without allocation.
  */
 
 #include "PlotterFormat.h"
 
 namespace pq {
 
-void RowFormat::elementOut(Print& out,
-                           uint16_t index,
-                           LabelView label,
-                           float value,
-                           uint8_t digits,
-                           bool isLast) const
+void PlotterFormat::printValueElement(Print& out,
+                                      uint16_t index,
+                                      LabelView label,
+                                      float value,
+                                      uint8_t digits,
+                                      bool isFirst) const
 {
-  // 1) Expand and print the element template (e.g. "{value}" or "\"{label}\":{value}")
-  _writeTemplate(out, element, index, label, value, digits, keyFallback);
-
-  // 2) Separator policy:
-  //    - trailingSeparator: always print separator after each element.
-  //    - otherwise: print separator only between elements.
-  if (trailingSeparator) {
+  // Apply separator policy.
+  if (!isFirst) {
     sep(out);
   }
-  else if (!isLast) {
+
+  // Expand and print the value template.
+  _writeTemplate(out, valueTemplate, index, label, value, digits, keyFallback);
+}
+
+void PlotterFormat::printKeyElement(Print& out,
+                                    uint16_t index,
+                                    LabelView label,
+                                    uint8_t digits,
+                                    bool isFirst) const
+{
+  // Apply separator policy.
+  if (!isFirst) {
     sep(out);
   }
+
+  // For header printing, "value" is irrelevant; we pass 0.0f.
+  _writeTemplate(out, keyTemplate, index, label, 0.0f, digits, keyFallback);
 }
 
-bool RowFormat::_eq(const char* a, const char* b, uint8_t n) {
-  // Simple fixed-length comparison (no need for '\0' in `a`).
-  for (uint8_t i = 0; i < n; ++i) {
-    if (a[i] != b[i]) return false;
-  }
-  return true;
-}
-
-void RowFormat::_writeKey(Print& out,
-                          LabelView label,
-                          uint16_t index,
-                          const char* fallback) {
+void PlotterFormat::_writeKey(Print& out,
+                              LabelView label,
+                              uint16_t index,
+                              const char* keyFallback)
+{
   // If we have a real label, write it as raw bytes (not necessarily null-terminated).
   if (!label.empty()) {
     out.write(reinterpret_cast<const uint8_t*>(label.ptr), label.len);
   }
+
   // Otherwise print fallback (if any).
-  else if (fallback && *fallback) {
-    _writeTemplate(out, fallback, index, label, 0, 0);
+  else if (keyFallback && *keyFallback) {
+    _writeTemplate(out, keyFallback, index, label, 0, 0, nullptr);
   }
 }
 
-void RowFormat::_writeTemplate(Print& out,
-                               const char* templ,
-                               uint16_t index,
-                               LabelView label,
-                               float value,
-                               uint8_t digits,
-                               const char* fallback)
+void PlotterFormat::_writeTemplate(Print& out,
+                                   const char* templ,
+                                   uint16_t index,
+                                   LabelView label,
+                                   float value,
+                                   uint8_t digits,
+                                   const char* keyFallback)
 {
   if (!templ) return;
 
@@ -66,13 +70,13 @@ void RowFormat::_writeTemplate(Print& out,
   while (*p) {
     const char c = *p++;
 
-    // Backslash escape: "\$" prints '$', "\X" prints 'X' (existing behavior).
+    // Backslash escape: "\$" prints '$', "\X" prints 'X'.
     if (c == '\\' && *p) {
       out.write(static_cast<uint8_t>(*p++));
       continue;
     }
 
-    // Regular characters.
+    // Regular characters pass through.
     if (c != '$') {
       out.write(static_cast<uint8_t>(c));
       continue;
@@ -88,17 +92,17 @@ void RowFormat::_writeTemplate(Print& out,
     const char t = *p++;
 
     if (t == 'v') {
-      // Value (float)
+      // Numeric value.
       out.print(static_cast<double>(value), digits);
     }
     else if (t == 'i') {
-      // Index (0-based)
+      // Index (0-based).
       out.print(static_cast<unsigned long>(index));
     }
     else if (t == 'k') {
-      // Key/label with fallback
-      if (fallback)
-        _writeKey(out, label, index, fallback);
+      // Key/label with fallback.
+      if (keyFallback)
+        _writeKey(out, label, index, keyFallback);
       else
         out.print("$k");
     }
@@ -109,6 +113,5 @@ void RowFormat::_writeTemplate(Print& out,
     }
   }
 }
-
 
 } // namespace pq

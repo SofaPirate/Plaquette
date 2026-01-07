@@ -1,96 +1,95 @@
 #ifndef PQ_PLOTTER_H_
 #define PQ_PLOTTER_H_
 
-#include "Monitor.h"
-#include "pq_print.h"          // PlaquetteSerialType
+#include "PqCore.h"
 #include "PlotterFormat.h"
+#include "pq_serial.h"
 
 namespace pq {
 
-/**
- * @brief Plotter unit: consumes floats and emits formatted rows to a Print backend.
- *
- * Typical usage (append style):
- *   Plotter plotter(115200, "wave,signal");
- *   void step() { wave >> plotter; signal >> plotter; plotter.endRow(); }
- *
- * Header can be enabled in the PlotterFormat (CSV-like).
- *
- * Notes:
- * - No allocation.
- * - No printf.
- * - Labels are schema-based and structural (do not flow through >>).
- */
+enum PlotterMode : uint8_t {
+  PLOTTER_DEFAULT = 0,
+  PLOTTER_CSV,
+  PLOTTER_JSON
+};
+
 class Plotter : public Unit {
 public:
-  // Default: Serial
   explicit Plotter(unsigned long baudRate,
                    const char* labels = nullptr,
+                   PlotterMode mode = PLOTTER_DEFAULT,
                    Engine& engine = Engine::primary());
 
-  // Serial device explicitly
   Plotter(SerialType& serial,
           unsigned long baudRate,
           const char* labels = nullptr,
+          PlotterMode mode = PLOTTER_DEFAULT,
           Engine& engine = Engine::primary());
 
-  // Generic Print (no serial begin)
   explicit Plotter(Print& out,
                    const char* labels = nullptr,
+                   PlotterMode mode = PLOTTER_DEFAULT,
                    Engine& engine = Engine::primary());
 
-  // Backend / lifecycle
+  // --- Configuration ---
+  void labels(const char* labelsSchema);
+  const char* labels() const { return _labels; }
+
+  void mode(PlotterMode mode);
+  PlotterMode mode() const { return _mode; }
+
+  void precision(uint8_t digits) { _digits = digits; }
+  uint8_t precision() const { return _digits; }
+
+  /// Manually ends the current row (prints rowEnd if a row is open).
+  void endRow();
+
+  // --- Unit overrides ---
+  float put(float value) override;
+  float get() override { return _lastValue; }
+
   void begin() override;
-  void step() override;
-
-  // Formatting
-  void format(const PlotterFormat& fmt);
-  PlotterFormat& format();
-
-  // Precision (digits after decimal point)
-  void precision(uint8_t digits);
-  uint8_t precision() const;
-
-  // Labels schema
-  void labels(const char* labels);
-  const char* labels() const;
-
-  // Header control
-  void headerPrinted(bool printed);  // mainly for reset()
-  bool headerPrinted() const;
-
-  // Row control
-  virtual float put(float value) override;
-  void endRow();          // emit row end (and header if needed)
-  void endRowForce();     // emit end even if row is empty
-  void clearRow();        // reset row state without emitting
-
-  bool rowDirty() const;
-
+  void step() override { endRow(); }
+  void end();
 
 private:
+  // Output backend
   Print* _out = nullptr;
-  bool _isSerial = false;
-  bool _begun = false;
+
+  // If output is serial, we begin it in begin()
+  SerialType* _serial = nullptr;
   unsigned long _baudRate = 0;
 
+  // Mode & format
+  PlotterMode _mode = PLOTTER_DEFAULT;
   PlotterFormat _format;
-  uint8_t _digits = 4;
 
+  // Labels schema (comma-separated)
   const char* _labels = nullptr;
+  uint16_t _labelCount = 0;
   bool _headerPrinted = false;
 
+  // Numeric precision
+  uint8_t _digits = PLAQUETTE_PRINT_DEFAULT_DIGITS;
+
+  // Row state
   bool _rowOpen = false;
-  bool _rowDirty = false;
   uint16_t _valueIndex = 0;
+  float _lastValue = 0.0f;
 
 private:
-  // Helpers
+  // Internal helpers
+  void _rebuildFormat();
   void _ensureHeader();
   void _openRowIfNeeded();
-  LabelView _labelAt(uint16_t index) const;
+  void _closeRowIfOpen();
 
-  static bool _isDelim(char c);
+  // Label parsing helpers (comma-separated schema)
+  static bool _isSpace(char c);
+  static LabelView _trimSpaces(const char* start, const char* end);
+
+  uint16_t _countLabels(const char* schema) const;
+  LabelView _labelAt(uint16_t index) const;
 };
 
 } // namespace pq

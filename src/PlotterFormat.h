@@ -21,155 +21,101 @@ struct LabelView {
 };
 
 /**
- * @brief Row formatting rules + printing logic (allocation-free, printf-free).
+ * @brief Formatting specification used by Plotter to render values and (optionally) a header.
  *
- * A RowFormat describes how to render a sequence of elements as text.
- * It is used for both data rows and optional header rows.
+ * This is intentionally minimal:
+ * - The row and the header share the same framing (begin/end/separator).
+ * - The only difference is which template is used:
+ *     - valueTemplate: used for normal rows
+ *     - keyTemplate:   used for header row (keys)
  *
- * Element formatting is done using a lightweight template expander.
- *
- * Supported template keys:
- *   - {value} : prints the numeric value (float) with given precision (digits)
- *   - {label} : prints the label for the current index (may be empty)
- *   - {index} : prints the numeric index (0-based)
+ * Template mini-language:
+ *   - $v : numeric value (float) printed with the provided precision
+ *   - $i : element index (0-based)
+ *   - $k : key/label (LabelView) if available, otherwise keyFallback
  *
  * Escaping:
- *   - \{  prints '{'
- *   - \}  prints '}'
- *   - \\  prints '\'
+ *   - Backslash escapes the next character: "\$" prints '$'
+ *   - "\X" prints 'X' for any character X
+ *
+ * Unknown $-tokens are printed literally (e.g., "$q" prints "$q").
  */
-class RowFormat {
-public:
-  /// Printed at the start of the row (e.g., "[" or "{").
-  const char* begin = "";
+struct PlotterFormat {
+  // Row framing (shared by values and header, if any).
+  const char* rowBegin  = "";
+  const char* rowEnd    = "\r\n";
+  const char* separator = ",";
 
-  /// Printed at the end of the row (e.g., "]\n" or "}\n" or "\n").
-  const char* end = "\n";
+  // Templates:
+  // - valueTemplate is expanded for each value in normal rows.
+  // - keyTemplate is expanded for each key in the header row (when enabled).
+  const char* valueTemplate = "$v";
+  const char* keyTemplate   = "$k";
 
-  /// Separator between elements (e.g., " ", ",", "\t").
-  const char* separator = " ";
+  // If true, Plotter may emit a header row (typically only when labels exist).
+  bool headerEnabled = false;
 
-  /// Template for each element (e.g., "{value}" or "\"{label}\":{value}").
-  const char* element = "$v";
-
-  /// Fallback string used when $k (key/label) is unavailable. Can use $i and $v.
-  /// Example: "" (default), "x", "?".
-  const char* keyFallback = "";
-
-  /**
-   * If true, prints separator after every element (including the last).
-   * If false, prints separator only between elements.
-   */
+  // If true, prints separator after every element (including the last).
+  // If false, prints separator only between elements.
   bool trailingSeparator = false;
 
-public:
-  RowFormat() = default;
+  // Fallback string used when $k is requested but no label exists for this index
+  // (labels missing entirely, labels shorter than value count, empty token, etc.).
+  // If nullptr or empty, $k prints nothing in those cases.
+  const char* keyFallback = "value_$i";
 
-  RowFormat(const char* begin_,
-            const char* end_,
-            const char* sep_,
-            const char* element_,
-            const char* keyFallback_,
-            bool trailingSep = false)
-    : begin(begin_), end(end_), separator(sep_),
-      element(element_), keyFallback(keyFallback_),
-      trailingSeparator(trailingSep)
-    {}
+  // ---- Convenience helpers used by Plotter (short and inline) ----
 
-  /**
-   * @brief Print begin token.
-   * Kept inline because it is trivial and called frequently.
-   */
-  void beginRow(Print& out) const {
-    if (begin && *begin) out.print(begin);
+  void beginRow(Print& out) const { if (rowBegin && *rowBegin) out.print(rowBegin); }
+  void endRow(Print& out)   const {
+    if (trailingSeparator) sep(out);
+    if (rowEnd && *rowEnd) out.print(rowEnd);
   }
+  void sep(Print& out)      const { if (separator && *separator) out.print(separator); }
 
   /**
-   * @brief Print end token.
-   * Kept inline because it is trivial and called frequently.
-   */
-  void endRow(Print& out) const {
-    if (end && *end) out.print(end);
-  }
-
-  /**
-   * @brief Print separator token.
-   * Kept inline because it is trivial and called frequently.
-   */
-  void sep(Print& out) const {
-    if (separator && *separator) out.print(separator);
-  }
-
-  /**
-   * @brief Print one element of a row.
+   * @brief Print one element for a normal (value) row.
    *
-   * This expands the element template (e.g., "{label}:{value}") and prints
-   * a separator either between elements or after each element depending on
-   * trailingSeparator.
-   *
-   * @param out    Output device.
-   * @param index  Element index within the row (0-based).
-   * @param label  Label slice for this index (may be empty).
-   * @param value  Numeric value to print.
-   * @param digits Digits after decimal (Arduino Print convention).
-   * @param isLast Whether this is the last element of the row.
+   * @param out    Output device
+   * @param index  Element index (0-based)
+   * @param label  Label for this index (may be empty)
+   * @param value  Value for this element
+   * @param digits Digits after decimal point (Arduino Print convention)
+   * @param isFirst Whether this is the first element in the row
    */
-  void elementOut(Print& out,
-                  uint16_t index,
-                  LabelView label,
-                  float value,
-                  uint8_t digits,
-                  bool isLast) const;
+  void printValueElement(Print& out,
+                         uint16_t index,
+                         LabelView label,
+                         float value,
+                         uint8_t digits,
+                         bool isFirst) const;
+
+  /**
+   * @brief Print one element for a header (key) row.
+   *
+   * Typically Plotter will call this only when labels exist, but this function
+   * also applies keyFallback if label is missing for the index.
+   */
+  void printKeyElement(Print& out,
+                       uint16_t index,
+                       LabelView label,
+                       uint8_t digits,
+                       bool isFirst) const;
 
 private:
-  // --- Internal helpers (implemented in .cpp to keep header light) ---
-
-  /// Compare a token key with a constant string without requiring null-termination.
-  static bool _eq(const char* a, const char* b, uint8_t n);
-
-  /// Print a LabelView as raw bytes (since it is not necessarily null-terminated).
-  static void _writeKey(Print& out,
-                        LabelView label,
-                        uint16_t index,
-                        const char* fallback);
-
-  /**
-   * @brief Expand and print a template.
-   *
-   * Parses templ left-to-right; for each "{key}" occurrence, emits the
-   * corresponding expansion. Unknown keys are printed literally.
-   */
+  // Core template expansion: implemented in .cpp to keep the header light.
   static void _writeTemplate(Print& out,
                              const char* templ,
                              uint16_t index,
                              LabelView label,
                              float value,
                              uint8_t digits,
-                             const char* fallback = nullptr);
-};
+                             const char* keyFallback);
 
-/**
- * @brief Plotter format consisting of a data row and an optional header row.
- *
- * Plotter controls WHEN these are printed; PlotterFormat controls HOW.
- *
- * - row:    formatting for data rows
- * - header: formatting for header rows (labels)
- * - useHeader: whether Plotter should emit the header row (if labels exist)
- */
-class PlotterFormat {
-public:
-  RowFormat row;
-  RowFormat header;
-  bool useHeader = false;
-
-public:
-  PlotterFormat() = default;
-
-  PlotterFormat(const RowFormat& rowFmt,
-                const RowFormat& headerFmt,
-                bool headerEnabled = false)
-    : row(rowFmt), header(headerFmt), useHeader(headerEnabled) {}
+  static void _writeKey(Print& out,
+                        LabelView label,
+                        uint16_t index,
+                        const char* keyFallback);
 };
 
 } // namespace pq
