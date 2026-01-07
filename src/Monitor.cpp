@@ -64,16 +64,8 @@ void Monitor::begin() {
     // PlaquetteSerialType (Serial, Serial1, etc.). This mirrors pq_print.cpp.
     SerialType* serial = static_cast<SerialType*>(_device);
 
-    // Wait for last transmitted data to be sent.
-    serial->flush();
-
-    // Start serial with baudrate.
-    if (_baudRate > 0) {
-      serial->begin(_baudRate);
-    }
-
-    // Wait until serial is ready.
-    while (!Serial) {}
+    // Safely start serial.
+    beginSerial(*serial, _baudRate);
   }
 
   // Assign as default device.
