@@ -49,6 +49,10 @@
 #define INFINITE_TIME_WINDOW (-1)
 #define NO_TIME_WINDOW       0
 
+// Printing / serial.
+#define PLAQUETTE_PRINT_DEFAULT_DIGITS 2
+#define PLAQUETTE_PRINT_MAX_DIGITS     6
+
 // ----------------------------------------------------------------------------
 // Default analog write and read values.
 // ----------------------------------------------------------------------------

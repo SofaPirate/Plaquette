@@ -86,6 +86,9 @@ public:
    */
   virtual size_t write(uint8_t b) override;
 
+  using Print::print;
+  using Print::println;
+
   size_t print(double v);
   size_t println(double v);
 

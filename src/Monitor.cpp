@@ -24,9 +24,6 @@
 
 namespace pq {
 
-static constexpr uint8_t PRINT_DEFAULT_DIGITS = 2;
-static constexpr uint8_t PRINT_MAX_DIGITS = 6;
-
 Monitor::Monitor(unsigned long baudRate, Engine& engine)
   : Monitor(PLAQUETTE_DEFAULT_SERIAL, baudRate, engine)
 {}
@@ -37,8 +34,8 @@ Monitor::Monitor(SerialType& device, unsigned long baudRate, Engine& engine)
     _device(&device),
     _isSerial(true),
     _begun(false),
+    _digits(PLAQUETTE_PRINT_DEFAULT_DIGITS),
     _baudRate(baudRate),
-    _digits(PRINT_DEFAULT_DIGITS),
     _value(0)
 {}
 
@@ -48,8 +45,8 @@ Monitor::Monitor(Print& device, Engine& engine)
     _device(&device),
     _isSerial(false),
     _begun(false),
+    _digits(PLAQUETTE_PRINT_DEFAULT_DIGITS),
     _baudRate(0),
-    _digits(PRINT_DEFAULT_DIGITS),
     _value(0)
 {}
 
@@ -100,7 +97,7 @@ size_t Monitor::println(double v) {
 }
 
 void Monitor::precision(uint8_t digits) {
-  _digits = min(digits, PRINT_MAX_DIGITS);
+  _digits = min(digits, PLAQUETTE_PRINT_MAX_DIGITS);
 }
 
 float Monitor::put(float value) {
