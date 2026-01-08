@@ -28,7 +28,12 @@ namespace pq {
 #define PLAQUETTE_DEFAULT_SERIAL Serial
 
 // Platform-dependent using SerialType = for.
-#if defined(ARDUINO_ARCH_AVR)
+#if (defined(ARDUINO) && ARDUINO >= 100 )
+
+// Always match the concrete type of the global Serial object for this core.
+  using SerialType = decltype(Serial);
+
+#elif defined(ARDUINO_ARCH_AVR)
   #if defined(USBCON)
     using SerialType = Serial_;  // Leonardo, Micro (USB CDC)
   #else
