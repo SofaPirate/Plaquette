@@ -6,7 +6,41 @@
 
 namespace pq {
 
-static PlotterFormat makePlotterFormat(PlotterMode mode, const char* labelsSchema) {
+
+
+// --- Constructors ---
+
+Plotter::Plotter(unsigned long baudRate,
+                 const char* labels,
+                 Engine& engine)
+: Plotter(PLAQUETTE_DEFAULT_SERIAL, baudRate, labels, engine)
+{}
+
+Plotter::Plotter(SerialType& serial,
+                 unsigned long baudRate,
+                 const char* labels,
+                 Engine& engine)
+: Plotter(static_cast<Print&>(serial), labels, engine)
+{
+  _serial = &serial;
+  _baudRate = baudRate;
+}
+
+Plotter::Plotter(Print& out,
+                 const char* labels,
+                 Engine& engine)
+: Unit(engine),
+  _out(&out),
+  _serial(nullptr),
+  _baudRate(0),
+  _labels(labels)
+{
+  _labelCount = _countLabels(_labels);
+  format(PLOTTER_DEFAULT);
+}
+
+
+PlotterFormat Plotter::formatFromPreset(PlotterFormatPreset mode, const char* labelsSchema) {
   static PlotterFormat baseTemplateFmt;
 
   const bool hasLabels = (labelsSchema != nullptr && *labelsSchema != '\0');
@@ -42,70 +76,16 @@ static PlotterFormat makePlotterFormat(PlotterMode mode, const char* labelsSchem
   return fmt;
 }
 
-// --- Constructors ---
-
-Plotter::Plotter(unsigned long baudRate,
-                 const char* labels,
-                 PlotterMode mode,
-                 Engine& engine)
-: Plotter(PLAQUETTE_DEFAULT_SERIAL, baudRate, labels, mode, engine)
-{}
-
-Plotter::Plotter(unsigned long baudRate,
-                 PlotterMode mode,
-                 Engine& engine)
-: Plotter(baudRate, nullptr, mode, engine)
-{}
-
-
-Plotter::Plotter(SerialType& serial,
-                 unsigned long baudRate,
-                 const char* labels,
-                 PlotterMode mode,
-                 Engine& engine)
-: Plotter(static_cast<Print&>(serial), labels, mode, engine)
-{
-  _serial = &serial;
-  _baudRate = baudRate;
+void Plotter::format(PlotterFormatPreset preset) {
+  format(formatFromPreset(preset, _labels));
+  _format.trailingSeparator = false;
 }
 
-Plotter::Plotter(Print& out,
-                 const char* labels,
-                 PlotterMode mode,
-                 Engine& engine)
-: Unit(engine),
-  _out(&out),
-  _serial(nullptr),
-  _baudRate(0),
-  _mode(mode),
-  _labels(labels)
-{
-  _labelCount = _countLabels(_labels);
-  _rebuildFormat();
+void Plotter::format(PlotterFormat format) {
+  _format = format;
 }
-
-Plotter::Plotter(Print& out,
-                 PlotterMode mode,
-                 Engine& engine)
-: Plotter(out, nullptr, mode, engine)
-{}
 
 // --- Configuration ---
-
-void Plotter::labels(const char* labelsSchema) {
-  _labels = labelsSchema;
-  _labelCount = _countLabels(_labels);
-
-  _headerPrinted = false;
-  _rebuildFormat();
-}
-
-void Plotter::mode(PlotterMode mode) {
-  _mode = mode;
-
-  _headerPrinted = false;
-  _rebuildFormat();
-}
 
 void Plotter::beginPlot() {
   _headerPrinted = false;
@@ -114,7 +94,7 @@ void Plotter::beginPlot() {
 
   _plotOpen = true;
 
-  _format.beginPlot(*_out);
+  _scheduleBeginPlot = true;
 }
 
 void Plotter::endPlot() {
@@ -142,6 +122,11 @@ void Plotter::begin() {
 
 void Plotter::step() {
   if (_plotOpen) {
+    if (_scheduleBeginPlot) {
+      _format.beginPlot(*_out);
+      _scheduleBeginPlot = false;
+    }
+
     if (_format.trailingRowEnd) {
       _closeRowIfOpen(_format.trailingRowEnd);
     }
@@ -174,14 +159,6 @@ float Plotter::put(float value) {
 }
 
 // --- Internal helpers ---
-
-void Plotter::_rebuildFormat() {
-  _format = makePlotterFormat(_mode, _labels);
-
-  // Safety: this Plotter implementation uses prefix separators and expects
-  // PlotterFormat not to emit any separators on its own.
-  _format.trailingSeparator = false;
-}
 
 void Plotter::_ensureHeader() {
   if (_headerPrinted) return;

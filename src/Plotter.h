@@ -7,7 +7,7 @@
 
 namespace pq {
 
-enum PlotterMode : uint8_t {
+enum PlotterFormatPreset {
   PLOTTER_DEFAULT = 0,
   PLOTTER_CSV,
   PLOTTER_JSON
@@ -17,46 +17,44 @@ class Plotter : public Unit {
 public:
   Plotter(unsigned long baudRate,
           const char* labels = nullptr,
-          PlotterMode mode = PLOTTER_DEFAULT,
-          Engine& engine = Engine::primary());
-
-  Plotter(unsigned long baudRate,
-          PlotterMode mode,
           Engine& engine = Engine::primary());
 
   Plotter(SerialType& serial,
           unsigned long baudRate,
           const char* labels = nullptr,
-          PlotterMode mode = PLOTTER_DEFAULT,
-          Engine& engine = Engine::primary());
-
-  Plotter(SerialType& serial,
-          unsigned long baudRate,
-          PlotterMode mode,
           Engine& engine = Engine::primary());
 
   explicit Plotter(Print& out,
                    const char* labels = nullptr,
-                   PlotterMode mode = PLOTTER_DEFAULT,
                    Engine& engine = Engine::primary());
 
-  explicit Plotter(Print& out,
-                   PlotterMode mode ,
-                   Engine& engine = Engine::primary());
 
-  void labels(const char* labelsSchema);
+  /// Returns a PlotterFormat based on presets and labels.
+  static PlotterFormat formatFromPreset(PlotterFormatPreset preset, const char* labelsSchema);
+
+  /// Returns labels.
   const char* labels() const { return _labels; }
 
-  void mode(PlotterMode mode);
-  PlotterMode mode() const { return _mode; }
+  /// Returns reference to format so that it can be edited.
 
+  /// Sets format based on preset.
+  void format(PlotterFormatPreset preset);
+
+  /// Sets format based on custom format.
+  void format(PlotterFormat format);
+
+  /// Returns current format.
+  PlotterFormat format() { return _format; }
+
+  /**
+   * Sets decimal precision of values.
+   * @param digits the number of digits after the point
+   */
   void precision(uint8_t digits) { _digits = digits; }
+
+  /// Returns the decimal precision of values.
   uint8_t precision() const { return _digits; }
 
-  /// Returns reference to format so that it can be edited.
-  PlotterFormat& format() { return _format; }
-
-  // Unit overrides
   float put(float value) override;
   float get() override { return _lastValue; }
 
@@ -79,8 +77,7 @@ private:
   unsigned long _baudRate = 0;
 
   // Mode & format
-  PlotterMode _mode = PLOTTER_DEFAULT;
-  PlotterFormat _format;
+ PlotterFormat _format;
 
   // Labels schema (comma-separated)
   const char* _labels = nullptr;
@@ -96,6 +93,7 @@ private:
   float _lastValue = 0.0f;
 
   bool _plotOpen = true;
+  bool _scheduleBeginPlot = false;
   bool _scheduleEndRow = false;
 
 private:
@@ -103,7 +101,7 @@ private:
   void _endRow();
 
   // Internal helpers
-  void _rebuildFormat();
+  void _rebuildFormat(PlotterFormatPreset preset);
   void _ensureHeader();
   void _openRowIfNeeded();
   void _closeRowIfOpen(bool printEndRow);
