@@ -48,31 +48,25 @@ Plotter::Plotter(unsigned long baudRate,
                  const char* labels,
                  PlotterMode mode,
                  Engine& engine)
-: Unit(engine),
-  _out(&Serial),
-  _serial(&Serial),
-  _baudRate(baudRate),
-  _mode(mode),
-  _labels(labels)
-{
-  _labelCount = _countLabels(_labels);
-  _rebuildFormat();
-}
+: Plotter(PLAQUETTE_DEFAULT_SERIAL, baudRate, labels, mode, engine)
+{}
+
+Plotter::Plotter(unsigned long baudRate,
+                 PlotterMode mode,
+                 Engine& engine)
+: Plotter(baudRate, nullptr, mode, engine)
+{}
+
 
 Plotter::Plotter(SerialType& serial,
                  unsigned long baudRate,
                  const char* labels,
                  PlotterMode mode,
                  Engine& engine)
-: Unit(engine),
-  _out(&serial),
-  _serial(&serial),
-  _baudRate(baudRate),
-  _mode(mode),
-  _labels(labels)
+: Plotter(static_cast<Print&>(serial), labels, mode, engine)
 {
-  _labelCount = _countLabels(_labels);
-  _rebuildFormat();
+  _serial = &serial;
+  _baudRate = baudRate;
 }
 
 Plotter::Plotter(Print& out,
@@ -89,6 +83,12 @@ Plotter::Plotter(Print& out,
   _labelCount = _countLabels(_labels);
   _rebuildFormat();
 }
+
+Plotter::Plotter(Print& out,
+                 PlotterMode mode,
+                 Engine& engine)
+: Plotter(out, nullptr, mode, engine)
+{}
 
 // --- Configuration ---
 

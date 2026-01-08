@@ -15,10 +15,14 @@ enum PlotterMode : uint8_t {
 
 class Plotter : public Unit {
 public:
-  explicit Plotter(unsigned long baudRate,
-                   const char* labels = nullptr,
-                   PlotterMode mode = PLOTTER_DEFAULT,
-                   Engine& engine = Engine::primary());
+  Plotter(unsigned long baudRate,
+          const char* labels = nullptr,
+          PlotterMode mode = PLOTTER_DEFAULT,
+          Engine& engine = Engine::primary());
+
+  Plotter(unsigned long baudRate,
+          PlotterMode mode,
+          Engine& engine = Engine::primary());
 
   Plotter(SerialType& serial,
           unsigned long baudRate,
@@ -26,9 +30,18 @@ public:
           PlotterMode mode = PLOTTER_DEFAULT,
           Engine& engine = Engine::primary());
 
+  Plotter(SerialType& serial,
+          unsigned long baudRate,
+          PlotterMode mode,
+          Engine& engine = Engine::primary());
+
   explicit Plotter(Print& out,
                    const char* labels = nullptr,
                    PlotterMode mode = PLOTTER_DEFAULT,
+                   Engine& engine = Engine::primary());
+
+  explicit Plotter(Print& out,
+                   PlotterMode mode ,
                    Engine& engine = Engine::primary());
 
   void labels(const char* labelsSchema);
