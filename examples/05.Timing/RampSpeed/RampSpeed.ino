@@ -3,7 +3,7 @@
  *
  * Ramps to value send by user through the serial. Compares two ramps: one that uses duration and the
  * other that uses speed.
- * 
+ *
  * This example is best viewed using the Arduino Serial Plotter so as to compare the two ramps.
  * The first ramp has a constant duration of one second.
  * The second ramp's speed can be changed by the user through the serial.
@@ -20,6 +20,9 @@ Ramp rampWithSpeed;
 
 // Serial input.
 StreamIn serialIn(Serial);
+
+// Serial plotter.
+Plotter plotter(115200, "duration,speed");
 
 void begin() {
   // Initialize both ramps.
@@ -38,16 +41,11 @@ void step() {
   }
 
   // Print ramps to serial (best viewed using the Arduino Serial Plotter).
-  printRamps();
+  rampWithDuration >> plotter;
+  rampWithSpeed >> plotter;
 }
 
 void startRamps() {
   rampWithDuration.start();
-  rampWithSpeed.start();  
-}
-
-void printRamps() {
-  Serial.print(rampWithDuration);
-  Serial.print(" ");
-  Serial.println(rampWithSpeed);
+  rampWithSpeed.start();
 }

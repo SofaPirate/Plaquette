@@ -34,16 +34,16 @@ AnalogIn sensor(A0);
 // The robust scaler with a
 RobustScaler scaler(TIME_WINDOW, SPAN);
 
-void begin() {}
+// Serial plotter with labels.
+Plotter plotter(115200, "sensor,robust,q_high,q_low");
 
 void step() {
-
   // Send sensor value to scaler.
   sensor >> scaler;
 
   // Prints values for comparison using the Serial plotter.
-  print("sensor:"); print(sensor); print(" ");
-  print("scaler:"); print(scaler); print(" ");
-  print("q_high:"); print(scaler.highQuantile()); print(" ");
-  print("q_low:");  print(scaler.lowQuantile()); println();
+  sensor >> plotter;
+  scaler >> plotter;
+  scaler.highQuantile() >> plotter;
+  scaler.lowQuantile() >> plotter;
 }

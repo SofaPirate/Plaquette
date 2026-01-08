@@ -28,6 +28,9 @@ RobustScaler scaler075;
 RobustScaler scaler050;
 RobustScaler scaler010;
 
+// Serial plotter with labels.
+Plotter plotter(115200, "signal,scaler100,scaler075,scaler050,scaler010");
+
 void begin() {
   // Set different spans for comparison.
   scaler100.span(1.0f);
@@ -37,20 +40,13 @@ void begin() {
 }
 
 void step() {
-
   // Create signal by adding noise to the wave.
   float signal = wave + randomFloat(-NOISE_LEVEL/2, NOISE_LEVEL/2);
 
 	// Analog input is rescaled then sent as LED value.
-  signal >> scaler100;
-  signal >> scaler075;
-  signal >> scaler050;
-  signal >> scaler010;
-
-  // Prints raw and rescaled values, for comparison using the Serial plotter.
-  print("signal:");    print(signal);    print(" ");
-  print("scaler100:"); print(scaler100); print(" ");
-  print("scaler075:"); print(scaler075); print(" ");
-  print("scaler050:"); print(scaler050); print(" ");
-  print("scaler010:"); println(scaler010);
+  signal >>              plotter; // raw signal
+  signal >> scaler100 >> plotter;
+  signal >> scaler075 >> plotter;
+  signal >> scaler050 >> plotter;
+  signal >> scaler010 >> plotter;
 }

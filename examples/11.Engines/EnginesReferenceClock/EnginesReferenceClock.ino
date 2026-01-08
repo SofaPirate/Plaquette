@@ -61,7 +61,7 @@ void step() {
   // Button press: adjust interval.
   if (button.rose()) {
     // Smooth interval.
-    if (intervalChrono <= max(5*intervalSmoother, 1)) // Ignore too long intervals (means the user has waited and is now starting a new beat)
+    if (intervalChrono <= max(5*intervalSmoother, 1.0f)) // Ignore too long intervals (means the user has waited and is now starting a new beat)
       intervalChrono >> intervalSmoother;
 
     // Restart chrono.

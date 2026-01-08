@@ -30,16 +30,16 @@ AnalogIn sensor(A0);
 // The robust scaler with a
 Normalizer normalizer(TIME_WINDOW);
 
-void begin() {}
+// Serial plotter with labels.
+Plotter plotter(115200, "sensor,normalizer,mean,stddev");
 
 void step() {
-
   // Send sensor value to scaler.
   sensor >> normalizer;
 
   // Prints values for comparison using the Serial plotter.
-  print("sensor:");     print(sensor); print(" ");
-  print("normalizer:"); print(normalizer); print(" ");
-  print("mean:");       print(normalizer.mean()); print(" ");
-  print("stddev:");     print(normalizer.stdDev()); println();
+  sensor >> plotter;
+  normalizer >> plotter;
+  normalizer.mean() >> plotter;
+  normalizer.stdDev() >> plotter;
 }

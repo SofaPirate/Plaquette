@@ -31,6 +31,10 @@ DigitalIn button(2, INTERNAL_PULLUP);
 // Counter for the number of button presses.
 int buttonPushCounter = 0;
 
+// The serial monitor. Baudrate: 115200.
+// Declaring it will automatically activate print()/println() functions on serial.
+Monitor monitor(115200);
+
 void begin() {
   button.debounce(); // debounce button
 }

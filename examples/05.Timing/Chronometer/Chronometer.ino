@@ -2,7 +2,7 @@
  * Chronometer
  *
  * Counts time and outputs it to the serial monitor.
- * 
+ *
  * Uses a button as a controller:
  * - Long press stops the chronometer.
  * - Short press pauses/resumes the chronometer.
@@ -27,6 +27,9 @@ Chronometer buttonPressChronometer;
 
 // Chronometer that triggers printing.
 Chronometer printChronometer;
+
+// Serial monitor.
+Monitor monitor(115200);
 
 void begin() {
   // Debounce button.
@@ -57,7 +60,7 @@ void step() {
       mainChronometer.start();
       printChronometer.start();
     }
-    
+
     // Short press: pause/resume main chronometer.
     else {
       print("* Short press : ");

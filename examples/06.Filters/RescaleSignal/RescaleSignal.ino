@@ -30,6 +30,9 @@ AnalogIn in(A0);
 // more robust to outliers. Just replace MinMaxScaler with RobustScaler or Normalizer.
 MinMaxScaler scaler;
 
+// Serial plotter.
+Plotter plotter(115200, "raw,rescaled");
+
 void begin() {
   // Set a time window of 1 minute (60 seconds) on scaler.
   // This will allow the scaler to slowly readjust itself
@@ -42,5 +45,6 @@ void step() {
 	in >> scaler >> led;
 
   // Prints raw and rescaled values, for comparison using the Serial plotter.
-  print(in); print(" "); println(scaler);
+  in >> plotter;
+  scaler >> plotter;
 }

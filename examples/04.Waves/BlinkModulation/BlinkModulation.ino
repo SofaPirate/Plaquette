@@ -21,8 +21,6 @@ Wave lfo(SINE, 20.0); // 20 seconds period
 // The LED.
 DigitalOut led(LED_BUILTIN);
 
-void begin() {}
-
 void step() {
   // Modulate oscillator BPM between 30 to 180.
   osc.bpm( lfo.mapTo(30, 180) );

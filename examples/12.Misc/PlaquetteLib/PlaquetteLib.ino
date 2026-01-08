@@ -26,7 +26,7 @@ DigitalIn button(2, INTERNAL_PULLUP);
 
 void setup() {
   Plaquette.begin(); // needs to be called at top of setup()
-  button.smooth(); // debounce button
+  button.debounce(); // debounce button
   Serial.begin(9600);
 }
 

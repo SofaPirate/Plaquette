@@ -25,7 +25,7 @@ ServoOut servo(9);
 
 void begin() {
   // Position the servo in center.
-  servo.center();
+  0.5 >> servo;
 }
 
 void step() {

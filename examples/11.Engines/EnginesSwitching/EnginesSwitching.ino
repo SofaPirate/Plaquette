@@ -40,6 +40,10 @@ Wave wave2(SINE, 2.0, engine2); // period of 5 seconds
 // Push-button.
 DigitalIn button(2, INTERNAL_PULLUP);
 
+// The serial monitor. Baudrate: 115200.
+// Declaring it will automatically activate print()/println() functions on serial.
+Monitor monitor(115200);
+
 void begin() {
   // Initialize engines.
   engine1.begin();

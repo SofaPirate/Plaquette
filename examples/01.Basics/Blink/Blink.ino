@@ -19,12 +19,8 @@
 DigitalOut led(LED_BUILTIN);
 
 // A square-wave (on/off) oscillator.
-Wave oscillator(2.0); // 2 seconds period
-
-void begin() {
-  // Set duty cycle of wave.
-  oscillator.skew(0.1); // 0.1 => 10% up, 90% down
-}
+// Period: 2 seconds. Skew: 10%.
+Wave oscillator(2.0, 0.1);
 
 void step() {
   // Send oscillator value to LED.

@@ -23,6 +23,10 @@ Metronome toggleMetro(0.25, timerEngine);
 // Built-in LED, attached to the timer engine.
 DigitalOut led(LED_BUILTIN, timerEngine);
 
+// The serial monitor. Baudrate: 115200.
+// Declaring it will automatically activate print()/println() functions on serial.
+Monitor monitor(115200);
+
 void begin() {
   // Begin timer engine.
   timerEngine.begin();

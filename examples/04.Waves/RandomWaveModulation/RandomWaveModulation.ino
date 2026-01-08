@@ -17,12 +17,14 @@ Wave osc(SINE, 0.5); // half-second period
 // The LFO.
 Wave lfo(SINE, 20.0); // 20 seconds period
 
-void begin() {}
+// Serial plotter.
+Plotter plotter(115200, "osc,lfo");
 
 void step() {
   // Modulate jittering level.
   osc.jitter(lfo);
 
   // Send to serial output.
-  print(osc); print(" "); println(lfo);
+  osc >> plotter;
+  lfo >> plotter;
 }

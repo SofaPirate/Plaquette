@@ -30,7 +30,8 @@ AnalogIn sensor(A0);
 // The robust scaler with a
 MinMaxScaler scaler(TIME_WINDOW);
 
-void begin() {}
+// Serial plotter with labels.
+Plotter plotter(115200, "sensor,scaler,max,min");
 
 void step() {
 
@@ -38,8 +39,8 @@ void step() {
   sensor >> scaler;
 
   // Prints values for comparison using the Serial plotter.
-  print("sensor:"); print(sensor); print(" ");
-  print("scaler:"); print(scaler); print(" ");
-  print("max:");    print(scaler.maxValue()); print(" ");
-  print("min:");    print(scaler.minValue()); println();
+  sensor >> plotter;
+  scaler >> plotter;
+  scaler.minValue() >> plotter;
+  scaler.maxValue() >> plotter;
 }

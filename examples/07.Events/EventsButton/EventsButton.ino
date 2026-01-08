@@ -1,6 +1,6 @@
 /**
  * Demonstrates the use of events with a button.
- * 
+ *
  * The circuit:
  * - LED attached from digital pin 13 to ground (*)
  * - pushbutton attached to digital pin 2 from ground (optional)
@@ -18,6 +18,10 @@ DigitalOut led(LED_BUILTIN);
 
 // The button.
 DigitalIn button(2, INTERNAL_PULLUP);
+
+// Serial monitor.
+// Seclaring this will automatically activate print()/println()
+Monitor monitor(115200);
 
 void begin() {
   button.debounce(); // debounce button

@@ -2,12 +2,12 @@
  * EventsTiming
  *
  * Demonstrates the use of events for timing.
- * 
+ *
  * In this scenario, two metronomes are used to trigger the activation
- * of two ramps at different periods. The first metronome is also used to 
+ * of two ramps at different periods. The first metronome is also used to
  * toggle the LED. A pushbutton allows to toggle the events from the first
  * metronome by clearing them and re-adding them.
- * 
+ *
  * This example is best viewed using the Arduino Serial Plotter.
  *
  * The circuit:
@@ -17,13 +17,13 @@
  * attached to pin 13.
  *
  * Created in 2025 by Sofian Audry
- * 
+ *
  * This example code is in the public domain.
  */
 #include <Plaquette.h>  // Library for handling metronome and ramp functionalities
 
 // LED connected to built-in pin.
-DigitalOut led(LED_BUILTIN); 
+DigitalOut led(LED_BUILTIN);
 
 // Button (optional) used to toggle the events support of metronome 1.
 DigitalIn button(2, INTERNAL_PULLUP);
@@ -37,7 +37,10 @@ Ramp ramp1(0.1f);
 Ramp ramp2(0.1f);
 
 // State variable for toggling metro1 events.
-bool eventsMetro1 = true; 
+bool eventsMetro1 = true;
+
+// Serial plotter with labels.
+Plotter plotter(115200, "ramp1,ramp2");
 
 void begin() {
   // Ramps associated with metronomes.
@@ -56,7 +59,8 @@ void begin() {
 
 void step() {
   // Print ramps.
-  printRamps();
+  ramp1 >> plotter;
+  ramp2 >> plotter;
 }
 
 // Callback functions /////////////////////////////////////////////////
@@ -79,16 +83,9 @@ void toggleEventsMetro1() {
     metro1.clearEvents();
   } else {
     // Re-register events for metro1
-    metro1.onBang(launchRamp1);  
-    metro1.onBang(toggleLed);  
+    metro1.onBang(launchRamp1);
+    metro1.onBang(toggleLed);
   }
   // Toggle state variable
   eventsMetro1 = !eventsMetro1;
-}
-
-// Print the current values of the ramps to the serial monitor
-void printRamps() {
-  Serial.print(ramp1);    // Print value of ramp1
-  Serial.print(" ");      // Separator
-  Serial.println(ramp2);  // Print value of ramp2
 }
