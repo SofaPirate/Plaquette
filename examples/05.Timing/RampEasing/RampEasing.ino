@@ -13,8 +13,8 @@
 // The ramp object.
 Ramp ramp(2.0); // ramp duration: 2 seconds (initial value is zero)
 
-// Serial output.
-StreamOut serialOut(Serial);
+// The serial output.
+Plotter serialOut(115200);
 
 void begin() {
   // Define ramp range.

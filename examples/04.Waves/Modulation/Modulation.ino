@@ -3,7 +3,6 @@
  *
  * Uses a low-frequency oscillator (LFO) to control the frequency of another
  * oscillator.
- * Sends values to the serial output: best visualized using the Arduino Serial Plotter.
  *
  * Created in 2019 by Sofian Audry
  *
@@ -19,7 +18,7 @@ Wave osc(SINE);
 Wave lfo(SINE, 10.0); // 10 seconds period
 
 // Serial output.
-StreamOut out;
+Plotter out(115200);
 
 void begin() {}
 

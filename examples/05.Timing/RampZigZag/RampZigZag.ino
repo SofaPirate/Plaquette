@@ -2,7 +2,6 @@
  * ZigZag
  *
  * Sequentially ramps through different values.
- * Sends values to the serial output: best visualized using the Arduino Serial Plotter.
  *
  * Created in 2019 by Sofian Audry
  *
@@ -13,8 +12,8 @@
 // The ramp object.
 Ramp zigZagRamp(2.0); // ramp duration: 2 seconds (initial value is zero)
 
-// Serial output.
-StreamOut serialOut(Serial);
+// The serial output.
+Plotter serialOut(115200);
 
 void begin() {
   zigZagRamp.go(-10, 10); // first ramp from -10 to 10

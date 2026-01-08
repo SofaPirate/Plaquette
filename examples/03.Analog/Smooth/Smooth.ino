@@ -19,8 +19,8 @@
 // The analog input.
 AnalogIn in(A0);
 
-// The serial input.
-StreamOut serialOut;
+// The serial output.
+Plotter serialOut(115200);
 
 void begin() {
   // Smooth over a window of 100ms (ie. one tenth of a second).
