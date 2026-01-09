@@ -43,6 +43,7 @@
 #include "PqCore.h"
 #include "PqInputs.h"
 #include "PqOutputs.h"
+#include "PqValue.h"
 
 // Monitor.
 #include "Monitor.h"
