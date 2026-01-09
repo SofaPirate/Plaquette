@@ -1,14 +1,29 @@
-#include "Plotter.h"
+/*
+ * Plotter.cpp
+ *
+ * (c) 2025 Sofian Audry        :: info(@)sofianaudry(.)com
+ * (c) 2025 Thomas O Fredericks :: tof(@)t-o-f(.)info
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
+#include "Plotter.h"
 #include <math.h>
 
 #define PLOTTER_PADDING_VALUE NAN
 
 namespace pq {
-
-
-
-// --- Constructors ---
 
 Plotter::Plotter(unsigned long baudRate,
                  const char* labels,
@@ -38,7 +53,6 @@ Plotter::Plotter(Print& out,
   _labelCount = _countLabels(_labels);
   format(PLOTTER_DEFAULT);
 }
-
 
 PlotterFormat Plotter::formatFromPreset(PlotterFormatPreset mode, const char* labelsSchema) {
   // Base/default format.
@@ -89,8 +103,6 @@ void Plotter::format(PlotterFormatPreset preset) {
 void Plotter::format(PlotterFormat format) {
   _format = format;
 }
-
-// --- Configuration ---
 
 void Plotter::beginPlot() {
   _headerPrinted = false;
@@ -162,8 +174,6 @@ float Plotter::put(float value) {
 
   return value;
 }
-
-// --- Internal helpers ---
 
 void Plotter::_ensureHeader() {
   if (_headerPrinted) return;
