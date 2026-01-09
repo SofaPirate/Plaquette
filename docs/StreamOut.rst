@@ -14,7 +14,7 @@ Outputs the number of seconds to serial.
 
    #include <Plaquette.h>
 
-   StreamOut serialOut(Serial);
+   Plotter serialOut(115200);
 
    void begin() {}
 

@@ -26,7 +26,7 @@ external `DHT sensor library <https://docs.arduino.cc/libraries/dht-sensor-libra
     Smoother temperatureSmoother(10.0);
 
     // Stream out for debugging (e.g., to Serial Monitor).
-    StreamOut serialOut(Serial);
+    Plotter serialOut(115200);
 
     void begin() {
       dht.begin();  // Initialize the DHT sensor

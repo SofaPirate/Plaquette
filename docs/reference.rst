@@ -30,6 +30,13 @@ Filters
 * :doc:`PeakDetector` Detects peaks (local maxima) in input signals, allowing for event-based processing such as edge detection.
 * :doc:`Smoother` Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.
 
+Communication
+-------------
+
+* :doc:`Monitor` Prints human-readable text and values to a print device (such as the Arduino serial monitor). Mainly used for debugging and logging.
+* :doc:`Plotter` Streams numeric values in structured rows for visualization or logging (e.g., Serial Plotter, CSV, JSON). Designed for plotting and data export.
+.. * :doc:`StreamIn` Streams input data continuously, allowing real-time signal processing from external devices.
+
 Fields
 ------
 * :doc:`PivotField` Generates a spatial response curve based on a pivot point around which the field transitions happens, making it ideal for creating animations such as VU-meters or fades on arrays of actuators such as LEDs or motors.
@@ -61,5 +68,3 @@ Extra
 * :doc:`easings` Provides easing functions for smooth and natural transitions between values. Commonly used in animations and motion design.
 * :doc:`ContinuousServoOut` Controls a continuous rotation servo motor by setting its speed and direction. Ideal for robotics or mechanical motion control.
 * :doc:`ServoOut` Controls a standard servo motor by setting its angle. Useful for applications like robotic arms or pan-tilt systems.
-* :doc:`StreamIn` Streams input data continuously, allowing real-time signal processing from external devices.
-* :doc:`StreamOut` Streams output data continuously, enabling real-time control of external actuators or visualizations.

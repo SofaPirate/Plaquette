@@ -38,6 +38,7 @@ Reference
    generators
    timing
    filters
+   communication
    fields
    functions
    structure
