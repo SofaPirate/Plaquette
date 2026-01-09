@@ -188,6 +188,8 @@ press and release events.
    DigitalOut led(LED_BUILTIN); // LED connected to built-in pin
    DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
 
+   Monitor monitor(115200); // Serial monitor.
+
    // Callback function to toggle the LED.
    void toggleLed() {
      led.toggle();
