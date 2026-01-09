@@ -337,6 +337,31 @@ public:
   explicit operator bool() { return Chainable::analogToDigital(get()); }
 };
 
+template <class Obj>
+class ParameterSlot : public Chainable {
+public:
+  using Setter = void (Obj::*)(float);
+  using Getter = float (Obj::*)() const;
+
+  ParameterSlot(Obj* obj, Setter set, Getter get)
+  : _obj(obj), _set(set), _get(get) {}
+
+  float get() override {
+    return (_obj->*_get)();
+  }
+
+  float put(float v) override {
+    (_obj->*_set)(v);
+    return get();
+  }
+
+private:
+  Obj* _obj;
+  Setter _set;
+  Getter _get; // optional; can be compiled out if you make two types
+};
+
+
 /**
  * A generic class representing a unit in the system.
  * Main class for components to be added to Plaquette.
@@ -541,63 +566,169 @@ protected:
 
 // Value to unit operators ///////////////////////////////////////
 
+// Ensures math functions work safely when mixing types (e.g. int and float).
+#if defined(__has_include) && __has_include(<type_traits>)
+#include <type_traits>
+
+template <typename T>
+using is_integral = std::is_integral<T>;
+
+// template <bool B, typename T = void>
+// using enable_if_t = std::enable_if_t<B, T>;
+
+#else
+// Minimal is_integral (AVR-safe)
+template <typename T> struct is_integral { static const bool value = false; };
+
+template <> struct is_integral<bool> { static const bool value = true; };
+template <> struct is_integral<char> { static const bool value = true; };
+template <> struct is_integral<signed char> { static const bool value = true; };
+template <> struct is_integral<unsigned char> { static const bool value = true; };
+template <> struct is_integral<short> { static const bool value = true; };
+template <> struct is_integral<unsigned short> { static const bool value = true; };
+template <> struct is_integral<int> { static const bool value = true; };
+template <> struct is_integral<unsigned int> { static const bool value = true; };
+template <> struct is_integral<long> { static const bool value = true; };
+template <> struct is_integral<unsigned long> { static const bool value = true; };
+template <> struct is_integral<long long> { static const bool value = true; };
+template <> struct is_integral<unsigned long long> { static const bool value = true; };
+
+#endif
+
+// C++11-compatible enable_if_t
+template <bool B, typename T = void>
+struct enable_if { };
+
+template <typename T>
+struct enable_if<true, T> { typedef T type; };
+
+template <bool B, typename T = void>
+using enable_if_t = typename enable_if<B, T>::type;
+
+// Minimal remove_reference (C++11)
+template <typename T> struct remove_reference      { typedef T type; };
+template <typename T> struct remove_reference<T&>  { typedef T type; };
+#if __cplusplus >= 201103L
+template <typename T> struct remove_reference<T&&> { typedef T type; };
+#endif
+
+// Minimal remove_cv (optional but recommended)
+template <typename T> struct remove_const          { typedef T type; };
+template <typename T> struct remove_const<const T> { typedef T type; };
+
+template <typename T> struct remove_volatile               { typedef T type; };
+template <typename T> struct remove_volatile<volatile T>   { typedef T type; };
+
+template <typename T>
+struct remove_cv {
+  typedef typename remove_const<typename remove_volatile<T>::type>::type type;
+};
+
+template <typename T>
+struct remove_cvref {
+  typedef typename remove_cv<typename remove_reference<T>::type>::type type;
+};
+
+// Trait: true if U* converts to Chainable*
+template <typename T>
+struct is_chainable {
+private:
+  typedef typename remove_cvref<T>::type U;
+
+  static char test(Chainable*);
+  static int  test(...);
+
+  static U* make(); // U is not a reference here
+
+public:
+  enum { value = (sizeof(test(make())) == sizeof(char)) };
+};
+
+
+template <typename>
+struct always_false { enum { value = 0 }; };
+
+// Provides informative compile-time error message when trying to use the >> operator wrongly.
+#define PQ_FLOW_OPERATOR_ERROR \
+  "Invalid use of operator>>: right-hand operand must be a Plaquette chainable object such as a unit or parameter."
+
+// Catch operations such as: chainable >> notChainable;
+template <typename T>
+struct flow_error {
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
+};
+
+template <typename L, typename R,
+        enable_if_t< is_chainable<L>::value &&
+                    !is_chainable<R>::value, int> = 0>
+inline void operator>>(L&&, R&&) {
+  // The error is tied to instantiating this dependent type.
+  (void)sizeof(flow_error<R>);
+}
+
+// Catch operations such as: value >> notChainable;
+template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
+inline void operator>>(float, T&&) {
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
+}
+
+template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
+inline void operator>>(double, T&&) {
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
+}
+
 // Base value to unit operator.
-inline Chainable& operator>>(float value, Chainable& unit) {
-  unit.put(value);
-  return unit;
+inline float operator>>(float value, Chainable& unit) {
+  return unit.put(value);
 }
 
 // NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Chainable&)).
-inline Chainable& operator>>(Chainable& source, Chainable& sink) {
+inline float operator>>(Chainable& source, Chainable& sink) {
   return pq::operator>>(source.get(), sink);
 }
 
-inline Chainable& operator>>(double value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+inline float operator>>(double value, Chainable& unit) {
+  return pq::operator>>(static_cast<float>(value), unit);
 }
 
-inline Chainable& operator>>(bool value, Chainable& unit) {
+inline float operator>>(bool value, Chainable& unit) {
   return pq::operator>>(Chainable::digitalToAnalog(value), unit);
 }
 
-// This code is needed on the Curie and ARM chips.
-// Otherwise it causes an ambiguous operator error.
-#if defined(__arc__) || defined(__arm__)
-inline Chainable& operator>>(int value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-#endif
 
-inline Chainable& operator>>(int8_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// 1) float -> temporary Chainable sink (e.g., parameter slot)
+inline float operator>>(float v, Chainable&& dst) {
+  return dst.put(v);
 }
 
-inline Chainable& operator>>(uint8_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// 2) Chainable -> temporary Chainable sink
+inline float operator>>(Chainable& src, Chainable&& dst) {
+  return dst.put(src.get());
 }
 
-inline Chainable& operator>>(int16_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// (Optional) const Chainable source
+inline float operator>>(const Chainable& src, Chainable&& dst) {
+  return dst.put(const_cast<Chainable&>(src).get()); // or change get() const if you can
 }
 
-inline Chainable& operator>>(uint16_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// // This code is needed on the Curie and ARM chips.
+// // Otherwise it causes an ambiguous operator error.
+// #if defined(__arc__) || defined(__arm__)
+// inline Chainable& operator>>(int value, Chainable& unit) {
+//   return pq::operator>>((float)value, unit);
+// }
+// #endif
+
+// Integral -> lvalue sink
+template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
+inline float operator>>(I value, Chainable& unit) {
+  return unit.put(static_cast<float>(value));
 }
 
-inline Chainable& operator>>(int32_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(uint32_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(int64_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
-}
-
-inline Chainable& operator>>(uint64_t value, Chainable& unit) {
-  return pq::operator>>((float)value, unit);
+// Integral -> rvalue sink (for inline chainables such as parameter slots)
+template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
+inline float operator>>(I value, Chainable&& unit) {
+  return unit.put(static_cast<float>(value));
 }
 
 // // Unit to value operators ///////////////////////////////////////
