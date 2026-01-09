@@ -88,9 +88,11 @@ public:
    * Sets the amplitude of the wave.
    * @param amplitude a value in [0, 1] that determines the amplitude of the wave (centered at 0.5).
    */
+  [[deprecated("Use wave.mapTo(min,max) instead.")]]
    virtual void amplitude(float amplitude);
 
    /// Returns the amplitude of the wave.
+  [[deprecated("Use wave.mapTo(min,max) instead.")]]
    virtual float amplitude() const { return fixed32ToFloat(_amplitude); }
 
   /**
