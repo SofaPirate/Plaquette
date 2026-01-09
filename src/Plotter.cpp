@@ -41,11 +41,13 @@ Plotter::Plotter(Print& out,
 
 
 PlotterFormat Plotter::formatFromPreset(PlotterFormatPreset mode, const char* labelsSchema) {
+  // Base/default format.
   static PlotterFormat baseTemplateFmt;
 
-  const bool hasLabels = (labelsSchema != nullptr && *labelsSchema != '\0');
+  const bool hasLabels = (labelsSchema && *labelsSchema);
 
-  PlotterFormat fmt = baseTemplateFmt; // copy base format
+  // Copy base format as a starting point.
+  PlotterFormat fmt = baseTemplateFmt;
 
   switch (mode) {
     case PLOTTER_DEFAULT:
@@ -59,12 +61,15 @@ PlotterFormat Plotter::formatFromPreset(PlotterFormatPreset mode, const char* la
     case PLOTTER_JSON:
       fmt.plotBegin = "[\r\n";
       fmt.trailingRowEnd = false;
+      // JSON object.
       if (hasLabels) {
         fmt.plotEnd = "}\r\n]";
         fmt.rowBegin = "{";
         fmt.rowEnd = "},\r\n";
         fmt.valueTemplate = "\"$k\":$v";
-      } else {
+      }
+      // JSON array.
+      else {
         fmt.plotEnd = "]\r\n]";
         fmt.rowBegin = "[";
         fmt.rowEnd = "],\r\n";

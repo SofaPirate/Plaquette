@@ -28,14 +28,11 @@ public:
                    const char* labels = nullptr,
                    Engine& engine = Engine::primary());
 
-
   /// Returns a PlotterFormat based on presets and labels.
-  static PlotterFormat formatFromPreset(PlotterFormatPreset preset, const char* labelsSchema);
+  static PlotterFormat formatFromPreset(PlotterFormatPreset preset, const char* labelsSchema = nullptr);
 
   /// Returns labels.
   const char* labels() const { return _labels; }
-
-  /// Returns reference to format so that it can be edited.
 
   /// Sets format based on preset.
   void format(PlotterFormatPreset preset);
@@ -55,7 +52,14 @@ public:
   /// Returns the decimal precision of values.
   uint8_t precision() const { return _digits; }
 
+  /**
+   * Pushes value into the unit.
+   * @param value the value sent to the unit
+   * @return the new value of the unit
+   */
   float put(float value) override;
+
+  /// Returns last value.
   float get() override { return _lastValue; }
 
   /// Begins new plot.
@@ -77,7 +81,7 @@ private:
   unsigned long _baudRate = 0;
 
   // Mode & format
- PlotterFormat _format;
+  PlotterFormat _format;
 
   // Labels schema (comma-separated)
   const char* _labels = nullptr;
@@ -87,12 +91,16 @@ private:
   // Numeric precision
   uint8_t _digits = PLAQUETTE_PRINT_DEFAULT_DIGITS;
 
-  // Row state
+  // Row state.
   bool _rowOpen = false;
   uint16_t _valueIndex = 0;
+
   float _lastValue = 0.0f;
 
+  // Plot state.
   bool _plotOpen = true;
+
+  // Scheduling flags.
   bool _scheduleBeginPlot = false;
   bool _scheduleEndRow = false;
 
@@ -106,6 +114,7 @@ private:
   void _openRowIfNeeded();
   void _closeRowIfOpen(bool printEndRow);
 
+  // Print value to output.
   void _printValue(float value);
 
   // Label parsing helpers (comma-separated schema)
