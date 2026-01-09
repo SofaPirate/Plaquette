@@ -606,6 +606,38 @@ template <bool B, typename T = void>
 using enable_if_t = typename enable_if<B, T>::type;
 
 
+namespace detail {
+
+template <typename T>
+struct remove_cvref {
+  typedef typename std::remove_cv<
+    typename std::remove_reference<T>::type
+  >::type type;
+};
+
+template <typename T>
+struct is_chainable {
+  static const bool value =
+    std::is_base_of<Chainable, typename remove_cvref<T>::type>::value;
+};
+
+} // namespace detail
+
+// Provides informative compile-time error message when trying to use the >> operator wrongly.
+#define PQ_FLOW_OPERATOR_ERROR \
+  "Invalid use of operator>>: right-hand operand must be a Plaquette unit or parameter."
+
+// Diagnostic fallback: only participates when RHS is NOT a Chainable (nor derived).
+template <typename T, enable_if_t<!detail::is_chainable<T>::value, int> = 0>
+inline void operator>>(float, T&&) {
+  static_assert(sizeof(T) == 0, PQ_FLOW_OPERATOR_ERROR);
+}
+
+template <typename T, enable_if_t<!detail::is_chainable<T>::value, int> = 0>
+inline void operator>>(double, T&&) {
+  static_assert(sizeof(T) == 0, PQ_FLOW_OPERATOR_ERROR);
+}
+
 // Base value to unit operator.
 inline float operator>>(float value, Chainable& unit) {
   return unit.put(value);
