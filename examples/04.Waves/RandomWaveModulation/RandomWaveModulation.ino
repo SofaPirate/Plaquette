@@ -21,7 +21,7 @@ void begin() {}
 
 void step() {
   // Modulate jittering level.
-  osc.jitter(lfo);
+  lfo >> osc.jitter();
 
   // Send to serial output.
   print(osc); print(" "); println(lfo);
