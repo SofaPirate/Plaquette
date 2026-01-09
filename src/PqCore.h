@@ -605,37 +605,76 @@ struct enable_if<true, T> { typedef T type; };
 template <bool B, typename T = void>
 using enable_if_t = typename enable_if<B, T>::type;
 
+// Minimal remove_reference (C++11)
+template <typename T> struct remove_reference      { typedef T type; };
+template <typename T> struct remove_reference<T&>  { typedef T type; };
+#if __cplusplus >= 201103L
+template <typename T> struct remove_reference<T&&> { typedef T type; };
+#endif
 
-namespace detail {
+// Minimal remove_cv (optional but recommended)
+template <typename T> struct remove_const          { typedef T type; };
+template <typename T> struct remove_const<const T> { typedef T type; };
+
+template <typename T> struct remove_volatile               { typedef T type; };
+template <typename T> struct remove_volatile<volatile T>   { typedef T type; };
+
+template <typename T>
+struct remove_cv {
+  typedef typename remove_const<typename remove_volatile<T>::type>::type type;
+};
 
 template <typename T>
 struct remove_cvref {
-  typedef typename std::remove_cv<
-    typename std::remove_reference<T>::type
-  >::type type;
+  typedef typename remove_cv<typename remove_reference<T>::type>::type type;
 };
 
+// Trait: true if U* converts to Chainable*
 template <typename T>
 struct is_chainable {
-  static const bool value =
-    std::is_base_of<Chainable, typename remove_cvref<T>::type>::value;
+private:
+  typedef typename remove_cvref<T>::type U;
+
+  static char test(Chainable*);
+  static int  test(...);
+
+  static U* make(); // U is not a reference here
+
+public:
+  enum { value = (sizeof(test(make())) == sizeof(char)) };
 };
 
-} // namespace detail
+
+template <typename>
+struct always_false { enum { value = 0 }; };
 
 // Provides informative compile-time error message when trying to use the >> operator wrongly.
 #define PQ_FLOW_OPERATOR_ERROR \
-  "Invalid use of operator>>: right-hand operand must be a Plaquette unit or parameter."
+  "Invalid use of operator>>: right-hand operand must be a Plaquette chainable object such as a unit or parameter."
 
-// Diagnostic fallback: only participates when RHS is NOT a Chainable (nor derived).
-template <typename T, enable_if_t<!detail::is_chainable<T>::value, int> = 0>
-inline void operator>>(float, T&&) {
-  static_assert(sizeof(T) == 0, PQ_FLOW_OPERATOR_ERROR);
+// Catch operations such as: chainable >> notChainable;
+template <typename T>
+struct flow_error {
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
+};
+
+template <typename L, typename R,
+        enable_if_t< is_chainable<L>::value &&
+                    !is_chainable<R>::value, int> = 0>
+inline void operator>>(L&&, R&&) {
+  // The error is tied to instantiating this dependent type.
+  (void)sizeof(flow_error<R>);
 }
 
-template <typename T, enable_if_t<!detail::is_chainable<T>::value, int> = 0>
+// Catch operations such as: value >> notChainable;
+template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
+inline void operator>>(float, T&&) {
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
+}
+
+template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
 inline void operator>>(double, T&&) {
-  static_assert(sizeof(T) == 0, PQ_FLOW_OPERATOR_ERROR);
+  static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
 }
 
 // Base value to unit operator.
