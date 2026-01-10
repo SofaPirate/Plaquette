@@ -71,7 +71,7 @@ Then, let's add an output analog LED on pin `9` using an :doc:`AnalogOut` unit:
 
 If we want to directly control the value of the LED from the value of the
 photocell, all we need to do is to send the photocell's value to the led. The
-easiest way to do so is by using the :doc:`>> <pipe>` operator:
+easiest way to do so is by using the :doc:`>> <flow>` operator:
 
 .. code-block:: c++
 

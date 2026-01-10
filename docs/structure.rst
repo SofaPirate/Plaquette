@@ -11,4 +11,4 @@ Core structural functions and operators.
    step
    array
    dot
-   pipe
+   flow

@@ -60,7 +60,7 @@ Structure
 * :doc:`step` Repeatedly called during the program's execution, akin to Arduino's `loop()` function. Drives the execution of the main logic.
 * :doc:`array` Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.
 * :doc:`dot` Provides access to an object's methods and data, enabling intuitive object-oriented programming with Plaquette units.
-* :doc:`pipe` Sends data across units from left to right, creating a streamlined and intuitive flow of information between connected units.
+* :doc:`flow` Sends data across units from left to right, creating a streamlined and intuitive flow of information between connected units.
 
 Extra
 -----

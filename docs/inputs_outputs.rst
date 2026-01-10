@@ -183,10 +183,10 @@ For analog inputs, this works similarly. Instead of calling ``dimmer.get()``, yo
 
 These simplifications make your code more expressive and emphasize the logic over the syntax.
 
-The Piping Operator (>>)
-------------------------
+The Flow Operator (>>)
+----------------------
 
-In Plaquette, the ``>>`` operator allows you to directly send or "pipe" the value of one unit to
+In Plaquette, the ``>>`` operator allows you to directly send the value of one unit to
 another. This makes it incredibly simple to map inputs to outputs without extra variables or
 function calls.
 
