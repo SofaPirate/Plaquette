@@ -26,13 +26,13 @@ TriangleWave::TriangleWave(Engine& engine) : AbstractWave(engine), _riseEasing(e
 TriangleWave::TriangleWave(float period, Engine& engine) : AbstractWave(period, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 TriangleWave::TriangleWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine), _riseEasing(easeNone), _fallEasing(easeNone) {}
 
-q0_32u_t TriangleWave::_getFixed32(q0_32u_t t) const const {
+q0_32u_t TriangleWave::_getFixed32(q0_32u_t t) const {
   return (t <= _skew32) ?
         fixed32Divide(t, _skew32) :
         fixed32Divide(FIXED_32_MAX - t, FIXED_32_MAX - _skew32);
 }
 
-float TriangleWave::_getAmplified(q0_32u_t t) const const {
+float TriangleWave::_getAmplified(q0_32u_t t) const {
   if (t <= _skew32) {
     q0_32u_t fixed32Value = fixed32Divide(t, _skew32);
     if (_riseEasing == easeNone) {
