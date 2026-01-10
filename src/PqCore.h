@@ -298,13 +298,13 @@ float samplePeriod();
  */
 bool randomTrigger(float timeWindow);
 
-class Chainable {
+class Flowable {
 private:
     // Prevents assignation operations by making them private.
-  Chainable& operator=(bool);
-  Chainable& operator=(int);
-  Chainable& operator=(float);
-  Chainable& operator=(Chainable&);
+  Flowable& operator=(bool);
+  Flowable& operator=(int);
+  Flowable& operator=(float);
+  Flowable& operator=(Flowable&);
 
 public:
   /// Returns value (typically between 0 and 1, may vary depending on class).
@@ -334,11 +334,11 @@ public:
   /// Operator that allows usage in conditional expressions.
   // NOTE: This operator is defined as explicit so that boolean expression like
   // "if (obj)" use the bool() operator while other expressions can use the float() operator.
-  explicit operator bool() { return Chainable::analogToDigital(get()); }
+  explicit operator bool() { return Flowable::analogToDigital(get()); }
 };
 
 template <class Obj>
-class ParameterSlot : public Chainable {
+class ParameterSlot : public Flowable {
 public:
   using Setter = void (Obj::*)(float);
   using Getter = float (Obj::*)() const;
@@ -368,7 +368,7 @@ private:
  * Each such unit can be read using function get(). Values
  * can also be sent to a unit using put().
  */
-class Unit : public Chainable {
+class Unit : public Flowable {
   friend class Engine;
   friend class EventManager;
 
@@ -629,13 +629,13 @@ struct remove_cvref {
   typedef typename remove_cv<typename remove_reference<T>::type>::type type;
 };
 
-// Trait: true if U* converts to Chainable*
+// Trait: true if U* converts to Flowable*
 template <typename T>
 struct is_chainable {
 private:
   typedef typename remove_cvref<T>::type U;
 
-  static char test(Chainable*);
+  static char test(Flowable*);
   static int  test(...);
 
   static U* make(); // U is not a reference here
@@ -650,9 +650,9 @@ struct always_false { enum { value = 0 }; };
 
 // Provides informative compile-time error message when trying to use the >> operator wrongly.
 #define PQ_FLOW_OPERATOR_ERROR \
-  "Invalid use of operator>>: right-hand operand must be a Plaquette chainable object such as a unit or parameter."
+  "Invalid use of operator>>: right-hand operand must be a Plaquette flowable object such as a unit or parameter."
 
-// Catch operations such as: chainable >> notChainable;
+// Catch operations such as: flowable >> nonFlowable;
 template <typename T>
 struct flow_error {
   static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
@@ -666,7 +666,7 @@ inline void operator>>(L&&, R&&) {
   (void)sizeof(flow_error<R>);
 }
 
-// Catch operations such as: value >> notChainable;
+// Catch operations such as: value >> nonFlowable;
 template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
 inline void operator>>(float, T&&) {
   static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
@@ -678,56 +678,56 @@ inline void operator>>(double, T&&) {
 }
 
 // Base value to unit operator.
-inline float operator>>(float value, Chainable& unit) {
+inline float operator>>(float value, Flowable& unit) {
   return unit.put(value);
 }
 
-// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Chainable&)).
-inline float operator>>(Chainable& source, Chainable& sink) {
+// NOTE: do not change the order of this operator (it needs to be set *after* the >>(float, Flowable&)).
+inline float operator>>(Flowable& source, Flowable& sink) {
   return pq::operator>>(source.get(), sink);
 }
 
-inline float operator>>(double value, Chainable& unit) {
+inline float operator>>(double value, Flowable& unit) {
   return pq::operator>>(static_cast<float>(value), unit);
 }
 
-inline float operator>>(bool value, Chainable& unit) {
-  return pq::operator>>(Chainable::digitalToAnalog(value), unit);
+inline float operator>>(bool value, Flowable& unit) {
+  return pq::operator>>(Flowable::digitalToAnalog(value), unit);
 }
 
 
-// 1) float -> temporary Chainable sink (e.g., parameter slot)
-inline float operator>>(float v, Chainable&& dst) {
+// 1) float -> temporary Flowable sink (e.g., parameter slot)
+inline float operator>>(float v, Flowable&& dst) {
   return dst.put(v);
 }
 
-// 2) Chainable -> temporary Chainable sink
-inline float operator>>(Chainable& src, Chainable&& dst) {
+// 2) Flowable -> temporary Flowable sink
+inline float operator>>(Flowable& src, Flowable&& dst) {
   return dst.put(src.get());
 }
 
-// (Optional) const Chainable source
-inline float operator>>(const Chainable& src, Chainable&& dst) {
-  return dst.put(const_cast<Chainable&>(src).get()); // or change get() const if you can
+// (Optional) const Flowable source
+inline float operator>>(const Flowable& src, Flowable&& dst) {
+  return dst.put(const_cast<Flowable&>(src).get()); // or change get() const if you can
 }
 
 // // This code is needed on the Curie and ARM chips.
 // // Otherwise it causes an ambiguous operator error.
 // #if defined(__arc__) || defined(__arm__)
-// inline Chainable& operator>>(int value, Chainable& unit) {
+// inline Flowable& operator>>(int value, Flowable& unit) {
 //   return pq::operator>>((float)value, unit);
 // }
 // #endif
 
 // Integral -> lvalue sink
 template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
-inline float operator>>(I value, Chainable& unit) {
+inline float operator>>(I value, Flowable& unit) {
   return unit.put(static_cast<float>(value));
 }
 
 // Integral -> rvalue sink (for inline chainables such as parameter slots)
 template <typename I, pq::enable_if_t<pq::is_integral<I>::value, int> = 0>
-inline float operator>>(I value, Chainable&& unit) {
+inline float operator>>(I value, Flowable&& unit) {
   return unit.put(static_cast<float>(value));
 }
 
