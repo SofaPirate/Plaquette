@@ -49,7 +49,7 @@ void SquareWave::step() {
   // _prevOnValue = _onValue;
 }
 
-q0_32u_t SquareWave::_getFixed32([[maybe_unused]] q0_32u_t t) {
+q0_32u_t SquareWave::_getFixed32([[maybe_unused]] q0_32u_t t) const {
   return (_onValue ? FIXED_32_MAX : 0);
 }
 

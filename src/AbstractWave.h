@@ -65,14 +65,14 @@ public:
    * @param phaseShift the phase shift (in % of period)
    * @return the value of oscillator with given phase shift
    */
-  virtual float shiftBy(float phaseShift);
+  virtual float shiftBy(float phaseShift) const;
 
   /**
    * Returns oscillator's value with given phase shift expressed in time (in seconds).
    * @param timeShift the shift in time (seconds)
    * @return the value of oscillator with time shift
    */
-  virtual float shiftByTime(float timeShift);
+  virtual float shiftByTime(float timeShift) const;
 
   /**
    * Returns the oscillator's value at a given absolute phase (in % of period).
@@ -82,7 +82,7 @@ public:
    * @param phase the absolute phase at which to evaluate the oscillator (in % of period)
    * @return the value of the oscillator at the given phase
   */
-  virtual float atPhase(float phase);
+  virtual float atPhase(float phase) const;
 
   /**
    * Sets the amplitude of the wave.
@@ -138,10 +138,10 @@ protected:
   virtual bool eventTriggered(EventType eventType);
 
   // Returns value in [0, 1] as fixed32-point value (to be defined by subclasses).
-  virtual q0_32u_t _getFixed32(q0_32u_t t) = 0;
+  virtual q0_32u_t _getFixed32(q0_32u_t t) const = 0;
 
   // Returns amplified version of _get(t).
-  virtual float _getAmplified(q0_32u_t t);
+  virtual float _getAmplified(q0_32u_t t) const;
 
   bool _isPreSkew() const {
     return (_phase32 <= _skew32);
