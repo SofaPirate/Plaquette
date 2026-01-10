@@ -51,7 +51,7 @@ make
 ./filters.out
 ```
 
-Test directories: `arrays`, `castings`, `engines`, `filters`, `functions`, `generators`, `hybridarrays`, `normalizer`, `operations`, `timing`, `values`
+To see available test suites, check the `SUBDIRS` variable in `tests/Makefile` or list directories in `tests/`.
 
 ### Continuous Integration
 
@@ -74,11 +74,11 @@ void settings() {
 }
 
 void begin() {
-  // Initialize components (called once)
+  // Optional: initialize components (called once)
 }
 
 void step() {
-  // Called repeatedly (replaces loop())
+  // Optional: called repeatedly (replaces loop())
 }
 ```
 
@@ -262,8 +262,8 @@ libraries/            # Bundled dependencies (AUnit, EpoxyDuino, MemoryStream)
 ### Using Parameters as Flow Targets
 
 ```cpp
-SineWave lfo;
-SquareWave carrier;
+Wave lfo(SINE);
+Wave carrier(SQUARE);
 
 void step() {
   lfo >> carrier.frequency();  // Modulate frequency dynamically
