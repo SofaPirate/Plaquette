@@ -256,7 +256,7 @@ expressive syntax:
 
 .. code:: cpp
 
-      myModulator >> myWave.frequency(); // equivalent to calling myWave.frequency(myModulator);
+      myModulator >> myWave.Frequency(); // equivalent to calling myWave.frequency(myModulator);
 
 Upload the sketch and you should see the LED blinking as before, with the difference that
 the blinking speed will now change from blinking very slowly (in fact, infinitely slowly,
@@ -269,7 +269,7 @@ with a frequency of zero-times-per-seconds!) to one time per second.
   .. code:: cpp
 
       myModulator >> myWave.skew();
-      myModulator >> myWave.period();
+      myModulator >> myWave.Period();
 
 This table summarizes the different ways one can access and modify a unit's parameters:
 
@@ -292,7 +292,7 @@ This table summarizes the different ways one can access and modify a unit's para
    * - **Parameter flow**
      - ``source >> unit.parameter()``
      - Continuously control a parameter (modulation, mapping).
-     - ``modulator >> wave.frequency();``
+     - ``modulator >> wave.Frequency();``
 
 .. caution::
 
