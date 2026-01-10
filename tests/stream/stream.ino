@@ -9,7 +9,7 @@ MemoryStream input;
 MemoryStream output;
 
 StreamIn streamIn(input);
-StreamOut streamOut(output);
+Monitor streamOut(output);
 
 void clearOutput() {
   while (output.available())
