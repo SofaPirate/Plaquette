@@ -115,7 +115,7 @@ public:
   virtual float speed() const;
 
   /// Returns speed (rate of change) as a parameter.
-  Parameter speed() { return Parameter(this, &Ramp::speed, &Ramp::speed); }
+  Parameter Speed() { return Parameter(this, &Ramp::speed, &Ramp::speed); }
 
   /// Starts/restarts the ramp. Will repeat the last ramp.
   virtual void start();
