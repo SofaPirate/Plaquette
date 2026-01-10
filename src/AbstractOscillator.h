@@ -55,7 +55,7 @@ public:
   virtual float period() const { return _period; }
 
   /// Returns the period as a parameter.
-  Parameter period() { return Parameter(this, &AbstractOscillator::period, &AbstractOscillator::period); }
+  Parameter Period() { return Parameter(this, &AbstractOscillator::period, &AbstractOscillator::period); }
 
   /**
    * Sets the frequency (in Hz).
@@ -73,7 +73,7 @@ public:
   }
 
   /// Returns the frequency as a parameter.
-  Parameter frequency() { return Parameter(this, &AbstractOscillator::frequency, &AbstractOscillator::frequency); }
+  Parameter Frequency() { return Parameter(this, &AbstractOscillator::frequency, &AbstractOscillator::frequency); }
 
   /**
    * Sets the frequency in beats-per-minute.
@@ -85,7 +85,7 @@ public:
   virtual float bpm() const { return frequency() * HZ_TO_BPM; }
 
   /// Returns the BPM as a parameter.
-  Parameter bpm() { return Parameter(this, &AbstractOscillator::bpm, &AbstractOscillator::bpm); }
+  Parameter Bpm() { return Parameter(this, &AbstractOscillator::bpm, &AbstractOscillator::bpm); }
 
   /**
   * Sets the phase at % of period.
@@ -97,7 +97,7 @@ public:
   virtual float phase() const { return pq::fixed32ToFloat(_phase32); }
 
   /// Returns the phase as a parameter.
-  Parameter phase() { return Parameter(this, &AbstractOscillator::phase, &AbstractOscillator::phase); }
+  Parameter Phase() { return Parameter(this, &AbstractOscillator::phase, &AbstractOscillator::phase); }
 
   /**
   * Sets the phase shift (ie. the offset, in % of period).
@@ -113,8 +113,8 @@ public:
   */
   virtual float phaseShift() const;
 
-  /// Returns the phase as a parameter.
-  Parameter phaseShift() { return Parameter(this, &AbstractOscillator::phaseShift, &AbstractOscillator::phaseShift); }
+  /// Returns the phase shift as a parameter.
+  Parameter PhaseShift() { return Parameter(this, &AbstractOscillator::phaseShift, &AbstractOscillator::phaseShift); }
 
   /// Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter).
   virtual void jitter(float jitter);
@@ -126,7 +126,7 @@ public:
   virtual void noJitter() { jitter(0); }
 
   /// Returns the jitter as a parameter.
-  Parameter jitter() { return Parameter(this, &AbstractOscillator::jitter, &AbstractOscillator::jitter); }
+  Parameter Jitter() { return Parameter(this, &AbstractOscillator::jitter, &AbstractOscillator::jitter); }
 
   /**
    * Returns the period actually used for the current cycle.

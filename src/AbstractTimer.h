@@ -48,7 +48,7 @@ public:
   virtual float duration() const { return _duration; }
 
   /// Returns duration as a parameter.
-  virtual Parameter duration() { return Parameter(this, &AbstractTimer::duration, &AbstractTimer::duration); }
+  virtual Parameter Duration() { return Parameter(this, &AbstractTimer::duration, &AbstractTimer::duration); }
 
   /// The progress of the timer process (in %).
   virtual float progress() const;
