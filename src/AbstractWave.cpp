@@ -64,7 +64,7 @@ void AbstractWave::step() {
   _valueNeedsUpdate = true;
 }
 
-float AbstractWave::_getAmplified(q0_32u_t t) {
+float AbstractWave::_getAmplified(q0_32u_t t) const {
   return fixed32ToFloat( amplifyFixed32(_getFixed32(t), _amplitude) );
 }
 
@@ -79,15 +79,15 @@ void AbstractWave::_updatePassedSkew() {
   _preSkew = newPreSkew; // set new value
 }
 
-float AbstractWave::shiftBy(float phaseShift) {
+float AbstractWave::shiftBy(float phaseShift) const {
   return _getAmplified(phase32AddPhase(_phase32, phaseShift));
 }
 
-float AbstractWave::shiftByTime(float timeShift) {
+float AbstractWave::shiftByTime(float timeShift) const {
   return _getAmplified(phase32AddPhase(_phase32, frequencyAndTimeToPhase(frequency(), timeShift)));
 }
 
-float AbstractWave::atPhase(float phase) {
+float AbstractWave::atPhase(float phase) const {
   return _getAmplified(floatToPhase32(phase));
 }
 

@@ -85,10 +85,10 @@ public:
 protected:
   // Returns value in [0, 1].
 //  virtual float _get(q0_32u_t t);
-  virtual q0_32u_t _getFixed32(q0_32u_t t);
+  virtual q0_32u_t _getFixed32(q0_32u_t t) const const;
 
 
-  virtual float _getAmplified(q0_32u_t t);
+  virtual float _getAmplified(q0_32u_t t) const const;
 
   // Optional easing to apply on the rise and fall of the wave.
   easing_function _riseEasing;

@@ -31,7 +31,7 @@ SineWave::SineWave(float period, Engine& engine) : AbstractWave(period, engine) 
 SineWave::SineWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine) {}
 
 // Improved version of SineWave::_get with optimizations and typo fixes.
-q0_32u_t SineWave::_getFixed32(q0_32u_t t) {
+q0_32u_t SineWave::_getFixed32(q0_32u_t t) const const {
 #if defined(PQ_ARCH_32BITS)
   // Phasse time remapped and rescaled to 16 bits for use with trigonometric library.
   uint32_t phase32;
