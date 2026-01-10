@@ -42,6 +42,7 @@
 #include "pq_phase_utils.h"
 #include "pq_print.h"
 #include "pq_random.h"
+#include "pq_serial.h"
 #include "pq_time.h"
 
 namespace pq {
