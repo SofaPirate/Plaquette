@@ -376,6 +376,8 @@ Here are the key sections of the reference:
   :doc:`Alarm` for duration-based functionality.
 - :doc:`filters`: Discusses tools for :doc:`smoothing <Smoother>`, :doc:`scaling <MinMaxScaler>`, or
   :doc:`normalizing <Normalizer>` signals, as well as :doc:`detecting peaks <PeakDetector>`.
+- :doc:`communication`: Presents units used for :doc:`monitoring <Monitor>` and :doc:`plotting <Plotter>` data,
+  allowing information to flow between embedded device and computer.
 - :doc:`functions`: Explains helper functions for tasks like value mapping, signal transformations,
   and conversions.
 - :doc:`structure`: Describes core structural functions and operators.

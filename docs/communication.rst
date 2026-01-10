@@ -1,7 +1,7 @@
 Communication
 =============
 
-Communication units for logging and visualization.
+Units for communication between embedded device and computer (debugging, logging, visualization).
 
 .. toctree::
    :maxdepth: 1
