@@ -7,6 +7,7 @@ Core structural functions and operators.
    :maxdepth: 1
 
    Engine
+   value_units
    begin
    step
    array
