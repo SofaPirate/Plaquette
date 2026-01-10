@@ -1,6 +1,6 @@
 .. include:: defs.hrst
 
->> (pipe)
+>> (flow)
 =========
 
 Sends data across units from left to right. This operator is specific to Plaquette
