@@ -67,7 +67,7 @@ public:
   }
 
 private:
-  // Write a float value into a Chainable type.
+  // Write a float value into a Flowable type.
   template <typename T>
   inline void _write(T& dst, float src) { src >> dst; }
 

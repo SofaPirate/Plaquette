@@ -33,21 +33,21 @@ struct ValueCodec<int32_t> {
 // bool threshold policy
 template <>
 struct ValueCodec<bool> {
-  static inline bool fromFloat(float v) { return Chainable::analogToDigital(v); }
-  static inline float toFloat(bool v) { return Chainable::digitalToAnalog(v); }
+  static inline bool fromFloat(float v) { return Flowable::analogToDigital(v); }
+  static inline float toFloat(bool v) { return Flowable::digitalToAnalog(v); }
 };
 
-// ---------- Generic Chainable value wrapper ----------
+// ---------- Generic Flowable value wrapper ----------
 
 template <typename T, class Codec = ValueCodec<T>>
-class Value : public Chainable {
+class Value : public Flowable {
 public:
   using value_type = T;
 
-  Value() : _v{} {}
+  Value() : _v(0) {}
   Value(T initial) : _v(initial) {}
 
-  // Chainable API
+  // Flowable API
   float put(float x) override { _v = Codec::fromFloat(x); return x; }
   float get() override { return Codec::toFloat(_v); }
 
