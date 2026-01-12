@@ -47,8 +47,6 @@ automatically adapt to incoming sensor values.
    // Output indicator LED.
    DigitalOut led(13);
 
-   void begin() {}
-
    void step() {
      // Rescale value.
      sensor >> scaler;

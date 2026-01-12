@@ -14,9 +14,6 @@ This function returns a random real-valued number.
 
    DigitalOut led(13);
 
-   void begin() {
-   }
-
    void step() {
      // 2% probability to toggle the LED
      if (randomFloat() < 0.02)

@@ -89,9 +89,8 @@ The complete Plaquette code looks like this:
    // Create output unit for LED.
    AnalogOut led(9);
 
-   void begin() {}
+   // NOTE: Since in this case there is nothing to do in begin(), we don't need to include it
 
-   // Define frame-by-frame operations.
    void step() {
      // Send photocell value directly to the LED.
      photoCell >> led;

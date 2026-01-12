@@ -39,9 +39,6 @@ See :doc:`mapFloat` for more details.
 
    DigitalOut led(13);
 
-   void begin() {
-   }
-
    void step() {
      // Change duty-cycle of oscillator in range [0.2, 0.8].
      float skew = mapFrom01(modulator, 0.2, 0.8); // alternative: modulator.mapTo(0.2, 0.8)

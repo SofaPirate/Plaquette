@@ -14,9 +14,7 @@ Outputs the number of seconds to serial.
 
    #include <Plaquette.h>
 
-   Plotter serialOut(115200);
-
-   void begin() {}
+   Plotter serialOut(115200); // define baudrate of plotter
 
    void step() {
      // Output the number of seconds

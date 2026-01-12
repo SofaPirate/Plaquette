@@ -3,15 +3,16 @@
 step()
 ======
 
-After creating a ``begin()`` function, which initializes and sets the initial
-values, the ``step()`` function does precisely what its name suggests, and performs
+The ``step()`` function does precisely what its name suggests, and performs
 one processing step that loops indefinitely as fast as possible, allowing your
 program to change and respond. Use it to actively control the board.
 
-.. important::
+.. hint::
   Function ``step()`` is the Plaquette equivalent of Arduino's
   `loop() <https://www.arduino.cc/reference/en/language/functions/loop/>`_.
-  However, it is highly recommended that this function executes as fast as
+
+.. important::
+  It is highly recommended that this function executes as fast as
   possible. Hence, one should performing computationally-intensive processing
   or calling blocking functions such as ``delay()``
 
@@ -25,9 +26,6 @@ program to change and respond. Use it to actively control the board.
   DigitalIn button(2);
 
   DigitalOut led(13);
-
-  void begin() {
-  }
 
   void step() {
     button >> led;

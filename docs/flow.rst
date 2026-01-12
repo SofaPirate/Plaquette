@@ -39,8 +39,6 @@ Numerical and boolean values can also be used:
 
    AnalogOut led(9);
 
-   void begin() {}
-
    void step() {
      // Rescale value and send the result to LED.
      sensor >> scaler >> led;

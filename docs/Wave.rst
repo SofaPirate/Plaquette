@@ -191,8 +191,6 @@ Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's 
 
   Wave lfo(SINE, 20.0); // 20-seconds oscillator
 
-  void begin() {}
-
   void step() {
     osc.randomize(lfo);
     osc >> led;

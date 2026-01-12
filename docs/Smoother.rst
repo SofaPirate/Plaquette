@@ -21,9 +21,7 @@ Smooth a sensor over time.
    // Smooths over time window of 10 seconds.
    Smoother smoother(10.0);
 
-   Plotter serialOut(115200);
-
-   void begin() {}
+   Plotter plotter(115200); // Initialiaze serial plotter at 115200 bps
 
    void step() {
      // Smooth value and send it to serial output.

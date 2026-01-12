@@ -46,8 +46,6 @@ The simplest use of a metronome is to trigger an LED blink every 0.5 seconds:
    Metronome myMetro(0.5); // tick every 0.5 seconds
    DigitalOut led(13);
 
-   void begin() {}
-
    void step() {
      if (myMetro) {
        led.toggle();

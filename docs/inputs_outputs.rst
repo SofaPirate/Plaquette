@@ -75,8 +75,6 @@ leg of the  button should be connected to ground (GND) while the other should be
     DigitalIn button(2, INTERNAL_PULLUP); // Button connected to pin 2
     DigitalOut led(13);                   // LED connected to pin 13
 
-    void begin() {}
-
     void step() {
       if (button.isOn()) {  // Check if the button is pressed
         led.on();
@@ -107,7 +105,7 @@ connected to an analog / PWM pin (eg. pin 9).
     AnalogOut led(9); // LED connected to pin 9
 
     void begin() {
-      led.put(0); // Set LED brightness to 0%
+      led.put(0); // Set initial LED brightness to 0%
     }
 
     void step() {
@@ -133,8 +131,6 @@ of the potentiometer should be connected to analog input pin (``A0``), the left 
     AnalogIn dimmer(A0); // Potentiometer on analog pin A0
     AnalogOut led(9);    // LED on pin 9
 
-    void begin() {}
-
     void step() {
       led.put(dimmer.get()); // Map the potentiometer value directly to LED brightness
     }
@@ -155,8 +151,6 @@ Here's the same LED and button example, rewritten with this feature:
     DigitalIn button(2, INTERNAL_PULLUP);
     DigitalOut led(13);
 
-    void begin() {}
-
     void step() {
       if (button) {  // No need for button.isOn() : just use button as its own value
         led.on();
@@ -174,8 +168,6 @@ For analog inputs, this works similarly. Instead of calling ``dimmer.get()``, yo
 
     AnalogIn dimmer(A0);
     AnalogOut led(9);
-
-    void begin() {}
 
     void step() {
       led.put(dimmer); // No need for dimmer.get() : just use dimmer as its own value
@@ -199,8 +191,6 @@ Let's revisit the potentiometer and LED example using the piping operator:
     AnalogIn dimmer(A0);
     AnalogOut led(9);
 
-    void begin() {}
-
     void step() {
       dimmer >> led; // Directly pipe the potentiometer value to the LED
     }
@@ -209,7 +199,7 @@ This operator improves code readability and emphasizes the relationship between 
 
 .. note::
 
-  The piping operator (``>>``) allows to expressively connect input, output, and filtering units
+  The flow operator (``>>``) allows to expressively connect input, output, and filtering units
   in a similar fashion to data-flow environments such as `Max <https://cycling74.com/products/max>`_,
   `Pure Data <https://puredata.info>`_, and `TouchDesigner <https://derivative.ca>`_. The operator is
   directly inspired from the ChucK operator (``=>``) in programming languge `ChucK <http://chuck.cs.princeton.edu/>`__.
@@ -300,8 +290,6 @@ to a specified range which is very useful for scaling sensor readings.
     DigitalOut led(13);
     Wave wave(1.0);
 
-    void begin() {}
-
     void step() {
       // Map sensor value to frequency in range 1-10 Hz
       wave.frequency( lightSensor.mapTo(1, 10) );
@@ -327,8 +315,6 @@ Here's an example of toggling an LED when a button is pressed:
     DigitalIn button(2, INTERNAL_PULLUP);
     DigitalOut led(13);
 
-    void begin() {}
-
     void step() {
       if (button.rose()) { // Detect the moment the button is pressed
         led.toggle();      // Toggle the LED state
@@ -347,8 +333,6 @@ turning on an LED when the light level drops below 30% (0.3):
 
     AnalogIn lightSensor(A0);
     DigitalOut led(13);
-
-    void begin() {}
 
     void step() {
       if (lightSensor < 0.3) {
@@ -431,8 +415,6 @@ voltage is interpreted:
       AnalogIn lightSensor(A0, DIRECT);
       AnalogOut led(9);
 
-      void begin() {}
-
       void step() {
         lightSensor >> led;
       }
@@ -461,8 +443,6 @@ The :doc:`DigitalOut` and :doc:`AnalogOut` units control the flow of current and
 
       AnalogOut led(9, DIRECT);
       Wave wave(SINE, 1.0);
-
-      void begin() {}
 
       void step() {
         wave >> led;
