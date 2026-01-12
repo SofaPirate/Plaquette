@@ -53,10 +53,11 @@ two control two LEDs.
      // Sum the two waves and store the result.
      (waveA + waveB) >> mix;
      // Compute average.
-     mix /= 2; // 2 waves
+     mix /= 2;
      // Reuse the same value in multiple places.
      mix >> led1;
-     (1-mix) >> led2; // inverse
+     // Use math to invert the signal.
+     (1-mix) >> led2;
    }
 
 |Example|
@@ -76,7 +77,7 @@ the states.
    DigitalOut led(LED_BUILTIN);
 
    // Create monitor.
-   Plotter plotter(115200, "pressA,pressB,pressBoth");
+   Plotter plotter(115200, "pressA,pressB,pressBoth"); // plotter with baud rate and labels
 
    // Create a Boolean to store the combined condition.
    Boolean bothPressed = false;

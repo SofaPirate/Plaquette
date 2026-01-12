@@ -110,7 +110,8 @@ green, and so on. It uses a sawtooth to iterate through these three states.
    Wave osc(TRIANGLE, 10.0);
 
    void begin() {
-     osc.skew(1.0); // sawtooth wave
+   // Setting skew to 1.0 converts triangle wave to a sawtooth wave.
+     osc.skew(1.0);
    }
 
    void step() {
@@ -186,8 +187,8 @@ Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's 
   #include <Plaquette.h>
 
   AnalogOut led(9);
-
-  Wave osc(SINE); // average period of 1 second (default)
+// default value of wave period if left undefined is 1 second.
+  Wave osc(SINE);
 
   Wave lfo(SINE, 20.0); // 20-seconds oscillator
 

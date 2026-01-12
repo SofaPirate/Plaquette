@@ -21,12 +21,13 @@ The ``mode`` specifies the behavior of the component attached to the pin:
    AnalogOut led(9);
 
    void begin() {
+   // Initialize the brightness of the LED at half-strength.
      led.put(0.5);
    }
 
    void step() {
      // The LED value is changed randomly by a tiny amount (random walk).
-     // Mutliplying by samplePeriod() makes sure the rate of change stays stable.
+     // Multiplying by samplePeriod() makes sure the rate of change stays stable.
      (led + randomFloat(-0.1, 0.1) * samplePeriod()) >> led;
    }
 
