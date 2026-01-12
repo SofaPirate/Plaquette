@@ -3,7 +3,7 @@
 begin()
 =======
 
-The ``begin()`` function is called when a sketch starts. Use it to initialize
+The ``begin()`` function is optionally called at the start of a sketch to initialize
 units, start using libraries, etc. The ``begin()`` function will only run once,
 after each powerup or reset of the board.
 
@@ -12,9 +12,9 @@ after each powerup or reset of the board.
   `setup() <https://www.arduino.cc/reference/en/language/functions/setup/>`_.
   However, Plaquette takes care of many of the initialization calls that need to
   be done in Arduino such as ``pinMode()``. Therefore in many cases it will
-  contain only a few calls or even be left empty.
+  contain only a few calls, or can be omitted completely.
 
-|Example|
+|Examples|
 ---------
 
 .. code-block:: c++
@@ -32,6 +32,20 @@ after each powerup or reset of the board.
 
    void step() {
      // ...
+   }
+
+   .. code-block:: c++
+
+   #include <Plaquette.h>
+
+   Wave oscillator(1.0); // create a square wave with a period of 1 second
+   Plotter plotter(115200); // create a plotter to visualize the wave
+
+   //notice that since there is nothing to instantiate in this case, the begin() function is
+   //unneccessary
+
+   void step() {
+     oscillator >> plotter; // Send the wave to the plotter for visualization
    }
 
 |SeeAlso|
