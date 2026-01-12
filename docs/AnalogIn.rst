@@ -33,8 +33,6 @@ Control an LED using a potentiometer.
 
    Wave oscillator(SINE);
 
-   void begin() {}
-
    void step() {
      // The analog input controls the frequency of the LED's oscillation.
      oscillator.frequency(potentiometer.mapTo(2.0, 10.0));
