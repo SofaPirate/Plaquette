@@ -140,11 +140,8 @@ to the ``onRise()`` event of our button unit, which will trigger at the instant 
      button.onRise(toggleLed); // Toggle the LED on button press
    }
 
-In this case, since the callback will take care of all the logic, the ``step()`` function can be left empty!
-
-.. code-block:: cpp
-
-   void step() {} // Nothing to do here!
+In this case, since the callback will take care of all the logic, we do not even need to declare a ``step()``
+function!
 
 Here is the final code for this example:
 
@@ -167,7 +164,7 @@ Here is the final code for this example:
      button.onRise(toggleLed); // Toggle the LED on button press
    }
 
-   void step() {} // Nothing to do here
+   // Notice that we haven't invoked step(){} because it isn't necessary
 
 Now, try changing ``onRise()`` to ``onFall()`` or to ``onChange()``. How does that affect the interaction
 between the button and the LED?
@@ -210,8 +207,6 @@ press and release events.
      button.onRise(printButton); // Print button state
      button.onFall(printButton); // Same here
    }
-
-   void step() {} // Nothing to do here
 
 Coordinating Parallel Events with Metronomes
 --------------------------------------------
