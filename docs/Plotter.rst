@@ -30,9 +30,10 @@ Streaming multiple values per row, with labels.
 .. code-block:: c++
 
    #include <Plaquette.h>
-
-   // Labels are a single comma-separated string.
-   Plotter plotter(115200);
+   //declare the baud rate to suit your application.
+   //OPTIONAL: After declaring the baud rate,
+   //you can create labels for incoming signals with a single comma-separated string.
+   Plotter plotter(115200, "wave,signal");
 
    Wave wave(SINE);
    Signal signal;

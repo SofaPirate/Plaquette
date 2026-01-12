@@ -25,7 +25,7 @@ To run this example:
 
 1. Upload the code.
 2. In the Arduino software open the serial monitor: **Tools > Serial Monitor**.
-3. Make sure the default baudrate of **9600** bps is selected.
+3. Make sure the default baudrate of **115200** bps is selected.
 4. You should see the seconds increase.
 5. Close the monitor and open serial plotter: **Tools > Serial Plotter**.
 6. You should see a graphical representation of the seconds.

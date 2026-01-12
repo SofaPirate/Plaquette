@@ -37,11 +37,17 @@ Numerical and boolean values can also be used:
 
    MinMaxScaler scaler;
 
+   Plotter plotter(115200);
+
    AnalogOut led(9);
 
    void step() {
      // Rescale value and send the result to LED.
      sensor >> scaler >> led;
+
+     // You can also use flow operators to stream data to a Plotter.
+     sensor >> plotter; // prints sensor value
+     scaler >> plotter; // prints rescaled value
    }
 
 |Syntax|

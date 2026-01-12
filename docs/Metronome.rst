@@ -64,10 +64,11 @@ You can run several metronomes in parallel to control independent events:
    DigitalOut led(LED_BUILTIN);
    Metronome metroFast(0.5);   // Blink at 2 Hz
    Metronome metroSlow(2.0);   // Trigger every 2 seconds
+   Monitor monitor(115200);    // create a monitor object
 
    void step() {
      if (metroFast) led.toggle();
-     if (metroSlow) Serial.println("Tick!");
+     if (metroSlow) println("Tick!");
    }
 
 .. _metronome-randomization:

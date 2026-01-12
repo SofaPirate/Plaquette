@@ -25,7 +25,7 @@ Smooth a sensor over time.
 
    void step() {
      // Smooth value and send it to serial output.
-     sensor >> smoother >> serialOut;
+     sensor >> smoother >> plotter;
    }
 
 .. note::
