@@ -191,24 +191,26 @@ In Plaquette, a **parameter** is a property of a unit that you can read and modi
 while your program is running. Parameters give you dynamic control over your units,
 allowing you to change their behavior in real-time.
 
-The ``Wave`` unit, for example, has several parameters:
+The ``Wave`` unit has several parameters:
 
 - ``period``: the duration of one complete cycle (in seconds)
 - ``skew``: the proportion of the cycle during which the signal is on (0.0 to 1.0)
 - ``frequency``: the number of cycles per second (in Hz)
 - ``bpm``: the number of cycles per minute (beats-per-minute)
 - ``jitter``: adds randomness to the timing (0.0 to 1.0)
+- ``phaseShift``: the phase offset as a propoption of period (0.0 to 1.0)
+- ``phase``: the oscillation phase as a propoption of period (0.0 to 1.0)
 
 You may have noticed that when we created our wave, we were able to set some of these
-parameters directly through the constructor arguments:
+parameters (period and skew) directly using the constructor arguments:
 
 .. code:: cpp
 
     Wave myWave(2.0);        // sets the period parameter to 2 seconds
     Wave myWave(2.0, 0.25);  // sets period to 2 seconds and skew to 25%
 
-But what about the other parameters like ``frequency`` or ``bpm``? To set these, we use
-the :doc:`dot` operator to call functions on our unit.
+But what about the other parameters like ``frequency`` or ``bpm``? Let's first see how
+we can initialize those at startup using the :doc:`dot` operator.
 
 Initialize parameters in the ``begin()`` function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
