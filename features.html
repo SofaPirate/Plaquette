@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Features &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -75,6 +76,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -164,12 +166,12 @@ base units by following <a class="reference internal" href="base_units.html"><sp
 <tbody>
 <tr class="row-even"><td colspan="2"><p><em>Turn LED on:</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">digitalWrite(12,</span> <span class="pre">HIGH);</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">digitalWrite(ledPin,</span> <span class="pre">HIGH);</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">led.on();</span></code></p></td>
 </tr>
 <tr class="row-even"><td colspan="2"><p><em>Check if button is pushed:</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalRead(2)</span> <span class="pre">==</span> <span class="pre">HIGH)</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalRead(buttonPin)</span> <span class="pre">==</span> <span class="pre">HIGH)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(button.isOn())</span></code></p></td>
 </tr>
 </tbody>
@@ -197,12 +199,12 @@ conversions on integer values.</p>
 <tbody>
 <tr class="row-even"><td colspan="2"><p><em>Check if button is released:</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalRead(2)</span> <span class="pre">!=</span> <span class="pre">HIGH)</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(digitalRead(buttonPin)</span> <span class="pre">!=</span> <span class="pre">HIGH)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(!button)</span></code></p></td>
 </tr>
 <tr class="row-even"><td colspan="2"><p><em>Check if sensor value is higher than 70%:</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(analogRead(A0)</span> <span class="pre">&gt;=</span> <span class="pre">716)</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(analogRead(sensorPIN)</span> <span class="pre">&gt;=</span> <span class="pre">716)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(sensor</span> <span class="pre">&gt;=</span> <span class="pre">0.7)</span></code></p></td>
 </tr>
 </tbody>
@@ -219,7 +221,7 @@ for triggering an event based on input sensor input, one can use auto-normalizin
 data-flow software such as <a class="reference external" href="https://cycling74.com/products/max">Max</a>,
 <a class="reference external" href="https://puredata.info">Pure Data</a>, and <a class="reference external" href="https://derivative.ca">TouchDesigner</a>.
 While this can be achieved using function calls, Plaquette provides a
-special <strong>piping operator</strong> (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) which allows data to be sent from one unit
+special <strong>flow operator</strong> (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) which allows data to be sent from one unit
 to another.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -243,13 +245,24 @@ to another.</p>
 <span class="pre">HIGH</span> <span class="pre">:</span> <span class="pre">LOW));</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">(sensor</span> <span class="pre">&gt;=</span> <span class="pre">0.7)</span> <span class="pre">&gt;&gt;</span> <span class="pre">led;</span></code></p></td>
 </tr>
+<tr class="row-even"><td colspan="2"><p><a href="#id5"><span class="problematic" id="id6">*</span></a>Send multiple values to the serial plotter for visualization</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Serial.print(sensor1);</span></code>
+<code class="docutils literal notranslate"><span class="pre">Serial.print(&quot;,</span> <span class="pre">&quot;);</span></code>
+<code class="docutils literal notranslate"><span class="pre">Serial.print(sensor2);</span></code>
+<code class="docutils literal notranslate"><span class="pre">Serial.print(&quot;,</span> <span class="pre">&quot;);</span></code>
+<code class="docutils literal notranslate"><span class="pre">Serial.println(sensor3);</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sensor1</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code>
+<code class="docutils literal notranslate"><span class="pre">sensor2</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code>
+<code class="docutils literal notranslate"><span class="pre">sensor3</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code></p></td>
+</tr>
 </tbody>
 </table>
 <p>Read <a class="reference internal" href="regularizing.html"><span class="doc">Regularizing Signals</span></a> to see how you can take full advantage of
 Plaquette’s signal filtering features.</p>
 </section>
 <section id="real-time">
-<span id="id5"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this heading"></a></h2>
+<span id="id7"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this heading"></a></h2>
 <p>Plaquette avoids blocking processes such as Arduino’s (in)famous <code class="docutils literal notranslate"><span class="pre">delay()</span></code> by
 providing a set of <a class="reference internal" href="timing.html"><span class="doc">timing units</span></a> as well as time-based
 <a class="reference internal" href="generators.html"><span class="doc">signal generators</span></a>. As such, the processing loop is never interrupted,
@@ -260,7 +273,9 @@ allowing interactive and generative processes to flow smoothly.</p>
 Rather, it invites programmers to adopt a frame-by-frame approach to coding similar
 to <a class="reference external" href="https://processing.org/">Processing</a>.</p>
 <p>Compare the following attempt to make an <a class="reference external" href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink">LED blink</a>
-when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
+when pressing a button in Arduino using blocking calls to <code class="docutils literal notranslate"><span class="pre">delay()</span></code> to wait 500 milliseconds (0.5 seconds)
+between each flip of the LED, versus Plaquette’s real-time approach using a square oscillator with a
+one-second period:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -298,8 +313,6 @@ when pressing a button in Arduino, versus Plaquette’s real-time approach:</p>
 <span class="c1">// Square wave 1 second period.</span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">oscillator</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Button is checked at all time.</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"></span>
@@ -334,10 +347,11 @@ to reset the counter to a random integer value using <a class="reference externa
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">   </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// debounce button</span>
+<span class="w">   </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// opening a Serial port in Arduino-style</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;R&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// reset counter</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;R&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// You can still use Serial.read to monitor incoming messages. If &#39;R&#39;, reset counter</span>
 <span class="w">     </span><span class="n">currentPeriod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="c1">// true when value rises (ie. button is pushed)</span>
@@ -388,7 +402,7 @@ a bug in our <a class="reference external" href="https://github.com/SofaPirate/P
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

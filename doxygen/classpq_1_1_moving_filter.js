@@ -1,6 +1,7 @@
 var classpq_1_1_moving_filter =
 [
     [ "MovingFilter", "classpq_1_1_moving_filter.html#a88060341a2e3cf4a8257dec42f237763", null ],
+    [ "MovingFilter", "classpq_1_1_moving_filter.html#a0ab2606dd1d72e3e77c6a1091146a788", null ],
     [ "cutoff", "classpq_1_1_moving_filter.html#aa5d75f1b738c6666f4ada0a54fdd9dba", null ],
     [ "cutoff", "classpq_1_1_moving_filter.html#a7e6b52e05e0cc21a4f693a708f7b466a", null ],
     [ "engine", "classpq_1_1_moving_filter.html#a9a8f1b541423b8e12f08f99141ec32a2", null ],
@@ -17,10 +18,10 @@ var classpq_1_1_moving_filter =
     [ "nSamples", "classpq_1_1_moving_filter.html#aef1287b234e6ff879aeff99fe09e61c8", null ],
     [ "nSteps", "classpq_1_1_moving_filter.html#a34737444936b8e70d3950e7d196a9b6d", null ],
     [ "onEvent", "classpq_1_1_moving_filter.html#a85d4925dfb2341565c63c554ca0a8ce2", null ],
-    [ "operator bool", "classpq_1_1_moving_filter.html#a71ebff10aa760a007055852768535e3f", null ],
-    [ "operator float", "classpq_1_1_moving_filter.html#ab8dd6554f3d7f8c298f0c600f54de6b5", null ],
+    [ "operator bool", "classpq_1_1_moving_filter.html#a0ed114fe40ba138d7b4ba1b07cd6ac8e", null ],
+    [ "operator float", "classpq_1_1_moving_filter.html#ae179d32a1cdbc21ce66971a8f1ac6fc9", null ],
     [ "pauseCalibrating", "classpq_1_1_moving_filter.html#aa1b012a27c3ea7c5ddb034e17ae4e960", null ],
-    [ "put", "classpq_1_1_moving_filter.html#aa29ab780effb0eb1430c30ff33d2498c", null ],
+    [ "put", "classpq_1_1_moving_filter.html#afe3e8c22dcf91db87b4953929f12effd", null ],
     [ "reset", "classpq_1_1_moving_filter.html#a67b686057794bc7b65b6a441fa5dc39a", null ],
     [ "reset", "classpq_1_1_moving_filter.html#aa2712ece4bb7f749a3b051d6afb6a907", null ],
     [ "reset", "classpq_1_1_moving_filter.html#a7f7fc34ff5c84ef2ef5ebc8d78be0d76", null ],

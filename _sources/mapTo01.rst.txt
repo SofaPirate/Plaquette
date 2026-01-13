@@ -35,9 +35,6 @@ See :doc:`mapFloat` for more details.
 
    AnalogOut led(9);
 
-   void begin() {
-   }
-
    void step() {
      // Generate a sinusoidal values between -1 and 1.
      float x = sin(seconds());

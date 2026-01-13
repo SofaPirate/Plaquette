@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>step() &mdash; Plaquette 0.8.2 documentation</title>
+  <title>step() &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -67,10 +67,12 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Engine.html">Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value_units.html">Value Units</a></li>
 <li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">step()</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
@@ -79,7 +81,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="array.html">[] (arrays)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flow.html">&gt;&gt; (flow)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
@@ -87,6 +89,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -124,17 +127,24 @@
              
   <section id="step">
 <h1>step()<a class="headerlink" href="#step" title="Permalink to this heading"></a></h1>
-<p>After creating a <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function, which initializes and sets the initial
-values, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function does precisely what its name suggests, and performs
+<p>The <code class="docutils literal notranslate"><span class="pre">step()</span></code> function does precisely what its name suggests, and performs
 one processing step that loops indefinitely as fast as possible, allowing your
 program to change and respond. Use it to actively control the board.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">step()</span></code> is the Plaquette equivalent of Arduino’s
+<a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/loop/">loop()</a>.</p>
+</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Function <code class="docutils literal notranslate"><span class="pre">step()</span></code> is the Plaquette equivalent of Arduino’s
-<a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/loop/">loop()</a>.
-However, it is highly recommended that this function executes as fast as
+<p>It is highly recommended that this function executes as fast as
 possible. Hence, one should performing computationally-intensive processing
 or calling blocking functions such as <code class="docutils literal notranslate"><span class="pre">delay()</span></code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In Plaquette, function <code class="docutils literal notranslate"><span class="pre">step()</span></code> is <strong>optional</strong>: only declare it if you need it…
+(you will, most of the time!)</p>
 </div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
@@ -143,9 +153,6 @@ or calling blocking functions such as <code class="docutils literal notranslate"
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">button</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
@@ -172,7 +179,7 @@ or calling blocking functions such as <code class="docutils literal notranslate"
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

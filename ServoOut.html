@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ServoOut &mdash; Plaquette 0.8.2 documentation</title>
+  <title>ServoOut &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="StreamIn" href="StreamIn.html" />
+    <link rel="next" title="Community Guidelines" href="community.html" />
     <link rel="prev" title="ContinuousServoOut" href="ContinuousServoOut.html" /> 
 </head>
 
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -78,14 +79,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="StreamIn.html">StreamIn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="StreamOut.html">StreamOut</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -193,12 +193,6 @@ supply together.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8ServoOut6centerEv">
-<span id="_CPPv3N8ServoOut6centerEv"></span><span id="_CPPv2N8ServoOut6centerEv"></span><span id="ServoOut::center"></span><span class="target" id="classpq_1_1_servo_out_1a6630d4f43f2abb57595c5265b08c7776"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut6centerEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Re-centers the servo-motor. </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut3putEf">
 <span id="_CPPv3N8ServoOut3putEf"></span><span id="_CPPv2N8ServoOut3putEf"></span><span id="ServoOut::put__float"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a0697cd97c70230a0ef8f3f42bb21f857"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
@@ -219,6 +213,18 @@ supply together.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8isActiveEv">
+<span id="_CPPv3N8ServoOut8isActiveEv"></span><span id="_CPPv2N8ServoOut8isActiveEv"></span><span id="ServoOut::isActive"></span><span class="target" id="classpq_1_1_abstract_servo_out_1adf66e20f291b5129214f51f1f75955d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8isActiveEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true if the servomotor is active. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8ServoOut11setIsActiveEb">
+<span id="_CPPv3N8ServoOut11setIsActiveEb"></span><span id="_CPPv2N8ServoOut11setIsActiveEb"></span><span id="ServoOut::setIsActive__b"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a896e72f090a7c0e7f3fe877bf9d4ea0f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setIsActive</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">active</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut11setIsActiveEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Activates or deactivates the servomotor. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8activateEv">
 <span id="_CPPv3N8ServoOut8activateEv"></span><span id="_CPPv2N8ServoOut8activateEv"></span><span id="ServoOut::activate"></span><span class="target" id="classpq_1_1_abstract_servo_out_1a710f1efadbbe855e15de5f46e8b7db66"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">activate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8activateEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Activates the servomotor (default). </p>
@@ -228,12 +234,6 @@ supply together.</p>
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut10deactivateEv">
 <span id="_CPPv3N8ServoOut10deactivateEv"></span><span id="_CPPv2N8ServoOut10deactivateEv"></span><span id="ServoOut::deactivate"></span><span class="target" id="classpq_1_1_abstract_servo_out_1ae39cabe094fbc2a0f1da7a69bc8d27ef"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deactivate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut10deactivateEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Deactivates the servomotor. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8ServoOut8isActiveEv">
-<span id="_CPPv3N8ServoOut8isActiveEv"></span><span id="_CPPv2N8ServoOut8isActiveEv"></span><span id="ServoOut::isActive"></span><span class="target" id="classpq_1_1_abstract_servo_out_1adf66e20f291b5129214f51f1f75955d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isActive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut8isActiveEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns true if the servomotor is active. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -286,13 +286,13 @@ supply together.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOutcvfEv">
-<span id="_CPPv3N8ServoOutcvfEv"></span><span id="_CPPv2N8ServoOutcvfEv"></span><span id="ServoOut::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOutcvfEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOutcvfEv"></span><span id="_CPPv2N8ServoOutcvfEv"></span><span id="ServoOut::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOutcvfEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Object can be used directly to access its value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOutcvbEv">
-<span id="_CPPv3N8ServoOutcvbEv"></span><span id="_CPPv2N8ServoOutcvbEv"></span><span id="ServoOut::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOutcvbEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOutcvbEv"></span><span id="_CPPv2N8ServoOutcvbEv"></span><span id="ServoOut::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOutcvbEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
 </dd></dl>
 
@@ -301,13 +301,13 @@ supply together.</p>
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut15analogToDigitalEf">
-<span id="_CPPv3N8ServoOut15analogToDigitalEf"></span><span id="_CPPv2N8ServoOut15analogToDigitalEf"></span><span id="ServoOut::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut15analogToDigitalEf"></span><span id="_CPPv2N8ServoOut15analogToDigitalEf"></span><span id="ServoOut::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts analog (float) value to digital (bool) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8ServoOut15digitalToAnalogEb">
-<span id="_CPPv3N8ServoOut15digitalToAnalogEb"></span><span id="_CPPv2N8ServoOut15digitalToAnalogEb"></span><span id="ServoOut::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8ServoOut15digitalToAnalogEb"></span><span id="_CPPv2N8ServoOut15digitalToAnalogEb"></span><span id="ServoOut::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8ServoOut15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
@@ -329,13 +329,13 @@ supply together.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ContinuousServoOut.html" class="btn btn-neutral float-left" title="ContinuousServoOut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="StreamIn.html" class="btn btn-neutral float-right" title="StreamIn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="community.html" class="btn btn-neutral float-right" title="Community Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

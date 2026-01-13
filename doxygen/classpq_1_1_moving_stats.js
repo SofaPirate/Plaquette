@@ -5,6 +5,7 @@ var classpq_1_1_moving_stats =
     [ "isLowOutlier", "classpq_1_1_moving_stats.html#ad6587f5384a90326899bed86bacdf753", null ],
     [ "isOutlier", "classpq_1_1_moving_stats.html#a5fd05a5e0daf0a6c1efd383263e02fc7", null ],
     [ "mean", "classpq_1_1_moving_stats.html#abf1e5d912a11a585f4526aabefc1cd30", null ],
+    [ "meanSquared", "classpq_1_1_moving_stats.html#a406b923a79f01eaa522d45a438476d0a", null ],
     [ "normalize", "classpq_1_1_moving_stats.html#a245e2c160eee12988e74ba6c959b8961", null ],
     [ "normalize", "classpq_1_1_moving_stats.html#abc2234caa144b795f3fb9096c80a213f", null ],
     [ "reset", "classpq_1_1_moving_stats.html#a6cda846c08ee53dbc9cf30061f00b97c", null ],

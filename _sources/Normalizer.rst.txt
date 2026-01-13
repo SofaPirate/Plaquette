@@ -29,8 +29,6 @@ Uses a normalizer to analyze input sensor values and detect extreme values.
    // Output indicator LED.
    DigitalOut led(13);
 
-   void begin() {}
-
    void step() {
      // Normalize value.
      sensor >> normalizer;

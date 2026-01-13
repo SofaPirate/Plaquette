@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engine &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Engine &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="begin()" href="begin.html" />
+    <link rel="next" title="Value Units" href="value_units.html" />
     <link rel="prev" title="Structure" href="structure.html" /> 
 </head>
 
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
@@ -80,11 +81,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="value_units.html">Value Units</a></li>
 <li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array.html">[] (arrays)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dot.html">. (dot)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipe.html">&gt;&gt; (pipe)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flow.html">&gt;&gt; (flow)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
@@ -92,6 +94,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -202,6 +205,8 @@ timer2 interrupt.</p>
 <span class="n">Metronome</span><span class="w"> </span><span class="nf">toggleMetro</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="w"> </span><span class="n">timerEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome (timer engine).</span>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">timerEngine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Built-in LED (timer engine).</span>
 
+<span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Serial monitor.</span>
+
 <span class="c1">// Primary engine begin().</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">timerEngine</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="c1">// Begin timer engine.</span>
@@ -252,15 +257,15 @@ timer2 interrupt.</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6Engine8preBeginEm">
-<span id="_CPPv3N6Engine8preBeginEm"></span><span id="_CPPv2N6Engine8preBeginEm"></span><span id="Engine::preBegin__unsigned-l"></span><span class="target" id="classpq_1_1_engine_1ac4da59764e8f3fc7473f408e3ae4a583"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preBegin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudrate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_SERIAL_BAUD_RATE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8preBeginEm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Initializes all components (calls begin() on all of them). </p>
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine8preBeginEv">
+<span id="_CPPv3N6Engine8preBeginEv"></span><span id="_CPPv2N6Engine8preBeginEv"></span><span id="Engine::preBegin"></span><span class="target" id="classpq_1_1_engine_1afdb393f45a172ac38de2c6e78545e54a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preBegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8preBeginEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Initializes all components (calls <a class="reference internal" href="#classpq_1_1_engine_1ab3eb899b57f6331eb578420f4103bf51"><span class="std std-ref">begin()</span></a> on all of them). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine9postBeginEv">
 <span id="_CPPv3N6Engine9postBeginEv"></span><span id="_CPPv2N6Engine9postBeginEv"></span><span id="Engine::postBegin"></span><span class="target" id="classpq_1_1_engine_1a9777126f3a019fc4eee4d5d7d4156d2d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">postBegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine9postBeginEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Performs additional tasks after the class to begin(). </p>
+<dd><p>Performs additional tasks after the class to <a class="reference internal" href="#classpq_1_1_engine_1ab3eb899b57f6331eb578420f4103bf51"><span class="std std-ref">begin()</span></a>. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -281,8 +286,8 @@ timer2 interrupt.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6Engine5beginEm">
-<span id="_CPPv3N6Engine5beginEm"></span><span id="_CPPv2N6Engine5beginEm"></span><span id="Engine::begin__unsigned-l"></span><span class="target" id="classpq_1_1_engine_1ae2ad1f5d4704504715112894993b8539"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudrate</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PLAQUETTE_SERIAL_BAUD_RATE</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine5beginEm" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine5beginEv">
+<span id="_CPPv3N6Engine5beginEv"></span><span id="_CPPv2N6Engine5beginEv"></span><span id="Engine::begin"></span><span class="target" id="classpq_1_1_engine_1ab3eb899b57f6331eb578420f4103bf51"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine5beginEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Function to be used within the PlaquetteLib context (needs to be called at top of setup() method). </p>
 </dd></dl>
 
@@ -425,6 +430,18 @@ timer2 interrupt.</p>
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Engine14referenceClockEPFmvE">
+<span id="_CPPv3N6Engine14referenceClockEPFmvE"></span><span id="_CPPv2N6Engine14referenceClockEPFmvE"></span><span class="target" id="classpq_1_1_engine_1a9d438c1bacb73d53686a5339a278c1ed"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">referenceClock</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">clockFunction</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine14referenceClockEPFmvE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Sets base function returning microseconds. </p>
+<p>Default: micros(). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>clockFunction</strong> – pointer to a function returning microseconds </p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
@@ -454,13 +471,13 @@ timer2 interrupt.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="structure.html" class="btn btn-neutral float-left" title="Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="begin.html" class="btn btn-neutral float-right" title="begin()" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="value_units.html" class="btn btn-neutral float-right" title="Value Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

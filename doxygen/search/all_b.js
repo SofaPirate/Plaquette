@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['list_0',['Deprecated List',['../deprecated.html',1,'']]],
-  ['lowoutlierthreshold_1',['lowOutlierThreshold',['../classpq_1_1_normalizer.html#a504e1d3234598ea402beb2e7dcf97bce',1,'pq::Normalizer']]],
-  ['lowquantile_2',['lowQuantile',['../classpq_1_1_robust_scaler.html#a7928ba142c762602fb8268cda9fa750b',1,'pq::RobustScaler']]],
-  ['lowquantilelevel_3',['lowquantilelevel',['../classpq_1_1_robust_scaler.html#ad7140e7f442648b47879bc463f56505c',1,'pq::RobustScaler::lowQuantileLevel(float level)'],['../classpq_1_1_robust_scaler.html#aa299e6f12fcebfcaae5a97a5fb954b9d',1,'pq::RobustScaler::lowQuantileLevel() const']]]
+  ['labels_0',['labels',['../classpq_1_1_plotter.html#a841a788fc6ecf424e35d7407726b09bd',1,'pq::Plotter']]],
+  ['labelview_1',['LabelView',['../structpq_1_1_label_view.html',1,'pq']]],
+  ['list_2',['Deprecated List',['../deprecated.html',1,'']]],
+  ['lowoutlierthreshold_3',['lowOutlierThreshold',['../classpq_1_1_normalizer.html#a504e1d3234598ea402beb2e7dcf97bce',1,'pq::Normalizer']]],
+  ['lowquantile_4',['lowQuantile',['../classpq_1_1_robust_scaler.html#a7928ba142c762602fb8268cda9fa750b',1,'pq::RobustScaler']]],
+  ['lowquantilelevel_5',['lowquantilelevel',['../classpq_1_1_robust_scaler.html#ad7140e7f442648b47879bc463f56505c',1,'pq::RobustScaler::lowQuantileLevel(float level)'],['../classpq_1_1_robust_scaler.html#aa299e6f12fcebfcaae5a97a5fb954b9d',1,'pq::RobustScaler::lowQuantileLevel() const']]]
 ];

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Index &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -64,6 +64,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -72,6 +73,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -139,6 +141,8 @@
       <li><a href="Alarm.html#_CPPv4N5Alarm11changeStateEv">Alarm::changeState (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm15digitalToAnalogEb">Alarm::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="Alarm.html#_CPPv4N5Alarm8DurationEv">Alarm::Duration (C++ function)</a>
 </li>
       <li><a href="Alarm.html#_CPPv4N5Alarm8durationEf">Alarm::duration (C++ function)</a>, <a href="Alarm.html#_CPPv4NK5Alarm8durationEv">[1]</a>
 </li>
@@ -362,10 +366,10 @@
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer7setTimeEf">Chronometer::setTime (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer5startEv">Chronometer::start (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer4stopEv">Chronometer::stop (C++ function)</a>
 </li>
       <li><a href="Chronometer.html#_CPPv4N11Chronometer11togglePauseEv">Chronometer::togglePause (C++ function)</a>
@@ -383,6 +387,8 @@
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut15digitalToAnalogEb">ContinuousServoOut::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut3getEv">ContinuousServoOut::get (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut6invertEv">ContinuousServoOut::invert (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut8isActiveEv">ContinuousServoOut::isActive (C++ function)</a>
 </li>
@@ -402,13 +408,13 @@
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut3putEf">ContinuousServoOut::put (C++ function)</a>
 </li>
-      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut7reverseEv">ContinuousServoOut::reverse (C++ function)</a>
-</li>
       <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut12samplePeriodEv">ContinuousServoOut::samplePeriod (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut10sampleRateEv">ContinuousServoOut::sampleRate (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4NK18ContinuousServoOut7secondsEv">ContinuousServoOut::seconds (C++ function)</a>
+</li>
+      <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut11setIsActiveEb">ContinuousServoOut::setIsActive (C++ function)</a>
 </li>
       <li><a href="ContinuousServoOut.html#_CPPv4N18ContinuousServoOut4stopEv">ContinuousServoOut::stop (C++ function)</a>
 </li>
@@ -578,7 +584,7 @@
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine14autoSampleRateEv">Engine::autoSampleRate (C++ function)</a>
 </li>
-      <li><a href="Engine.html#_CPPv4N6Engine5beginEm">Engine::begin (C++ function)</a>
+      <li><a href="Engine.html#_CPPv4N6Engine5beginEv">Engine::begin (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4NK6Engine21deltaTimeMicroSecondsEv">Engine::deltaTimeMicroSeconds (C++ function)</a>
 </li>
@@ -602,13 +608,15 @@
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine9postBeginEv">Engine::postBegin (C++ function)</a>
 </li>
-      <li><a href="Engine.html#_CPPv4N6Engine8preBeginEm">Engine::preBegin (C++ function)</a>
+      <li><a href="Engine.html#_CPPv4N6Engine8preBeginEv">Engine::preBegin (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine7preStepEv">Engine::preStep (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine7primaryEv">Engine::primary (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine13randomTriggerEf">Engine::randomTrigger (C++ function)</a>
+</li>
+      <li><a href="Engine.html#_CPPv4N6Engine14referenceClockEPFmvE">Engine::referenceClock (C++ function)</a>
 </li>
       <li><a href="Engine.html#_CPPv4N6Engine12samplePeriodEf">Engine::samplePeriod (C++ function)</a>, <a href="Engine.html#_CPPv4NK6Engine12samplePeriodEv">[1]</a>
 </li>
@@ -632,11 +640,15 @@
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome15analogToDigitalEf">Metronome::analogToDigital (C++ function)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome3BpmEv">Metronome::Bpm (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome3bpmEf">Metronome::bpm (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome3bpmEv">[1]</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome15digitalToAnalogEb">Metronome::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome7forwardEv">Metronome::forward (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome9FrequencyEv">Metronome::Frequency (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome9frequencyEf">Metronome::frequency (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome9frequencyEv">[1]</a>
 </li>
@@ -652,7 +664,13 @@
 </li>
       <li><a href="Metronome.html#_CPPv4NK9Metronome9isRunningEv">Metronome::isRunning (C++ function)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome6JitterEv">Metronome::Jitter (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome6jitterEf">Metronome::jitter (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome6jitterEv">[1]</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome17jitteredFrequencyEv">Metronome::jitteredFrequency (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4NK9Metronome14jitteredPeriodEv">Metronome::jitteredPeriod (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5mapToEff">Metronome::mapTo (C++ function)</a>
 </li>
@@ -661,6 +679,8 @@
       <li><a href="Metronome.html#_CPPv4NK9Metronome12microSecondsEv">Metronome::microSeconds (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4NK9Metronome12milliSecondsEv">Metronome::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome8noJitterEv">Metronome::noJitter (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4NK9Metronome6nStepsEv">Metronome::nSteps (C++ function)</a>
 </li>
@@ -674,9 +694,15 @@
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5pauseEv">Metronome::pause (C++ function)</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome6PeriodEv">Metronome::Period (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome6periodEf">Metronome::period (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome6periodEv">[1]</a>
 </li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome5PhaseEv">Metronome::Phase (C++ function)</a>
+</li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5phaseEf">Metronome::phase (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome5phaseEv">[1]</a>
+</li>
+      <li><a href="Metronome.html#_CPPv4N9Metronome10PhaseShiftEv">Metronome::PhaseShift (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome10phaseShiftEf">Metronome::phaseShift (C++ function)</a>, <a href="Metronome.html#_CPPv4NK9Metronome10phaseShiftEv">[1]</a>
 </li>
@@ -696,8 +722,6 @@
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome10setForwardEb">Metronome::setForward (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Metronome.html#_CPPv4N9Metronome7setTimeEf">Metronome::setTime (C++ function)</a>
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome5startEv">Metronome::start (C++ function)</a>
@@ -708,6 +732,8 @@
 </li>
       <li><a href="Metronome.html#_CPPv4N9Metronome11togglePauseEv">Metronome::togglePause (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Metronome.html#_CPPv4N9Metronome13toggleReverseEv">Metronome::toggleReverse (C++ function)</a>
 </li>
       <li><a href="MinMaxScaler.html#_CPPv412MinMaxScaler">MinMaxScaler (C++ class)</a>
@@ -770,6 +796,42 @@
 </li>
       <li><a href="MinMaxScaler.html#_CPPv4N12MinMaxScaler17toggleCalibratingEv">MinMaxScaler::toggleCalibrating (C++ function)</a>
 </li>
+      <li><a href="Monitor.html#_CPPv47Monitor">Monitor (C++ class)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor15analogToDigitalEf">Monitor::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor6deviceEv">Monitor::device (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor15digitalToAnalogEb">Monitor::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor3getEv">Monitor::get (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor5mapToEff">Monitor::mapTo (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor12microSecondsEv">Monitor::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor12milliSecondsEv">Monitor::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor7MonitorER10SerialTypemR6Engine">Monitor::Monitor (C++ function)</a>, <a href="Monitor.html#_CPPv4N7Monitor7MonitorER5PrintR6Engine">[1]</a>, <a href="Monitor.html#_CPPv4N7Monitor7MonitorEmR6Engine">[2]</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor6nStepsEv">Monitor::nSteps (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7MonitorcvbEv">Monitor::operator bool (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7MonitorcvfEv">Monitor::operator float (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor9precisionE7uint8_t">Monitor::precision (C++ function)</a>, <a href="Monitor.html#_CPPv4NK7Monitor9precisionEv">[1]</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor3putEf">Monitor::put (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor12samplePeriodEv">Monitor::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor10sampleRateEv">Monitor::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4NK7Monitor7secondsEv">Monitor::seconds (C++ function)</a>
+</li>
+      <li><a href="Monitor.html#_CPPv4N7Monitor5writeE7uint8_t">Monitor::write (C++ function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -812,16 +874,18 @@
 </li>
       <li><a href="Normalizer.html#_CPPv4NK10Normalizer4meanEv">Normalizer::mean (C++ function)</a>
 </li>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer11meanSquaredEv">Normalizer::meanSquared (C++ function)</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4NK10Normalizer12microSecondsEv">Normalizer::microSeconds (C++ function)</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4NK10Normalizer12milliSecondsEv">Normalizer::milliSeconds (C++ function)</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer7noClampEv">Normalizer::noClamp (C++ function)</a>
 </li>
-      <li><a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEf">Normalizer::normalize (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEfff">[1]</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEf">Normalizer::normalize (C++ function)</a>, <a href="Normalizer.html#_CPPv4NK10Normalizer9normalizeEfff">[1]</a>
+</li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerER6Engine">Normalizer::Normalizer (C++ function)</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEfR6Engine">[1]</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEffR6Engine">[2]</a>, <a href="Normalizer.html#_CPPv4N10Normalizer10NormalizerEfffR6Engine">[3]</a>
 </li>
       <li><a href="Normalizer.html#_CPPv4N10Normalizer12noTimeWindowEv">Normalizer::noTimeWindow (C++ function)</a>
@@ -934,8 +998,6 @@
 </li>
       <li><a href="PivotField.html#_CPPv4N10PivotField2atEf">PivotField::at (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PivotField.html#_CPPv4N10PivotField9bumpWidthEf">PivotField::bumpWidth (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField9bumpWidthEv">[1]</a>
 </li>
       <li><a href="PivotField.html#_CPPv4N10PivotField6centerEf">PivotField::center (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField6centerEv">[1]</a>
@@ -956,6 +1018,8 @@
 </li>
       <li><a href="PivotField.html#_CPPv4N10PivotField4modeE14PivotFieldMode">PivotField::mode (C++ function)</a>, <a href="PivotField.html#_CPPv4NK10PivotField4modeEv">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PivotField.html#_CPPv4N10PivotField8noEasingEv">PivotField::noEasing (C++ function)</a>
 </li>
       <li><a href="PivotField.html#_CPPv4N10PivotField11noRampWidthEv">PivotField::noRampWidth (C++ function)</a>
@@ -983,6 +1047,46 @@
       <li><a href="PivotField.html#_CPPv4NK10PivotField7secondsEv">PivotField::seconds (C++ function)</a>
 </li>
       <li><a href="PivotField.html#_CPPv4N10PivotFieldD0Ev">PivotField::~PivotField (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv47Plotter">Plotter (C++ class)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter15analogToDigitalEf">Plotter::analogToDigital (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter9beginPlotEv">Plotter::beginPlot (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter15digitalToAnalogEb">Plotter::digitalToAnalog (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter7endPlotEv">Plotter::endPlot (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter6formatE13PlotterFormat">Plotter::format (C++ function)</a>, <a href="Plotter.html#_CPPv4N7Plotter6formatE19PlotterFormatPreset">[1]</a>, <a href="Plotter.html#_CPPv4N7Plotter6formatEv">[2]</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter16formatFromPresetE19PlotterFormatPresetPKc">Plotter::formatFromPreset (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter3getEv">Plotter::get (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter6labelsEv">Plotter::labels (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter5mapToEff">Plotter::mapTo (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter12microSecondsEv">Plotter::microSeconds (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter12milliSecondsEv">Plotter::milliSeconds (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter6nStepsEv">Plotter::nSteps (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7PlottercvbEv">Plotter::operator bool (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7PlottercvfEv">Plotter::operator float (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter9precisionE7uint8_t">Plotter::precision (C++ function)</a>, <a href="Plotter.html#_CPPv4NK7Plotter9precisionEv">[1]</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4N7Plotter3putEf">Plotter::put (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter12samplePeriodEv">Plotter::samplePeriod (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter10sampleRateEv">Plotter::sampleRate (C++ function)</a>
+</li>
+      <li><a href="Plotter.html#_CPPv4NK7Plotter7secondsEv">Plotter::seconds (C++ function)</a>
 </li>
       <li><a href="mapFloat.html#_CPPv4N2pq8mapFloatEddddd7MapMode">pq::mapFloat (C++ function)</a>
 </li>
@@ -1014,7 +1118,9 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp15digitalToAnalogEb">Ramp::digitalToAnalog (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[1]</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp8DurationEv">Ramp::Duration (C++ function)</a>
+</li>
+      <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp8durationEf">[1]</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[2]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp15durationToSpeedEf">Ramp::durationToSpeed (C++ function)</a>
 </li>
@@ -1024,7 +1130,7 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8finishedEv">Ramp::finished (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp4fromEf">Ramp::from (C++ function)</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp4fromEf">Ramp::from (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp4fromEv">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp6fromToEff">Ramp::fromTo (C++ function)</a>
 </li>
@@ -1078,17 +1184,19 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp7setTimeEf">Ramp::setTime (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp5speedEf">Ramp::speed (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp5speedEv">[1]</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp5SpeedEv">Ramp::Speed (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4NK4Ramp15speedToDurationEf">Ramp::speedToDuration (C++ function)</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp5speedEf">Ramp::speed (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp5speedEv">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Ramp.html#_CPPv4NK4Ramp15speedToDurationEf">Ramp::speedToDuration (C++ function)</a>
+</li>
       <li><a href="Ramp.html#_CPPv4N4Ramp5startEf">Ramp::start (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEff15easing_function">[1]</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEfff15easing_function">[2]</a>, <a href="Ramp.html#_CPPv4N4Ramp5startEv">[3]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp4stopEv">Ramp::stop (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp2toEf">Ramp::to (C++ function)</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp2toEf">Ramp::to (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp2toEv">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp11togglePauseEv">Ramp::togglePause (C++ function)</a>
 </li>
@@ -1172,8 +1280,6 @@
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut15analogToDigitalEf">ServoOut::analogToDigital (C++ function)</a>
 </li>
-      <li><a href="ServoOut.html#_CPPv4N8ServoOut6centerEv">ServoOut::center (C++ function)</a>
-</li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut10deactivateEv">ServoOut::deactivate (C++ function)</a>
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut15digitalToAnalogEb">ServoOut::digitalToAnalog (C++ function)</a>
@@ -1209,6 +1315,8 @@
       <li><a href="ServoOut.html#_CPPv4NK8ServoOut7secondsEv">ServoOut::seconds (C++ function)</a>
 </li>
       <li><a href="ServoOut.html#_CPPv4N8ServoOut8ServoOutE7uint8_tR6Engine">ServoOut::ServoOut (C++ function)</a>
+</li>
+      <li><a href="ServoOut.html#_CPPv4N8ServoOut11setIsActiveEb">ServoOut::setIsActive (C++ function)</a>
 </li>
       <li><a href="Smoother.html#_CPPv48Smoother">Smoother (C++ class)</a>
 </li>
@@ -1416,13 +1524,17 @@
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave15analogToDigitalEf">Wave::analogToDigital (C++ function)</a>
 </li>
-      <li><a href="Wave.html#_CPPv4N4Wave7atPhaseEf">Wave::atPhase (C++ function)</a>
+      <li><a href="Wave.html#_CPPv4NK4Wave7atPhaseEf">Wave::atPhase (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave3BpmEv">Wave::Bpm (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave3bpmEf">Wave::bpm (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave3bpmEv">[1]</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave15digitalToAnalogEb">Wave::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave7forwardEv">Wave::forward (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave9FrequencyEv">Wave::Frequency (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave9frequencyEf">Wave::frequency (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave9frequencyEv">[1]</a>
 </li>
@@ -1432,7 +1544,13 @@
 </li>
       <li><a href="Wave.html#_CPPv4NK4Wave9isRunningEv">Wave::isRunning (C++ function)</a>
 </li>
+      <li><a href="Wave.html#_CPPv4N4Wave6JitterEv">Wave::Jitter (C++ function)</a>
+</li>
       <li><a href="Wave.html#_CPPv4N4Wave6jitterEf">Wave::jitter (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave6jitterEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave17jitteredFrequencyEv">Wave::jitteredFrequency (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4NK4Wave14jitteredPeriodEv">Wave::jitteredPeriod (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave5mapToEff">Wave::mapTo (C++ function)</a>
 </li>
@@ -1440,21 +1558,35 @@
 </li>
       <li><a href="Wave.html#_CPPv4NK4Wave12milliSecondsEv">Wave::milliSeconds (C++ function)</a>
 </li>
+      <li><a href="Wave.html#_CPPv4N4Wave8noJitterEv">Wave::noJitter (C++ function)</a>
+</li>
       <li><a href="Wave.html#_CPPv4NK4Wave6nStepsEv">Wave::nSteps (C++ function)</a>
 </li>
-      <li><a href="Wave.html#_CPPv4N4Wave6onBangE13EventCallback">Wave::onBang (C++ function)</a>
+      <li><a href="Wave.html#_CPPv4N4Wave12onPassPeriodE13EventCallback">Wave::onPassPeriod (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave10onPassSkewE13EventCallback">Wave::onPassSkew (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4WavecvbEv">Wave::operator bool (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4WavecvfEv">Wave::operator float (C++ function)</a>
 </li>
-      <li><a href="Wave.html#_CPPv4N4Wave5pauseEv">Wave::pause (C++ function)</a>
+      <li><a href="Wave.html#_CPPv4NK4Wave12passedPeriodEv">Wave::passedPeriod (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="Wave.html#_CPPv4NK4Wave10passedSkewEv">Wave::passedSkew (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave5pauseEv">Wave::pause (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave6PeriodEv">Wave::Period (C++ function)</a>
+</li>
       <li><a href="Wave.html#_CPPv4N4Wave6periodEf">Wave::period (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave6periodEv">[1]</a>
 </li>
+      <li><a href="Wave.html#_CPPv4N4Wave5PhaseEv">Wave::Phase (C++ function)</a>
+</li>
       <li><a href="Wave.html#_CPPv4N4Wave5phaseEf">Wave::phase (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave5phaseEv">[1]</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave10PhaseShiftEv">Wave::PhaseShift (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave10phaseShiftEf">Wave::phaseShift (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave10phaseShiftEv">[1]</a>
 </li>
@@ -1476,9 +1608,11 @@
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave5shapeE9WaveShape">Wave::shape (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave5shapeEv">[1]</a>
 </li>
-      <li><a href="Wave.html#_CPPv4N4Wave7shiftByEf">Wave::shiftBy (C++ function)</a>
+      <li><a href="Wave.html#_CPPv4NK4Wave7shiftByEf">Wave::shiftBy (C++ function)</a>
 </li>
-      <li><a href="Wave.html#_CPPv4N4Wave11shiftByTimeEf">Wave::shiftByTime (C++ function)</a>
+      <li><a href="Wave.html#_CPPv4NK4Wave11shiftByTimeEf">Wave::shiftByTime (C++ function)</a>
+</li>
+      <li><a href="Wave.html#_CPPv4N4Wave4SkewEv">Wave::Skew (C++ function)</a>
 </li>
       <li><a href="Wave.html#_CPPv4N4Wave4skewEf">Wave::skew (C++ function)</a>, <a href="Wave.html#_CPPv4NK4Wave4skewEv">[1]</a>
 </li>
@@ -1508,7 +1642,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

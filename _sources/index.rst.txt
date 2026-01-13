@@ -38,6 +38,7 @@ Reference
    generators
    timing
    filters
+   communication
    fields
    functions
    structure
@@ -51,6 +52,7 @@ Libraries
    :titlesonly:
 
    PqLEDStrip <https://github.com/SofaPirate/PqLEDStrip/>
+   PqOsc <https://github.com/SofaPirate/PqOsc/>
 
 Related Info
 ============

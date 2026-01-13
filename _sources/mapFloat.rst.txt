@@ -51,9 +51,6 @@ values as in `constrain() <https://www.arduino.cc/reference/en/language/function
 
    DigitalOut led(13);
 
-   void begin() {
-   }
-
    void step() {
      // Change frequency between 2Hz and 15Hz over a 30 seconds period, then the frequency will stay at 15Hz.
      float freq = mapFloat(seconds(), 0.0, 30.0, 2.0, 15.0, CONSTRAIN); // try removing CONSTRAIN and see what happens

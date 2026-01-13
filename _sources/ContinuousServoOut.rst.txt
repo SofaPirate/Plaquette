@@ -38,7 +38,7 @@ starts moving in the opposite direction.
   void begin() {
     // Debounce button.
     button.debounce();
-    // Starts the servo.
+    // Initialize servo position
     servo.put(1.0);
   }
 

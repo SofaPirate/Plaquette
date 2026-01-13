@@ -92,6 +92,8 @@ timer2 interrupt.
   Metronome toggleMetro(0.25, timerEngine); // Metronome (timer engine).
   DigitalOut led(LED_BUILTIN, timerEngine); // Built-in LED (timer engine).
 
+  Monitor monitor(115200); // Serial monitor.
+
   // Primary engine begin().
   void begin() {
     timerEngine.begin(); // Begin timer engine.

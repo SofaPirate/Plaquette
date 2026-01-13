@@ -96,6 +96,7 @@ $(document).ready(function(){initNavTree('classpq_1_1_alarm.html',''); initResiz
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -121,7 +122,7 @@ Inheritance diagram for pq::Alarm:</div>
 <area shape="poly" title=" " alt="" coords="66,191,68,225,63,225,61,191"/>
 <area shape="rect" href="classpq_1_1_unit.html" title="A generic class representing a unit in the system." alt="" coords="27,79,95,104"/>
 <area shape="poly" title=" " alt="" coords="64,118,64,152,59,152,59,118"/>
-<area shape="rect" href="classpq_1_1_chainable.html" title=" " alt="" coords="10,5,113,31"/>
+<area shape="rect" href="classpq_1_1_flowable.html" title=" " alt="" coords="13,5,109,31"/>
 <area shape="poly" title=" " alt="" coords="64,44,64,79,59,79,59,44"/>
 <area shape="rect" href="classpq_1_1_abstract_timer.html" title=" " alt="" coords="155,225,282,251"/>
 <area shape="poly" title=" " alt="" coords="198,262,156,300,152,296,194,258"/>
@@ -143,7 +144,7 @@ Collaboration diagram for pq::Alarm:</div>
 <area shape="poly" title=" " alt="" coords="66,191,68,225,63,225,61,191"/>
 <area shape="rect" href="classpq_1_1_unit.html" title="A generic class representing a unit in the system." alt="" coords="27,79,95,104"/>
 <area shape="poly" title=" " alt="" coords="64,118,64,152,59,152,59,118"/>
-<area shape="rect" href="classpq_1_1_chainable.html" title=" " alt="" coords="10,5,113,31"/>
+<area shape="rect" href="classpq_1_1_flowable.html" title=" " alt="" coords="13,5,109,31"/>
 <area shape="poly" title=" " alt="" coords="64,44,64,79,59,79,59,44"/>
 <area shape="rect" href="classpq_1_1_abstract_timer.html" title=" " alt="" coords="155,225,282,251"/>
 <area shape="poly" title=" " alt="" coords="198,262,156,300,152,296,194,258"/>
@@ -154,6 +155,12 @@ Collaboration diagram for pq::Alarm:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab9752776c3582bfa4afa5e68511509a7" id="r_ab9752776c3582bfa4afa5e68511509a7"><td class="memItemLeft" align="right" valign="top"><a id="ab9752776c3582bfa4afa5e68511509a7" name="ab9752776c3582bfa4afa5e68511509a7"></a>
+typedef <a class="el" href="classpq_1_1_parameter_slot.html">ParameterSlot</a>&lt; <a class="el" href="classpq_1_1_abstract_timer.html">AbstractTimer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Parameter</b></td></tr>
+<tr class="separator:ab9752776c3582bfa4afa5e68511509a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ff0a4e8c142f09c9d8c4737ecec7ec1" id="r_a3ff0a4e8c142f09c9d8c4737ecec7ec1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_alarm.html#a3ff0a4e8c142f09c9d8c4737ecec7ec1">Alarm</a> (<a class="el" href="classpq_1_1_engine.html">Engine</a> &amp;<a class="el" href="classpq_1_1_unit.html#a9a8f1b541423b8e12f08f99141ec32a2">engine</a>=<a class="el" href="classpq_1_1_engine.html#a45a0de76dadb5e62933ae5e29f2621d2">Engine::primary</a>())</td></tr>
@@ -283,6 +290,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (fl
 <tr class="memitem:adc25c02b7a2606cd74be8b7b8c6ca3e2" id="r_adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_timer.html#adc25c02b7a2606cd74be8b7b8c6ca3e2">duration</a> () const</td></tr>
 <tr class="memdesc:adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns duration.  <br /></td></tr>
 <tr class="separator:adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8202320c1eeab81357d2e6f15e37ad1" id="r_aa8202320c1eeab81357d2e6f15e37ad1"><td class="memItemLeft" align="right" valign="top"><a id="aa8202320c1eeab81357d2e6f15e37ad1" name="aa8202320c1eeab81357d2e6f15e37ad1"></a>
+virtual <a class="el" href="classpq_1_1_parameter_slot.html">Parameter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Duration</b> ()</td></tr>
+<tr class="memdesc:aa8202320c1eeab81357d2e6f15e37ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns duration as a parameter. <br /></td></tr>
+<tr class="separator:aa8202320c1eeab81357d2e6f15e37ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a853baae3f098000ae4410bf1029a661b" id="r_a853baae3f098000ae4410bf1029a661b"><td class="memItemLeft" align="right" valign="top"><a id="a853baae3f098000ae4410bf1029a661b" name="a853baae3f098000ae4410bf1029a661b"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>progress</b> () const</td></tr>
 <tr class="memdesc:a853baae3f098000ae4410bf1029a661b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The progress of the timer process (in %). <br /></td></tr>
@@ -328,14 +339,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>togglePause</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9a486b1ae36f0c9019b81ed6020e3569" id="r_a9a486b1ae36f0c9019b81ed6020e3569"><td class="memItemLeft" align="right" valign="top"><a id="a9a486b1ae36f0c9019b81ed6020e3569" name="a9a486b1ae36f0c9019b81ed6020e3569"></a>
+<tr class="memitem:aa9e3a88641cf8708489ae7e75fa820b8" id="r_aa9e3a88641cf8708489ae7e75fa820b8"><td class="memItemLeft" align="right" valign="top"><a id="aa9e3a88641cf8708489ae7e75fa820b8" name="aa9e3a88641cf8708489ae7e75fa820b8"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>analogToDigital</b> (float f)</td></tr>
-<tr class="memdesc:a9a486b1ae36f0c9019b81ed6020e3569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts analog (float) value to digital (bool) value. <br /></td></tr>
-<tr class="separator:a9a486b1ae36f0c9019b81ed6020e3569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83d532694479bab5046887c3f7968730" id="r_a83d532694479bab5046887c3f7968730"><td class="memItemLeft" align="right" valign="top"><a id="a83d532694479bab5046887c3f7968730" name="a83d532694479bab5046887c3f7968730"></a>
+<tr class="memdesc:aa9e3a88641cf8708489ae7e75fa820b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts analog (float) value to digital (bool) value. <br /></td></tr>
+<tr class="separator:aa9e3a88641cf8708489ae7e75fa820b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e3b46eb1eb516715732780b68d2a0c" id="r_aa3e3b46eb1eb516715732780b68d2a0c"><td class="memItemLeft" align="right" valign="top"><a id="aa3e3b46eb1eb516715732780b68d2a0c" name="aa3e3b46eb1eb516715732780b68d2a0c"></a>
 static float&#160;</td><td class="memItemRight" valign="bottom"><b>digitalToAnalog</b> (bool b)</td></tr>
-<tr class="memdesc:a83d532694479bab5046887c3f7968730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts digital (bool) value to analog (float) value. <br /></td></tr>
-<tr class="separator:a83d532694479bab5046887c3f7968730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aa3e3b46eb1eb516715732780b68d2a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts digital (bool) value to analog (float) value. <br /></td></tr>
+<tr class="separator:aa3e3b46eb1eb516715732780b68d2a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -602,7 +613,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Returns duration. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#ae9aad4d3abffad065836e6c831f8a600">pq::Ramp</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#adc25c02b7a2606cd74be8b7b8c6ca3e2">pq::Ramp</a>.</p>
 
 </div>
 </div>
@@ -632,7 +643,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Sets the duration of the chronometer. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#a7f9da111f5c0a0a4c3102ad572341b46">pq::Ramp</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#a1278f2208903d72d7b4414657b564d2c">pq::Ramp</a>, and <a class="el" href="classpq_1_1_ramp.html#a89dae75ccd0f080b0d69064385810885">pq::Ramp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +702,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Returns value as float (either 0.0 or 1.0). </p>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#a2c77609e16212b1aed758ad166db47de">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#ae782a011ffcfe253106a02ee6d9cff3b">pq::Flowable</a>.</p>
 
 </div>
 </div>
@@ -878,7 +889,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Maps value to new range. </p>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#a5a8c57d4edc84dadaf764be3f4643e7f">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#ac610a799e5514352288aef726e579f4d">pq::Flowable</a>.</p>
 
 </div>
 </div>
@@ -944,7 +955,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the new value of the unit </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#aa29ab780effb0eb1430c30ff33d2498c">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#afe3e8c22dcf91db87b4953929f12effd">pq::Flowable</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_peak_detector.html#a26b87ccd1659a14d9b903f7c382909cb">pq::PeakDetector</a>.</p>
 
@@ -1114,7 +1125,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_alarm.html">Alarm</a></li>
-    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 12 2026 23:52:56 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

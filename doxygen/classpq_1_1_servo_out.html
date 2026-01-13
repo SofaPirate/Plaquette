@@ -121,7 +121,7 @@ Inheritance diagram for pq::ServoOut:</div>
 <area shape="poly" title=" " alt="" coords="88,186,118,224,114,227,84,190"/>
 <area shape="rect" href="classpq_1_1_unit.html" title="A generic class representing a unit in the system." alt="" coords="34,79,102,104"/>
 <area shape="poly" title=" " alt="" coords="71,118,71,152,65,152,65,118"/>
-<area shape="rect" href="classpq_1_1_chainable.html" title=" " alt="" coords="17,5,119,31"/>
+<area shape="rect" href="classpq_1_1_flowable.html" title=" " alt="" coords="20,5,116,31"/>
 <area shape="poly" title=" " alt="" coords="71,44,71,79,65,79,65,44"/>
 <area shape="rect" title=" " alt="" coords="155,152,211,177"/>
 <area shape="poly" title=" " alt="" coords="167,190,137,227,133,224,163,186"/>
@@ -139,7 +139,7 @@ Collaboration diagram for pq::ServoOut:</div>
 <area shape="poly" title=" " alt="" coords="88,186,118,224,114,227,84,190"/>
 <area shape="rect" href="classpq_1_1_unit.html" title="A generic class representing a unit in the system." alt="" coords="34,79,102,104"/>
 <area shape="poly" title=" " alt="" coords="71,118,71,152,65,152,65,118"/>
-<area shape="rect" href="classpq_1_1_chainable.html" title=" " alt="" coords="17,5,119,31"/>
+<area shape="rect" href="classpq_1_1_flowable.html" title=" " alt="" coords="20,5,116,31"/>
 <area shape="poly" title=" " alt="" coords="71,44,71,79,65,79,65,44"/>
 <area shape="rect" title=" " alt="" coords="155,152,211,177"/>
 <area shape="poly" title=" " alt="" coords="167,190,137,227,133,224,163,186"/>
@@ -158,10 +158,6 @@ Public Member Functions</h2></td></tr>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>getAngle</b> ()</td></tr>
 <tr class="memdesc:a4a06c1e4366c5757dd4529f88556f849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current angular angle in [0, 180]. <br /></td></tr>
 <tr class="separator:a4a06c1e4366c5757dd4529f88556f849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6630d4f43f2abb57595c5265b08c7776" id="r_a6630d4f43f2abb57595c5265b08c7776"><td class="memItemLeft" align="right" valign="top"><a id="a6630d4f43f2abb57595c5265b08c7776" name="a6630d4f43f2abb57595c5265b08c7776"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>center</b> ()</td></tr>
-<tr class="memdesc:a6630d4f43f2abb57595c5265b08c7776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-centers the servo-motor. <br /></td></tr>
-<tr class="separator:a6630d4f43f2abb57595c5265b08c7776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0697cd97c70230a0ef8f3f42bb21f857" id="r_a0697cd97c70230a0ef8f3f42bb21f857"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_servo_out.html#a0697cd97c70230a0ef8f3f42bb21f857">put</a> (float value)</td></tr>
 <tr class="memdesc:a0697cd97c70230a0ef8f3f42bb21f857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes value into the unit.  <br /></td></tr>
 <tr class="separator:a0697cd97c70230a0ef8f3f42bb21f857"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,6 +165,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>center</b> ()
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pin</b> () const</td></tr>
 <tr class="memdesc:a89692386faed8fb012ee6193c59f5f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pin this servomotor is attached to. <br /></td></tr>
 <tr class="separator:a89692386faed8fb012ee6193c59f5f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf66e20f291b5129214f51f1f75955d6" id="r_adf66e20f291b5129214f51f1f75955d6"><td class="memItemLeft" align="right" valign="top"><a id="adf66e20f291b5129214f51f1f75955d6" name="adf66e20f291b5129214f51f1f75955d6"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
+<tr class="memdesc:adf66e20f291b5129214f51f1f75955d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the servomotor is active. <br /></td></tr>
+<tr class="separator:adf66e20f291b5129214f51f1f75955d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896e72f090a7c0e7f3fe877bf9d4ea0f" id="r_a896e72f090a7c0e7f3fe877bf9d4ea0f"><td class="memItemLeft" align="right" valign="top"><a id="a896e72f090a7c0e7f3fe877bf9d4ea0f" name="a896e72f090a7c0e7f3fe877bf9d4ea0f"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsActive</b> (bool active)</td></tr>
+<tr class="memdesc:a896e72f090a7c0e7f3fe877bf9d4ea0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates or deactivates the servomotor. <br /></td></tr>
+<tr class="separator:a896e72f090a7c0e7f3fe877bf9d4ea0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a710f1efadbbe855e15de5f46e8b7db66" id="r_a710f1efadbbe855e15de5f46e8b7db66"><td class="memItemLeft" align="right" valign="top"><a id="a710f1efadbbe855e15de5f46e8b7db66" name="a710f1efadbbe855e15de5f46e8b7db66"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>activate</b> ()</td></tr>
 <tr class="memdesc:a710f1efadbbe855e15de5f46e8b7db66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates the servomotor (default). <br /></td></tr>
@@ -177,10 +181,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>activate</b> 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>deactivate</b> ()</td></tr>
 <tr class="memdesc:ae39cabe094fbc2a0f1da7a69bc8d27ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivates the servomotor. <br /></td></tr>
 <tr class="separator:ae39cabe094fbc2a0f1da7a69bc8d27ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf66e20f291b5129214f51f1f75955d6" id="r_adf66e20f291b5129214f51f1f75955d6"><td class="memItemLeft" align="right" valign="top"><a id="adf66e20f291b5129214f51f1f75955d6" name="adf66e20f291b5129214f51f1f75955d6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
-<tr class="memdesc:adf66e20f291b5129214f51f1f75955d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the servomotor is active. <br /></td></tr>
-<tr class="separator:adf66e20f291b5129214f51f1f75955d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ce78aafe60140b632dd1e14f035f475" id="r_a3ce78aafe60140b632dd1e14f035f475"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_analog_source.html#a3ce78aafe60140b632dd1e14f035f475">get</a> ()</td></tr>
 <tr class="memdesc:a3ce78aafe60140b632dd1e14f035f475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns value in [0, 1].  <br /></td></tr>
 <tr class="separator:a3ce78aafe60140b632dd1e14f035f475"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,25 +214,25 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>sampleRate</b> () co
 float&#160;</td><td class="memItemRight" valign="bottom"><b>samplePeriod</b> () const</td></tr>
 <tr class="memdesc:ab17e40c0391f5c5fb115974d7b75646c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns enginesample period. <br /></td></tr>
 <tr class="separator:ab17e40c0391f5c5fb115974d7b75646c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8dd6554f3d7f8c298f0c600f54de6b5" id="r_ab8dd6554f3d7f8c298f0c600f54de6b5"><td class="memItemLeft" align="right" valign="top"><a id="ab8dd6554f3d7f8c298f0c600f54de6b5" name="ab8dd6554f3d7f8c298f0c600f54de6b5"></a>
+<tr class="memitem:ae179d32a1cdbc21ce66971a8f1ac6fc9" id="r_ae179d32a1cdbc21ce66971a8f1ac6fc9"><td class="memItemLeft" align="right" valign="top"><a id="ae179d32a1cdbc21ce66971a8f1ac6fc9" name="ae179d32a1cdbc21ce66971a8f1ac6fc9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator float</b> ()</td></tr>
-<tr class="memdesc:ab8dd6554f3d7f8c298f0c600f54de6b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object can be used directly to access its value. <br /></td></tr>
-<tr class="separator:ab8dd6554f3d7f8c298f0c600f54de6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71ebff10aa760a007055852768535e3f" id="r_a71ebff10aa760a007055852768535e3f"><td class="memItemLeft" align="right" valign="top"><a id="a71ebff10aa760a007055852768535e3f" name="a71ebff10aa760a007055852768535e3f"></a>
+<tr class="memdesc:ae179d32a1cdbc21ce66971a8f1ac6fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object can be used directly to access its value. <br /></td></tr>
+<tr class="separator:ae179d32a1cdbc21ce66971a8f1ac6fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed114fe40ba138d7b4ba1b07cd6ac8e" id="r_a0ed114fe40ba138d7b4ba1b07cd6ac8e"><td class="memItemLeft" align="right" valign="top"><a id="a0ed114fe40ba138d7b4ba1b07cd6ac8e" name="a0ed114fe40ba138d7b4ba1b07cd6ac8e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator bool</b> ()</td></tr>
-<tr class="memdesc:a71ebff10aa760a007055852768535e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator that allows usage in conditional expressions. <br /></td></tr>
-<tr class="separator:a71ebff10aa760a007055852768535e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a0ed114fe40ba138d7b4ba1b07cd6ac8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator that allows usage in conditional expressions. <br /></td></tr>
+<tr class="separator:a0ed114fe40ba138d7b4ba1b07cd6ac8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9a486b1ae36f0c9019b81ed6020e3569" id="r_a9a486b1ae36f0c9019b81ed6020e3569"><td class="memItemLeft" align="right" valign="top"><a id="a9a486b1ae36f0c9019b81ed6020e3569" name="a9a486b1ae36f0c9019b81ed6020e3569"></a>
+<tr class="memitem:aa9e3a88641cf8708489ae7e75fa820b8" id="r_aa9e3a88641cf8708489ae7e75fa820b8"><td class="memItemLeft" align="right" valign="top"><a id="aa9e3a88641cf8708489ae7e75fa820b8" name="aa9e3a88641cf8708489ae7e75fa820b8"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>analogToDigital</b> (float f)</td></tr>
-<tr class="memdesc:a9a486b1ae36f0c9019b81ed6020e3569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts analog (float) value to digital (bool) value. <br /></td></tr>
-<tr class="separator:a9a486b1ae36f0c9019b81ed6020e3569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83d532694479bab5046887c3f7968730" id="r_a83d532694479bab5046887c3f7968730"><td class="memItemLeft" align="right" valign="top"><a id="a83d532694479bab5046887c3f7968730" name="a83d532694479bab5046887c3f7968730"></a>
+<tr class="memdesc:aa9e3a88641cf8708489ae7e75fa820b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts analog (float) value to digital (bool) value. <br /></td></tr>
+<tr class="separator:aa9e3a88641cf8708489ae7e75fa820b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e3b46eb1eb516715732780b68d2a0c" id="r_aa3e3b46eb1eb516715732780b68d2a0c"><td class="memItemLeft" align="right" valign="top"><a id="aa3e3b46eb1eb516715732780b68d2a0c" name="aa3e3b46eb1eb516715732780b68d2a0c"></a>
 static float&#160;</td><td class="memItemRight" valign="bottom"><b>digitalToAnalog</b> (bool b)</td></tr>
-<tr class="memdesc:a83d532694479bab5046887c3f7968730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts digital (bool) value to analog (float) value. <br /></td></tr>
-<tr class="separator:a83d532694479bab5046887c3f7968730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aa3e3b46eb1eb516715732780b68d2a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts digital (bool) value to analog (float) value. <br /></td></tr>
+<tr class="separator:aa3e3b46eb1eb516715732780b68d2a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -384,7 +384,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 
 <p>Returns value in [0, 1]. </p>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#a2c77609e16212b1aed758ad166db47de">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#ae782a011ffcfe253106a02ee6d9cff3b">pq::Flowable</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_abstract_wave.html#a4c1c81ca251fca3a788c91d0c40a4167">pq::AbstractWave</a>, and <a class="el" href="classpq_1_1_robust_scaler.html#ab8e4f95d0366e2e0e75f87a0f62a1956">pq::RobustScaler</a>.</p>
 
@@ -426,7 +426,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 
 <p>Maps value to new range. </p>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#a5a8c57d4edc84dadaf764be3f4643e7f">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#ac610a799e5514352288aef726e579f4d">pq::Flowable</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classpq_1_1_normalizer.html#a44dbcca93311af5d45de6866b4267f1b">pq::Normalizer</a>, <a class="el" href="classpq_1_1_stream_in.html#aedf689473eef97a667e41acd9c54bbe5">pq::StreamIn</a>, and <a class="el" href="classpq_1_1_stream_out.html#a069e6ab57b47b60a067a76ecc3870ee4">pq::StreamOut</a>.</p>
 
@@ -465,7 +465,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the new value of the unit </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classpq_1_1_chainable.html#aa29ab780effb0eb1430c30ff33d2498c">pq::Chainable</a>.</p>
+<p>Reimplemented from <a class="el" href="classpq_1_1_flowable.html#afe3e8c22dcf91db87b4953929f12effd">pq::Flowable</a>.</p>
 
 </div>
 </div>
@@ -514,7 +514,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_value</b></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_servo_out.html">ServoOut</a></li>
-    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 12 2026 23:52:56 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

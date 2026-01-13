@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wave &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Wave &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -84,6 +84,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -92,6 +93,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -136,7 +138,7 @@
 <a class="reference internal" href="#square-wave"><span class="std std-ref">SQUARE (default)</span></a>, <a class="reference internal" href="#triangle-wave"><span class="std std-ref">TRIANGLE</span></a> or <a class="reference internal" href="#sine-wave"><span class="std std-ref">SINE</span></a>.</p>
 <a class="reference internal image-reference" href="_images/Plaquette-SquareWave.png"><img alt="_images/Plaquette-SquareWave.png" src="_images/Plaquette-SquareWave.png" style="width: 33%;" /></a>
 <a class="reference internal image-reference" href="_images/Plaquette-TriangleWave.png"><img alt="_images/Plaquette-TriangleWave.png" src="_images/Plaquette-TriangleWave.png" style="width: 33%;" /></a>
-<a class="reference internal image-reference" href="_images/Plaquette-SineWave-noSkew.png"><img alt="_images/Plaquette-SineWave-noSkew.png" src="_images/Plaquette-SineWave-noSkew.png" style="width: 33%;" /></a>
+<a class="reference internal image-reference" href="_images/Plaquette-SineWave.png"><img alt="_images/Plaquette-SineWave.png" src="_images/Plaquette-SineWave.png" style="width: 33%;" /></a>
 </section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
@@ -209,7 +211,8 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">osc</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// sawtooth wave</span>
+<span class="c1">// Setting skew to 1.0 converts triangle wave to a sawtooth wave.</span>
+<span class="w">  </span><span class="n">osc</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -272,11 +275,9 @@ the average period of oscillation will match the wave’s <code class="docutils 
 
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">Wave</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="n">SINE</span><span class="p">);</span><span class="w"> </span><span class="c1">// average period of 1 second (default)</span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">osc</span><span class="p">(</span><span class="n">SINE</span><span class="p">);</span><span class="w"> </span><span class="c1">// Default value of wave period is 1 second.</span>
 
 <span class="n">Wave</span><span class="w"> </span><span class="nf">lfo</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20-seconds oscillator</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">osc</span><span class="p">.</span><span class="n">randomize</span><span class="p">(</span><span class="n">lfo</span><span class="p">);</span><span class="w"></span>
@@ -389,8 +390,8 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave7shiftByEf">
-<span id="_CPPv3N4Wave7shiftByEf"></span><span id="_CPPv2N4Wave7shiftByEf"></span><span id="Wave::shiftBy__float"></span><span class="target" id="classpq_1_1_abstract_wave_1a99ed4db672b98c5a4c4fe7482546bb5d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftBy</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phaseShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave7shiftByEf" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave7shiftByEf">
+<span id="_CPPv3NK4Wave7shiftByEf"></span><span id="_CPPv2NK4Wave7shiftByEf"></span><span id="Wave::shiftBy__floatC"></span><span class="target" id="classpq_1_1_abstract_wave_1a730688312f4231184198f2b2c41b92ed"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftBy</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phaseShift</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave7shiftByEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns oscillator’s value with given phase shift (in % of period). </p>
 <p>Supports values outside [0,1], which will be wrapped accordingly. Eg. shiftBy(0.2) returns future value of oscillator after 20% of its period would have passed. </p>
 <dl class="field-list simple">
@@ -404,8 +405,8 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave11shiftByTimeEf">
-<span id="_CPPv3N4Wave11shiftByTimeEf"></span><span id="_CPPv2N4Wave11shiftByTimeEf"></span><span id="Wave::shiftByTime__float"></span><span class="target" id="classpq_1_1_abstract_wave_1abcf67d0e8e028a4d7ba43beb4e4918cb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftByTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave11shiftByTimeEf" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave11shiftByTimeEf">
+<span id="_CPPv3NK4Wave11shiftByTimeEf"></span><span id="_CPPv2NK4Wave11shiftByTimeEf"></span><span id="Wave::shiftByTime__floatC"></span><span class="target" id="classpq_1_1_abstract_wave_1a55573c364fc90080d3c129c78dba4244"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shiftByTime</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeShift</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave11shiftByTimeEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns oscillator’s value with given phase shift expressed in time (in seconds). </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -418,8 +419,8 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave7atPhaseEf">
-<span id="_CPPv3N4Wave7atPhaseEf"></span><span id="_CPPv2N4Wave7atPhaseEf"></span><span id="Wave::atPhase__float"></span><span class="target" id="classpq_1_1_abstract_wave_1a0e40de2d50e0b16a81d159b7b0502203"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atPhase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave7atPhaseEf" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave7atPhaseEf">
+<span id="_CPPv3NK4Wave7atPhaseEf"></span><span id="_CPPv2NK4Wave7atPhaseEf"></span><span id="Wave::atPhase__floatC"></span><span class="target" id="classpq_1_1_abstract_wave_1acc32679cce35425e92e333e00d7010b9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atPhase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave7atPhaseEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the oscillator’s value at a given absolute phase (in % of period). </p>
 <p>Supports values outside [0,1], which will be wrapped accordingly. Eg: atPhase(0.25) returns the oscillator value at 25% of its period.</p>
 <dl class="field-list simple">
@@ -467,6 +468,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave4SkewEv">
+<span id="_CPPv3N4Wave4SkewEv"></span><span id="_CPPv2N4Wave4SkewEv"></span><span id="Wave::Skew"></span><span class="target" id="classpq_1_1_abstract_wave_1a4b4296ad95e8f1ed27ba6acea2237b91"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Skew</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave4SkewEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the skew as a parameter. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave5widthEf">
 <span id="_CPPv3N4Wave5widthEf"></span><span id="_CPPv2N4Wave5widthEf"></span><span id="Wave::width__float"></span><span class="target" id="classpq_1_1_abstract_wave_1a4981286dcabd30e461141459af64902d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">width</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5widthEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl>
@@ -496,9 +503,27 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N4Wave6onBangE13EventCallback">
-<span id="_CPPv3N4Wave6onBangE13EventCallback"></span><span id="_CPPv2N4Wave6onBangE13EventCallback"></span><span id="Wave::onBang__EventCallback"></span><span class="target" id="classpq_1_1_abstract_wave_1a621214b240ce5fdf1314ebda6d2fd354"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onBang</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6onBangE13EventCallback" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Registers event callback on wave end-of-period (“bang”) event. </p>
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave12passedPeriodEv">
+<span id="_CPPv3NK4Wave12passedPeriodEv"></span><span id="_CPPv2NK4Wave12passedPeriodEv"></span><span id="Wave::passedPeriodC"></span><span class="target" id="classpq_1_1_abstract_wave_1ab249db829c1cf3885639448c4e0780e8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">passedPeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave12passedPeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true on the step where the wave passed the period (end cycle). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave10passedSkewEv">
+<span id="_CPPv3NK4Wave10passedSkewEv"></span><span id="_CPPv2NK4Wave10passedSkewEv"></span><span id="Wave::passedSkewC"></span><span class="target" id="classpq_1_1_abstract_wave_1a4af67fa962f46c38e97490493cc375b9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">passedSkew</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave10passedSkewEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns true on the step where the wave passed the skew point. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave12onPassPeriodE13EventCallback">
+<span id="_CPPv3N4Wave12onPassPeriodE13EventCallback"></span><span id="_CPPv2N4Wave12onPassPeriodE13EventCallback"></span><span id="Wave::onPassPeriod__EventCallback"></span><span class="target" id="classpq_1_1_abstract_wave_1ae4e7ae882904c2695a5755665d2a8eec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onPassPeriod</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave12onPassPeriodE13EventCallback" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Registers event callback on wave pass period event. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave10onPassSkewE13EventCallback">
+<span id="_CPPv3N4Wave10onPassSkewE13EventCallback"></span><span id="_CPPv2N4Wave10onPassSkewE13EventCallback"></span><span id="Wave::onPassSkew__EventCallback"></span><span class="target" id="classpq_1_1_abstract_wave_1a1711421f9838cc2ca464eab941453f42"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onPassSkew</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">EventCallback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave10onPassSkewE13EventCallback" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Registers event callback on wave pass skew point event. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -545,13 +570,13 @@ the average period of oscillation will match the wave’s <code class="docutils 
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4WavecvfEv">
-<span id="_CPPv3N4WavecvfEv"></span><span id="_CPPv2N4WavecvfEv"></span><span id="Wave::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4WavecvfEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4WavecvfEv"></span><span id="_CPPv2N4WavecvfEv"></span><span id="Wave::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4WavecvfEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Object can be used directly to access its value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave3putEf">
-<span id="_CPPv3N4Wave3putEf"></span><span id="_CPPv2N4Wave3putEf"></span><span id="Wave::put__float"></span><span class="target" id="classpq_1_1_chainable_1aa29ab780effb0eb1430c30ff33d2498c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave3putEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Wave3putEf"></span><span id="_CPPv2N4Wave3putEf"></span><span id="Wave::put__float"></span><span class="target" id="classpq_1_1_flowable_1afe3e8c22dcf91db87b4953929f12effd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave3putEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -565,7 +590,7 @@ the average period of oscillation will match the wave’s <code class="docutils 
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4WavecvbEv">
-<span id="_CPPv3N4WavecvbEv"></span><span id="_CPPv2N4WavecvbEv"></span><span id="Wave::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4WavecvbEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4WavecvbEv"></span><span id="_CPPv2N4WavecvbEv"></span><span id="Wave::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4WavecvbEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
 </dd></dl>
 
@@ -593,6 +618,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave6PeriodEv">
+<span id="_CPPv3N4Wave6PeriodEv"></span><span id="_CPPv2N4Wave6PeriodEv"></span><span id="Wave::Period"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ac1b112cdc29bf7674766b03da2378225"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Period</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6PeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the period as a parameter. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave9frequencyEf">
 <span id="_CPPv3N4Wave9frequencyEf"></span><span id="_CPPv2N4Wave9frequencyEf"></span><span id="Wave::frequency__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a4c11ebabc5517ef45c1fe0cd952f7c7c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">frequency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave9frequencyEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the frequency (in Hz). </p>
@@ -607,6 +638,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <dt class="sig sig-object cpp" id="_CPPv4NK4Wave9frequencyEv">
 <span id="_CPPv3NK4Wave9frequencyEv"></span><span id="_CPPv2NK4Wave9frequencyEv"></span><span id="Wave::frequencyC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ab98a9d13488942d59afe50fbe557a1aa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave9frequencyEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the frequency (in Hz). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave9FrequencyEv">
+<span id="_CPPv3N4Wave9FrequencyEv"></span><span id="_CPPv2N4Wave9FrequencyEv"></span><span id="Wave::Frequency"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a8f5ee0f538e30720830de75f1be1b3b7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Frequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave9FrequencyEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the frequency as a parameter. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -627,6 +664,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave3BpmEv">
+<span id="_CPPv3N4Wave3BpmEv"></span><span id="_CPPv2N4Wave3BpmEv"></span><span id="Wave::Bpm"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a42399688957baf834305381c2b2fd1ee"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Bpm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave3BpmEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the BPM as a parameter. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave5phaseEf">
 <span id="_CPPv3N4Wave5phaseEf"></span><span id="_CPPv2N4Wave5phaseEf"></span><span id="Wave::phase__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1ac12947cffc82d85599f89b8b1f9d3f7b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phase</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5phaseEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the phase at % of period. </p>
@@ -641,6 +684,12 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <dt class="sig sig-object cpp" id="_CPPv4NK4Wave5phaseEv">
 <span id="_CPPv3NK4Wave5phaseEv"></span><span id="_CPPv2NK4Wave5phaseEv"></span><span id="Wave::phaseC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a6daf1f996dfa36646616547b4e486420"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave5phaseEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the phase (in % of period). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave5PhaseEv">
+<span id="_CPPv3N4Wave5PhaseEv"></span><span id="_CPPv2N4Wave5PhaseEv"></span><span id="Wave::Phase"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a1eada731a799d60a4a251a9b7c21930a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Phase</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave5PhaseEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the phase as a parameter. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -671,8 +720,14 @@ the average period of oscillation will match the wave’s <code class="docutils 
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave10PhaseShiftEv">
+<span id="_CPPv3N4Wave10PhaseShiftEv"></span><span id="_CPPv2N4Wave10PhaseShiftEv"></span><span id="Wave::PhaseShift"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a1f8186a37e0f51f9eee7e2617aa36e22"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PhaseShift</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave10PhaseShiftEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the phase shift as a parameter. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave6jitterEf">
-<span id="_CPPv3N4Wave6jitterEf"></span><span id="_CPPv2N4Wave6jitterEf"></span><span id="Wave::jitter__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a29d4eb0091145778ebbb1e45a9a394cd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">jitterLevel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6jitterEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Wave6jitterEf"></span><span id="_CPPv2N4Wave6jitterEf"></span><span id="Wave::jitter__float"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a7e35e9696e00ecd6fb181921861006b5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">jitter</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6jitterEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the jittering level in [0, 1] (0: no jitter, 1: max jitter). </p>
 </dd></dl>
 
@@ -680,6 +735,32 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <dt class="sig sig-object cpp" id="_CPPv4NK4Wave6jitterEv">
 <span id="_CPPv3NK4Wave6jitterEv"></span><span id="_CPPv2NK4Wave6jitterEv"></span><span id="Wave::jitterC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave6jitterEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the randomness level in [0, 1]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave8noJitterEv">
+<span id="_CPPv3N4Wave8noJitterEv"></span><span id="_CPPv2N4Wave8noJitterEv"></span><span id="Wave::noJitter"></span><span class="target" id="classpq_1_1_abstract_oscillator_1af7f0a61c9d089baa66ae093973bb5b99"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noJitter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave8noJitterEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Disables jittering. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Wave6JitterEv">
+<span id="_CPPv3N4Wave6JitterEv"></span><span id="_CPPv2N4Wave6JitterEv"></span><span id="Wave::Jitter"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a04e7b033a9e0cf261d417ed01d5bc542"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Jitter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave6JitterEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the jitter as a parameter. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave14jitteredPeriodEv">
+<span id="_CPPv3NK4Wave14jitteredPeriodEv"></span><span id="_CPPv2NK4Wave14jitteredPeriodEv"></span><span id="Wave::jitteredPeriodC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1aabd733d412979fbb52ab05331bffce25"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitteredPeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave14jitteredPeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the period actually used for the current cycle. </p>
+<p>When <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> == 0, this is identical to <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a11dc9d509dd43e35d50f9d1717a83389"><span class="std std-ref">period()</span></a>. When <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> &gt; 0, this returns the stochastic (jittered) period currently in effect. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Wave17jitteredFrequencyEv">
+<span id="_CPPv3NK4Wave17jitteredFrequencyEv"></span><span id="_CPPv2NK4Wave17jitteredFrequencyEv"></span><span id="Wave::jitteredFrequencyC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a35e1779db78f91ef81bcb35fe9deab24"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitteredFrequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Wave17jitteredFrequencyEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the frequency actually used for the current cycle. </p>
+<p>When <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> == 0, this is identical to <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1ab98a9d13488942d59afe50fbe557a1aa"><span class="std std-ref">frequency()</span></a>. When <a class="reference internal" href="#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> &gt; 0, this returns the stochastic (jittered) frequency currently in effect. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -786,13 +867,13 @@ the average period of oscillation will match the wave’s <code class="docutils 
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave15analogToDigitalEf">
-<span id="_CPPv3N4Wave15analogToDigitalEf"></span><span id="_CPPv2N4Wave15analogToDigitalEf"></span><span id="Wave::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Wave15analogToDigitalEf"></span><span id="_CPPv2N4Wave15analogToDigitalEf"></span><span id="Wave::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts analog (float) value to digital (bool) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Wave15digitalToAnalogEb">
-<span id="_CPPv3N4Wave15digitalToAnalogEb"></span><span id="_CPPv2N4Wave15digitalToAnalogEb"></span><span id="Wave::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Wave15digitalToAnalogEb"></span><span id="_CPPv2N4Wave15digitalToAnalogEb"></span><span id="Wave::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Wave15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
@@ -820,7 +901,7 @@ the average period of oscillation will match the wave’s <code class="docutils 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

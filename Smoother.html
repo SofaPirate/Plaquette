@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smoother &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Smoother &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Fields" href="fields.html" />
+    <link rel="next" title="Communication" href="communication.html" />
     <link rel="prev" title="RobustScaler" href="RobustScaler.html" /> 
 </head>
 
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -79,6 +79,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -87,6 +88,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -136,13 +138,11 @@
 <span class="c1">// Smooths over time window of 10 seconds.</span>
 <span class="n">Smoother</span><span class="w"> </span><span class="nf">smoother</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Initialiaze serial plotter at 115200 bps</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Smooth value and send it to serial output.</span>
-<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">smoother</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">smoother</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -173,16 +173,34 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother8SmootherEfR6Engine">
-<span id="_CPPv3N8Smoother8SmootherEfR6Engine"></span><span id="_CPPv2N8Smoother8SmootherEfR6Engine"></span><span id="Smoother::Smoother__float.EngineR"></span><span class="target" id="classpq_1_1_smoother_1a29da58e07e0c0d21ed6bbb7cc883b276"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">smoothingWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEfR6Engine" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother8SmootherEfR6Engine"></span><span id="_CPPv2N8Smoother8SmootherEfR6Engine"></span><span id="Smoother::Smoother__float.EngineR"></span><span class="target" id="classpq_1_1_smoother_1adcd3fcc8210b9f5daa9d219d92d987cc"></span><span class="sig-name descname"><span class="n"><span class="pre">Smoother</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother8SmootherEfR6Engine" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Constructor with smoothing window. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>smoothingWindow</strong> – the time window over which the smoothing applies (in seconds) </p></li>
+<li><p><strong>timeWindow</strong> – the time window over which the smoothing applies (in seconds) </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEv">
+<span id="_CPPv3N8Smoother5resetEv"></span><span id="_CPPv2N8Smoother5resetEv"></span><span id="Smoother::reset"></span><span class="target" id="classpq_1_1_smoother_1a1d8aa755e483dd702dc0b5cddcf3e95e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the filter. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEf">
+<span id="_CPPv3N8Smoother5resetEf"></span><span id="_CPPv2N8Smoother5resetEf"></span><span id="Smoother::reset__float"></span><span class="target" id="classpq_1_1_smoother_1a438b16e0b73e59d87293eced20f33906"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the filter with a prior estimate of the mean value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEff">
+<span id="_CPPv3N8Smoother5resetEff"></span><span id="_CPPv2N8Smoother5resetEff"></span><span id="Smoother::reset__float.float"></span><span class="target" id="classpq_1_1_smoother_1aecaca49b679b29b47a5d8684e4e7d91c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Resets the moving filter with a prior estimate of the min and max values. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -203,24 +221,6 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother6filterEf">
 <span id="_CPPv3N8Smoother6filterEf"></span><span id="_CPPv2N8Smoother6filterEf"></span><span id="Smoother::filter__float"></span><span class="target" id="classpq_1_1_smoother_1a47142f73faecf38262efa7fe2d0bfc88"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother6filterEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the filtered value (without calibrating). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEv">
-<span id="_CPPv3N8Smoother5resetEv"></span><span id="_CPPv2N8Smoother5resetEv"></span><span id="Smoother::reset"></span><span class="target" id="classpq_1_1_moving_filter_1a67b686057794bc7b65b6a441fa5dc39a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Resets the filter. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEf">
-<span id="_CPPv3N8Smoother5resetEf"></span><span id="_CPPv2N8Smoother5resetEf"></span><span id="Smoother::reset__float"></span><span class="target" id="classpq_1_1_moving_filter_1aa2712ece4bb7f749a3b051d6afb6a907"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Resets the filter with a prior estimate of the mean value. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8Smoother5resetEff">
-<span id="_CPPv3N8Smoother5resetEff"></span><span id="_CPPv2N8Smoother5resetEff"></span><span id="Smoother::reset__float.float"></span><span class="target" id="classpq_1_1_moving_filter_1a7f7fc34ff5c84ef2ef5ebc8d78be0d76"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother5resetEff" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Resets the moving filter with a prior estimate of the min and max values. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -310,13 +310,13 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8SmoothercvfEv">
-<span id="_CPPv3N8SmoothercvfEv"></span><span id="_CPPv2N8SmoothercvfEv"></span><span id="Smoother::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvfEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8SmoothercvfEv"></span><span id="_CPPv2N8SmoothercvfEv"></span><span id="Smoother::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvfEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Object can be used directly to access its value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8SmoothercvbEv">
-<span id="_CPPv3N8SmoothercvbEv"></span><span id="_CPPv2N8SmoothercvbEv"></span><span id="Smoother::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvbEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8SmoothercvbEv"></span><span id="_CPPv2N8SmoothercvbEv"></span><span id="Smoother::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8SmoothercvbEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
 </dd></dl>
 
@@ -367,13 +367,13 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother15analogToDigitalEf">
-<span id="_CPPv3N8Smoother15analogToDigitalEf"></span><span id="_CPPv2N8Smoother15analogToDigitalEf"></span><span id="Smoother::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother15analogToDigitalEf"></span><span id="_CPPv2N8Smoother15analogToDigitalEf"></span><span id="Smoother::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts analog (float) value to digital (bool) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8Smoother15digitalToAnalogEb">
-<span id="_CPPv3N8Smoother15digitalToAnalogEb"></span><span id="_CPPv2N8Smoother15digitalToAnalogEb"></span><span id="Smoother::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N8Smoother15digitalToAnalogEb"></span><span id="_CPPv2N8Smoother15digitalToAnalogEb"></span><span id="Smoother::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Smoother15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
@@ -395,13 +395,13 @@ which corresponds to a form of <a class="reference external" href="https://en.wi
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="RobustScaler.html" class="btn btn-neutral float-left" title="RobustScaler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="fields.html" class="btn btn-neutral float-right" title="Fields" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="communication.html" class="btn btn-neutral float-right" title="Communication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

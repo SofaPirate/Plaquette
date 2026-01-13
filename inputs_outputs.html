@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inputs and Outputs &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Inputs and Outputs &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -35,7 +35,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -68,7 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#using-units-as-their-own-values">Using Units as Their Own Values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-piping-operator">The Piping Operator (&gt;&gt;)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-flow-operator">The Flow Operator (&gt;&gt;)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dealing-with-noisy-signals-debouncing-and-smoothing">Dealing with Noisy Signals: Debouncing and Smoothing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#debouncing">Debouncing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#smoothing">Smoothing</a></li>
@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -109,6 +110,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -207,8 +209,6 @@ leg of the  button should be connected to ground (GND) while the other should be
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w">                   </span><span class="c1">// LED connected to pin 13</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">isOn</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Check if the button is pressed</span>
 <span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
@@ -235,7 +235,7 @@ connected to an analog / PWM pin (eg. pin 9).</p>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to pin 9</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set LED brightness to 0%</span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set initial LED brightness to 0%</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -257,8 +257,6 @@ of the potentiometer should be connected to analog input pin (<code class="docut
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Potentiometer on analog pin A0</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">    </span><span class="c1">// LED on pin 9</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">dimmer</span><span class="p">.</span><span class="n">get</span><span class="p">());</span><span class="w"> </span><span class="c1">// Map the potentiometer value directly to LED brightness</span>
 <span class="p">}</span><span class="w"></span>
@@ -277,8 +275,6 @@ it contains. This makes your code cleaner and easier to read.</p>
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// No need for button.isOn() : just use button as its own value</span>
 <span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
@@ -295,8 +291,6 @@ it contains. This makes your code cleaner and easier to read.</p>
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">dimmer</span><span class="p">);</span><span class="w"> </span><span class="c1">// No need for dimmer.get() : just use dimmer as its own value</span>
 <span class="p">}</span><span class="w"></span>
@@ -304,9 +298,9 @@ it contains. This makes your code cleaner and easier to read.</p>
 </div>
 <p>These simplifications make your code more expressive and emphasize the logic over the syntax.</p>
 </section>
-<section id="the-piping-operator">
-<h2>The Piping Operator (&gt;&gt;)<a class="headerlink" href="#the-piping-operator" title="Permalink to this heading"></a></h2>
-<p>In Plaquette, the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator allows you to directly send or “pipe” the value of one unit to
+<section id="the-flow-operator">
+<h2>The Flow Operator (&gt;&gt;)<a class="headerlink" href="#the-flow-operator" title="Permalink to this heading"></a></h2>
+<p>In Plaquette, the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator allows you to directly send the value of one unit to
 another. This makes it incredibly simple to map inputs to outputs without extra variables or
 function calls.</p>
 <p>Let’s revisit the potentiometer and LED example using the piping operator:</p>
@@ -314,8 +308,6 @@ function calls.</p>
 
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">dimmer</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">dimmer</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Directly pipe the potentiometer value to the LED</span>
@@ -325,7 +317,7 @@ function calls.</p>
 <p>This operator improves code readability and emphasizes the relationship between inputs and outputs.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The piping operator (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) allows to expressively connect input, output, and filtering units
+<p>The flow operator (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) allows to expressively connect input, output, and filtering units
 in a similar fashion to data-flow environments such as <a class="reference external" href="https://cycling74.com/products/max">Max</a>,
 <a class="reference external" href="https://puredata.info">Pure Data</a>, and <a class="reference external" href="https://derivative.ca">TouchDesigner</a>. The operator is
 directly inspired from the ChucK operator (<code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>) in programming languge <a class="reference external" href="http://chuck.cs.princeton.edu/">ChucK</a>.</p>
@@ -404,8 +396,6 @@ to a specified range which is very useful for scaling sensor readings.</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Map sensor value to frequency in range 1-10 Hz</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="w"> </span><span class="n">lightSensor</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
@@ -427,8 +417,6 @@ methods like <code class="docutils literal notranslate"><span class="pre">rose()
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Detect the moment the button is pressed</span>
 <span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w">      </span><span class="c1">// Toggle the LED state</span>
@@ -445,8 +433,6 @@ turning on an LED when the light level drops below 30% (0.3):</p>
 
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lightSensor</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -521,8 +507,6 @@ in higher voltage and a higher normalized value.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">lightSensor</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="w"> </span><span class="n">DIRECT</span><span class="p">);</span><span class="w"></span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">lightSensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -549,8 +533,6 @@ between the pin and ground.</p>
 (short leg) to ground, with a 330 <span class="math notranslate nohighlight">\(\Omega\)</span> in series.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">DIRECT</span><span class="p">);</span><span class="w"></span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
@@ -589,7 +571,7 @@ timing and signal generation features to add even more complexity and creativity
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

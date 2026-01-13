@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Managing Events &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Managing Events &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -83,6 +84,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -265,10 +267,8 @@ to the <code class="docutils literal notranslate"><span class="pre">onRise()</sp
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In this case, since the callback will take care of all the logic, the <code class="docutils literal notranslate"><span class="pre">step()</span></code> function can be left empty!</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here!</span>
-</pre></div>
-</div>
+<p>In this case, since the callback will take care of all the logic, we do not even need to declare a <code class="docutils literal notranslate"><span class="pre">step()</span></code>
+function!</p>
 <p>Here is the final code for this example:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
@@ -287,7 +287,7 @@ to the <code class="docutils literal notranslate"><span class="pre">onRise()</sp
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">toggleLed</span><span class="p">);</span><span class="w"> </span><span class="c1">// Toggle the LED on button press</span>
 <span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
+<span class="c1">// Notice that we haven&#39;t invoked step(){} because it isn&#39;t necessary</span>
 </pre></div>
 </div>
 <p>Now, try changing <code class="docutils literal notranslate"><span class="pre">onRise()</span></code> to <code class="docutils literal notranslate"><span class="pre">onFall()</span></code> or to <code class="docutils literal notranslate"><span class="pre">onChange()</span></code>. How does that affect the interaction
@@ -303,6 +303,8 @@ press and release events.</p>
 
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED connected to built-in pin</span>
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button connected to pin 2</span>
+
+<span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Serial monitor.</span>
 
 <span class="c1">// Callback function to toggle the LED.</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">toggleLed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -324,8 +326,6 @@ press and release events.</p>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onRise</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print button state</span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">onFall</span><span class="p">(</span><span class="n">printButton</span><span class="p">);</span><span class="w"> </span><span class="c1">// Same here</span>
 <span class="p">}</span><span class="w"></span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// Nothing to do here</span>
 </pre></div>
 </div>
 </section>
@@ -409,7 +409,7 @@ different rates.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

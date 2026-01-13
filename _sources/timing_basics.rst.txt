@@ -45,7 +45,7 @@ durations or triggering time-based events.
     DigitalOut led(LED_BUILTIN);
 
     void begin() {
-      led.on();
+      led.on(); // Initialize LED as "on"
     }
 
     void step() {
@@ -100,11 +100,12 @@ short and long presses differently.
 
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
     AnalogOut led(9); // LED output
+    Monitor monitor(115200); // open a serial monitor
     Chronometer chrono; // Chronometer measuring button press duration
 
     void begin() {
       button.debounce(); // Debounce button
-      led.off();
+      led.off();  // Initialize led as "off"
     }
 
     void step() {
@@ -119,7 +120,7 @@ short and long presses differently.
         chrono.stop(); // Stops/resets the timer when button is released
       }
 
-      println(chrono); // Prints value of chrono for visualization.
+      println(chrono); // Prints value of chrono to the serial monitor.
     }
 
 The :doc:`Chronometer` is great for counting time. In many scenarios, however, you want to know whether you waited
@@ -149,6 +150,8 @@ the alarm, increasing its duration by 50% each time.
     DigitalOut led(LED_BUILTIN); // LED on built-in pin
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
 
+    Monitor monitor(115200); // Open a serial monitor
+
     Wave blink(0.5); // Wave to blink LED when alarm is buzzing
 
     Alarm alarm(2.0); // Alarm with 2s duration
@@ -167,10 +170,10 @@ the alarm, increasing its duration by 50% each time.
 
       // Alarm buzzing: blink LED.
       if (alarm) {    // Check if alarm is buzzing
-        blink >> led; // Blink LED
+        blink >> led; // Send the squarewave to the LED to make it blink
       }
 
-      println(alarm.progress()); // % progress of the alarm (for visualization)
+      println(alarm.progress()); // % progress of the alarm
     }
 
 Triggering Periodic Events with Metronome
@@ -195,8 +198,6 @@ kinds of repetitions.
     DigitalOut led(LED_BUILTIN); // LED on built-in pin
     Metronome metro(1.0); // Metronome with period of 1 second
 
-    void begin() {}
-
     void step() {
       if (metro) { // The unit will be true for a single frame every time it triggers
         led.toggle(); // Toggle LED on each pulse
@@ -218,8 +219,6 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
     Metronome metroAccelerate(10.0); // Metronome to accelerate blink
 
     boolean visible = true; // Flag to keep track of visibility
-
-    void begin() {}
 
     void step() {
       // Toggle visibility.
@@ -275,9 +274,10 @@ will ramp between 0 and 1.
     DigitalIn button(2, INTERNAL_PULLUP); // Button input
     AnalogOut led(9); // LED output
     Ramp ramp(5.0);   // Ramp with 5 seconds duration
+    Plotter plotter(115200); // Initialize a serial plotter
 
     void begin() {
-      button.debounce(); // Debounce button
+      button.debounce(); // Debounce the button
       ramp.start(); // Initial ramp startup
     }
 
@@ -287,7 +287,7 @@ will ramp between 0 and 1.
       }
 
       ramp >> led; // Use ramp value to control LED brightness
-      println(ramp); // Visualize ramp value with the Serial Plotter
+      ramp >> plotter; // Visualize ramp value with the Serial Plotter
     }
 
 Try changing the behavior of the ramp to rather go from 1 to 0 by calling the ``fromTo()`` function
@@ -319,8 +319,10 @@ The potentiometer sets the maximum LED value to attain.
     AnalogOut led(9); // LED output
     Ramp ramp(5.0); // Ramp with 5 seconds duration
 
+    Plotter plotter(115200); // Open a serial plotter
+
     void begin() {
-      button.debounce(); // Debounce button
+      button.debounce(); // Debounce the button
     }
 
     void step() {
@@ -330,7 +332,7 @@ The potentiometer sets the maximum LED value to attain.
       }
 
       ramp >> led; // Use ramp value to control LED brightness
-      println(ramp); // Visualize ramp value with the Serial Plotter
+      ramp >> plotter; // Visualize ramp value
     }
 
 Try adjusting the potentiometer to different positions and then pressing the button to see the effect.
@@ -368,6 +370,8 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
     Ramp ramp(5.0);    // Ramp with 5 seconds duration
     Wave wave(TRIANGLE, 1.0); // Oscillator
 
+    Plotter plotter(115200); // Open a serial plotter
+
     void begin() {
       wave.skew(1.0);   // Sawtooth wave
       wave.bpm(100);     // Initial BPM
@@ -384,7 +388,7 @@ is chosen randomly and the ramp smoothly goes to the new frequency.
       wave.bpm(ramp); // Use ramp value to adjust BPM of wave
 
       wave >> led;   // Oscillate LED
-      println(ramp); // Visualize ramp value with the Serial Plotter
+      ramp >> plotter; // Visualize ramp value with the Serial Plotter
     }
 
 .. note::
@@ -409,6 +413,8 @@ them feel more natural and lifelike.
     AnalogOut led(9); // LED output
     Ramp ramp(3.0); // Ramp with 3 seconds duration
 
+    Plotter plotter(115200); // Open a serial plotter
+
     void begin() {
       ramp.easing(easeInOutQuad); // Apply an easing function
       ramp.start();
@@ -420,7 +426,7 @@ them feel more natural and lifelike.
       }
 
       ramp >> led;   // Use the ramp's value to control the LED brightness
-      println(ramp); // Visualize ramp value with the Serial Plotter
+      ramp >> plotter; // Visualize ramp value with the Serial Plotter
     }
 
 Try experimenting with different easing functions and observe the results on the LED and using the
@@ -451,6 +457,8 @@ Serial Plotter.
     Ramp rampDuration; // Ramp operating in duration mode
     Ramp rampSpeed;    // Ramp operating in speed mode
 
+    Plotter plotter(115200); // Open a serial plotter
+
     void begin() {
       rampDuration.duration(5.0); // Duration: 5 seconds
       rampSpeed.speed(5.0); // Rate of change: 5 per second
@@ -466,9 +474,8 @@ Serial Plotter.
       }
 
       // Visualize and compare ramps with the Serial Plotter
-      print(rampWithDuration);
-      print(" ");
-      println(rampWithSpeed);
+      rampWithDuration >> plotter;
+      rampWithSpeed >> plotter;
     }
 
 .. tip::
@@ -495,7 +502,7 @@ synchronize multiple timing units.
     Ramp ramp(3.0);   // Ramp with 3 seconds duration
     AnalogOut led(9); // LED output
 
-    void begin() {}
+    Plotter plotter(115200); // Open a serial monitor
 
     void step() {
       if (metro) {
@@ -503,7 +510,7 @@ synchronize multiple timing units.
       }
 
       ramp >> led; // Use the ramp's value to control the LED brightness
-      println(ramp); // Stream the ramp's value for visualization
+      ramp >> plotter; // Stream the ramp's value for visualization
     }
 
 Combining timing units unlocks an even greater range of creative possibilities. Use these tools to

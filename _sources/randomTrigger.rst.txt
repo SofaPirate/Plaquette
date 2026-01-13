@@ -21,9 +21,6 @@ your loop runs very fast.
 
    DigitalOut led(13);
 
-   void begin() {
-   }
-
    void step() {
      // Returns true on average once every 5 seconds.
      if (randomTrigger(5.0))

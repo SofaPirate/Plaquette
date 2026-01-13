@@ -31,9 +31,7 @@ Control an LED using a potentiometer.
 
    AnalogOut led(9);
 
-   SineWave oscillator;
-
-   void begin() {}
+   Wave oscillator(SINE);
 
    void step() {
      // The analog input controls the frequency of the LED's oscillation.

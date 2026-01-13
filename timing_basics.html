@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working with Time &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Working with Time &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -35,7 +35,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -93,6 +94,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -164,7 +166,7 @@ durations or triggering time-based events.</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">on</span><span class="p">();</span><span class="w"> </span><span class="c1">// Initialize LED as &quot;on&quot;</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -214,11 +216,12 @@ short and long presses differently.</p>
 
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
+<span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// open a serial monitor</span>
 <span class="n">Chronometer</span><span class="w"> </span><span class="n">chrono</span><span class="p">;</span><span class="w"> </span><span class="c1">// Chronometer measuring button press duration</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
-<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">led</span><span class="p">.</span><span class="n">off</span><span class="p">();</span><span class="w">  </span><span class="c1">// Initialize led as &quot;off&quot;</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -233,7 +236,7 @@ short and long presses differently.</p>
 <span class="w">    </span><span class="n">chrono</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w"> </span><span class="c1">// Stops/resets the timer when button is released</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">chrono</span><span class="p">);</span><span class="w"> </span><span class="c1">// Prints value of chrono for visualization.</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">chrono</span><span class="p">);</span><span class="w"> </span><span class="c1">// Prints value of chrono to the serial monitor.</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -257,6 +260,8 @@ the alarm, increasing its duration by 50% each time.</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
 
+<span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial monitor</span>
+
 <span class="n">Wave</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave to blink LED when alarm is buzzing</span>
 
 <span class="n">Alarm</span><span class="w"> </span><span class="nf">alarm</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Alarm with 2s duration</span>
@@ -275,10 +280,10 @@ the alarm, increasing its duration by 50% each time.</p>
 
 <span class="w">  </span><span class="c1">// Alarm buzzing: blink LED.</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">alarm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// Check if alarm is buzzing</span>
-<span class="w">    </span><span class="n">blink</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Blink LED</span>
+<span class="w">    </span><span class="n">blink</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Send the squarewave to the LED to make it blink</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">alarm</span><span class="p">.</span><span class="n">progress</span><span class="p">());</span><span class="w"> </span><span class="c1">// % progress of the alarm (for visualization)</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">alarm</span><span class="p">.</span><span class="n">progress</span><span class="p">());</span><span class="w"> </span><span class="c1">// % progress of the alarm</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -299,8 +304,6 @@ kinds of repetitions.</p>
 <span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED on built-in pin</span>
 <span class="n">Metronome</span><span class="w"> </span><span class="nf">metro</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome with period of 1 second</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// The unit will be true for a single frame every time it triggers</span>
 <span class="w">    </span><span class="n">led</span><span class="p">.</span><span class="n">toggle</span><span class="p">();</span><span class="w"> </span><span class="c1">// Toggle LED on each pulse</span>
@@ -319,8 +322,6 @@ toggles LED visibility, while another slower metronome accelerates blinking spee
 <span class="n">Metronome</span><span class="w"> </span><span class="nf">metroAccelerate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Metronome to accelerate blink</span>
 
 <span class="n">boolean</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Flag to keep track of visibility</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Toggle visibility.</span>
@@ -371,9 +372,10 @@ will ramp between 0 and 1.</p>
 <span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"> </span><span class="c1">// Button input</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Ramp with 5 seconds duration</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Initialize a serial plotter</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce the button</span>
 <span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Initial ramp startup</span>
 <span class="p">}</span><span class="w"></span>
 
@@ -383,7 +385,7 @@ will ramp between 0 and 1.</p>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use ramp value to control LED brightness</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -410,8 +412,10 @@ The potentiometer sets the maximum LED value to attain.</p>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 5 seconds duration</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial plotter</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
+<span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce the button</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -421,7 +425,7 @@ The potentiometer sets the maximum LED value to attain.</p>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use ramp value to control LED brightness</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Visualize ramp value</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -451,6 +455,8 @@ is chosen randomly and the ramp smoothly goes to the new frequency.</p>
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w">    </span><span class="c1">// Ramp with 5 seconds duration</span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Oscillator</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial plotter</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Sawtooth wave</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">     </span><span class="c1">// Initial BPM</span>
@@ -467,7 +473,7 @@ is chosen randomly and the ramp smoothly goes to the new frequency.</p>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Use ramp value to adjust BPM of wave</span>
 
 <span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Oscillate LED</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -489,6 +495,8 @@ them feel more natural and lifelike.</p>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ramp with 3 seconds duration</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial plotter</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeInOutQuad</span><span class="p">);</span><span class="w"> </span><span class="c1">// Apply an easing function</span>
 <span class="w">  </span><span class="n">ramp</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
@@ -500,7 +508,7 @@ them feel more natural and lifelike.</p>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Use the ramp&#39;s value to control the LED brightness</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Visualize ramp value with the Serial Plotter</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -527,6 +535,8 @@ Serial Plotter.</p>
 <span class="n">Ramp</span><span class="w"> </span><span class="n">rampDuration</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ramp operating in duration mode</span>
 <span class="n">Ramp</span><span class="w"> </span><span class="n">rampSpeed</span><span class="p">;</span><span class="w">    </span><span class="c1">// Ramp operating in speed mode</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial plotter</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">rampDuration</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Duration: 5 seconds</span>
 <span class="w">  </span><span class="n">rampSpeed</span><span class="p">.</span><span class="n">speed</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Rate of change: 5 per second</span>
@@ -542,9 +552,8 @@ Serial Plotter.</p>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="c1">// Visualize and compare ramps with the Serial Plotter</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">rampWithDuration</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">rampWithSpeed</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">rampWithDuration</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rampWithSpeed</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -569,7 +578,7 @@ synchronize multiple timing units.</p>
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Ramp with 3 seconds duration</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open a serial monitor</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -577,7 +586,7 @@ synchronize multiple timing units.</p>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Use the ramp&#39;s value to control the LED brightness</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">ramp</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the ramp&#39;s value for visualization</span>
+<span class="w">  </span><span class="n">ramp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Stream the ramp&#39;s value for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -607,7 +616,7 @@ these units, you can build intricate behaviors that bring your projects to life.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

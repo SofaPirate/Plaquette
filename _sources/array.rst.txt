@@ -51,8 +51,6 @@ When more than a single parameter is used, however, it needs to be called explic
   // Creates three different kinds of oscillators with a 2 seconds period.
   Wave oscillators[] = { Wave(SQUARE, 2.0), Wave(TRIANGLE, 2.0), Wave(SINE, 2.0) };
 
-  void begin() {}
-
   void step() {
     // Send each oscillator to its corresponding LED.
     for (int i=0; i<3; i++) {

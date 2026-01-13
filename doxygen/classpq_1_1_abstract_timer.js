@@ -1,6 +1,7 @@
 var classpq_1_1_abstract_timer =
 [
     [ "addTime", "classpq_1_1_abstract_timer.html#a0bb9bb33bf7e2e5fc8980a96f935a8fc", null ],
+    [ "Duration", "classpq_1_1_abstract_timer.html#aa8202320c1eeab81357d2e6f15e37ad1", null ],
     [ "duration", "classpq_1_1_abstract_timer.html#adc25c02b7a2606cd74be8b7b8c6ca3e2", null ],
     [ "duration", "classpq_1_1_abstract_timer.html#a1278f2208903d72d7b4414657b564d2c", null ],
     [ "elapsed", "classpq_1_1_abstract_timer.html#ae9012477635738450725b724749060e0", null ],

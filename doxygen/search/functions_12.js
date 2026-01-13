@@ -7,7 +7,7 @@ var searchData=
   ['timetophase_4',['timeToPhase',['../classpq_1_1_abstract_oscillator.html#a33f37b8cd1a0b4e957ea2ad90626955c',1,'pq::AbstractOscillator']]],
   ['timewindow_5',['timewindow',['../classpq_1_1_time_windowable.html#a200edba5991b4ea779a6848f654aceb5',1,'pq::TimeWindowable::timeWindow(float seconds)'],['../classpq_1_1_time_windowable.html#a5047b025a686298b85dba2c162175914',1,'pq::TimeWindowable::timeWindow() const']]],
   ['timewindowisinfinite_6',['timeWindowIsInfinite',['../classpq_1_1_time_windowable.html#aef904a094f19d393062c61f06e510a6c',1,'pq::TimeWindowable']]],
-  ['to_7',['to',['../classpq_1_1_ramp.html#a6c471324e2620fb74127801040f4fdb2',1,'pq::Ramp']]],
+  ['to_7',['to',['../classpq_1_1_ramp.html#ae839c2d3d95aeb293c6bb954cc9a80ff',1,'pq::Ramp::to() const'],['../classpq_1_1_ramp.html#a6c471324e2620fb74127801040f4fdb2',1,'pq::Ramp::to(float to)']]],
   ['toggle_8',['toggle',['../classpq_1_1_digital_source.html#a85eee8005e496b5fa4e7bda9273fa238',1,'pq::DigitalSource']]],
   ['togglecalibrating_9',['toggleCalibrating',['../classpq_1_1_moving_filter.html#a5ffbcc93a69b25b861e8529d14aa4c06',1,'pq::MovingFilter']]],
   ['togglepause_10',['togglePause',['../classpq_1_1_timeable.html#a11a02f24568960663d672b5064e2a09a',1,'pq::Timeable']]],

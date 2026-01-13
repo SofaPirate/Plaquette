@@ -252,17 +252,22 @@ $(document).ready(function(){initNavTree('pq__math_8h_source.html',''); initResi
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>} <span class="comment">// namespace pq</span></div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">// --- Legacy Arduino names for backwards compatibility -----</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#define min(a,b)         (::pq::min((a),(b)))</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#define max(a,b)         (::pq::max((a),(b)))</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#define abs(x)           (::pq::abs((x)))</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#define constrain(x,l,h) (::pq::constrain((x),(l),(h)))</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#define round(x)         (::pq::round((x)))</span></div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#define radians(d)       (::pq::radians((d)))</span></div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#define degrees(r)       (::pq::degrees((r)))</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#define sq(x)            (::pq::sq((x)))</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">// // --- Legacy Arduino names for backwards compatibility -----</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">// NOTE: This section was commented out because it would break builds in some cases.</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">// It is technically possible that some Arduino libraries will be affected although</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">// the probability is very low.</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">// #define min(a,b)         (::pq::min((a),(b)))</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">// #define max(a,b)         (::pq::max((a),(b)))</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">// #define abs(x)           (::pq::abs((x)))</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">// #define constrain(x,l,h) (::pq::constrain((x),(l),(h)))</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">// #define round(x)         (::pq::round((x)))</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">// #define radians(d)       (::pq::radians((d)))</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">// #define degrees(r)       (::pq::degrees((r)))</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">// #define sq(x)            (::pq::sq((x)))</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructpq_1_1common__pair__type_html"><div class="ttname"><a href="structpq_1_1common__pair__type.html">pq::common_pair_type</a></div><div class="ttdef"><b>Definition</b> pq_math.h:75</div></div>
 <div class="ttc" id="astructpq_1_1common__triple__type_html"><div class="ttname"><a href="structpq_1_1common__triple__type.html">pq::common_triple_type</a></div><div class="ttdef"><b>Definition</b> pq_math.h:82</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -271,7 +276,7 @@ $(document).ready(function(){initNavTree('pq__math_8h_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>pq_math.h</b></li>
-    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 12 2026 23:52:56 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

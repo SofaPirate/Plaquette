@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Usage &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Advanced Usage &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -77,6 +77,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -85,6 +86,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -139,7 +141,7 @@ external <a class="reference external" href="https://docs.arduino.cc/libraries/d
 <span class="n">Smoother</span><span class="w"> </span><span class="nf">temperatureSmoother</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Stream out for debugging (e.g., to Serial Monitor).</span>
-<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">dht</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w">  </span><span class="c1">// Initialize the DHT sensor</span>
@@ -157,7 +159,7 @@ external <a class="reference external" href="https://docs.arduino.cc/libraries/d
 </section>
 <section id="vanilla-coding-style">
 <h2>Vanilla Coding Style<a class="headerlink" href="#vanilla-coding-style" title="Permalink to this heading"></a></h2>
-<p>You can avoid Plaquette’s <a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion of units to values
+<p>You can avoid Plaquette’s <a class="reference internal" href="flow.html"><span class="doc">&gt;&gt;</span></a> operator or auto-conversion of units to values
 (eg., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(input)</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">&gt;&gt;</span> <span class="pre">output</span></code>) in favor of a more conventional programming style
 by simply using the <code class="docutils literal notranslate"><span class="pre">get()</span></code> and <code class="docutils literal notranslate"><span class="pre">put()</span></code> functions of Plaquette units.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">get()</span></code> method returns the current value of the unit:</p>
@@ -438,7 +440,7 @@ LED control, audio, or robotics.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

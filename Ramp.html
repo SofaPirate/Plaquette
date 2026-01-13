@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -76,6 +76,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -84,6 +85,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -146,7 +148,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <span class="n">Ramp</span><span class="w"> </span><span class="nf">myRamp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// initial duration: 3 seconds</span>
 
-<span class="n">StreamOut</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="n">Serial</span><span class="p">);</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Apply an easing function (optional).</span>
@@ -245,14 +247,26 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp2toEv">
+<span id="_CPPv3NK4Ramp2toEv"></span><span id="_CPPv2NK4Ramp2toEv"></span><span id="Ramp::toC"></span><span class="target" id="classpq_1_1_ramp_1ae839c2d3d95aeb293c6bb954cc9a80ff"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">to</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp2toEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns destination value of the ramp,. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp2toEf">
 <span id="_CPPv3N4Ramp2toEf"></span><span id="_CPPv2N4Ramp2toEf"></span><span id="Ramp::to__float"></span><span class="target" id="classpq_1_1_ramp_1a6c471324e2620fb74127801040f4fdb2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">to</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">to</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp2toEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Assign final value of the ramp starting from current value. </p>
+<dd><p>Assigns destination value of the ramp, starting from current value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>to</strong> – the final value </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp4fromEv">
+<span id="_CPPv3NK4Ramp4fromEv"></span><span id="_CPPv2NK4Ramp4fromEv"></span><span id="Ramp::fromC"></span><span class="target" id="classpq_1_1_ramp_1a09f76b00b3fd03a42288649394fedd60"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">from</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp4fromEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns initial value of the ramp. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -282,14 +296,8 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp8durationEf">
-<span id="_CPPv3N4Ramp8durationEf"></span><span id="_CPPv2N4Ramp8durationEf"></span><span id="Ramp::duration__float"></span><span class="target" id="classpq_1_1_ramp_1a7f9da111f5c0a0a4c3102ad572341b46"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8durationEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp8durationEf"></span><span id="_CPPv2N4Ramp8durationEf"></span><span id="Ramp::duration__float"></span><span class="target" id="classpq_1_1_ramp_1a89dae75ccd0f080b0d69064385810885"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N4Ramp8durationEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Sets the duration of the chronometer. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8durationEv">
-<span id="_CPPv3NK4Ramp8durationEv"></span><span id="_CPPv2NK4Ramp8durationEv"></span><span id="Ramp::durationC"></span><span class="target" id="classpq_1_1_ramp_1ae9aad4d3abffad065836e6c831f8a600"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8durationEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns duration. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -302,6 +310,12 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp5speedEv">
 <span id="_CPPv3NK4Ramp5speedEv"></span><span id="_CPPv2NK4Ramp5speedEv"></span><span id="Ramp::speedC"></span><span class="target" id="classpq_1_1_ramp_1a5f8affc32f8f6096edfb0b0db5e967e4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">speed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp5speedEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns speed (rate of change) of the ramp in change-per-second. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp5SpeedEv">
+<span id="_CPPv3N4Ramp5SpeedEv"></span><span id="_CPPv2N4Ramp5SpeedEv"></span><span id="Ramp::Speed"></span><span class="target" id="classpq_1_1_ramp_1a5f22b8ec0aee7362fbfdd558c31fcdba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Speed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5SpeedEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns speed (rate of change) as a parameter. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -420,6 +434,18 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="classpq_1_1_ramp_1a1278f2208903d72d7b4414657b564d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Sets the duration of the chronometer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8durationEv">
+<span id="_CPPv3NK4Ramp8durationEv"></span><span id="_CPPv2NK4Ramp8durationEv"></span><span id="Ramp::durationC"></span><span class="target" id="classpq_1_1_ramp_1adc25c02b7a2606cd74be8b7b8c6ca3e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8durationEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns duration. </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK4Ramp7secondsEv">
 <span id="_CPPv3NK4Ramp7secondsEv"></span><span id="_CPPv2NK4Ramp7secondsEv"></span><span id="Ramp::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp7secondsEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns engine time in seconds. </p>
@@ -457,13 +483,13 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4RampcvfEv">
-<span id="_CPPv3N4RampcvfEv"></span><span id="_CPPv2N4RampcvfEv"></span><span id="Ramp::castto-float-operator"></span><span class="target" id="classpq_1_1_chainable_1ab8dd6554f3d7f8c298f0c600f54de6b5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4RampcvfEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4RampcvfEv"></span><span id="_CPPv2N4RampcvfEv"></span><span id="Ramp::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4RampcvfEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Object can be used directly to access its value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4RampcvbEv">
-<span id="_CPPv3N4RampcvbEv"></span><span id="_CPPv2N4RampcvbEv"></span><span id="Ramp::castto-b-operator"></span><span class="target" id="classpq_1_1_chainable_1a71ebff10aa760a007055852768535e3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4RampcvbEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4RampcvbEv"></span><span id="_CPPv2N4RampcvbEv"></span><span id="Ramp::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4RampcvbEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
 </dd></dl>
 
@@ -471,6 +497,12 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp5startEf">
 <span id="_CPPv3N4Ramp5startEf"></span><span id="_CPPv2N4Ramp5startEf"></span><span id="Ramp::start__float"></span><span class="target" id="classpq_1_1_abstract_timer_1a537d63860b10a69f6d098b67479ed2c7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp5startEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Starts/restarts the chronometer with specific duration. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Ramp8DurationEv">
+<span id="_CPPv3N4Ramp8DurationEv"></span><span id="_CPPv2N4Ramp8DurationEv"></span><span id="Ramp::Duration"></span><span class="target" id="classpq_1_1_abstract_timer_1aa8202320c1eeab81357d2e6f15e37ad1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Parameter</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp8DurationEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns duration as a parameter. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -572,13 +604,13 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp15analogToDigitalEf">
-<span id="_CPPv3N4Ramp15analogToDigitalEf"></span><span id="_CPPv2N4Ramp15analogToDigitalEf"></span><span id="Ramp::analogToDigital__float"></span><span class="target" id="classpq_1_1_chainable_1a9a486b1ae36f0c9019b81ed6020e3569"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp15analogToDigitalEf"></span><span id="_CPPv2N4Ramp15analogToDigitalEf"></span><span id="Ramp::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts analog (float) value to digital (bool) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp15digitalToAnalogEb">
-<span id="_CPPv3N4Ramp15digitalToAnalogEb"></span><span id="_CPPv2N4Ramp15digitalToAnalogEb"></span><span id="Ramp::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_chainable_1a83d532694479bab5046887c3f7968730"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N4Ramp15digitalToAnalogEb"></span><span id="_CPPv2N4Ramp15digitalToAnalogEb"></span><span id="Ramp::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Ramp15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
@@ -609,7 +641,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -5,6 +5,7 @@ var classpq_1_1_alarm =
     [ "addTime", "classpq_1_1_alarm.html#a0bb9bb33bf7e2e5fc8980a96f935a8fc", null ],
     [ "changed", "classpq_1_1_alarm.html#a9a34d50955ca36321e40223835e62c53", null ],
     [ "changeState", "classpq_1_1_alarm.html#a75205a0d0192f5c4514dd7a2a6817fb4", null ],
+    [ "Duration", "classpq_1_1_alarm.html#aa8202320c1eeab81357d2e6f15e37ad1", null ],
     [ "duration", "classpq_1_1_alarm.html#adc25c02b7a2606cd74be8b7b8c6ca3e2", null ],
     [ "duration", "classpq_1_1_alarm.html#a1278f2208903d72d7b4414657b564d2c", null ],
     [ "elapsed", "classpq_1_1_alarm.html#ae9012477635738450725b724749060e0", null ],

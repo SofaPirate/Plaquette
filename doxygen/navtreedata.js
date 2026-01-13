@@ -44,11 +44,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_chronometer_8h_source.html",
-"classpq_1_1_analog_in.html#a0cacf6b4229157c5f184354936a1e7a6",
-"classpq_1_1_digital_unit.html",
-"classpq_1_1_peak_detector.html#a1e84763649e8d23c99f05b5d80430b35",
-"classpq_1_1_smoother.html#a22d31f34ba07507c76a24aff601a463b",
-"classpq_1_1_wave.html#a0e40de2d50e0b16a81d159b7b0502203"
+"classpq_1_1_alarm.html#a9a34d50955ca36321e40223835e62c53",
+"classpq_1_1_digital_source.html#a6cbb4348dfc91336420d115eacd3c05e",
+"classpq_1_1_moving_stats.html#abe80e57b914bbaa49cb2d48bc7225c45",
+"classpq_1_1_robust_scaler.html#abf7a83ac1dedb8f05b21fe68ec587209",
+"classpq_1_1_stream_out.html#acb16a367d11fd271c1a7686514fe246f",
+"functions_g.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

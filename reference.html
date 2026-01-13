@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reference &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Reference &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -75,6 +76,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -144,6 +146,13 @@
 <li><p><a class="reference internal" href="Smoother.html"><span class="doc">Smoother</span></a> Reduces noise and fluctuations in input signals using smoothing algorithms like exponential moving averages.</p></li>
 </ul>
 </section>
+<section id="communication">
+<h2>Communication<a class="headerlink" href="#communication" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Monitor.html"><span class="doc">Monitor</span></a> Prints human-readable text and values to a print device (such as the Arduino serial monitor). Mainly used for debugging and logging.</p></li>
+<li><p><a class="reference internal" href="Plotter.html"><span class="doc">Plotter</span></a> Streams numeric values in structured rows for visualization or logging (e.g., Serial Plotter, CSV, JSON). Designed for plotting and data export.</p></li>
+</ul>
+</section>
 <section id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this heading"></a></h2>
 <ul class="simple">
@@ -170,7 +179,7 @@
 <li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a> Repeatedly called during the program’s execution, akin to Arduino’s <cite>loop()</cite> function. Drives the execution of the main logic.</p></li>
 <li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a> Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.</p></li>
 <li><p><a class="reference internal" href="dot.html"><span class="doc">. (dot)</span></a> Provides access to an object’s methods and data, enabling intuitive object-oriented programming with Plaquette units.</p></li>
-<li><p><a class="reference internal" href="pipe.html"><span class="doc">&gt;&gt; (pipe)</span></a> Sends data across units from left to right, creating a streamlined and intuitive flow of information between connected units.</p></li>
+<li><p><a class="reference internal" href="flow.html"><span class="doc">&gt;&gt; (flow)</span></a> Sends data across units from left to right, creating a streamlined and intuitive flow of information between connected units.</p></li>
 </ul>
 </section>
 <section id="extra">
@@ -179,8 +188,6 @@
 <li><p><a class="reference internal" href="easings.html"><span class="doc">Easings</span></a> Provides easing functions for smooth and natural transitions between values. Commonly used in animations and motion design.</p></li>
 <li><p><a class="reference internal" href="ContinuousServoOut.html"><span class="doc">ContinuousServoOut</span></a> Controls a continuous rotation servo motor by setting its speed and direction. Ideal for robotics or mechanical motion control.</p></li>
 <li><p><a class="reference internal" href="ServoOut.html"><span class="doc">ServoOut</span></a> Controls a standard servo motor by setting its angle. Useful for applications like robotic arms or pan-tilt systems.</p></li>
-<li><p><a class="reference internal" href="StreamIn.html"><span class="doc">StreamIn</span></a> Streams input data continuously, allowing real-time signal processing from external devices.</p></li>
-<li><p><a class="reference internal" href="StreamOut.html"><span class="doc">StreamOut</span></a> Streams output data continuously, enabling real-time control of external actuators or visualizations.</p></li>
 </ul>
 </section>
 </section>
@@ -196,7 +203,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitor &mdash; Plaquette 0.9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plotter" href="Plotter.html" />
+    <link rel="prev" title="Communication" href="communication.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Plaquette
+            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.9
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Essentials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_plaquette.html">Why Plaquette?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://raw.githubusercontent.com/SofaPirate/Plaquette/master/extras/Plaquette-Manual.pdf">PDF manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs_outputs.html">Inputs and Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waves.html">Generating Waveforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing_basics.html">Working with Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="communication.html">Communication</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Monitor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notesandwarnings">Notes and Warnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plotter.html">Plotter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/Plaquette/">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://plaquette.org/doxygen/">Doxygen Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.09144">JOSS paper</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Plaquette</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="communication.html">Communication</a> &raquo;</li>
+      <li>Monitor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="monitor">
+<h1>Monitor<a class="headerlink" href="#monitor" title="Permalink to this heading"></a></h1>
+<p>An output unit that writes textual information to a print device, typically the serial line.
+The Monitor is intended for <strong>logging, debugging, and human-readable output</strong>, rather than
+structured data plotting like the <a class="reference internal" href="Plotter.html"><span class="doc">Plotter</span></a>.</p>
+<p>To create a monitor on the default serial port with a specific baudrate:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="n">baudrate</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Plaquette automatically uses the first Monitor you create as the default device where information
+is printed. This means that instead of writing:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">monitor</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can just write:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>On Arduino, you can read the text printed by the Monitor unit using the
+<a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-monitor/">Serial Monitor</a>
+by selecting <strong>Tools &gt; Serial Monitor</strong>. Make sure the baudrate
+matches the value used to create the Monitor.</p>
+</div>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<p>Printing messages and values to the serial monitor.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">Monitor</span><span class="w"> </span><span class="nf">monitor</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Stepping...&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Seconds: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">seconds</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">monitor</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">println</span><span class="p">();</span><span class="w"> </span><span class="c1">// new line</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="notesandwarnings">
+<h2>Notes and Warnings<a class="headerlink" href="#notesandwarnings" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The Monitor is <strong>not</strong> intended for structured data export or plotting; use <a class="reference internal" href="Plotter.html"><span class="doc">Plotter</span></a> for that purpose.</p></li>
+<li><p>Blocking read operations (such as <code class="docutils literal notranslate"><span class="pre">readStringUntil()</span></code>) are intentionally not exposed to avoid
+unintended blocking behavior.</p></li>
+<li><p>Precision for numeric output can be configured on the Monitor by calling its function <code class="docutils literal notranslate"><span class="pre">precision()</span></code> and
+applies to floating-point values printed through it.</p></li>
+</ul>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47Monitor">
+<span id="_CPPv37Monitor"></span><span id="_CPPv27Monitor"></span><span id="Monitor"></span><span class="target" id="classpq_1_1_monitor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Monitor</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Print</span></span><a class="headerlink" href="#_CPPv47Monitor" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Write-only monitor unit for textual output. </p>
+<p><a class="reference internal" href="#classpq_1_1_monitor"><span class="std std-ref">Monitor</span></a> is a Plaquette Unit and a Print proxy. It is intended for human-readable output (debugging, status messages) and deliberately does not expose Stream read functionality to avoid blocking behavior.</p>
+<p>The backend can be any Print-compatible object (Serial, file, etc.). When bound to a serial device, <a class="reference internal" href="#classpq_1_1_monitor"><span class="std std-ref">Monitor</span></a> can auto-start it at a given baud rate. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor7MonitorEmR6Engine">
+<span id="_CPPv3N7Monitor7MonitorEmR6Engine"></span><span id="_CPPv2N7Monitor7MonitorEmR6Engine"></span><span id="Monitor::Monitor__unsigned-l.EngineR"></span><span class="target" id="classpq_1_1_monitor_1a0362d4244592d02b5bc69b6001234443"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Monitor</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudRate</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor7MonitorEmR6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Construct a <a class="reference internal" href="#classpq_1_1_monitor"><span class="std std-ref">Monitor</span></a> using the default Serial device. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor7MonitorER10SerialTypemR6Engine">
+<span id="_CPPv3N7Monitor7MonitorER10SerialTypemR6Engine"></span><span id="_CPPv2N7Monitor7MonitorER10SerialTypemR6Engine"></span><span id="Monitor::Monitor__SerialTypeR.unsigned-l.EngineR"></span><span class="target" id="classpq_1_1_monitor_1a0ebbc7cf945b6278e25b0e29771f37cd"></span><span class="sig-name descname"><span class="n"><span class="pre">Monitor</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">SerialType</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">device</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">baudRate</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor7MonitorER10SerialTypemR6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Construct a <a class="reference internal" href="#classpq_1_1_monitor"><span class="std std-ref">Monitor</span></a> using a specific serial device. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor7MonitorER5PrintR6Engine">
+<span id="_CPPv3N7Monitor7MonitorER5PrintR6Engine"></span><span id="_CPPv2N7Monitor7MonitorER5PrintR6Engine"></span><span id="Monitor::Monitor__PrintR.EngineR"></span><span class="target" id="classpq_1_1_monitor_1a055fcd061ab83e4d0814dcde47f327f8"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Monitor</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Print</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">device</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor7MonitorER5PrintR6Engine" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Construct a <a class="reference internal" href="#classpq_1_1_monitor"><span class="std std-ref">Monitor</span></a> using a generic Print backend. </p>
+<p>No auto-start is performed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor6deviceEv">
+<span id="_CPPv3NK7Monitor6deviceEv"></span><span id="_CPPv2NK7Monitor6deviceEv"></span><span id="Monitor::deviceC"></span><span class="target" id="classpq_1_1_monitor_1abd5a83dfdeafb09d90d15f54cb576add"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">Print</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">device</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor6deviceEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the current Print backend. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor9precisionE7uint8_t">
+<span id="_CPPv3N7Monitor9precisionE7uint8_t"></span><span id="_CPPv2N7Monitor9precisionE7uint8_t"></span><span id="Monitor::precision__uint8_t"></span><span class="target" id="classpq_1_1_monitor_1a87a32a4a7f204a8bda8babb6d8713a32"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">precision</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">digits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor9precisionE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Set the number of digits to print after the decimal point. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor9precisionEv">
+<span id="_CPPv3NK7Monitor9precisionEv"></span><span id="_CPPv2NK7Monitor9precisionEv"></span><span id="Monitor::precisionC"></span><span class="target" id="classpq_1_1_monitor_1a2e09cbfeeae620894763cd470fcb7e6a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">precision</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor9precisionEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Get the number of digits to print after the decimal point by default. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor3putEf">
+<span id="_CPPv3N7Monitor3putEf"></span><span id="_CPPv2N7Monitor3putEf"></span><span id="Monitor::put__float"></span><span class="target" id="classpq_1_1_monitor_1a29881c86e6becb57bf898997912ca878"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7Monitor3putEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Pushes value into the unit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the new value of the unit </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor3getEv">
+<span id="_CPPv3N7Monitor3getEv"></span><span id="_CPPv2N7Monitor3getEv"></span><span id="Monitor::get"></span><span class="target" id="classpq_1_1_monitor_1a821e17f5c694e13fb8980d068a0a8ab6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7Monitor3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns value (last value that was <a class="reference internal" href="#classpq_1_1_monitor_1a29881c86e6becb57bf898997912ca878"><span class="std std-ref">put()</span></a>). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor5writeE7uint8_t">
+<span id="_CPPv3N7Monitor5writeE7uint8_t"></span><span id="_CPPv2N7Monitor5writeE7uint8_t"></span><span id="Monitor::write__uint8_t"></span><span class="target" id="classpq_1_1_monitor_1af7a402b34176210c5284563492e793cc"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">write</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N7Monitor5writeE7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Core Print override. </p>
+<p>All print()/println() calls funnel through this method. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor7secondsEv">
+<span id="_CPPv3NK7Monitor7secondsEv"></span><span id="_CPPv2NK7Monitor7secondsEv"></span><span id="Monitor::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in seconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor12milliSecondsEv">
+<span id="_CPPv3NK7Monitor12milliSecondsEv"></span><span id="_CPPv2NK7Monitor12milliSecondsEv"></span><span id="Monitor::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in milliseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor12microSecondsEv">
+<span id="_CPPv3NK7Monitor12microSecondsEv"></span><span id="_CPPv2NK7Monitor12microSecondsEv"></span><span id="Monitor::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine time in microseconds. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor6nStepsEv">
+<span id="_CPPv3NK7Monitor6nStepsEv"></span><span id="_CPPv2NK7Monitor6nStepsEv"></span><span id="Monitor::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns number of engine steps. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor10sampleRateEv">
+<span id="_CPPv3NK7Monitor10sampleRateEv"></span><span id="_CPPv2NK7Monitor10sampleRateEv"></span><span id="Monitor::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns engine sample rate. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7Monitor12samplePeriodEv">
+<span id="_CPPv3NK7Monitor12samplePeriodEv"></span><span id="_CPPv2NK7Monitor12samplePeriodEv"></span><span id="Monitor::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Monitor12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns enginesample period. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7MonitorcvfEv">
+<span id="_CPPv3N7MonitorcvfEv"></span><span id="_CPPv2N7MonitorcvfEv"></span><span id="Monitor::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7MonitorcvfEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Object can be used directly to access its value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor5mapToEff">
+<span id="_CPPv3N7Monitor5mapToEff"></span><span id="_CPPv2N7Monitor5mapToEff"></span><span id="Monitor::mapTo__float.float"></span><span class="target" id="classpq_1_1_flowable_1ac610a799e5514352288aef726e579f4d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Maps value to new range. </p>
+<p>This function guarantees that the value is within [toLow, toHigh]. If the unit’s values are unbounded, returns get() constrained to [toLow, toHigh]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7MonitorcvbEv">
+<span id="_CPPv3N7MonitorcvbEv"></span><span id="_CPPv2N7MonitorcvbEv"></span><span id="Monitor::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7MonitorcvbEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Operator that allows usage in conditional expressions. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor15analogToDigitalEf">
+<span id="_CPPv3N7Monitor15analogToDigitalEf"></span><span id="_CPPv2N7Monitor15analogToDigitalEf"></span><span id="Monitor::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts analog (float) value to digital (bool) value. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7Monitor15digitalToAnalogEb">
+<span id="_CPPv3N7Monitor15digitalToAnalogEb"></span><span id="_CPPv2N7Monitor15digitalToAnalogEb"></span><span id="Monitor::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7Monitor15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Converts digital (bool) value to analog (float) value. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="seealso">
+<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Plotter.html"><span class="doc">Plotter</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-monitor/">Arduino Serial Monitor</a></p></li>
+<li><p><a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/">Arduino serial</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="communication.html" class="btn btn-neutral float-left" title="Communication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Plotter.html" class="btn btn-neutral float-right" title="Plotter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

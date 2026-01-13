@@ -17,7 +17,7 @@ There are three potential wave types that can be set using the ``shape`` paramet
 .. image:: images/Plaquette-TriangleWave.png
   :width: 33%
 
-.. image:: images/Plaquette-SineWave-noSkew.png
+.. image:: images/Plaquette-SineWave.png
   :width: 33%
 
 Parameters
@@ -110,7 +110,8 @@ green, and so on. It uses a sawtooth to iterate through these three states.
    Wave osc(TRIANGLE, 10.0);
 
    void begin() {
-     osc.skew(1.0); // sawtooth wave
+   // Setting skew to 1.0 converts triangle wave to a sawtooth wave.
+     osc.skew(1.0);
    }
 
    void step() {
@@ -187,16 +188,15 @@ Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's 
 
   AnalogOut led(9);
 
-  Wave osc(SINE); // average period of 1 second (default)
+  Wave osc(SINE); // Default value of wave period is 1 second.
 
   Wave lfo(SINE, 20.0); // 20-seconds oscillator
-
-  void begin() {}
 
   void step() {
     osc.randomize(lfo);
     osc >> led;
   }
+
 
 .. doxygenclass:: Wave
    :project: Plaquette

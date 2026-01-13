@@ -19,8 +19,6 @@ sending values between 0 and 1.
 
    AnalogOut led(9);
 
-   void begin() {}
-
    void step() {
      serialIn >> led;
    }
@@ -29,7 +27,7 @@ To run this example:
 
 1. Upload the code.
 2. In the Arduino software open the serial monitor: **Tools > Serial Monitor**.
-3. Make sure the default baudrate of **9600** bps is selected.
+3. Make sure the default baudrate of **115200** bps is selected.
 4. Make sure one of the options "Newline", "Carriage return", or "Both NL + CR" is selected.
 5. Write a number between 0.0 and 1.0 and press "Enter". This should allow you to set the LED intensity.
 6. Try different values.

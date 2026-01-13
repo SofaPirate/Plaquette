@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generating Waveforms &mdash; Plaquette 0.8.2 documentation</title>
+  <title>Generating Waveforms &mdash; Plaquette 0.9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -35,7 +35,7 @@
             <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.8
+                0.9
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -88,6 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="timing.html">Timing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication.html">Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure</a></li>
@@ -96,6 +97,7 @@
 <p class="caption" role="heading"><span class="caption-text">Libraries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqLEDStrip/">PqLEDStrip</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/SofaPirate/PqOsc/">PqOsc</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Related Info</span></p>
 <ul>
@@ -152,10 +154,10 @@ Finally, we will look at how to use randomness to generate noisy waveforms that 
 <section id="visualizing-waves-with-the-serial-plotter">
 <h2>Visualizing Waves with the Serial Plotter<a class="headerlink" href="#visualizing-waves-with-the-serial-plotter" title="Permalink to this heading"></a></h2>
 <p>In this section, we will use <strong>serial communication</strong> to send data from our Arduino board to our
-PC so as to visualize the waves in real time. The <code class="docutils literal notranslate"><span class="pre">print()</span></code> and <code class="docutils literal notranslate"><span class="pre">println()</span></code> functions allow
-you to send data to the serial, which is invaluable for debugging and visualizing data. They will
-provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect
-the output.</p>
+PC so as to visualize the waves in real time. After instantiating a Plotter object, you can use
+<code class="docutils literal notranslate"><span class="pre">print()</span></code> and <code class="docutils literal notranslate"><span class="pre">println()</span></code> functions to send data to the plotter, which is invaluable for
+debugging and visualizing data. The plotter provides a way to graphically observe how wave
+properties like amplitude, phase, or frequency affect the output.</p>
 <section id="single-signal">
 <h3>Single Signal<a class="headerlink" href="#single-signal" title="Permalink to this heading"></a></h3>
 <p>To visualize the data, open the <a class="reference external" href="https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/">Serial Plotter</a>
@@ -166,32 +168,31 @@ sensor values and waveforms.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"> </span><span class="c1">// The potentiometer</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Create a plotter object and set a baudrate</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print the potentiometer value and ends the line</span>
+<span class="w">  </span><span class="n">pot</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// send the pot value directly to the plotter using a flow operator</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="multiple-signals">
 <h3>Multiple Signals<a class="headerlink" href="#multiple-signals" title="Permalink to this heading"></a></h3>
-<p>For multiple signals, print their values separated by spaces in a single line, followed by a
-newline using <code class="docutils literal notranslate"><span class="pre">println()</span></code>.</p>
+<p>You can use the same method to send multiple signals.</p>
 <p><strong>Example</strong>: Print the value of the potentiometer and a sine wave:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Potentiometer input</span>
-<span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sine wave with period of 2 seconds</span>
+<span class="w">   </span><span class="n">AnalogIn</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Potentiometer input</span>
+<span class="w">   </span><span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sine wave with period of 2 seconds</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="c1">// Create plotter with baud and optional labels for multiple signals.</span>
+<span class="w">   </span><span class="n">Plotter</span><span class="w"> </span><span class="n">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wave,pot&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// First value sent to plotter labeled as &quot;wave&quot;, second as &quot;pot&quot;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w">  </span><span class="c1">// Print wave value</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w">   </span><span class="c1">// Print white space</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print the potentiometer value and ends the line</span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">pot</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -224,13 +225,14 @@ creating natural, flowing transitions, such as smooth dimming or speed control.<
 <span class="n">Wave</span><span class="w"> </span><span class="nf">triangleWave</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">sineWave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="c1">// Create plotter with baud and optional labels for multiple signals.</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="n">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;square,triangle,sine&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// First value sent to plotter labeled as &quot;square&quot;, second as &quot;triangle&quot;, etc.</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Print all wave values separated by spaces</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">squareWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">triangleWave</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sineWave</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">squarewave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">trianglewave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sinewave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -275,6 +277,7 @@ It is also common to initialize period and skew in the same way for more express
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">Wave</span><span class="w"> </span><span class="n">wave</span><span class="p">;</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">);</span><span class="w"> </span><span class="c1">// triangle wave</span>
@@ -285,7 +288,7 @@ It is also common to initialize period and skew in the same way for more express
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print wave value</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// send wave value to plotter</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -303,17 +306,18 @@ evolutive effects.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="c1">// Create plotter with baud and optional labels for multiple signals.</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="n">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;square,triangle,sine&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// First value sent to plotter labeled as &quot;square&quot;, second as &quot;triangle&quot;, etc.</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Assign new skew value.</span>
 <span class="w">  </span><span class="n">square</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="n">triangle</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="n">pot</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Print all wave values separated by spaces</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">square</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sine</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Send the wave values to the plotter for visualization</span>
+<span class="w">  </span><span class="n">square</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">triangle</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -327,7 +331,8 @@ potentiometer value to appropriate ranges.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">triangle</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="c1">// Create plotter with baud and optional labels for multiple signals.</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="n">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;square,triangle,sine&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// First value sent to plotter labeled as &quot;square&quot;, second as &quot;triangle&quot;, etc.</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Read new period value.</span>
@@ -336,10 +341,10 @@ potentiometer value to appropriate ranges.</p>
 <span class="w">  </span><span class="n">square</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">newPeriod</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="n">triangle</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">newPeriod</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="n">newPeriod</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Print all wave values separated by spaces</span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">square</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sine</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Send wave values to the plotter for visualization</span>
+<span class="w">  </span><span class="n">square</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">triangle</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -364,13 +369,13 @@ result using the Serial Plotter.</p>
 
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave with initial 1 second period</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Plotter with 115200 baud rate</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Set period to current period plus one</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print wave value</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="w"> </span><span class="c1">// send wave to plotter</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -394,6 +399,8 @@ per minute.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">secondary</span><span class="p">(</span><span class="n">SINE</span><span class="p">);</span><span class="w"> </span><span class="c1">// Secondary beat</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">   </span><span class="c1">// LED for visualizing the heartbeat</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">155200</span><span class="p">);</span><span class="w"> </span><span class="c1">// plotter with 115200 baudrate</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">primary</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span><span class="w"> </span><span class="c1">// Set primary beat to 80 beats per minute</span>
 <span class="w">  </span><span class="n">secondary</span><span class="p">.</span><span class="n">bpm</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">primary</span><span class="p">.</span><span class="n">bpm</span><span class="p">());</span><span class="w"> </span><span class="c1">// Set secondary beat to twice primary BPM</span>
@@ -403,7 +410,7 @@ per minute.</p>
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">heartBeat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">primary</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">secondary</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Combine and normalize waves</span>
 <span class="w">  </span><span class="n">heartBeat</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">  </span><span class="c1">// Drive LED with combined signal</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">heartBeat</span><span class="p">);</span><span class="w">  </span><span class="c1">// Stream the combined wave for visualization</span>
+<span class="w">  </span><span class="n">heartBeat</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w">  </span><span class="c1">// Stream the combined wave for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -426,12 +433,12 @@ modulate the frequency, phase, period, amplitude, or skew of a faster wave.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="n">SINE</span><span class="p">);</span><span class="w">    </span><span class="c1">// Main wave</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// plotter object for visualizaiton</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">modulator</span><span class="p">.</span><span class="n">mapTo</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Modulate frequency between 1 and 10 Hz</span>
 <span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Drive LED with modulated sine wave</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the modulated wave</span>
+<span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Stream the modulated wave</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -459,13 +466,13 @@ function as it returns integer numbers instead of floating-point numbers.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Base waveform</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">   </span><span class="c1">// LED output</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// plotter object for visualization</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Generate noise value in [-0.1, 0.1]</span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">noisyWave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wave</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">noise</span><span class="p">;</span><span class="w"> </span><span class="c1">// Compute sine value + noise</span>
 <span class="w">  </span><span class="n">noisyWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Drive LED with noisy sine wave</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">noisyWave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the noisy sine wave</span>
+<span class="w">  </span><span class="n">noisyWave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Stream the noisy sine wave</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -479,13 +486,13 @@ the amount of noise.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave with initial period of 1 second</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">   </span><span class="c1">// LED output</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="o">-</span><span class="n">pot</span><span class="p">,</span><span class="w"> </span><span class="n">pot</span><span class="p">);</span><span class="w"> </span><span class="c1">// Generate noise according to potentiometer value</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">(</span><span class="w"> </span><span class="n">wave</span><span class="p">.</span><span class="n">period</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// Add noise to period</span>
 <span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">   </span><span class="c1">// Drive LED with noisy sine wave</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the sine wave</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="w"> </span><span class="c1">// Stream the sine wave to plotter for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -497,6 +504,8 @@ each push of the button.</p>
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">TRIANGLE</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wave with default properties</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w">  </span><span class="c1">// LED output</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// plotter object for visualization</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">button</span><span class="p">.</span><span class="n">debounce</span><span class="p">();</span><span class="w"> </span><span class="c1">// Debounce button</span>
 <span class="w">  </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Start at 5 Hz</span>
@@ -506,7 +515,7 @@ each push of the button.</p>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">wave</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Random frequency between 4 and 6 Hz</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">wave</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the wave for visualization</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Stream the wave for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -533,6 +542,8 @@ Serial Plotter. Try to simulate a natural phenomena like a flickering flame or a
 <span class="n">Wave</span><span class="w"> </span><span class="nf">sine</span><span class="p">(</span><span class="n">SINE</span><span class="p">);</span><span class="w">    </span><span class="c1">// Wave with default properties</span>
 <span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">// LED output</span>
 
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// Plotter for signal visualization</span>
+
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">sine</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Initialize frequency to 2 Hz</span>
 <span class="p">}</span><span class="w"></span>
@@ -542,7 +553,7 @@ Serial Plotter. Try to simulate a natural phenomena like a flickering flame or a
 <span class="w">    </span><span class="n">sine</span><span class="p">.</span><span class="n">togglePause</span><span class="p">();</span><span class="w"> </span><span class="c1">// Pause or resume the wave</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"> </span><span class="c1">// Drive LED with sine wave</span>
-<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="n">sine</span><span class="p">);</span><span class="w"> </span><span class="c1">// Stream the wave for visualization</span>
+<span class="w">  </span><span class="n">sine</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"> </span><span class="c1">// Stream the wave for visualization</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -556,8 +567,8 @@ patterns.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
 <span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SINE</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sine wave with 5 seconds period</span>
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"> </span><span class="c1">// plotter for signal visualization</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Print shifted values separated by white spaces.</span>
@@ -590,7 +601,7 @@ waves can bring your projects to life.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2025, Plaquette.</p>
+    <p>&#169; Copyright 2015-2026, Plaquette.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

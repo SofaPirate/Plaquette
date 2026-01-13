@@ -38,7 +38,7 @@ Sequentially ramps through different values.
 
    Ramp myRamp(3.0); // initial duration: 3 seconds
 
-   StreamOut serialOut(Serial);
+   Plotter serialOut(115200);
 
    void begin() {
      // Apply an easing function (optional).

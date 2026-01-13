@@ -117,44 +117,42 @@ $(document).ready(function(){initNavTree('_plaquette_8h_source.html',''); initRe
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * You should have received a copy of the GNU General Public License</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef PLAQUETTE_H_</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define PLAQUETTE_H_</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;PlaquetteLib.h&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef PLAQUETTE_H_</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define PLAQUETTE_H_</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;PlaquetteLib.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;PlaquetteSketch.h&quot;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using namespace </span>pq;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// Plaquette builtin runtime functions (to be defined in sketch).</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span> begin();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> step();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// Plaquette redefines setup() and loop() based on begin() and step().</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> setup() {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#ac4da59764e8f3fc7473f408e3ae4a583">preBegin</a>();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  begin();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a9777126f3a019fc4eee4d5d7d4156d2d">postBegin</a>();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">void</span> loop() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">if</span> (Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a3ce40d6bb6e1f4bc824af6a60b941493">timeStep</a>()) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a10a604b576ff5e5c209a22298236ce10">preStep</a>();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    step();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclasspq_1_1_engine_html_a10a604b576ff5e5c209a22298236ce10"><div class="ttname"><a href="classpq_1_1_engine.html#a10a604b576ff5e5c209a22298236ce10">pq::Engine::preStep</a></div><div class="ttdeci">void preStep()</div><div class="ttdoc">Updates all components (calls step() on all of them).</div><div class="ttdef"><b>Definition</b> PqCore.h:671</div></div>
-<div class="ttc" id="aclasspq_1_1_engine_html_a3ce40d6bb6e1f4bc824af6a60b941493"><div class="ttname"><a href="classpq_1_1_engine.html#a3ce40d6bb6e1f4bc824af6a60b941493">pq::Engine::timeStep</a></div><div class="ttdeci">bool timeStep()</div><div class="ttdoc">Performs additional tasks after the class to step().</div><div class="ttdef"><b>Definition</b> PqCore.h:681</div></div>
-<div class="ttc" id="aclasspq_1_1_engine_html_a9777126f3a019fc4eee4d5d7d4156d2d"><div class="ttname"><a href="classpq_1_1_engine.html#a9777126f3a019fc4eee4d5d7d4156d2d">pq::Engine::postBegin</a></div><div class="ttdeci">void postBegin()</div><div class="ttdoc">Performs additional tasks after the class to begin().</div><div class="ttdef"><b>Definition</b> PqCore.cpp:82</div></div>
-<div class="ttc" id="aclasspq_1_1_engine_html_ac4da59764e8f3fc7473f408e3ae4a583"><div class="ttname"><a href="classpq_1_1_engine.html#ac4da59764e8f3fc7473f408e3ae4a583">pq::Engine::preBegin</a></div><div class="ttdeci">void preBegin(unsigned long baudrate=PLAQUETTE_SERIAL_BAUD_RATE)</div><div class="ttdoc">Initializes all components (calls begin() on all of them).</div><div class="ttdef"><b>Definition</b> PqCore.cpp:55</div></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// Use namespace.</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using namespace </span>pq;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// Plaquette redefines setup() and loop() based on begin() and step().</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> setup() {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  settings();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#afdb393f45a172ac38de2c6e78545e54a">preBegin</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  begin();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a9777126f3a019fc4eee4d5d7d4156d2d">postBegin</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">void</span> loop() {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">if</span> (Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a3ce40d6bb6e1f4bc824af6a60b941493">timeStep</a>()) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    Plaquette.<a class="code hl_function" href="classpq_1_1_engine.html#a10a604b576ff5e5c209a22298236ce10">preStep</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    step();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasspq_1_1_engine_html_a10a604b576ff5e5c209a22298236ce10"><div class="ttname"><a href="classpq_1_1_engine.html#a10a604b576ff5e5c209a22298236ce10">pq::Engine::preStep</a></div><div class="ttdeci">void preStep()</div><div class="ttdoc">Updates all components (calls step() on all of them).</div><div class="ttdef"><b>Definition</b> PqCore.h:814</div></div>
+<div class="ttc" id="aclasspq_1_1_engine_html_a3ce40d6bb6e1f4bc824af6a60b941493"><div class="ttname"><a href="classpq_1_1_engine.html#a3ce40d6bb6e1f4bc824af6a60b941493">pq::Engine::timeStep</a></div><div class="ttdeci">bool timeStep()</div><div class="ttdoc">Performs additional tasks after the class to step().</div><div class="ttdef"><b>Definition</b> PqCore.h:824</div></div>
+<div class="ttc" id="aclasspq_1_1_engine_html_a9777126f3a019fc4eee4d5d7d4156d2d"><div class="ttname"><a href="classpq_1_1_engine.html#a9777126f3a019fc4eee4d5d7d4156d2d">pq::Engine::postBegin</a></div><div class="ttdeci">void postBegin()</div><div class="ttdoc">Performs additional tasks after the class to begin().</div><div class="ttdef"><b>Definition</b> PqCore.cpp:79</div></div>
+<div class="ttc" id="aclasspq_1_1_engine_html_afdb393f45a172ac38de2c6e78545e54a"><div class="ttname"><a href="classpq_1_1_engine.html#afdb393f45a172ac38de2c6e78545e54a">pq::Engine::preBegin</a></div><div class="ttdeci">void preBegin()</div><div class="ttdoc">Initializes all components (calls begin() on all of them).</div><div class="ttdef"><b>Definition</b> PqCore.cpp:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>Plaquette.h</b></li>
-    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 12 2026 23:52:56 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

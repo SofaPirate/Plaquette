@@ -1,5 +1,10 @@
 var searchData=
 [
-  ['ramp_0',['Ramp',['../classpq_1_1_ramp.html',1,'pq']]],
-  ['robustscaler_1',['RobustScaler',['../classpq_1_1_robust_scaler.html',1,'pq']]]
+  ['metronome_0',['Metronome',['../classpq_1_1_metronome.html',1,'pq']]],
+  ['micro_5fseconds_5ft_1',['micro_seconds_t',['../unionpq_1_1micro__seconds__t.html',1,'pq']]],
+  ['minmaxscaler_2',['MinMaxScaler',['../classpq_1_1_min_max_scaler.html',1,'pq']]],
+  ['monitor_3',['Monitor',['../classpq_1_1_monitor.html',1,'pq']]],
+  ['movingaverage_4',['MovingAverage',['../classpq_1_1_moving_average.html',1,'pq']]],
+  ['movingfilter_5',['MovingFilter',['../classpq_1_1_moving_filter.html',1,'pq']]],
+  ['movingstats_6',['MovingStats',['../classpq_1_1_moving_stats.html',1,'pq']]]
 ];

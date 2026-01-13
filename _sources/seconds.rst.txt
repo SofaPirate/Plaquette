@@ -16,6 +16,7 @@ This function returns the number of seconds since the program started.
    DigitalOut led(13, DIRECT);
 
    void begin() {
+   // Initialize LED as "off".
      led.off();
    }
 

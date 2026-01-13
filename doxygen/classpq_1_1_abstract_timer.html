@@ -96,6 +96,7 @@ $(document).ready(function(){initNavTree('classpq_1_1_abstract_timer.html',''); 
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -132,6 +133,12 @@ Collaboration diagram for pq::AbstractTimer:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ab9752776c3582bfa4afa5e68511509a7" id="r_ab9752776c3582bfa4afa5e68511509a7"><td class="memItemLeft" align="right" valign="top"><a id="ab9752776c3582bfa4afa5e68511509a7" name="ab9752776c3582bfa4afa5e68511509a7"></a>
+typedef <a class="el" href="classpq_1_1_parameter_slot.html">ParameterSlot</a>&lt; <a class="el" href="classpq_1_1_abstract_timer.html">AbstractTimer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Parameter</b></td></tr>
+<tr class="separator:ab9752776c3582bfa4afa5e68511509a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af50f92b60dbc887be34b87b10c6d8afb" id="r_af50f92b60dbc887be34b87b10c6d8afb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_timer.html#af50f92b60dbc887be34b87b10c6d8afb">start</a> ()</td></tr>
@@ -147,6 +154,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (fl
 <tr class="memitem:adc25c02b7a2606cd74be8b7b8c6ca3e2" id="r_adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpq_1_1_abstract_timer.html#adc25c02b7a2606cd74be8b7b8c6ca3e2">duration</a> () const</td></tr>
 <tr class="memdesc:adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns duration.  <br /></td></tr>
 <tr class="separator:adc25c02b7a2606cd74be8b7b8c6ca3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8202320c1eeab81357d2e6f15e37ad1" id="r_aa8202320c1eeab81357d2e6f15e37ad1"><td class="memItemLeft" align="right" valign="top"><a id="aa8202320c1eeab81357d2e6f15e37ad1" name="aa8202320c1eeab81357d2e6f15e37ad1"></a>
+virtual <a class="el" href="classpq_1_1_parameter_slot.html">Parameter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Duration</b> ()</td></tr>
+<tr class="memdesc:aa8202320c1eeab81357d2e6f15e37ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns duration as a parameter. <br /></td></tr>
+<tr class="separator:aa8202320c1eeab81357d2e6f15e37ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a853baae3f098000ae4410bf1029a661b" id="r_a853baae3f098000ae4410bf1029a661b"><td class="memItemLeft" align="right" valign="top"><a id="a853baae3f098000ae4410bf1029a661b" name="a853baae3f098000ae4410bf1029a661b"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>progress</b> () const</td></tr>
 <tr class="memdesc:a853baae3f098000ae4410bf1029a661b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The progress of the timer process (in %). <br /></td></tr>
@@ -312,7 +323,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Returns duration. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#ae9aad4d3abffad065836e6c831f8a600">pq::Ramp</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#adc25c02b7a2606cd74be8b7b8c6ca3e2">pq::Ramp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +353,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 
 <p>Sets the duration of the chronometer. </p>
 
-<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#a7f9da111f5c0a0a4c3102ad572341b46">pq::Ramp</a>.</p>
+<p>Reimplemented in <a class="el" href="classpq_1_1_ramp.html#a1278f2208903d72d7b4414657b564d2c">pq::Ramp</a>, and <a class="el" href="classpq_1_1_ramp.html#a89dae75ccd0f080b0d69064385810885">pq::Ramp</a>.</p>
 
 </div>
 </div>
@@ -595,7 +606,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b></td></
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_abstract_timer.html">AbstractTimer</a></li>
-    <li class="footer">Generated on Thu Dec 4 2025 17:07:22 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 12 2026 23:52:56 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

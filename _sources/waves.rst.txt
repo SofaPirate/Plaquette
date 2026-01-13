@@ -22,10 +22,10 @@ Visualizing Waves with the Serial Plotter
 -----------------------------------------
 
 In this section, we will use **serial communication** to send data from our Arduino board to our
-PC so as to visualize the waves in real time. The ``print()`` and ``println()`` functions allow
-you to send data to the serial, which is invaluable for debugging and visualizing data. They will
-provide a way to graphically observe how wave properties like amplitude, phase, or frequency affect
-the output.
+PC so as to visualize the waves in real time. After instantiating a Plotter object, you can use
+``print()`` and ``println()`` functions to send data to the plotter, which is invaluable for
+debugging and visualizing data. The plotter provides a way to graphically observe how wave
+properties like amplitude, phase, or frequency affect the output.
 
 Single Signal
 ~~~~~~~~~~~~~
@@ -42,18 +42,17 @@ sensor values and waveforms.
     #include <Plaquette.h>
 
     AnalogIn pot(A0); // The potentiometer
+    Plotter plotter(115200); // Create a plotter object and set a baudrate
 
-    void begin() {}
 
     void step() {
-      println(pot); // Print the potentiometer value and ends the line
+      pot >> plotter; // send the pot value directly to the plotter using a flow operator
     }
 
 Multiple Signals
 ~~~~~~~~~~~~~~~~
 
-For multiple signals, print their values separated by spaces in a single line, followed by a
-newline using ``println()``.
+You can use the same method to send multiple signals.
 
 **Example**: Print the value of the potentiometer and a sine wave:
 
@@ -64,12 +63,12 @@ newline using ``println()``.
     AnalogIn pot(A0);   // Potentiometer input
     Wave wave(SINE, 2.0); // Sine wave with period of 2 seconds
 
-    void begin() {}
+ // Create plotter with baud and optional labels for multiple signals.
+    Plotter plotter(115200, "wave,pot"); // First value sent to plotter labeled as "wave", second as "pot"
 
     void step() {
-      print(wave);  // Print wave value
-      print(" ");   // Print white space
-      println(pot); // Print the potentiometer value and ends the line
+      wave >> plotter;
+      pot >> plotter;
     }
 
 
@@ -115,13 +114,14 @@ You can visualize these waves on the Serial Plotter by streaming their values.
     Wave triangleWave(TRIANGLE, 1.0);
     Wave sineWave(SINE, 1.0);
 
-    void begin() {}
+    // Create plotter with baud and optional labels for multiple signals.
+    Plotter plotter(115200, "square,triangle,sine"); // First value sent to plotter labeled as "square", second as "triangle", etc.
 
     void step() {
       // Print all wave values separated by spaces
-      print(squareWave); print(" ");
-      print(triangleWave); print(" ");
-      println(sineWave);
+      squarewave >> plotter;
+      trianglewave >> plotter;
+      sinewave >> plotter;
     }
 
 Wave Properties
@@ -169,6 +169,7 @@ It is also common to initialize period and skew in the same way for more express
     #include <Plaquette.h>
 
     Wave wave;
+    Plotter plotter(115200);
 
     void begin() {
       wave.shape(TRIANGLE); // triangle wave
@@ -179,7 +180,7 @@ It is also common to initialize period and skew in the same way for more express
     }
 
     void step() {
-      println(wave); // Print wave value
+      wave >> plotter; // send wave value to plotter
     }
 
 Changing Properties During Runtime
@@ -200,17 +201,18 @@ evolutive effects.
     Wave triangle(TRIANGLE, 1.0);
     Wave sine(SINE, 1.0);
 
-    void begin() {}
+    // Create plotter with baud and optional labels for multiple signals.
+    Plotter plotter(115200, "square,triangle,sine"); // First value sent to plotter labeled as "square", second as "triangle", etc.
 
     void step() {
       // Assign new skew value.
       square.skew(pot);
       triangle.skew(pot);
       sine.skew(pot);
-      // Print all wave values separated by spaces
-      print(square); print(" ");
-      print(triangle); print(" ");
-      println(sine);
+      // Send the wave values to the plotter for visualization
+      square >> plotter;
+      triangle >> plotter;
+      sine >> plotter;
     }
 
 **Example**: Control the period of the waves using the potentiometer. Necessitates remapping
@@ -226,7 +228,8 @@ potentiometer value to appropriate ranges.
     Wave triangle(TRIANGLE, 1.0);
     Wave sine(SINE, 1.0);
 
-    void begin() {}
+    // Create plotter with baud and optional labels for multiple signals.
+    Plotter plotter(115200, "square,triangle,sine"); // First value sent to plotter labeled as "square", second as "triangle", etc.
 
     void step() {
       // Read new period value.
@@ -235,10 +238,10 @@ potentiometer value to appropriate ranges.
       square.period(newPeriod);
       triangle.period(newPeriod);
       sine.period(newPeriod);
-      // Print all wave values separated by spaces
-      print(square); print(" ");
-      print(triangle); print(" ");
-      println(sine);
+      // Send wave values to the plotter for visualization
+      square >> plotter;
+      triangle >> plotter;
+      sine >> plotter;
     }
 
 Try using the potentiometer to control different wave properties and visualize the
@@ -265,13 +268,13 @@ All properties in wave units have two variants:
 
     Wave wave(TRIANGLE, 1.0); // Wave with initial 1 second period
 
-    void begin() {}
+    Plotter plotter(115200); // Plotter with 115200 baud rate
 
     void step() {
       if (button.rose()) {
         wave.period( wave.period() + 1 ); // Set period to current period plus one
       }
-      println(wave); // Print wave value
+      wave >> plotter // send wave to plotter
     }
 
 Wave Addition
@@ -298,6 +301,8 @@ per minute.
     Wave secondary(SINE); // Secondary beat
     AnalogOut led(9);   // LED for visualizing the heartbeat
 
+    Plotter plotter(155200); // plotter with 115200 baudrate
+
     void begin() {
       primary.bpm(80); // Set primary beat to 80 beats per minute
       secondary.bpm(2*primary.bpm()); // Set secondary beat to twice primary BPM
@@ -307,7 +312,7 @@ per minute.
     void step() {
       float heartBeat = (primary + secondary) / 2; // Combine and normalize waves
       heartBeat >> led;  // Drive LED with combined signal
-      println(heartBeat);  // Stream the combined wave for visualization
+      heartBeat >> plotter;  // Stream the combined wave for visualization
     }
 
 In this simulation, the ``primary`` sine wave provides the dominant rhythm, while the ``secondary``
@@ -336,12 +341,12 @@ modulate the frequency, phase, period, amplitude, or skew of a faster wave.
     Wave sine(SINE);    // Main wave
     AnalogOut led(9); // LED output
 
-    void begin() {}
+    Plotter plotter(115200); // plotter object for visualizaiton
 
     void step() {
       sine.frequency(modulator.mapTo(1.0, 10.0)); // Modulate frequency between 1 and 10 Hz
       sine >> led; // Drive LED with modulated sine wave
-      println(sine); // Stream the modulated wave
+      sine >> plotter; // Stream the modulated wave
     }
 
 
@@ -373,13 +378,13 @@ These random values can be used to add noise directly to a signal.
     Wave wave(SINE, 1.0); // Base waveform
     AnalogOut led(9);   // LED output
 
-    void begin() {}
+    Plotter plotter(115200); // plotter object for visualization
 
     void step() {
       float noise = randomFloat(-0.1, 0.1); // Generate noise value in [-0.1, 0.1]
       float noisyWave = wave + noise; // Compute sine value + noise
       noisyWave >> led;   // Drive LED with noisy sine wave
-      println(noisyWave); // Stream the noisy sine wave
+      noisyWave >> plotter; // Stream the noisy sine wave
     }
 
 These random values can also be used to modify properties such as amplitude, frequency,
@@ -396,13 +401,13 @@ the amount of noise.
     Wave wave(SINE, 1.0); // Wave with initial period of 1 second
     AnalogOut led(9);   // LED output
 
-    void begin() {}
+    Plotter plotter(115200);
 
     void step() {
       float noise = randomFloat(-pot, pot); // Generate noise according to potentiometer value
       wave.period( wave.period() + noise ); // Add noise to period
       wave >> led;   // Drive LED with noisy sine wave
-      println(wave); // Stream the sine wave
+      wave >> plotter // Stream the sine wave to plotter for visualization
     }
 
 **Example**: Introduce randomness to the frequency of a triangle wave. Frequency updated on
@@ -416,6 +421,8 @@ each push of the button.
     Wave wave(TRIANGLE); // Wave with default properties
     AnalogOut led(9);  // LED output
 
+    Plotter plotter(115200); // plotter object for visualization
+
     void begin() {
       button.debounce(); // Debounce button
       wave.frequency(5.0); // Start at 5 Hz
@@ -425,7 +432,7 @@ each push of the button.
       if (button.rose()) {
         wave.frequency(randomFloat(4.0, 6.0)); // Random frequency between 4 and 6 Hz
       }
-      println(wave); // Stream the wave for visualization
+      wave >> plotter; // Stream the wave for visualization
     }
 
 Randomness can also be combined with modulation to create highly dynamic and expressive behaviors.
@@ -455,6 +462,8 @@ Oscillators offer various timing functions to control their behavior:
     Wave sine(SINE);    // Wave with default properties
     AnalogOut led(9); // LED output
 
+    Plotter plotter(115200); // Plotter for signal visualization
+
     void begin() {
       sine.frequency(2.0); // Initialize frequency to 2 Hz
     }
@@ -464,7 +473,7 @@ Oscillators offer various timing functions to control their behavior:
         sine.togglePause(); // Pause or resume the wave
       }
       sine >> led; // Drive LED with sine wave
-      println(sine); // Stream the wave for visualization
+      sine >> plotter; // Stream the wave for visualization
     }
 
 Phase Shifting with shiftBy()
@@ -481,8 +490,8 @@ patterns.
     #include <Plaquette.h>
 
     Wave wave(SINE, 5.0); // Sine wave with 5 seconds period
+    Plotter plotter(115200); // plotter for signal visualization
 
-    void begin() {}
 
     void step() {
       // Print shifted values separated by white spaces.
