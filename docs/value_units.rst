@@ -25,9 +25,9 @@ This code shows valid and invalid uses of the flow operator:
    float x = 0.0f;  // primitive type variable (float)
 
    void step() {
-     wave >> led; // ✅ valid   : unit  >> unit
-     x    >> led; // ✅ valid   : float >> unit
-     wave >> x;   // ❌ invalid : unit  >> float
+     wave >> led; // ✓ valid : unit  >> unit
+     x    >> led; // ✓ valid : float >> unit
+     wave >> x;   // × error : unit  >> float
    }
 
 |Example|

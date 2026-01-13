@@ -35,6 +35,7 @@ Communication
 
 * :doc:`Monitor` Prints human-readable text and values to a print device (such as the Arduino serial monitor). Mainly used for debugging and logging.
 * :doc:`Plotter` Streams numeric values in structured rows for visualization or logging (e.g., Serial Plotter, CSV, JSON). Designed for plotting and data export.
+
 .. * :doc:`StreamIn` Streams input data continuously, allowing real-time signal processing from external devices.
 
 Fields

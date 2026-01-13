@@ -52,8 +52,8 @@ Printing messages and values to the serial monitor.
      println(); // new line
    }
 
-|Notes|
--------
+|NotesAndWarnings|
+------------------
 
 - The Monitor is **not** intended for structured data export or plotting; use :doc:`Plotter` for that purpose.
 - Blocking read operations (such as ``readStringUntil()``) are intentionally not exposed to avoid
@@ -72,6 +72,7 @@ Printing messages and values to the serial monitor.
 ---------
 
 - :doc:`Plotter`
-.. - :doc:`StreamIn`
 - `Arduino Serial Monitor <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-monitor/>`__
 - `Arduino serial <https://www.arduino.cc/reference/en/language/functions/communication/serial/>`_
+
+.. - :doc:`StreamIn`

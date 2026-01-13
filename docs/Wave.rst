@@ -187,8 +187,8 @@ Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's 
   #include <Plaquette.h>
 
   AnalogOut led(9);
-// default value of wave period if left undefined is 1 second.
-  Wave osc(SINE);
+
+  Wave osc(SINE); // Default value of wave period is 1 second.
 
   Wave lfo(SINE, 20.0); // 20-seconds oscillator
 
@@ -196,6 +196,7 @@ Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave's 
     osc.randomize(lfo);
     osc >> led;
   }
+
 
 .. doxygenclass:: Wave
    :project: Plaquette

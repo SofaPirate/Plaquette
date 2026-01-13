@@ -14,14 +14,14 @@ after each powerup or reset of the board.
   be done in Arduino such as ``pinMode()``. Therefore in many cases it will
   contain only a few calls, or can be omitted completely.
 
-|Examples|
+|Example|
 ---------
 
 .. code-block:: c++
 
    #include <Plaquette.h>
 
-   Wave oscillator;
+   Wave oscillator(1.0);
    AnalogIn input(A0);
 
    void begin() {
@@ -34,15 +34,22 @@ after each powerup or reset of the board.
      // ...
    }
 
-   .. code-block:: c++
+.. tip::
+
+  In Plaquette, function ``begin()`` is **optional**: only declare it if you need to perform a
+  specific operation at startup.
+
+|Example|
+---------
+
+.. code-block:: c++
 
    #include <Plaquette.h>
 
-   Wave oscillator(1.0); // create a square wave with a period of 1 second
-   Plotter plotter(115200); // create a plotter to visualize the wave
+   Wave oscillator(1.0);
+   Plotter plotter(115200);
 
-   //notice that since there is nothing to instantiate in this case, the begin() function is
-   //unneccessary
+   // begin() function is not declared
 
    void step() {
      oscillator >> plotter; // Send the wave to the plotter for visualization

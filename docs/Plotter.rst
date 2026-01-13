@@ -73,6 +73,7 @@ labels).
 ---------
 
 - :doc:`Monitor`
-.. - :doc:`StreamIn`
 - `Arduino Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`_
 - `Arduino serial <https://www.arduino.cc/reference/en/language/functions/communication/serial/>`_
+
+.. - :doc:`StreamIn`

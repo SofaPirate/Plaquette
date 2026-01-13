@@ -16,6 +16,10 @@ program to change and respond. Use it to actively control the board.
   possible. Hence, one should performing computationally-intensive processing
   or calling blocking functions such as ``delay()``
 
+.. tip::
+  In Plaquette, function ``step()`` is **optional**: only declare it if you need it...
+  (you will, most of the time!)
+
 |Example|
 ---------
 

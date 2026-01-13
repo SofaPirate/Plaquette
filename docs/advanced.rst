@@ -43,7 +43,7 @@ external `DHT sensor library <https://docs.arduino.cc/libraries/dht-sensor-libra
 Vanilla Coding Style
 --------------------
 
-You can avoid Plaquette's :doc:`>> <pipe>` operator or auto-conversion of units to values
+You can avoid Plaquette's :doc:`>> <flow>` operator or auto-conversion of units to values
 (eg., ``if (input)``, ``input >> output``) in favor of a more conventional programming style
 by simply using the ``get()`` and ``put()`` functions of Plaquette units.
 
