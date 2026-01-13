@@ -44,11 +44,11 @@ base units by following :doc:`this link <base_units>`.
 +================================================+================================================+
 | *Turn LED on:*                                                                                  |
 +------------------------------------------------+------------------------------------------------+
-| ``digitalWrite(12, HIGH);``                    | ``led.on();``                                  |
+| ``digitalWrite(ledPin, HIGH);``                | ``led.on();``                                  |
 +------------------------------------------------+------------------------------------------------+
 | *Check if button is pushed:*                                                                    |
 +------------------------------------------------+------------------------------------------------+
-| ``if (digitalRead(2) == HIGH)``                | ``if (button.isOn())``                         |
+| ``if (digitalRead(buttonPin) == HIGH)``        | ``if (button.isOn())``                         |
 +------------------------------------------------+------------------------------------------------+
 
 .. _signal-centric:
@@ -69,11 +69,11 @@ conversions on integer values.
 +================================================+================================================+
 | *Check if button is released:*                                                                  |
 +------------------------------------------------+------------------------------------------------+
-| ``if (digitalRead(2) != HIGH)``                | ``if (!button)``                               |
+| ``if (digitalRead(buttonPin) != HIGH)``        | ``if (!button)``                               |
 +------------------------------------------------+------------------------------------------------+
 | *Check if sensor value is higher than 70%:*                                                     |
 +------------------------------------------------+------------------------------------------------+
-| ``if (analogRead(A0) >= 716)``                 | ``if (sensor >= 0.7)``                         |
+| ``if (analogRead(sensorPIN) >= 716)``          | ``if (sensor >= 0.7)``                         |
 +------------------------------------------------+------------------------------------------------+
 
 .. _data flow:
@@ -106,6 +106,14 @@ to another.
 | ``digitalWrite(12, (analogRead(A0) >= 716 ?    | ``(sensor >= 0.7) >> led;``                    |
 | HIGH : LOW));``                                |                                                |
 +------------------------------------------------+------------------------------------------------+
+| *Send multiple values to the serial plotter for visualization                                   |
++------------------------------------------------+------------------------------------------------+
+| ``Serial.print(sensor1);                       | ``sensor1 >> plotter;                          |
+| ``Serial.print(", ");                          | ``sensor2 >> plotter;                          |
+| ``Serial.print(sensor2);                       | ``sensor3 >> plotter;                          |
+| ``Serial.print(", ");                          |                                                |
+| ``Serial.println(sensor3);                     |                                                |
++------------------------------------------------+------------------------------------------------+
 
 Read :doc:`regularizing` to see how you can take full advantage of
 Plaquette's signal filtering features.
@@ -127,7 +135,9 @@ Rather, it invites programmers to adopt a frame-by-frame approach to coding simi
 to `Processing <https://processing.org/>`_.
 
 Compare the following attempt to make an `LED blink <https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink>`_
-when pressing a button in Arduino, versus Plaquette's real-time approach:
+when pressing a button in Arduino using blocking calls to ``delay()`` to wait 500 milliseconds (0.5 seconds)
+between each flip of the LED, versus Plaquette's real-time approach using a square oscillator with a
+one-second period:
 
 +------------------------------------------------+------------------------------------------------+
 | Arduino                                        | Plaquette                                      |
@@ -140,13 +150,13 @@ when pressing a button in Arduino, versus Plaquette's real-time approach:
 |   void setup() {                               |     // Square wave 1 second period.            |
 |     pinMode(buttonPin, OUTPUT);                |     Wave oscillator(1.0);                      |
 |     pinMode(ledPin, OUTPUT);                   |                                                |
-|   }                                            |     void begin() {}                            |
-|                                                |                                                |
-|   void loop() {                                |     void step() {                              |
-|     // Button is checked once per second.      |       // Button is checked at all time.        |
-|     if (digitalRead(buttonPin) == HIGH) {      |       if (button)                              |
-|       digitalWrite(ledPin, HIGH);              |         oscillator >> led;                     |
-|       delay(500); // do nothing for 500ms      |     }                                          |
+|   }                                            |     void step() {                              |
+|                                                |       // Button is checked at all time.        |
+|   void loop() {                                |       if (button)                              |
+|     // Button is checked once per second.      |         oscillator >> led;                     |
+|     if (digitalRead(buttonPin) == HIGH) {      |     }                                          |
+|       digitalWrite(ledPin, HIGH);              |                                                |
+|       delay(500); // do nothing for 500ms      |                                                |
 |       digitalWrite(ledPin, LOW);               |                                                |
 |       delay(500); // do nothing for 500ms      |                                                |
 |     }                                          |                                                |
@@ -182,10 +192,11 @@ to reset the counter to a random integer value using `random() <https://docs.ard
 
    void begin() {
       button.debounce(); // debounce button
+      Serial.begin(115200); // opening a Serial port in Arduino-style
    }
 
    void step() {
-      if (Serial.read() == 'R') // reset counter
+      if (Serial.read() == 'R') // You can still use Serial.read to monitor incoming messages. If 'R', reset counter
         currentPeriod = random(1, 10);
 
       if (button.rose()) // true when value rises (ie. button is pushed)
