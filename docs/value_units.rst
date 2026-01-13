@@ -9,26 +9,26 @@ Plaquette flow. These units can be used like a normal variables but also send to
 from other units using the flow operator (``>>``). You can think of value-units as
 *variables that can participate in data flows*.
 
-Why base types do not work with ``>>``
---------------------------------------
+The :doc:`flow operator >> <flow>` connects is **not** compatible with primitive types such
+as ``float``, ``int``, and ``bool``.
 
-The :doc:`flow operator >> <flow>` connects Plaquette **units** and is not compatible with
-base types such as ``float``, ``int``, and ``bool``. Hence, the following code results in
-a compilation error:
+**Value units** address this problem by turning primitive variables into Plaquette units.
+
+This code shows valid and invalid uses of the flow operator:
 
 .. code-block:: c++
 
-   // Declare a wave oscillator.
-   Wave wave;
-   // Declare a plain float variable.
-   float x = 0.0f;
+   #include <Plaquette.h>
+
+   Wave wave(1.0f); // wave oscillator
+   DigitalOut led(LED_BUILTIN); // output LED
+   float x = 0.0f;  // primitive type variable (float)
 
    void step() {
-     // This is invalid and will generate an error.
-     wave >> x; // x is NOT a unit
+     wave >> led; // ✅ valid   : unit  >> unit
+     x    >> led; // ✅ valid   : float >> unit
+     wave >> x;   // ❌ invalid : unit  >> float
    }
-
-**Value units** address this problem by turning primitive variables into Plaquette units.
 
 |Example|
 ---------
@@ -37,6 +37,8 @@ This example combines two oscillators, stores the result in a ``Float`` unit, an
 two control two LEDs.
 
 .. code-block:: c++
+
+   #include <Plaquette.h>
 
    // Create two wave oscillators.
    Wave waveA(SINE, 1.0f);
@@ -60,6 +62,7 @@ two control two LEDs.
      (1-mix) >> led2;
    }
 
+
 |Example|
 ---------
 
@@ -68,6 +71,8 @@ logical condition. It activates an LED only when both buttons are pressed and pl
 the states.
 
 .. code-block:: c++
+
+   #include <Plaquette.h>
 
    // Create two button inputs.
    DigitalIn buttonA(BUTTON_A_PIN);
@@ -92,6 +97,7 @@ the states.
      buttonB >> plotter;
      bothPressed >> plotter;
    }
+
 
 |SeeAlso|
 ---------
