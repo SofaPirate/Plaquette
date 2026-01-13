@@ -141,7 +141,7 @@ Step 3 : Experiment!
 
 So far so good. Let's see if we can push this a bit further.
 
-The ``Wave`` unit type provides two parameters that allows you to create a wide range of rhythmic patterns:
+The ``Wave`` unit type accepts two arguments that allow you to create a wide range of rhythmic patterns:
 
 .. code:: cpp
 
@@ -159,7 +159,7 @@ The ``Wave`` unit type provides two parameters that allows you to create a wide 
 Adjust the period
 ~~~~~~~~~~~~~~~~~
 
-Try changing the first parameter (``period`` in the square oscillator unit to change
+Try changing the first argument (``period``) in the square oscillator unit to change
 the period of oscillation.
 
 - ``Wave myWave(1.0);`` for a period of one second
@@ -173,7 +173,7 @@ the period of oscillation.
 Skew that wave!
 ~~~~~~~~~~~~~~~
 
-Now try adding a second parameter (``skew``) to control the oscillator's
+Now try adding a second argument (``skew``) to control the oscillator's
 `skew <https://en.wikipedia.org/wiki/Duty_cycle>`__. For a fixed period, try changing
 the duty cycle to different percentages between 0.0 and 1.0.
 
@@ -184,21 +184,41 @@ the duty cycle to different percentages between 0.0 and 1.0.
 
 .. image:: images/Plaquette-SquareWave-Skew.png
 
+Understanding parameters
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Plaquette, a **parameter** is a property of a unit that you can read and modify
+while your program is running. Parameters give you dynamic control over your units,
+allowing you to change their behavior in real-time.
+
+The ``Wave`` unit, for example, has several parameters:
+
+- ``period``: the duration of one complete cycle (in seconds)
+- ``skew``: the proportion of the cycle during which the signal is on (0.0 to 1.0)
+- ``frequency``: the number of cycles per second (in Hz)
+- ``bpm``: the number of cycles per minute (beats-per-minute)
+- ``jitter``: adds randomness to the timing (0.0 to 1.0)
+
+You may have noticed that when we created our wave, we were able to set some of these
+parameters directly through the constructor arguments:
+
+.. code:: cpp
+
+    Wave myWave(2.0);        // sets the period parameter to 2 seconds
+    Wave myWave(2.0, 0.25);  // sets period to 2 seconds and skew to 25%
+
+But what about the other parameters like ``frequency`` or ``bpm``? To set these, we use
+the :doc:`dot` operator to call functions on our unit.
+
 Initialize parameters in the ``begin()`` function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some unit parameters cannot be assigned at creation. For example, the ``Wave`` unit
-provides functions to assign frequency using Hertz (Hz) or beats-per-minute (BPM).
-Since we cannot assign these parameters when we create the object, we need to use
-the ``begin()`` function.
+The ``begin()`` function is automatically called **only once at the beginning** of the
+sketch (just like the `setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
+function in Arduino). It is a good place to initialize parameters that cannot be set
+through constructor arguments.
 
-Unlike function ``step()`` which repeats indefinitely, function ``begin()`` is automatically
-called **only once at the beginning** of the sketch (just like the
-`setup() <https://www.arduino.cc/reference/en/language/structure/sketch/setup/>`__
-function in Arduino).
-
-We will use it to set our wave's frequency. Notice that this will override the period, since
-the period is simply the inverse of the frequency!
+For example, to set our wave's frequency instead of its period:
 
 .. code:: cpp
 
@@ -206,11 +226,15 @@ the period is simply the inverse of the frequency!
       myWave.frequency(10); // 10 Hz = 10 times per second
     }
 
-Or, if you rather want to set the frequency in beats-per-minute (BPM):
+Or, if you prefer to set the frequency in beats-per-minute (BPM):
 
 .. code:: cpp
 
       myWave.bpm(120); // 120 cycles per minute
+
+.. note::
+   Setting the frequency will override the period (and vice versa), since period is
+   simply the inverse of frequency.
 
 Change parameters of a unit during runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -323,33 +347,22 @@ This table summarizes the different ways one can access and modify a unit's para
   on the serial port. For this you need to create a ``Plotter``. You can do so by adding
   the following line at the top of your sketch:
 
-   .. code:: cpp
+  .. code:: cpp
 
-    Plotter plotter(115200);
+      Plotter plotter(115200);
 
-  The ``Plotter`` unit type provides a parameter to define baud rate, or the speed of message transmission.
-  The Arduino IDE generally assumes a speed of 9600, so we will use this value for now.
+  The ``Plotter`` unit type accepts an argument to define baud rate, or the speed of message
+  transmission. In this guide we use 115200, which is a standard speed for serial communication.
 
   Then, add the following code to your ``step()`` function to send the values to the plotter:
 
   .. code:: cpp
 
-    Plotter plotter(115200);
-     myWave >> plotter;
-     myModulator >> plotter;
+      myWave >> plotter;
+      myModulator >> plotter;
 
   Finally, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
-  by selecting in in **Tools > Serial Plotter** to observe live visual feedback of your waves over time.
-
-Now try modulating the skew of ``myWave`` instead of its period:
-
-  .. code:: cpp
-
-    myWave >> plotter;
-    myModulator >> plotter;
-
-  Then, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
-  by selecting in in **Tools > Serial Plotter**. Make sure to select the same baudrate (115200).
+  by selecting **Tools > Serial Plotter**. Make sure to select the same baud rate (115200).
   You should see a live visualization of the two waves.
 
 Use a button
