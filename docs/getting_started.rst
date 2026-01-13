@@ -24,10 +24,11 @@ Create a new sketch
 
 Create a new empty sketch by selecting **File > New**.
 
-**IMPORTANT:** New Arduino sketches are initialized with some "slug"
-starting code. Make sure to erase the content of the sketch before
-beginning. You can use **Edit > Select All** and then click **Del** or
-**Backspace**.
+.. note::
+
+  New Arduino sketches are initialized with some "slug" starting code. Make sure to erase
+  the content of the sketch before beginning. You can use **Edit > Select All** and then
+  click **Del** or **Backspace**.
 
 Include library
 ~~~~~~~~~~~~~~~
@@ -80,9 +81,9 @@ at a regular period of 2 seconds:
     Wave myWave(2.0);
 
 .. note::
-  The **parameter** here is used not to specify a pin number (as for the ``DigitalOut``
+  The **argument** here is used not to specify a pin number (as for the ``DigitalOut``
   unit) but rather to define the period of oscillation. Each object **type** provides a unique set
-  of parameter combinations and definitions specific to their usage.
+  of argument combinations and definitions specific to their usage..
 
 Create the step() function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -215,8 +216,8 @@ Change parameters of a unit during runtime
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What if we wanted to change the parameters of the oscillator during runtime rather than
-just at the beginning? The ``Wave`` unit type allows real-time modification of
-its **parameters** by calling one of its functions using the :doc:`dot` operator.
+just at the beginning? The ``Wave`` unit type allows real-time modification of its **parameters**
+by calling one of its functions using the :doc:`dot` operator.
 
 For example, to change the frequency while the program is running, we would simply need
 call ``frequency(value)`` function inside the ``step()`` function rather than the ``begin()``
@@ -261,7 +262,18 @@ expressive syntax:
 
 .. code:: cpp
 
-      myModulator >> myWave.Frequency(); // equivalent to calling myWave.frequency(myModulator);
+      myModulator >> myWave.Frequency(); // equivalent to: myWave.frequency(myModulator);
+
+.. important::
+
+  Notice the use of the **capitalized first letter** in the above call. This tells Plaquette
+  that we are accessing a *parameter slot* rather than reading or setting a value directly.
+
+  In Plaquette, most functions are written in lowercase (such as ``frequency()``) and are used
+  to **read or set a value directly**. Functions starting with a capital letter (such as
+  ``Frequency()``) instead provide a **connection point** for that parameter, making it possible
+  to connect it seamlessly using the ``>>`` operator, without confusing parameter slots with
+  normal function calls.
 
 Upload the sketch and you should see the LED blinking as before, with the difference that
 the blinking speed will now change from blinking very slowly (in fact, infinitely slowly,
@@ -273,7 +285,7 @@ with a frequency of zero-times-per-seconds!) to one time per second.
 
   .. code:: cpp
 
-      myModulator >> myWave.skew();
+      myModulator >> myWave.Skew();
       myModulator >> myWave.Period();
 
 This table summarizes the different ways one can access and modify a unit's parameters:
@@ -295,7 +307,7 @@ This table summarizes the different ways one can access and modify a unit's para
      - Initialize or directly update a parameter from a value or expression.
      - ``wave.frequency(2.0);``
    * - **Parameter flow**
-     - ``source >> unit.parameter()``
+     - ``source >> unit.Parameter()``
      - Continuously control a parameter (modulation, mapping).
      - ``modulator >> wave.Frequency();``
 
@@ -310,10 +322,9 @@ This table summarizes the different ways one can access and modify a unit's para
   If you want to visualize the values of both waves on your computer, you can print them
   on the serial port. For this you need to create a ``Plotter``. You can do so by adding
   the following line at the top of your sketch:
-   If you want to visualize the values of both waves on your computer, you can do so via a
-   special object called a Plotter. Here is how you add a Plotter object:
 
    .. code:: cpp
+
     Plotter plotter(115200);
 
   The ``Plotter`` unit type provides a parameter to define baud rate, or the speed of message transmission.
@@ -327,8 +338,8 @@ This table summarizes the different ways one can access and modify a unit's para
      myWave >> plotter;
      myModulator >> plotter;
 
-   Finally, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
-   by selecting in in **Tools > Serial Plotter** to observe live visual feedback of your waves over time.
+  Finally, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
+  by selecting in in **Tools > Serial Plotter** to observe live visual feedback of your waves over time.
 
 Now try modulating the skew of ``myWave`` instead of its period:
 
@@ -382,12 +393,10 @@ statement.
 
 .. code:: cpp
 
-    void step() {
       if (myButton)
         myWave >> myLed;
       else
         0 >> myLed;
-    }
 
 Full code
 ~~~~~~~~~
@@ -405,7 +414,7 @@ Full code
     DigitalIn myButton(2, INTERNAL_PULLUP);
 
     void step() {
-      myWave.period(myModulator);
+      myModulator >> myWave.Period();
 
       if (myButton)
         myWave >> myLed;
