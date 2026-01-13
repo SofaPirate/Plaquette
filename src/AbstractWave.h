@@ -32,6 +32,8 @@ namespace pq {
  */
 class AbstractWave : public AnalogSource, public AbstractOscillator {
 public:
+  typedef ParameterSlot<AbstractWave> Parameter;
+
   /**
    * Constructor.
    * @param engine the engine running this unit
@@ -103,6 +105,9 @@ public:
 
   /// Returns the skew of the signal.
   virtual float skew() const { return fixed32ToFloat(_skew32); }
+
+  /// Returns the skew as a parameter.
+  virtual Parameter Skew() { return Parameter(this, &AbstractWave::skew, &AbstractWave::skew); }
 
   /**
    * @deprecated
