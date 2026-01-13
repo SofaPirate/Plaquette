@@ -251,8 +251,13 @@ This wave will oscillate smoothly from 0 to 1 every 20 seconds.
       myWave >> myLed;
     }
 
+Upload the sketch and you should see the LED blinking as before, with the difference that
+the blinking speed will now change from blinking very fast (in fact, infinitely fast, with
+a period of zero seconds!) to very slow (period of 20 seconds).
+
 You can take advantage of the ``>>`` operator to change a unit's parameter with a more
 expressive syntax:
+
 
 .. code:: cpp
 
@@ -305,16 +310,27 @@ This table summarizes the different ways one can access and modify a unit's para
   If you want to visualize the values of both waves on your computer, you can print them
   on the serial port. For this you need to create a ``Plotter``. You can do so by adding
   the following line at the top of your sketch:
+   If you want to visualize the values of both waves on your computer, you can do so via a
+   special object called a Plotter. Here is how you add a Plotter object:
+
+   .. code:: cpp
+    Plotter plotter(115200);
+
+  The ``Plotter`` unit type provides a parameter to define baud rate, or the speed of message transmission.
+  The Arduino IDE generally assumes a speed of 9600, so we will use this value for now.
+
+  Then, add the following code to your ``step()`` function to send the values to the plotter:
 
   .. code:: cpp
 
     Plotter plotter(115200);
+     myWave >> plotter;
+     myModulator >> plotter;
 
-  The value ``115200`` refers to the **baudrate**, that is, the communication speed of the
-  serial port.
+   Finally, launch the Arduino `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
+   by selecting in in **Tools > Serial Plotter** to observe live visual feedback of your waves over time.
 
-  Then, in your ``step()`` function you can send the values of the wave and modulator to the
-  plotter:
+Now try modulating the skew of ``myWave`` instead of its period:
 
   .. code:: cpp
 
