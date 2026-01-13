@@ -52,6 +52,7 @@ Libraries
    :titlesonly:
 
    PqLEDStrip <https://github.com/SofaPirate/PqLEDStrip/>
+   PqOsc <https://github.com/SofaPirate/PqOsc/>
 
 Related Info
 ============
