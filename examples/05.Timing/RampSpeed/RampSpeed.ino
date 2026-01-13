@@ -36,7 +36,7 @@ void begin() {
 void step() {
   // When serial receives new value, change speed and relaunch.
   if (serialIn.updated()) {
-    rampWithSpeed.speed(serialIn);
+    serialIn >> rampWithSpeed.Speed();
     startRamps();
   }
 

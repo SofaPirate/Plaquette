@@ -22,7 +22,7 @@ Plotter plotter(115200, "osc,lfo");
 
 void step() {
   // Modulate jittering level.
-  lfo >> osc.jitter();
+  lfo >> osc.Jitter();
 
   // Send to serial output.
   osc >> plotter;

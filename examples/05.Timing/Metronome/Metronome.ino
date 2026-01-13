@@ -41,7 +41,7 @@ void begin() {
 
 void step() {
   // Adjust metronome period with potentiometer from 30 to 120 bpm.
-  metronome.bpm(pot.mapTo(30, 120));
+  pot.mapTo(30, 120) >> metronome.Bpm();
 
   // When the metronome "hits": start Ramp.
   if (metronome) {

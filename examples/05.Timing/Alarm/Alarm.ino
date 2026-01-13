@@ -35,7 +35,7 @@ void step() {
     // If LED is "on" keep it on for a certain time.
     if (led) {
       // Increate alarm duration by half a second and restart.
-      ledAlarm.duration( ledAlarm.duration() + 0.5 );
+      (ledAlarm.duration() + 0.5) >> ledAlarm.Duration();
       ledAlarm.start();
     }
     // Otherwise keep it off for half a second.

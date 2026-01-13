@@ -26,7 +26,7 @@ void begin() {}
 
 void step() {
   // Randomize oscillator according to potentiometer value.
-  pot >> osc.jitter();
+  pot >> osc.Jitter();
 
   // Send to LED.
   osc >> led;

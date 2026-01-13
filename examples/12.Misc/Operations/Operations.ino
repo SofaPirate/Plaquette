@@ -37,7 +37,7 @@ void step() {
 
   // else modulate by changing the period between 0.5 and 2.5 seconds
   else {
-    oscillator.period(modulator.mapTo(0.5, 2.0));
+    modulator.mapTo(0.5, 2.0) >> oscillator.Period();
     oscillator >> led;
   }
 }

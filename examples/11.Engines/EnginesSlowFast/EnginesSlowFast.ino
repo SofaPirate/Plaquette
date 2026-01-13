@@ -55,7 +55,7 @@ void slowEngineStep() {
   slowEngine.step();
 
   // Adjust frequency and send to LED.
-  wave.frequency(ledFrequency);
+  ledFrequency >> wave.Frequency();
   wave >> led;
 }
 

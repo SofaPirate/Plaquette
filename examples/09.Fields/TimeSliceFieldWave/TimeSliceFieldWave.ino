@@ -40,7 +40,7 @@ void begin() {
 
 void step() {
   // Adjust wave period.
-  wave.period(pot.mapTo(5.0, 0.5));
+  pot.mapTo(5.0, 0.5) >> wave.Period();
 
   // Update the field.
   wave >> timeSlice;

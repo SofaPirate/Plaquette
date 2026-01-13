@@ -22,7 +22,7 @@ DigitalOut led(LED_BUILTIN);
 
 void step() {
   // Modulate oscillator BPM between 30 to 180.
-  osc.bpm( lfo.mapTo(30, 180) );
+  lfo.mapTo(30, 180) >> osc.Bpm();
 
   // Send to LED.
   osc >> led;

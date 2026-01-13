@@ -34,9 +34,9 @@ void begin() {}
 void step() {
   // Set oscillation period according to value of analog input and send value to LED.
   // NOTE: Period is in interval [0.2, 5.0] seconds.
-  oscillator.period(pot.mapTo(0.2, 5.0));
+  pot.mapTo(0.2, 5.0) >> oscillator.Period();
   oscillator >> led;
 
   // NOTE: These lines of code can be rewritten using a single line of code:
-  // oscillator.period(pot.mapTo(0.2, 5.0)) >> led;
+  // pot.mapTo(0.2, 5.0) >> oscillator.Period() >> led;
 }
