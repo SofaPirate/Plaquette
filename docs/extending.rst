@@ -622,42 +622,53 @@ Step 2: Create the Header File
 
 .. code-block:: cpp
 
-    // MyGain.h
-    #ifndef MY_GAIN_H_
-    #define MY_GAIN_H_
+    // RandomWalk.h
+    #ifndef RANDOM_WALK_H_
+    #define RANDOM_WALK_H_
 
     #include "PqCore.h"
 
     namespace pq {
 
-    /// Applies a gain (multiplier) to incoming signals.
-    class MyGain : public AnalogSource {
+    /**
+     * Generates a smooth random walk in [0, 1].
+     *
+     * The value drifts randomly at each step, scaled by the rate
+     * parameter and the engine's sample period. Use put() to hard
+     * reset to a specific value.
+     */
+    class RandomWalk : public AnalogSource {
     public:
       /**
-       * Constructor with default gain.
+       * Constructor with default rate.
        * @param engine the engine running this unit
        */
-      MyGain(Engine& engine = Engine::primary());
+      RandomWalk(Engine& engine = Engine::primary());
 
       /**
-       * Constructor with specified gain.
-       * @param gain the gain multiplier
+       * Constructor with specified rate.
+       * @param rate maximum change per second (default: 0.5)
        * @param engine the engine running this unit
        */
-      MyGain(float gain, Engine& engine = Engine::primary());
+      RandomWalk(float rate, Engine& engine = Engine::primary());
 
-      virtual ~MyGain() {}
+      virtual ~RandomWalk() {}
 
-      /// Sets the gain value.
-      void gain(float gain);
+      /// Sets the rate of change per second.
+      void rate(float rate);
 
-      /// Returns the current gain value.
-      float gain() const { return _gain; }
+      /// Returns the current rate.
+      float rate() const { return _rate; }
+
+      /// Returns a ParameterSlot for dynamic rate modulation.
+      ParameterSlot<RandomWalk> Rate() {
+        return ParameterSlot<RandomWalk>(this, &RandomWalk::rate, &RandomWalk::rate);
+      }
 
       /**
-       * Pushes value into the unit.
-       * @param value the input value
-       * @return the gained output value
+       * Hard resets the random walk to a specific value.
+       * @param value the value to reset to (clamped to [0, 1])
+       * @return the new value
        */
       virtual float put(float value) override;
 
@@ -666,54 +677,60 @@ Step 2: Create the Header File
       virtual void step() override;
 
     private:
-      float _gain;
+      float _rate;
     };
 
     } // namespace pq
 
-    #endif // MY_GAIN_H_
+    #endif // RANDOM_WALK_H_
 
 Step 3: Create the Implementation File
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: cpp
 
-    // MyGain.cpp
-    #include "MyGain.h"
+    // RandomWalk.cpp
+    #include "RandomWalk.h"
 
     namespace pq {
 
-    MyGain::MyGain(Engine& engine)
+    RandomWalk::RandomWalk(Engine& engine)
       : AnalogSource(engine),  // Pass engine to parent
-        _gain(1.0f)            // Default gain
+        _rate(0.5f)            // Default rate: 0.5 units/second
     {
       // Unit is automatically registered with engine
     }
 
-    MyGain::MyGain(float gain, Engine& engine)
+    RandomWalk::RandomWalk(float rate, Engine& engine)
       : AnalogSource(engine),  // Pass engine to parent
-        _gain(gain)
+        _rate(rate)
     {
       // Unit is automatically registered with engine
     }
 
-    void MyGain::begin() {
-      // Initialize if needed
-      _value = 0;
+    void RandomWalk::begin() {
+      // Initialize to center position
+      _value = 0.5f;
     }
 
-    void MyGain::step() {
-      // Called every frame - update state if needed
-      // For this simple unit, we don't need to do anything here
+    void RandomWalk::step() {
+      // Compute random delta scaled by rate and sample period.
+      // randomFloat(-1, 1) gives uniform random in [-1, 1].
+      // Multiplying by rate and samplePeriod() makes the walk
+      // time-consistent regardless of sample rate.
+      float delta = randomFloat(-1.0f, 1.0f) * _rate * samplePeriod();
+
+      // Apply delta and constrain to [0, 1]
+      _value = constrain01(_value + delta);
     }
 
-    void MyGain::gain(float gain) {
-      _gain = gain;
+    void RandomWalk::rate(float rate) {
+      _rate = max(rate, 0.0f);  // Rate must be non-negative
     }
 
-    float MyGain::put(float value) {
-      // Apply gain and constrain to [0, 1]
-      _value = constrain01(value * _gain);
+    float RandomWalk::put(float value) {
+      // Hard reset: immediately set value (bypass random walk)
+      _value = constrain01(value);
       return _value;
     }
 
@@ -725,21 +742,30 @@ Step 4: Use Your Unit
 .. code-block:: cpp
 
     #include <Plaquette.h>
-    #include "MyGain.h"
+    #include "RandomWalk.h"
 
     using namespace pq;
 
-    AnalogIn sensor(A0);
-    MyGain booster(2.0);  // Double the signal (uses primary engine)
+    RandomWalk wanderer(0.3);  // Slow drift: 0.3 units/second max
     AnalogOut led(LED_BUILTIN);
+    DigitalIn button(2);
+    SineWave lfo(20.0);  // Slow LFO for rate modulation
 
     void step() {
-      sensor >> booster >> led;
+      // Modulate rate dynamically via ParameterSlot
+      lfo >> wanderer.Rate();
+
+      // LED brightness follows random walk
+      wanderer >> led;
+
+      // Button press resets walk to minimum
+      if (button.rose())
+        0 >> wanderer;
     }
 
     // Or with a secondary engine:
     Engine slowEngine;
-    MyGain slowBooster(2.0, slowEngine);  // Assigned to secondary engine
+    RandomWalk slowWanderer(0.1, slowEngine);  // Assigned to secondary engine
 
 Unit Templates
 --------------
@@ -826,7 +852,7 @@ Parameter slots allow dynamic control of unit properties via flow operators:
 
 .. code-block:: cpp
 
-    Wave lfo(1.0);
+    Wave lfo(10.0);
     Wave carrier(0.5);
 
     void step() {
