@@ -179,29 +179,29 @@ Comparison Table
      - Flowable
      - Unit
    * - Engine registration
-     - No
-     - Automatic
+     - ✗
+     - ✓ (automatic)
    * - ``begin()`` method
-     - No
-     - Yes
+     - ✗
+     - ✓
    * - ``step()`` method
-     - No
-     - Yes
+     - ✗
+     - ✓
    * - Synchronized timing
-     - No
-     - Yes
+     - ✗
+     - ✓
    * - Event callbacks
-     - No
-     - Yes
+     - ✗
+     - ✓
    * - Flow operators (``>>``)
-     - Yes
-     - Yes
+     - ✓
+     - ✓
    * - ``operator float()``
-     - Yes
-     - Yes
+     - ✓
+     - ✓
    * - ``operator bool()``
-     - Yes
-     - Yes
+     - ✓
+     - ✓
    * - Memory overhead
      - Minimal
      - Engine tracking
