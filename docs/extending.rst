@@ -346,9 +346,22 @@ Construction and Engine Registration
 
    All Unit subclasses MUST accept an ``Engine&`` parameter in every constructor, defaulting to the primary engine.
 
+**Header file (.h):** Declare the default value here:
+
 .. code-block:: cpp
 
-    // CORRECT: Engine parameter with default in ALL constructors
+    class MyUnit : public AnalogSource {
+    public:
+      MyUnit(Engine& engine = Engine::primary());
+      MyUnit(float param, Engine& engine = Engine::primary());
+      MyUnit(float param1, float param2, Engine& engine = Engine::primary());
+      // ...
+    };
+
+**Implementation file (.cpp):** Do NOT repeat the default value:
+
+.. code-block:: cpp
+
     MyUnit::MyUnit(Engine& engine)
       : AnalogSource(engine)
     {
