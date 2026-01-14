@@ -30,9 +30,20 @@ Core Components
    * - **Engine**
      - Central orchestrator that manages all units, timing, and execution
    * - **Flowable**
-     - Interface for signal flow (``get()``, ``put()``, ``>>``) - not managed by engine
+     - Base interface for all signal components. Provides ``get()``, ``put()``, ``>>`` operators,
+       and conversion to ``float``/``bool`` so components can be used directly as values
    * - **Unit**
      - Base class for engine-managed components with lifecycle methods
+
+.. note::
+
+   All Flowables (including Units) can be used directly as values in expressions:
+
+   .. code-block:: cpp
+
+       float v = sensor;          // get() called implicitly
+       if (button) { ... }        // true when isOn()
+       Serial.println(filter);    // prints current value
 
 Execution Model
 ~~~~~~~~~~~~~~~
