@@ -369,38 +369,66 @@ Construction and Engine Registration
       // ...
     };
 
-**Implementation file (.cpp):** Do NOT repeat the default value:
+**Implementation file (.cpp):**
 
 .. code-block:: cpp
 
     MyUnit::MyUnit(Engine& engine)
       : AnalogSource(engine)
-    {
-    }
+    { }
 
     MyUnit::MyUnit(float param, Engine& engine)
       : AnalogSource(engine), _param(param)
-    {
-    }
+    { }
 
     MyUnit::MyUnit(float param1, float param2, Engine& engine)
       : AnalogSource(engine), _param1(param1), _param2(param2)
-    {
-    }
+    { }
 
-.. code-block:: cpp
+.. caution::
 
-    // WRONG: Missing engine parameter
-    MyUnit::MyUnit(float param)  // No engine parameter!
-      : AnalogSource()
-    {
-    }
+    **Never provide constructors without an** ``Engine&`` **parameter.**
+
+    In header:
+
+    .. code-block:: cpp
+
+       // WRONG: Missing engine parameter
+       MyUnit(float param);
+
+    Core abstract classes ``Unit``, ``DigitalUnit``, ``DigitalSource`` and ``AnalogSource``
+    deliberately do NOT provide a default engine at construction. This causes a compilation
+    error if you forget the engine parameter - a safety feature that catches mistakes early.
+
+.. caution::
+
+    **Always pass the engine to the parent class.**
+
+    When subclassing units whose constructors provide a default engine, forgetting to
+    pass the engine breaks multi-engine setups silently:
+
+    .. code-block:: cpp
+
+       // WRONG: Missing parent initializer - defaults to primary engine, ignoring parameter
+       MyUnitSubClass::MyUnitSubClass(Engine& engine)
+       { }
+
+       // WRONG: Same problem - engine parameter is ignored
+       MyUnitSubClass::MyUnitSubClass(float param, Engine& engine)
+         : MyUnit(param)
+       { }
+
+       // CORRECT: Always pass the engine to the parent class
+       MyUnitSubClass::MyUnitSubClass(float param, Engine& engine)
+         : MyUnit(param, engine)
+       { }
+
 
 **Why is this important?**
 
 - Users may want to assign units to secondary engines
 - The engine parameter must ALWAYS be the LAST parameter
-- It should ALWAYS default to ``Engine::primary()``
+- Forgetting to pass the engine breaks multi-engine setups silently
 
 .. code-block:: cpp
 
