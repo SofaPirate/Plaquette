@@ -26,6 +26,7 @@ Guide
    regularizing
    events
    advanced
+   extending
 
 Reference
 =========
