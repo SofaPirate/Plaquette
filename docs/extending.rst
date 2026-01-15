@@ -50,24 +50,10 @@ Execution Model
 
 Plaquette replaces Arduino's ``setup()``/``loop()`` with ``begin()``/``step()``:
 
-::
-
-    ┌─────────────────────────────────────────────────────────────┐
-    │                      INITIALIZATION                         │
-    ├─────────────────────────────────────────────────────────────┤
-    │  1. Engine.preBegin() → calls begin() on all units          │
-    │  2. User's begin() executes                                 │
-    └─────────────────────────────────────────────────────────────┘
-                                  │
-                                  ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                      MAIN LOOP (repeats)                    │
-    ├─────────────────────────────────────────────────────────────┤
-    │  1. Engine.timeStep() → checks timing                       │
-    │  2. Engine.preStep() → calls step() on all units            │
-    │  3. User's step() executes                                  │
-    │  4. Events are dispatched                                   │
-    └─────────────────────────────────────────────────────────────┘
+.. image:: images/Plaquette-ExecutionModel.*
+   :alt: Plaquette execution model diagram
+   :align: center
+   :width: 100%
 
 Flowable vs Unit: Choosing Your Base Class
 ------------------------------------------
@@ -190,19 +176,19 @@ Comparison Table
      - Flowable
      - Unit
    * - Engine registration
-     - ✗
+     - ×
      - ✓ (automatic)
    * - ``begin()`` method
-     - ✗
+     - ×
      - ✓
    * - ``step()`` method
-     - ✗
+     - ×
      - ✓
    * - Synchronized timing
-     - ✗
+     - ×
      - ✓
    * - Event callbacks
-     - ✗
+     - ×
      - ✓
    * - Flow operators (``>>``)
      - ✓
