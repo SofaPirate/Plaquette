@@ -28,7 +28,7 @@ using namespace pq;
 
 // Plaquette redefines setup() and loop() based on begin() and step().
 void setup() {
-  settings();
+  prepare();
   Plaquette.preBegin();
   begin();
   Plaquette.postBegin();

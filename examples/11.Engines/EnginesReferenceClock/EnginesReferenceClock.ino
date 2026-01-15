@@ -41,7 +41,9 @@ unsigned long customMicroSeconds() { return customMicros; }
 // Previous step in microseconds (in primary engine basic "true" time).
 unsigned long prevStepMicros = 0;
 
-void settings() {
+// Clock reference clock needs to be set prior to begin().
+// Function prepare() runs before begin().
+void prepare() {
   customClockEngine.referenceClock(customMicroSeconds);
 }
 

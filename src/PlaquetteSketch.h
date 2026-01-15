@@ -26,7 +26,7 @@
 
 // IMPORTANT: These functions are declared with __attribute__((weak)) in the source
 // file. This allows the user to override them only optionnaly.
-void settings();
+void prepare();
 void begin();
 void step();
 

@@ -19,6 +19,6 @@
  */
 #include "PlaquetteSketch.h"
 
-__attribute__((weak)) void settings() {}
+__attribute__((weak)) void prepare() {}
 __attribute__((weak)) void begin() {}
 __attribute__((weak)) void step() {}

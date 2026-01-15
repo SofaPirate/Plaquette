@@ -64,13 +64,13 @@ Tests run via GitHub Actions on push/PR:
 
 ### Core Execution Model
 
-Plaquette replaces Arduino's `setup()`/`loop()` paradigm with `settings()`/`begin()`/`step()`:
+Plaquette replaces Arduino's `setup()`/`loop()` paradigm with `prepare()`/`begin()`/`step()`:
 
 ```cpp
 #include <Plaquette.h>
 
-void settings() {
-  // Optional: configure before initialization
+void prepare() {
+  // Optional: runs before units are initialized
 }
 
 void begin() {

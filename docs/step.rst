@@ -37,4 +37,5 @@ program to change and respond. Use it to actively control the board.
 
 |SeeAlso|
 ---------
+- :doc:`prepare`
 - :doc:`begin`
