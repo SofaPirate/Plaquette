@@ -55,6 +55,32 @@ Plaquette replaces Arduino's ``setup()``/``loop()`` with ``begin()``/``step()``:
    :align: center
    :width: 100%
 
+The pq Namespace
+~~~~~~~~~~~~~~~~
+
+All Plaquette classes and functions are defined within the ``pq`` namespace. This prevents naming
+conflicts with other libraries and the Arduino core. When writing extension code (header and
+implementation files), you should place your code inside the ``pq`` namespace:
+
+.. code-block:: cpp
+
+    // MyUnit.h
+    #include "PqCore.h"
+
+    namespace pq {
+
+    class MyUnit : public Unit {
+      // ...
+    };
+
+    } // namespace pq
+
+.. note::
+
+   If you're writing a standalone library that extends Plaquette but don't want to pollute
+   the global namespace, you can use ``pq::`` prefixes explicitly or add
+   ``using namespace pq;`` only where needed.
+
 Flowable vs Unit: Choosing Your Base Class
 ------------------------------------------
 
