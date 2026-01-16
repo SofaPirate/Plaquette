@@ -69,7 +69,7 @@ clean:
 .PHONY: doxygen
 doxygen:
 	$(DOXYGENBUILD)
-	$(SED_INPLACE) 's/pq:://g' ./xml/*.xml # remove pq:: namespace from XML
+	./strip_pq_namespace.sh ./xml
 	mkdir -p $(BUILDDIR)/html/doxygen
 	rm -rf $(BUILDDIR)/html/doxygen/*
 	mv ./html/* $(BUILDDIR)/html/doxygen/
