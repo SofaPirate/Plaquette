@@ -5,10 +5,6 @@ Extending Plaquette
 
 This guide provides comprehensive instructions for developers who want to extend Plaquette by creating custom units. Whether you're building a specialized sensor interface, a custom filter, or an advanced signal generator, this document covers everything you need to know.
 
-.. contents:: Table of Contents
-   :local:
-   :depth: 2
-
 Architecture Overview
 ---------------------
 
