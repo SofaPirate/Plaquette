@@ -89,13 +89,6 @@ Supported Events
     -
     -
     -
-  * - :doc:`StreamIn`
-    -
-    -
-    -
-    -
-    -
-    - ✔
   * - :doc:`Wave`
     -
     -
