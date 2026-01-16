@@ -102,10 +102,10 @@ public:
    */
   virtual void fromTo(float from, float to);
 
-  // Inherited.
-  using AbstractTimer::duration;
+  /// Returns the duration of the ramp (in seconds).
+  float duration() const override { return AbstractTimer::duration(); }
 
-  /// Sets the duration of the chronometer.
+  /// Sets the duration of the ramp (in seconds).
   void duration(float duration) override;
 
   /// Sets the speed (rate of change) of the ramp in change-per-second.
