@@ -292,8 +292,9 @@ expressive syntax:
 
 .. important::
 
-  Notice the use of the **capitalized first letter** in the above call. This tells Plaquette
-  that we are accessing a *parameter slot* rather than reading or setting a value directly.
+  Notice the use of the **capitalized first letter** in the above call: ``myWave.Frequency()``.
+  This tells Plaquette that we are flowing a value to a *parameter slot* rather than directly
+  reading or setting a parameter.
 
   In Plaquette, most functions are written in lowercase (such as ``frequency()``) and are used
   to **read or set a value directly**. Functions starting with a capital letter (such as
