@@ -106,7 +106,7 @@ to another.
 | ``digitalWrite(12, (analogRead(A0) >= 716 ?    | ``(sensor >= 0.7) >> led;``                    |
 | HIGH : LOW));``                                |                                                |
 +------------------------------------------------+------------------------------------------------+
-| *Send multiple values to the serial plotter for visualization                                   |
+| *Send multiple values to the serial plotter for visualization*                                  |
 +------------------------------------------------+------------------------------------------------+
 | ``Serial.print(sensor1);``                     | ``sensor1 >> plotter;``                        |
 | ``Serial.print(", ");``                        | ``sensor2 >> plotter;``                        |
