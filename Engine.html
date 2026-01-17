@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -82,6 +83,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="value_units.html">Value Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare.html">prepare()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="begin.html">begin()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step.html">step()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array.html">[] (arrays)</a></li>
@@ -259,25 +261,25 @@ timer2 interrupt.</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine8preBeginEv">
 <span id="_CPPv3N6Engine8preBeginEv"></span><span id="_CPPv2N6Engine8preBeginEv"></span><span id="Engine::preBegin"></span><span class="target" id="classpq_1_1_engine_1afdb393f45a172ac38de2c6e78545e54a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preBegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8preBeginEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Initializes all components (calls <a class="reference internal" href="#classpq_1_1_engine_1ab3eb899b57f6331eb578420f4103bf51"><span class="std std-ref">begin()</span></a> on all of them). </p>
+<dd><p>Initializes all components (calls begin() on all of them). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine9postBeginEv">
 <span id="_CPPv3N6Engine9postBeginEv"></span><span id="_CPPv2N6Engine9postBeginEv"></span><span id="Engine::postBegin"></span><span class="target" id="classpq_1_1_engine_1a9777126f3a019fc4eee4d5d7d4156d2d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">postBegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine9postBeginEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Performs additional tasks after the class to <a class="reference internal" href="#classpq_1_1_engine_1ab3eb899b57f6331eb578420f4103bf51"><span class="std std-ref">begin()</span></a>. </p>
+<dd><p>Performs additional tasks after the class to begin(). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine7preStepEv">
 <span id="_CPPv3N6Engine7preStepEv"></span><span id="_CPPv2N6Engine7preStepEv"></span><span id="Engine::preStep"></span><span class="target" id="classpq_1_1_engine_1a10a604b576ff5e5c209a22298236ce10"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">preStep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine7preStepEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Updates all components (calls <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a> on all of them). </p>
+<dd><p>Updates all components (calls step() on all of them). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine8timeStepEv">
 <span id="_CPPv3N6Engine8timeStepEv"></span><span id="_CPPv2N6Engine8timeStepEv"></span><span id="Engine::timeStep"></span><span class="target" id="classpq_1_1_engine_1a3ce40d6bb6e1f4bc824af6a60b941493"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeStep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine8timeStepEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Performs additional tasks after the class to <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>. </p>
+<dd><p>Performs additional tasks after the class to step(). </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>true if the program should </p>
@@ -314,7 +316,7 @@ timer2 interrupt.</p>
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine7secondsEb">
 <span id="_CPPv3NK6Engine7secondsEb"></span><span id="_CPPv2NK6Engine7secondsEb"></span><span id="Engine::seconds__bC"></span><span class="target" id="classpq_1_1_engine_1a9872aa30482e432c749002fd302fa8f5"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine7secondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in seconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of step(), or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
@@ -329,7 +331,7 @@ timer2 interrupt.</p>
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine12milliSecondsEb">
 <span id="_CPPv3NK6Engine12milliSecondsEb"></span><span id="_CPPv2NK6Engine12milliSecondsEb"></span><span id="Engine::milliSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1ac465ccb8db3c58bd1b391a9b5e230c96"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12milliSecondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in milliseconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of step(), or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
@@ -344,7 +346,7 @@ timer2 interrupt.</p>
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine12microSecondsEb">
 <span id="_CPPv3NK6Engine12microSecondsEb"></span><span id="_CPPv2NK6Engine12microSecondsEb"></span><span id="Engine::microSeconds__bC"></span><span class="target" id="classpq_1_1_engine_1a2d28032b50784937016f41667f1d6839"></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">referenceTime</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine12microSecondsEb" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns time in microseconds. </p>
-<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>, or “real” time which will return the current total running time. </p>
+<p>Optional parameter allows to ask for reference time (default) which will yield the same value through one iteration of step(), or “real” time which will return the current total running time. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>referenceTime</strong> – determines whether the function returns the reference time or the real time </p>
@@ -412,14 +414,14 @@ timer2 interrupt.</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6Engine9isPrimaryEv">
 <span id="_CPPv3NK6Engine9isPrimaryEv"></span><span id="_CPPv2NK6Engine9isPrimaryEv"></span><span id="Engine::isPrimaryC"></span><span class="target" id="classpq_1_1_engine_1a757f6d8e148a2b10e2e8c4882ff5b9ff"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPrimary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Engine9isPrimaryEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns true if this <a class="reference internal" href="#classpq_1_1_engine"><span class="std std-ref">Engine</span></a> is the main. </p>
+<dd><p>Returns true if this Engine is the main. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N6Engine13randomTriggerEf">
 <span id="_CPPv3N6Engine13randomTriggerEf"></span><span id="_CPPv2N6Engine13randomTriggerEf"></span><span id="Engine::randomTrigger__float"></span><span class="target" id="classpq_1_1_engine_1a77a8ce2e8f310c3c2cc3e8bf832e2942"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randomTrigger</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Engine13randomTriggerEf" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Randomly triggers an event about once per time window, on average. </p>
-<p>Call this function once in each <a class="reference internal" href="#classpq_1_1_engine_1a52a80c784a1ad01f44dba3d43555be82"><span class="std std-ref">step()</span></a>. It will occasionally return true, with the frequency adjusted so that you get roughly one event for each <code class="docutils literal notranslate"><span class="pre">timeWindow</span></code> period, no matter how fast your loop is running.</p>
+<p>Call this function once in each step(). It will occasionally return true, with the frequency adjusted so that you get roughly one event for each <code class="docutils literal notranslate"><span class="pre">timeWindow</span></code> period, no matter how fast your loop is running.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>timeWindow</strong> – duration of the window (in seconds) </p>

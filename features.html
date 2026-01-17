@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -245,7 +246,7 @@ to another.</p>
 <span class="pre">HIGH</span> <span class="pre">:</span> <span class="pre">LOW));</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">(sensor</span> <span class="pre">&gt;=</span> <span class="pre">0.7)</span> <span class="pre">&gt;&gt;</span> <span class="pre">led;</span></code></p></td>
 </tr>
-<tr class="row-even"><td colspan="2"><p><a href="#id5"><span class="problematic" id="id6">*</span></a>Send multiple values to the serial plotter for visualization</p></td>
+<tr class="row-even"><td colspan="2"><p><em>Send multiple values to the serial plotter for visualization</em></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Serial.print(sensor1);</span></code>
 <code class="docutils literal notranslate"><span class="pre">Serial.print(&quot;,</span> <span class="pre">&quot;);</span></code>
@@ -262,7 +263,7 @@ to another.</p>
 Plaquette’s signal filtering features.</p>
 </section>
 <section id="real-time">
-<span id="id7"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2>Real-time<a class="headerlink" href="#real-time" title="Permalink to this heading"></a></h2>
 <p>Plaquette avoids blocking processes such as Arduino’s (in)famous <code class="docutils literal notranslate"><span class="pre">delay()</span></code> by
 providing a set of <a class="reference internal" href="timing.html"><span class="doc">timing units</span></a> as well as time-based
 <a class="reference internal" href="generators.html"><span class="doc">signal generators</span></a>. As such, the processing loop is never interrupted,

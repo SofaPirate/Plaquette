@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -171,7 +172,7 @@ converters, and act as true analog outputs.</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49AnalogOut">
-<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AnalogSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">PinConfig</span></span><a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv39AnalogOut"></span><span id="_CPPv29AnalogOut"></span><span id="AnalogOut"></span><span class="target" id="classpq_1_1_analog_out"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AnalogOut</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AnalogSource</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PinConfig</span></span><a class="headerlink" href="#_CPPv49AnalogOut" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A generic class representing a simple PWM output. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -209,7 +210,7 @@ converters, and act as true analog outputs.</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N9AnalogOut6invertEv">
 <span id="_CPPv3N9AnalogOut6invertEv"></span><span id="_CPPv2N9AnalogOut6invertEv"></span><span id="AnalogOut::invert"></span><span class="target" id="classpq_1_1_analog_out_1a96398d0fd733795e23f700eee606d9ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">invert</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9AnalogOut6invertEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Inverts value by calling <code class="docutils literal notranslate"><span class="pre">put(1-</span><a class="reference internal" href="StreamOut.html#classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"><span class="std std-ref"><span class="pre">get()</span></span></a><span class="pre">)</span></code> (eg. 0.2 becomes 0.8). </p>
+<dd><p>Inverts value by calling <code class="docutils literal notranslate"><span class="pre">put(1-</span><span class="pre">get()</span><span class="pre">)</span></code> (eg. 0.2 becomes 0.8). </p>
 </dd></dl>
 
 <dl class="cpp function">

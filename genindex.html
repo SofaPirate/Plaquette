@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -1120,7 +1121,7 @@
 </li>
       <li><a href="Ramp.html#_CPPv4N4Ramp8DurationEv">Ramp::Duration (C++ function)</a>
 </li>
-      <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4N4Ramp8durationEf">[1]</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[2]</a>
+      <li><a href="Ramp.html#_CPPv4N4Ramp8durationEf">Ramp::duration (C++ function)</a>, <a href="Ramp.html#_CPPv4NK4Ramp8durationEv">[1]</a>
 </li>
       <li><a href="Ramp.html#_CPPv4NK4Ramp15durationToSpeedEf">Ramp::durationToSpeed (C++ function)</a>
 </li>
@@ -1324,6 +1325,8 @@
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother6cutoffEf">Smoother::cutoff (C++ function)</a>, <a href="Smoother.html#_CPPv4NK8Smoother6cutoffEv">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Smoother.html#_CPPv4N8Smoother15digitalToAnalogEb">Smoother::digitalToAnalog (C++ function)</a>
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother6filterEf">Smoother::filter (C++ function)</a>
@@ -1356,8 +1359,6 @@
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother3putEf">Smoother::put (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Smoother.html#_CPPv4N8Smoother5resetEf">Smoother::reset (C++ function)</a>, <a href="Smoother.html#_CPPv4N8Smoother5resetEff">[1]</a>, <a href="Smoother.html#_CPPv4N8Smoother5resetEv">[2]</a>
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother17resumeCalibratingEv">Smoother::resumeCalibrating (C++ function)</a>
@@ -1375,72 +1376,6 @@
       <li><a href="Smoother.html#_CPPv4NK8Smoother20timeWindowIsInfiniteEv">Smoother::timeWindowIsInfinite (C++ function)</a>
 </li>
       <li><a href="Smoother.html#_CPPv4N8Smoother17toggleCalibratingEv">Smoother::toggleCalibrating (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv48StreamIn">StreamIn (C++ class)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn15analogToDigitalEf">StreamIn::analogToDigital (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn15digitalToAnalogEb">StreamIn::digitalToAnalog (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn3getEv">StreamIn::get (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn5mapToEff">StreamIn::mapTo (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12microSecondsEv">StreamIn::microSeconds (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12milliSecondsEv">StreamIn::milliSeconds (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn6nStepsEv">StreamIn::nSteps (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn8onUpdateE13EventCallback">StreamIn::onUpdate (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIncvbEv">StreamIn::operator bool (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIncvfEv">StreamIn::operator float (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn3putEf">StreamIn::put (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn12samplePeriodEv">StreamIn::samplePeriod (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn10sampleRateEv">StreamIn::sampleRate (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4NK8StreamIn7secondsEv">StreamIn::seconds (C++ function)</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn8StreamInER6Engine">StreamIn::StreamIn (C++ function)</a>, <a href="StreamIn.html#_CPPv4N8StreamIn8StreamInER6StreamR6Engine">[1]</a>
-</li>
-      <li><a href="StreamIn.html#_CPPv4N8StreamIn7updatedEv">StreamIn::updated (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv49StreamOut">StreamOut (C++ class)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut15analogToDigitalEf">StreamOut::analogToDigital (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut15digitalToAnalogEb">StreamOut::digitalToAnalog (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut3getEv">StreamOut::get (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut5mapToEff">StreamOut::mapTo (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12microSecondsEv">StreamOut::microSeconds (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12milliSecondsEv">StreamOut::milliSeconds (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut6nStepsEv">StreamOut::nSteps (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOutcvbEv">StreamOut::operator bool (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOutcvfEv">StreamOut::operator float (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut9precisionE7uint8_t">StreamOut::precision (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut3putEf">StreamOut::put (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut12samplePeriodEv">StreamOut::samplePeriod (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut10sampleRateEv">StreamOut::sampleRate (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4NK9StreamOut7secondsEv">StreamOut::seconds (C++ function)</a>
-</li>
-      <li><a href="StreamOut.html#_CPPv4N9StreamOut9StreamOutER6Engine">StreamOut::StreamOut (C++ function)</a>, <a href="StreamOut.html#_CPPv4N9StreamOut9StreamOutER6StreamR6Engine">[1]</a>
 </li>
   </ul></td>
 </tr></table>

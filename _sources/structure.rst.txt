@@ -8,6 +8,7 @@ Core structural functions and operators.
 
    Engine
    value_units
+   prepare
    begin
    step
    array

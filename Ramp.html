@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -173,7 +174,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv44Ramp">
-<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv34Ramp"></span><span id="_CPPv24Ramp"></span><span id="Ramp"></span><span class="target" id="classpq_1_1_ramp"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ramp</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Unit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AbstractTimer</span></span><a class="headerlink" href="#_CPPv44Ramp" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Provides a ramping / tweening mechanism that allows smooth transitions between two values. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -295,9 +296,15 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8durationEv">
+<span id="_CPPv3NK4Ramp8durationEv"></span><span id="_CPPv2NK4Ramp8durationEv"></span><span id="Ramp::durationC"></span><span class="target" id="classpq_1_1_ramp_1ac60b73d3b4ae290049e60edd42fbf08b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8durationEv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Returns the duration of the ramp (in seconds). </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N4Ramp8durationEf">
 <span id="_CPPv3N4Ramp8durationEf"></span><span id="_CPPv2N4Ramp8durationEf"></span><span id="Ramp::duration__float"></span><span class="target" id="classpq_1_1_ramp_1a89dae75ccd0f080b0d69064385810885"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N4Ramp8durationEf" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Sets the duration of the chronometer. </p>
+<dd><p>Sets the duration of the ramp (in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -431,18 +438,6 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <dd></dd></dl>
 
 </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="classpq_1_1_ramp_1a1278f2208903d72d7b4414657b564d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">duration</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Sets the duration of the chronometer. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK4Ramp8durationEv">
-<span id="_CPPv3NK4Ramp8durationEv"></span><span id="_CPPv2NK4Ramp8durationEv"></span><span id="Ramp::durationC"></span><span class="target" id="classpq_1_1_ramp_1adc25c02b7a2606cd74be8b7b8c6ca3e2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">duration</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4Ramp8durationEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Returns duration. </p>
 </dd></dl>
 
 <dl class="cpp function">

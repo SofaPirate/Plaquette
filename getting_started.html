@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
@@ -389,8 +390,9 @@ expressive syntax:</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Notice the use of the <strong>capitalized first letter</strong> in the above call. This tells Plaquette
-that we are accessing a <em>parameter slot</em> rather than reading or setting a value directly.</p>
+<p>Notice the use of the <strong>capitalized first letter</strong> in the above call: <code class="docutils literal notranslate"><span class="pre">myWave.Frequency()</span></code>.
+This tells Plaquette that we are flowing a value to a <em>parameter slot</em> rather than directly
+reading or setting a parameter.</p>
 <p>In Plaquette, most functions are written in lowercase (such as <code class="docutils literal notranslate"><span class="pre">frequency()</span></code>) and are used
 to <strong>read or set a value directly</strong>. Functions starting with a capital letter (such as
 <code class="docutils literal notranslate"><span class="pre">Frequency()</span></code>) instead provide a <strong>connection point</strong> for that parameter, making it possible

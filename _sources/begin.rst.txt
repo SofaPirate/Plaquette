@@ -57,4 +57,5 @@ after each powerup or reset of the board.
 
 |SeeAlso|
 ---------
+- :doc:`prepare`
 - :doc:`step`

@@ -23,6 +23,50 @@ There are three potential wave types that can be set using the ``shape`` paramet
 Parameters
 ----------
 
+  .. list-table::
+     :header-rows: 1
+     :widths: 12 40 12 12 12 12
+
+     * - Name
+       - Description
+       - Range
+       - Setter
+       - Getter
+       - Flow
+     * - period
+       - Duration of one complete cycle.
+       - > 0 (s)
+       - ``period(v)``
+       - ``period()``
+       - ``Period()``
+     * - frequency
+       - Cycles per second (inverse of period).
+       - > 0 (Hz)
+       - ``frequency(v)``
+       - ``frequency()``
+       - ``Frequency()``
+     * - bpm
+       - Cycles per minute (alternative to frequency).
+       - > 0
+       - ``bpm(v)``
+       - ``bpm()``
+       - ``Bpm()``
+     * - skew
+       - Balance between rising/falling portions of cycle.
+       - [0, 1]
+       - ``skew(v)``
+       - ``skew()``
+       - ``Skew()``
+     * - jitter
+       - Randomness level for timing variation.
+       - [0, 1]
+       - ``jitter(v)``
+       - ``jitter()``
+       - ``Jitter()``
+
+Parameters
+----------
+
 Regardless of the shape, the signal can be tuned by adjusting the following parameters:
 
 - **period()**: Sets the duration of one cycle in seconds.

@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="regularizing.html">Regularizing Signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Managing Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Plaquette</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -214,8 +215,8 @@ with irregular spacing:</p>
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv49Metronome">
-<span id="_CPPv39Metronome"></span><span id="_CPPv29Metronome"></span><span id="Metronome"></span><span class="target" id="classpq_1_1_metronome"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">DigitalUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractOscillator</span></span><a class="headerlink" href="#_CPPv49Metronome" title="Permalink to this definition"></a><br /></dt>
-<dd><p><a class="reference internal" href="Chronometer.html#classpq_1_1_chronometer"><span class="std std-ref">Chronometer</span></a> digital unit which emits 1/true/”on” for one frame, at a regular pace. </p>
+<span id="_CPPv39Metronome"></span><span id="_CPPv29Metronome"></span><span id="Metronome"></span><span class="target" id="classpq_1_1_metronome"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Metronome</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">DigitalUnit</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AbstractOscillator</span></span><a class="headerlink" href="#_CPPv49Metronome" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Chronometer digital unit which emits 1/true/”on” for one frame, at a regular pace. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
@@ -520,14 +521,14 @@ with irregular spacing:</p>
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome14jitteredPeriodEv">
 <span id="_CPPv3NK9Metronome14jitteredPeriodEv"></span><span id="_CPPv2NK9Metronome14jitteredPeriodEv"></span><span id="Metronome::jitteredPeriodC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1aabd733d412979fbb52ab05331bffce25"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitteredPeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome14jitteredPeriodEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the period actually used for the current cycle. </p>
-<p>When <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> == 0, this is identical to <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a11dc9d509dd43e35d50f9d1717a83389"><span class="std std-ref">period()</span></a>. When <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> &gt; 0, this returns the stochastic (jittered) period currently in effect. </p>
+<p>When jitter() == 0, this is identical to period(). When jitter() &gt; 0, this returns the stochastic (jittered) period currently in effect. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK9Metronome17jitteredFrequencyEv">
 <span id="_CPPv3NK9Metronome17jitteredFrequencyEv"></span><span id="_CPPv2NK9Metronome17jitteredFrequencyEv"></span><span id="Metronome::jitteredFrequencyC"></span><span class="target" id="classpq_1_1_abstract_oscillator_1a35e1779db78f91ef81bcb35fe9deab24"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jitteredFrequency</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9Metronome17jitteredFrequencyEv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Returns the frequency actually used for the current cycle. </p>
-<p>When <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> == 0, this is identical to <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1ab98a9d13488942d59afe50fbe557a1aa"><span class="std std-ref">frequency()</span></a>. When <a class="reference internal" href="Wave.html#classpq_1_1_abstract_oscillator_1a04d4b9df74d5e2cca19eabbcc3a5347b"><span class="std std-ref">jitter()</span></a> &gt; 0, this returns the stochastic (jittered) frequency currently in effect. </p>
+<p>When jitter() == 0, this is identical to frequency(). When jitter() &gt; 0, this returns the stochastic (jittered) frequency currently in effect. </p>
 </dd></dl>
 
 <dl class="cpp function">
