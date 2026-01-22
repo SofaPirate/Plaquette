@@ -102,6 +102,37 @@ test(valueToValueComparisons) {
   assertTrue(a != b);
 }
 
+test(integerScalarArithmetic) {
+  Integer v = 10;
+
+  // Value * scalar
+  assertEqual(v * 3, 30);
+  // scalar * Value
+  assertEqual(3 * v, 30);
+
+  // Value / scalar
+  assertEqual(v / 2, 5);
+  // scalar / Value
+  assertEqual(100 / v, 10);
+
+  // Value + scalar (already had overloads, but verify)
+  assertEqual(v + 5, 15);
+  assertEqual(5 + v, 15);
+
+  // Value - scalar
+  assertEqual(v - 3, 7);
+  assertEqual(20 - v, 10);
+}
+
+test(floatScalarArithmetic) {
+  Float v = 2.5f;
+
+  assertNear(v * 2.0f, 5.0f, 0.001f);
+  assertNear(2.0f * v, 5.0f, 0.001f);
+  assertNear(v / 2.0f, 1.25f, 0.001f);
+  assertNear(5.0f / v, 2.0f, 0.001f);
+}
+
 void setup() {
   Plaquette.begin();
 }

@@ -112,6 +112,10 @@ public:
   friend inline T operator+(T a, const Value& b) { return a + b._v; }
   friend inline T operator-(const Value& a, T b) { return a._v - b; }
   friend inline T operator-(T a, const Value& b) { return a - b._v; }
+  friend inline T operator*(const Value& a, T b) { return a._v * b; }
+  friend inline T operator*(T a, const Value& b) { return a * b._v; }
+  friend inline T operator/(const Value& a, T b) { return a._v / b; }
+  friend inline T operator/(T a, const Value& b) { return a / b._v; }
 
 protected:
   T _v;
