@@ -21,13 +21,13 @@ struct ValueCodec<float> {
   static inline float toFloat(float v) { return v; }
 };
 
-// int32 rounding policy (deterministic, no libm dependency)
+// int rounding policy (deterministic, no libm dependency)
 template <>
-struct ValueCodec<int32_t> {
-  static inline int32_t fromFloat(float v) {
-    return static_cast<int32_t>(round(v));
+struct ValueCodec<int> {
+  static inline int fromFloat(float v) {
+    return static_cast<int>(round(v));
   }
-  static inline float toFloat(int32_t v) { return static_cast<float>(v); }
+  static inline float toFloat(int v) { return static_cast<float>(v); }
 };
 
 // bool threshold policy
@@ -111,7 +111,7 @@ protected:
 
 // ---------- Convenient aliases matching issue #157 ----------
 using Float   = Value<float>;
-using Integer = Value<int32_t>;
+using Integer = Value<int>;
 using Boolean = Value<bool>;
 
 } // namespace pq
