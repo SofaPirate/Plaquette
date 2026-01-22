@@ -93,6 +93,14 @@ public:
   friend inline bool operator==(T a, const Value& b) { return a == b._v; }
   friend inline bool operator!=(const Value& a, T b) { return a._v != b; }
   friend inline bool operator!=(T a, const Value& b) { return a != b._v; }
+  friend inline bool operator< (const Value& a, T b) { return a._v <  b; }
+  friend inline bool operator< (T a, const Value& b) { return a <  b._v; }
+  friend inline bool operator<=(const Value& a, T b) { return a._v <= b; }
+  friend inline bool operator<=(T a, const Value& b) { return a <= b._v; }
+  friend inline bool operator> (const Value& a, T b) { return a._v >  b; }
+  friend inline bool operator> (T a, const Value& b) { return a >  b._v; }
+  friend inline bool operator>=(const Value& a, T b) { return a._v >= b; }
+  friend inline bool operator>=(T a, const Value& b) { return a >= b._v; }
 
   // Basic arithmetic: return base type (or choose float — see notes below)
   friend inline T operator+(const Value& a, const Value& b) { return a._v + b._v; }
