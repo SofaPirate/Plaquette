@@ -28,6 +28,7 @@
 #endif
 
 #include "pq_math.h"
+#include "pq_traits.h"
 
 #include <stdint.h>
 #include <float.h>
@@ -567,87 +568,20 @@ protected:
 
 // Value to unit operators ///////////////////////////////////////
 
-// Ensures math functions work safely when mixing types (e.g. int and float).
-#if defined(__has_include) && __has_include(<type_traits>)
-#include <type_traits>
-
+// Trait: true if T derives from Flowable.
 template <typename T>
-using is_integral = std::is_integral<T>;
-
-// template <bool B, typename T = void>
-// using enable_if_t = std::enable_if_t<B, T>;
-
-#else
-// Minimal is_integral (AVR-safe)
-template <typename T> struct is_integral { static const bool value = false; };
-
-template <> struct is_integral<bool> { static const bool value = true; };
-template <> struct is_integral<char> { static const bool value = true; };
-template <> struct is_integral<signed char> { static const bool value = true; };
-template <> struct is_integral<unsigned char> { static const bool value = true; };
-template <> struct is_integral<short> { static const bool value = true; };
-template <> struct is_integral<unsigned short> { static const bool value = true; };
-template <> struct is_integral<int> { static const bool value = true; };
-template <> struct is_integral<unsigned int> { static const bool value = true; };
-template <> struct is_integral<long> { static const bool value = true; };
-template <> struct is_integral<unsigned long> { static const bool value = true; };
-template <> struct is_integral<long long> { static const bool value = true; };
-template <> struct is_integral<unsigned long long> { static const bool value = true; };
-
-#endif
-
-// C++11-compatible enable_if_t
-template <bool B, typename T = void>
-struct enable_if { };
-
-template <typename T>
-struct enable_if<true, T> { typedef T type; };
-
-template <bool B, typename T = void>
-using enable_if_t = typename enable_if<B, T>::type;
-
-// Minimal remove_reference (C++11)
-template <typename T> struct remove_reference      { typedef T type; };
-template <typename T> struct remove_reference<T&>  { typedef T type; };
-#if __cplusplus >= 201103L
-template <typename T> struct remove_reference<T&&> { typedef T type; };
-#endif
-
-// Minimal remove_cv (optional but recommended)
-template <typename T> struct remove_const          { typedef T type; };
-template <typename T> struct remove_const<const T> { typedef T type; };
-
-template <typename T> struct remove_volatile               { typedef T type; };
-template <typename T> struct remove_volatile<volatile T>   { typedef T type; };
-
-template <typename T>
-struct remove_cv {
-  typedef typename remove_const<typename remove_volatile<T>::type>::type type;
-};
-
-template <typename T>
-struct remove_cvref {
-  typedef typename remove_cv<typename remove_reference<T>::type>::type type;
-};
-
-// Trait: true if U* converts to Flowable*
-template <typename T>
-struct is_chainable {
+struct is_flowable {
 private:
   typedef typename remove_cvref<T>::type U;
 
   static char test(Flowable*);
   static int  test(...);
 
-  static U* make(); // U is not a reference here
+  static U* make();
 
 public:
   enum { value = (sizeof(test(make())) == sizeof(char)) };
 };
-
-
-template <typename>
-struct always_false { enum { value = 0 }; };
 
 // Provides informative compile-time error message when trying to use the >> operator wrongly.
 #define PQ_FLOW_OPERATOR_ERROR \
@@ -660,20 +594,20 @@ struct flow_error {
 };
 
 template <typename L, typename R,
-        enable_if_t< is_chainable<L>::value &&
-                    !is_chainable<R>::value, int> = 0>
+        enable_if_t< is_flowable<L>::value &&
+                    !is_flowable<R>::value, int> = 0>
 inline void operator>>(L&&, R&&) {
   // The error is tied to instantiating this dependent type.
   (void)sizeof(flow_error<R>);
 }
 
 // Catch operations such as: value >> nonFlowable;
-template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
+template <typename T, enable_if_t<!is_flowable<T>::value, int> = 0>
 inline void operator>>(float, T&&) {
   static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
 }
 
-template <typename T, enable_if_t<!is_chainable<T>::value, int> = 0>
+template <typename T, enable_if_t<!is_flowable<T>::value, int> = 0>
 inline void operator>>(double, T&&) {
   static_assert(always_false<T>::value, PQ_FLOW_OPERATOR_ERROR);
 }

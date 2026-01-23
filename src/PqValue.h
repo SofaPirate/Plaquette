@@ -10,20 +10,6 @@
 
 namespace pq {
 
-// ---------- Type traits ----------
-
-// Minimal is_same (AVR-safe).
-template <typename T, typename U>
-struct is_same { static const bool value = false; };
-template <typename T>
-struct is_same<T, T> { static const bool value = true; };
-
-// Helper: true for integral types excluding bool (for modulo support).
-template <typename T>
-struct supports_modulo {
-  static const bool value = is_integral<T>::value && !is_same<T, bool>::value;
-};
-
 // ---------- Conversion traits ----------
 template <typename T>
 struct ValueCodec;
