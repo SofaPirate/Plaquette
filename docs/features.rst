@@ -108,11 +108,13 @@ to another.
 +------------------------------------------------+------------------------------------------------+
 | *Send multiple values to the serial plotter for visualization*                                  |
 +------------------------------------------------+------------------------------------------------+
-| ``Serial.print(sensor1);``                     | ``sensor1 >> plotter;``                        |
-| ``Serial.print(", ");``                        | ``sensor2 >> plotter;``                        |
-| ``Serial.print(sensor2);``                     | ``sensor3 >> plotter;``                        |
-| ``Serial.print(", ");``                        |                                                |
-| ``Serial.println(sensor3);``                   |                                                |
+| .. code-block:: c++                            | .. code-block:: c++                            |
+|                                                |                                                |
+|   Serial.print(sensor1);                       |   sensor1 >> plotter;                          |
+|   Serial.print(",");                           |   sensor2 >> plotter;                          |
+|   Serial.print(sensor2);                       |   sensor3 >> plotter;                          |
+|   Serial.print(",");                           |                                                |
+|   Serial.println(sensor3);                     |                                                |
 +------------------------------------------------+------------------------------------------------+
 
 Read :doc:`regularizing` to see how you can take full advantage of
