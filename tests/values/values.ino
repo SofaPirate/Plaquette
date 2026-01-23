@@ -133,6 +133,38 @@ test(floatScalarArithmetic) {
   assertNear(5.0f / v, 2.0f, 0.001f);
 }
 
+test(integerModulo) {
+  Integer v = 10;
+
+  // Value % scalar
+  assertEqual((int)(v % 3), 1);
+  // scalar % Value
+  assertEqual((int)(17 % v), 7);
+  // Value % Value
+  Integer m = 4;
+  assertEqual((int)(v % m), 2);
+
+  // Compound modulo assignment
+  v %= 3;
+  assertEqual((int)v, 1);
+
+  v = 10;
+  v %= m;
+  assertEqual((int)v, 2);
+}
+
+test(unaryNegation) {
+  Integer i = 5;
+  assertEqual((int)(-i), -5);
+
+  Float f = 2.5f;
+  assertNear((float)(-f), -2.5f, 0.001f);
+
+  // Verify original unchanged
+  assertEqual((int)i, 5);
+  assertNear((float)f, 2.5f, 0.001f);
+}
+
 void setup() {
   Plaquette.begin();
 }

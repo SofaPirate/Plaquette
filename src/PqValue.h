@@ -10,6 +10,20 @@
 
 namespace pq {
 
+// ---------- Type traits ----------
+
+// Minimal is_same (AVR-safe).
+template <typename T, typename U>
+struct is_same { static const bool value = false; };
+template <typename T>
+struct is_same<T, T> { static const bool value = true; };
+
+// Helper: true for integral types excluding bool (for modulo support).
+template <typename T>
+struct supports_modulo {
+  static const bool value = is_integral<T>::value && !is_same<T, bool>::value;
+};
+
 // ---------- Conversion traits ----------
 template <typename T>
 struct ValueCodec;
@@ -69,6 +83,9 @@ public:
   inline T operator++(int) { T old = _v; ++_v; return old; }
   inline T operator--(int) { T old = _v; --_v; return old; }
 
+  // Unary negation
+  inline T operator-() const { return -_v; }
+
   // Compound assignment with base type
   inline Value& operator+=(T rhs) { _v += rhs; return *this; }
   inline Value& operator-=(T rhs) { _v -= rhs; return *this; }
@@ -80,6 +97,15 @@ public:
   inline Value& operator-=(const Value& rhs) { _v -= rhs._v; return *this; }
   inline Value& operator*=(const Value& rhs) { _v *= rhs._v; return *this; }
   inline Value& operator/=(const Value& rhs) { _v /= rhs._v; return *this; }
+
+  // Compound modulo (integer types only, excluding bool)
+  template <typename U = T>
+  inline enable_if_t<supports_modulo<U>::value, Value&>
+  operator%=(U rhs) { _v %= rhs; return *this; }
+
+  template <typename U = T>
+  inline enable_if_t<supports_modulo<U>::value, Value&>
+  operator%=(const Value& rhs) { _v %= rhs._v; return *this; }
 
   // Comparisons (Value-to-Value, Value-to-scalar)
   friend inline bool operator==(const Value& a, const Value& b) { return a._v == b._v; }
@@ -116,6 +142,19 @@ public:
   friend inline T operator*(T a, const Value& b) { return a * b._v; }
   friend inline T operator/(const Value& a, T b) { return a._v / b; }
   friend inline T operator/(T a, const Value& b) { return a / b._v; }
+
+  // Modulo (integer types only, excluding bool)
+  template <typename U = T>
+  friend inline enable_if_t<supports_modulo<U>::value, U>
+  operator%(const Value& a, const Value& b) { return a._v % b._v; }
+
+  template <typename U = T>
+  friend inline enable_if_t<supports_modulo<U>::value, U>
+  operator%(const Value& a, U b) { return a._v % b; }
+
+  template <typename U = T>
+  friend inline enable_if_t<supports_modulo<U>::value, U>
+  operator%(U a, const Value& b) { return a % b._v; }
 
 protected:
   T _v;
