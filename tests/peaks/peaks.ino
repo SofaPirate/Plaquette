@@ -43,9 +43,6 @@ testing(countingPeaks) {
 
       value >> *detector;
 
-      // print("Detector: "); println(detector->isOn());
-
-
       if (detector->isOn()) {
         nPeaks ++;
         assertNear(detector->get(), 1.0f, 0.1f);
