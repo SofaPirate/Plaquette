@@ -23,17 +23,58 @@ There are three potential wave types that can be set using the ``shape`` paramet
 Parameters
 ----------
 
-Regardless of the shape, the signal can be tuned by adjusting the following parameters:
+  .. list-table::
+     :header-rows: 1
+     :widths: 12 40 12 12 12 12
 
-- **period()**: Sets the duration of one cycle in seconds.
-- **skew()**: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
-  Each wave type behaves slightly differently with this parameter, which will be detailed below.
-- **random()**: Controls the degree of randomness of the wave (in range [0, 1]).
-- **frequency()**: Inverse of period; sets the cycles per second (Hz).
-- **bpm()**: Alternative way to set the frequency using beats per minute (BPM).
-- **phase()**: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).
-- **amplitude()**: Sets the peak level of the wave (as % of max) (in range [0, 1]).
-- **jitter()**: Sets the :ref:`jittering level <wave-randomization>` of oscillation (in range [0, 1]) (0: no jitter, 1: maximum jitter).
+     * - Name
+       - Description
+       - Range
+       - Setter
+       - Getter
+       - Flow
+     * - period
+       - Duration of one complete cycle.
+       - > 0 (s)
+       - ``period(v)``
+       - ``period()``
+       - ``Period()``
+     * - frequency
+       - Cycles per second (inverse of period).
+       - > 0 (Hz)
+       - ``frequency(v)``
+       - ``frequency()``
+       - ``Frequency()``
+     * - bpm
+       - Cycles per minute (alternative to frequency).
+       - > 0
+       - ``bpm(v)``
+       - ``bpm()``
+       - ``Bpm()``
+     * - skew
+       - Balance between rising/falling portions of cycle.
+       - [0, 1]
+       - ``skew(v)``
+       - ``skew()``
+       - ``Skew()``
+     * - phase
+       - Current point in the wave cycle (as % of period).
+       - [0, 1]
+       - ``phase(v)``
+       - ``phase()``
+       - ``Phase()``
+     * - phaseShift
+       - Phase offset (as % of period).
+       - [0, 1]
+       - ``phaseShift(v)``
+       - ``phaseShift()``
+       - ``PhaseShift()``
+     * - jitter
+       - :ref:`Randomness level <wave-randomization>` for timing variation.
+       - [0, 1]
+       - ``jitter(v)``
+       - ``jitter()``
+       - ``Jitter()``
 
 .. _square-wave:
 
@@ -168,7 +209,7 @@ Pulses an LED.
 Randomization
 -------------
 
-In addition to controlling period, shape, skew, and amplitude, the ``Wave`` units can also generate
+In addition to controlling shape, period, and skew,``Wave`` units can also generate
 **randomized oscillations** in a similar manner as :doc:`Metronome` units using the ``randomize`` function.
 This allows the oscillation to feel less mechanical and more organic, closer to natural rhythms like breathing,
 heartbeat variations, or the flicker of firelight.
