@@ -28,7 +28,7 @@ var annotated_dup =
       [ "flow_error", "structpq_1_1flow__error.html", null ],
       [ "Flowable", "classpq_1_1_flowable.html", "classpq_1_1_flowable" ],
       [ "HybridArrayList", "classpq_1_1_hybrid_array_list.html", "classpq_1_1_hybrid_array_list" ],
-      [ "is_chainable", "structpq_1_1is__chainable.html", null ],
+      [ "is_flowable", "structpq_1_1is__flowable.html", null ],
       [ "is_integral", "structpq_1_1is__integral.html", null ],
       [ "is_integral< bool >", "structpq_1_1is__integral_3_01bool_01_4.html", null ],
       [ "is_integral< char >", "structpq_1_1is__integral_3_01char_01_4.html", null ],
@@ -42,6 +42,8 @@ var annotated_dup =
       [ "is_integral< unsigned long >", "structpq_1_1is__integral_3_01unsigned_01long_01_4.html", null ],
       [ "is_integral< unsigned long long >", "structpq_1_1is__integral_3_01unsigned_01long_01long_01_4.html", null ],
       [ "is_integral< unsigned short >", "structpq_1_1is__integral_3_01unsigned_01short_01_4.html", null ],
+      [ "is_same", "structpq_1_1is__same.html", null ],
+      [ "is_same< T, T >", "structpq_1_1is__same_3_01_t_00_01_t_01_4.html", null ],
       [ "LabelView", "structpq_1_1_label_view.html", "structpq_1_1_label_view" ],
       [ "Metronome", "classpq_1_1_metronome.html", "classpq_1_1_metronome" ],
       [ "micro_seconds_t", "unionpq_1_1micro__seconds__t.html", null ],
@@ -75,6 +77,7 @@ var annotated_dup =
       [ "SquareWave", "classpq_1_1_square_wave.html", "classpq_1_1_square_wave" ],
       [ "StreamIn", "classpq_1_1_stream_in.html", "classpq_1_1_stream_in" ],
       [ "StreamOut", "classpq_1_1_stream_out.html", "classpq_1_1_stream_out" ],
+      [ "supports_modulo", "structpq_1_1supports__modulo.html", null ],
       [ "Timeable", "classpq_1_1_timeable.html", "classpq_1_1_timeable" ],
       [ "TimeSliceField", "classpq_1_1_time_slice_field.html", "classpq_1_1_time_slice_field" ],
       [ "TimeWindowable", "classpq_1_1_time_windowable.html", "classpq_1_1_time_windowable" ],
@@ -84,7 +87,7 @@ var annotated_dup =
       [ "ValueCodec", "structpq_1_1_value_codec.html", null ],
       [ "ValueCodec< bool >", "structpq_1_1_value_codec_3_01bool_01_4.html", null ],
       [ "ValueCodec< float >", "structpq_1_1_value_codec_3_01float_01_4.html", null ],
-      [ "ValueCodec< int32_t >", "structpq_1_1_value_codec_3_01int32__t_01_4.html", null ],
+      [ "ValueCodec< int >", "structpq_1_1_value_codec_3_01int_01_4.html", null ],
       [ "Wave", "classpq_1_1_wave.html", "classpq_1_1_wave" ]
     ] ]
 ];

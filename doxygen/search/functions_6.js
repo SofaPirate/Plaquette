@@ -8,7 +8,7 @@ var searchData=
   ['format_5',['format',['../classpq_1_1_plotter.html#a5538dd47d34dcf2629759b1e476be6a3',1,'pq::Plotter::format(PlotterFormatPreset preset)'],['../classpq_1_1_plotter.html#a6955ddd8be7fdabee9a5ae6faa2c966d',1,'pq::Plotter::format()'],['../classpq_1_1_plotter.html#a5fc9c6629c795b285a2e65de34da9127',1,'pq::Plotter::format(PlotterFormat format)']]],
   ['formatfrompreset_6',['formatFromPreset',['../classpq_1_1_plotter.html#ae17e6e2ec9dd01a15a9db370b3ee80fb',1,'pq::Plotter']]],
   ['forward_7',['forward',['../classpq_1_1_abstract_oscillator.html#ab5d622c673d31c75da7798cb5278bbdb',1,'pq::AbstractOscillator']]],
-  ['frequency_8',['frequency',['../classpq_1_1_abstract_oscillator.html#a8f5ee0f538e30720830de75f1be1b3b7',1,'pq::AbstractOscillator::Frequency()'],['../classpq_1_1_abstract_oscillator.html#a4c11ebabc5517ef45c1fe0cd952f7c7c',1,'pq::AbstractOscillator::frequency(float frequency)'],['../classpq_1_1_abstract_oscillator.html#ab98a9d13488942d59afe50fbe557a1aa',1,'pq::AbstractOscillator::frequency() const']]],
+  ['frequency_8',['frequency',['../classpq_1_1_abstract_oscillator.html#a4c11ebabc5517ef45c1fe0cd952f7c7c',1,'pq::AbstractOscillator::frequency(float frequency)'],['../classpq_1_1_abstract_oscillator.html#ab98a9d13488942d59afe50fbe557a1aa',1,'pq::AbstractOscillator::frequency() const'],['../classpq_1_1_abstract_oscillator.html#a8f5ee0f538e30720830de75f1be1b3b7',1,'pq::AbstractOscillator::Frequency()']]],
   ['from_9',['from',['../classpq_1_1_ramp.html#a09f76b00b3fd03a42288649394fedd60',1,'pq::Ramp::from() const'],['../classpq_1_1_ramp.html#aefb991d592d1327036f0531ea5e6d08a',1,'pq::Ramp::from(float from)']]],
   ['fromto_10',['fromTo',['../classpq_1_1_ramp.html#aeff4b5ee7cbd8bb857c54f90a478ffec',1,'pq::Ramp']]]
 ];

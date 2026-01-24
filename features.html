@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features &mdash; Plaquette 0.9.0 documentation</title>
+  <title>Features &mdash; Plaquette 0.9.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -248,14 +248,20 @@ to another.</p>
 </tr>
 <tr class="row-even"><td colspan="2"><p><em>Send multiple values to the serial plotter for visualization</em></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Serial.print(sensor1);</span></code>
-<code class="docutils literal notranslate"><span class="pre">Serial.print(&quot;,</span> <span class="pre">&quot;);</span></code>
-<code class="docutils literal notranslate"><span class="pre">Serial.print(sensor2);</span></code>
-<code class="docutils literal notranslate"><span class="pre">Serial.print(&quot;,</span> <span class="pre">&quot;);</span></code>
-<code class="docutils literal notranslate"><span class="pre">Serial.println(sensor3);</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">sensor1</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code>
-<code class="docutils literal notranslate"><span class="pre">sensor2</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code>
-<code class="docutils literal notranslate"><span class="pre">sensor3</span> <span class="pre">&gt;&gt;</span> <span class="pre">plotter;</span></code></p></td>
+<tr class="row-odd"><td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensor1</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sensor2</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sensor3</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sensor1</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="n">sensor2</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="n">sensor3</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>

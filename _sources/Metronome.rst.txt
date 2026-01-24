@@ -12,15 +12,59 @@ evaluates to ``true`` for a single frame, and ``false`` otherwise.
 Parameters
 ----------
 
-- **period()**: Sets the duration of one cycle in seconds.
-- **frequency()**: Alternative to period, sets the rate in cycles per second (Hz).
-- **bpm()**: Another convenience method to set the frequency using beats per minute (BPM).
-- **phase()**: Sets the initial offset within the cycle (in range [0,1]).
+  .. list-table::
+     :header-rows: 1
+     :widths: 12 40 12 12 12 12
+
+     * - Name
+       - Description
+       - Range
+       - Setter
+       - Getter
+       - Flow
+     * - period
+       - Duration of one complete cycle.
+       - > 0 (s)
+       - ``period(v)``
+       - ``period()``
+       - ``Period()``
+     * - frequency
+       - Cycles per second (inverse of period).
+       - > 0 (Hz)
+       - ``frequency(v)``
+       - ``frequency()``
+       - ``Frequency()``
+     * - bpm
+       - Cycles per minute (alternative to frequency).
+       - > 0
+       - ``bpm(v)``
+       - ``bpm()``
+       - ``Bpm()``
+     * - phase
+       - Current point in the cycle (as % of period).
+       - [0, 1]
+       - ``phase(v)``
+       - ``phase()``
+       - ``Phase()``
+     * - phaseShift
+       - Phase offset (as % of period).
+       - [0, 1]
+       - ``phaseShift(v)``
+       - ``phaseShift()``
+       - ``PhaseShift()``
+     * - jitter
+       - :ref:`Randomness level <metronome-randomization>` for timing variation.
+       - [0, 1]
+       - ``jitter(v)``
+       - ``jitter()``
+       - ``Jitter()``
+
+.. _metronome-randomization:
 
 Randomization
 -------------
 
-Metronomes can also be used to generated **randomized patterns** using the ``jitter()`` function.
+Metronomes can be used to generated **randomized patterns** using the ``jitter()`` function.
 This makes their ticks feel less mechanical and closer to natural rhythms such as raindrops falling,
 typing on a keyboard, or the reactions of a living entity. When activating randomization, the metronome does
 not trigger at perfectly regular intervals anymore. Instead, the length of each cycle is perturbed according

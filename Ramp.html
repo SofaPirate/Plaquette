@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ramp &mdash; Plaquette 0.9.0 documentation</title>
+  <title>Ramp &mdash; Plaquette 0.9.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -67,6 +67,8 @@
 <li class="toctree-l1"><a class="reference internal" href="base_units.html">Base Units</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="generators.html">Generators</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
@@ -126,11 +128,55 @@
 <h1>Ramp<a class="headerlink" href="#ramp" title="Permalink to this heading"></a></h1>
 <p>A source unit that generates a smooth transition between two values. The unit can be
 triggered to start transitioning to a target value for a certain duration.</p>
-<p>There are two ways to start the ramp.</p>
-<p>By calling <code class="docutils literal notranslate"><span class="pre">go(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code> the ramp will transition from value <code class="docutils literal notranslate"><span class="pre">from</span></code> to
-value <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
-<p>Alternatively, calling <code class="docutils literal notranslate"><span class="pre">go(to,</span> <span class="pre">duration)</span></code> will start a transition from the ramp’s
-current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 40%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>Setter</p></th>
+<th class="head"><p>Getter</p></th>
+<th class="head"><p>Flow</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>Duration of the ramp transition.</p></td>
+<td><p>&gt; 0 (s)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">duration(v)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">duration()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Duration()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>speed</p></td>
+<td><p>Rate of change (change-per-second).</p></td>
+<td><p>&gt; 0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">speed(v)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">speed()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Speed()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p>There are two ways to start the ramp:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">go(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code>: ramp will transition from value <code class="docutils literal notranslate"><span class="pre">from</span></code> to value <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">go(to,</span> <span class="pre">duration)</span></code>: starts a transition from the ramp’s current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
+</ul>
+</div></blockquote>
 <p>The following diagram shows what happens to the ramp signal if <code class="docutils literal notranslate"><span class="pre">go(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
 called, followed later by <code class="docutils literal notranslate"><span class="pre">go(3.0,</span> <span class="pre">1.0)</span></code>:</p>
 <img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
@@ -142,6 +188,7 @@ optionally be specified at the end of a <code class="docutils literal notranslat
 <code class="docutils literal notranslate"><span class="pre">easing()</span></code> function.</p>
 <p>Please refer to <a class="reference internal" href="easings.html"><span class="doc">this page</span></a> for a full list of available easing functions.</p>
 </div>
+</section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>Sequentially ramps through different values.</p>

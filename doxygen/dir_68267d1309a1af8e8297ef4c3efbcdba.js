@@ -39,6 +39,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "pq_random32.h", "pq__random32_8h_source.html", null ],
     [ "pq_serial.h", "pq__serial_8h_source.html", null ],
     [ "pq_time.h", "pq__time_8h_source.html", null ],
+    [ "pq_traits.h", "pq__traits_8h_source.html", null ],
     [ "pq_wave_utils.h", "pq__wave__utils_8h_source.html", null ],
     [ "pq_wrap.h", "pq__wrap_8h_source.html", null ],
     [ "PqCore.h", "_pq_core_8h_source.html", null ],

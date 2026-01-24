@@ -6,13 +6,39 @@ Ramp
 A source unit that generates a smooth transition between two values. The unit can be
 triggered to start transitioning to a target value for a certain duration.
 
-There are two ways to start the ramp.
+Parameters
+----------
 
-By calling ``go(from, to, duration)`` the ramp will transition from value ``from`` to
-value ``to`` in ``duration`` seconds.
+  .. list-table::
+     :header-rows: 1
+     :widths: 12 40 12 12 12 12
 
-Alternatively, calling ``go(to, duration)`` will start a transition from the ramp's
-current value to ``to`` in ``duration`` seconds.
+     * - Name
+       - Description
+       - Range
+       - Setter
+       - Getter
+       - Flow
+     * - duration
+       - Duration of the ramp transition.
+       - > 0 (s)
+       - ``duration(v)``
+       - ``duration()``
+       - ``Duration()``
+     * - speed
+       - Rate of change (change-per-second).
+       - > 0
+       - ``speed(v)``
+       - ``speed()``
+       - ``Speed()``
+
+Usage
+-----
+
+There are two ways to start the ramp:
+
+ * ``go(from, to, duration)``: ramp will transition from value ``from`` to value ``to`` in ``duration`` seconds.
+ * ``go(to, duration)``: starts a transition from the ramp's current value to ``to`` in ``duration`` seconds.
 
 The following diagram shows what happens to the ramp signal if ``go(5.0, 1.0, 2.0)`` is
 called, followed later by ``go(3.0, 1.0)``:

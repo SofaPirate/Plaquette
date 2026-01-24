@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reference &mdash; Plaquette 0.9.0 documentation</title>
+  <title>Reference &mdash; Plaquette 0.9.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -176,6 +176,8 @@
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Engine.html"><span class="doc">Engine</span></a> A control structure managing an ensemble of units, handling their initialization, update, and timing, ensuring they remain synchronized.</p></li>
+<li><p><a class="reference internal" href="value_units.html"><span class="doc">Value Units</span></a> Wrappers for basic types, allowing to use them in Plaquette flows.</p></li>
+<li><p><a class="reference internal" href="prepare.html"><span class="doc">prepare()</span></a> Optional function called at the very beginning, before units are initialized.</p></li>
 <li><p><a class="reference internal" href="begin.html"><span class="doc">begin()</span></a> Initializes the system, similar to Arduino’s <cite>setup()</cite> function. Sets up necessary configurations and prepares units for operation.</p></li>
 <li><p><a class="reference internal" href="step.html"><span class="doc">step()</span></a> Repeatedly called during the program’s execution, akin to Arduino’s <cite>loop()</cite> function. Drives the execution of the main logic.</p></li>
 <li><p><a class="reference internal" href="array.html"><span class="doc">[] (arrays)</span></a> Allows the creation of arrays of Plaquette units for batch operations. Facilitates efficient processing of multiple units simultaneously.</p></li>

@@ -167,6 +167,9 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>operator++</b> (int)</td
 <tr class="memitem:a4fe209d634920d5b3826fafb40e02128" id="r_a4fe209d634920d5b3826fafb40e02128"><td class="memItemLeft" align="right" valign="top"><a id="a4fe209d634920d5b3826fafb40e02128" name="a4fe209d634920d5b3826fafb40e02128"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>operator--</b> (int)</td></tr>
 <tr class="separator:a4fe209d634920d5b3826fafb40e02128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29698e8c186f6c3dc5d02ae20376ce9d" id="r_a29698e8c186f6c3dc5d02ae20376ce9d"><td class="memItemLeft" align="right" valign="top"><a id="a29698e8c186f6c3dc5d02ae20376ce9d" name="a29698e8c186f6c3dc5d02ae20376ce9d"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> () const</td></tr>
+<tr class="separator:a29698e8c186f6c3dc5d02ae20376ce9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba6be732eaabcfcf484516c028d3c999" id="r_aba6be732eaabcfcf484516c028d3c999"><td class="memItemLeft" align="right" valign="top"><a id="aba6be732eaabcfcf484516c028d3c999" name="aba6be732eaabcfcf484516c028d3c999"></a>
 <a class="el" href="classpq_1_1_value.html">Value</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (T rhs)</td></tr>
 <tr class="separator:aba6be732eaabcfcf484516c028d3c999"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,6 +194,14 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>operator--</b> (int)</td
 <tr class="memitem:a8acc393007e91ad219e79f06125bb878" id="r_a8acc393007e91ad219e79f06125bb878"><td class="memItemLeft" align="right" valign="top"><a id="a8acc393007e91ad219e79f06125bb878" name="a8acc393007e91ad219e79f06125bb878"></a>
 <a class="el" href="classpq_1_1_value.html">Value</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;rhs)</td></tr>
 <tr class="separator:a8acc393007e91ad219e79f06125bb878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dce82a7e3ff354034ef1f396cf25be9" id="r_a8dce82a7e3ff354034ef1f396cf25be9"><td class="memTemplParams" colspan="2"><a id="a8dce82a7e3ff354034ef1f396cf25be9" name="a8dce82a7e3ff354034ef1f396cf25be9"></a>
+template&lt;typename U  = T&gt; </td></tr>
+<tr class="memitem:a8dce82a7e3ff354034ef1f396cf25be9"><td class="memTemplItemLeft" align="right" valign="top">enable_if_t&lt; <a class="el" href="structpq_1_1supports__modulo.html">supports_modulo</a>&lt; U &gt;::value, <a class="el" href="classpq_1_1_value.html">Value</a> &amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator%=</b> (U rhs)</td></tr>
+<tr class="separator:a8dce82a7e3ff354034ef1f396cf25be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acacf9b56332a12e14d5e66cb561e8f42" id="r_acacf9b56332a12e14d5e66cb561e8f42"><td class="memTemplParams" colspan="2"><a id="acacf9b56332a12e14d5e66cb561e8f42" name="acacf9b56332a12e14d5e66cb561e8f42"></a>
+template&lt;typename U  = T&gt; </td></tr>
+<tr class="memitem:acacf9b56332a12e14d5e66cb561e8f42"><td class="memTemplItemLeft" align="right" valign="top">enable_if_t&lt; <a class="el" href="structpq_1_1supports__modulo.html">supports_modulo</a>&lt; U &gt;::value, <a class="el" href="classpq_1_1_value.html">Value</a> &amp; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator%=</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;rhs)</td></tr>
+<tr class="separator:acacf9b56332a12e14d5e66cb561e8f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae179d32a1cdbc21ce66971a8f1ac6fc9" id="r_ae179d32a1cdbc21ce66971a8f1ac6fc9"><td class="memItemLeft" align="right" valign="top"><a id="ae179d32a1cdbc21ce66971a8f1ac6fc9" name="ae179d32a1cdbc21ce66971a8f1ac6fc9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator float</b> ()</td></tr>
 <tr class="memdesc:ae179d32a1cdbc21ce66971a8f1ac6fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object can be used directly to access its value. <br /></td></tr>
@@ -252,6 +263,30 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
 <tr class="memitem:af7596a69a4f0d4281351d9fdcff876ab" id="r_af7596a69a4f0d4281351d9fdcff876ab"><td class="memItemLeft" align="right" valign="top"><a id="af7596a69a4f0d4281351d9fdcff876ab" name="af7596a69a4f0d4281351d9fdcff876ab"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
 <tr class="separator:af7596a69a4f0d4281351d9fdcff876ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48417ef5f4e8ce52227594ae3d244585" id="r_a48417ef5f4e8ce52227594ae3d244585"><td class="memItemLeft" align="right" valign="top"><a id="a48417ef5f4e8ce52227594ae3d244585" name="a48417ef5f4e8ce52227594ae3d244585"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:a48417ef5f4e8ce52227594ae3d244585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a761728ec42eeca5c612f9fc01b211a87" id="r_a761728ec42eeca5c612f9fc01b211a87"><td class="memItemLeft" align="right" valign="top"><a id="a761728ec42eeca5c612f9fc01b211a87" name="a761728ec42eeca5c612f9fc01b211a87"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:a761728ec42eeca5c612f9fc01b211a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00cea141fb4aae106f7c5b21ad5cdec2" id="r_a00cea141fb4aae106f7c5b21ad5cdec2"><td class="memItemLeft" align="right" valign="top"><a id="a00cea141fb4aae106f7c5b21ad5cdec2" name="a00cea141fb4aae106f7c5b21ad5cdec2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:a00cea141fb4aae106f7c5b21ad5cdec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b7c0a491f42ad9f3d09b6d13edf898" id="r_ad9b7c0a491f42ad9f3d09b6d13edf898"><td class="memItemLeft" align="right" valign="top"><a id="ad9b7c0a491f42ad9f3d09b6d13edf898" name="ad9b7c0a491f42ad9f3d09b6d13edf898"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:ad9b7c0a491f42ad9f3d09b6d13edf898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a232a639e3672fc5a815a9cd1553710db" id="r_a232a639e3672fc5a815a9cd1553710db"><td class="memItemLeft" align="right" valign="top"><a id="a232a639e3672fc5a815a9cd1553710db" name="a232a639e3672fc5a815a9cd1553710db"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:a232a639e3672fc5a815a9cd1553710db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb561391b6f70afe6623e68973b548b9" id="r_adb561391b6f70afe6623e68973b548b9"><td class="memItemLeft" align="right" valign="top"><a id="adb561391b6f70afe6623e68973b548b9" name="adb561391b6f70afe6623e68973b548b9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:adb561391b6f70afe6623e68973b548b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1fc080ccdcd727545acd0fe5798d8d" id="r_a3e1fc080ccdcd727545acd0fe5798d8d"><td class="memItemLeft" align="right" valign="top"><a id="a3e1fc080ccdcd727545acd0fe5798d8d" name="a3e1fc080ccdcd727545acd0fe5798d8d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:a3e1fc080ccdcd727545acd0fe5798d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac269a31b0a8aa400133ec4e78739cee7" id="r_ac269a31b0a8aa400133ec4e78739cee7"><td class="memItemLeft" align="right" valign="top"><a id="ac269a31b0a8aa400133ec4e78739cee7" name="ac269a31b0a8aa400133ec4e78739cee7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:ac269a31b0a8aa400133ec4e78739cee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51f55c53eb7f78fa465bbb44ea7ccb0e" id="r_a51f55c53eb7f78fa465bbb44ea7ccb0e"><td class="memItemLeft" align="right" valign="top"><a id="a51f55c53eb7f78fa465bbb44ea7ccb0e" name="a51f55c53eb7f78fa465bbb44ea7ccb0e"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
 <tr class="separator:a51f55c53eb7f78fa465bbb44ea7ccb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,6 +311,30 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a 
 <tr class="memitem:ae92f62dad86faf95ac157c80dc10ffe3" id="r_ae92f62dad86faf95ac157c80dc10ffe3"><td class="memItemLeft" align="right" valign="top"><a id="ae92f62dad86faf95ac157c80dc10ffe3" name="ae92f62dad86faf95ac157c80dc10ffe3"></a>
 T&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
 <tr class="separator:ae92f62dad86faf95ac157c80dc10ffe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a0c032e482e19c9c7f97567c433d40" id="r_a80a0c032e482e19c9c7f97567c433d40"><td class="memItemLeft" align="right" valign="top"><a id="a80a0c032e482e19c9c7f97567c433d40" name="a80a0c032e482e19c9c7f97567c433d40"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:a80a0c032e482e19c9c7f97567c433d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbda051017fc84ccc004c963ff839dc2" id="r_acbda051017fc84ccc004c963ff839dc2"><td class="memItemLeft" align="right" valign="top"><a id="acbda051017fc84ccc004c963ff839dc2" name="acbda051017fc84ccc004c963ff839dc2"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:acbda051017fc84ccc004c963ff839dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51c01babfcd825a07f4c41ddc485839" id="r_ac51c01babfcd825a07f4c41ddc485839"><td class="memItemLeft" align="right" valign="top"><a id="ac51c01babfcd825a07f4c41ddc485839" name="ac51c01babfcd825a07f4c41ddc485839"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, T b)</td></tr>
+<tr class="separator:ac51c01babfcd825a07f4c41ddc485839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae627089feaa3dbd2dda0b1f2bf89f8" id="r_adae627089feaa3dbd2dda0b1f2bf89f8"><td class="memItemLeft" align="right" valign="top"><a id="adae627089feaa3dbd2dda0b1f2bf89f8" name="adae627089feaa3dbd2dda0b1f2bf89f8"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (T a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:adae627089feaa3dbd2dda0b1f2bf89f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a723055edbf05448f72bacc222269bc0c" id="r_a723055edbf05448f72bacc222269bc0c"><td class="memTemplParams" colspan="2"><a id="a723055edbf05448f72bacc222269bc0c" name="a723055edbf05448f72bacc222269bc0c"></a>
+template&lt;typename U  = T&gt; </td></tr>
+<tr class="memitem:a723055edbf05448f72bacc222269bc0c"><td class="memTemplItemLeft" align="right" valign="top">enable_if_t&lt; <a class="el" href="structpq_1_1supports__modulo.html">supports_modulo</a>&lt; U &gt;::value, U &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator%</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:a723055edbf05448f72bacc222269bc0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914d9499711995270d90cef473f9ad4e" id="r_a914d9499711995270d90cef473f9ad4e"><td class="memTemplParams" colspan="2"><a id="a914d9499711995270d90cef473f9ad4e" name="a914d9499711995270d90cef473f9ad4e"></a>
+template&lt;typename U  = T&gt; </td></tr>
+<tr class="memitem:a914d9499711995270d90cef473f9ad4e"><td class="memTemplItemLeft" align="right" valign="top">enable_if_t&lt; <a class="el" href="structpq_1_1supports__modulo.html">supports_modulo</a>&lt; U &gt;::value, U &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator%</b> (const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;a, U b)</td></tr>
+<tr class="separator:a914d9499711995270d90cef473f9ad4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f34064261a32a9e9d28667b22a3e248" id="r_a7f34064261a32a9e9d28667b22a3e248"><td class="memTemplParams" colspan="2"><a id="a7f34064261a32a9e9d28667b22a3e248" name="a7f34064261a32a9e9d28667b22a3e248"></a>
+template&lt;typename U  = T&gt; </td></tr>
+<tr class="memitem:a7f34064261a32a9e9d28667b22a3e248"><td class="memTemplItemLeft" align="right" valign="top">enable_if_t&lt; <a class="el" href="structpq_1_1supports__modulo.html">supports_modulo</a>&lt; U &gt;::value, U &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator%</b> (U a, const <a class="el" href="classpq_1_1_value.html">Value</a> &amp;b)</td></tr>
+<tr class="separator:a7f34064261a32a9e9d28667b22a3e248"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a57fd873288befd768743f27a2205ccf9" name="a57fd873288befd768743f27a2205ccf9"></a>
@@ -398,7 +457,7 @@ template&lt;typename T , class Codec  = ValueCodec&lt;T&gt;&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pq</b></li><li class="navelem"><a class="el" href="classpq_1_1_value.html">Value</a></li>
-    <li class="footer">Generated on Fri Jan 16 2026 19:47:21 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Jan 24 2026 13:46:20 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

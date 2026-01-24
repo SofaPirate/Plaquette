@@ -9,6 +9,26 @@ The alarm can be started, stopped, and resumed.
 When started, the alarm stays "off" until it reaches its timeout duration, after
 which it becomes "on".
 
+Parameters
+----------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 12 40 12 12 12 12
+
+     * - Name
+       - Description
+       - Range
+       - Setter
+       - Getter
+       - Flow
+     * - duration
+       - Time before the alarm triggers.
+       - > 0 (s)
+       - ``duration(v)``
+       - ``duration()``
+       - ``Duration()``
+
 |Example|
 ---------
 

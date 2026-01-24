@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wave &mdash; Plaquette 0.9.0 documentation</title>
+  <title>Wave &mdash; Plaquette 0.9.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -70,15 +70,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Wave</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#shape">Shape</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#square-wave">Square Wave</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#triangle-wave">Triangle Wave</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sine-wave">Sine Wave</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#randomization">Randomization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -192,8 +191,22 @@
 <td><p><code class="docutils literal notranslate"><span class="pre">skew()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Skew()</span></code></p></td>
 </tr>
+<tr class="row-even"><td><p>phase</p></td>
+<td><p>Current point in the wave cycle (as % of period).</p></td>
+<td><p>[0, 1]</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phase(v)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phase()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Phase()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>phaseShift</p></td>
+<td><p>Phase offset (as % of period).</p></td>
+<td><p>[0, 1]</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phaseShift(v)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phaseShift()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PhaseShift()</span></code></p></td>
+</tr>
 <tr class="row-even"><td><p>jitter</p></td>
-<td><p>Randomness level for timing variation.</p></td>
+<td><p><a class="reference internal" href="#wave-randomization"><span class="std std-ref">Randomness level</span></a> for timing variation.</p></td>
 <td><p>[0, 1]</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">jitter(v)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">jitter()</span></code></p></td>
@@ -203,23 +216,8 @@
 </table>
 </div></blockquote>
 </section>
-<section id="id2">
-<h2>Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>Regardless of the shape, the signal can be tuned by adjusting the following parameters:</p>
-<ul class="simple">
-<li><p><strong>period()</strong>: Sets the duration of one cycle in seconds.</p></li>
-<li><p><strong>skew()</strong>: Controls the balance between the rising and falling portions of the wave cycle (in range [0, 1]).
-Each wave type behaves slightly differently with this parameter, which will be detailed below.</p></li>
-<li><p><strong>random()</strong>: Controls the degree of randomness of the wave (in range [0, 1]).</p></li>
-<li><p><strong>frequency()</strong>: Inverse of period; sets the cycles per second (Hz).</p></li>
-<li><p><strong>bpm()</strong>: Alternative way to set the frequency using beats per minute (BPM).</p></li>
-<li><p><strong>phase()</strong>: Sets the initial point in the wave cycle (as % of period) (in range [0, 1]).</p></li>
-<li><p><strong>amplitude()</strong>: Sets the peak level of the wave (as % of max) (in range [0, 1]).</p></li>
-<li><p><strong>jitter()</strong>: Sets the <a class="reference internal" href="#wave-randomization"><span class="std std-ref">jittering level</span></a> of oscillation (in range [0, 1]) (0: no jitter, 1: maximum jitter).</p></li>
-</ul>
-</section>
 <section id="square-wave">
-<span id="id3"></span><h2>Square Wave<a class="headerlink" href="#square-wave" title="Permalink to this heading"></a></h2>
+<span id="id2"></span><h2>Square Wave<a class="headerlink" href="#square-wave" title="Permalink to this heading"></a></h2>
 <p>Generates a <a class="reference external" href="https://en.wikipedia.org/wiki/Square_wave">square wave</a> signal when the <code class="docutils literal notranslate"><span class="pre">shape</span></code> parameter is
 set to <code class="docutils literal notranslate"><span class="pre">SQUARE</span></code>. The square wave is the default for this parameter.</p>
 <img alt="_images/Plaquette-SquareWave.png" src="_images/Plaquette-SquareWave.png" />
@@ -248,7 +246,7 @@ is set to 25%, the LED will stay on for 1 second and then off for 3 seconds.</p>
 </div>
 </section>
 <section id="triangle-wave">
-<span id="id5"></span><h2>Triangle Wave<a class="headerlink" href="#triangle-wave" title="Permalink to this heading"></a></h2>
+<span id="id4"></span><h2>Triangle Wave<a class="headerlink" href="#triangle-wave" title="Permalink to this heading"></a></h2>
 <p>Generates a wave such as the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_wave">triangle wave</a> and the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Sawtooth_wave">sawtooth wave</a> when the <code class="docutils literal notranslate"><span class="pre">shape</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">TRIANGLE</span></code>.</p>
@@ -261,8 +259,8 @@ an <em>inverted sawtooth</em> is created; anything in between generates differen
 of <em>triangle</em> waves.</p>
 <img alt="_images/Plaquette-TriangleWave-Skew.png" src="_images/Plaquette-TriangleWave-Skew.png" />
 </section>
-<section id="id7">
-<h2>Example<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>Example<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>Controls a set of traffic lights that go: red, yellow, green, red, yellow,
 green, and so on. It uses a sawtooth to iterate through these three states.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
@@ -293,7 +291,7 @@ green, and so on. It uses a sawtooth to iterate through these three states.</p>
 </div>
 </section>
 <section id="sine-wave">
-<span id="id8"></span><h2>Sine Wave<a class="headerlink" href="#sine-wave" title="Permalink to this heading"></a></h2>
+<span id="id7"></span><h2>Sine Wave<a class="headerlink" href="#sine-wave" title="Permalink to this heading"></a></h2>
 <p>Generates a sinusoid or <a class="reference external" href="https://en.wikipedia.org/wiki/Sine_wave">sine wave</a> when the <code class="docutils literal notranslate"><span class="pre">shape</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">SINE</span></code>.
 The signal is remapped to oscillate between 0 and 1 (rather than -1 and 1 as the traditional sine wave
 function).</p>
@@ -302,8 +300,8 @@ function).</p>
 while higher values shift it later (right-skewed), allowing for asymmetric sine shapes while preserving smoothness.</p>
 <img alt="_images/Plaquette-SineWave.png" src="_images/Plaquette-SineWave.png" />
 </section>
-<section id="id10">
-<h2>Example<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<section id="id9">
+<h2>Example<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <p>Pulses an LED.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
@@ -323,7 +321,7 @@ while higher values shift it later (right-skewed), allowing for asymmetric sine 
 </section>
 <section id="randomization">
 <span id="wave-randomization"></span><h2>Randomization<a class="headerlink" href="#randomization" title="Permalink to this heading"></a></h2>
-<p>In addition to controlling period, shape, skew, and amplitude, the <code class="docutils literal notranslate"><span class="pre">Wave</span></code> units can also generate
+<p>In addition to controlling shape, period, and skew,``Wave`` units can also generate
 <strong>randomized oscillations</strong> in a similar manner as <a class="reference internal" href="Metronome.html"><span class="doc">Metronome</span></a> units using the <code class="docutils literal notranslate"><span class="pre">randomize</span></code> function.
 This allows the oscillation to feel less mechanical and more organic, closer to natural rhythms like breathing,
 heartbeat variations, or the flicker of firelight.</p>
@@ -331,8 +329,8 @@ heartbeat variations, or the flicker of firelight.</p>
 each cycle’s duration is perturbed according to the chosen randomness level. However, on the long run,
 the average period of oscillation will match the wave’s <code class="docutils literal notranslate"><span class="pre">period</span></code> parameter.</p>
 </section>
-<section id="id11">
-<h2>Example<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<section id="id10">
+<h2>Example<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <p>Pulse an LED. Uses a low-frequency oscillator (LFO) to slowly modify the wave’s randomness.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 

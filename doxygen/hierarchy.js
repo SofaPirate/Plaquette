@@ -55,7 +55,7 @@ var hierarchy =
     ] ],
     [ "pq::HybridArrayList< T, STATIC_CAPACITY >", "classpq_1_1_hybrid_array_list.html", null ],
     [ "pq::HybridArrayList< Listener, 4 >", "classpq_1_1_hybrid_array_list.html", null ],
-    [ "pq::is_chainable< T >", "structpq_1_1is__chainable.html", null ],
+    [ "pq::is_flowable< T >", "structpq_1_1is__flowable.html", null ],
     [ "pq::is_integral< T >", "structpq_1_1is__integral.html", null ],
     [ "pq::is_integral< bool >", "structpq_1_1is__integral_3_01bool_01_4.html", null ],
     [ "pq::is_integral< char >", "structpq_1_1is__integral_3_01char_01_4.html", null ],
@@ -69,6 +69,8 @@ var hierarchy =
     [ "pq::is_integral< unsigned long >", "structpq_1_1is__integral_3_01unsigned_01long_01_4.html", null ],
     [ "pq::is_integral< unsigned long long >", "structpq_1_1is__integral_3_01unsigned_01long_01long_01_4.html", null ],
     [ "pq::is_integral< unsigned short >", "structpq_1_1is__integral_3_01unsigned_01short_01_4.html", null ],
+    [ "pq::is_same< T, U >", "structpq_1_1is__same.html", null ],
+    [ "pq::is_same< T, T >", "structpq_1_1is__same_3_01_t_00_01_t_01_4.html", null ],
     [ "pq::LabelView", "structpq_1_1_label_view.html", null ],
     [ "pq::micro_seconds_t", "unionpq_1_1micro__seconds__t.html", null ],
     [ "pq::MovingAverage", "classpq_1_1_moving_average.html", null ],
@@ -97,6 +99,7 @@ var hierarchy =
     [ "Servo", null, [
       [ "pq::AbstractServoOut", "classpq_1_1_abstract_servo_out.html", null ]
     ] ],
+    [ "pq::supports_modulo< T >", "structpq_1_1supports__modulo.html", null ],
     [ "pq::Timeable", "classpq_1_1_timeable.html", [
       [ "pq::AbstractChronometer", "classpq_1_1_abstract_chronometer.html", [
         [ "pq::AbstractTimer", "classpq_1_1_abstract_timer.html", [
@@ -122,5 +125,5 @@ var hierarchy =
     [ "pq::ValueCodec< T >", "structpq_1_1_value_codec.html", null ],
     [ "pq::ValueCodec< bool >", "structpq_1_1_value_codec_3_01bool_01_4.html", null ],
     [ "pq::ValueCodec< float >", "structpq_1_1_value_codec_3_01float_01_4.html", null ],
-    [ "pq::ValueCodec< int32_t >", "structpq_1_1_value_codec_3_01int32__t_01_4.html", null ]
+    [ "pq::ValueCodec< int >", "structpq_1_1_value_codec_3_01int_01_4.html", null ]
 ];
