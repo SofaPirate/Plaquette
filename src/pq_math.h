@@ -30,29 +30,33 @@
 #include <Arduino.h>
 
 // --- Neutralize Arduino's macros so they don't collide ---
+// On Teensy, min/max are already proper template functions (not macros),
+// so #undef has no effect and we must skip defining pq::min/max to avoid
+// ambiguous overloads. All other symbols (sq, abs, constrain, etc.) are
+// still macros on Teensy and need to be replaced.
 #ifdef min
-#  undef min
+  #undef min
 #endif
 #ifdef max
-#  undef max
+  #undef max
 #endif
 #ifdef abs
-#  undef abs
+  #undef abs
 #endif
 #ifdef constrain
-#  undef constrain
+  #undef constrain
 #endif
 #ifdef round
-#  undef round
+  #undef round
 #endif
 #ifdef radians
-#  undef radians
+  #undef radians
 #endif
 #ifdef degrees
-#  undef degrees
+  #undef degrees
 #endif
 #ifdef sq
-#  undef sq
+  #undef sq
 #endif
 
 namespace pq {
@@ -90,6 +94,10 @@ template <typename A, typename B, typename C>
 // --- Math functions ---------------------------------------
 
 // -------- min / max --------
+// Skip on Teensy: its wiring.h already provides proper template
+// min/max in the global namespace. Defining pq::min/max would
+// create ambiguous overloads when 'using namespace pq' is active.
+#if !defined(TEENSYDUINO)
 template <class A, class B>
 constexpr common_pair_t<A,B> min(A a, B b) {
   typedef common_pair_t<A,B> R;
@@ -105,6 +113,7 @@ constexpr common_pair_t<A,B> max(A a, B b) {
             static_cast<R>(a) :
             static_cast<R>(b);
 }
+#endif
 
 // -------- abs --------
 template <typename T>
@@ -147,20 +156,5 @@ template <typename T>
 constexpr T sq(T x) { return x * x; }
 
 } // namespace pq
-
-// // --- Legacy Arduino names for backwards compatibility -----
-
-// NOTE: This section was commented out because it would break builds in some cases.
-// It is technically possible that some Arduino libraries will be affected although
-// the probability is very low.
-
-// #define min(a,b)         (::pq::min((a),(b)))
-// #define max(a,b)         (::pq::max((a),(b)))
-// #define abs(x)           (::pq::abs((x)))
-// #define constrain(x,l,h) (::pq::constrain((x),(l),(h)))
-// #define round(x)         (::pq::round((x)))
-// #define radians(d)       (::pq::radians((d)))
-// #define degrees(r)       (::pq::degrees((r)))
-// #define sq(x)            (::pq::sq((x)))
 
 #endif
