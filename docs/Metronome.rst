@@ -115,8 +115,6 @@ You can run several metronomes in parallel to control independent events:
      if (metroSlow) println("Tick!");
    }
 
-.. _metronome-randomization:
-
 Randomized Metronome
 --------------------
 
