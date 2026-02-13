@@ -59,6 +59,20 @@ Parameters
        - ``jitter()``
        - ``Jitter()``
 
+Events
+------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 60 20 20
+
+     * - When
+       - Trigger
+       - Callback
+     * - Unit emits a pulse
+       - unit itself
+       - ``onBang()``
+
 .. _metronome-randomization:
 
 Randomization

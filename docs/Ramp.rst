@@ -32,6 +32,20 @@ Parameters
        - ``speed()``
        - ``Speed()``
 
+Events
+------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 60 20 20
+
+     * - When
+       - Trigger
+       - Callback
+     * - Timed process completes
+       - ``finished()``
+       - ``onFinish()``
+
 Usage
 -----
 

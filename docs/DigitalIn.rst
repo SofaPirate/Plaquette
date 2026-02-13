@@ -27,6 +27,26 @@ can be achieved using different modes: stable (default) (``DEBOUNCE_STABLE``), l
 and prompt-detect (``DEBOUNCE_PROMPT_DETECT``). For more information please refer to the documentation
 of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 
+Events
+------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 60 20 20
+
+     * - When
+       - Trigger
+       - Callback
+     * - Digital value toggles (on/off)
+       - ``changed()``
+       - ``onChange()``
+     * - Digital value goes from on to off
+       - ``fell()``
+       - ``onFall()``
+     * - Digital value goes from off to on
+       - ``rose()``
+       - ``onRise()``
+
 |Example|
 ---------
 

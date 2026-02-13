@@ -31,6 +31,20 @@ In summary, the four different modes available are:
    by calling the source unit's ``smooth()`` method or by using a :doc:`Smoother`
    unit.
 
+Events
+------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 60 20 20
+
+     * - When
+       - Trigger
+       - Callback
+     * - Unit emits a pulse
+       - unit itself
+       - ``onBang()``
+
 |Example|
 ---------
 

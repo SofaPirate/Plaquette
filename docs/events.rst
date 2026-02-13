@@ -50,105 +50,53 @@ Use **callback functions** when you have many events to manage or want to reuse 
 different events: register them once in ``begin()`` and they will be called automatically so you don't
 have to think about polling them.
 
-The table below lists all supported events, their trigger condition and callback form,
-and which units support them.
-
 Supported Events
 ----------------
 
-.. list-table::
-  :header-rows: 0
+This table lists all supported events, their trigger condition and callback form, and which units support
+them.
 
-  * - **Trigger**
-    - **Callback**
-    - **Activation**
-    - :doc:`Alarm`
-    - :doc:`DigitalIn`
-    - :doc:`Metronome`
-    - :doc:`PeakDetector`
-    - :doc:`Ramp`
-    - :doc:`TimeSliceField`
-    - :doc:`Wave`
-  * - ``rose()``
-    - ``onRise()``
-    - Value rises
-    - ✔
-    - ✔
-    -
-    -
-    -
-    -
-    -
-  * - ``fell()``
-    - ``onFall()``
-    - Value falls
-    - ✔
-    - ✔
-    -
-    -
-    -
-    -
-    -
-  * - ``changed()``
-    - ``onChange()``
-    - Value changes
-    - ✔
-    - ✔
-    -
-    -
-    -
-    -
-    -
-  * - unit itself
+
+.. list-table::
+  :header-rows: 1
+  :widths: 30 18 18 22
+
+  * - When
+    - Trigger
+    - Callback
+    - Units
+  * - Unit emits a pulse
+    - unit itself
     - ``onBang()``
-    - Unit fires
-    -
-    -
-    - ✔
-    - ✔
-    -
-    -
-    -
-  * - ``finished()``
+    - :doc:`Metronome`, :doc:`PeakDetector`
+  * - Digital value toggles (on/off)
+    - ``changed()``
+    - ``onChange()``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - Digital value goes from on to off
+    - ``fell()``
+    - ``onFall()``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - Timed process completes
+    - ``finished()``
     - ``onFinish()``
-    - Time out
-    - ✔
-    -
-    -
-    -
-    - ✔
-    -
-    -
-  * - ``updated()``
-    - ``onUpdate()``
-    - New value
-    -
-    -
-    -
-    -
-    -
-    - ✔
-    -
-  * - ``passedSkew()``
-    - ``onPassSkew()``
-    - Passed skew point
-    -
-    -
-    -
-    -
-    -
-    -
-    - ✔
-  * - ``passedPeriod()``
+    - :doc:`Alarm`, :doc:`Ramp`
+  * - Wave completes a full cycle
+    - ``passedPeriod()``
     - ``onPassPeriod()``
-    - End of cycle
-    -
-    -
-    -
-    -
-    -
-    -
-    - ✔
+    - :doc:`Wave`
+  * - Wave passes its skew point
+    - ``passedSkew()``
+    - ``onPassSkew()``
+    - :doc:`Wave`
+  * - Digital value goes from off to on
+    - ``rose()``
+    - ``onRise()``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - New data is available
+    - ``updated()``
+    - ``onUpdate()``
+    - :doc:`TimeSliceField`
 
 Using Trigger Conditions
 ------------------------

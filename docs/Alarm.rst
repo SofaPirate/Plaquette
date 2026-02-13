@@ -29,6 +29,29 @@ Parameters
        - ``duration()``
        - ``Duration()``
 
+Events
+------
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 60 20 20
+
+     * - When
+       - Trigger
+       - Callback
+     * - Digital value toggles (on/off)
+       - ``changed()``
+       - ``onChange()``
+     * - Digital value goes from on to off
+       - ``fell()``
+       - ``onFall()``
+     * - Timed process completes
+       - ``finished()``
+       - ``onFinish()``
+     * - Digital value goes from off to on
+       - ``rose()``
+       - ``onRise()``
+
 |Example|
 ---------
 
