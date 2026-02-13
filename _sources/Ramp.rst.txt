@@ -9,28 +9,42 @@ triggered to start transitioning to a target value for a certain duration.
 Parameters
 ----------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 12 40 12 12 12 12
+.. list-table::
+   :header-rows: 1
+   :widths: 12 33 9 16 15 15
 
-     * - Name
-       - Description
-       - Range
-       - Setter
-       - Getter
-       - Flow
-     * - duration
-       - Duration of the ramp transition.
-       - > 0 (s)
-       - ``duration(v)``
-       - ``duration()``
-       - ``Duration()``
-     * - speed
-       - Rate of change (change-per-second).
-       - > 0
-       - ``speed(v)``
-       - ``speed()``
-       - ``Speed()``
+   * - Name
+     - Description
+     - Range
+     - Setter
+     - Getter
+     - Flow
+   * - duration
+     - Duration of the ramp transition (in seconds).
+     - > 0
+     - ``duration(v)``
+     - ``duration()``
+     - ``Duration()``
+   * - speed
+     - Rate of change (change-per-second).
+     - > 0
+     - ``speed(v)``
+     - ``speed()``
+     - ``Speed()``
+
+Events
+------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
+
+   * - When
+     - Trigger
+     - Callback
+   * - Timed process completes
+     - ``finished()``
+     - ``onFinish(c)``
 
 Usage
 -----

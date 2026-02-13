@@ -26,6 +26,20 @@ The unit supports two modes:
    - ... when enough time has passed that a new value needs to be replaced, the older value is removed and the buffer
      is shifted by one value and it fires ``updated`` to signal a change.
 
+Events
+------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
+
+   * - When
+     - Trigger
+     - Callback
+   * - New data is available
+     - ``updated()``
+     - ``onUpdate(c)``
+
 |Example|
 ---------
 

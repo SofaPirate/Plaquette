@@ -2,103 +2,163 @@
 Managing Events
 ===============
 
-Plaquette supports event-driven programming, allowing you to execute specific actions automatically when
-an event occurs instead of constantly checking for changes with conditional statements such as ``if (button.changed())``.
-In Plaquette, this is achieved by **events** and function **callbacks**.
+In interactive systems, many interesting actions happen at specific moments in time: a performer
+presses a button, a sensor crosses a threshold, a timer runs out, a metronome ticks. These fleeting
+moments are distinct from continuous signals flows like the brightness of a light or the position of a
+knob: they happen in an instant and are then gone.
 
-An **event** is an instantaneous situation that is triggered by a unit under specific conditions, such as
-the push of a button, the tick of a metronome, the end of a timer, or a peak detection.
+In Plaquette, an **event** is an instantaneous condition that occurs on a unit for exactly one
+step: the push of a button, the tick of a metronome, the end of a timer, or a peak detection.
+Plaquette offers two different and complementary ways to work with events: **trigger conditions**
+and **callback functions**.
 
-A **callback** is a custom function that is registered with a source event: when the event is triggered,
-the registered callback is automatically called.
+**Trigger conditions** are ``true`` for the single step when the event occurs. They are typically
+polled continuously inside the ``step()`` function using ``if`` statements. We have already been
+working with some of them in the :doc:`inputs_outputs` and :doc:`timing_basics` sections:
+
+  .. code-block:: cpp
+
+    void step() {
+      if (button.rose()) { ... }     // true only on the step when button is pressed
+      if (metro) { ... }             // true only on the step when the metronome ticks
+    }
+
+**Callback functions** are functions that you register once in ``begin()``. They are called
+automatically when the event occurs, without needing to write ``step()`` logic.
+
+  .. code-block:: cpp
+
+    void doSomething() { ... }     // user-defined function
+
+    void begin() {
+      button.onRise(doSomething);  // function doSomething() will be called on button press
+      metro.onBang(doSomething);   // same, but triggered by metronome tick
+    }
 
 .. note::
-  In programming, a **callback function** is like giving someone instructions on what to do when a
+
+  Registering a callback function is like giving someone instructions on what to do when a
   specific event happens. For example, imagine you are baking cookies and you set a timer. Instead of
   constantly watching the oven, you set the timer to "call you back" (in other words, alert you) when
   time is up, so you can take the cookies out.
 
-This approach offers several advantages:
+Use **trigger conditions** when you have few events to manage and want to keep things simple: all your
+logic stays in ``step()``, easy to read top-to-bottom, and you can combine events with other conditions
+(e.g. ``if (button.rose() && sensor > 0.7)``).
 
-- **Modularity**: Encapsulates behavior in reusable functions.
-- **Expressiveness**: Focuses on declaring "what happens when".
-- **Efficiency**: Reacts to changes without continuous polling.
-- **Scalability**: Makes it easy to manage complex systems with multiple events.
-
-Let us explore how this works with practical examples.
+Use **callback functions** when you have many events to manage or want to reuse the same action across
+different events: register them once in ``begin()`` and they will be called automatically so you don't
+have to think about polling them.
 
 Supported Events
 ----------------
 
+This table lists all supported events, their trigger condition and callback form, and which units support
+them.
+
+
 .. list-table::
-  :header-rows: 0
+  :header-rows: 1
+  :widths: 30 18 18 22
 
-  * - **Event:**
-    - ``onRise()``
-    - ``onFall()``
-    - ``onChange()``
-    - ``onBang()``
-    - ``onFinish()``
-    - ``onUpdate()``
-  * - **Activation:**
-    - Value rises
-    - Value falls
-    - Value changes
-    - Unit fires
-    - Time out
-    - New value
-  * - :doc:`Alarm`
-    - ✔
-    - ✔
-    - ✔
-    -
-    - ✔
-    -
-  * - :doc:`DigitalIn`
-    - ✔
-    - ✔
-    - ✔
-    -
-    -
-    -
-  * - :doc:`Metronome`
-    -
-    -
-    -
-    - ✔
-    -
-    -
-  * - :doc:`PeakDetector`
-    -
-    -
-    -
-    - ✔
-    -
-    -
-  * - :doc:`Ramp`
-    -
-    -
-    -
-    -
-    - ✔
-    -
-  * - :doc:`Wave`
-    - ✔
-    - ✔
-    - ✔
-    -
-    -
-    -
-  * - :doc:`Wave`
-    -
-    -
-    -
-    - ✔
-    -
-    -
+  * - When
+    - Trigger
+    - Callback
+    - Units
+  * - Unit emits a pulse
+    - unit itself
+    - ``onBang(c)``
+    - :doc:`Metronome`, :doc:`PeakDetector`
+  * - Digital value toggles (on/off)
+    - ``changed()``
+    - ``onChange(c)``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - Digital value goes from on to off
+    - ``fell()``
+    - ``onFall(c)``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - Timed process completes
+    - ``finished()``
+    - ``onFinish(c)``
+    - :doc:`Alarm`, :doc:`Ramp`
+  * - Wave completes a full cycle
+    - ``passedPeriod()``
+    - ``onPassPeriod(c)``
+    - :doc:`Wave`
+  * - Wave passes its skew point
+    - ``passedSkew()``
+    - ``onPassSkew(c)``
+    - :doc:`Wave`
+  * - Digital value goes from off to on
+    - ``rose()``
+    - ``onRise(c)``
+    - :doc:`Alarm`, :doc:`DigitalIn`
+  * - New data is available
+    - ``updated()``
+    - ``onUpdate(c)``
+    - :doc:`TimeSliceField`
 
-Reacting to an Event
---------------------
+Using Trigger Conditions
+------------------------
+
+Trigger functions are the simplest way to react to events. Call them inside ``step()``
+with an ``if`` statement:
+
+.. code-block:: cpp
+
+   void step() {
+     if (button.rose())          // button was just pressed
+       led.toggle();
+
+     if (alarm.finished())       // alarm just timed out
+       println("Time is up!");
+
+     if (metro)                  // metronome ticked
+       println("Tick...");
+   }
+
+Since triggers are only ``true`` for one step, they naturally detect transitions rather than
+ongoing states. You can combine them with logical operators and other conditions to create
+more complex behaviors:
+
+.. code-block:: cpp
+
+   void step() {
+     // Only react to button press when sensor value is high enough.
+     if (button.rose() && sensor > 0.7)
+       led.toggle();
+
+     // React to either button press or metronome tick.
+     if (button.rose() || metro)
+       println("Something happened!");
+   }
+
+.. warning::
+   Since triggers are ``true`` for only one step, **they must be checked at every call to ``step()``**
+   or they will be missed. A common mistake comes when nesting a trigger inside another trigger's ``if`` block:
+
+   .. code-block:: cpp
+
+      void step() {
+        // WRONG: button.rose() is only checked when metro fires,
+        // so most button presses will be missed
+        if (metro) {
+          if (button.rose())
+            led.toggle();
+        }
+      }
+
+   In this example, ``button.rose()`` is only evaluated on the rare step when ``metro`` is ``true``.
+   On all other steps, the button press goes undetected. Instead, check both triggers independently.
+
+Using Callback Functions
+------------------------
+
+As your project grows and you start managing more events, the ``step()`` function can become
+cluttered with ``if`` statements, making event management confusing and error-prone. Callback functions offer
+a different approach: instead of checking for events yourself, you tell each unit what to do when an
+event happens, and Plaquette automatically takes care of the rest. This keeps your code organized and
+ensures no event is ever missed.
 
 Let us take an example where we want to react to the push of a button by switching an LED on and off.
 
@@ -229,7 +289,7 @@ interval. A ramp is used to fade the analog LED.
 
    // Function to start the ramp on second LED.
    void pingLed2() {
-     ramp.start();
+     rampLed.start();
    }
 
    void begin() {
@@ -239,7 +299,7 @@ interval. A ramp is used to fade the analog LED.
    }
 
    void step() {
-     ramp >> led2; // Ramp second LED from 100% to 0%
+     rampLed >> led2; // Ramp second LED from 100% to 0%
    }
 
 Creating On-the-fly Callbacks
@@ -266,7 +326,7 @@ way, like this:
   void begin() {
     // Register callbacks for the metronomes.
     metro1.onBang([]() { led1.toggle(); }); // Toggle LED 1 every second
-    metro2.onBang([]() { ramp.start(); });  // Fade in LED 2 every 2 seconds
+    metro2.onBang([]() { rampLed.start(); });  // Fade in LED 2 every 2 seconds
   }
 
 Conclusion

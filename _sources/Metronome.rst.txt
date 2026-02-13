@@ -12,52 +12,66 @@ evaluates to ``true`` for a single frame, and ``false`` otherwise.
 Parameters
 ----------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 12 40 12 12 12 12
+.. list-table::
+   :header-rows: 1
+   :widths: 12 33 9 16 15 15
 
-     * - Name
-       - Description
-       - Range
-       - Setter
-       - Getter
-       - Flow
-     * - period
-       - Duration of one complete cycle.
-       - > 0 (s)
-       - ``period(v)``
-       - ``period()``
-       - ``Period()``
-     * - frequency
-       - Cycles per second (inverse of period).
-       - > 0 (Hz)
-       - ``frequency(v)``
-       - ``frequency()``
-       - ``Frequency()``
-     * - bpm
-       - Cycles per minute (alternative to frequency).
-       - > 0
-       - ``bpm(v)``
-       - ``bpm()``
-       - ``Bpm()``
-     * - phase
-       - Current point in the cycle (as % of period).
-       - [0, 1]
-       - ``phase(v)``
-       - ``phase()``
-       - ``Phase()``
-     * - phaseShift
-       - Phase offset (as % of period).
-       - [0, 1]
-       - ``phaseShift(v)``
-       - ``phaseShift()``
-       - ``PhaseShift()``
-     * - jitter
-       - :ref:`Randomness level <metronome-randomization>` for timing variation.
-       - [0, 1]
-       - ``jitter(v)``
-       - ``jitter()``
-       - ``Jitter()``
+   * - Name
+     - Description
+     - Range
+     - Setter
+     - Getter
+     - Flow
+   * - period
+     - Duration of one complete cycle (in seconds).
+     - > 0
+     - ``period(v)``
+     - ``period()``
+     - ``Period()``
+   * - frequency
+     - Cycles per second, inverse of period (in Hz).
+     - > 0
+     - ``frequency(v)``
+     - ``frequency()``
+     - ``Frequency()``
+   * - bpm
+     - Cycles per minute (alternative to frequency).
+     - > 0
+     - ``bpm(v)``
+     - ``bpm()``
+     - ``Bpm()``
+   * - phase
+     - Current point in the cycle (as % of period).
+     - [0, 1]
+     - ``phase(v)``
+     - ``phase()``
+     - ``Phase()``
+   * - phaseShift
+     - Phase offset (as % of period).
+     - [0, 1]
+     - ``phaseShift(v)``
+     - ``phaseShift()``
+     - ``PhaseShift()``
+   * - jitter
+     - :ref:`Randomness level <metronome-randomization>` for timing variation.
+     - [0, 1]
+     - ``jitter(v)``
+     - ``jitter()``
+     - ``Jitter()``
+
+Events
+------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
+
+   * - When
+     - Trigger
+     - Callback
+   * - Unit emits a pulse
+     - unit itself
+     - ``onBang(c)``
 
 .. _metronome-randomization:
 
@@ -114,8 +128,6 @@ You can run several metronomes in parallel to control independent events:
      if (metroFast) led.toggle();
      if (metroSlow) println("Tick!");
    }
-
-.. _metronome-randomization:
 
 Randomized Metronome
 --------------------
