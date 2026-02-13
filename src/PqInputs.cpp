@@ -25,7 +25,7 @@
 
 namespace pq {
 
-Smoothable::Smoothable() {}
+Smoothable::Smoothable() : TimeWindowable(NO_TIME_WINDOW) {}
 
 void Smoothable::_begin() {
   _avg.reset();
@@ -41,7 +41,7 @@ void Smoothable::_step() {
 #define UNSTABLE_STATE  0x02
 #define CHANGED_STATE   0x04
 
-Debounceable::Debounceable() : _startTime(0), _state(0) {
+Debounceable::Debounceable() : TimeWindowable(NO_TIME_WINDOW), _startTime(0), _state(0) {
    debounceMode(DEBOUNCE_STABLE);
  }
 
@@ -128,11 +128,11 @@ void Debounceable::_changeState() {
 
 
 AnalogIn::AnalogIn(uint8_t pin, Engine& engine)
-  : Unit(engine), PinConfig(pin, DIRECT)
+  : AnalogIn(pin, DIRECT, engine)
 {}
 
 AnalogIn::AnalogIn(uint8_t pin, uint8_t mode, Engine& engine)
-  : Unit(engine), PinConfig(pin, mode)
+  : Unit(engine), PinConfig(pin, mode), Smoothable()
 {}
 
 float AnalogIn::_read() {
@@ -160,11 +160,11 @@ int AnalogIn::rawRead() const {
 }
 
 DigitalIn::DigitalIn(uint8_t pin, Engine& engine)
-  : DigitalSource(engine), PinConfig(pin, DIRECT)
+  : DigitalIn(pin, DIRECT, engine)
 {}
 
 DigitalIn::DigitalIn(uint8_t pin, uint8_t mode, Engine& engine)
-  : DigitalSource(engine), PinConfig(pin, mode)
+  : DigitalSource(engine), PinConfig(pin, mode), Debounceable()
 {}
 
 bool DigitalIn::_isOn() {
