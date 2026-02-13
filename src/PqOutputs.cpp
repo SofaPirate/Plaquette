@@ -24,7 +24,7 @@
 namespace pq {
 
 AnalogOut::AnalogOut(uint8_t pin, Engine& engine)
-  : AnalogSource(engine), PinConfig(pin, DIRECT)
+  : AnalogOut(pin, DIRECT, engine)
 {}
 
 AnalogOut::AnalogOut(uint8_t pin, uint8_t mode, Engine& engine)
@@ -61,7 +61,7 @@ void AnalogOut::step() {
 }
 
 DigitalOut::DigitalOut(uint8_t pin, Engine& engine)
-  : DigitalSource(engine), PinConfig(pin, DIRECT)
+  : DigitalOut(pin, DIRECT, engine)
 {}
 
 DigitalOut::DigitalOut(uint8_t pin, uint8_t mode, Engine& engine)
