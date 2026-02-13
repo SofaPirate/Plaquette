@@ -29,16 +29,16 @@ The unit supports two modes:
 Events
 ------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 60 20 20
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
 
-     * - When
-       - Trigger
-       - Callback
-     * - New data is available
-       - ``updated()``
-       - ``onUpdate()``
+   * - When
+     - Trigger
+     - Callback
+   * - New data is available
+     - ``updated()``
+     - ``onUpdate(c)``
 
 |Example|
 ---------

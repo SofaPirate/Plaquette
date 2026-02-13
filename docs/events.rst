@@ -67,35 +67,35 @@ them.
     - Units
   * - Unit emits a pulse
     - unit itself
-    - ``onBang()``
+    - ``onBang(c)``
     - :doc:`Metronome`, :doc:`PeakDetector`
   * - Digital value toggles (on/off)
     - ``changed()``
-    - ``onChange()``
+    - ``onChange(c)``
     - :doc:`Alarm`, :doc:`DigitalIn`
   * - Digital value goes from on to off
     - ``fell()``
-    - ``onFall()``
+    - ``onFall(c)``
     - :doc:`Alarm`, :doc:`DigitalIn`
   * - Timed process completes
     - ``finished()``
-    - ``onFinish()``
+    - ``onFinish(c)``
     - :doc:`Alarm`, :doc:`Ramp`
   * - Wave completes a full cycle
     - ``passedPeriod()``
-    - ``onPassPeriod()``
+    - ``onPassPeriod(c)``
     - :doc:`Wave`
   * - Wave passes its skew point
     - ``passedSkew()``
-    - ``onPassSkew()``
+    - ``onPassSkew(c)``
     - :doc:`Wave`
   * - Digital value goes from off to on
     - ``rose()``
-    - ``onRise()``
+    - ``onRise(c)``
     - :doc:`Alarm`, :doc:`DigitalIn`
   * - New data is available
     - ``updated()``
-    - ``onUpdate()``
+    - ``onUpdate(c)``
     - :doc:`TimeSliceField`
 
 Using Trigger Conditions

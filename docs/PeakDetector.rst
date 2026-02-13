@@ -34,16 +34,16 @@ In summary, the four different modes available are:
 Events
 ------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 60 20 20
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
 
-     * - When
-       - Trigger
-       - Callback
-     * - Unit emits a pulse
-       - unit itself
-       - ``onBang()``
+   * - When
+     - Trigger
+     - Callback
+   * - Unit emits a pulse
+     - unit itself
+     - ``onBang(c)``
 
 |Example|
 ---------

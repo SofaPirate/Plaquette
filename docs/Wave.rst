@@ -23,75 +23,75 @@ There are three potential wave types that can be set using the ``shape`` paramet
 Parameters
 ----------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 12 40 12 12 12 12
+.. list-table::
+   :header-rows: 1
+   :widths: 12 33 9 16 15 15
 
-     * - Name
-       - Description
-       - Range
-       - Setter
-       - Getter
-       - Flow
-     * - period
-       - Duration of one complete cycle.
-       - > 0 (s)
-       - ``period(v)``
-       - ``period()``
-       - ``Period()``
-     * - frequency
-       - Cycles per second (inverse of period).
-       - > 0 (Hz)
-       - ``frequency(v)``
-       - ``frequency()``
-       - ``Frequency()``
-     * - bpm
-       - Cycles per minute (alternative to frequency).
-       - > 0
-       - ``bpm(v)``
-       - ``bpm()``
-       - ``Bpm()``
-     * - skew
-       - Balance between rising/falling portions of cycle.
-       - [0, 1]
-       - ``skew(v)``
-       - ``skew()``
-       - ``Skew()``
-     * - phase
-       - Current point in the wave cycle (as % of period).
-       - [0, 1]
-       - ``phase(v)``
-       - ``phase()``
-       - ``Phase()``
-     * - phaseShift
-       - Phase offset (as % of period).
-       - [0, 1]
-       - ``phaseShift(v)``
-       - ``phaseShift()``
-       - ``PhaseShift()``
-     * - jitter
-       - :ref:`Randomness level <wave-randomization>` for timing variation.
-       - [0, 1]
-       - ``jitter(v)``
-       - ``jitter()``
-       - ``Jitter()``
+   * - Name
+     - Description
+     - Range
+     - Setter
+     - Getter
+     - Flow
+   * - period
+     - Duration of one complete cycle (in seconds).
+     - > 0
+     - ``period(v)``
+     - ``period()``
+     - ``Period()``
+   * - frequency
+     - Cycles per second, inverse of period (in Hz).
+     - > 0
+     - ``frequency(v)``
+     - ``frequency()``
+     - ``Frequency()``
+   * - bpm
+     - Cycles per minute (alternative to frequency).
+     - > 0
+     - ``bpm(v)``
+     - ``bpm()``
+     - ``Bpm()``
+   * - skew
+     - Balance between rising/falling portions of cycle.
+     - [0, 1]
+     - ``skew(v)``
+     - ``skew()``
+     - ``Skew()``
+   * - phase
+     - Current point in the wave cycle (as % of period).
+     - [0, 1]
+     - ``phase(v)``
+     - ``phase()``
+     - ``Phase()``
+   * - phaseShift
+     - Phase offset (as % of period).
+     - [0, 1]
+     - ``phaseShift(v)``
+     - ``phaseShift()``
+     - ``PhaseShift()``
+   * - jitter
+     - :ref:`Randomness level <wave-randomization>` for timing variation.
+     - [0, 1]
+     - ``jitter(v)``
+     - ``jitter()``
+     - ``Jitter()``
 
 Events
 ------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 60 20 20
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
 
-     * - When
-       - Trigger
-       - Callback
-     * - Wave completes a full cycle
-       - ``passedPeriod()``
-       - ``onPassPeriod()``
-     * - Wave passes its skew point
-       - ``passedSkew()``
-       - ``onPassSkew()``
+   * - When
+     - Trigger
+     - Callback
+   * - Wave completes a full cycle
+     - ``passedPeriod()``
+     - ``onPassPeriod(c)``
+   * - Wave passes its skew point
+     - ``passedSkew()``
+     - ``onPassSkew(c)``
 
 .. _square-wave:
 

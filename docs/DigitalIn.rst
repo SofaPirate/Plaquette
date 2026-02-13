@@ -30,22 +30,22 @@ of the `Bounce2 Arduino Library <https://github.com/thomasfredericks/Bounce2>`_.
 Events
 ------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 60 20 20
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
 
-     * - When
-       - Trigger
-       - Callback
-     * - Digital value toggles (on/off)
-       - ``changed()``
-       - ``onChange()``
-     * - Digital value goes from on to off
-       - ``fell()``
-       - ``onFall()``
-     * - Digital value goes from off to on
-       - ``rose()``
-       - ``onRise()``
+   * - When
+     - Trigger
+     - Callback
+   * - Digital value toggles (on/off)
+     - ``changed()``
+     - ``onChange(c)``
+   * - Digital value goes from on to off
+     - ``fell()``
+     - ``onFall(c)``
+   * - Digital value goes from off to on
+     - ``rose()``
+     - ``onRise(c)``
 
 |Example|
 ---------

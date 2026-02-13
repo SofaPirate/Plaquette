@@ -12,45 +12,45 @@ which it becomes "on".
 Parameters
 ----------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 12 40 12 12 12 12
+.. list-table::
+   :header-rows: 1
+   :widths: 12 33 9 16 15 15
 
-     * - Name
-       - Description
-       - Range
-       - Setter
-       - Getter
-       - Flow
-     * - duration
-       - Time before the alarm triggers.
-       - > 0 (s)
-       - ``duration(v)``
-       - ``duration()``
-       - ``Duration()``
+   * - Name
+     - Description
+     - Range
+     - Setter
+     - Getter
+     - Flow
+   * - duration
+     - Time before the alarm triggers (in seconds).
+     - > 0
+     - ``duration(v)``
+     - ``duration()``
+     - ``Duration()``
 
 Events
 ------
 
-  .. list-table::
-     :header-rows: 1
-     :widths: 60 20 20
+.. list-table::
+   :header-rows: 1
+   :widths: 50 25 25
 
-     * - When
-       - Trigger
-       - Callback
-     * - Digital value toggles (on/off)
-       - ``changed()``
-       - ``onChange()``
-     * - Digital value goes from on to off
-       - ``fell()``
-       - ``onFall()``
-     * - Timed process completes
-       - ``finished()``
-       - ``onFinish()``
-     * - Digital value goes from off to on
-       - ``rose()``
-       - ``onRise()``
+   * - When
+     - Trigger
+     - Callback
+   * - Digital value toggles (on/off)
+     - ``changed()``
+     - ``onChange(c)``
+   * - Digital value goes from on to off
+     - ``fell()``
+     - ``onFall(c)``
+   * - Timed process completes
+     - ``finished()``
+     - ``onFinish(c)``
+   * - Digital value goes from off to on
+     - ``rose()``
+     - ``onRise(c)``
 
 |Example|
 ---------
