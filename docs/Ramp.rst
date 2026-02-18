@@ -51,11 +51,11 @@ Usage
 
 There are two ways to start the ramp:
 
- * ``go(from, to, duration)``: ramp will transition from value ``from`` to value ``to`` in ``duration`` seconds.
+ * ``go(to)``: starts a transition from the ramp's current value to ``to`` using latest ramp duration
  * ``go(to, duration)``: starts a transition from the ramp's current value to ``to`` in ``duration`` seconds.
+ * ``go(from, to, duration)``: ramp will transition from value ``from`` to value ``to`` in ``duration`` seconds.
 
-The following diagram shows what happens to the ramp signal if ``go(5.0, 1.0, 2.0)`` is
-called, followed later by ``go(3.0, 1.0)``:
+The following diagram shows what happens to the ramp signal if ``go(5.0, 1.0, 2.0)`` is called, followed later by ``go(3.0, 1.0)``:
 
 .. image:: images/Plaquette-Ramp.png
 
@@ -70,31 +70,32 @@ called, followed later by ``go(3.0, 1.0)``:
 |Example|
 ---------
 
-Sequentially ramps through different values.
+Sequentially ramps through random values, creating a random walk (aka "drunk") movement.
 
 .. code-block:: c++
 
    #include <Plaquette.h>
 
-   Ramp myRamp(3.0); // initial duration: 3 seconds
+   Ramp zigZagRamp(2.0); // Default duration: 2 seconds.
 
-   Plotter serialOut(115200);
+   Plotter plotter(115200);
 
    void begin() {
      // Apply an easing function (optional).
-     myRamp.easing(easeOutSine);
-     // Launch ramp: ramp from -10 to 10.
-     myRamp.go(-10, 10);
+     zigZagRamp.easing(easeOutSine);
+     // Go from zero (initial value) to random value.
+     zigZagRamp.go( randomFloat(-10.0, 10.0) );
    }
 
    void step() {
-     if (myRamp.isFinished())
+     if (zigZagRamp.finished()) // event: ramp finished
      {
-       // Launch ramp from current value to half, increasing duration by one second.
-       myRamp.go(myRamp / 2, myRamp.duration() + 1);
+       // Ramp from current value to new random value, increasing duration by 1 second each time.
+       zigZagRamp.go(zigZagRamp + randomFloat(-10.0, 10.0), zigZagRamp.duration() + 1);
      }
 
-     myRamp >> serialOut;
+     // Send ramp value to plotter for visualization.
+     zigZagRamp >> plotter;
    }
 
 
