@@ -99,6 +99,56 @@ Sequentially ramps through random values, creating a random walk (aka "drunk") m
    }
 
 
+|Example|
+---------
+
+A ramp can be used as a timer. By default, ramp goes from 0 to 1 (0% to 100%) over a given duration.
+The ramp can thus be used as a measure of progress over time. The example below uses the ramp value to
+cycle through four phases, changing the frequency of a LED pulse at each transition:
+
+.. code-block:: c++
+
+   #include <Plaquette.h>
+
+   // Ramp over 5 seconds. Default ramp always runs from 0 to 1.
+   Ramp timer(5.0);
+
+   // Sine wave oscillator driving the LED.
+   Wave pulse(SQUARE);
+
+   // Build-in LED.
+   DigitalOut led(LED_BUILTIN);
+
+   void begin() {
+     timer.start(); // start the timer
+   }
+
+   void step() {
+     // Change wave frequency based on progress thresholds.
+     if (timer < 0.25) {
+       pulse.frequency(0.5);  // slow pulse: warming up
+     }
+     else if (timer < 0.5) {
+       pulse.frequency(3.0);  // fast pulse: running
+     }
+     else if (timer < 0.75) {
+       pulse.frequency(1.0);  // medium pulse: cooling down
+     }
+     else {
+       pulse.frequency(0.25); // very slow pulse: standby
+     }
+
+     // Flow wave to LED.
+     pulse >> led;
+
+     // Restart the timer when it completes, increasing duration each time.
+     if (timer.finished()) {
+       timer.duration( timer.duration() + 5 );
+       timer.start();
+     }
+   }
+
+
 |Reference|
 -----------
 
