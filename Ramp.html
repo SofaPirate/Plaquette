@@ -69,8 +69,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ramp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#events">Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#easing">Easing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changing-end-points">Changing End Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-go-function">The go() Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ramp-as-a-timer">Ramp as a Timer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
@@ -127,8 +133,9 @@
              
   <section id="ramp">
 <h1>Ramp<a class="headerlink" href="#ramp" title="Permalink to this heading"></a></h1>
-<p>A source unit that generates a smooth transition between two values. The unit can be
-triggered to start transitioning to a target value for a certain duration.</p>
+<p>A source unit that generates a smooth transition between a starting value and an ending
+value over a given duration. The transition begins when <code class="docutils literal notranslate"><span class="pre">start()</span></code> is called, and the
+ramp’s current value can be read or piped to an output at any time.</p>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
 <table class="colwidths-given docutils align-default">
@@ -189,51 +196,205 @@ triggered to start transitioning to a target value for a certain duration.</p>
 </tbody>
 </table>
 </section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
-<p>There are two ways to start the ramp:</p>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading"></a></h2>
+<p>A ramp is defined by three values:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">go(from,</span> <span class="pre">to,</span> <span class="pre">duration)</span></code>: ramp will transition from value <code class="docutils literal notranslate"><span class="pre">from</span></code> to value <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">go(to,</span> <span class="pre">duration)</span></code>: starts a transition from the ramp’s current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from()</span></code> is the value at which the ramp starts (default: 0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to()</span></code> is the value where the ramp ends (default: 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration()</span></code> is the duration the ramp takes to go from <code class="docutils literal notranslate"><span class="pre">from</span></code> to <code class="docutils literal notranslate"><span class="pre">to</span></code></p></li>
 </ul>
 </div></blockquote>
-<p>The following diagram shows what happens to the ramp signal if <code class="docutils literal notranslate"><span class="pre">go(5.0,</span> <span class="pre">1.0,</span> <span class="pre">2.0)</span></code> is
-called, followed later by <code class="docutils literal notranslate"><span class="pre">go(3.0,</span> <span class="pre">1.0)</span></code>:</p>
-<img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Ramps also support the use of <a class="reference external" href="http://easings.net">easing functions</a> in order to
-create different kinds of expressive effects with signals. An easing function can
-optionally be specified at the end of a <code class="docutils literal notranslate"><span class="pre">go()</span></code> command or by calling the
-<code class="docutils literal notranslate"><span class="pre">easing()</span></code> function.</p>
-<p>Please refer to <a class="reference internal" href="easings.html"><span class="doc">this page</span></a> for a full list of available easing functions.</p>
+<p>It can then be started by calling the <code class="docutils literal notranslate"><span class="pre">start()</span></code> function.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As an alternative to <code class="docutils literal notranslate"><span class="pre">duration</span></code>, one can use the <code class="docutils literal notranslate"><span class="pre">speed</span></code> parameter instead to
+specify transition time in values-per-seconds. This is useful when we want to maintain
+a stable rate of change when the <code class="docutils literal notranslate"><span class="pre">from</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> values change, such as when
+controlling servo-motors.</p>
 </div>
+<img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
-<p>Sequentially ramps through different values.</p>
+<p>Pressing a button below triggers a two-second fade from off to full brightness:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
-<span class="n">Ramp</span><span class="w"> </span><span class="nf">myRamp</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// initial duration: 3 seconds</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">fader</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2-second ramp, from 0 to 1 by default</span>
 
-<span class="n">Plotter</span><span class="w"> </span><span class="nf">serialOut</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
+<span class="n">AnalogOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalIn</span><span class="w"> </span><span class="nf">button</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">INTERNAL_PULLUP</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Press button to trigger the fade.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">rose</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="n">fader</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Flow ramp value to LED.</span>
+<span class="w">  </span><span class="n">fader</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="easing">
+<h2>Easing<a class="headerlink" href="#easing" title="Permalink to this heading"></a></h2>
+<p>Ramps support easing functions to shape the transition curve for more expressive effects.
+Passing an easing function to <code class="docutils literal notranslate"><span class="pre">easing()</span></code> applies it to all subsequent transitions.</p>
+<p>Please refer to <a class="reference internal" href="easings.html"><span class="doc">this page</span></a> for a full list of available easing functions.</p>
+<p>Starting from the example above, add the following <code class="docutils literal notranslate"><span class="pre">begin()</span></code> function to specify an
+easing function. Easting <code class="docutils literal notranslate"><span class="pre">easeInSine</span></code> makes the fade start slowly and accelerate.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">fader</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeInSine</span><span class="p">);</span><span class="w"> </span><span class="c1">// slow start, accelerating towards the end</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="changing-end-points">
+<h2>Changing End Points<a class="headerlink" href="#changing-end-points" title="Permalink to this heading"></a></h2>
+<p>The starting value (<code class="docutils literal notranslate"><span class="pre">from</span></code>) and ending value (<code class="docutils literal notranslate"><span class="pre">to</span></code>) can be changed to produce
+different transitions. Setting <code class="docutils literal notranslate"><span class="pre">from</span></code> to 1.0 and <code class="docutils literal notranslate"><span class="pre">to</span></code> to 0.0 reverses the direction,
+fading the LED from full brightness down to off:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">fader</span><span class="p">.</span><span class="n">fromTo</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// changes both from (1.0) and to (0.0)</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Values do not need to stay withing [0, 1], they can take any values.</p>
+</section>
+<section id="id1">
+<h2>Example<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>This example uses a metronome to trigger a ramp. The ramp controls the frequency
+of a blinking LED.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">fader</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5-second ramp</span>
+
+<span class="n">Wave</span><span class="w"> </span><span class="nf">wave</span><span class="p">(</span><span class="n">SQUARE</span><span class="p">);</span><span class="w"> </span><span class="c1">// square wave</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"> </span><span class="c1">// blinking LED</span>
+
+<span class="n">Metronome</span><span class="w"> </span><span class="nf">metro</span><span class="p">(</span><span class="mf">7.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7.5-second metro</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Apply an easing function (optional).</span>
-<span class="w">  </span><span class="n">myRamp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeOutSine</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Launch ramp: ramp from -10 to 10.</span>
-<span class="w">  </span><span class="n">myRamp</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="mi">-10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">fader</span><span class="p">.</span><span class="n">fromTo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// ramp from 2 Hz to 10 Hz</span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">myRamp</span><span class="p">.</span><span class="n">isFinished</span><span class="p">())</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Metronome triggers the ramp.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">metro</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">fader</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Flow ramp value wave frequency.</span>
+<span class="w">  </span><span class="n">fader</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">wave</span><span class="p">.</span><span class="n">Frequency</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Blink LED.</span>
+<span class="w">  </span><span class="n">wave</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="the-go-function">
+<h2>The go() Function<a class="headerlink" href="#the-go-function" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">go()</span></code> function provides a simple way to immediately launch a ramp from the current value to another,
+or simply from the current value towards a new goal. It sets <code class="docutils literal notranslate"><span class="pre">to</span></code> and <code class="docutils literal notranslate"><span class="pre">duration</span></code> or <code class="docutils literal notranslate"><span class="pre">speed</span></code> in a single
+call and immediately starts the transition from the current value.</p>
+<p>The two main forms are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">go(to)</span></code>: transition from the ramp’s current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> using the current duration or speed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">go(to,</span> <span class="pre">durationOrSpeed)</span></code>: transition from the ramp’s current value to <code class="docutils literal notranslate"><span class="pre">to</span></code> in <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds
+OR <code class="docutils literal notranslate"><span class="pre">speed</span></code>, depending on the current mode</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An optional easing function can be passed as the last argument of any <code class="docutils literal notranslate"><span class="pre">go()</span></code> call. For example,
+<code class="docutils literal notranslate"><span class="pre">go(2.0,</span> <span class="pre">easeInSine)</span></code> and <code class="docutils literal notranslate"><span class="pre">go(2.0,</span> <span class="pre">3.0,</span> <span class="pre">easeInSine)</span></code> go to value 2.0 using easing function <code class="docutils literal notranslate"><span class="pre">easeInSine</span></code>
+(3.0 is the value of duration or speed in the second version).</p>
+</div>
+<dl class="simple">
+<dt>The following diagram shows what happens to a ramp signal:</dt><dd><ul class="simple">
+<li><p>Initially the ramp is at value 5.0 with duration of 2.0 seconds.</p></li>
+<li><p>Calling <code class="docutils literal notranslate"><span class="pre">go(1.0)</span></code> starts a ramp from 5.0 to 1.0, using current duration of 2.0 seconds.</p></li>
+<li><p>Later, calling <code class="docutils literal notranslate"><span class="pre">go(3.0,</span> <span class="pre">1.0)</span></code> starts ramping from current value to value 3.0, overriding duration with a 1.0 second duration.</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/Plaquette-Ramp-Go.png" src="_images/Plaquette-Ramp-Go.png" />
+</section>
+<section id="id2">
+<h2>Example<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>The example below uses <code class="docutils literal notranslate"><span class="pre">go()</span></code> to create a continuous random walk, chaining from the
+current value to a new random target each time the previous transition completes. It uses
+speed instead of duration.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="n">Ramp</span><span class="w"> </span><span class="n">zigZagRamp</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">Plotter</span><span class="w"> </span><span class="nf">plotter</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Set speed to 1.0 per second.</span>
+<span class="w">  </span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">speed</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Apply an easing function (optional).</span>
+<span class="w">  </span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">easing</span><span class="p">(</span><span class="n">easeOutSine</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Go from zero (initial value) to a random value.</span>
+<span class="w">  </span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">finished</span><span class="p">())</span><span class="w"> </span><span class="c1">// event: ramp finished</span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Launch ramp from current value to half, increasing duration by one second.</span>
-<span class="w">    </span><span class="n">myRamp</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="n">myRamp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">myRamp</span><span class="p">.</span><span class="n">duration</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Ramp from current value to new random value, increasing speed by 1 each time.</span>
+<span class="w">    </span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">go</span><span class="p">(</span><span class="n">zigZagRamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomFloat</span><span class="p">(</span><span class="mf">-10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">),</span><span class="w"> </span><span class="n">zigZagRamp</span><span class="p">.</span><span class="n">speed</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">myRamp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">serialOut</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Send ramp value to plotter for visualization.</span>
+<span class="w">  </span><span class="n">zigZagRamp</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">plotter</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="ramp-as-a-timer">
+<h2>Ramp as a Timer<a class="headerlink" href="#ramp-as-a-timer" title="Permalink to this heading"></a></h2>
+<p>A ramp can be used as a timer (like an analog version of <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a>). By default, ramp goes from 0 to 1
+(0% to 100%) over a given duration. The ramp can thus be used as a measure of progress over time. The example
+below uses the ramp value to cycle through four phases, changing the frequency of a LED pulse at each transition:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Ramp over 5 seconds. Default ramp always runs from 0 to 1.</span>
+<span class="n">Ramp</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Square wave oscillator driving the LED.</span>
+<span class="n">Wave</span><span class="w"> </span><span class="nf">pulse</span><span class="p">(</span><span class="n">SQUARE</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Built-in LED.</span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// start the timer</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Change wave frequency based on progress thresholds.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.25</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pulse</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w">  </span><span class="c1">// slow pulse: warming up</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pulse</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">3.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// fast pulse: running</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.75</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pulse</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">  </span><span class="c1">// medium pulse: cooling down</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pulse</span><span class="p">.</span><span class="n">frequency</span><span class="p">(</span><span class="mf">0.25</span><span class="p">);</span><span class="w"> </span><span class="c1">// very slow pulse: standby</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Flow wave to LED.</span>
+<span class="w">  </span><span class="n">pulse</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Restart the timer when it completes, increasing duration each time.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="p">.</span><span class="n">finished</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">timer</span><span class="p">.</span><span class="n">duration</span><span class="p">(</span><span class="w"> </span><span class="n">timer</span><span class="p">.</span><span class="n">duration</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

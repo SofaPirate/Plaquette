@@ -367,6 +367,7 @@ dynamic, evolving experiences.</p>
 <h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading"></a></h3>
 <p>Like <a class="reference internal" href="Alarm.html"><span class="doc">Alarm</span></a> units, ramps can be restarted by calling their <code class="docutils literal notranslate"><span class="pre">start()</span></code> function. By default, they
 will ramp between 0 and 1.</p>
+<img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
 <p><strong>Example</strong>: Gradually increases an LED brightness over 5 seconds every time a button is pressed.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
 
@@ -444,9 +445,9 @@ intead:</p>
 <p>A common scenario in creative applications is to respond to events by changing a value such as the
 position of a servomotor, the color of a RGB LED, or the volume of a sound. Ramps are often used in
 these cases to create smooth transitions instead of abrupt changes.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">go()</span></code> function provides a simple way to immediately launch a ramp from one value to another,
+<p>The <code class="docutils literal notranslate"><span class="pre">go()</span></code> function provides a simple way to immediately launch a ramp from the current value to another,
 or simply from the current value towards a new goal.</p>
-<img alt="_images/Plaquette-Ramp.png" src="_images/Plaquette-Ramp.png" />
+<img alt="_images/Plaquette-Ramp-Go.png" src="_images/Plaquette-Ramp-Go.png" />
 <p><strong>Example</strong>: Control blinking frequency using a button. Each time the button is pushed, a new frequency
 is chosen randomly and the ramp smoothly goes to the new frequency.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
