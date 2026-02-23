@@ -265,6 +265,8 @@ Basic Usage
 Like :doc:`Alarm` units, ramps can be restarted by calling their ``start()`` function. By default, they
 will ramp between 0 and 1.
 
+.. image:: images/Plaquette-Ramp.png
+
 **Example**: Gradually increases an LED brightness over 5 seconds every time a button is pressed.
 
 .. code-block:: cpp
@@ -353,10 +355,10 @@ A common scenario in creative applications is to respond to events by changing a
 position of a servomotor, the color of a RGB LED, or the volume of a sound. Ramps are often used in
 these cases to create smooth transitions instead of abrupt changes.
 
-The ``go()`` function provides a simple way to immediately launch a ramp from one value to another,
+The ``go()`` function provides a simple way to immediately launch a ramp from the current value to another,
 or simply from the current value towards a new goal.
 
-.. image:: images/Plaquette-Ramp.png
+.. image:: images/Plaquette-Ramp-Go.png
 
 **Example**: Control blinking frequency using a button. Each time the button is pushed, a new frequency
 is chosen randomly and the ramp smoothly goes to the new frequency.
