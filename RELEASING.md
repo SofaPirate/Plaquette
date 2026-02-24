@@ -48,11 +48,11 @@ git push && git push --tags
 ### 4. Create the GitHub release
 
 ```bash
-./release.sh
+./tools/release.sh
 ```
 
 This extracts the release notes for the latest tag from `CHANGELOG.md` and creates the GitHub release. To target a specific tag:
 
 ```bash
-./release.sh v0.9.4
+./tools/release.sh v0.9.4
 ```

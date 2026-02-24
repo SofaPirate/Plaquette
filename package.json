@@ -5,6 +5,6 @@
     "auto-changelog": "*"
   },
   "scripts": {
-    "version": "bash bump_version.sh $npm_package_version && auto-changelog -p && git add CHANGELOG.md library.properties docs/conf.py"
+    "version": "bash tools/bump_version.sh $npm_package_version && auto-changelog -p && git add CHANGELOG.md library.properties docs/conf.py"
   }
 }
