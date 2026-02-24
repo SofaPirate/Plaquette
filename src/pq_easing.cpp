@@ -64,7 +64,7 @@ float easeInOutCubic(float t) {
         return  4 * t * t * t;
     else {
         t = 2*(t - 1);
-        return 0.5f * t * t * t;
+        return 1 + 0.5f * t * t * t;
     }
 }
 
