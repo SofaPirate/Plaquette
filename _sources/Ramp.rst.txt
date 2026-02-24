@@ -153,6 +153,7 @@ of a blinking LED.
 
      // Blink LED.
      wave >> led;
+   }
 
 The go() Function
 -----------------
