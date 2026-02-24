@@ -167,56 +167,72 @@ $(document).ready(function(){initNavTree('pq__fastmath_8h_source.html',''); init
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)fastPow((<span class="keywordtype">double</span>)a, (<span class="keywordtype">double</span>)b);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// Source: https://gist.github.com/jrade/293a73f89dfef51da6522428c857802d</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// N. Schraudolph, “A Fast, Compact Approximation of the Exponential Function”,</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// Neural Computation 11, 853–862 (1999).</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// (available at https://nic.schraudolph.org/pubs/Schraudolph99.pdf)</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">inline</span> <span class="keywordtype">float</span> fastExp(<span class="keywordtype">float</span> x)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> a = (1 &lt;&lt; 23) / 0.69314718f;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> b = (1 &lt;&lt; 23) * (127 - 0.043677448f);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    x = a * x + b;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// Remove these lines if bounds checking is not needed</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> c = (1 &lt;&lt; 23);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> d = (1 &lt;&lt; 23) * 255;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">if</span> (x &lt; c || x &gt; d)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        x = (x &lt; c) ? 0.0f : d;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// Computes 2^b using a bit-manipulation trick optimized for base 2.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// Exact for integer exponents; ~6% max error for fractional exponents.</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">inline</span> <span class="keywordtype">double</span> fastPow2(<span class="keywordtype">double</span> b) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordtype">double</span> d;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        int32_t x[2];</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    } u;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    u.x[0] = 0;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    u.x[1] = (int32_t)(b * (1 &lt;&lt; 20) + (1023 &lt;&lt; 20));</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> u.d;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">inline</span> <span class="keywordtype">float</span> fastPow2(<span class="keywordtype">float</span> b) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)fastPow2((<span class="keywordtype">double</span>)b);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// With C++20 one can use std::bit_cast instead</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    uint32_t n = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(x);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    memcpy(&amp;x, &amp;n, 4);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> x;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">// inline double fastExp(double x)</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// {</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">//     constexpr double a = (1ll &lt;&lt; 52) / 0.6931471805599453;</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">//     constexpr double b = (1ll &lt;&lt; 52) * (1023 - 0.04367744890362246);</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">//     x = a * x + b;</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">//     // Remove these lines if bounds checking is not needed</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">//     constexpr double c = (1ll &lt;&lt; 52);</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">//     constexpr double d = (1ll &lt;&lt; 52) * 2047;</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">//     if (x &lt; c || x &gt; d)</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">//         x = (x &lt; c) ? 0.0 : d;</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">//     // With C++20 one can use std::bit_cast instead</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">//     uint64_t n = static_cast&lt;uint64_t&gt;(x);</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">//     memcpy(&amp;x, &amp;n, 8);</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">//     return x;</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">// }</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>} <span class="comment">// namespace pq</span></div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// Source: https://gist.github.com/jrade/293a73f89dfef51da6522428c857802d</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">// N. Schraudolph, “A Fast, Compact Approximation of the Exponential Function”,</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">// Neural Computation 11, 853–862 (1999).</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">// (available at https://nic.schraudolph.org/pubs/Schraudolph99.pdf)</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">inline</span> <span class="keywordtype">float</span> fastExp(<span class="keywordtype">float</span> x)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> a = (1 &lt;&lt; 23) / 0.69314718f;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> b = (1 &lt;&lt; 23) * (127 - 0.043677448f);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    x = a * x + b;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Remove these lines if bounds checking is not needed</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> c = (1 &lt;&lt; 23);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">constexpr</span> <span class="keywordtype">float</span> d = (1 &lt;&lt; 23) * 255;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (x &lt; c || x &gt; d)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        x = (x &lt; c) ? 0.0f : d;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// With C++20 one can use std::bit_cast instead</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    uint32_t n = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(x);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    memcpy(&amp;x, &amp;n, 4);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">// inline double fastExp(double x)</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">// {</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">//     constexpr double a = (1ll &lt;&lt; 52) / 0.6931471805599453;</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">//     constexpr double b = (1ll &lt;&lt; 52) * (1023 - 0.04367744890362246);</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">//     x = a * x + b;</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">//     // Remove these lines if bounds checking is not needed</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">//     constexpr double c = (1ll &lt;&lt; 52);</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">//     constexpr double d = (1ll &lt;&lt; 52) * 2047;</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">//     if (x &lt; c || x &gt; d)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">//         x = (x &lt; c) ? 0.0 : d;</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">//     // With C++20 one can use std::bit_cast instead</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">//     uint64_t n = static_cast&lt;uint64_t&gt;(x);</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">//     memcpy(&amp;x, &amp;n, 8);</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">//     return x;</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">// }</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>} <span class="comment">// namespace pq</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>pq_fastmath.h</b></li>
-    <li class="footer">Generated on Mon Feb 23 2026 21:57:32 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Feb 24 2026 10:06:43 for Plaquette by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
