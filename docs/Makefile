@@ -28,7 +28,7 @@ else
 endif
 
 .PHONY: all
-all: doxygen html latexpdf
+all: html latexpdf
 
 .PHONY: help
 help:
