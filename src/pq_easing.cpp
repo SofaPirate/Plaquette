@@ -113,18 +113,18 @@ float easeInOutQuint(float t) {
 }
 
 float easeInExpo(float t) {
-    return (fastPow( 2, 8 * t ) - 1) / 255;
+    return (fastPow2( 8 * t ) - 1) / 255;
 }
 
 float easeOutExpo(float t) {
-    return 1 - fastPow( 2, -8 * t );
+    return 1 - fastPow2( -8 * t );
 }
 
 float easeInOutExpo(float t) {
     if( t < 0.5f ) {
-        return (fastPow( 2, 16 * t ) - 1) / 510;
+        return (fastPow2( 16 * t ) - 1) / 510;
     } else {
-        return 1 - 0.5f * fastPow( 2, -16 * (t - 0.5f) );
+        return 1 - 0.5f * fastPow2( -16 * (t - 0.5f) );
     }
 }
 
@@ -187,18 +187,18 @@ float easeInOutElastic(float t) {
 }
 
 float easeInBounce(float t) {
-    return fastPow( 2, 6 * (t - 1) ) * abs( fastSin( t * PI * 3.5f ) );
+    return fastPow2( 6 * (t - 1) ) * abs( fastSin( t * PI * 3.5f ) );
 }
 
 float easeOutBounce(float t) {
-    return 1 - fastPow( 2, -6 * t ) * abs( fastSin( t * PI * 3.5 ) );
+    return 1 - fastPow2( -6 * t ) * abs( fastCos( t * PI * 3.5f ) );
 }
 
 float easeInOutBounce(float t) {
     if( t < 0.5f ) {
-        return 8 * fastPow( 2, 8 * (t - 1) ) * abs( fastSin( t * PI * 7 ) );
+        return 8 * fastPow2( 8 * (t - 1) ) * abs( fastSin( t * PI * 7 ) );
     } else {
-        return 1 - 8 * fastPow( 2, -8 * t ) * abs( fastSin( t * PI * 7 ) );
+        return 1 - 8 * fastPow2( -8 * t ) * abs( fastSin( t * PI * 7 ) );
     }
 }
 

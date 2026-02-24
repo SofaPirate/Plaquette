@@ -68,6 +68,22 @@ inline float fastPow(float a, float b) {
     return (float)fastPow((double)a, (double)b);
 }
 
+// Computes 2^b using a bit-manipulation trick optimized for base 2.
+// Exact for integer exponents; ~6% max error for fractional exponents.
+inline double fastPow2(double b) {
+    union {
+        double d;
+        int32_t x[2];
+    } u;
+    u.x[0] = 0;
+    u.x[1] = (int32_t)(b * (1 << 20) + (1023 << 20));
+    return u.d;
+}
+
+inline float fastPow2(float b) {
+    return (float)fastPow2((double)b);
+}
+
 // Source: https://gist.github.com/jrade/293a73f89dfef51da6522428c857802d
 // N. Schraudolph, “A Fast, Compact Approximation of the Exponential Function”,
 // Neural Computation 11, 853–862 (1999).
