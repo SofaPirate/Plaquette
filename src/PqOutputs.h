@@ -56,6 +56,7 @@ public:
   void rawWrite(int value);
 
 protected:
+  virtual void begin();
   virtual void step();
 };
 

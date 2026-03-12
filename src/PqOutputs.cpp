@@ -31,18 +31,16 @@ AnalogOut::AnalogOut(uint8_t pin, uint8_t mode, Engine& engine)
   : AnalogSource(engine), PinConfig(pin, mode)
 {}
 
+void AnalogOut::begin() {
+  pinMode(_pin, OUTPUT);
+}
+
 float AnalogOut::put(float value) {
   // Make sure value is in [0, 1].
   _value = constrain01(value);
 
   return _value;
 }
-
-#if (defined(ESP32) or defined(ARDUINO_ARCH_ESP32)) and defined(SOC_DAC_SUPPORTED)
-#define analogWriteFunction dacWrite // use dacWrite if available
-#else
-#define analogWriteFunction analogWrite
-#endif
 
 void AnalogOut::write(float value) {
   // Remap to [0, ANALOG_WRITE_MAX_VALUE] (rawWrite() will constrain value).
@@ -52,12 +50,12 @@ void AnalogOut::write(float value) {
 void AnalogOut::rawWrite(int value) {
   value = constrain(value, 0, ANALOG_WRITE_MAX_VALUE);
   _value = (_mode == DIRECT ? value : ANALOG_WRITE_MAX_VALUE - value) / (float)ANALOG_WRITE_MAX_VALUE;
-  analogWriteFunction(_pin, value);
+  analogWrite(_pin, value);
 }
 
 void AnalogOut::step() {
   float value = (_mode == DIRECT ? _value : 1 - _value) * ANALOG_WRITE_MAX_VALUE;
-  analogWriteFunction(_pin, round(value));
+  analogWrite(_pin, round(value));
 }
 
 DigitalOut::DigitalOut(uint8_t pin, Engine& engine)
