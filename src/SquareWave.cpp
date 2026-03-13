@@ -19,38 +19,3 @@
  */
 
 #include "SquareWave.h"
-
-namespace pq {
-
-SquareWave::SquareWave(Engine& engine) : AbstractWave(engine) {}
-SquareWave::SquareWave(float period, Engine& engine) : AbstractWave(period, engine) {}
-SquareWave::SquareWave(float period, float skew, Engine& engine) : AbstractWave(period, skew, engine) {}
-
-// bool SquareWave::isOn() {
-//   return _onValue;
-// }
-
-// bool SquareWave::shiftByIsOn(float phaseShift) {
-//   return (phase32AddPhase(_phase32, phaseShift) <= _skew32);
-// }
-
-// bool SquareWave::atPhaseIsOn(float phase) {
-//   return (floatToPhase32(phase) <= _skew32);
-// }
-
-void SquareWave::step() {
-  AbstractWave::step();
-
-  // // Force compute digital value.
-  _onValue = (_phase32 <= _skew32);
-
-  // // Update change state.
-  // _changeState = (int8_t)_onValue - (int8_t)_prevOnValue;
-  // _prevOnValue = _onValue;
-}
-
-q0_32u_t SquareWave::_getFixed32([[maybe_unused]] q0_32u_t t) const {
-  return (_onValue ? FIXED_32_MAX : 0);
-}
-
-}

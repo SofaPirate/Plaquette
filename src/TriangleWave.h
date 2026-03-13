@@ -21,8 +21,7 @@
 #ifndef TRIANGLE_WAVE_H_
 #define TRIANGLE_WAVE_H_
 
-#include "AbstractWave.h"
-#include "pq_easing.h"
+#include "Wave.h"
 
 namespace pq {
 
@@ -30,69 +29,12 @@ namespace pq {
  * @deprecated
  * Triangle/sawtooth oscillator.
  */
-class [[deprecated("Use Wave(TRIANGLE) instead.")]] TriangleWave : public AbstractWave {
+class [[deprecated("Use Wave(TRIANGLE) instead.")]] TriangleWave : public Wave {
 public:
-  /**
-   * Constructor.
-   * @param engine the engine running this unit
-   */
-  TriangleWave(Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param engine the engine running this unit
-   */
-  TriangleWave(float period, Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param skew the duty-cycle as a value in [0, 1]
-   * @param engine the engine running this unit
-   */
-  TriangleWave(float period, float skew, Engine& engine = Engine::primary());
-
+  TriangleWave(Engine& engine = Engine::primary()) : Wave(TRIANGLE, engine) {}
+  TriangleWave(float period, Engine& engine = Engine::primary()) : Wave(TRIANGLE, period, engine) {}
+  TriangleWave(float period, float skew, Engine& engine = Engine::primary()) : Wave(TRIANGLE, period, skew, engine) {}
   virtual ~TriangleWave() {}
-
-  /**
-   * Sets easing function to apply to wave rise.
-   * @param easing the easing function
-   */
-  void riseEasing(easing_function easing) { _riseEasing = easing; }
-
-  /// Remove easing function for wave rise.
-  void noRiseEasing() { riseEasing(easeNone); }
-
-    /**
-   * Sets easing function to apply to wave rise.
-   * @param easing the easing function
-   */
-  void fallEasing(easing_function easing) { _fallEasing = easing; }
-
-  /// Remove easing function for wave rise.
-  void noFallEasing() { fallEasing(easeNone); }
-
-  /**
-   * Sets easing function to apply to both rise and fall of the wave.
-   * @param easing the easing function
-   */
-  void easing(easing_function easing) { _riseEasing = _fallEasing = easing; }
-
-  /// Remove easing functions.
-  void noEasing() { easing(easeNone); }
-
-protected:
-  // Returns value in [0, 1].
-//  virtual float _get(q0_32u_t t);
-  virtual q0_32u_t _getFixed32(q0_32u_t t) const;
-
-
-  virtual float _getAmplified(q0_32u_t t) const;
-
-  // Optional easing to apply on the rise and fall of the wave.
-  easing_function _riseEasing;
-  easing_function _fallEasing;
 };
 
 /// @deprecated

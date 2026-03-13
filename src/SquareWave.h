@@ -21,7 +21,7 @@
 #ifndef SQUARE_WAVE_H_
 #define SQUARE_WAVE_H_
 
-#include "AbstractWave.h"
+#include "Wave.h"
 
 namespace pq {
 
@@ -29,76 +29,12 @@ namespace pq {
  * @deprecated
  * Square oscillator. Duty cycle is expressed as % of period.
  */
-class [[deprecated("Use Wave(SQUARE) instead.")]] SquareWave : public AbstractWave {
+class [[deprecated("Use Wave(SQUARE) instead.")]] SquareWave : public Wave {
 public:
-  /**
-   * Constructor.
-   * @param engine the engine running this unit
-   */
-  SquareWave(Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param engine the engine running this unit
-   */
-  SquareWave(float period, Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param skew the duty-cycle as a value in [0, 1]
-   * @param engine the engine running this unit
-   */
-  SquareWave(float period, float skew, Engine& engine = Engine::primary());
-
+  SquareWave(Engine& engine = Engine::primary()) : Wave(SQUARE, engine) {}
+  SquareWave(float period, Engine& engine = Engine::primary()) : Wave(SQUARE, period, engine) {}
+  SquareWave(float period, float skew, Engine& engine = Engine::primary()) : Wave(SQUARE, period, skew, engine) {}
   virtual ~SquareWave() {}
-
-  // /// Returns true iff the input is "on".
-  // virtual bool isOn();
-
-  // /// Returns true iff the input is "off".
-  // virtual bool isOff() { return !isOn(); }
-
-  // /// Operator that allows usage in conditional expressions.
-  // explicit operator bool() { return isOn(); }
-
-  // /// Returns true if the value rose.
-  // virtual bool rose() { return changeState() > 0; }
-
-  // /// Returns true if the value fell.
-  // virtual bool fell() { return changeState() < 0; }
-
-  // /// Returns true if the value changed.
-  // virtual bool changed() { return changeState() != 0; }
-
-  // /// Difference between current and previous value of the unit.
-  // virtual int8_t changeState() { return _changeState; }
-
-  // /// Registers event callback on rise event.
-  // virtual void onRise(EventCallback callback)   { onEvent(callback, EVENT_RISE); }
-
-  // /// Registers event callback on fall event.
-  // virtual void onFall(EventCallback callback)   { onEvent(callback, EVENT_FALL); }
-
-  // /// Registers event callback on change event.
-  // virtual void onChange(EventCallback callback) { onEvent(callback, EVENT_CHANGE); }
-
-  // /**
-  //  * Returns oscillator's on/off with given phase shift (in % of period).
-  //  * Supports values outside [0,1], which will be wrapped accordingly.
-  //  * @param phase the phase shift (in % of period)
-  //  * @return the boolean value of oscillator with given phase shift
-  //  */
-  // virtual bool shiftByIsOn(float phaseShift);
-
-  // /**
-  //  * Returns the oscillator's on/off at a given absolute phase (in % of period).
-  //  * Supports values outside [0,1], which will be wrapped accordingly.
-  //  * @param phase the absolute phase at which to evaluate the oscillator (in % of period)
-  //  * @return the value of the oscillator at the given phase
-  //  */
-  // virtual bool atPhaseIsOn(float phase);
 
   /// @deprecated
   [[deprecated("Use skew(float) instead.")]]
@@ -107,27 +43,6 @@ public:
   /// @deprecated
   [[deprecated("Use skew() instead.")]]
   virtual float dutyCycle() const { return skew(); }
-
-protected:
-  // Core Plaquette methods.
-  virtual void step();
-
-  /// Returns true iff an event of a certain type has been triggered.
-  // virtual bool eventTriggered(EventType eventType) {
-  //   switch (eventType) {
-  //     case EVENT_CHANGE: return changed();
-  //     case EVENT_RISE:   return rose();
-  //     case EVENT_FALL:   return fell();
-  //     default:           return AbstractWave::eventTriggered(eventType);
-  //   }
-  // }
-
-protected:
-  // Returns value in [0, 1].
-  virtual q0_32u_t _getFixed32(q0_32u_t t) const;
-
-  // The current high/low value of the unit.
-  bool _onValue = false;
 };
 
 /// @deprecated

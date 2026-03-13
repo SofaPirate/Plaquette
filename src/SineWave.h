@@ -21,7 +21,7 @@
 #ifndef SINE_WAVE_H_
 #define SINE_WAVE_H_
 
-#include "AbstractWave.h"
+#include "Wave.h"
 
 namespace pq {
 
@@ -29,35 +29,12 @@ namespace pq {
  * @deprecated
  * Sine oscillator. Phase is expressed as % of period.
  */
-class [[deprecated("Use Wave(SINE) instead.")]] SineWave : public AbstractWave {
+class [[deprecated("Use Wave(SINE) instead.")]] SineWave : public Wave {
 public:
-  /**
-   * Constructor.
-   * @param engine the engine running this unit
-   */
-  SineWave(Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param engine the engine running this unit
-   */
-  SineWave(float period, Engine& engine = Engine::primary());
-
-  /**
-   * Constructor.
-   * @param period the period of oscillation (in seconds)
-   * @param skew the duty-cycle as a value in [0, 1]
-   * @param engine the engine running this unit
-   */
-  SineWave(float period, float skew, Engine& engine = Engine::primary());
-
+  SineWave(Engine& engine = Engine::primary()) : Wave(SINE, engine) {}
+  SineWave(float period, Engine& engine = Engine::primary()) : Wave(SINE, period, engine) {}
+  SineWave(float period, float skew, Engine& engine = Engine::primary()) : Wave(SINE, period, skew, engine) {}
   virtual ~SineWave() {}
-
-protected:
-  // Returns value in [0, 1].
-//  virtual float _get(q0_32u_t t);
-  virtual q0_32u_t _getFixed32(q0_32u_t t) const;
 };
 
 /// @deprecated
