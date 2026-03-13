@@ -84,6 +84,60 @@ inline float fastPow2(float b) {
     return (float)fastPow2((double)b);
 }
 
+// Fast natural logarithm approximation using IEEE 754 bit manipulation.
+// Inverse of the Schraudolph fastExp trick below. Max relative error ~14%
+// (worst case at m = sqrt(2) within a binade). Suitable for non-critical uses
+// where a single multiply-and-shift is sufficient.
+inline float fastLog(float x) {
+  union { float f; uint32_t u; } pun = { x };
+  // log(x) ≈ (bits(x) / 2^23 - 127) * ln2
+  return (float)pun.u * (0.693147f / (float)(1 << 23)) - 88.029691f;
+  // 88.029691f = 127 * ln(2)
+}
+
+// More precise fast natural logarithm for x ∈ (0, 1].
+// Splits x = 2^k * m (m ∈ [1,2)), then approximates log(m) using the Euler
+// substitution s = (m-1)/(m+1) where s ∈ [0, 1/3), which converges rapidly:
+//   log(m) = 2*(s + s³/3 + s⁵/5 + ...)
+// Two terms give max error ~0.003 (~0.4% relative), vs ~14% for the bit trick.
+// All float ops (div, mul, add) are already linked in any floating-point sketch.
+inline float fastLog01(float x) {
+  union { float f; uint32_t u; } pun = { x };
+
+  // Integer exponent: log(x) = k*ln2 + log(m).
+  int32_t k = (int32_t)(pun.u >> 23) - 127;
+
+  // Mantissa m ∈ [1, 2) as float (replace exponent field with 127).
+  pun.u = (pun.u & 0x007FFFFF) | 0x3F800000;
+
+  // log(m) via s = (m-1)/(m+1): two terms of 2*(s + s³/3).
+  float s  = (pun.f - 1.0f) / (pun.f + 1.0f);
+  float s2 = s * s;
+  float logm = s * (2.0f + (2.0f / 3.0f) * s2);
+
+  return (float)k * 0.693147f + logm;
+}
+
+// Directly computes -log(r / 2^32) from a raw uint32 random value r,
+// skipping the fixed32ToFloat step and the max(u, FLT_MIN) guard.
+// Builds the IEEE 754 representation of x = r/2^32 directly from the integer
+// bits (exponent = 126 - clz(r), mantissa = top 23 bits below the leading 1),
+// then delegates to fastLog01 and negates. Same precision as fastLog01.
+// For r=0 (probability 2^-32), returns a large capped value.
+inline float fastNegLog32(uint32_t r) {
+  if (r == 0) return 32.0f * 0.693147f;
+
+  const uint32_t z = __builtin_clz(r);
+
+  // Construct IEEE 754 bits for x = r/2^32 ∈ (0, 1]:
+  //   exponent field = 126 - z  (biased exponent for the interval [2^(-1-z), 2^(-z)))
+  //   mantissa field = top 23 bits of r below the leading 1
+  union { float f; uint32_t u; } pun;
+  pun.u = ((r << (z + 1)) >> 9) | ((126 - z) << 23);
+
+  return -fastLog01(pun.f);
+}
+
 // Source: https://gist.github.com/jrade/293a73f89dfef51da6522428c857802d
 // N. Schraudolph, “A Fast, Compact Approximation of the Exponential Function”,
 // Neural Computation 11, 853–862 (1999).
@@ -100,10 +154,9 @@ inline float fastExp(float x)
     if (x < c || x > d)
         x = (x < c) ? 0.0f : d;
 
-    // With C++20 one can use std::bit_cast instead
-    uint32_t n = static_cast<uint32_t>(x);
-    memcpy(&x, &n, 4);
-    return x;
+    union { float f; uint32_t u; } pun;
+    pun.u = static_cast<uint32_t>(x);
+    return pun.f;
 }
 
 // inline double fastExp(double x)
