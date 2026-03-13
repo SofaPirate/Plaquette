@@ -19,9 +19,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "pq_random32.h"
+#include "pq_globals.h"
 
 namespace pq {
 
+#if defined(PQ_ARCH_8BITS)
+
+// Xorshift32 generator for 8-bit platforms.
+// Avoids 64-bit arithmetic (expensive software emulation on AVR).
+// Period: 2^32 - 1. Passes most statistical tests for simulation use.
+static uint32_t _xState = 2463534242UL;
+
+uint32_t random32() {
+  _xState ^= _xState << 13;
+  _xState ^= _xState >> 17;
+  _xState ^= _xState << 5;
+  return _xState;
+}
+
+void random32Seed(uint64_t s, uint64_t inc) {
+  // Use XOR of both 32-bit halves from s and inc for seeding.
+  _xState = ((uint32_t)s ^ (uint32_t)(s >> 32) ^
+             (uint32_t)inc ^ (uint32_t)(inc >> 32)) | 1UL; // ensure non-zero
+}
+
+void random32Seed(uint64_t seed) {
+  _xState = ((uint32_t)seed ^ (uint32_t)(seed >> 32)) | 1UL; // ensure non-zero
+}
+
+#else
+
+// PCG32 generator for 32/64-bit platforms.
+// High statistical quality with full-period guarantee.
 uint64_t pcgState = 0x853c49e6748fea9bull;
 uint64_t pcgInc   = 0xda3e39cb94b95bdbull; // must be odd
 
@@ -39,19 +68,21 @@ void random32Seed(uint64_t s, uint64_t inc) {
 }
 
 void random32Seed(uint64_t seed) {
-    // Use SplitMix64 to scramble the input into two 64-bit values
-    uint64_t s = seed + 0x9e3779b97f4a7c15ull;
-    s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
-    s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
-    uint64_t state0 = s ^ (s >> 31);
+  // Use SplitMix64 to scramble the input into two 64-bit values.
+  uint64_t s = seed + 0x9e3779b97f4a7c15ull;
+  s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
+  s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
+  uint64_t state0 = s ^ (s >> 31);
 
-    s = seed + 0x5851f42d4c957f2dull;
-    s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
-    s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
-    uint64_t inc0 = (s ^ (s >> 31)) | 1ull; // must be odd
+  s = seed + 0x5851f42d4c957f2dull;
+  s = (s ^ (s >> 30)) * 0xbf58476d1ce4e5b9ull;
+  s = (s ^ (s >> 27)) * 0x94d049bb133111ebull;
+  uint64_t inc0 = (s ^ (s >> 31)) | 1ull; // must be odd
 
-    pcgState = state0;
-    pcgInc   = inc0;
+  pcgState = state0;
+  pcgInc   = inc0;
 }
+
+#endif // PQ_ARCH_8BITS
 
 } // namespace pq
