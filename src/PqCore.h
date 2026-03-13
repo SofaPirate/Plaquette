@@ -789,8 +789,10 @@ bool Engine::timeStep() {
         return false; // break
     }
     else { // stepState == STEP_WAIT_OVERFLOW
-      // Still needs to wait.
-      if (_totalGlobalMicroSeconds.micros64 < _targetTime.micros64)
+      // Still needs to wait. Compare using 32-bit fields to avoid 64-bit arithmetic.
+      if (_totalGlobalMicroSeconds.micros32.overflows < _targetTime.micros32.overflows ||
+          (_totalGlobalMicroSeconds.micros32.overflows == _targetTime.micros32.overflows &&
+           _totalGlobalMicroSeconds.micros32.base < _targetTime.micros32.base))
         return false; // break
     }
 
@@ -801,9 +803,8 @@ bool Engine::timeStep() {
   // Update sample rate and current time to "true" / actual values.
   _setSampleRate(trueSampleRate);
 
-  // Calculate delta time in fixed point.
-  uint64_t deltaTimeMicroSeconds64 = (uint64_t)_deltaTimeMicroSeconds;
-  _deltaTimeSecondsTimesFixed32Max = ((deltaTimeMicroSeconds64 << 32) - deltaTimeMicroSeconds64) * MICROS_TO_SECONDS;
+  // Calculate delta time in fixed point. The precomputed constant avoids 64-bit arithmetic.
+  _deltaTimeSecondsTimesFixed32Max = (float)_deltaTimeMicroSeconds * MICROS_TO_SECONDS_TIMES_FIXED_32_MAX;
 
   // Sync reference time with global (true) time.
   _microSeconds = _totalGlobalMicroSeconds;

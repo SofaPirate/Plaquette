@@ -56,7 +56,7 @@ Engine::~Engine() {
 void Engine::preBegin() {
   // Initialize variables.
   _sampleRate = _samplePeriod = _targetSampleRate = 0;
-  _microSeconds.micros64 = microSeconds(false);
+  _microSeconds = _updateGlobalMicroSeconds(); // microSeconds(false)
   _targetTime = _microSeconds;
   _stepState = STEP_INIT;
   _deltaTimeMicroSeconds = 0;
@@ -78,7 +78,7 @@ void Engine::preBegin() {
 
 void Engine::postBegin() {
   // Start timer.
-  _microSeconds.micros64 = microSeconds(false);
+  _microSeconds = _updateGlobalMicroSeconds(); // microSeconds(false)
   // Trick: by setting _nSteps = LONG_MAX, timeStep() will do _nStep++ which will overflow to 0
   _nSteps = ULONG_MAX;
 }
@@ -94,7 +94,16 @@ void Engine::end() {
 }
 
 float Engine::seconds(bool referenceTime) const {
+#if defined(PQ_ARCH_8BITS)
+  // On 8-bit AVR: decompose into 32-bit fields to avoid expensive 64-bit arithmetic.
+  // Correctly handles sketches running beyond the 32-bit micros() rollover (~70 min).
+  micro_seconds_t us;
+  us.micros64 = microSeconds(referenceTime);
+  return (float)us.micros32.overflows * MICROS32_OVERFLOW_TO_SECONDS +
+         (float)us.micros32.base * MICROS_TO_SECONDS;
+#else
   return microsToSeconds(microSeconds(referenceTime));
+#endif
 }
 
 uint32_t Engine::milliSeconds(bool referenceTime) const {

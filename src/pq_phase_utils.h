@@ -30,12 +30,18 @@
 #include "pq_globals.h"
 #include "pq_fixed.h"
 #include "pq_fixed32_math.h"
+#include "pq_time.h"
 #include "pq_wrap.h"
 
 #include <stdint.h>
 #include <float.h>
 
 namespace pq {
+
+// Precomputed constant: FIXED_32_MAX * MICROS_TO_SECONDS.
+// Used to convert a delta time in microseconds directly to the fixed-point
+// phase increment per step, avoiding 64-bit arithmetic on 8-bit platforms.
+constexpr float MICROS_TO_SECONDS_TIMES_FIXED_32_MAX = MICROS_TO_SECONDS * (float)FIXED_32_MAX;
 
 /// Applies amplitude scaling to 32-bit fixed32-point value interpreted as a signal centered at UINT32_MAX/2.
 inline q0_32u_t amplifyFixed32(q0_32u_t x, q0_32u_t amplitude) {

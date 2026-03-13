@@ -47,6 +47,10 @@ namespace pq {
 #define MILLIS_TO_SECONDS    1e-3f
 #define MICROS_TO_SECONDS    1e-6f
 
+// Number of seconds in one full 32-bit micros() overflow period (2^32 microseconds).
+// Used to convert the overflow counter to seconds without 64-bit arithmetic.
+constexpr float MICROS32_OVERFLOW_TO_SECONDS = 4294967296.0f * MICROS_TO_SECONDS;
+
 constexpr float BPM_TO_HZ = 1.0f / SECONDS_PER_MINUTE;
 #define HZ_TO_BPM 60.0f
 
