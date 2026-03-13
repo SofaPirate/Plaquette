@@ -38,7 +38,6 @@ Options:
 
 Notes:
   - If -b is omitted, DEFAULT_BOARDS at the top of the script is used.
-  - This script expects ./bin/arduino-cli to exist relative to the script.
 USAGE
 }
 
@@ -48,9 +47,9 @@ die() {
 }
 
 # Resolve repo root as the directory that contains this script.
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-ARDUINO_CLI="$ROOT_DIR/bin/arduino-cli"
+ARDUINO_CLI="$(which arduino-cli)"
 [[ -x "$ARDUINO_CLI" ]] || die "arduino-cli not found or not executable at: $ARDUINO_CLI"
 
 # Keep the original behavior: install Servo.

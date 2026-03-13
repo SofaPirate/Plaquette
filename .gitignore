@@ -262,3 +262,8 @@ docs/_static
 .vscode/*
 !.vscode/settings.json
 scripts/
+
+main.cpp
+platformio.ini
+diagram.json
+wokwi.toml
