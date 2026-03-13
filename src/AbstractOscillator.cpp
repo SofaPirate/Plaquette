@@ -23,6 +23,7 @@
 #include "pq_map.h"
 #include "pq_time.h"
 #include "pq_wrap.h"
+#include "pq_fastmath.h"
 
 namespace pq {
 
@@ -52,12 +53,18 @@ void AbstractOscillator::start() {
 
 void AbstractOscillator::_randomPickNext() {
   // Pick random period ratio for this interval using Poisson distribution.
-  const float u = max(randomFloat(), FLT_MIN); // (0,1]
-  // Precise –ln(u). If log1pf exists it’s slightly better for tiny arguments.
-#if defined(log1pf)
-  float periodRatio = -log1pf(u - 1.0f);
+  // Compute –log(u) where u = random value in (0, 1].
+#if defined(PQ_ARCH_8BITS) || PQ_OPTIMIZE_FOR_CPU
+  // Compute -log(r/2^32) directly from the raw integer, skipping the float
+  // conversion and division that randomFloat() would perform.
+  float periodRatio = fastNegLog32(random32());
 #else
+  const float u = max(randomFloat(), FLT_MIN); // clamp away exact zero
+  #if defined(log1pf)
+  float periodRatio = -log1pf(u - 1.0f);
+  #else
   float periodRatio = -logf(u);
+  #endif
 #endif
 
   // clamping to avoid extreme ratios (rare outliers).

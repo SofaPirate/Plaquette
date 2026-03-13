@@ -20,6 +20,7 @@
 #include "pq_random.h"
 #include "pq_fastmath.h"
 #include "pq_random32.h"
+#include "pq_fixed.h"
 
 namespace pq {
 
@@ -28,7 +29,7 @@ namespace pq {
 #endif
 
 float randomFloat() {
-  return (float)random32() / (float)RANDOM_32_MAX;
+  return fixed32ToFloat(random32());
 }
 
 float randomFloat(float max) {
