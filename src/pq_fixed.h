@@ -93,13 +93,38 @@ inline float fixedToFloatInv(I value, float invHigh) {
 }
 
 /// Converts 32-bit fixed32-point value to floating point.
-inline float fixed32ToFloat(q0_32u_t x) { return fixedToFloatInv(x, INV_FIXED_32_MAX); }
+/// Uses an IEEE 754 bit trick: builds a float in [1, 2) by injecting the top 23
+/// bits of x as the mantissa, then subtracts 1. Avoids __floatunsisf and __mulsf3.
+/// Returns exactly 1.0 for x >= 0xFFFFFF80 (matches the old multiply-by-INV behavior
+/// where those 128 values all rounded to 2^32 * 2^-32 = 1.0 before clamping).
+inline float fixed32ToFloat(q0_32u_t x) {
+#if defined(PQ_IEEE_754_SUPPORTED)
+  if (x >= 0xFFFFFF80u) return 1.0f;
+  union { uint32_t u; float f; } pun;
+  pun.u = 0x3F800000u | (x >> 9);
+  return pun.f - 1.0f;
+#else
+  return fixedToFloatInv(x, INV_FIXED_32_MAX);
+#endif
+}
 
 /// Converts floating point in range [0, 1] to 32-bit fixed32-point value.
 inline q0_32u_t floatToFixed32(float x) { return floatToFixed(x, FIXED_32_MAX); }
 
 /// Converts 16-bit fixed16-point value to floating point.
-inline float fixed16ToFloat(q0_16u_t x) { return fixedToFloatInv(x, INV_FIXED_16_MAX); }
+/// Uses an IEEE 754 bit trick: shifts x left by 7 to fill the top 16 bits of the
+/// 23-bit mantissa, builds a float in [1, 2), then subtracts 1.
+/// Returns exactly 1.0 for x = FIXED_16_MAX (matches old multiply-then-clamp behavior).
+inline float fixed16ToFloat(q0_16u_t x) {
+#if defined(PQ_IEEE_754_SUPPORTED)
+  if (x == 0xFFFFu) return 1.0f;
+  union { uint32_t u; float f; } pun;
+  pun.u = 0x3F800000u | ((uint32_t)x << 7);
+  return pun.f - 1.0f;
+#else
+  return fixedToFloatInv(x, INV_FIXED_16_MAX);
+#endif
+}
 
 /// Converts floating point in range [0, 1] to 16-bit fixed16-point value.
 inline q0_16u_t floatToFixed16(float x) { return floatToFixed(x, FIXED_16_MAX); }
