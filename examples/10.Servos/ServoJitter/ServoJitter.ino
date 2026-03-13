@@ -16,6 +16,7 @@
  *
  */
 #include <Plaquette.h>
+#include <PqServo.h>
 
 // Controls the rate of change of the servo.
 const float JITTER_RATE = 0.1; // 10% per second

@@ -56,7 +56,4 @@
 // Serial.
 #include "Plotter.h"
 
-// Servo motors.
-#include <PqServo.h>
-
 #endif

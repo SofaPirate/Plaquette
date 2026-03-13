@@ -27,6 +27,7 @@
  * https://www.arduino.cc/en/Tutorial/Sweep
  */
 #include <Plaquette.h>
+#include <PqServo.h>
 
 // The analog input.
 AnalogIn pot(A0);
