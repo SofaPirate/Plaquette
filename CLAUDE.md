@@ -19,19 +19,19 @@ Plaquette is an object-oriented, signal-centric programming framework for **crea
 
 Compile all examples for default boards:
 ```bash
-./compile_examples.sh
+./tools/compile_examples.sh
 ```
 
 Compile a specific example:
 ```bash
-./compile_examples.sh -p examples/01.Basics/Blink
+./tools/compile_examples.sh -p examples/01.Basics/Blink
 # or relative to examples/
-./compile_examples.sh -p 01.Basics/Blink
+./tools/compile_examples.sh -p 01.Basics/Blink
 ```
 
 Compile for specific board(s):
 ```bash
-./compile_examples.sh -b "teensy:avr:teensy31,arduino:avr:uno"
+./tools/compile_examples.sh -b "teensy:avr:teensy31,arduino:avr:uno"
 ```
 
 ### Run Unit Tests
