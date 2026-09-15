@@ -92,8 +92,8 @@ public:
   size_t print(double v);
   size_t println(double v);
 
-  // // This is to support all the Print methods
-  // using Print::write;
+  size_t print(double v, int digits) { return Print::print(v, digits); }
+  size_t println(double v, int digits) { return Print::println(v, digits); }
 
 protected:
   /**
