@@ -7,6 +7,7 @@ This document describes the process for publishing a new release.
 - [`gh`](https://cli.github.com/) CLI installed and authenticated (`gh auth login`)
 - Node.js and npm installed (`npm install` to install `auto-changelog`)
 - `docs/sphinx_env` set up and working (`cd docs && python3 -m venv sphinx_env && sphinx_env/bin/pip install -r requirements.txt`)
+- `doxygen` and `graphviz` installed (`sudo apt install doxygen graphviz`) — needed for the `doxygen/` reference pages (Breathe reads `doxygen`'s XML output, and `graphviz`'s `dot` draws the class inheritance/collaboration diagrams)
 - `latexmk` and a LaTeX toolchain installed (`sudo apt install latexmk texlive-full` or equivalent) — needed to build `extras/Plaquette-Manual.pdf`
 - A `gh-pages` worktree checked out at `../Plaquette-docs/html` (sibling of this repo):
   ```bash
@@ -62,9 +63,16 @@ git push && git push --tags
 cd docs
 source sphinx_env/bin/activate
 make clean
+make doxygen    # must run before html: generates docs/xml for Breathe, and doxygen/ in the gh-pages worktree
 make html       # writes to ../../Plaquette-docs/html (the gh-pages worktree)
 make latexpdf   # writes to ../extras/Plaquette-Manual.pdf
 cd ..
+```
+
+`make clean` wipes the gh-pages worktree's `html/` directory, which deletes `CNAME` (a hand-added GitHub Pages file with no source to regenerate it from — currently `plaquette.org`). Restore it before committing:
+
+```bash
+cd ../Plaquette-docs/html && git checkout -- CNAME && cd -
 ```
 
 Commit the updated manual on `master`:

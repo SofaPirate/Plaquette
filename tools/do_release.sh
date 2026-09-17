@@ -133,10 +133,19 @@ fi
 
 # --- Docs + PDF manual ---
 
-if confirm "Rebuild HTML docs and PDF manual now?"; then
+if confirm "Rebuild HTML docs, doxygen reference and PDF manual now?"; then
   if [ ! -x "$ROOT_DIR/docs/sphinx_env/bin/sphinx-build" ]; then
     echo "Error: docs/sphinx_env not found or broken. Set up the venv first (see RELEASING.md)."
     exit 1
+  fi
+  if ! command -v doxygen >/dev/null 2>&1; then
+    echo "Error: doxygen not found (needed for the doxygen/ reference and Breathe's XML)."
+    exit 1
+  fi
+
+  CNAME_CONTENT=""
+  if [ -f "$GHPAGES_DIR/CNAME" ]; then
+    CNAME_CONTENT="$(cat "$GHPAGES_DIR/CNAME")"
   fi
 
   (
@@ -144,9 +153,17 @@ if confirm "Rebuild HTML docs and PDF manual now?"; then
     # shellcheck disable=SC1091
     source sphinx_env/bin/activate
     make clean
+    make doxygen  # must run before html: generates docs/xml that Breathe reads, and doxygen/ in the gh-pages worktree
     make html
     make latexpdf
   )
+
+  # `make clean` wipes the gh-pages worktree's html/ dir, including CNAME, which has no
+  # source to regenerate from -- restore it so it isn't accidentally deleted from gh-pages.
+  if [ -n "$CNAME_CONTENT" ] && [ ! -f "$GHPAGES_DIR/CNAME" ]; then
+    echo "$CNAME_CONTENT" > "$GHPAGES_DIR/CNAME"
+    echo "Restored CNAME in gh-pages worktree."
+  fi
 
   if [ -n "$(git status --porcelain -- extras/Plaquette-Manual.pdf)" ]; then
     git add extras/Plaquette-Manual.pdf
