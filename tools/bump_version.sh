@@ -23,20 +23,21 @@ fi
 SHORT_VERSION=$(echo "$NEW_VERSION" | sed 's/\.[0-9]*$//')
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 echo "Bumping version to $NEW_VERSION (short: $SHORT_VERSION)"
 
 # library.properties
-sed -i "s/^version=.*/version=$NEW_VERSION/" "$SCRIPT_DIR/library.properties"
+sed -i "s/^version=.*/version=$NEW_VERSION/" "$ROOT_DIR/library.properties"
 echo "  Updated library.properties"
 
 # package.json
-sed -i "s/\"version\": \"[0-9][^\"]*\"/\"version\": \"$NEW_VERSION\"/" "$SCRIPT_DIR/package.json"
+sed -i "s/\"version\": \"[0-9][^\"]*\"/\"version\": \"$NEW_VERSION\"/" "$ROOT_DIR/package.json"
 echo "  Updated package.json"
 
 # docs/conf.py
-sed -i "s/^version = '.*'/version = '$SHORT_VERSION'/" "$SCRIPT_DIR/docs/conf.py"
-sed -i "s/^release = '.*'/release = '$NEW_VERSION'/" "$SCRIPT_DIR/docs/conf.py"
+sed -i "s/^version = '.*'/version = '$SHORT_VERSION'/" "$ROOT_DIR/docs/conf.py"
+sed -i "s/^release = '.*'/release = '$NEW_VERSION'/" "$ROOT_DIR/docs/conf.py"
 echo "  Updated docs/conf.py"
 
 echo "Done. Version bumped to $NEW_VERSION"
