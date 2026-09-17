@@ -33,6 +33,11 @@ You can just write:
   by selecting **Tools > Serial Monitor**. Make sure the baudrate
   matches the value used to create the Monitor.
 
+.. caution::
+
+  Avoid using a ``Plotter`` unit while using a ``Monitor``, as it risks breaking the output syntax
+  of the plotter.
+
 |Example|
 ---------
 

@@ -8,49 +8,71 @@ The Plotter is designed for quick signal inspection in tools such as the Arduino
 Plotter, while also supporting structured formats (e.g., CSV, JSON) for logging and
 external processing.
 
+To create a new Plotter on the default serial port with a specific baudrate:
+
+.. code-block:: c++
+
+   Plotter plotter(baudrate);
+
 Values are sent in clear text and arranged in **rows**. Each call to ``put()`` (usually
-via the ``>>`` operator) appends one value to the current row; the row is then finalized
+via the ``>>`` operator) appends one value to the current row. The row is then finalized
 automatically at the end of the Plaquette engine step (or when the Plotter decides to
 close the row).
+
+.. code-block:: c++
+
+   void step() {
+     value1 >> plotter;
+     value2 >> plotter;
+     ...
+     valueN >> plotter;
+   }
 
 The Plotter can optionally take a comma-separated list of **labels** (``const char*``)
 such as ``"wave,signal"``. When labels are provided, some formats will include a header
 (e.g., CSV) or will use key/value rendering (e.g., JSON objects, ``"label":value``).
 
-|Example|
----------
+.. code-block:: c++
 
-Streaming multiple values per row, with labels.
+   Plotter plotter(baudrate, "label1,label2,...,labelN");
 
 .. tip::
 
   On Arduino, you can visualize the data using the `Serial Plotter <https://docs.arduino.cc/software/ide-v2/tutorials/ide-v2-serial-plotter/>`__
   by selecting **Tools > Serial Plotter**.
 
+.. caution::
+
+  Avoid using a ``Monitor`` unit or calling ``Serial`` functions while using a ``Plotter``, as
+  it risks breaking the output syntax of the plotter.
+
+|Example|
+---------
+
+Streaming multiple values per row.
+
 .. code-block:: c++
 
    #include <Plaquette.h>
-   //declare the baud rate to suit your application.
-   //OPTIONAL: After declaring the baud rate,
-   //you can create labels for incoming signals with a single comma-separated string.
-   Plotter plotter(115200, "wave,signal");
+
+   Plotter plotter(115200); // baudrate = 115200
 
    Wave wave(SINE);
-   Signal signal;
+
+   AnalogIn signal(A0);
 
    void step() {
-     wave >> plotter;
+     wave   >> plotter;
      signal >> plotter;
    }
 
-You can add labels to the output by specifying them at the creation of the ``Plotter`` unit:
+To add labels to the output:
 
 .. code-block:: c++
 
   Plotter plotter(115200, "wave,signal");
 
-You can also output in Comma Separated Values format by using presets
-(``PLOTTER_CSV``, ``PLOTTER_JSON``):
+You can also change the format by using presets (``PLOTTER_CSV``, ``PLOTTER_JSON``):
 
 .. code-block:: c++
 

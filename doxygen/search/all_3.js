@@ -1,14 +1,21 @@
 var searchData=
 [
-  ['center_0',['center',['../classpq_1_1_pivot_field.html#a380bb7bc09ed430b96bada5326581b01',1,'pq::PivotField::center(float center)'],['../classpq_1_1_pivot_field.html#aa486f89467915182fe75129dbe0c671b',1,'pq::PivotField::center() const']]],
-  ['changed_1',['changed',['../classpq_1_1_digital_source.html#a9a34d50955ca36321e40223835e62c53',1,'pq::DigitalSource']]],
-  ['changestate_2',['changeState',['../classpq_1_1_digital_source.html#a75205a0d0192f5c4514dd7a2a6817fb4',1,'pq::DigitalSource']]],
-  ['chronometer_3',['chronometer',['../classpq_1_1_chronometer.html',1,'pq::Chronometer'],['../classpq_1_1_chronometer.html#aaf60cdd329d966b8ea8af18ba53c0a1c',1,'pq::Chronometer::Chronometer()']]],
-  ['clamp_4',['clamp',['../classpq_1_1_normalizer.html#a3e7a9bd8722d508113a6e26656da78aa',1,'pq::Normalizer']]],
-  ['clearlisteners_5',['clearListeners',['../classpq_1_1_event_manager.html#a283cb405a9576301ff13cfcb01109aee',1,'pq::EventManager']]],
-  ['common_5fpair_5ftype_6',['common_pair_type',['../structpq_1_1common__pair__type.html',1,'pq']]],
-  ['common_5ftriple_5ftype_7',['common_triple_type',['../structpq_1_1common__triple__type.html',1,'pq']]],
-  ['continuousservoout_8',['continuousservoout',['../classpq_1_1_continuous_servo_out.html',1,'pq::ContinuousServoOut'],['../classpq_1_1_continuous_servo_out.html#ad785426007c66a816f7d779ef67c1016',1,'pq::ContinuousServoOut::ContinuousServoOut()']]],
-  ['count_9',['count',['../classpq_1_1_time_slice_field.html#a455863a7fb1a8b192da23aa9dfac77f8',1,'pq::TimeSliceField']]],
-  ['cutoff_10',['cutoff',['../classpq_1_1_time_windowable.html#a7e6b52e05e0cc21a4f693a708f7b466a',1,'pq::TimeWindowable::cutoff(float hz)'],['../classpq_1_1_time_windowable.html#aa5d75f1b738c6666f4ada0a54fdd9dba',1,'pq::TimeWindowable::cutoff() const']]]
+  ['deactivate_0',['deactivate',['../classpq_1_1_abstract_servo_out.html#ae39cabe094fbc2a0f1da7a69bc8d27ef',1,'pq::AbstractServoOut']]],
+  ['debounce_1',['debounce',['../classpq_1_1_debounceable.html#aa861618a8887fdf71a95a50b12b12505',1,'pq::Debounceable']]],
+  ['debounceable_2',['Debounceable',['../classpq_1_1_debounceable.html',1,'pq']]],
+  ['debouncemode_3',['debounceMode',['../classpq_1_1_debounceable.html#ab8e1406fb68b32cb88e97d4d5aa5e814',1,'pq::Debounceable::debounceMode() const'],['../classpq_1_1_debounceable.html#a3636a5f531b7d502be21fe2d29815a02',1,'pq::Debounceable::debounceMode(uint8_t mode)']]],
+  ['delta_4',['delta',['../classpq_1_1_moving_average.html#a93fdd06d8b3ca2249758e975b8cbe868',1,'pq::MovingAverage']]],
+  ['deltatimemicroseconds_5',['deltaTimeMicroSeconds',['../classpq_1_1_engine.html#a73ed603aaf5234c9adb8213dfc61a75f',1,'pq::Engine']]],
+  ['deltatimesecondstimesfixed32max_6',['deltaTimeSecondsTimesFixed32Max',['../classpq_1_1_engine.html#a5ccb944ad6434fee9e9a54c6572a9366',1,'pq::Engine']]],
+  ['deprecated_20list_7',['Deprecated List',['../deprecated.html',1,'']]],
+  ['device_8',['device',['../classpq_1_1_monitor.html#abd5a83dfdeafb09d90d15f54cb576add',1,'pq::Monitor']]],
+  ['digitalin_9',['DigitalIn',['../classpq_1_1_digital_in.html',1,'pq::DigitalIn'],['../classpq_1_1_digital_in.html#aa728df2cad9caef36817227de9c034cb',1,'pq::DigitalIn::DigitalIn()']]],
+  ['digitalout_10',['DigitalOut',['../classpq_1_1_digital_out.html',1,'pq::DigitalOut'],['../classpq_1_1_digital_out.html#ad9ca3e61a0f2dc4fb09cee51af39c33f',1,'pq::DigitalOut::DigitalOut(uint8_t pin, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_digital_out.html#a28940f991cdd0f8c97a8c68616148d95',1,'pq::DigitalOut::DigitalOut(uint8_t pin, uint8_t mode, Engine &amp;engine=Engine::primary())']]],
+  ['digitalsource_11',['DigitalSource',['../classpq_1_1_digital_source.html',1,'pq::DigitalSource'],['../classpq_1_1_digital_source.html#a82355ff0443b098c7a32408ad766e3af',1,'pq::DigitalSource::DigitalSource()']]],
+  ['digitaltoanalog_12',['digitalToAnalog',['../classpq_1_1_flowable.html#aa3e3b46eb1eb516715732780b68d2a0c',1,'pq::Flowable']]],
+  ['digitalunit_13',['DigitalUnit',['../classpq_1_1_digital_unit.html',1,'pq::DigitalUnit'],['../classpq_1_1_digital_unit.html#a72f44843d37759a163bd0ab47ff01fbc',1,'pq::DigitalUnit::DigitalUnit()']]],
+  ['duration_14',['Duration',['../classpq_1_1_abstract_timer.html#aa8202320c1eeab81357d2e6f15e37ad1',1,'pq::AbstractTimer']]],
+  ['duration_15',['duration',['../classpq_1_1_abstract_timer.html#a1278f2208903d72d7b4414657b564d2c',1,'pq::AbstractTimer::duration(float duration)'],['../classpq_1_1_abstract_timer.html#adc25c02b7a2606cd74be8b7b8c6ca3e2',1,'pq::AbstractTimer::duration() const'],['../classpq_1_1_ramp.html#ac60b73d3b4ae290049e60edd42fbf08b',1,'pq::Ramp::duration() const override'],['../classpq_1_1_ramp.html#a89dae75ccd0f080b0d69064385810885',1,'pq::Ramp::duration(float duration) override']]],
+  ['durationtospeed_16',['durationToSpeed',['../classpq_1_1_ramp.html#a9b0f0aac4b37d45f4f0585b1a2b78d28',1,'pq::Ramp']]],
+  ['dutycycle_17',['dutyCycle',['../classpq_1_1_square_wave.html#a2dec22a41465d591d61b1e0cd6c878c1',1,'pq::SquareWave::dutyCycle(float dutyCycle)'],['../classpq_1_1_square_wave.html#a0f3e562c99485d950b6b00dc5a9094a4',1,'pq::SquareWave::dutyCycle() const']]]
 ];

@@ -1,8 +1,5 @@
 var classpq_1_1_sine_wave =
 [
-    [ "SineWave", "classpq_1_1_sine_wave.html#af0bf17d31eda3899169600553d83ada8", null ],
-    [ "SineWave", "classpq_1_1_sine_wave.html#ad97237cf4931722e3d016e638a86f4dd", null ],
-    [ "SineWave", "classpq_1_1_sine_wave.html#ab279ef6e72024d5391f286373b25b0c4", null ],
     [ "addTime", "classpq_1_1_sine_wave.html#adaa30519869dd5c7abc0ad3435ef8ed0", null ],
     [ "amplitude", "classpq_1_1_sine_wave.html#a7c5c9cf07d86c281d4b2de2e7435455b", null ],
     [ "amplitude", "classpq_1_1_sine_wave.html#ada41f6815ccadde5af91e0e6ac047bd7", null ],
@@ -54,6 +51,8 @@ var classpq_1_1_sine_wave =
     [ "seconds", "classpq_1_1_sine_wave.html#a2db7ca8446197ce97f6123996912eb50", null ],
     [ "setForward", "classpq_1_1_sine_wave.html#a199e460c1c3a29a444fdda894dff7eaf", null ],
     [ "setTime", "classpq_1_1_sine_wave.html#af58280d0cea90a8b73286ec50d624d24", null ],
+    [ "shape", "classpq_1_1_sine_wave.html#af5180484c7a976f5f7bd3111815a2054", null ],
+    [ "shape", "classpq_1_1_sine_wave.html#afc6f54926ac7c5eadcff3d45b0a995a3", null ],
     [ "shiftBy", "classpq_1_1_sine_wave.html#a730688312f4231184198f2b2c41b92ed", null ],
     [ "shiftByTime", "classpq_1_1_sine_wave.html#a55573c364fc90080d3c129c78dba4244", null ],
     [ "Skew", "classpq_1_1_sine_wave.html#a4b4296ad95e8f1ed27ba6acea2237b91", null ],

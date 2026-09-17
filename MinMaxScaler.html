@@ -1,23 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinMaxScaler &mdash; Plaquette 0.9.3 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>MinMaxScaler &mdash; Plaquette 0.9.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=80a4f565" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/plaquette-favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=c5ca06ca"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,15 +30,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Plaquette
-            <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Plaquette
+              <img src="_static/Plaquette-LogoText.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.9
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -70,7 +71,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">MinMaxScaler</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv412MinMaxScaler"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#seealso">See Also</a></li>
 </ul>
 </li>
@@ -114,9 +118,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="filters.html">Filters</a> &raquo;</li>
-      <li>MinMaxScaler</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="filters.html">Filters</a></li>
+      <li class="breadcrumb-item active">MinMaxScaler</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -126,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="minmaxscaler">
-<h1>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this heading"></a></h1>
+<h1>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Link to this heading"></a></h1>
 <p>This filtering unit regularizes incoming signals by remapping them into a new interval of [0, 1].
 It does so by keeping track of the minimum and the maximum values ever taken by the signal and
 rescales it such that the minimum value of the signal is mapped to 0 and the maximum value
@@ -149,45 +153,45 @@ restrict the spread of the filtered values.</p>
 </ol>
 </div>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Reacts to high input values by activating an output LED. Scaler is used to
 automatically adapt to incoming sensor values.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Plaquette.h&gt;</span>
 
 <span class="c1">// Analog sensor (eg. photocell or microphone).</span>
-<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span><span class="w"></span>
+<span class="n">AnalogIn</span><span class="w"> </span><span class="nf">sensor</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>
 
 <span class="c1">// Min-max scaler.</span>
-<span class="n">MinMaxScaler</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span><span class="w"></span>
+<span class="n">MinMaxScaler</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span>
 
 <span class="c1">// Output indicator LED.</span>
-<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+<span class="n">DigitalOut</span><span class="w"> </span><span class="nf">led</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">step</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Rescale value.</span>
-<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">sensor</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">scaler</span><span class="p">;</span>
 
 <span class="w">  </span><span class="c1">// Light led on threshold of 80%.</span>
-<span class="w">  </span><span class="p">(</span><span class="n">scaler</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">scaler</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h2>
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading"></a></h2>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv412MinMaxScaler">
-<span id="_CPPv312MinMaxScaler"></span><span id="_CPPv212MinMaxScaler"></span><span id="MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MovingFilter</span></span><a class="headerlink" href="#_CPPv412MinMaxScaler" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv312MinMaxScaler"></span><span id="_CPPv212MinMaxScaler"></span><span id="MinMaxScaler"></span><span class="target" id="classpq_1_1_min_max_scaler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">pq</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MovingFilter</span></span><a class="headerlink" href="#_CPPv412MinMaxScaler" title="Link to this definition"></a><br /></dt>
 <dd><p>Regularizes signal into [0,1] by rescaling it using the min and max values. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler12MinMaxScalerER6Engine">
-<span id="_CPPv3N12MinMaxScaler12MinMaxScalerER6Engine"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerER6Engine"></span><span id="MinMaxScaler::MinMaxScaler__EngineR"></span><span class="target" id="classpq_1_1_min_max_scaler_1a72420cf2526415aeb13fac06acbf48f7"></span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerER6Engine" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler12MinMaxScalerER6Engine"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerER6Engine"></span><span id="MinMaxScaler::MinMaxScaler__EngineR"></span><span class="target" id="classpq_1_1_min_max_scaler_1a72420cf2526415aeb13fac06acbf48f7"></span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerER6Engine" title="Link to this definition"></a><br /></dt>
 <dd><p>Default constructor. </p>
 <p>Assigns infinite time window. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>engine</strong> – the engine running this unit </p>
 </dd>
 </dl>
@@ -195,10 +199,10 @@ automatically adapt to incoming sensor values.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler12MinMaxScalerEfR6Engine">
-<span id="_CPPv3N12MinMaxScaler12MinMaxScalerEfR6Engine"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerEfR6Engine"></span><span id="MinMaxScaler::MinMaxScaler__float.EngineR"></span><span class="target" id="classpq_1_1_min_max_scaler_1aadc580e5fd9bba1c488a6b692aca18fa"></span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerEfR6Engine" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler12MinMaxScalerEfR6Engine"></span><span id="_CPPv2N12MinMaxScaler12MinMaxScalerEfR6Engine"></span><span id="MinMaxScaler::MinMaxScaler__float.EngineR"></span><span class="target" id="classpq_1_1_min_max_scaler_1aadc580e5fd9bba1c488a6b692aca18fa"></span><span class="sig-name descname"><span class="n"><span class="pre">MinMaxScaler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeWindow</span></span>, <a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">engine</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="Engine.html#_CPPv46Engine" title="Engine"><span class="n"><span class="pre">Engine</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="Engine.html#_CPPv4N6Engine7primaryEv" title="Engine::primary"><span class="n"><span class="pre">primary</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12MinMaxScalerEfR6Engine" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor with time window. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>timeWindow</strong> – the time window (in seconds) </p></li>
 <li><p><strong>engine</strong> – the engine running this unit </p></li>
@@ -209,44 +213,44 @@ automatically adapt to incoming sensor values.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler8minValueEv">
-<span id="_CPPv3NK12MinMaxScaler8minValueEv"></span><span id="_CPPv2NK12MinMaxScaler8minValueEv"></span><span id="MinMaxScaler::minValueC"></span><span class="target" id="classpq_1_1_min_max_scaler_1a91f9cc4e2cbae82d6858b9d011c7cb42"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8minValueEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler8minValueEv"></span><span id="_CPPv2NK12MinMaxScaler8minValueEv"></span><span id="MinMaxScaler::minValueC"></span><span class="target" id="classpq_1_1_min_max_scaler_1a91f9cc4e2cbae82d6858b9d011c7cb42"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8minValueEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the current min. value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler8maxValueEv">
-<span id="_CPPv3NK12MinMaxScaler8maxValueEv"></span><span id="_CPPv2NK12MinMaxScaler8maxValueEv"></span><span id="MinMaxScaler::maxValueC"></span><span class="target" id="classpq_1_1_min_max_scaler_1a836ea30c0043357953b1a6ba16dc6b15"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8maxValueEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler8maxValueEv"></span><span id="_CPPv2NK12MinMaxScaler8maxValueEv"></span><span id="MinMaxScaler::maxValueC"></span><span class="target" id="classpq_1_1_min_max_scaler_1a836ea30c0043357953b1a6ba16dc6b15"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8maxValueEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the current max. value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5resetEv">
-<span id="_CPPv3N12MinMaxScaler5resetEv"></span><span id="_CPPv2N12MinMaxScaler5resetEv"></span><span id="MinMaxScaler::reset"></span><span class="target" id="classpq_1_1_min_max_scaler_1af60aac47e64d63386d4f61cfb64207fd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler5resetEv"></span><span id="_CPPv2N12MinMaxScaler5resetEv"></span><span id="MinMaxScaler::reset"></span><span class="target" id="classpq_1_1_min_max_scaler_1af60aac47e64d63386d4f61cfb64207fd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Resets the moving filter. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5resetEf">
-<span id="_CPPv3N12MinMaxScaler5resetEf"></span><span id="_CPPv2N12MinMaxScaler5resetEf"></span><span id="MinMaxScaler::reset__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1ac9e5a573d7c91ef24299e52245ef8747"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler5resetEf"></span><span id="_CPPv2N12MinMaxScaler5resetEf"></span><span id="MinMaxScaler::reset__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1ac9e5a573d7c91ef24299e52245ef8747"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMeanValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Resets the filter with a prior estimate of the mean value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5resetEff">
-<span id="_CPPv3N12MinMaxScaler5resetEff"></span><span id="_CPPv2N12MinMaxScaler5resetEff"></span><span id="MinMaxScaler::reset__float.float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa7f35e7ff1e24a6b3aa21c4445218c3b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler5resetEff"></span><span id="_CPPv2N12MinMaxScaler5resetEff"></span><span id="MinMaxScaler::reset__float.float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa7f35e7ff1e24a6b3aa21c4445218c3b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMinValue</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">estimatedMaxValue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5resetEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Resets the moving filter with a prior estimate of the min and max values. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler3putEf">
-<span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler3putEf"></span><span id="_CPPv2N12MinMaxScaler3putEf"></span><span id="MinMaxScaler::put__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1aa61fda0b6a0cc07e0238d8ca99f088ef"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">put</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3putEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Pushes value into the unit. </p>
 <p>If isRunning() is false the filter will not be updated but will just return the filtered value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>value</strong> – the value sent to the unit </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the new value of the unit </p>
 </dd>
 </dl>
@@ -254,146 +258,146 @@ automatically adapt to incoming sensor values.</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler6filterEf">
-<span id="_CPPv3N12MinMaxScaler6filterEf"></span><span id="_CPPv2N12MinMaxScaler6filterEf"></span><span id="MinMaxScaler::filter__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1ad96d05e5bc0344be9431320fa38a07c6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler6filterEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler6filterEf"></span><span id="_CPPv2N12MinMaxScaler6filterEf"></span><span id="MinMaxScaler::filter__float"></span><span class="target" id="classpq_1_1_min_max_scaler_1ad96d05e5bc0344be9431320fa38a07c6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler6filterEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the filtered value (without calibrating). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler17resumeCalibratingEv">
-<span id="_CPPv3N12MinMaxScaler17resumeCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler17resumeCalibratingEv"></span><span id="MinMaxScaler::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler17resumeCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler17resumeCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler17resumeCalibratingEv"></span><span id="MinMaxScaler::resumeCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a21e2769136726fe7c4b60445fb7f7cd3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resumeCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler17resumeCalibratingEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Switches to calibration mode (default). </p>
 <p>Calls to put(value) will return filtered value AND update the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler16pauseCalibratingEv">
-<span id="_CPPv3N12MinMaxScaler16pauseCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler16pauseCalibratingEv"></span><span id="MinMaxScaler::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler16pauseCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler16pauseCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler16pauseCalibratingEv"></span><span id="MinMaxScaler::pauseCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1aa1b012a27c3ea7c5ddb034e17ae4e960"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pauseCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler16pauseCalibratingEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Switches to non-calibration mode: calls to put(value) will return filtered value without updating the normalization statistics. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler17toggleCalibratingEv">
-<span id="_CPPv3N12MinMaxScaler17toggleCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler17toggleCalibratingEv"></span><span id="MinMaxScaler::toggleCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a5ffbcc93a69b25b861e8529d14aa4c06"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler17toggleCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler17toggleCalibratingEv"></span><span id="_CPPv2N12MinMaxScaler17toggleCalibratingEv"></span><span id="MinMaxScaler::toggleCalibrating"></span><span class="target" id="classpq_1_1_moving_filter_1a5ffbcc93a69b25b861e8529d14aa4c06"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggleCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler17toggleCalibratingEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Toggles calibration mode. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler13isCalibratingEv">
-<span id="_CPPv3NK12MinMaxScaler13isCalibratingEv"></span><span id="_CPPv2NK12MinMaxScaler13isCalibratingEv"></span><span id="MinMaxScaler::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler13isCalibratingEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler13isCalibratingEv"></span><span id="_CPPv2NK12MinMaxScaler13isCalibratingEv"></span><span id="MinMaxScaler::isCalibratingC"></span><span class="target" id="classpq_1_1_moving_filter_1a57c34ac9ba77c7e866f0271ff089fb33"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isCalibrating</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler13isCalibratingEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true iff the moving filter is in calibration mode. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler8nSamplesEv">
-<span id="_CPPv3NK12MinMaxScaler8nSamplesEv"></span><span id="_CPPv2NK12MinMaxScaler8nSamplesEv"></span><span id="MinMaxScaler::nSamplesC"></span><span class="target" id="classpq_1_1_moving_filter_1aef1287b234e6ff879aeff99fe09e61c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSamples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8nSamplesEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler8nSamplesEv"></span><span id="_CPPv2NK12MinMaxScaler8nSamplesEv"></span><span id="MinMaxScaler::nSamplesC"></span><span class="target" id="classpq_1_1_moving_filter_1aef1287b234e6ff879aeff99fe09e61c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSamples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler8nSamplesEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the number of samples that have been processed thus far. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler16isPreInitializedEv">
-<span id="_CPPv3NK12MinMaxScaler16isPreInitializedEv"></span><span id="_CPPv2NK12MinMaxScaler16isPreInitializedEv"></span><span id="MinMaxScaler::isPreInitializedC"></span><span class="target" id="classpq_1_1_moving_filter_1ab6fa87a82028128f861011646e09d81e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPreInitialized</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler16isPreInitializedEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler16isPreInitializedEv"></span><span id="_CPPv2NK12MinMaxScaler16isPreInitializedEv"></span><span id="MinMaxScaler::isPreInitializedC"></span><span class="target" id="classpq_1_1_moving_filter_1ab6fa87a82028128f861011646e09d81e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isPreInitialized</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler16isPreInitializedEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true if the moving filter has been initialized with a starting range at reset. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler3getEv">
-<span id="_CPPv3N12MinMaxScaler3getEv"></span><span id="_CPPv2N12MinMaxScaler3getEv"></span><span id="MinMaxScaler::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3getEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler3getEv"></span><span id="_CPPv2N12MinMaxScaler3getEv"></span><span id="MinMaxScaler::get"></span><span class="target" id="classpq_1_1_analog_source_1a3ce78aafe60140b632dd1e14f035f475"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler3getEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns value in [0, 1]. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler5mapToEff">
-<span id="_CPPv3N12MinMaxScaler5mapToEff"></span><span id="_CPPv2N12MinMaxScaler5mapToEff"></span><span id="MinMaxScaler::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_source_1a2ee82196b5973d1c38cd0fb327233044"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5mapToEff" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler5mapToEff"></span><span id="_CPPv2N12MinMaxScaler5mapToEff"></span><span id="MinMaxScaler::mapTo__float.float"></span><span class="target" id="classpq_1_1_analog_source_1a2ee82196b5973d1c38cd0fb327233044"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapTo</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toLow</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toHigh</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler5mapToEff" title="Link to this definition"></a><br /></dt>
 <dd><p>Maps value to new range. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler7secondsEv">
-<span id="_CPPv3NK12MinMaxScaler7secondsEv"></span><span id="_CPPv2NK12MinMaxScaler7secondsEv"></span><span id="MinMaxScaler::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler7secondsEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler7secondsEv"></span><span id="_CPPv2NK12MinMaxScaler7secondsEv"></span><span id="MinMaxScaler::secondsC"></span><span class="target" id="classpq_1_1_unit_1a2db7ca8446197ce97f6123996912eb50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler7secondsEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns engine time in seconds. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler12milliSecondsEv">
-<span id="_CPPv3NK12MinMaxScaler12milliSecondsEv"></span><span id="_CPPv2NK12MinMaxScaler12milliSecondsEv"></span><span id="MinMaxScaler::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12milliSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler12milliSecondsEv"></span><span id="_CPPv2NK12MinMaxScaler12milliSecondsEv"></span><span id="MinMaxScaler::milliSecondsC"></span><span class="target" id="classpq_1_1_unit_1a16ffc521dfdabf26fd06fa92be2bf760"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milliSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12milliSecondsEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns engine time in milliseconds. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler12microSecondsEv">
-<span id="_CPPv3NK12MinMaxScaler12microSecondsEv"></span><span id="_CPPv2NK12MinMaxScaler12microSecondsEv"></span><span id="MinMaxScaler::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12microSecondsEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler12microSecondsEv"></span><span id="_CPPv2NK12MinMaxScaler12microSecondsEv"></span><span id="MinMaxScaler::microSecondsC"></span><span class="target" id="classpq_1_1_unit_1a22d31f34ba07507c76a24aff601a463b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12microSecondsEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns engine time in microseconds. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler6nStepsEv">
-<span id="_CPPv3NK12MinMaxScaler6nStepsEv"></span><span id="_CPPv2NK12MinMaxScaler6nStepsEv"></span><span id="MinMaxScaler::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler6nStepsEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler6nStepsEv"></span><span id="_CPPv2NK12MinMaxScaler6nStepsEv"></span><span id="MinMaxScaler::nStepsC"></span><span class="target" id="classpq_1_1_unit_1a34737444936b8e70d3950e7d196a9b6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler6nStepsEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns number of engine steps. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler10sampleRateEv">
-<span id="_CPPv3NK12MinMaxScaler10sampleRateEv"></span><span id="_CPPv2NK12MinMaxScaler10sampleRateEv"></span><span id="MinMaxScaler::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler10sampleRateEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler10sampleRateEv"></span><span id="_CPPv2NK12MinMaxScaler10sampleRateEv"></span><span id="MinMaxScaler::sampleRateC"></span><span class="target" id="classpq_1_1_unit_1abf7a83ac1dedb8f05b21fe68ec587209"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sampleRate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler10sampleRateEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns engine sample rate. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler12samplePeriodEv">
-<span id="_CPPv3NK12MinMaxScaler12samplePeriodEv"></span><span id="_CPPv2NK12MinMaxScaler12samplePeriodEv"></span><span id="MinMaxScaler::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12samplePeriodEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler12samplePeriodEv"></span><span id="_CPPv2NK12MinMaxScaler12samplePeriodEv"></span><span id="MinMaxScaler::samplePeriodC"></span><span class="target" id="classpq_1_1_unit_1ab17e40c0391f5c5fb115974d7b75646c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">samplePeriod</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler12samplePeriodEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns enginesample period. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScalercvfEv">
-<span id="_CPPv3N12MinMaxScalercvfEv"></span><span id="_CPPv2N12MinMaxScalercvfEv"></span><span id="MinMaxScaler::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScalercvfEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScalercvfEv"></span><span id="_CPPv2N12MinMaxScalercvfEv"></span><span id="MinMaxScaler::castto-float-operator"></span><span class="target" id="classpq_1_1_flowable_1ae179d32a1cdbc21ce66971a8f1ac6fc9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScalercvfEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Object can be used directly to access its value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScalercvbEv">
-<span id="_CPPv3N12MinMaxScalercvbEv"></span><span id="_CPPv2N12MinMaxScalercvbEv"></span><span id="MinMaxScaler::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScalercvbEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScalercvbEv"></span><span id="_CPPv2N12MinMaxScalercvbEv"></span><span id="MinMaxScaler::castto-b-operator"></span><span class="target" id="classpq_1_1_flowable_1a0ed114fe40ba138d7b4ba1b07cd6ac8e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScalercvbEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Operator that allows usage in conditional expressions. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler18infiniteTimeWindowEv">
-<span id="_CPPv3N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="_CPPv2N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="MinMaxScaler::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1ae70831c02cb9ac2ed4633fb2612b2654"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler18infiniteTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="_CPPv2N12MinMaxScaler18infiniteTimeWindowEv"></span><span id="MinMaxScaler::infiniteTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1ae70831c02cb9ac2ed4633fb2612b2654"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">infiniteTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler18infiniteTimeWindowEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets time window to infinite. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler12noTimeWindowEv">
-<span id="_CPPv3N12MinMaxScaler12noTimeWindowEv"></span><span id="_CPPv2N12MinMaxScaler12noTimeWindowEv"></span><span id="MinMaxScaler::noTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1a973b709e6d620ba95e811dac73835fd6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12noTimeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler12noTimeWindowEv"></span><span id="_CPPv2N12MinMaxScaler12noTimeWindowEv"></span><span id="MinMaxScaler::noTimeWindow"></span><span class="target" id="classpq_1_1_time_windowable_1a973b709e6d620ba95e811dac73835fd6"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">noTimeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler12noTimeWindowEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Sets time window to no time window. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler10timeWindowEf">
-<span id="_CPPv3N12MinMaxScaler10timeWindowEf"></span><span id="_CPPv2N12MinMaxScaler10timeWindowEf"></span><span id="MinMaxScaler::timeWindow__float"></span><span class="target" id="classpq_1_1_time_windowable_1a200edba5991b4ea779a6848f654aceb5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler10timeWindowEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler10timeWindowEf"></span><span id="_CPPv2N12MinMaxScaler10timeWindowEf"></span><span id="MinMaxScaler::timeWindow__float"></span><span class="target" id="classpq_1_1_time_windowable_1a200edba5991b4ea779a6848f654aceb5"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">seconds</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler10timeWindowEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the time window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler10timeWindowEv">
-<span id="_CPPv3NK12MinMaxScaler10timeWindowEv"></span><span id="_CPPv2NK12MinMaxScaler10timeWindowEv"></span><span id="MinMaxScaler::timeWindowC"></span><span class="target" id="classpq_1_1_time_windowable_1a5047b025a686298b85dba2c162175914"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler10timeWindowEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler10timeWindowEv"></span><span id="_CPPv2NK12MinMaxScaler10timeWindowEv"></span><span id="MinMaxScaler::timeWindowC"></span><span class="target" id="classpq_1_1_time_windowable_1a5047b025a686298b85dba2c162175914"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindow</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler10timeWindowEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the time window (expressed in seconds). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv">
-<span id="_CPPv3NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="MinMaxScaler::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_time_windowable_1aef904a094f19d393062c61f06e510a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="_CPPv2NK12MinMaxScaler20timeWindowIsInfiniteEv"></span><span id="MinMaxScaler::timeWindowIsInfiniteC"></span><span class="target" id="classpq_1_1_time_windowable_1aef904a094f19d393062c61f06e510a6c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeWindowIsInfinite</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler20timeWindowIsInfiniteEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns true if time window is infinite. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler6cutoffEf">
-<span id="_CPPv3N12MinMaxScaler6cutoffEf"></span><span id="_CPPv2N12MinMaxScaler6cutoffEf"></span><span id="MinMaxScaler::cutoff__float"></span><span class="target" id="classpq_1_1_time_windowable_1a7e6b52e05e0cc21a4f693a708f7b466a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler6cutoffEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler6cutoffEf"></span><span id="_CPPv2N12MinMaxScaler6cutoffEf"></span><span id="MinMaxScaler::cutoff__float"></span><span class="target" id="classpq_1_1_time_windowable_1a7e6b52e05e0cc21a4f693a708f7b466a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler6cutoffEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Changes the time window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK12MinMaxScaler6cutoffEv">
-<span id="_CPPv3NK12MinMaxScaler6cutoffEv"></span><span id="_CPPv2NK12MinMaxScaler6cutoffEv"></span><span id="MinMaxScaler::cutoffC"></span><span class="target" id="classpq_1_1_time_windowable_1aa5d75f1b738c6666f4ada0a54fdd9dba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler6cutoffEv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3NK12MinMaxScaler6cutoffEv"></span><span id="_CPPv2NK12MinMaxScaler6cutoffEv"></span><span id="MinMaxScaler::cutoffC"></span><span class="target" id="classpq_1_1_time_windowable_1aa5d75f1b738c6666f4ada0a54fdd9dba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cutoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12MinMaxScaler6cutoffEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns the time window cutoff frequency (expressed in Hz). </p>
 </dd></dl>
 
@@ -402,13 +406,13 @@ automatically adapt to incoming sensor values.</p>
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler15analogToDigitalEf">
-<span id="_CPPv3N12MinMaxScaler15analogToDigitalEf"></span><span id="_CPPv2N12MinMaxScaler15analogToDigitalEf"></span><span id="MinMaxScaler::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler15analogToDigitalEf" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler15analogToDigitalEf"></span><span id="_CPPv2N12MinMaxScaler15analogToDigitalEf"></span><span id="MinMaxScaler::analogToDigital__float"></span><span class="target" id="classpq_1_1_flowable_1aa9e3a88641cf8708489ae7e75fa820b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">analogToDigital</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler15analogToDigitalEf" title="Link to this definition"></a><br /></dt>
 <dd><p>Converts analog (float) value to digital (bool) value. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N12MinMaxScaler15digitalToAnalogEb">
-<span id="_CPPv3N12MinMaxScaler15digitalToAnalogEb"></span><span id="_CPPv2N12MinMaxScaler15digitalToAnalogEb"></span><span id="MinMaxScaler::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler15digitalToAnalogEb" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv3N12MinMaxScaler15digitalToAnalogEb"></span><span id="_CPPv2N12MinMaxScaler15digitalToAnalogEb"></span><span id="MinMaxScaler::digitalToAnalog__b"></span><span class="target" id="classpq_1_1_flowable_1aa3e3b46eb1eb516715732780b68d2a0c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">digitalToAnalog</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12MinMaxScaler15digitalToAnalogEb" title="Link to this definition"></a><br /></dt>
 <dd><p>Converts digital (bool) value to analog (float) value. </p>
 </dd></dl>
 
@@ -417,7 +421,7 @@ automatically adapt to incoming sensor values.</p>
 
 </section>
 <section id="seealso">
-<h2>See Also<a class="headerlink" href="#seealso" title="Permalink to this heading"></a></h2>
+<h2>See Also<a class="headerlink" href="#seealso" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="Normalizer.html"><span class="doc">Normalizer</span></a></p></li>
 <li><p><a class="reference internal" href="RobustScaler.html"><span class="doc">RobustScaler</span></a></p></li>

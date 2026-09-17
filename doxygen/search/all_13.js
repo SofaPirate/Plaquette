@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['unit_0',['unit',['../classpq_1_1_unit.html',1,'pq::Unit'],['../classpq_1_1_unit.html#a563a11cf023f2ab5a60c193ee3951937',1,'pq::Unit::Unit()']]],
-  ['update_1',['update',['../classpq_1_1_moving_average.html#ac13574f02f4645d9dcfdc80c6efa2383',1,'pq::MovingAverage::update()'],['../classpq_1_1_moving_stats.html#a9f820235502485a1dec566d5a54f2f27',1,'pq::MovingStats::update()']]],
-  ['updated_2',['updated',['../classpq_1_1_stream_in.html#aaa28a1f950e4d425ad4fd5d64e295e48',1,'pq::StreamIn::updated()'],['../classpq_1_1_time_slice_field.html#a35a0a94dc303fb0cf230b0b1fd621ef1',1,'pq::TimeSliceField::updated()']]]
+  ['value_0',['Value',['../classpq_1_1_value.html',1,'pq']]],
+  ['value_3c_20bool_20_3e_1',['Value&lt; bool &gt;',['../classpq_1_1_value.html',1,'pq']]],
+  ['value_3c_20float_20_3e_2',['Value&lt; float &gt;',['../classpq_1_1_value.html',1,'pq']]],
+  ['value_3c_20int_20_3e_3',['Value&lt; int &gt;',['../classpq_1_1_value.html',1,'pq']]],
+  ['valuecodec_4',['ValueCodec',['../structpq_1_1_value_codec.html',1,'pq']]],
+  ['valuecodec_3c_20bool_20_3e_5',['ValueCodec&lt; bool &gt;',['../structpq_1_1_value_codec_3_01bool_01_4.html',1,'pq']]],
+  ['valuecodec_3c_20float_20_3e_6',['ValueCodec&lt; float &gt;',['../structpq_1_1_value_codec_3_01float_01_4.html',1,'pq']]],
+  ['valuecodec_3c_20int_20_3e_7',['ValueCodec&lt; int &gt;',['../structpq_1_1_value_codec_3_01int_01_4.html',1,'pq']]],
+  ['var_8',['var',['../classpq_1_1_moving_stats.html#a94d79b067fbd358a82fdd84e2368191d',1,'pq::MovingStats']]]
 ];

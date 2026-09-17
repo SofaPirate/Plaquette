@@ -1,18 +1,10 @@
 var searchData=
 [
-  ['deactivate_0',['deactivate',['../classpq_1_1_abstract_servo_out.html#ae39cabe094fbc2a0f1da7a69bc8d27ef',1,'pq::AbstractServoOut']]],
-  ['debounce_1',['debounce',['../classpq_1_1_debounceable.html#aa861618a8887fdf71a95a50b12b12505',1,'pq::Debounceable']]],
-  ['debouncemode_2',['debouncemode',['../classpq_1_1_debounceable.html#ab8e1406fb68b32cb88e97d4d5aa5e814',1,'pq::Debounceable::debounceMode() const'],['../classpq_1_1_debounceable.html#a3636a5f531b7d502be21fe2d29815a02',1,'pq::Debounceable::debounceMode(uint8_t mode)']]],
-  ['delta_3',['delta',['../classpq_1_1_moving_average.html#a93fdd06d8b3ca2249758e975b8cbe868',1,'pq::MovingAverage']]],
-  ['deltatimemicroseconds_4',['deltaTimeMicroSeconds',['../classpq_1_1_engine.html#a73ed603aaf5234c9adb8213dfc61a75f',1,'pq::Engine']]],
-  ['deltatimesecondstimesfixed32max_5',['deltaTimeSecondsTimesFixed32Max',['../classpq_1_1_engine.html#a5ccb944ad6434fee9e9a54c6572a9366',1,'pq::Engine']]],
-  ['device_6',['device',['../classpq_1_1_monitor.html#abd5a83dfdeafb09d90d15f54cb576add',1,'pq::Monitor']]],
-  ['digitalin_7',['DigitalIn',['../classpq_1_1_digital_in.html#aa728df2cad9caef36817227de9c034cb',1,'pq::DigitalIn']]],
-  ['digitalout_8',['digitalout',['../classpq_1_1_digital_out.html#ad9ca3e61a0f2dc4fb09cee51af39c33f',1,'pq::DigitalOut::DigitalOut(uint8_t pin, Engine &amp;engine=Engine::primary())'],['../classpq_1_1_digital_out.html#a28940f991cdd0f8c97a8c68616148d95',1,'pq::DigitalOut::DigitalOut(uint8_t pin, uint8_t mode, Engine &amp;engine=Engine::primary())']]],
-  ['digitalsource_9',['DigitalSource',['../classpq_1_1_digital_source.html#a82355ff0443b098c7a32408ad766e3af',1,'pq::DigitalSource']]],
-  ['digitaltoanalog_10',['digitalToAnalog',['../classpq_1_1_flowable.html#aa3e3b46eb1eb516715732780b68d2a0c',1,'pq::Flowable']]],
-  ['digitalunit_11',['DigitalUnit',['../classpq_1_1_digital_unit.html#a72f44843d37759a163bd0ab47ff01fbc',1,'pq::DigitalUnit']]],
-  ['duration_12',['duration',['../classpq_1_1_abstract_timer.html#aa8202320c1eeab81357d2e6f15e37ad1',1,'pq::AbstractTimer::Duration()'],['../classpq_1_1_abstract_timer.html#a1278f2208903d72d7b4414657b564d2c',1,'pq::AbstractTimer::duration(float duration)'],['../classpq_1_1_abstract_timer.html#adc25c02b7a2606cd74be8b7b8c6ca3e2',1,'pq::AbstractTimer::duration() const'],['../classpq_1_1_ramp.html#ac60b73d3b4ae290049e60edd42fbf08b',1,'pq::Ramp::duration() const override'],['../classpq_1_1_ramp.html#a89dae75ccd0f080b0d69064385810885',1,'pq::Ramp::duration(float duration) override']]],
-  ['durationtospeed_13',['durationToSpeed',['../classpq_1_1_ramp.html#a9b0f0aac4b37d45f4f0585b1a2b78d28',1,'pq::Ramp']]],
-  ['dutycycle_14',['dutycycle',['../classpq_1_1_square_wave.html#a2dec22a41465d591d61b1e0cd6c878c1',1,'pq::SquareWave::dutyCycle(float dutyCycle)'],['../classpq_1_1_square_wave.html#a0f3e562c99485d950b6b00dc5a9094a4',1,'pq::SquareWave::dutyCycle() const']]]
+  ['easing_0',['easing',['../classpq_1_1_pivot_field.html#a00419c3ab1aa164a675cadf07bbceb15',1,'pq::PivotField::easing()'],['../classpq_1_1_ramp.html#abe926ae6541f6a57740c6d4902b05750',1,'pq::Ramp::easing()']]],
+  ['elapsed_1',['elapsed',['../classpq_1_1_abstract_chronometer.html#ae9012477635738450725b724749060e0',1,'pq::AbstractChronometer']]],
+  ['empty_2',['empty',['../structpq_1_1_label_view.html#ab66b45f05cd70a4ff1c728dfc15b0674',1,'pq::LabelView']]],
+  ['end_3',['end',['../classpq_1_1_engine.html#a7ac716e5a449faae3670b45c4a51e2b2',1,'pq::Engine']]],
+  ['endplot_4',['endPlot',['../classpq_1_1_plotter.html#ac03c614e8cea4d5d8da77182a4dcdba1',1,'pq::Plotter']]],
+  ['engine_5',['engine',['../classpq_1_1_unit.html#a9a8f1b541423b8e12f08f99141ec32a2',1,'pq::Unit']]],
+  ['eventtriggered_6',['eventTriggered',['../classpq_1_1_abstract_wave.html#ae25cc5c41e6bb2db1d5d9e185e87ee9a',1,'pq::AbstractWave::eventTriggered()'],['../classpq_1_1_alarm.html#a5b72daba0836513a9edc87a0a1c6f573',1,'pq::Alarm::eventTriggered()'],['../classpq_1_1_metronome.html#a1053f3b737b25acf47af81836749375b',1,'pq::Metronome::eventTriggered()'],['../classpq_1_1_peak_detector.html#a8b90410ddd0d61528d4b1a8a25403dd4',1,'pq::PeakDetector::eventTriggered()'],['../classpq_1_1_unit.html#a8beada08e61f4151fd30d888341390b7',1,'pq::Unit::eventTriggered()'],['../classpq_1_1_digital_source.html#a29c8a619c6b6a70b1ffc33767cb1211d',1,'pq::DigitalSource::eventTriggered()'],['../classpq_1_1_ramp.html#a535e28fddce54c497a735b21227d6279',1,'pq::Ramp::eventTriggered()'],['../classpq_1_1_stream_in.html#a35c47f5e6eb0ed9a59ffeb5185725dde',1,'pq::StreamIn::eventTriggered()'],['../classpq_1_1_time_slice_field.html#a307d3401b9d71dad4c14b71d8077696e',1,'pq::TimeSliceField::eventTriggered()']]]
 ];

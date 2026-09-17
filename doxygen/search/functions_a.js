@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['jitter_0',['jitter',['../classpq_1_1_abstract_oscillator.html#a7e35e9696e00ecd6fb181921861006b5',1,'pq::AbstractOscillator::jitter(float jitter)'],['../classpq_1_1_abstract_oscillator.html#a04d4b9df74d5e2cca19eabbcc3a5347b',1,'pq::AbstractOscillator::jitter() const'],['../classpq_1_1_abstract_oscillator.html#a04e7b033a9e0cf261d417ed01d5bc542',1,'pq::AbstractOscillator::Jitter()']]],
-  ['jitteredfrequency_1',['jitteredFrequency',['../classpq_1_1_abstract_oscillator.html#a35e1779db78f91ef81bcb35fe9deab24',1,'pq::AbstractOscillator']]],
-  ['jitteredperiod_2',['jitteredPeriod',['../classpq_1_1_abstract_oscillator.html#aabd733d412979fbb52ab05331bffce25',1,'pq::AbstractOscillator']]]
+  ['labels_0',['labels',['../classpq_1_1_plotter.html#a841a788fc6ecf424e35d7407726b09bd',1,'pq::Plotter']]],
+  ['lowoutlierthreshold_1',['lowOutlierThreshold',['../classpq_1_1_normalizer.html#a504e1d3234598ea402beb2e7dcf97bce',1,'pq::Normalizer']]],
+  ['lowquantile_2',['lowQuantile',['../classpq_1_1_robust_scaler.html#a7928ba142c762602fb8268cda9fa750b',1,'pq::RobustScaler']]],
+  ['lowquantilelevel_3',['lowQuantileLevel',['../classpq_1_1_robust_scaler.html#ad7140e7f442648b47879bc463f56505c',1,'pq::RobustScaler::lowQuantileLevel(float level)'],['../classpq_1_1_robust_scaler.html#aa299e6f12fcebfcaae5a97a5fb954b9d',1,'pq::RobustScaler::lowQuantileLevel() const']]]
 ];

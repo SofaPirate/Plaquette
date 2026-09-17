@@ -48,9 +48,10 @@ var NAVTREEINDEX =
 "classpq_1_1_digital_source.html#a6cbb4348dfc91336420d115eacd3c05e",
 "classpq_1_1_moving_stats.html#abe80e57b914bbaa49cb2d48bc7225c45",
 "classpq_1_1_robust_scaler.html#abfcabec30407320d78903fcbc54ecba7",
-"classpq_1_1_stream_out.html#ae179d32a1cdbc21ce66971a8f1ac6fc9",
-"functions_h.html"
+"classpq_1_1_time_slice_field.html#a16ffc521dfdabf26fd06fa92be2bf760",
+"functions_v.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';
