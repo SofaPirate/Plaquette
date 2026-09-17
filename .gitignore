@@ -267,3 +267,6 @@ main.cpp
 platformio.ini
 diagram.json
 wokwi.toml
+
+# Node (release tooling)
+node_modules/
