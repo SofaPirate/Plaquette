@@ -4,14 +4,30 @@ This document describes the process for publishing a new release.
 
 ## Prerequisites
 
-- [`gh`](https://cli.github.com/) CLI installed and authenticated
+- [`gh`](https://cli.github.com/) CLI installed and authenticated (`gh auth login`)
 - Node.js and npm installed (`npm install` to install `auto-changelog`)
+- `docs/sphinx_env` set up and working (`cd docs && python3 -m venv sphinx_env && sphinx_env/bin/pip install -r requirements.txt`)
+- `latexmk` and a LaTeX toolchain installed (`sudo apt install latexmk texlive-full` or equivalent) — needed to build `extras/Plaquette-Manual.pdf`
+- A `gh-pages` worktree checked out at `../Plaquette-docs/html` (sibling of this repo):
+  ```bash
+  git worktree add ../Plaquette-docs/html gh-pages
+  ```
 
-## Workflow
+## Recommended: interactive script
+
+```bash
+./tools/do_release.sh 0.9.4
+```
+
+This walks through every step below, pausing for confirmation before each push or commit, and shows the generated `CHANGELOG.md` section for you to review (and lets you hand-edit it before continuing). It's safe to re-run: if the version bump/tag already happened, it picks up from the next step (push, docs, PDF manual, gh-pages sync, GitHub release) instead of redoing it.
+
+## Manual workflow
+
+If you'd rather run the steps by hand, or the script gets stuck:
 
 ### 1. Prepare the release
 
-Make sure all intended commits are on `develop` and the working tree is clean:
+Make sure all intended commits are on `develop`/`master` and the working tree is clean:
 
 ```bash
 git status   # should show nothing to commit
@@ -19,25 +35,20 @@ git status   # should show nothing to commit
 
 ### 2. Bump version, update changelog, commit and tag
 
-Run `npm version` with the new version number:
-
 ```bash
-npm version 0.9.4 --message "Bump to version %s."
+bash tools/bump_version.sh 0.9.4      # updates library.properties, package.json, docs/conf.py
+node_modules/.bin/auto-changelog -p    # regenerates CHANGELOG.md
 ```
 
-Or use a bump type:
+Review the new section in `CHANGELOG.md`, then:
 
 ```bash
-npm version patch --message "Bump to version %s."   # 0.9.3 → 0.9.4
-npm version minor --message "Bump to version %s."   # 0.9.3 → 0.10.0
-npm version major --message "Bump to version %s."   # 0.9.3 → 1.0.0
+git add CHANGELOG.md library.properties package.json docs/conf.py
+git commit -m "Bump to version 0.9.4."
+git tag v0.9.4
 ```
 
-This automatically:
-- Bumps the version in `package.json`, `library.properties`, and `docs/conf.py`
-- Regenerates `CHANGELOG.md`
-- Creates a git commit with all version-bumped files
-- Creates the git tag (e.g. `v0.9.4`)
+(`npm version 0.9.4 --message "Bump to version %s."` also does this in one shot via the `version` script in `package.json`, but it commits/tags immediately with no chance to review the changelog first — prefer the steps above, or the interactive script, if you want to check the changelog.)
 
 ### 3. Push
 
@@ -45,7 +56,39 @@ This automatically:
 git push && git push --tags
 ```
 
-### 4. Create the GitHub release
+### 4. Rebuild the docs and PDF manual
+
+```bash
+cd docs
+source sphinx_env/bin/activate
+make clean
+make html       # writes to ../../Plaquette-docs/html (the gh-pages worktree)
+make latexpdf   # writes to ../extras/Plaquette-Manual.pdf
+cd ..
+```
+
+Commit the updated manual on `master`:
+
+```bash
+git add extras/Plaquette-Manual.pdf
+git commit -m "Sync manual doc with 0.9.4."
+git push
+```
+
+### 5. Sync gh-pages
+
+`make html` writes directly into the `gh-pages` worktree (`../Plaquette-docs/html`), so just commit and push from there:
+
+```bash
+cd ../Plaquette-docs/html
+git status
+git add -A
+git commit -m "Sync with 0.9.4."
+git push origin gh-pages
+cd -
+```
+
+### 6. Create the GitHub release
 
 ```bash
 ./tools/release.sh
