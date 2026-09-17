@@ -155,9 +155,10 @@ if confirm "Rebuild HTML docs, doxygen reference and PDF manual now?"; then
     exit 1
   fi
 
-  CNAME_CONTENT=""
+  CNAME_BACKUP=""
   if [ -f "$GHPAGES_DIR/CNAME" ]; then
-    CNAME_CONTENT="$(cat "$GHPAGES_DIR/CNAME")"
+    CNAME_BACKUP="$(mktemp)"
+    cp "$GHPAGES_DIR/CNAME" "$CNAME_BACKUP"
   fi
 
   (
@@ -172,10 +173,11 @@ if confirm "Rebuild HTML docs, doxygen reference and PDF manual now?"; then
 
   # `make clean` wipes the gh-pages worktree's html/ dir, including CNAME, which has no
   # source to regenerate from -- restore it so it isn't accidentally deleted from gh-pages.
-  if [ -n "$CNAME_CONTENT" ] && [ ! -f "$GHPAGES_DIR/CNAME" ]; then
-    echo "$CNAME_CONTENT" > "$GHPAGES_DIR/CNAME"
+  if [ -n "$CNAME_BACKUP" ] && [ ! -f "$GHPAGES_DIR/CNAME" ]; then
+    cp "$CNAME_BACKUP" "$GHPAGES_DIR/CNAME"
     echo "Restored CNAME in gh-pages worktree."
   fi
+  [ -n "$CNAME_BACKUP" ] && rm -f "$CNAME_BACKUP"
 
   if [ -n "$(git status --porcelain -- extras/Plaquette-Manual.pdf)" ]; then
     git add extras/Plaquette-Manual.pdf
