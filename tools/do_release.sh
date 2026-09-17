@@ -125,7 +125,19 @@ fi
 
 if confirm "Push $CURRENT_BRANCH and tag $TAG to origin?"; then
   git push origin "$CURRENT_BRANCH"
-  git push origin "$TAG"
+
+  REMOTE_TAG_COMMIT="$(git ls-remote origin "refs/tags/$TAG" | cut -f1)"
+  if [ -z "$REMOTE_TAG_COMMIT" ]; then
+    git push origin "$TAG"
+  elif [ "$REMOTE_TAG_COMMIT" != "$(git rev-parse "$TAG")" ]; then
+    echo "Remote tag $TAG points elsewhere (local changed after an earlier push, e.g. a fix-up commit)."
+    if confirm "Force-push local tag $TAG to origin, overwriting it?"; then
+      git push origin "$TAG" --force
+    else
+      echo "Stopped: local and remote tag $TAG disagree. Resolve manually before continuing."
+      exit 1
+    fi
+  fi
 else
   echo "Stopped before push. Commit and tag are local only; re-run this script later to continue."
   exit 0
