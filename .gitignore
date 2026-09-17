@@ -270,3 +270,4 @@ wokwi.toml
 
 # Node (release tooling)
 node_modules/
+release-notes/
