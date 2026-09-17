@@ -1,3 +1,4 @@
 {
-  "ignoreCommitPattern": "(^Bump\\b)|(^chore\\(release\\):)|(^release:)|(^prepare release)|(^version\\b)|(^set version\\b)|(docs?|[Mm]inor|[Cc]osmetic|[Dd]ocumentation|[Ii]mage|[Ee]xamples?|rst|RST|md|svg|SVG|jpg|png)"
+  "ignoreCommitPattern": "(^Bump\\b)|(^chore\\(release\\):)|(^release:)|(^prepare release)|(^version\\b)|(^set version\\b)|(docs?|[Mm]inor|[Cc]osmetic|[Dd]ocumentation|[Ii]mage|[Ee]xamples?|rst|RST|md|svg|SVG|jpg|png)",
+  "commitLimit": false
 }
