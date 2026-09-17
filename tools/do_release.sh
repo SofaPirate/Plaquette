@@ -56,6 +56,19 @@ echo "Branch: $CURRENT_BRANCH"
 echo "gh:     $(gh auth status 2>&1 | grep 'Logged in' | sed 's/^ *//')"
 echo
 
+# --- Local tests ---
+
+if confirm "Run local AUnit test suite (tests/) before proceeding?"; then
+  if ! (cd "$ROOT_DIR/tests" && make clean >/dev/null && make && make test); then
+    echo "Error: local tests failed. Fix them before releasing."
+    exit 1
+  fi
+  echo
+  echo "Local tests passed."
+else
+  echo "Skipping local tests."
+fi
+
 # --- Version ---
 
 NEW_VERSION="$1"
@@ -141,6 +154,58 @@ if confirm "Push $CURRENT_BRANCH and tag $TAG to origin?"; then
 else
   echo "Stopped before push. Commit and tag are local only; re-run this script later to continue."
   exit 0
+fi
+
+# --- Wait for CI ---
+# Note: this repo's AUnit Tests / Compile Examples workflows only trigger on push when
+# .ino/.cpp/.h files changed, but GitHub Actions ignores path filters for tag pushes, so a
+# tag push (like the one above) always triggers them regardless of what changed.
+
+TAG_SHA="$(git rev-parse "$TAG")"
+echo
+echo "Waiting for GitHub Actions on $TAG ($TAG_SHA)..."
+CI_STATUS=0
+python3 - "$TAG_SHA" <<'PY' || CI_STATUS=$?
+import json, subprocess, sys, time
+
+sha = sys.argv[1]
+max_wait_s = 600
+poll_s = 15
+elapsed = 0
+runs = []
+
+while True:
+    out = subprocess.run(
+        ["gh", "run", "list", "--commit", sha, "--json", "name,status,conclusion"],
+        capture_output=True, text=True
+    )
+    runs = json.loads(out.stdout or "[]")
+    if runs and all(r["status"] == "completed" for r in runs):
+        break
+    if elapsed >= max_wait_s:
+        print(f"Timed out after {max_wait_s}s waiting for CI on {sha}.")
+        sys.exit(2)
+    time.sleep(poll_s)
+    elapsed += poll_s
+
+if not runs:
+    print(f"No CI runs found for {sha}.")
+    sys.exit(0)
+
+for r in runs:
+    print(f"  {r['conclusion']:10} {r['name']}")
+failed = [r for r in runs if r["conclusion"] not in ("success", "skipped")]
+sys.exit(1 if failed else 0)
+PY
+
+if [ "$CI_STATUS" = "1" ]; then
+  if ! confirm "Some CI runs did not succeed for $TAG_SHA. Continue anyway?"; then
+    exit 1
+  fi
+elif [ "$CI_STATUS" = "2" ]; then
+  confirm "Timed out waiting for CI. Continue without confirmed results?" || exit 1
+else
+  echo "CI OK."
 fi
 
 # --- Docs + PDF manual ---

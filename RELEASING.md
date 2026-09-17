@@ -20,7 +20,7 @@ This document describes the process for publishing a new release.
 ./tools/do_release.sh 0.9.4
 ```
 
-This walks through every step below, pausing for confirmation before each push or commit, and shows the generated `CHANGELOG.md` section for you to review (and lets you hand-edit it before continuing). It's safe to re-run: if the version bump/tag already happened, it picks up from the next step (push, docs, PDF manual, gh-pages sync, GitHub release) instead of redoing it.
+This walks through every step below, pausing for confirmation before each push or commit: local tests, changelog review (shows the generated `CHANGELOG.md` section and lets you hand-edit it before continuing), push, waiting for GitHub Actions to go green on the tag, docs + PDF manual rebuild, gh-pages sync, and GitHub release creation. It's safe to re-run: if the version bump/tag already happened, it picks up from the next step instead of redoing it.
 
 ## Manual workflow
 
@@ -32,6 +32,12 @@ Make sure all intended commits are on `develop`/`master` and the working tree is
 
 ```bash
 git status   # should show nothing to commit
+```
+
+Run the local test suite:
+
+```bash
+cd tests && make clean && make && make test && cd ..
 ```
 
 ### 2. Bump version, update changelog, commit and tag
@@ -56,6 +62,14 @@ git tag v0.9.4
 ```bash
 git push && git push --tags
 ```
+
+Then check that CI is green for the tag:
+
+```bash
+gh run list --commit v0.9.4
+```
+
+This repo's `AUnit Tests` / `Compile Examples` workflows only trigger on a branch push when `.ino`/`.cpp`/`.h` files changed, but GitHub ignores path filters on tag pushes — so pushing the tag above always re-triggers them regardless of what the release commit touched. Wait for both to show `success` before continuing.
 
 ### 4. Rebuild the docs and PDF manual
 
