@@ -109,7 +109,13 @@
 #endif
 
 // IEEE 754 floating point supported.
-#if defined(__STDC_IEC_559__) || defined(__IEEE754__) || defined(ESP_PLATFORM) || defined(TEENSYDUINO) || defined(__AVR__) || defined(__ARM_FP)
+// Only the binary32 bit layout matters here (not rounding modes or exceptions), so we also
+// check float characteristics directly: this covers soft-float targets without an FPU
+// (e.g. SAMD21 / Cortex-M0+), where __ARM_FP and __GCC_IEC_559 are not set.
+#if defined(__STDC_IEC_559__) || defined(__IEEE754__) || defined(ESP_PLATFORM) || \
+    defined(TEENSYDUINO) || defined(__AVR__) || defined(__ARM_FP) || \
+    (defined(__FLT_MANT_DIG__) && __FLT_MANT_DIG__ == 24 && \
+     __FLT_MAX_EXP__ == 128 && __FLT_MIN_EXP__ == -125)
   #define PQ_IEEE_754_SUPPORTED
 #else
   #warning "IEEE 754 floating point not supported on this architecture. This may cause unexpected behavior."
