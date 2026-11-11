@@ -59,13 +59,18 @@
   #undef sq
 #endif
 
+// Standard headers must be included outside of namespace pq.
+#if defined(__has_include) && __has_include(<type_traits>)
+  #include <type_traits>
+  #define PQ_HAS_TYPE_TRAITS 1
+#endif
+
 namespace pq {
 
 // --- Common type machinery ---------------------------------
 // Ensures math functions work safely when mixing types (e.g. int and float).
-#if defined(__has_include) && __has_include(<type_traits>)
+#ifdef PQ_HAS_TYPE_TRAITS
 
-#include <type_traits>
 template <typename A, typename B>
   using common_pair_t = typename std::common_type<A,B>::type;
 

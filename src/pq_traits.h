@@ -23,6 +23,12 @@
 #ifndef PQ_TRAITS_H_
 #define PQ_TRAITS_H_
 
+// Standard headers must be included outside of namespace pq.
+#if defined(__has_include) && __has_include(<type_traits>)
+  #include <type_traits>
+  #define PQ_HAS_TYPE_TRAITS 1
+#endif
+
 namespace pq {
 
 // ---------- enable_if ----------
@@ -39,8 +45,7 @@ using enable_if_t = typename enable_if<B, T>::type;
 
 // ---------- is_integral ----------
 
-#if defined(__has_include) && __has_include(<type_traits>)
-#include <type_traits>
+#ifdef PQ_HAS_TYPE_TRAITS
 
 template <typename T>
 using is_integral = std::is_integral<T>;
