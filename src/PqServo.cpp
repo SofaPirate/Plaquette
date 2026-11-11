@@ -17,11 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Tell PqServo.h not to raise an error if the Servo library is missing: compile nothing instead.
+#define PQ_SERVO_CPP_
 #include "PqServo.h"
 
-#if PQ_ARCH_SUPPORTS_SERVO
+#if PQ_HAS_SERVO
 
-#warning "Using PqServo.cpp"
 #include "pq_map.h"
 
 namespace pq {

@@ -28,7 +28,29 @@
 #endif
 #endif
 
+// Only enable servo units if the Servo library is actually available. This is necessary
+// because build systems such as PlatformIO compile PqServo.cpp even when the sketch does
+// not use servos, and do not always install the Servo dependency automatically.
 #if PQ_ARCH_SUPPORTS_SERVO
+  #if defined(__has_include)
+    #if __has_include(<Servo.h>)
+      #define PQ_HAS_SERVO 1
+    #endif
+  #else
+    #define PQ_HAS_SERVO 1 // Cannot check: assume Servo library is present.
+  #endif
+#endif
+
+#ifndef PQ_HAS_SERVO
+  #define PQ_HAS_SERVO 0
+#endif
+
+// Explicit inclusion of PqServo.h in a sketch without the Servo library: give a clear message.
+#if PQ_ARCH_SUPPORTS_SERVO && !PQ_HAS_SERVO && !defined(PQ_SERVO_CPP_)
+  #error "PqServo requires the Servo library. Arduino IDE: install Servo from the Library Manager. PlatformIO: add arduino-libraries/Servo to lib_deps."
+#endif
+
+#if PQ_HAS_SERVO
 
 #include "PqCore.h"
 #include <Servo.h>
