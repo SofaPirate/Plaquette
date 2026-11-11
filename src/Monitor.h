@@ -85,6 +85,7 @@ public:
    * All print()/println() calls funnel through this method.
    */
   virtual size_t write(uint8_t b) override;
+  using Print::write;
 
   using Print::print;
   using Print::println;

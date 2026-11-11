@@ -28,6 +28,7 @@ namespace pq {
 class NullPrint : public Print {
 public:
   virtual size_t write(uint8_t) override { return 1; }
+  using Print::write;
 };
 
 static NullPrint nullPrint;

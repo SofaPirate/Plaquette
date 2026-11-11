@@ -120,6 +120,9 @@ public:
   /// Starts/restarts the ramp. Will repeat the last ramp.
   virtual void start();
 
+  // Unhide AbstractTimer::start(float duration).
+  using AbstractTimer::start;
+
   // virtual void go(float from, float to, float durationOrSpeed, uint8_t mode, easing_function easing=0);
   /**
    * Starts a new ramp.
