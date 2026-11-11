@@ -26,7 +26,9 @@
 namespace pq {
 
 /// Stream/serial output. Number of digits of precision is configurable.
-class StreamOut : public AnalogSource {
+/// @deprecated Use Monitor or Plotter instead.
+class [[deprecated("StreamOut is deprecated: use Monitor or Plotter instead.")]]
+StreamOut : public AnalogSource {
 public:
   /**
    * Default constructor.

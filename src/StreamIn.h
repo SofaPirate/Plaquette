@@ -26,7 +26,9 @@
 namespace pq {
 
 /// Stream/serial input. Reads float values using Arduino built-in parseFloat().
-class StreamIn : public AnalogSource {
+/// @deprecated StreamIn will be removed in a future version.
+class [[deprecated("StreamIn is deprecated and will be removed in a future version.")]]
+StreamIn : public AnalogSource {
 public:
   /**
    * Default constructor.
