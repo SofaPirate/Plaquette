@@ -87,6 +87,13 @@ public:
   virtual size_t write(uint8_t b) override;
   using Print::write;
 
+  // Integer overloads (as in HardwareSerial) so that write(0) is not ambiguous
+  // with write(const char*).
+  inline size_t write(unsigned long n) { return write((uint8_t)n); }
+  inline size_t write(long n) { return write((uint8_t)n); }
+  inline size_t write(unsigned int n) { return write((uint8_t)n); }
+  inline size_t write(int n) { return write((uint8_t)n); }
+
   using Print::print;
   using Print::println;
 

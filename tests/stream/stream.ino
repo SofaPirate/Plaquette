@@ -132,6 +132,24 @@ test(inputToOutput) {
   assertStringCaseEqual(output.readString(), "1 2 3 4\n");
 }
 
+test(outputWriteBytes) {
+  // Flush output.
+  clearOutput();
+
+  // Literal 0 must resolve to an integer overload (not write(const char*)).
+  streamOut.write(0);
+  streamOut.write(65);
+  streamOut.write(66L);
+  streamOut.write(67u);
+  streamOut.write(68ul);
+  streamOut.write('E');
+  streamOut.write("FG");
+
+  const char expected[] = { 0, 'A', 'B', 'C', 'D', 'E', 'F', 'G' };
+  assertEqual(output.available(), (int)sizeof(expected));
+  for (size_t i=0; i<sizeof(expected); i++)
+    assertEqual(output.read(), (int)expected[i]);
+}
 
 void setup() {
   Plaquette.begin();
